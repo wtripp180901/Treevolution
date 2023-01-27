@@ -6,31 +6,32 @@ using TMPro;
 
 public class QRDetection : MonoBehaviour
 {
-    //QRCodeWatcher watcher;
+    QRCodeWatcher watcher;
     TMP_Text debugText;
     
     async void Start()
     {
+        Debug.Log("QR Script started");
         debugText = GameObject.FindGameObjectWithTag("DebugText").GetComponent<TMP_Text>();
         debugText.text = "tst";
         await QRCodeWatcher.RequestAccessAsync();
-        //Debug.Log(QRCodeWatcher.IsSupported());
-        //watcher = new QRCodeWatcher();
-        //watcher.Start();
+        Debug.Log(QRCodeWatcher.IsSupported());
+        watcher = new QRCodeWatcher();
+        watcher.Start();
         
     }
 
     // Update is called once per frame
     void Update()
     {
+        debugText.text = "updt_code";
         if (QRCodeWatcher.IsSupported())
         {
-            //debugText.text = watcher.GetList().Count.ToString();
-            debugText.text = "QR supported";
+            debugText.text = "S_" + watcher.GetList().Count.ToString() + "\n_" + watcher.GetList()[0].Data;
         }
         else
         {
-            debugText.text = "QR not supported";
+            debugText.text = "U";
         }
     }
 }
