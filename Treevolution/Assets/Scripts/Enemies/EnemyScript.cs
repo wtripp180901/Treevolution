@@ -104,43 +104,6 @@ public class EnemyScript : MonoBehaviour
         startMoveToNextTarget();
     }
 
-    private void startMoveToNextTarget()
-    {
-        if (pathCounter >= path.Length)
-        {
-            followingPath = false;
-        }
-        else
-        {
-            currentTarget = path[pathCounter];
-            directionVector = (currentTarget - transform.position).normalized * speed;
-            pathCounter += 1;
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        Collider collider = collision.collider;
-        if (collider.gameObject.tag == "Tree")
-        {
-            Debug.Log("Reached tree");
-            followingPath = false;
-        }
-        else if (climbableTages.Contains(collider.gameObject.tag))
-        {
-            float topOfCollider = collider.bounds.extents.y + collider.gameObject.transform.position.y;
-            float heightAboveObject = topOfCollider + GetComponent<Collider>().bounds.extents.y + 0.1f;
-            if (transform.position.y < topOfCollider)
-            {
-                followingPath = false;
-                rig.useGravity = false;
-                climbing = true;
-                targetHeight = heightAboveObject;
-            }
-        }
-    }
-
-
     public void Damage()
     {
         Debug.Log("Enemy hit");
