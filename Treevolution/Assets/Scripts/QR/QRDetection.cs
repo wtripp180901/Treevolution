@@ -10,88 +10,70 @@ public class QRDetection : MonoBehaviour
 {
     QRCodeWatcher watcher;
     TMP_Text debugText;
-    GameObject debugMarker;
+    public GameObject towerMarker;
+    List<(QRCode, GameObject)> markers;
     QRCodeWatcherAccessStatus status;
     QRCode lastAdded = null;
     bool hasStarted = false;
     
-    async void Start()
-    {
-        debugMarker = GameObject.FindGameObjectWithTag("Player");
+    async void Start() {
+        towerMarker.SetActive(false);
         Debug.Log("QR Script started");
         debugText = GameObject.FindGameObjectWithTag("DebugText").GetComponent<TMP_Text>();
-        debugText.text = "tst";
+        debugText.text = "Start() Test Code";
         status = await QRCodeWatcher.RequestAccessAsync();
         Debug.Log(QRCodeWatcher.IsSupported());
-<<<<<<< HEAD
-        if (QRCodeWatcher.IsSupported() && status == QRCodeWatcherAccessStatus.Allowed)
-        {
-            watcher = new QRCodeWatcher();
-            watcher.Added += codeAddedEventHandler;
-            watcher.Updated += codeUpdatedEventHandler;
-            watcher.Start();
-            debugText.text = "- QR is Supported\n- Permissions Accepted\n- QRCodeWatcher Started";
-            debugMarker.SetActive(false);
-        }
-        else if (status != QRCodeWatcherAccessStatus.Allowed){
-            debugText.text = "<< Permissions Not Accepted >>";
-        }
-        else if (!QRCodeWatcher.IsSupported())
-        {
-            debugText.text = "<< QRCodeWatcher Not Supported >>";
-        }
-
-=======
->>>>>>> 8966f4127c5afe111b9391b8923e1faa604550ac
     }
 
     // Update is called once per frame
     void Update()
     {
-<<<<<<< HEAD
-        if (QRCodeWatcher.IsSupported() && status == QRCodeWatcherAccessStatus.Allowed)
-=======
         if (QRCodeWatcher.IsSupported() && status == QRCodeWatcherAccessStatus.Allowed && !hasStarted)
-        {
             InitialiseQR();
-        }
         else
-        {
-            debugText.text = "accept perms";
-        }
-        //debugText.text = "updt_code";
-        if (QRCodeWatcher.IsSupported() && hasStarted)
->>>>>>> 8966f4127c5afe111b9391b8923e1faa604550ac
-        {
-            if (lastAdded == null) debugText.text = "Scanning";
-            {
-                Pose position;
-                SpatialGraphNode.FromStaticNodeId(lastAdded.SpatialGraphNodeId).TryLocate(FrameTime.OnUpdate, out position);
-                debugMarker.transform.position = position.position;
-                Vector3 markerPos = new Vector3(lastAdded.PhysicalSideLength, lastAdded.PhysicalSideLength, lastAdded.PhysicalSideLength);
-                debugMarker.transform.SetPositionAndRotation(markerPos, position.rotation);
-                debugMarker.SetActive(true);
-                debugText.text = "Found: " + watcher.GetList().Count.ToString() + "\n" + lastAdded.Data + "\n" + position.position.ToString();
+            debugText.text = "Please Accept Permissions\nor Terminate and Restart the App";
+
+        if (hasStarted) {
+            if (lastAdded == null) 
+                debugText.text = "Scanning";
+            else {
+                foreach ((QRCode, GameObject) marker in markers) // Maybe send as async routines?
+                {
+                    Pose position;
+                    SpatialGraphNode.FromStaticNodeId(marker.Item1.SpatialGraphNodeId).TryLocate(FrameTime.OnUpdate, out position);
+                    marker.Item2.transform.position = position.position;
+                    float length = marker.Item1.PhysicalSideLength;
+                    Vector3 markerPos = new Vector3(length, length, length);
+                    marker.Item2.transform.SetPositionAndRotation(markerPos, position.rotation);
+                }
+                debugText.text = "Found: " + watcher.GetList().Count.ToString() + "\nLast Added: " + lastAdded.Data;
+
             }
         }
-<<<<<<< HEAD
-=======
         else if (!QRCodeWatcher.IsSupported())
         {
             debugText.text = "Unsupported or not started yet";
         }
->>>>>>> 8966f4127c5afe111b9391b8923e1faa604550ac
     }
 
-    private void codeUpdatedEventHandler(object sender,QRCodeUpdatedEventArgs args)
+    private void codeUpdatedEventHandler(object sender, QRCodeUpdatedEventArgs args)
     {
         this.lastAdded = args.Code;
+        for (int i = 0; i < markers.Count; i++) {
+            if (markers[i].Item1.Data == args.Code.Data)
+            {
+                markers[i] = (args.Code, markers[i].Item2);
+                break;
+            }
+        }
     }
 
     private void codeAddedEventHandler(object sender, QRCodeAddedEventArgs args)
     {
         this.lastAdded = args.Code;
- 
+        GameObject tempMarker = Instantiate<GameObject>(towerMarker);
+        tempMarker.SetActive(true);
+        markers.Add((args.Code, tempMarker));
     }
 
     private void InitialiseQR()
