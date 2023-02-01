@@ -12,7 +12,7 @@ namespace Pathfinding
         //TODO: Implement A* pathfinding on pathfindingGraph
         public static Vector3[] GetPath(Vector3 source, Vector3 target)
         {
-            return new Vector3[] { new Vector3(1, 0, 0), new Vector3(1, 1, 0), new Vector3(2, 1, 0) }; //placeholder
+            return new Vector3[] { GameObject.FindGameObjectWithTag("Tree").transform.position }; //placeholder
         }
 
         //Should be called whenever a change is made to the position of pathfinding obstacles
