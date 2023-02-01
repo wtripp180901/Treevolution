@@ -8,46 +8,51 @@ using Unity.VisualScripting;
 
 public class QRDetection : MonoBehaviour
 {
-    QRCodeWatcher watcher;
-    TMP_Text debugText;
+    public TMP_Text debugText;
     public GameObject towerMarker;
-    List<(QRCode, GameObject)> markers;
-    QRCodeWatcherAccessStatus status;
-    QRCode lastAdded = null;
-    bool hasStarted = false;
+    private QRCodeWatcher watcher;
+    //private List<(QRCode, GameObject)> markers;
+    private SortedDictionary<System.Guid, (QRCode, GameObject)> trackedCodes = new SortedDictionary<System.Guid, (QRCode, GameObject)>();
+    private QRCodeWatcherAccessStatus status = QRCodeWatcherAccessStatus.NotDeclaredByApp;
+    private QRCode lastAdded = null;
+    private bool hasStarted = false;
     
     async void Start() {
         towerMarker.SetActive(false);
         Debug.Log("QR Script started");
-        debugText = GameObject.FindGameObjectWithTag("DebugText").GetComponent<TMP_Text>();
-        debugText.text = "Start() Test Code";
         status = await QRCodeWatcher.RequestAccessAsync();
         Debug.Log(QRCodeWatcher.IsSupported());
+        debugText.text = "Start() Ran";
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        if (QRCodeWatcher.IsSupported() && status == QRCodeWatcherAccessStatus.Allowed && !hasStarted)
+
+        if (QRCodeWatcher.IsSupported() && !hasStarted && status == QRCodeWatcherAccessStatus.Allowed)
             InitialiseQR();
-        else
-            debugText.text = "Please Accept Permissions\nor Terminate and Restart the App";
-
-        if (hasStarted) {
-            if (lastAdded == null) 
-                debugText.text = "Scanning";
-            else {
-                foreach ((QRCode, GameObject) marker in markers) // Maybe send as async routines?
+        else if (hasStarted) {
+            if (watcher.GetList().Count != trackedCodes.Count){
+                trackWatcherCodes();
+            }
+            if (lastAdded == null && watcher.GetList().Count == 0)
+                debugText.text = "Scanning Started"; 
+            else if (lastAdded != null) {
+                debugText.text = "Updating Markers\nWatchers: " + watcher.GetList().Count.ToString() + "\nMarkers: " + trackedCodes.Count.ToString() + "\nLast: " + lastAdded.Data;
+                lock (trackedCodes)
                 {
-                    Pose position;
-                    SpatialGraphNode.FromStaticNodeId(marker.Item1.SpatialGraphNodeId).TryLocate(FrameTime.OnUpdate, out position);
-                    marker.Item2.transform.position = position.position;
-                    float length = marker.Item1.PhysicalSideLength;
-                    Vector3 markerPos = new Vector3(length, length, length);
-                    marker.Item2.transform.SetPositionAndRotation(markerPos, position.rotation);
+                    foreach (System.Guid id in trackedCodes.Keys) // Maybe send as async routines?
+                    {
+                        Pose position;
+                        SpatialGraphNode.FromStaticNodeId(trackedCodes[id].Item1.SpatialGraphNodeId).TryLocate(FrameTime.OnUpdate, out position);
+                        trackedCodes[id].Item2.transform.position = position.position;
+                        float sideLength = trackedCodes[id].Item1.PhysicalSideLength;
+                        Vector3 markerSize = new Vector3(sideLength, sideLength, sideLength);
+                        trackedCodes[id].Item2.transform.rotation = position.rotation;
+                        trackedCodes[id].Item2.transform.localScale = markerSize;
+                    }
                 }
-                debugText.text = "Found: " + watcher.GetList().Count.ToString() + "\nLast Added: " + lastAdded.Data;
-
             }
         }
         else if (!QRCodeWatcher.IsSupported())
@@ -56,32 +61,72 @@ public class QRDetection : MonoBehaviour
         }
     }
 
+    private IList<(QRCode, GameObject)> getCurrentList()
+    {
+        lock (trackedCodes)
+        {
+            return new List<(QRCode, GameObject)>(trackedCodes.Values);
+        }
+    }
+
+    
+
+    private void trackWatcherCodes()
+    {
+        lock (trackedCodes)
+        {
+            foreach (QRCode code in watcher.GetList())
+            {
+                GameObject tempMarker = Instantiate(towerMarker);
+                tempMarker.SetActive(true);
+                trackedCodes[code.Id] = (code, tempMarker);
+            }
+            this.lastAdded = watcher.GetList()[watcher.GetList().Count - 1];
+        }
+        
+    }
+
     private void codeUpdatedEventHandler(object sender, QRCodeUpdatedEventArgs args)
     {
-        this.lastAdded = args.Code;
-        for (int i = 0; i < markers.Count; i++) {
-            if (markers[i].Item1.Data == args.Code.Data)
-            {
-                markers[i] = (args.Code, markers[i].Item2);
-                break;
-            }
+        debugText.text = "Updated";
+        lock (trackedCodes)
+        {
+            trackedCodes[args.Code.Id] = (args.Code, trackedCodes[args.Code.Id].Item2);
         }
+        this.lastAdded = args.Code;
     }
 
     private void codeAddedEventHandler(object sender, QRCodeAddedEventArgs args)
     {
+        debugText.text = "Added";
+        lock (trackedCodes)
+        {
+            GameObject tempMarker = Instantiate<GameObject>(towerMarker);
+            tempMarker.SetActive(true);
+            trackedCodes[args.Code.Id] = (args.Code, tempMarker);
+        }
         this.lastAdded = args.Code;
-        GameObject tempMarker = Instantiate<GameObject>(towerMarker);
-        tempMarker.SetActive(true);
-        markers.Add((args.Code, tempMarker));
+    }
+
+    private void codeRemovedEventHandler(object sender, QRCodeRemovedEventArgs args)
+    {
+        debugText.text = "Removed";
+        lock (trackedCodes)
+        {
+            if (trackedCodes.ContainsKey(args.Code.Id))
+            {
+                trackedCodes.Remove(args.Code.Id);
+            }
+        }
     }
 
     private void InitialiseQR()
     {
         hasStarted = true;
         watcher = new QRCodeWatcher();
-        watcher.Added += codeAddedEventHandler;
-        watcher.Updated += codeUpdatedEventHandler;
+        watcher.Added += new System.EventHandler<Microsoft.MixedReality.QR.QRCodeAddedEventArgs>(this.codeAddedEventHandler);
+        watcher.Updated += new System.EventHandler<Microsoft.MixedReality.QR.QRCodeUpdatedEventArgs>(this.codeUpdatedEventHandler);
+        watcher.Removed += codeRemovedEventHandler;
         watcher.Start();
         debugText.text = "started " + watcher.GetList().Count;
     }
