@@ -1,23 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Pathfinding;
 
-public class EnemyScript : MonoBehaviour
+public class EnemyMovement : MonoBehaviour
 {
     public Rigidbody rig;
     [SerializeField]
     private float speed = 0.1f;
 
     Vector3[] path;
-    bool followingPath = true;
+    public bool followingPath = true;
     Vector3 directionVector;
     Vector3 currentTarget;
     int pathCounter = 0;
 
     [SerializeField]
     private List<string> climbableTages = new List<string>() { "Wall", "Tower" };
-    bool climbing = false;
+    public bool climbing = false;
     float targetHeight;
     float baseHeight;
 
@@ -37,7 +36,7 @@ public class EnemyScript : MonoBehaviour
         Vector3 pos = transform.position;
         if (followingPath)
         {
-            if ((currentTarget - pos).magnitude < 0.05f)
+            if((currentTarget - pos).magnitude < 0.05f)
             {
                 startMoveToNextTarget();
             }
@@ -45,7 +44,7 @@ public class EnemyScript : MonoBehaviour
         }
         if (climbing)
         {
-            if (pos.y < targetHeight)
+            if(pos.y < targetHeight)
             {
                 rig.MovePosition(pos + transform.up * speed);
             }
@@ -75,12 +74,12 @@ public class EnemyScript : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Collider collider = collision.collider;
-        if (collider.gameObject.tag == "Tree")
+        if(collider.gameObject.tag == "Tree")
         {
             Debug.Log("Reached tree");
             followingPath = false;
         }
-        else if (climbableTages.Contains(collider.gameObject.tag))
+        else if(climbableTages.Contains(collider.gameObject.tag))
         {
             float topOfCollider = collider.bounds.extents.y + collider.gameObject.transform.position.y;
             float heightAboveObject = topOfCollider + GetComponent<Collider>().bounds.extents.y + 0.1f;
@@ -92,11 +91,5 @@ public class EnemyScript : MonoBehaviour
                 targetHeight = heightAboveObject;
             }
         }
-    }
-
-
-    public void Damage()
-    {
-        Debug.Log("Enemy hit");
     }
 }
