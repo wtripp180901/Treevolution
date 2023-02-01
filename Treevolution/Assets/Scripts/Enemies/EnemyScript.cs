@@ -25,17 +25,13 @@ public class EnemyScript : MonoBehaviour
     void Start()
     {
         rig = GetComponent<Rigidbody>();
-        Vector3 pos = transform.position;
-        path = Pathfinding.Pathfinder.GetPath(pos, GameObject.FindGameObjectWithTag("Tree").transform.position);
-        baseHeight = pos.y;
-        startMoveToNextTarget();
     }
 
     // Update is called once per frame
     void Update()
     {
         Vector3 pos = transform.position;
-        if (followingPath)
+        if (followingPath && rig.velocity.y >= -5f)
         {
             if ((currentTarget - pos).magnitude < 0.05f)
             {
@@ -56,6 +52,56 @@ public class EnemyScript : MonoBehaviour
                 rig.useGravity = true;
             }
         }
+    }
+
+    private void startMoveToNextTarget()
+    {
+        if (pathCounter >= path.Length)
+        {
+            followingPath = false;
+        }
+        else
+        {
+            currentTarget = path[pathCounter];
+            directionVector = (currentTarget - transform.position).normalized * speed;
+            pathCounter += 1;
+        }
+    }
+
+    bool hasHitFloor = false;
+    private void OnCollisionEnter(Collision collision)
+    {
+        Collider collider = collision.collider;
+        if (collider.gameObject.tag == "Tree")
+        {
+            Debug.Log("Reached tree");
+            followingPath = false;
+        }
+        else if (climbableTages.Contains(collider.gameObject.tag))
+        {
+            float topOfCollider = collider.bounds.extents.y + collider.gameObject.transform.position.y;
+            float heightAboveObject = topOfCollider + GetComponent<Collider>().bounds.extents.y + 0.1f;
+            if (transform.position.y < topOfCollider)
+            {
+                followingPath = false;
+                rig.useGravity = false;
+                climbing = true;
+                targetHeight = heightAboveObject;
+            }
+        }
+        if(!hasHitFloor && collider.gameObject.tag == "Floor")
+        {
+            hasHitFloor = true;
+            Initialise();
+        }
+    }
+
+    private void Initialise()
+    {
+        Vector3 pos = transform.position;
+        path = Pathfinding.Pathfinder.GetPath(pos, GameObject.FindGameObjectWithTag("Tree").transform.position);
+        baseHeight = pos.y;
+        startMoveToNextTarget();
     }
 
     private void startMoveToNextTarget()
