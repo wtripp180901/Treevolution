@@ -282,6 +282,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83075b0934598fa41bb8442ae93fe169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cubePrefab: {fileID: 1183391282}
+  timer: 0
+  spawnRate: 5
+  coordinate_X: 2
+  coordinate_Y: 7
+  spawnCentre: {x: -12.25, y: 0, z: 3.6}
 --- !u!114 &377420656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,7 +325,7 @@ GameObject:
   - component: {fileID: 782691120}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -332,8 +338,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782691118}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.52, z: 6.583}
-  m_LocalScale: {x: 1, y: 1, z: 1.4666}
+  m_LocalPosition: {x: 0, y: -0.52, z: 3.5907}
+  m_LocalScale: {x: 1, y: 1, z: 2.0651426}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1946295771}
@@ -527,7 +533,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1183391282}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.46, y: -0.08, z: 1.88}
+  m_LocalPosition: {x: 3.28, y: -0.08, z: 1.88}
   m_LocalScale: {x: 0.40000015, y: 0.4, z: 0.40000015}
   m_ConstrainProportionsScale: 0
   m_Children: []
