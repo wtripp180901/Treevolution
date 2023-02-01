@@ -13,6 +13,7 @@ public class QRDetection : MonoBehaviour
     GameObject debugMarker;
     QRCodeWatcherAccessStatus status;
     QRCode lastAdded = null;
+    bool hasStarted = false;
     
     async void Start()
     {
@@ -22,25 +23,21 @@ public class QRDetection : MonoBehaviour
         debugText.text = "tst";
         status = await QRCodeWatcher.RequestAccessAsync();
         Debug.Log(QRCodeWatcher.IsSupported());
-        if (QRCodeWatcher.IsSupported() && status == QRCodeWatcherAccessStatus.Allowed)
-        {
-            watcher = new QRCodeWatcher();
-            watcher.Added += codeAddedEventHandler;
-            watcher.Updated += codeUpdatedEventHandler;
-            watcher.Start();
-            debugText.text = "started "+watcher.GetList().Count;
-        }
-        else{
-            debugText.text = "accept perms";
-        }
-        
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (QRCodeWatcher.IsSupported() && status == QRCodeWatcherAccessStatus.Allowed && !hasStarted)
+        {
+            InitialiseQR();
+        }
+        else
+        {
+            debugText.text = "accept perms";
+        }
         //debugText.text = "updt_code";
-        if (QRCodeWatcher.IsSupported())
+        if (QRCodeWatcher.IsSupported() && hasStarted)
         {
             if (lastAdded == null) debugText.text = "Scanning";
             else
@@ -53,7 +50,7 @@ public class QRDetection : MonoBehaviour
         }
         else if (!QRCodeWatcher.IsSupported())
         {
-            debugText.text = "Unsupported";
+            debugText.text = "Unsupported or not started yet";
         }
     }
 
@@ -69,5 +66,15 @@ public class QRDetection : MonoBehaviour
     private void codeAddedEventHandler(object sender, QRCodeAddedEventArgs args)
     {
         this.lastAdded = args.Code; // Doesn't seem to work?
+    }
+
+    private void InitialiseQR()
+    {
+        hasStarted = true;
+        watcher = new QRCodeWatcher();
+        watcher.Added += codeAddedEventHandler;
+        watcher.Updated += codeUpdatedEventHandler;
+        watcher.Start();
+        debugText.text = "started " + watcher.GetList().Count;
     }
 }
