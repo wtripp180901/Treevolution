@@ -25,17 +25,13 @@ public class EnemyScript : MonoBehaviour
     void Start()
     {
         rig = GetComponent<Rigidbody>();
-        Vector3 pos = transform.position;
-        path = Pathfinding.Pathfinder.GetPath(pos, GameObject.FindGameObjectWithTag("Tree").transform.position);
-        baseHeight = pos.y;
-        startMoveToNextTarget();
     }
 
     // Update is called once per frame
     void Update()
     {
         Vector3 pos = transform.position;
-        if (followingPath)
+        if (followingPath && rig.velocity.y >= -5f)
         {
             if ((currentTarget - pos).magnitude < 0.05f)
             {
@@ -72,6 +68,7 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
+    bool hasHitFloor = false;
     private void OnCollisionEnter(Collision collision)
     {
         Collider collider = collision.collider;
@@ -92,8 +89,20 @@ public class EnemyScript : MonoBehaviour
                 targetHeight = heightAboveObject;
             }
         }
+        if(!hasHitFloor && collider.gameObject.tag == "Floor")
+        {
+            hasHitFloor = true;
+            Initialise();
+        }
     }
 
+    private void Initialise()
+    {
+        Vector3 pos = transform.position;
+        path = Pathfinding.Pathfinder.GetPath(pos, GameObject.FindGameObjectWithTag("Tree").transform.position);
+        baseHeight = pos.y;
+        startMoveToNextTarget();
+    }
 
     public void Damage()
     {
