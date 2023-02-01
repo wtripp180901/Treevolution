@@ -13,6 +13,7 @@ public class QRDetection : MonoBehaviour
     GameObject debugMarker;
     QRCodeWatcherAccessStatus status;
     QRCode lastAdded = null;
+    bool hasStarted = false;
     
     async void Start()
     {
@@ -22,6 +23,7 @@ public class QRDetection : MonoBehaviour
         debugText.text = "tst";
         status = await QRCodeWatcher.RequestAccessAsync();
         Debug.Log(QRCodeWatcher.IsSupported());
+<<<<<<< HEAD
         if (QRCodeWatcher.IsSupported() && status == QRCodeWatcherAccessStatus.Allowed)
         {
             watcher = new QRCodeWatcher();
@@ -39,12 +41,27 @@ public class QRDetection : MonoBehaviour
             debugText.text = "<< QRCodeWatcher Not Supported >>";
         }
 
+=======
+>>>>>>> 8966f4127c5afe111b9391b8923e1faa604550ac
     }
 
     // Update is called once per frame
     void Update()
     {
+<<<<<<< HEAD
         if (QRCodeWatcher.IsSupported() && status == QRCodeWatcherAccessStatus.Allowed)
+=======
+        if (QRCodeWatcher.IsSupported() && status == QRCodeWatcherAccessStatus.Allowed && !hasStarted)
+        {
+            InitialiseQR();
+        }
+        else
+        {
+            debugText.text = "accept perms";
+        }
+        //debugText.text = "updt_code";
+        if (QRCodeWatcher.IsSupported() && hasStarted)
+>>>>>>> 8966f4127c5afe111b9391b8923e1faa604550ac
         {
             if (lastAdded == null) debugText.text = "Scanning";
             {
@@ -57,6 +74,13 @@ public class QRDetection : MonoBehaviour
                 debugText.text = "Found: " + watcher.GetList().Count.ToString() + "\n" + lastAdded.Data + "\n" + position.position.ToString();
             }
         }
+<<<<<<< HEAD
+=======
+        else if (!QRCodeWatcher.IsSupported())
+        {
+            debugText.text = "Unsupported or not started yet";
+        }
+>>>>>>> 8966f4127c5afe111b9391b8923e1faa604550ac
     }
 
     private void codeUpdatedEventHandler(object sender,QRCodeUpdatedEventArgs args)
@@ -68,5 +92,15 @@ public class QRDetection : MonoBehaviour
     {
         this.lastAdded = args.Code;
  
+    }
+
+    private void InitialiseQR()
+    {
+        hasStarted = true;
+        watcher = new QRCodeWatcher();
+        watcher.Added += codeAddedEventHandler;
+        watcher.Updated += codeUpdatedEventHandler;
+        watcher.Start();
+        debugText.text = "started " + watcher.GetList().Count;
     }
 }
