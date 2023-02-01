@@ -28,46 +28,45 @@ public class QRDetection : MonoBehaviour
             watcher.Added += codeAddedEventHandler;
             watcher.Updated += codeUpdatedEventHandler;
             watcher.Start();
-            debugText.text = "started "+watcher.GetList().Count;
+            debugText.text = "- QR is Supported\n- Permissions Accepted\n- QRCodeWatcher Started";
+            debugMarker.SetActive(false);
         }
-        else{
-            debugText.text = "accept perms";
+        else if (status != QRCodeWatcherAccessStatus.Allowed){
+            debugText.text = "<< Permissions Not Accepted >>";
         }
-        
+        else if (!QRCodeWatcher.IsSupported())
+        {
+            debugText.text = "<< QRCodeWatcher Not Supported >>";
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        //debugText.text = "updt_code";
-        if (QRCodeWatcher.IsSupported())
+        if (QRCodeWatcher.IsSupported() && status == QRCodeWatcherAccessStatus.Allowed)
         {
             if (lastAdded == null) debugText.text = "Scanning";
-            else
             {
                 Pose position;
                 SpatialGraphNode.FromStaticNodeId(lastAdded.SpatialGraphNodeId).TryLocate(FrameTime.OnUpdate, out position);
                 debugMarker.transform.position = position.position;
-                debugText.text = "added_" + watcher.GetList().Count.ToString() + "\n" + lastAdded.Data + "\n" + position.position.ToString();
+                Vector3 markerPos = new Vector3(lastAdded.PhysicalSideLength, lastAdded.PhysicalSideLength, lastAdded.PhysicalSideLength);
+                debugMarker.transform.SetPositionAndRotation(markerPos, position.rotation);
+                debugMarker.SetActive(true);
+                debugText.text = "Found: " + watcher.GetList().Count.ToString() + "\n" + lastAdded.Data + "\n" + position.position.ToString();
             }
-        }
-        else if (!QRCodeWatcher.IsSupported())
-        {
-            debugText.text = "Unsupported";
         }
     }
 
     private void codeUpdatedEventHandler(object sender,QRCodeUpdatedEventArgs args)
     {
-        /*Pose position;
-        SpatialGraphNode.FromDynamicNodeId(args.Code.SpatialGraphNodeId).TryLocate(FrameTime.OnUpdate, out position);
-        debugMarker.transform.position = position.position;*/
-        //debugText.text = "S_\n_" + args.Code.Data + "\n_" + position.position.ToString();
-        debugText.text = "updated";
+        this.lastAdded = args.Code;
     }
 
     private void codeAddedEventHandler(object sender, QRCodeAddedEventArgs args)
     {
-        this.lastAdded = args.Code; // Doesn't seem to work?
+        this.lastAdded = args.Code;
+ 
     }
 }
