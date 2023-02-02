@@ -31,7 +31,7 @@ namespace Pathfinding
 
         public static PathfindingNode[] GetPathfindingGraph()
         {
-            GetObstacleDataEvent.Invoke(null, null);
+            if(GetObstacleDataEvent != null) GetObstacleDataEvent.Invoke(null, null);
             List<PathfindingNode> graph = nodesFromObstacleData();
             for (int i = 0; i < graph.Count; i++)
             {
