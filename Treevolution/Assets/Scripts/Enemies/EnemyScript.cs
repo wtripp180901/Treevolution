@@ -6,7 +6,7 @@ using Pathfinding;
 public class EnemyScript : MonoBehaviour
 {
     public Rigidbody rig;
-    [SerializeField]
+    [SerializeField] // This allows the private field to be edited from the Unity inspecter
     private float speed = 0.1f;
 
     Vector3[] path;
@@ -16,7 +16,7 @@ public class EnemyScript : MonoBehaviour
     int pathCounter = 0;
 
     [SerializeField]
-    private List<string> climbableTages = new List<string>() { "Wall", "Tower" };
+    private List<string> climbableTags = new List<string>() { "Wall", "Tower" };
     bool climbing = false;
     float targetHeight;
     float baseHeight;
@@ -77,7 +77,7 @@ public class EnemyScript : MonoBehaviour
             Debug.Log("Reached tree");
             followingPath = false;
         }
-        else if (climbableTages.Contains(collider.gameObject.tag))
+        else if (climbableTags.Contains(collider.gameObject.tag))
         {
             float topOfCollider = collider.bounds.extents.y + collider.gameObject.transform.position.y;
             float heightAboveObject = topOfCollider + GetComponent<Collider>().bounds.extents.y + 0.1f;
