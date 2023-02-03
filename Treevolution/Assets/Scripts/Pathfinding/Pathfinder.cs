@@ -9,73 +9,118 @@ namespace Pathfinding
     //Can be called to by agents to get a list of Vector3 coordinates to navigate through the environment
     public static class Pathfinder
     {
-        private static PathfindingNode[] pathfindingGraph = new PathfindingNode[] { };
+        private static (float F, float G, float H)[] scores = new (float F, float G, float H)[] { }; // Stores the F, G, H scores of each node, indexed the same as graph
+        private static List<PathfindingNode> graph = new List<PathfindingNode>();
 
         //TODO: Implement A* pathfinding on pathfindingGraph
         public static Vector3[] GetPath(Vector3 source, Vector3 target)
         {
-            PathfindingNode sourceNode = new PathfindingNode(0, source);
-            bool targetFound = false;
+            if (source == target)
+                return new Vector3[] { source };
 
-            sourceNode.hScore = Vector3.Distance(source, target);
-            List<PathfindingNode> open = new List<PathfindingNode> { sourceNode };
-            List<PathfindingNode> closed = new List<PathfindingNode>();
-            while (!targetFound || open.Count == 0)
+            UpdatePathfindingGraph(); // Should be called by enemy etc.
+            initializeScores(graph.Count, (float.MaxValue, float.MaxValue, float.MaxValue));
+
+            (int srcIndex, PathfindingNode srcNode) = closestNodeToPosition(source);
+            (int tgtIndex, PathfindingNode tgtNode) = closestNodeToPosition(target);
+
+            scores[srcIndex] = (Vector3.Distance(srcNode.position, tgtNode.position), 0, Vector3.Distance(srcNode.position, tgtNode.position));
+
+            List<(int index, PathfindingNode node)> open = new List<(int index, PathfindingNode node)> { (srcIndex, srcNode) };
+            List<(int index, PathfindingNode node)> closed = new List<(int index, PathfindingNode node)> { };
+
+            while (open.Count > 0)
             {
-                PathfindingNode bestNode = getBestNode(open);
-                if (bestNode.position == target)
-                {
-                    targetFound = true;
-                }
-                closed.Add(bestNode);
-                open.Remove(bestNode);
+                (int bestIndex, PathfindingNode bestNode) = getBestNode(open);
+                open.Remove((bestIndex, bestNode));
                 PathfindingNode[] bestNodeNeighbours = bestNode.neighbours;
-                for (int i = 0; i < bestNodeNeighbours.Length; i++)
+                foreach (PathfindingNode neighbour in bestNodeNeighbours)
                 {
-                    if (closed.Contains(bestNodeNeighbours[i]))
-                    {
+                    int neighbourIndex = graph.IndexOf(neighbour);
+                    (float F, float G, float H) tempScores = (
+                        F: 0, 
+                        G: scores[bestIndex].G + bestNode.costToNeighbours[neighbour],
+                        H: Vector3.Distance(neighbour.position, tgtNode.position));
+                    tempScores.F = tempScores.G + tempScores.H;
+                    if (closed.Contains((neighbourIndex, neighbour)))
                         continue;
-                    }
-                    else if (!open.Contains(bestNodeNeighbours[i]))
+                    else if (!open.Contains((neighbourIndex, neighbour)))
                     {
-                        bestNodeNeighbours[i] = calculateChildScores(bestNodeNeighbours[i], bestNode, target);
-                        open.Add(bestNodeNeighbours[i]);
+                        neighbour.parentNode = bestNode;
+                        open.Add((neighbourIndex, neighbour));
+                        scores[neighbourIndex] = tempScores;
                     }
-                    else if (open.Contains(bestNodeNeighbours[i]) && (bestNodeNeighbours[i].gScore < (bestNode.gScore + bestNode.costToNeighbours[bestNodeNeighbours[i]])))
+                    else if (open.Contains((neighbourIndex, neighbour)) && tempScores.F < scores[neighbourIndex].F)
                     {
-                        bestNodeNeighbours[i] = calculateChildScores(bestNode, bestNodeNeighbours[i], target);
+                        neighbour.parentNode = bestNode;
+                        scores[neighbourIndex] = tempScores;
                     }
+
                 }
+                closed.Add((bestIndex, bestNode));
             }
-            List<PathfindingNode> path; // Traverse Path from Target;
-            return new Vector3[] { GameObject.FindGameObjectWithTag("Tree").transform.position }; //placeholder
+            List<Vector3> path = traverseFromTarget(tgtNode);
+            if (tgtNode.position != target)
+                path.Add(target); // Path to target position, excluding source position
+            return path.ToArray();
         }
 
-        private static PathfindingNode calculateChildScores(PathfindingNode parentNode, PathfindingNode childNode, Vector3 target)
+        private static List<Vector3> traverseFromTarget(PathfindingNode target)
         {
-            childNode.gScore = parentNode.gScore + parentNode.costToNeighbours[childNode];
-            childNode.hScore = Vector3.Distance(childNode.position, target);
-            childNode.parentNode = parentNode;
-            return childNode;
-        }
-
-        private static PathfindingNode getBestNode(List<PathfindingNode> nodes)
-        {
-            (int, float) lowestScoringNode = (0, nodes[0].fScore);
-            for(int i = 1; i < nodes.Count; i++)
+            List<Vector3> positions = new List<Vector3>();
+            PathfindingNode currentNode = target;
+            while(currentNode != null)
             {
-                if (nodes[i].fScore < lowestScoringNode.Item2)
+                positions.Insert(0, currentNode.position);
+                currentNode = currentNode.parentNode;
+            }
+            return positions;
+        }
+
+        private static (int index, PathfindingNode node) getBestNode(List<(int index, PathfindingNode node)> nodes)
+        {
+            if (nodes.Count == 0)
+                return (-1, null);
+
+            int bestIndex = nodes[0].index;
+            foreach((int index, PathfindingNode node) n in nodes)
+            {
+                if (scores[n.index].F < scores[bestIndex].F)
                 {
-                    lowestScoringNode = (i, nodes[i].fScore);
+                    bestIndex = n.index;
                 }
             }
-            return nodes[lowestScoringNode.Item1];
+            return (bestIndex, graph[bestIndex]);
+        }
+
+        private static (int, PathfindingNode) closestNodeToPosition(Vector3 pos)
+        {
+            (int, float) closestNode = (0, Vector3.Distance(pos, graph[0].position));
+            for (int i = 1; i < graph.Count; i++)
+            {
+                float dist = Vector3.Distance(pos, graph[i].position);
+                if (dist < closestNode.Item2)
+                {
+                    closestNode = (i, dist);
+                }
+            }
+            return (closestNode.Item1, graph[closestNode.Item1]);
+        }
+
+        private static void initializeScores(int size, (float, float, float) initialValues)
+        {
+            scores = new (float F, float G, float H)[size];
+            for(int i = 0; i < size; i++)
+            {
+                scores[i] = initialValues;
+            }
+
         }
 
         //Should be called whenever a change is made to the position of pathfinding obstacles
         public static void UpdatePathfindingGraph()
         {
-            pathfindingGraph = PathfindingGraphGenerator.GetPathfindingGraph();
+            graph = PathfindingGraphGenerator.GetPathfindingGraph().ToList();
         }
     }
 }

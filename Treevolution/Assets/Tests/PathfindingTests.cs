@@ -24,4 +24,14 @@ public class PathfindingTests
     {
         Assert.AreEqual(Pathfinding.PathfindingGraphGenerator.GetPathfindingGraph().Length, 0);
     }
+
+    [Test]
+    public void PathfindingGraphGeneratorWorksWithObstacles()
+    {
+        Bounds bounds1 = new Bounds(new Vector3(0, 0, 0), new Vector3(0.5f, 0.5f, 0.5f));
+        Bounds bounds2 = new Bounds(new Vector3(-2f, -2f, -2f), new Vector3(0.5f, 0.5f, 0.5f));
+        Pathfinding.PathfindingGraphGenerator.AddObstacleData(bounds1, new Vector3[] { Vector3.one, Vector3.forward, Vector3.right });
+        Pathfinding.PathfindingGraphGenerator.AddObstacleData(bounds2, new Vector3[] { -Vector3.one, -Vector3.forward, -Vector3.right });
+        Assert.AreEqual(Pathfinding.PathfindingGraphGenerator.GetPathfindingGraph().Length, 6);
+    }
 }
