@@ -6,7 +6,7 @@ using System;
 namespace Pathfinding
 {
     //Used to dynamically generate a pathfinding mesh based on obstacles in the environment
-    static class PathfindingGraphGenerator
+    public static class PathfindingGraphGenerator
     {
         struct ObstacleData
         {
