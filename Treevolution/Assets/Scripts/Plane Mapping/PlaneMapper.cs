@@ -36,7 +36,7 @@ public class PlaneMapper : MonoBehaviour
             }
         }
         GameObject newFloor = Instantiate(floor, (marker1 + marker2) * 0.5f, Quaternion.identity);
-        newFloor.transform.localScale = new Vector3(marker1.x - marker2.x, newFloor.transform.localScale.y, marker1.z - marker2.z);
+        newFloor.transform.localScale = new Vector3(Mathf.Abs(marker1.x - marker2.x), newFloor.transform.localScale.y, Mathf.Abs(marker1.z - marker2.z));
     }
 
     public void ClearPlane()
