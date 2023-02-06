@@ -9,6 +9,7 @@ using Unity.VisualScripting;
 public class QRDetection : MonoBehaviour
 {
     public TMP_Text debugText;
+    public PlaneMapper planeMapper;
     public GameObject towerMarker;
     private QRCodeWatcher watcher;
     //private List<(QRCode, GameObject)> markers;
@@ -25,11 +26,16 @@ public class QRDetection : MonoBehaviour
         debugText.text = "Start() Ran";
     }
 
+    bool planeCreated = false;
+    bool c1Set = false;
+    bool c2Set = false;
+    Vector3 cornerMarker1;
+    Vector3 cornerMarker2;
 
     // Update is called once per frame
     void Update()
     {
-
+        //debugText.text = "planeCreated: "+planeCreated+"\nc1: "+c1Set+" "+cornerMarker1+"\nc2: "+c2Set+" "+cornerMarker2;
         if (QRCodeWatcher.IsSupported() && !hasStarted && status == QRCodeWatcherAccessStatus.Allowed)
             InitialiseQR();
         else if (hasStarted) {
@@ -46,11 +52,28 @@ public class QRDetection : MonoBehaviour
                     {
                         Pose position;
                         SpatialGraphNode.FromStaticNodeId(trackedCodes[id].Item1.SpatialGraphNodeId).TryLocate(FrameTime.OnUpdate, out position);
-                        trackedCodes[id].Item2.transform.position = position.position;
-                        float sideLength = trackedCodes[id].Item1.PhysicalSideLength;
-                        Vector3 markerSize = new Vector3(sideLength, sideLength, sideLength);
-                        trackedCodes[id].Item2.transform.rotation = position.rotation;
-                        trackedCodes[id].Item2.transform.localScale = markerSize;
+                        if (trackedCodes[id].Item1.Data != "C1" && trackedCodes[id].Item1.Data != "C2")
+                        {
+                            trackedCodes[id].Item2.transform.position = position.position;
+                            float sideLength = trackedCodes[id].Item1.PhysicalSideLength;
+                            Vector3 markerSize = new Vector3(sideLength, sideLength, sideLength);
+                            trackedCodes[id].Item2.transform.rotation = position.rotation;
+                            trackedCodes[id].Item2.transform.localScale = markerSize;
+                        }else if(trackedCodes[id].Item1.Data == "C1")
+                        {
+                            cornerMarker1 = tryGetNewCornerMarkerPosition(position.position, c1Set, cornerMarker1);
+                            c1Set = true;
+                        }
+                        else if (trackedCodes[id].Item1.Data == "C2")
+                        {
+                            cornerMarker2 = tryGetNewCornerMarkerPosition(position.position, c2Set, cornerMarker2);
+                            c2Set = true;
+                        }
+                        if (c1Set && c2Set && !planeCreated)
+                        {
+                            planeMapper.CreateNewPlane(cornerMarker1, cornerMarker2);
+                            planeCreated = true;
+                        }
                     }
                 }
             }
@@ -69,7 +92,15 @@ public class QRDetection : MonoBehaviour
         }
     }
 
-    
+    Vector3 tryGetNewCornerMarkerPosition(Vector3 newPos,bool cornerSet,Vector3 oldMarkerPos)
+    {
+        if (!cornerSet || (oldMarkerPos - newPos).magnitude > 0.01)
+        {
+            oldMarkerPos = newPos;
+            planeCreated = false;
+        }
+        return oldMarkerPos;
+    }
 
     private void trackWatcherCodes()
     {

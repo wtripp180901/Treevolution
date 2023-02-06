@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Tree
   - DebugText
+  - PlaneMarker
+  - Floor
   layers:
   - Default
   - TransparentFX
