@@ -33,10 +33,13 @@ public class EnemyScript : MonoBehaviour
         Vector3 pos = transform.position;
         if (followingPath && rig.velocity.y >= -5f)
         {
-            if ((currentTarget - pos).magnitude < 0.05f)
+            Vector2 topDownTarget = new Vector2(currentTarget.x, currentTarget.z);
+            Vector2 topDownEnemy = new Vector2(pos.x, pos.z);
+            if ((topDownTarget - topDownEnemy).magnitude < 0.05f)
             {
                 startMoveToNextTarget();
             }
+            directionVector = (currentTarget - transform.position).normalized * speed;
             rig.MovePosition(pos + directionVector);
         }
         if (climbing)
@@ -64,6 +67,7 @@ public class EnemyScript : MonoBehaviour
         {
             currentTarget = path[pathCounter];
             directionVector = (currentTarget - transform.position).normalized * speed;
+            directionVector.y = 0;
             pathCounter += 1;
         }
     }
@@ -89,7 +93,7 @@ public class EnemyScript : MonoBehaviour
                 targetHeight = heightAboveObject;
             }
         }
-        if(!hasHitFloor && collider.gameObject.tag == "Floor")
+        if(!hasHitFloor && (collider.gameObject.tag == "Floor" || collider.gameObject.tag == "Wall"))
         {
             hasHitFloor = true;
             Initialise();
