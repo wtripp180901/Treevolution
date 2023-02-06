@@ -18,6 +18,9 @@ public class PlaneMapper : MonoBehaviour
 
     public void CreateNewPlane(Vector3 marker1,Vector3 marker2)
     {
+        float minY = Mathf.Min(marker2.y,marker1.y);
+        marker1.y = minY;
+        marker2.y = minY;
         ClearPlane();
         Instantiate(planeMarker, marker1, Quaternion.identity);
         Instantiate(planeMarker, marker2, Quaternion.identity);
