@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: QRTest2Oscar
+  productName: PlaneMappingTest
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -135,9 +135,7 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 0.1
-  preloadedAssets:
-  - {fileID: 5327507273029080393, guid: a54dcd6fcd0922d43b8d79203ed4d73e, type: 2}
-  - {fileID: 4843351239555860076, guid: f8bd4a1d2aa8596409f6b3a087136f1f, type: 2}
+  preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -824,7 +822,7 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: QRTest2Oscar
+  metroPackageName: PlaneMappingTest
   metroPackageVersion: 1.0.0.1
   metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
