@@ -214,4 +214,12 @@ public class QRDetection : MonoBehaviour
             debugText.text = "QR Tracking Not Supported";
         }
     }
+
+    private void OnApplicationFocus(bool focus)
+    {
+        if (focus)
+        {
+            Start();
+        }
+    }
 }
