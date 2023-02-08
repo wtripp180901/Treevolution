@@ -9,12 +9,13 @@ TagManager:
   - Tree
   - DebugText
   - PlaneMarker
+  - Wall
   - Floor
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - ObstaclesOnly
   - Water
   - UI
   - 
