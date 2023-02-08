@@ -7,11 +7,13 @@ TagManager:
   - Tower
   - Enemy
   - Tree
+  - Wall
+  - Floor
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - ObstaclesOnly
   - Water
   - UI
   - 
