@@ -18,20 +18,21 @@ namespace Pathfinding
 
         private void Start()
         {
-            bounds = GetComponent<Collider>().bounds;
+            bounds = gameObject.GetComponent<Collider>().bounds;
             PathfindingGraphGenerator.GetObstacleDataEvent += GetObstacleBoundsEventHandler;
         }
         void GetObstacleBoundsEventHandler(object sender, EventArgs args)
         {
             float halfWidth = bounds.extents.x + nodeMargins;
             float halfDepth = bounds.extents.z + nodeMargins;
-            Vector3 floorPosition = transform.position - (transform.up * (bounds.extents.y - floorOffset));
+            Vector3 floorPosition = gameObject.transform.position - (gameObject.transform.up * (bounds.extents.y - floorOffset));
+            Debug.DrawLine(floorPosition, floorPosition + Vector3.up * 5, Color.blue);
             Vector3[] possiblePFPoints = new Vector3[]
             {
-            floorPosition + halfWidth * transform.right + halfDepth * transform.forward,
-            floorPosition + halfWidth * transform.right - halfDepth * transform.forward,
-            floorPosition + -halfWidth * transform.right + halfDepth * transform.forward,
-            floorPosition + -halfWidth * transform.right + -halfDepth * transform.forward
+            floorPosition + halfWidth * gameObject.transform.right + halfDepth * gameObject.transform.forward,
+            floorPosition + halfWidth * gameObject.transform.right - halfDepth * gameObject.transform.forward,
+            floorPosition + -halfWidth * gameObject.transform.right + halfDepth * gameObject.transform.forward,
+            floorPosition + -halfWidth * gameObject.transform.right - halfDepth * gameObject.transform.forward
             };
             PathfindingGraphGenerator.AddObstacleData(bounds, possiblePFPoints);
         }
