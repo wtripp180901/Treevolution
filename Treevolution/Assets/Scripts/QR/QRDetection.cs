@@ -10,56 +10,60 @@ using System;
 using UnityEngine.UIElements;
 using System.Linq;
 using static UnityEngine.InputSystem.InputSettings;
+using Microsoft.MixedReality.Toolkit;
+using UnityEngine.Windows.WebCam;
 
-public class QRDetection : MonoBehaviour
+public class QRDetection : MonoBehaviour 
 {
     public TMP_Text debugText;
     public PlaneMapper planeMapper;
     public GameObject towerMarker;
     private QRCodeWatcher watcher;
     private SortedDictionary<System.Guid, (QRCode code, GameObject obj)> trackedCodes;
-    private Queue<QRCode> updatedCodeQueue = new Queue<QRCode> ();
+    private Queue<QRCode> updatedCodeQueue;
     private System.Threading.Tasks.Task<QRCodeWatcherAccessStatus> accessRequester;
-    private (QRCode code, Pose pose) lastCode = (null, Pose.identity);
-    private bool hasStarted = false;
-    private bool planeCreated = false; // Properties seem to be persistent between app runs. i.e. as if the app stays open.
-    private bool c1Set = false;
-    private bool c2Set = false;
+    private (QRCode code, Pose pose) lastCode;
+    private bool hasStarted;
+    private bool planeCreated;
+    private bool c1Set;
+    private bool c2Set;
     private Vector3 cornerMarker1;
     private Vector3 cornerMarker2;
-
-    async void Start() {
+    private void initProperties()
+    {
+        planeMapper.ClearPlane();
+        resetTrackedCodes();
+        resetCodeQueue();
+        hasStarted = false;
+        lastCode = (null, Pose.identity);
         planeCreated = false;
         c1Set = false;
         c2Set = false;
-        trackedCodes = new SortedDictionary<System.Guid, (QRCode Code, GameObject Obj)>();
-        if (watcher != null) {
-            watcher.Stop();
-        }
-        Debug.Log("QR Script started");
+    }
+
+    async void Start()
+    {
         accessRequester = QRCodeWatcher.RequestAccessAsync();
-        debugText.text = "Starting...";
         if (accessRequester.Status != System.Threading.Tasks.TaskStatus.RanToCompletion)
         {
-            debugText.text = "Waiting For Permissions";
             await accessRequester;
         }
+        initProperties();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //debugText.text = "Update";
         if (!hasStarted && (accessRequester.IsCompletedSuccessfully && accessRequester.Result == QRCodeWatcherAccessStatus.Allowed))
             InitialiseQR();
-        
-        else if (hasStarted) {
+
+        else if (hasStarted)
+        {
             int trackedCodesCount = 0;
-            lock (trackedCodes){trackedCodesCount = trackedCodes.Count;}
+            lock (trackedCodes) { trackedCodesCount = trackedCodes.Count; }
 
-            if (watcher.GetList().Count != trackedCodesCount)
-                syncWithWatcher();
-
-            if (lastCode.code == null && watcher.GetList().Count == 0)
+            if (lastCode.code == null && trackedCodesCount == 0)
                 debugText.text = "Scanning Started";
 
             else
@@ -76,6 +80,7 @@ public class QRDetection : MonoBehaviour
                     }
                 }
             }
+
         }
         else if (!QRCodeWatcher.IsSupported())
         {
@@ -83,16 +88,18 @@ public class QRDetection : MonoBehaviour
         }
     }
 
+
+
     private void drawPlane(string c1Data, string c2Data, QRCode code)
     {
         lock (trackedCodes)
         {
-            if (code.Data == c1Data)
+            if (code.Data.ToString() == c1Data)
             {
                 cornerMarker1 = tryGetNewCornerMarkerPosition(trackedCodes[code.Id].obj.transform.position, c1Set, cornerMarker1);
                 c1Set = true;
             }
-            else if (code.Data == c2Data)
+            else if (code.Data.ToString() == c2Data)
             {
                 cornerMarker2 = tryGetNewCornerMarkerPosition(trackedCodes[code.Id].obj.transform.position, c2Set, cornerMarker2);
                 c2Set = true;
@@ -118,7 +125,6 @@ public class QRDetection : MonoBehaviour
                 float sideLength = updatedCode.PhysicalSideLength;
                 Vector3 markerSize = new Vector3(sideLength, sideLength, sideLength);
                 GameObject tempMarker = trackedCodes[updatedCode.Id].obj;
-
                 if (tempMarker == null)
                 {
                     tempMarker = Instantiate(towerMarker);
@@ -127,7 +133,7 @@ public class QRDetection : MonoBehaviour
                 Vector3 markerOffset = Vector3.zero;// sideLength / 2 * Vector3.up;
                 tempMarker.transform.SetPositionAndRotation(currentPose.position + markerOffset, currentPose.rotation);
                 tempMarker.transform.localScale = markerSize;
-                
+
                 trackedCodes[updatedCode.Id] = (updatedCode, tempMarker);
                 this.lastCode = (updatedCode, currentPose);
             }
@@ -142,7 +148,7 @@ public class QRDetection : MonoBehaviour
         }
     }
 
-    Vector3 tryGetNewCornerMarkerPosition(Vector3 newPos,bool cornerSet,Vector3 oldMarkerPos)
+    Vector3 tryGetNewCornerMarkerPosition(Vector3 newPos, bool cornerSet, Vector3 oldMarkerPos)
     {
         if (!cornerSet || (oldMarkerPos - newPos).magnitude > 0.01)
         {
@@ -152,34 +158,42 @@ public class QRDetection : MonoBehaviour
         return oldMarkerPos;
     }
 
-    private void syncWithWatcher()
-    {
-        foreach (QRCode code in watcher.GetList())
-        {
-            lock (trackedCodes)
-            {
-                if (!trackedCodes.ContainsKey(code.Id))
-                {
-                    updatedCodeQueue.Enqueue(code);
-                    trackedCodes[code.Id] = (code, null);
-                }
-            }
-        }        
-    }
-
     private void updatedCodeEvent(object sender, QRCodeUpdatedEventArgs args)
     {
+        Pose currentPose;
+        SpatialGraphNode.FromStaticNodeId(args.Code.SpatialGraphNodeId).TryLocate(FrameTime.OnUpdate, out currentPose);
+        if (currentPose == Pose.identity)
+        {
+            return; // Disregards
+        }
         lock (updatedCodeQueue)
         {
             updatedCodeQueue.Enqueue(args.Code);
+        }
+        lock (trackedCodes)
+        {
+            if (!trackedCodes.ContainsKey(args.Code.Id))
+            {
+                trackedCodes[args.Code.Id] = (args.Code, null);
+            }
         }
     }
 
     private void addedCodeEvent(object sender, QRCodeAddedEventArgs args)
     {
+        Pose currentPose;
+        SpatialGraphNode.FromStaticNodeId(args.Code.SpatialGraphNodeId).TryLocate(FrameTime.OnUpdate, out currentPose);
+        if(currentPose == Pose.identity)
+        {
+            return; // Disregards
+        }
+
+        lock (updatedCodeQueue) {
+            updatedCodeQueue.Enqueue(args.Code);
+        }
+
         lock (trackedCodes)
         {
-            updatedCodeQueue.Enqueue(args.Code);
             trackedCodes[args.Code.Id] = (args.Code, null);
         }
     }
@@ -202,7 +216,7 @@ public class QRDetection : MonoBehaviour
             watcher.Added += new System.EventHandler<QRCodeAddedEventArgs>(this.addedCodeEvent);
             watcher.Updated += new System.EventHandler<QRCodeUpdatedEventArgs>(this.updatedCodeEvent);
             watcher.Removed += new System.EventHandler<QRCodeRemovedEventArgs>(this.removedCodeEvent);
-            foreach(Guid id in trackedCodes.Keys)
+            foreach (Guid id in trackedCodes.Keys)
             {
                 Destroy(trackedCodes[id].obj);
                 trackedCodes.Remove(id);
@@ -215,11 +229,44 @@ public class QRDetection : MonoBehaviour
         }
     }
 
-    private void OnApplicationFocus(bool focus)
+    private void resetTrackedCodes()
     {
-        if (focus)
+        if (trackedCodes.IsNotNull())
         {
-            Start();
+            lock (trackedCodes)
+            {
+                foreach ((QRCode code, GameObject obj) item in trackedCodes.Values)
+                {
+                    Destroy(item.obj);
+                }
+                trackedCodes.Clear();
+            }
+        }
+        else
+        {
+            trackedCodes = new SortedDictionary<Guid, (QRCode code, GameObject obj)>();
+        }
+    }
+
+
+    private void resetCodeQueue()
+    {
+        if (updatedCodeQueue.IsNotNull())
+        {
+            lock (updatedCodeQueue) { updatedCodeQueue.Clear(); }
+        }
+        else
+        {
+            updatedCodeQueue = new Queue<QRCode>();
+        }
+    }
+
+    void OnApplicationFocus(bool hasFocus)
+    {
+        if (hasStarted && hasFocus)
+        {
+            initProperties();
+            hasStarted = true;
         }
     }
 }
