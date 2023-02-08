@@ -4,19 +4,20 @@ using UnityEngine;
 using Microsoft.MixedReality.QR;
 using TMPro;
 using Microsoft.MixedReality.OpenXR;
-using Unity.VisualScripting;
-using Unity.XR.CoreUtils;
+
 using System;
-using UnityEngine.UIElements;
-using System.Linq;
-using static UnityEngine.InputSystem.InputSettings;
+
 using Microsoft.MixedReality.Toolkit;
-using UnityEngine.Windows.WebCam;
+//using Microsoft.MixedReality.Toolkit.Utilities;
+//HandPoseUtils.CalculateIndexPinch();
+
+
 
 public class QRDetection : MonoBehaviour 
 {
     public TMP_Text debugText;
     public PlaneMapper planeMapper;
+    public GameObject defaultMarker;
     public GameObject towerMarker;
     private QRCodeWatcher watcher;
     private SortedDictionary<System.Guid, (QRCode code, GameObject obj)> trackedCodes;
@@ -24,11 +25,14 @@ public class QRDetection : MonoBehaviour
     private System.Threading.Tasks.Task<QRCodeWatcherAccessStatus> accessRequester;
     private (QRCode code, Pose pose) lastCode;
     private bool hasStarted;
+
     private bool planeCreated;
     private bool c1Set;
     private bool c2Set;
     private Vector3 cornerMarker1;
     private Vector3 cornerMarker2;
+
+
     private void initProperties()
     {
         planeMapper.ClearPlane();
@@ -125,9 +129,19 @@ public class QRDetection : MonoBehaviour
                 float sideLength = updatedCode.PhysicalSideLength;
                 Vector3 markerSize = new Vector3(sideLength, sideLength, sideLength);
                 GameObject tempMarker = trackedCodes[updatedCode.Id].obj;
+                GameObject markerType = null;
                 if (tempMarker == null)
                 {
-                    tempMarker = Instantiate(towerMarker);
+                    switch (updatedCode.Data)
+                    {
+                        case "Tower":
+                            markerType = towerMarker;
+                            break;
+                        default:
+                            markerType = defaultMarker;
+                            break;
+                    }
+                    tempMarker = Instantiate(markerType);
                     tempMarker.SetActive(true);
                 }
                 Vector3 markerOffset = Vector3.zero;// sideLength / 2 * Vector3.up;
