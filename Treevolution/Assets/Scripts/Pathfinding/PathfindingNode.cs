@@ -10,6 +10,8 @@ namespace Pathfinding
         public readonly int id;
         public readonly Vector3 position;
         private List<PathfindingNode> _neighbours = new List<PathfindingNode>();
+        public PathfindingNode parentNode { get; set; }
+
         public PathfindingNode[] neighbours { get { return _neighbours.ToArray(); } }
         public readonly Dictionary<PathfindingNode, float> costToNeighbours = new Dictionary<PathfindingNode, float>();
 
@@ -24,6 +26,8 @@ namespace Pathfinding
             _neighbours.Add(neighbour);
             costToNeighbours.Add(neighbour, cost);
         }
+
+
     }
 
 }
