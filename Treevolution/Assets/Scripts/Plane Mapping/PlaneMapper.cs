@@ -24,7 +24,7 @@ public class PlaneMapper : MonoBehaviour
 
     private void Start()
     {
-        CreateNewPlane(new Vector3(1, 1, 0),new Vector3(0, 1, 1));
+        CreateNewPlane(new Vector3(0, 0, 0),new Vector3(1, 0, 1));
     }
 
     public void CreateNewPlane(Vector3 marker1,Vector3 marker2)
