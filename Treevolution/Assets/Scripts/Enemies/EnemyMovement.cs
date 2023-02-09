@@ -42,7 +42,7 @@ public class EnemyMovement : MonoBehaviour
             }
             rig.MovePosition(pos + directionVector);
         }
-        if (climbing)
+        /*if (climbing)
         {
             if(pos.y < targetHeight)
             {
@@ -54,7 +54,7 @@ public class EnemyMovement : MonoBehaviour
                 followingPath = true;
                 rig.useGravity = true;
             }
-        }
+        }*/
     }
 
     private void startMoveToNextTarget()
@@ -73,7 +73,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Collider collider = collision.collider;
+        /*Collider collider = collision.collider;
         if(collider.gameObject.tag == "Tree")
         {
             Debug.Log("Reached tree");
@@ -90,6 +90,6 @@ public class EnemyMovement : MonoBehaviour
                 climbing = true;
                 targetHeight = heightAboveObject;
             }
-        }
+        }*/
     }
 }
