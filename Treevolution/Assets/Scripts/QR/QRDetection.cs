@@ -4,9 +4,7 @@ using UnityEngine;
 using Microsoft.MixedReality.QR;
 using TMPro;
 using Microsoft.MixedReality.OpenXR;
-
 using System;
-
 using Microsoft.MixedReality.Toolkit;
 //using Microsoft.MixedReality.Toolkit.Utilities;
 //HandPoseUtils.CalculateIndexPinch();
