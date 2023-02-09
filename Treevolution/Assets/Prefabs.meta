@@ -1,9 +1,13 @@
 fileFormatVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
 guid: da19dc55f96aa2c4b953c28222fbe760
 =======
 guid: 930f94cd4219ebf4faeb04c6511f5d3f
 >>>>>>> SpatialAwareness
+=======
+guid: 930f94cd4219ebf4faeb04c6511f5d3f
+>>>>>>> 7904ececde0acf1a47f34df8f08a32d063b17d77
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

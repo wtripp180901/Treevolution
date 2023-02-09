@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class TowerScript : MonoBehaviour
 {
+    private TowerData towerData { set { this.towerData = value; } }
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
