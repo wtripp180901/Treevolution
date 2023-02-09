@@ -101,6 +101,8 @@ public class EnemyScript : MonoBehaviour
         Vector3 pos = transform.position;
         path = Pathfinding.Pathfinder.GetPath(pos, GameObject.FindGameObjectWithTag("Tree").transform.position);
         baseHeight = pos.y;
+        rig.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        rig.freezeRotation = true;
         startMoveToNextTarget();
     }
 

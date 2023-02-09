@@ -11,21 +11,70 @@ public class PlaneMapper : MonoBehaviour
     [SerializeField]
     int markerCount = 2;
 
+    private Vector3 tl;
+    public Vector3 topLeft { get { return tl; } }
+    private Vector3 tr;
+    public Vector3 topRight { get { return tr; } }
+    private Vector3 bl;
+    public Vector3 bottomLeft { get { return bl; } }
+    private Vector3 br;
+    public Vector3 bottomRight { get { return br; } }
+    private float _minY;
+    public float floorHeight { get { return _minY; } }
+
     private void Start()
     {
-
+        CreateNewPlane(new Vector3(1, 1, 0),new Vector3(0, 1, 1));
     }
 
     public void CreateNewPlane(Vector3 marker1,Vector3 marker2)
     {
-        float minY = Mathf.Min(marker2.y,marker1.y);
-        marker1.y = minY;
-        marker2.y = minY;
+        _minY = Mathf.Min(marker2.y,marker1.y);
+        marker1.y = _minY;
+        marker2.y = _minY;
         ClearPlane();
-        Instantiate(planeMarker, marker1, Quaternion.identity);
-        Instantiate(planeMarker, marker2, Quaternion.identity);
-        Instantiate(planeMarker, new Vector3(marker1.x,marker1.y,marker2.z), Quaternion.identity);
-        Instantiate(planeMarker, new Vector3(marker2.x, marker2.y, marker1.z), Quaternion.identity);
+
+        Vector3 m1VerticalOpposite = new Vector3(marker1.x, marker1.y, marker2.z);
+        Vector3 m2VerticalOpposite = new Vector3(marker2.x, marker2.y, marker1.z);
+        if (marker1.x > marker2.x)
+        {
+            if(marker1.z > marker2.z)
+            {
+                tr = marker1;
+                br = m1VerticalOpposite;
+                tl = m2VerticalOpposite;
+                bl = marker2;
+            }
+            else
+            {
+                tr = m1VerticalOpposite;
+                br = marker1;
+                tl = marker2;
+                bl = m2VerticalOpposite;
+            }
+        }
+        else
+        {
+            if (marker1.z > marker2.z)
+            {
+                tl = marker1;
+                bl = m1VerticalOpposite;
+                tr = m2VerticalOpposite;
+                br = marker2;
+            }
+            else
+            {
+                tl = m1VerticalOpposite;
+                bl = marker1;
+                tr = marker2;
+                br = m2VerticalOpposite;
+            }
+        }
+        //Debug.DrawLine(tl,tl + Vector3.up,Color.green);
+        Instantiate(planeMarker, tl, Quaternion.identity);
+        Instantiate(planeMarker, tr, Quaternion.identity);
+        Instantiate(planeMarker, bl, Quaternion.identity);
+        Instantiate(planeMarker, br, Quaternion.identity);
 
         if (markerCount > 0) {
             Vector3 xStep = new Vector3((marker2.x - marker1.x) / (markerCount + 1),0, 0);
@@ -39,7 +88,7 @@ public class PlaneMapper : MonoBehaviour
             }
         }
         GameObject newFloor = Instantiate(floor, (marker1 + marker2) * 0.5f, Quaternion.identity);
-        newFloor.transform.localScale = new Vector3(Mathf.Abs(marker1.x - marker2.x), newFloor.transform.localScale.y, Mathf.Abs(marker1.z - marker2.z));
+        newFloor.transform.localScale = new Vector3(0.1f*Mathf.Abs(marker1.x - marker2.x), newFloor.transform.localScale.y, 0.1f*Mathf.Abs(marker1.z - marker2.z));
     }
 
     public void ClearPlane()
