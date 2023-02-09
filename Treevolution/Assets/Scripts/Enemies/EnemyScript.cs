@@ -6,7 +6,7 @@ using Pathfinding;
 public class EnemyScript : MonoBehaviour
 {
     public Rigidbody rig;
-    [SerializeField]
+    [SerializeField] // This allows the private field to be edited from the Unity inspecter
     private float speed = 0.1f;
 
     Vector3[] path;
@@ -16,7 +16,7 @@ public class EnemyScript : MonoBehaviour
     int pathCounter = 0;
 
     [SerializeField]
-    private List<string> climbableTages = new List<string>() { "Wall", "Tower" };
+    private List<string> climbableTags = new List<string>() { "Wall", "Tower" };
     bool climbing = false;
     float targetHeight;
     float baseHeight;
@@ -33,10 +33,13 @@ public class EnemyScript : MonoBehaviour
         Vector3 pos = transform.position;
         if (followingPath && rig.velocity.y >= -5f)
         {
-            if ((currentTarget - pos).magnitude < 0.05f)
+            Vector2 topDownTarget = new Vector2(currentTarget.x, currentTarget.z);
+            Vector2 topDownEnemy = new Vector2(pos.x, pos.z);
+            if ((topDownTarget - topDownEnemy).magnitude < 0.05f)
             {
                 startMoveToNextTarget();
             }
+            directionVector = (currentTarget - transform.position).normalized * speed;
             rig.MovePosition(pos + directionVector);
         }
         if (climbing)
@@ -64,6 +67,7 @@ public class EnemyScript : MonoBehaviour
         {
             currentTarget = path[pathCounter];
             directionVector = (currentTarget - transform.position).normalized * speed;
+            directionVector.y = 0;
             pathCounter += 1;
         }
     }
@@ -77,7 +81,7 @@ public class EnemyScript : MonoBehaviour
             Debug.Log("Reached tree");
             followingPath = false;
         }
-        else if (climbableTages.Contains(collider.gameObject.tag))
+        else if (climbableTags.Contains(collider.gameObject.tag))
         {
             float topOfCollider = collider.bounds.extents.y + collider.gameObject.transform.position.y;
             float heightAboveObject = topOfCollider + GetComponent<Collider>().bounds.extents.y + 0.1f;
@@ -89,7 +93,7 @@ public class EnemyScript : MonoBehaviour
                 targetHeight = heightAboveObject;
             }
         }
-        if(!hasHitFloor && collider.gameObject.tag == "Floor")
+        if(!hasHitFloor && (collider.gameObject.tag == "Floor" || collider.gameObject.tag == "Wall"))
         {
             hasHitFloor = true;
             Initialise();

@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerScript : MonoBehaviour
+public class TurretScript : MonoBehaviour
 {
-    private TowerData towerData { set { this.towerData = value; } }
     // Start is called before the first frame update
     void Start()
     {
+        
     }
 
     // Update is called once per frame
