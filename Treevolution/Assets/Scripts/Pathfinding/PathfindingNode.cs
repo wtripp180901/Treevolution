@@ -2,16 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct PathfindingNode
+namespace Pathfinding
 {
-    public readonly int cost;
-    public readonly Vector3 position;
-    public readonly Vector3[] neighbours;
 
-    public PathfindingNode(int cost, Vector3 position, Vector3[] neighbours)
+    public class PathfindingNode
     {
-        this.cost = cost;
-        this.position = position;
-        this.neighbours = neighbours;
+        public readonly int id;
+        public readonly Vector3 position;
+        private List<PathfindingNode> _neighbours = new List<PathfindingNode>();
+        public PathfindingNode parentNode { get; set; }
+
+        public PathfindingNode[] neighbours { get { return _neighbours.ToArray(); } }
+        public readonly Dictionary<PathfindingNode, float> costToNeighbours = new Dictionary<PathfindingNode, float>();
+
+        public PathfindingNode(int id, Vector3 position)
+        {
+            this.position = position;
+            this.id = id;
+        }
+
+        public void AddNeighbour(PathfindingNode neighbour, float cost)
+        {
+            _neighbours.Add(neighbour);
+            costToNeighbours.Add(neighbour, cost);
+        }
+
+
     }
+
 }
