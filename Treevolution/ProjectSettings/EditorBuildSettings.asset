@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/ARTestScene.unity
+  - enabled: 0
+    path: Assets/Scenes/TurretScene.unity
     guid: e73b812072b31a84cbef7412b032ec1d
+  - enabled: 1
+    path: Assets/Scenes/QRTestScene.unity
+    guid: 45aaf5b0f28d91b44907fe192b586520
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: a54dcd6fcd0922d43b8d79203ed4d73e, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: f8bd4a1d2aa8596409f6b3a087136f1f, type: 2}
