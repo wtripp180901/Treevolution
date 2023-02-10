@@ -17,6 +17,7 @@ public class QRDetection : MonoBehaviour
     public PlaneMapper planeMapper;
     public GameObject defaultMarker;
     public GameObject towerMarker;
+    public GameObject wallMarker;
     private QRCodeWatcher watcher;
     private SortedDictionary<System.Guid, (QRCode code, GameObject obj)> trackedCodes;
     private Queue<QRCode> updatedCodeQueue;
@@ -128,23 +129,34 @@ public class QRDetection : MonoBehaviour
                 Vector3 markerSize = new Vector3(sideLength, sideLength, sideLength);
                 GameObject tempMarker = trackedCodes[updatedCode.Id].obj;
                 GameObject markerType = null;
+
+                Vector3 rotationOffset = new Vector3(0, 0, 0);
+                bool scaleToMarker = false;
+
                 if (tempMarker == null)
                 {
                     switch (updatedCode.Data)
                     {
                         case "Tower":
                             markerType = towerMarker;
+                            rotationOffset.x = 90;
+                            break;
+                        case "Wall":
+                            markerType = wallMarker;
                             break;
                         default:
                             markerType = defaultMarker;
+                            scaleToMarker = true;
                             break;
                     }
                     tempMarker = Instantiate(markerType);
                     tempMarker.SetActive(true);
                 }
                 Vector3 markerOffset = Vector3.zero;// sideLength / 2 * Vector3.up;
+                Quaternion finalRotation = currentPose.rotation;
+                finalRotation.eulerAngles += rotationOffset;
                 tempMarker.transform.SetPositionAndRotation(currentPose.position + markerOffset, currentPose.rotation);
-                tempMarker.transform.localScale = markerSize;
+                if(scaleToMarker) tempMarker.transform.localScale = markerSize;
 
                 trackedCodes[updatedCode.Id] = (updatedCode, tempMarker);
                 this.lastCode = (updatedCode, currentPose);

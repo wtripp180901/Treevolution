@@ -627,7 +627,8 @@ MonoBehaviour:
   debugText: {fileID: 1631852837}
   planeMapper: {fileID: 963194238}
   defaultMarker: {fileID: 2878154885871524007, guid: ebdca683e95c2fb4d97ea79d2f10113e, type: 3}
-  towerMarker: {fileID: 2878154885871524007, guid: 35cbeca53dbcde244b81c53872d19681, type: 3}
+  towerMarker: {fileID: 4477643921730069817, guid: 6155a45166ff2a14bb09c391691bc3fb, type: 3}
+  wallMarker: {fileID: 7800950396249785354, guid: 50a2c23351a556c4fa297b86d5adaee4, type: 3}
 --- !u!114 &963194233
 MonoBehaviour:
   m_ObjectHideFlags: 0
