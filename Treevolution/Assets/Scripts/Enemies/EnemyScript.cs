@@ -35,7 +35,7 @@ public class EnemyScript : MonoBehaviour
         {
             Vector2 topDownTarget = new Vector2(currentTarget.x, currentTarget.z);
             Vector2 topDownEnemy = new Vector2(pos.x, pos.z);
-            if ((topDownTarget - topDownEnemy).magnitude < 0.05f)
+            if ((topDownTarget - topDownEnemy).magnitude < 0.005f)
             {
                 startMoveToNextTarget();
             }
@@ -84,7 +84,7 @@ public class EnemyScript : MonoBehaviour
         else if (climbableTags.Contains(collider.gameObject.tag))
         {
             float topOfCollider = collider.bounds.extents.y + collider.gameObject.transform.position.y;
-            float heightAboveObject = topOfCollider + GetComponent<Collider>().bounds.extents.y + 0.1f;
+            float heightAboveObject = topOfCollider + GetComponent<Collider>().bounds.extents.y + 0.01f;
             if (transform.position.y < topOfCollider)
             {
                 followingPath = false;
