@@ -28,7 +28,7 @@ public class EnemyScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector3 pos = transform.position;
         if (followingPath && rig.velocity.y >= -5f)
@@ -50,6 +50,7 @@ public class EnemyScript : MonoBehaviour
             }
             else
             {
+                rig.MovePosition(pos + new Vector3(20*directionVector.x,0,20*directionVector.z));
                 climbing = false;
                 followingPath = true;
                 rig.useGravity = true;
