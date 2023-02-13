@@ -130,8 +130,9 @@ public class QRDetection : MonoBehaviour
                 GameObject tempMarker = trackedCodes[updatedCode.Id].obj;
                 GameObject markerType = null;
 
-                Vector3 rotationOffset = new Vector3(0, 0, 0);
+                Quaternion rotation = new Quaternion();
                 bool scaleToMarker = false;
+                Vector3 markerOffset = Vector3.zero;
 
                 if (tempMarker == null)
                 {
@@ -139,24 +140,27 @@ public class QRDetection : MonoBehaviour
                     {
                         case "Tower":
                             markerType = towerMarker;
-                            rotationOffset.x = 90;
+                            rotation = Quaternion.identity;
                             break;
                         case "Wall":
                             markerType = wallMarker;
+                            markerOffset = new Vector3(0,markerType.GetComponent<Collider>().bounds.extents.y,0);
+                            rotation = currentPose.rotation;
                             break;
                         default:
                             markerType = defaultMarker;
                             scaleToMarker = true;
+                            rotation = currentPose.rotation;
                             break;
                     }
                     tempMarker = Instantiate(markerType);
                     tempMarker.SetActive(true);
                 }
-                Vector3 markerOffset = Vector3.zero;// sideLength / 2 * Vector3.up;
-                Quaternion finalRotation = currentPose.rotation;
-                finalRotation.eulerAngles += rotationOffset;
-                tempMarker.transform.SetPositionAndRotation(currentPose.position + markerOffset, currentPose.rotation);
-                if(scaleToMarker) tempMarker.transform.localScale = markerSize;
+                // sideLength / 2 * Vector3.up;
+                //Quaternion finalRotation = currentPose.rotation;
+                //finalRotation.eulerAngles += rotationOffset;
+                tempMarker.transform.SetPositionAndRotation(currentPose.position + markerOffset, rotation);
+                if (scaleToMarker) tempMarker.transform.localScale = markerSize;
 
                 trackedCodes[updatedCode.Id] = (updatedCode, tempMarker);
                 this.lastCode = (updatedCode, currentPose);
@@ -292,5 +296,10 @@ public class QRDetection : MonoBehaviour
             initProperties();
             hasStarted = true;
         }
+    }
+
+    public void StopQR()
+    {
+        watcher.Stop();
     }
 }
