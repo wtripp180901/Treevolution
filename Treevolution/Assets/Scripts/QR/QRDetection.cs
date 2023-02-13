@@ -152,7 +152,7 @@ public class QRDetection : MonoBehaviour
         }
     }
 
-    private IList<(QRCode, GameObject)> getCurrentList()
+    public IList<(QRCode, GameObject)> getCurrentList()
     {
         lock (trackedCodes)
         {
