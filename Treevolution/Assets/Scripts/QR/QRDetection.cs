@@ -52,6 +52,7 @@ public class QRDetection : MonoBehaviour
             await accessRequester;
         }
         initProperties();
+        //GetComponent<PlaneMapper>().CreateNewPlane(new Vector3(0, 0, 0), new Vector3(1, 0, 1));
     }
 
     // Update is called once per frame
@@ -144,7 +145,7 @@ public class QRDetection : MonoBehaviour
                             break;
                         case "Wall":
                             markerType = wallMarker;
-                            markerOffset = new Vector3(0,markerType.GetComponent<Collider>().bounds.extents.y,0);
+                            markerOffset = new Vector3(0,markerType.GetComponent<Collider>().transform.localScale.y/2,0);
                             rotation = currentPose.rotation;
                             break;
                         default:
@@ -300,6 +301,6 @@ public class QRDetection : MonoBehaviour
 
     public void StopQR()
     {
-        watcher.Stop();
+        if(QRCodeWatcher.IsSupported()) watcher.Stop();
     }
 }
