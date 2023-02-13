@@ -11,7 +11,7 @@ public class RealWorldPropertyMapper : MonoBehaviour
         planeMapper = GetComponent<PlaneMapper>();
     }
     bool hasStarted = false;
-    float time = 15f;
+    float time = 30f;
     private void Update()
     {
         time -= Time.deltaTime;

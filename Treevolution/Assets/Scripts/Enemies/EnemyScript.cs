@@ -50,7 +50,7 @@ public class EnemyScript : MonoBehaviour
             }
             else
             {
-                rig.MovePosition(pos + new Vector3(20*directionVector.x,0,20*directionVector.z));
+                rig.MovePosition(pos + new Vector3(60*directionVector.x,0,60*directionVector.z));
                 climbing = false;
                 followingPath = true;
                 rig.useGravity = true;

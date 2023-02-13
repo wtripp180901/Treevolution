@@ -13,5 +13,6 @@ public class PhaseTransition : MonoBehaviour
         Vector3 horizontal = GameProperties.TopRightCorner - GameProperties.TopLeftCorner;
         Vector3 treeLocation = GameProperties.BottomRightCorner + (0.5f * vertical) - (0.1f * horizontal) + new Vector3(0,tree.GetComponent<Collider>().transform.localScale.y/2,0);
         Instantiate(tree, treeLocation, Quaternion.identity);
+        GetComponent<QRDetection>().StopQR();
     }
 }
