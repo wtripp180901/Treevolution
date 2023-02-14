@@ -10,14 +10,14 @@ public class RoundTimer : MonoBehaviour
     private bool isPaused=false;
     private bool isStopped=false;
 
-    UnityEvent _SecondPassedEvent=new UnityEvent();
+    UnityEvent _SecondTickEvent=new UnityEvent();
     UnityEvent _RoundOverEvent=new UnityEvent();
     UnityEvent _StopTimer = new UnityEvent();
     UnityEvent _PauseTimer = new UnityEvent();
 
-    public void SecondPassedEvent()
+    public void SecondTickEvent()
     {
-        _SecondPassedEvent?.Invoke();
+        _SecondTickEvent?.Invoke();
     }
     public void RoundOverEvent()
     {
@@ -27,12 +27,10 @@ public class RoundTimer : MonoBehaviour
 
     void Start()
     {
-        _SecondPassedEvent.AddListener(()=>Debug.Log("Execution per second")) ;
-        _RoundOverEvent.AddListener(()=>Debug.Log(roundLengthSecs.ToString() + " second execution")) ;
-        _StopTimer.AddListener(()=>Debug.Log("end")) ;
-        _PauseTimer.AddListener(() => Debug.Log("pause/play"));
-
-        StartCoroutine(Timer(60));
+        _SecondTickEvent.AddListener(()=>Debug.Log("Tick")) ;
+        _RoundOverEvent.AddListener(()=>Debug.Log(roundLengthSecs.ToString() + "s Passed")) ;
+        _StopTimer.AddListener(()=>Debug.Log("Timer Stopped")) ;
+        _PauseTimer.AddListener(() => Debug.Log("Pause/Play"));
     }
 
     private float roundTimer = 0.0f;
@@ -54,35 +52,20 @@ public class RoundTimer : MonoBehaviour
         secondTimer += Time.deltaTime;
         roundTimer += Time.deltaTime;
 
-
         if (secondTimer >= 1f)
         {
             secondTimer = 0;
-            SecondPassedEvent();
+            SecondTickEvent();
         }
-
 
         if (roundTimer >= roundLengthSecs)
         {
             RoundOverEvent();
         }
 
-
-
     }
-    IEnumerator Timer(float time)
-    {
-        while (true&&!isPaused)
-        {
-            yield return new WaitForSeconds(1.0f);
 
-            SecondPassedEvent();
-            yield return new WaitForSeconds(time);
-            RoundOverEvent();
-
-        }
-    }
-    //ͣStop timer
+    //Stop timer
     public void StopTimer()
     {
         isStopped = true;
