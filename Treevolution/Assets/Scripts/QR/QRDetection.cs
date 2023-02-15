@@ -144,7 +144,6 @@ public class QRDetection : MonoBehaviour
                             break;
                         case "Wall":
                             markerType = wallMarker;
-                            markerOffset = new Vector3(0,markerType.GetComponent<Collider>().bounds.extents.y,0);
                             rotation = currentPose.rotation;
                             break;
                         default:
@@ -153,7 +152,7 @@ public class QRDetection : MonoBehaviour
                             rotation = currentPose.rotation;
                             break;
                     }
-                    tempMarker = Instantiate(markerType);
+                    tempMarker = Instantiate(markerType, currentPose.position, rotation);
                     tempMarker.SetActive(true);
                 }
                 else
@@ -164,7 +163,6 @@ public class QRDetection : MonoBehaviour
                             rotation = Quaternion.identity;
                             break;
                         case "Wall":
-                            markerOffset = new Vector3(0, markerType.GetComponent<Collider>().bounds.extents.y, 0);
                             rotation = currentPose.rotation;
                             break;
                         default:
@@ -172,11 +170,12 @@ public class QRDetection : MonoBehaviour
                             rotation = currentPose.rotation;
                             break;
                     }
+                    tempMarker.transform.SetPositionAndRotation(currentPose.position, rotation);
                 }
                 // sideLength / 2 * Vector3.up;
                 //Quaternion finalRotation = currentPose.rotation;
                 //finalRotation.eulerAngles += rotationOffset;
-                tempMarker.transform.SetPositionAndRotation(currentPose.position + markerOffset, rotation);
+
                 if (scaleToMarker) tempMarker.transform.localScale = markerSize;
 
                 trackedCodes[updatedCode.Id] = (updatedCode, tempMarker);
