@@ -870,7 +870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roundLengthSecs: 60
-  _SecondPassedEvent:
+  _SecondTickEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 963194239}
