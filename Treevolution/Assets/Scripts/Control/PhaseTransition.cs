@@ -14,6 +14,8 @@ public class PhaseTransition : MonoBehaviour
         Vector3 treeLocation = GameProperties.BottomRightCorner + (0.5f * vertical) - (0.1f * horizontal) + new Vector3(0,tree.GetComponent<Collider>().transform.localScale.y/2,0);
         Instantiate(tree, treeLocation, Quaternion.identity);
         GetComponent<QRDetection>().StopQR();
+        GetComponent<RoundTimer>().PauseTimer();
+        Destroy(GameObject.FindWithTag("NextRoundButton"));
     }
 
     public void GameOverScreen(bool win)

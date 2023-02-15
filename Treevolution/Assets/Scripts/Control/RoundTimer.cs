@@ -33,6 +33,7 @@ public class RoundTimer : MonoBehaviour
         _PauseTimer.AddListener(() => Debug.Log("pause/play"));
 
         StartCoroutine(Timer(60));
+        PauseTimer();
     }
 
     private float roundTimer = 0.0f;
