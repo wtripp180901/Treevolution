@@ -7,32 +7,31 @@ using UnityEngine.Events;
 public class RoundTimer : MonoBehaviour
 {
     public float roundLengthSecs = 60;
-    private bool isPaused=false;
-    private bool isStopped=false;
+    private bool isPaused = false;
+    private bool isStopped = false;
 
-    public UnityEvent _SecondPassedEvent=new UnityEvent();
-    UnityEvent _RoundOverEvent=new UnityEvent();
+    public UnityEvent _SecondTickEvent = new UnityEvent();
+    UnityEvent _RoundOverEvent = new UnityEvent();
     UnityEvent _StopTimer = new UnityEvent();
     UnityEvent _PauseTimer = new UnityEvent();
 
-    public void SecondPassedEvent()
+    public void SecondTickEvent()
     {
-        _SecondPassedEvent?.Invoke();
+        _SecondTickEvent?.Invoke();
     }
     public void RoundOverEvent()
     {
         _RoundOverEvent?.Invoke();
-        _RoundOverEvent=null;
+        _RoundOverEvent = null;
     }
 
     void Start()
     {
-        //_SecondPassedEvent.AddListener(()=>Debug.Log("Execution per second")) ;
-        _RoundOverEvent.AddListener(()=>Debug.Log("round over")) ;
-        _StopTimer.AddListener(()=>Debug.Log("end")) ;
-        _PauseTimer.AddListener(() => Debug.Log("pause/play"));
-
-        StartCoroutine(Timer(60));
+        //_SecondTickEvent.AddListener(() => Debug.Log("Tick"));
+        //_RoundOverEvent.AddListener(() => Debug.Log(roundLengthSecs.ToString() + "s Passed"));
+        _RoundOverEvent.AddListener(() => GetComponent<PhaseTransition>().GameOverScreen(true));
+        _StopTimer.AddListener(() => Debug.Log("Timer Stopped"));
+        _PauseTimer.AddListener(() => Debug.Log("Pause/Play"));
         PauseTimer();
     }
 
@@ -41,12 +40,12 @@ public class RoundTimer : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetMouseButtonDown(0))
+        /*if (Input.GetMouseButtonDown(0))
         {
             PauseTimer();
-        }
+        }*/
 
-        if (isPaused||isStopped)
+        if (isPaused || isStopped)
         {
             secondTimer = 0;
             return;
@@ -55,35 +54,20 @@ public class RoundTimer : MonoBehaviour
         secondTimer += Time.deltaTime;
         roundTimer += Time.deltaTime;
 
-
         if (secondTimer >= 1f)
         {
             secondTimer = 0;
-            SecondPassedEvent();
+            SecondTickEvent();
         }
-
 
         if (roundTimer >= roundLengthSecs)
         {
             RoundOverEvent();
         }
 
-
-
     }
-    IEnumerator Timer(float time)
-    {
-        while (true&&!isPaused)
-        {
-            yield return new WaitForSeconds(1.0f);
 
-            SecondPassedEvent();
-            yield return new WaitForSeconds(time);
-            RoundOverEvent();
-
-        }
-    }
-    //ͣStop timer
+    //Stop timer
     public void StopTimer()
     {
         isStopped = true;
@@ -92,7 +76,7 @@ public class RoundTimer : MonoBehaviour
     //Pause timer
     public void PauseTimer()
     {
-        isPaused=!isPaused;
+        isPaused = !isPaused;
         _PauseTimer?.Invoke();
     }
 
