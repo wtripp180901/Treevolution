@@ -12,6 +12,7 @@ public class RealWorldPropertyMapper : MonoBehaviour
     }
     private void Update()
     {
+        if (Input.GetKeyDown("z")) GetComponent<PhaseTransition>().GetComponent<PhaseTransition>().GoToGamePhase();
     }
 
     public void MapProperties()

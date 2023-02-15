@@ -318,6 +318,6 @@ public class QRDetection : MonoBehaviour
 
     public void StopQR()
     {
-        watcher.Stop();
+        if(QRCodeWatcher.IsSupported())watcher.Stop();
     }
 }
