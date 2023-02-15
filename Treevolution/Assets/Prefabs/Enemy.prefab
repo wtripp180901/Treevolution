@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5135896430825022294}
   - component: {fileID: 5135896430825022298}
   - component: {fileID: 5135896430825022299}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -129,6 +129,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rig: {fileID: 5135896430825022298}
   speed: 0.001
-  climbableTages:
+  climbableTags:
   - Wall
   - Tower

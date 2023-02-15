@@ -52,7 +52,6 @@ public class QRDetection : MonoBehaviour
             await accessRequester;
         }
         initProperties();
-        GetComponent<PlaneMapper>().CreateNewPlane(new Vector3(0, 0, 0), new Vector3(1, 0, 1));
     }
 
     // Update is called once per frame
@@ -145,7 +144,7 @@ public class QRDetection : MonoBehaviour
                             break;
                         case "Wall":
                             markerType = wallMarker;
-                            markerOffset = new Vector3(0,0.025f,0);
+                            markerOffset = new Vector3(0,markerType.GetComponent<Collider>().bounds.extents.y,0);
                             rotation = currentPose.rotation;
                             break;
                         default:
@@ -154,14 +153,30 @@ public class QRDetection : MonoBehaviour
                             rotation = currentPose.rotation;
                             break;
                     }
-                    
+                    tempMarker = Instantiate(markerType);
+                    tempMarker.SetActive(true);
+                }
+                else
+                {
+                    switch (updatedCode.Data)
+                    {
+                        case "Tower":
+                            rotation = Quaternion.identity;
+                            break;
+                        case "Wall":
+                            markerOffset = new Vector3(0, markerType.GetComponent<Collider>().bounds.extents.y, 0);
+                            rotation = currentPose.rotation;
+                            break;
+                        default:
+                            scaleToMarker = true;
+                            rotation = currentPose.rotation;
+                            break;
+                    }
                 }
                 // sideLength / 2 * Vector3.up;
                 //Quaternion finalRotation = currentPose.rotation;
                 //finalRotation.eulerAngles += rotationOffset;
-                tempMarker = Instantiate(markerType, currentPose.position + markerOffset, rotation);
-                tempMarker.SetActive(true);
-                //tempMarker.transform.SetPositionAndRotation(currentPose.position + markerOffset, rotation);
+                tempMarker.transform.SetPositionAndRotation(currentPose.position + markerOffset, rotation);
                 if (scaleToMarker) tempMarker.transform.localScale = markerSize;
 
                 trackedCodes[updatedCode.Id] = (updatedCode, tempMarker);
@@ -302,6 +317,6 @@ public class QRDetection : MonoBehaviour
 
     public void StopQR()
     {
-        if(QRCodeWatcher.IsSupported()) watcher.Stop();
+        watcher.Stop();
     }
 }
