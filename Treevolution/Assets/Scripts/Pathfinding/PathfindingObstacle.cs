@@ -18,14 +18,18 @@ namespace Pathfinding
 
         private void Start()
         {
-            myCollider = this.GetComponent<Collider>();
+            myCollider = gameObject.GetComponent<Collider>();
             bounds = myCollider.bounds;
             PathfindingGraphGenerator.GetObstacleDataEvent += GetObstacleBoundsEventHandler;
         }
         void GetObstacleBoundsEventHandler(object sender, EventArgs args)
         {
-            float halfWidth = myCollider.transform.localScale.x / 2 + nodeMargins;
+            //GameObject marker = GameObject.FindGameObjectWithTag("PlaneMarker");
+            float halfWidth = myCollider.transform.lossyScale.x / 2 + nodeMargins;
             float halfDepth = myCollider.transform.lossyScale.z / 2 + nodeMargins;
+            //Instantiate(marker, bounds.center + halfWidth * myCollider.transform.right, Quaternion.identity);
+            //Instantiate(marker, bounds.center + halfDepth * myCollider.transform.forward, Quaternion.identity);
+
             Vector3 floorPosition = bounds.center - (myCollider.transform.up * (bounds.extents.y - floorOffset));
             Debug.DrawLine(bounds.center, bounds.center + halfWidth * myCollider.transform.right, Color.black, 100);
             Debug.DrawLine(bounds.center, bounds.center + halfDepth * myCollider.transform.forward, Color.black, 100);

@@ -8,6 +8,7 @@ namespace Pathfinding
     //Used to dynamically generate a pathfinding mesh based on obstacles in the environment
     public static class PathfindingGraphGenerator
     {
+
         struct ObstacleData
         {
             public readonly Bounds bounds;
@@ -31,7 +32,7 @@ namespace Pathfinding
 
         public static PathfindingNode[] GetPathfindingGraph()
         {
-            if(GetObstacleDataEvent != null) GetObstacleDataEvent.Invoke(null, null);
+            if (GetObstacleDataEvent != null) GetObstacleDataEvent.Invoke(null, null);
             List<PathfindingNode> graph = nodesFromObstacleData();
             for (int i = 0; i < graph.Count; i++)
             {
@@ -48,6 +49,8 @@ namespace Pathfinding
                         graph[i].AddNeighbour(graph[j], distance);
                         graph[j].AddNeighbour(graph[i], distance);
                         Debug.DrawLine(graph[i].position, graph[i].position + directionRay, Color.red, 60);
+                        //GameObject marker = GameObject.FindGameObjectWithTag("PlaneMarker");
+                        //GameObject.Instantiate(marker, graph[i].position, Quaternion.identity);
                     }
                 }
             }
