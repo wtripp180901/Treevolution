@@ -11,6 +11,7 @@ TagManager:
   - PlaneMarker
   - Wall
   - Floor
+  - InfoText
   layers:
   - Default
   - TransparentFX
