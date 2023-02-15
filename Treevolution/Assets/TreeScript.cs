@@ -12,8 +12,10 @@ public class TreeScript : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Enemy")
+        {
             Destroy(collision.gameObject);
-        health -= 1;
+            health -= 1;
+        }
         if (health == 0)
         {
             Destroy(gameObject);

@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-    public float life = 10;
- 
+    [SerializeField] float projectileSpeed = 15f;
 
-    void Awake()
+
+    private void Update()   //you can change this to a virtual function for multiple projectile types
     {
-        Destroy(gameObject , life);
-    } 
-
+        transform.Translate(new Vector3(0f, 0f, projectileSpeed * Time.deltaTime));
+    }
     void OnCollisionEnter(Collision collision)
     {
-        Destroy(collision.gameObject);
-        Destroy(gameObject);
+
+        //  Destroy(collision.gameObject);
+        if (collision.gameObject.tag == "Enemy") Destroy(gameObject);
     }
 }

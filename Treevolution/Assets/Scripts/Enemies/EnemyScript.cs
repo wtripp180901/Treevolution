@@ -14,6 +14,7 @@ public class EnemyScript : MonoBehaviour
     Vector3 directionVector;
     Vector3 currentTarget;
     int pathCounter = 0;
+    int health = 5;
 
     [SerializeField]
     private List<string> climbableTags = new List<string>() { "Wall", "Tower" };
@@ -81,6 +82,10 @@ public class EnemyScript : MonoBehaviour
         {
             Debug.Log("Reached tree");
             followingPath = false;
+        }else if(collider.gameObject.tag == "Bullet")
+        {
+            health -= 1;
+            if (health <= 0) Destroy(gameObject);
         }
         else if (climbableTags.Contains(collider.gameObject.tag))
         {
