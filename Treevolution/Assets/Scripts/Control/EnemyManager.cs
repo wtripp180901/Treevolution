@@ -54,4 +54,9 @@ public class EnemyManager : MonoBehaviour
         coordinate_Y = vertical.z *0.2f;
         spawnHeight = 2f + GameProperties.FloorHeight;
     }
+
+    public void StopSpawning()
+    {
+        started = false;
+    }
 }

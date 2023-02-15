@@ -145,7 +145,7 @@ public class QRDetection : MonoBehaviour
                             break;
                         case "Wall":
                             markerType = wallMarker;
-                            markerOffset = new Vector3(0,markerType.GetComponent<Collider>().transform.localScale.y/2,0);
+                            markerOffset = new Vector3(0,0.025f,0);
                             rotation = currentPose.rotation;
                             break;
                         default:
@@ -154,13 +154,14 @@ public class QRDetection : MonoBehaviour
                             rotation = currentPose.rotation;
                             break;
                     }
-                    tempMarker = Instantiate(markerType);
-                    tempMarker.SetActive(true);
+                    
                 }
                 // sideLength / 2 * Vector3.up;
                 //Quaternion finalRotation = currentPose.rotation;
                 //finalRotation.eulerAngles += rotationOffset;
-                tempMarker.transform.SetPositionAndRotation(currentPose.position + markerOffset, rotation);
+                tempMarker = Instantiate(markerType, currentPose.position + markerOffset, rotation);
+                tempMarker.SetActive(true);
+                //tempMarker.transform.SetPositionAndRotation(currentPose.position + markerOffset, rotation);
                 if (scaleToMarker) tempMarker.transform.localScale = markerSize;
 
                 trackedCodes[updatedCode.Id] = (updatedCode, tempMarker);

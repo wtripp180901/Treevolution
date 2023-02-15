@@ -15,4 +15,22 @@ public class PhaseTransition : MonoBehaviour
         Instantiate(tree, treeLocation, Quaternion.identity);
         GetComponent<QRDetection>().StopQR();
     }
+
+    public void GameOverScreen(bool win)
+    {
+        GetComponent<RoundTimer>().StopTimer();
+        GetComponent<EnemyManager>().StopSpawning();
+        GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy");
+        for(int i = 0;i < enemyList.Length; i++)
+        {
+            Destroy(enemyList[i]);
+        }
+        if (win)
+        {
+            GetComponent<UIController>().Win();
+        }else
+        {
+            GetComponent<UIController>().Lose();
+        }
+    }
 }

@@ -14,7 +14,11 @@ public class TreeScript : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
             Destroy(collision.gameObject);
         health -= 1;
-        if (health == 0) Destroy(gameObject);
+        if (health == 0)
+        {
+            Destroy(gameObject);
+            GameObject.FindWithTag("MainCamera").GetComponent<PhaseTransition>().GameOverScreen(false);
+        }
     }
 
 }
