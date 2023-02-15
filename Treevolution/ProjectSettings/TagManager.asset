@@ -12,6 +12,7 @@ TagManager:
   - Wall
   - Floor
   - InfoText
+  - NextRoundButton
   layers:
   - Default
   - TransparentFX

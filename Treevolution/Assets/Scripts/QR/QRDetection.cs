@@ -52,6 +52,7 @@ public class QRDetection : MonoBehaviour
             await accessRequester;
         }
         initProperties();
+        GetComponent<PlaneMapper>().CreateNewPlane(new Vector3(0, 0, 0), new Vector3(1, 0, 1));
     }
 
     // Update is called once per frame
