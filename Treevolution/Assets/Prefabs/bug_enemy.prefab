@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -9070748969904699067, guid: 290287ad1bb77cb4aa08386dbc58343d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 290287ad1bb77cb4aa08386dbc58343d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -63,13 +67,81 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7917291961305824890, guid: 290287ad1bb77cb4aa08386dbc58343d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7367559088687387456, guid: 290287ad1bb77cb4aa08386dbc58343d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -5832678078589876017, guid: 290287ad1bb77cb4aa08386dbc58343d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -5731229141766309534, guid: 290287ad1bb77cb4aa08386dbc58343d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -4819223349682164798, guid: 290287ad1bb77cb4aa08386dbc58343d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -3403155128824885820, guid: 290287ad1bb77cb4aa08386dbc58343d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -2793727289926329592, guid: 290287ad1bb77cb4aa08386dbc58343d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -2511240423080479738, guid: 290287ad1bb77cb4aa08386dbc58343d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 290287ad1bb77cb4aa08386dbc58343d, type: 3}
       propertyPath: m_Name
       value: bug_enemy
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 290287ad1bb77cb4aa08386dbc58343d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 290287ad1bb77cb4aa08386dbc58343d, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507767883509144192, guid: 290287ad1bb77cb4aa08386dbc58343d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1869004960016252962, guid: 290287ad1bb77cb4aa08386dbc58343d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2866621852552652557, guid: 290287ad1bb77cb4aa08386dbc58343d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2903893172859080141, guid: 290287ad1bb77cb4aa08386dbc58343d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779745573541866595, guid: 290287ad1bb77cb4aa08386dbc58343d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5090062054982439474, guid: 290287ad1bb77cb4aa08386dbc58343d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6727007405964328823, guid: 290287ad1bb77cb4aa08386dbc58343d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9022215874312191456, guid: 290287ad1bb77cb4aa08386dbc58343d, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 290287ad1bb77cb4aa08386dbc58343d, type: 3}
@@ -124,3 +196,5 @@ MonoBehaviour:
   climbableTags:
   - Wall
   - Tower
+  baseHeight: 0
+  debugText: {fileID: 0}
