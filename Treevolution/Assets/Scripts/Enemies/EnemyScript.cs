@@ -14,7 +14,7 @@ public class EnemyScript : MonoBehaviour
     Vector3 directionVector;
     Vector3 currentTarget;
     int pathCounter = 0;
-    int health = 5;
+    int health = 10;
 
     [SerializeField]
     private List<string> climbableTags = new List<string>() { "Wall", "Tower" };

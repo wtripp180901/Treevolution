@@ -52,7 +52,7 @@ public class QRDetection : MonoBehaviour
             await accessRequester;
         }
         initProperties();
-        GetComponent<PlaneMapper>().CreateNewPlane(new Vector3(0, 0, 0), new Vector3(1, 0, 1));
+        //GetComponent<PlaneMapper>().CreateNewPlane(new Vector3(0, 0, 0), new Vector3(1, 0, 1));
     }
 
     // Update is called once per frame
@@ -142,6 +142,7 @@ public class QRDetection : MonoBehaviour
                         case "Tower":
                             markerType = towerMarker;
                             rotation = Quaternion.identity;
+                            markerOffset = new Vector3(0, 0.005f, 0);
                             break;
                         case "Wall":
                             markerType = wallMarker;
@@ -163,6 +164,7 @@ public class QRDetection : MonoBehaviour
                     {
                         case "Tower":
                             rotation = Quaternion.identity;
+                            markerOffset = new Vector3(0, 0.005f, 0);
                             break;
                         case "Wall":
                             markerOffset = new Vector3(0, markerType.GetComponent<Collider>().bounds.extents.y, 0);
