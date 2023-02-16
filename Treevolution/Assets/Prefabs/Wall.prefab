@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0d8007209f0f9a4cae8ef5f99bf20ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeMargins: 0.1
+  nodeMargins: 0.05
   floorOffset: 0.01
 --- !u!54 &4385265026822026737
 Rigidbody:
