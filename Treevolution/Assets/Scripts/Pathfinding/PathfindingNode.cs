@@ -17,6 +17,8 @@ namespace Pathfinding
 
         public PathfindingNode(int id, Vector3 position)
         {
+            float floorHeight = GameProperties.FloorHeight;
+            position.y = floorHeight;
             this.position = position;
             this.id = id;
         }
