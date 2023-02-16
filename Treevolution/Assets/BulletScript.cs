@@ -15,6 +15,6 @@ public class BulletScript : MonoBehaviour
     {
 
         //  Destroy(collision.gameObject);
-        if (collision.gameObject.tag == "Enemy") Destroy(gameObject);
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Tree") Destroy(gameObject);
     }
 }

@@ -146,7 +146,8 @@ public class QRDetection : MonoBehaviour
                             break;
                         case "Wall":
                             markerType = wallMarker;
-                            rotation = currentPose.rotation;
+                            markerOffset = new Vector3(0, markerType.GetComponent<Collider>().bounds.extents.y, 0);
+                            rotation = Quaternion.Euler(new Vector3(0, currentPose.rotation.eulerAngles.y, 0));
                             break;
                         default:
                             markerType = defaultMarker;
@@ -154,7 +155,7 @@ public class QRDetection : MonoBehaviour
                             rotation = currentPose.rotation;
                             break;
                     }
-                    tempMarker = Instantiate(markerType, currentPose.position, rotation);
+                    tempMarker = Instantiate(markerType, currentPose.position + markerOffset, rotation);
                     tempMarker.SetActive(true);
                 }
                 else
@@ -166,14 +167,15 @@ public class QRDetection : MonoBehaviour
                             markerOffset = new Vector3(0, 0.005f, 0);
                             break;
                         case "Wall":
-                            rotation = currentPose.rotation;
+                            rotation = Quaternion.Euler(new Vector3(0,currentPose.rotation.eulerAngles.y,0));
+                            markerOffset = new Vector3(0, trackedCodes[updatedCode.Id].obj.GetComponent<Collider>().bounds.extents.y, 0);
                             break;
                         default:
                             scaleToMarker = true;
                             rotation = currentPose.rotation;
                             break;
                     }
-                    tempMarker.transform.SetPositionAndRotation(currentPose.position, rotation);
+                    tempMarker.transform.SetPositionAndRotation(currentPose.position + markerOffset, rotation);
                 }
                 // sideLength / 2 * Vector3.up;
                 //Quaternion finalRotation = currentPose.rotation;
