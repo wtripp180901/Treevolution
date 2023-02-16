@@ -22,7 +22,8 @@ namespace Pathfinding
             initializeScores(graph.Count, (float.MaxValue, float.MaxValue, float.MaxValue));
 
             (int srcIndex, PathfindingNode srcNode) = closestNodeToPosition(source);
-            (int tgtIndex, PathfindingNode tgtNode) = closestNodeToPosition(target);
+            (int tgtIndex, PathfindingNode tgtNode) = closestNodeToPositionFromDirection(target, source);
+
 
             scores[srcIndex] = (Vector3.Distance(srcNode.position, tgtNode.position), 0, Vector3.Distance(srcNode.position, tgtNode.position));
 
@@ -95,16 +96,36 @@ namespace Pathfinding
 
         private static (int, PathfindingNode) closestNodeToPosition(Vector3 pos)
         {
-            (int, float) closestNode = (0, Vector3.Distance(pos, graph[0].position));
+            (int index, float distToTarget) closestNode = (0, Vector3.Distance(pos, graph[0].position));
             for (int i = 1; i < graph.Count; i++)
             {
                 float dist = Vector3.Distance(pos, graph[i].position);
-                if (dist < closestNode.Item2)
+                if (dist < closestNode.distToTarget)
                 {
                     closestNode = (i, dist);
                 }
             }
-            return (closestNode.Item1, graph[closestNode.Item1]);
+            return (closestNode.index, graph[closestNode.index]);
+        }
+
+        private static (int, PathfindingNode) closestNodeToPositionFromDirection(Vector3 pos, Vector3 fromPos)
+        {
+            (int index, float distToTarget, float distFromDir) closestNodeFromDirection = (0, Vector3.Distance(pos, graph[0].position), Vector3.Distance(fromPos, graph[0].position));
+            for (int i = 1; i < graph.Count; i++)
+            {
+                float dist = Vector3.Distance(pos, graph[i].position);
+                float distFromDir = Vector3.Distance(fromPos, graph[i].position);
+
+                if (dist < closestNodeFromDirection.distToTarget)
+                {
+                    closestNodeFromDirection = (i, dist, distFromDir);
+                }
+                else if (dist == closestNodeFromDirection.distToTarget && distFromDir < closestNodeFromDirection.distFromDir)
+                {
+                    closestNodeFromDirection = (i, dist, distFromDir);
+                }
+            }
+            return (closestNodeFromDirection.index, graph[closestNodeFromDirection.index]);
         }
 
         private static void initializeScores(int size, (float, float, float) initialValues)
