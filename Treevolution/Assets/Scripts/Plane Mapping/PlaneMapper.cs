@@ -91,7 +91,7 @@ public class PlaneMapper : MonoBehaviour
         }
         GameObject newFloor = Instantiate(floor, (marker1 + marker2) * 0.5f, Quaternion.identity);
         newFloor.transform.localScale = new Vector3(0.1f*Mathf.Abs(marker1.x - marker2.x), newFloor.transform.localScale.y, 0.1f*Mathf.Abs(marker1.z - marker2.z));
-        GameObject.FindWithTag("NextRoundButton").transform.position = marker1 + new Vector3(0, 0.2f, -0.2f);
+        //GameObject.FindWithTag("NextRoundButton").transform.position = marker1 + new Vector3(0, 0.2f, -0.2f);
     }
 
     public void ClearPlane()

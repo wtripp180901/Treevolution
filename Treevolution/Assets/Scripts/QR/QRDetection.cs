@@ -68,8 +68,9 @@ public class QRDetection : MonoBehaviour
             lock (trackedCodes) { trackedCodesCount = trackedCodes.Count; }
 
             if (lastCode.code == null && trackedCodesCount == 0)
-                debugText.text = "Scanning Started";
-
+            {
+                //debugText.text = "Scanning Started";
+            }
             else
             {
                 //debugText.text = trackedCodesCount + " / " + watcher.GetList().Count.ToString() + " : " + updatedCodeQueue.Count.ToString();
@@ -79,7 +80,7 @@ public class QRDetection : MonoBehaviour
                     {
                         QRCode code = updatedCodeQueue.Dequeue();
                         updateCodeHologram(code);
-                        debugText.text = "Code: " + lastCode.code.Data + " @ " + lastCode.pose.position;
+                        //debugText.text = "Code: " + lastCode.code.Data + " @ " + lastCode.pose.position;
                         drawPlane("C1", "C2", code);
                     }
                 }
@@ -112,7 +113,7 @@ public class QRDetection : MonoBehaviour
             {
                 planeMapper.CreateNewPlane(cornerMarker1, cornerMarker2);
                 planeCreated = true;
-                debugText.text = "planeCreated: " + planeCreated + "\nc1: " + c1Set + " " + cornerMarker1 + "\nc2: " + c2Set + " " + cornerMarker2;
+                //debugText.text = "planeCreated: " + planeCreated + "\nc1: " + c1Set + " " + cornerMarker1 + "\nc2: " + c2Set + " " + cornerMarker2;
 
             }
         }
@@ -147,7 +148,8 @@ public class QRDetection : MonoBehaviour
                         case "Wall":
                             markerType = wallMarker;
                             markerOffset = new Vector3(0, markerType.GetComponent<Collider>().bounds.extents.y, 0);
-                            rotation = Quaternion.Euler(new Vector3(0, currentPose.rotation.eulerAngles.y, 0));
+                            //rotation = Quaternion.Euler(new Vector3(0, currentPose.rotation.eulerAngles.y, 0));
+                            rotation = currentPose.rotation;
                             break;
                         default:
                             markerType = defaultMarker;
@@ -167,7 +169,8 @@ public class QRDetection : MonoBehaviour
                             markerOffset = new Vector3(0, 0.005f, 0);
                             break;
                         case "Wall":
-                            rotation = Quaternion.Euler(new Vector3(0,currentPose.rotation.eulerAngles.y,0));
+                            //rotation = Quaternion.Euler(new Vector3(0,currentPose.rotation.eulerAngles.y,0));
+                            rotation = currentPose.rotation;
                             markerOffset = new Vector3(0, trackedCodes[updatedCode.Id].obj.GetComponent<Collider>().bounds.extents.y, 0);
                             break;
                         default:
