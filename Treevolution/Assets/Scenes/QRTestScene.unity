@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -798,7 +798,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubePrefab: {fileID: 5135896430825022288, guid: b8000740a5e7097419bcfaefe985001e, type: 3}
-  timer: 0
   spawnRate: 5
   coordinate_X: -5
   coordinate_Y: 5
@@ -828,7 +827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ce337a804f93d4fbb6848e32298a0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tree: {fileID: 6413225019932954179, guid: 269ab3f1ae74a784fabe2fc430da9826, type: 3}
+  tree: {fileID: 4047742926485375969, guid: 13815b32147eea64e9a773ef69b3240e, type: 3}
 --- !u!114 &963194238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1073,6 +1072,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1165626843556793669, guid: b03d6137db94da542a85a178758d9d56, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.21999979
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452924587219484702, guid: b03d6137db94da542a85a178758d9d56, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 3.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452924587219484702, guid: b03d6137db94da542a85a178758d9d56, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 2855530887453255010, guid: b03d6137db94da542a85a178758d9d56, type: 3}
+      propertyPath: m_fontSize
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2855530887453255010, guid: b03d6137db94da542a85a178758d9d56, type: 3}
+      propertyPath: m_margin.x
+      value: 0.035722733
+      objectReference: {fileID: 0}
+    - target: {fileID: 2855530887453255010, guid: b03d6137db94da542a85a178758d9d56, type: 3}
+      propertyPath: m_margin.z
+      value: 6.6415234
+      objectReference: {fileID: 0}
+    - target: {fileID: 2855530887453255010, guid: b03d6137db94da542a85a178758d9d56, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8213314841196470945, guid: b03d6137db94da542a85a178758d9d56, type: 3}
       propertyPath: m_Name
       value: NextRoundButton
@@ -1081,6 +1108,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: NextRoundButton
       objectReference: {fileID: 0}
+    - target: {fileID: 8213314841196470948, guid: b03d6137db94da542a85a178758d9d56, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -351022541804052484, guid: efde9f3f78c1e784d88f6fbed5506102, type: 3}
     - target: {fileID: 8213314841196470950, guid: b03d6137db94da542a85a178758d9d56, type: 3}
       propertyPath: ButtonReleased.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1131,11 +1162,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8213314841196470954, guid: b03d6137db94da542a85a178758d9d56, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8213314841196470954, guid: b03d6137db94da542a85a178758d9d56, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8213314841196470954, guid: b03d6137db94da542a85a178758d9d56, type: 3}
       propertyPath: m_LocalRotation.w
