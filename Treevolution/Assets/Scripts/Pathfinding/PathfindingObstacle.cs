@@ -27,12 +27,14 @@ namespace Pathfinding
             //GameObject marker = GameObject.FindGameObjectWithTag("PlaneMarker");
             float halfWidth = myCollider.transform.lossyScale.x / 2 + nodeMargins;
             float halfDepth = myCollider.transform.lossyScale.z / 2 + nodeMargins;
-            //Instantiate(marker, bounds.center + halfWidth * myCollider.transform.right, Quaternion.identity);
-            //Instantiate(marker, bounds.center + halfDepth * myCollider.transform.forward, Quaternion.identity);
+            //Instantiate(marker, centre + halfWidth * myCollider.transform.right, Quaternion.identity);
+            //Instantiate(marker, centre + halfDepth * myCollider.transform.forward, Quaternion.identity);
 
-            Vector3 floorPosition = bounds.center - (myCollider.transform.up * (bounds.extents.y - floorOffset));
-            Debug.DrawLine(bounds.center, bounds.center + halfWidth * myCollider.transform.right, Color.black, 100);
-            Debug.DrawLine(bounds.center, bounds.center + halfDepth * myCollider.transform.forward, Color.black, 100);
+            Vector3 centre = transform.position;
+
+            Vector3 floorPosition = centre - (myCollider.transform.up * (bounds.extents.y - floorOffset));
+            Debug.DrawLine(centre, centre + halfWidth * myCollider.transform.right, Color.black, 100);
+            Debug.DrawLine(centre, centre + halfDepth * myCollider.transform.forward, Color.black, 100);
             Vector3[] possiblePFPoints = new Vector3[]
             {
             floorPosition + halfWidth * myCollider.transform.right + halfDepth * myCollider.transform.forward,
