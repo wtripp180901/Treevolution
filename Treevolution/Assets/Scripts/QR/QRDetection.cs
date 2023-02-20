@@ -143,13 +143,13 @@ public class QRDetection : MonoBehaviour
                         case "Tower":
                             markerType = towerMarker;
                             rotation = Quaternion.identity;
-                            markerOffset = new Vector3(0, 0.005f, 0);
+                            markerOffset = new Vector3(sideLength/2, 0.005f, -sideLength/2);
                             break;
                         case "Wall":
                             markerType = wallMarker;
                             markerOffset = new Vector3(0, markerType.GetComponent<Collider>().bounds.extents.y, 0);
-                            //rotation = Quaternion.Euler(new Vector3(0, currentPose.rotation.eulerAngles.y, 0));
-                            rotation = currentPose.rotation;
+                            rotation = Quaternion.Euler(new Vector3(0, currentPose.rotation.eulerAngles.x, 0));
+                            //rotation = currentPose.rotation;
                             break;
                         default:
                             markerType = defaultMarker;
@@ -166,11 +166,11 @@ public class QRDetection : MonoBehaviour
                     {
                         case "Tower":
                             rotation = Quaternion.identity;
-                            markerOffset = new Vector3(0, 0.005f, 0);
+                            markerOffset = new Vector3(sideLength / 2, 0.005f, -sideLength / 2);
                             break;
                         case "Wall":
-                            //rotation = Quaternion.Euler(new Vector3(0,currentPose.rotation.eulerAngles.y,0));
-                            rotation = currentPose.rotation;
+                            rotation = Quaternion.Euler(new Vector3(0, currentPose.rotation.eulerAngles.x, 0));
+                            //rotation = currentPose.rotation;
                             markerOffset = new Vector3(0, trackedCodes[updatedCode.Id].obj.GetComponent<Collider>().bounds.extents.y, 0);
                             break;
                         default:
