@@ -9,10 +9,7 @@ public class PhaseTransition : MonoBehaviour
     {
         GetComponent<RealWorldPropertyMapper>().MapProperties();
         GetComponent<EnemyManager>().StartSpawning();
-        Vector3 vertical = GameProperties.TopLeftCorner - GameProperties.BottomLeftCorner;
-        Vector3 horizontal = GameProperties.TopRightCorner - GameProperties.TopLeftCorner;
-        Vector3 treeLocation = GameProperties.BottomRightCorner + (0.5f * vertical) - (0.1f * horizontal);
-        Instantiate(tree, treeLocation, Quaternion.identity);
+        // Game Start Animation?
         GetComponent<QRDetection>().StopQR();
         GetComponent<RoundTimer>().PauseTimer();
         Destroy(GameObject.FindWithTag("NextRoundButton"));
