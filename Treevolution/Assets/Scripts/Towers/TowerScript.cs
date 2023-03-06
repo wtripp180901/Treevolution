@@ -41,14 +41,19 @@ public class TowerScript : MonoBehaviour
                 fireRateDelta = fireRate;
             }
         }
-        else
+        /*else
         {
-            GameObject placeHolderEnemy = GameObject.FindGameObjectWithTag("Enemy");
+            /*GameObject placeHolderEnemy = GameObject.FindGameObjectWithTag("Enemy");
             if(placeHolderEnemy != null)
             {
                 targetTransform = placeHolderEnemy.transform;
             }
-        }
+        }*/
+    }
+
+    public void SetTarget(Transform newTargetTrans)
+    {
+        targetTransform = newTargetTrans;
     }
 
     private void OnDrawGizmosSelected()

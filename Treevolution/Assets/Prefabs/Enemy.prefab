@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 5135896430825022294}
   - component: {fileID: 5135896430825022298}
   - component: {fileID: 5135896430825022299}
+  - component: {fileID: 5638006868875574075}
+  - component: {fileID: -5210092959664280970}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
@@ -97,8 +99,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 2.508237, z: 1}
+  m_Center: {x: 0, y: 0.75411856, z: 0}
 --- !u!54 &5135896430825022298
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -132,3 +134,32 @@ MonoBehaviour:
   climbableTags:
   - Wall
   - Tower
+  baseHeight: 0
+  debugText: {fileID: 0}
+--- !u!114 &5638006868875574075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5135896430825022288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183e8dd8b58276c4a8f2b807059981b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventsToReceive: 0
+  debounceThreshold: 0.01
+  touchableCollider: {fileID: 5135896430825022294}
+--- !u!114 &-5210092959664280970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5135896430825022288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c369702e33341104bb399eefb6ae39ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
