@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using TMPro;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -14,12 +15,14 @@ public class EnemyScript : MonoBehaviour
     Vector3 directionVector;
     Vector3 currentTarget;
     int pathCounter = 0;
+    int health = 10;
 
     [SerializeField]
     private List<string> climbableTags = new List<string>() { "Wall", "Tower" };
     bool climbing = false;
     float targetHeight;
-    float baseHeight;
+    public float baseHeight;
+    public TMP_Text debugText;
 
     // Start is called before the first frame update
     void Start()
@@ -28,18 +31,18 @@ public class EnemyScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector3 pos = transform.position;
         if (followingPath && rig.velocity.y >= -5f)
         {
-            Vector2 topDownTarget = new Vector2(currentTarget.x, currentTarget.z);
-            Vector2 topDownEnemy = new Vector2(pos.x, pos.z);
-            if ((topDownTarget - topDownEnemy).magnitude < 0.005f)
+            Vector3 enemyToTarget = currentTarget - pos;
+            enemyToTarget.y = 0;
+            if (enemyToTarget.magnitude < 0.005f)
             {
                 startMoveToNextTarget();
             }
-            directionVector = (currentTarget - transform.position).normalized * speed;
+            directionVector = enemyToTarget.normalized * speed;
             rig.MovePosition(pos + directionVector);
         }
         if (climbing)
@@ -50,6 +53,7 @@ public class EnemyScript : MonoBehaviour
             }
             else
             {
+                rig.MovePosition(pos + new Vector3(60*directionVector.x,0,60*directionVector.z));
                 climbing = false;
                 followingPath = true;
                 rig.useGravity = true;
@@ -80,6 +84,10 @@ public class EnemyScript : MonoBehaviour
         {
             Debug.Log("Reached tree");
             followingPath = false;
+        }else if(collider.gameObject.tag == "Bullet")
+        {
+            health -= 1;
+            if (health <= 0) Destroy(gameObject);
         }
         else if (climbableTags.Contains(collider.gameObject.tag))
         {

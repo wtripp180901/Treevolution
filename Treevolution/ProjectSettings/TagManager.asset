@@ -11,6 +11,10 @@ TagManager:
   - PlaneMarker
   - Wall
   - Floor
+  - InfoText
+  - NextRoundButton
+  - Bullet
+  - TargetReceiver
   layers:
   - Default
   - TransparentFX
@@ -18,8 +22,8 @@ TagManager:
   - ObstaclesOnly
   - Water
   - UI
-  - 
-  - 
+  - EnemyCollisionLayer
+  - IgnoreCollisions
   - 
   - 
   - 
