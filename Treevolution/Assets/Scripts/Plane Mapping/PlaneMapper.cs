@@ -11,6 +11,8 @@ public class PlaneMapper : MonoBehaviour
     [SerializeField]
     int markerCount = 2;
 
+    public GameObject treeModel;
+
 
     private Vector3 tl;
     public Vector3 topLeft { get { return tl; } }
@@ -25,7 +27,7 @@ public class PlaneMapper : MonoBehaviour
 
     private void Start()
     {
-        CreateNewPlane(new Vector3(0, 0, 0),new Vector3(1, 0, 1));
+        //CreateNewPlane(new Vector3(0, 0, 0),new Vector3(1, 0, 1)); // Commented
     }
 
     public void CreateNewPlane(Vector3 marker1,Vector3 marker2)
@@ -91,7 +93,18 @@ public class PlaneMapper : MonoBehaviour
         }
         GameObject newFloor = Instantiate(floor, (marker1 + marker2) * 0.5f, Quaternion.identity);
         newFloor.transform.localScale = new Vector3(0.1f*Mathf.Abs(marker1.x - marker2.x), newFloor.transform.localScale.y, 0.1f*Mathf.Abs(marker1.z - marker2.z));
-        //GameObject.FindWithTag("NextRoundButton").transform.position = marker1 + new Vector3(0, 0.2f, -0.2f);
+        Vector3 treeLocation = (marker1 + marker2) * 0.5f; // Centre of board
+        GameObject treeObject = GameObject.FindWithTag("Tree");
+        if (treeObject == null)
+        {
+            Instantiate(treeModel, treeLocation, Quaternion.identity);
+        }
+        else
+        {
+            treeObject.transform.position = treeLocation;
+        }
+
+        GameObject.FindWithTag("NextRoundButton").transform.position = treeLocation + new Vector3(0, 0.5f, 0);
     }
 
     public void ClearPlane()
