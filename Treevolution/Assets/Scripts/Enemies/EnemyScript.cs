@@ -24,10 +24,13 @@ public class EnemyScript : MonoBehaviour
     public float baseHeight;
     public TMP_Text debugText;
 
+    AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
         rig = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -88,6 +91,7 @@ public class EnemyScript : MonoBehaviour
         {
             health -= 1;
             if (health <= 0) Destroy(gameObject);
+            else StartCoroutine(DamageIndicator());
         }
         else if (climbableTags.Contains(collider.gameObject.tag))
         {
@@ -116,6 +120,15 @@ public class EnemyScript : MonoBehaviour
         rig.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         rig.freezeRotation = true;
         startMoveToNextTarget();
+    }
+
+    IEnumerator DamageIndicator()
+    {
+        Color defaultColour = GetComponent<Renderer>().material.color;
+        audioSource.Play();
+        GetComponent<Renderer>().material.color = Color.red;
+        yield return new WaitForSeconds(0.3f);
+        GetComponent<Renderer>().material.color = defaultColour;
     }
 
     public void Damage()
