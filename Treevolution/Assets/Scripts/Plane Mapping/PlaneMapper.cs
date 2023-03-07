@@ -93,12 +93,18 @@ public class PlaneMapper : MonoBehaviour
         }
         GameObject newFloor = Instantiate(floor, (marker1 + marker2) * 0.5f, Quaternion.identity);
         newFloor.transform.localScale = new Vector3(0.1f*Mathf.Abs(marker1.x - marker2.x), newFloor.transform.localScale.y, 0.1f*Mathf.Abs(marker1.z - marker2.z));
-        Vector3 vertical = bottomLeft - topLeft;
-        Vector3 horizontal = topRight - topLeft;
-        Vector3 treeLocation = topLeft + (0.5f * vertical) + (0.5f * horizontal); // Centre of board
-        GameObject.FindWithTag("NextRoundButton").transform.position = treeLocation + new Vector3(0, 0.5f, 0); // Uncommented
+        Vector3 treeLocation = (marker1 + marker2) * 0.5f; // Centre of board
+        GameObject treeObject = GameObject.FindWithTag("Tree");
+        if (treeObject == null)
+        {
+            Instantiate(treeModel, treeLocation, Quaternion.identity);
+        }
+        else
+        {
+            treeObject.transform.position = treeLocation;
+        }
 
-        Instantiate(treeModel, treeLocation, Quaternion.identity);
+        GameObject.FindWithTag("NextRoundButton").transform.position = treeLocation + new Vector3(0, 0.5f, 0);
     }
 
     public void ClearPlane()

@@ -8,8 +8,8 @@ public class PhaseTransition : MonoBehaviour
     public void GoToGamePhase()
     {
         GetComponent<RealWorldPropertyMapper>().MapProperties();
-        GetComponent<EnemyManager>().StartSpawning();
         // Game Start Animation?
+        GetComponent<EnemyManager>().StartSpawning();
         GetComponent<QRDetection>().StopQR();
         GetComponent<RoundTimer>().PauseTimer();
         Destroy(GameObject.FindWithTag("NextRoundButton"));
