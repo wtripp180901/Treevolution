@@ -17,6 +17,7 @@ public class QRDetection : MonoBehaviour
     public PlaneMapper planeMapper;
     public GameObject defaultMarker;
     public GameObject towerMarker;
+    public GameObject wallMarker;
     private QRCodeWatcher watcher;
     private SortedDictionary<System.Guid, (QRCode code, GameObject obj)> trackedCodes;
     private Queue<QRCode> updatedCodeQueue;
@@ -51,6 +52,7 @@ public class QRDetection : MonoBehaviour
             await accessRequester;
         }
         initProperties();
+        //GetComponent<PlaneMapper>().CreateNewPlane(new Vector3(0, 0, 0), new Vector3(1, 0, 1));
     }
 
     // Update is called once per frame
@@ -66,8 +68,9 @@ public class QRDetection : MonoBehaviour
             lock (trackedCodes) { trackedCodesCount = trackedCodes.Count; }
 
             if (lastCode.code == null && trackedCodesCount == 0)
-                debugText.text = "Scanning Started";
-
+            {
+                //debugText.text = "Scanning Started";
+            }
             else
             {
                 //debugText.text = trackedCodesCount + " / " + watcher.GetList().Count.ToString() + " : " + updatedCodeQueue.Count.ToString();
@@ -77,7 +80,7 @@ public class QRDetection : MonoBehaviour
                     {
                         QRCode code = updatedCodeQueue.Dequeue();
                         updateCodeHologram(code);
-                        debugText.text = "Code: " + lastCode.code.Data + " @ " + lastCode.pose.position;
+                        //debugText.text = "Code: " + lastCode.code.Data + " @ " + lastCode.pose.position;
                         drawPlane("C1", "C2", code);
                     }
                 }
@@ -110,7 +113,7 @@ public class QRDetection : MonoBehaviour
             {
                 planeMapper.CreateNewPlane(cornerMarker1, cornerMarker2);
                 planeCreated = true;
-                debugText.text = "planeCreated: " + planeCreated + "\nc1: " + c1Set + " " + cornerMarker1 + "\nc2: " + c2Set + " " + cornerMarker2;
+                //debugText.text = "planeCreated: " + planeCreated + "\nc1: " + c1Set + " " + cornerMarker1 + "\nc2: " + c2Set + " " + cornerMarker2;
 
             }
         }
@@ -128,23 +131,60 @@ public class QRDetection : MonoBehaviour
                 Vector3 markerSize = new Vector3(sideLength, sideLength, sideLength);
                 GameObject tempMarker = trackedCodes[updatedCode.Id].obj;
                 GameObject markerType = null;
+
+                Quaternion rotation = new Quaternion();
+                bool scaleToMarker = false;
+                Vector3 markerOffset = Vector3.zero;
+
                 if (tempMarker == null)
                 {
                     switch (updatedCode.Data)
                     {
                         case "Tower":
                             markerType = towerMarker;
+                            rotation = Quaternion.identity;
+                            markerOffset = new Vector3(sideLength/2, 0.005f, -sideLength/2);
+                            break;
+                        case "Wall":
+                            markerType = wallMarker;
+                            markerOffset = new Vector3(0, markerType.GetComponent<Collider>().bounds.extents.y, 0);
+                            rotation = Quaternion.Euler(new Vector3(0, currentPose.rotation.eulerAngles.x, 0));
+                            //rotation = currentPose.rotation;
                             break;
                         default:
                             markerType = defaultMarker;
+                            scaleToMarker = true;
+                            rotation = currentPose.rotation;
                             break;
                     }
-                    tempMarker = Instantiate(markerType);
+                    tempMarker = Instantiate(markerType, currentPose.position + markerOffset, rotation);
                     tempMarker.SetActive(true);
                 }
-                Vector3 markerOffset = Vector3.zero;// sideLength / 2 * Vector3.up;
-                tempMarker.transform.SetPositionAndRotation(currentPose.position + markerOffset, currentPose.rotation);
-                tempMarker.transform.localScale = markerSize;
+                else
+                {
+                    switch (updatedCode.Data)
+                    {
+                        case "Tower":
+                            rotation = Quaternion.identity;
+                            markerOffset = new Vector3(sideLength / 2, 0.005f, -sideLength / 2);
+                            break;
+                        case "Wall":
+                            rotation = Quaternion.Euler(new Vector3(0, currentPose.rotation.eulerAngles.x, 0));
+                            //rotation = currentPose.rotation;
+                            markerOffset = new Vector3(0, trackedCodes[updatedCode.Id].obj.GetComponent<Collider>().bounds.extents.y, 0);
+                            break;
+                        default:
+                            scaleToMarker = true;
+                            rotation = currentPose.rotation;
+                            break;
+                    }
+                    tempMarker.transform.SetPositionAndRotation(currentPose.position + markerOffset, rotation);
+                }
+                // sideLength / 2 * Vector3.up;
+                //Quaternion finalRotation = currentPose.rotation;
+                //finalRotation.eulerAngles += rotationOffset;
+
+                if (scaleToMarker) tempMarker.transform.localScale = markerSize;
 
                 trackedCodes[updatedCode.Id] = (updatedCode, tempMarker);
                 this.lastCode = (updatedCode, currentPose);
@@ -152,7 +192,7 @@ public class QRDetection : MonoBehaviour
         }
     }
 
-    public IList<(QRCode, GameObject)> getCurrentList()
+    private IList<(QRCode, GameObject)> getCurrentList()
     {
         lock (trackedCodes)
         {
@@ -280,5 +320,10 @@ public class QRDetection : MonoBehaviour
             initProperties();
             hasStarted = true;
         }
+    }
+
+    public void StopQR()
+    {
+        if(QRCodeWatcher.IsSupported())watcher.Stop();
     }
 }

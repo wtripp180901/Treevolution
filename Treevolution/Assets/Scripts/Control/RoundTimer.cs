@@ -7,11 +7,11 @@ using UnityEngine.Events;
 public class RoundTimer : MonoBehaviour
 {
     public float roundLengthSecs = 60;
-    private bool isPaused=false;
-    private bool isStopped=false;
+    private bool isPaused = false;
+    private bool isStopped = false;
 
-    UnityEvent _SecondTickEvent=new UnityEvent();
-    UnityEvent _RoundOverEvent=new UnityEvent();
+    public UnityEvent _SecondTickEvent = new UnityEvent();
+    UnityEvent _RoundOverEvent = new UnityEvent();
     UnityEvent _StopTimer = new UnityEvent();
     UnityEvent _PauseTimer = new UnityEvent();
 
@@ -22,15 +22,17 @@ public class RoundTimer : MonoBehaviour
     public void RoundOverEvent()
     {
         _RoundOverEvent?.Invoke();
-        _RoundOverEvent=null;
+        _RoundOverEvent = null;
     }
 
     void Start()
     {
-        _SecondTickEvent.AddListener(()=>Debug.Log("Tick")) ;
-        _RoundOverEvent.AddListener(()=>Debug.Log(roundLengthSecs.ToString() + "s Passed")) ;
-        _StopTimer.AddListener(()=>Debug.Log("Timer Stopped")) ;
+        //_SecondTickEvent.AddListener(() => Debug.Log("Tick"));
+        //_RoundOverEvent.AddListener(() => Debug.Log(roundLengthSecs.ToString() + "s Passed"));
+        _RoundOverEvent.AddListener(() => GetComponent<PhaseTransition>().GameOverScreen(true));
+        _StopTimer.AddListener(() => Debug.Log("Timer Stopped"));
         _PauseTimer.AddListener(() => Debug.Log("Pause/Play"));
+        PauseTimer();
     }
 
     private float roundTimer = 0.0f;
@@ -38,12 +40,12 @@ public class RoundTimer : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetMouseButtonDown(0))
+        /*if (Input.GetMouseButtonDown(0))
         {
             PauseTimer();
-        }
+        }*/
 
-        if (isPaused||isStopped)
+        if (isPaused || isStopped)
         {
             secondTimer = 0;
             return;
@@ -74,7 +76,7 @@ public class RoundTimer : MonoBehaviour
     //Pause timer
     public void PauseTimer()
     {
-        isPaused=!isPaused;
+        isPaused = !isPaused;
         _PauseTimer?.Invoke();
     }
 

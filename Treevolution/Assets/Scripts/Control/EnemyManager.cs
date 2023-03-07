@@ -8,7 +8,7 @@ public class EnemyManager : MonoBehaviour
     public GameObject[] enemies { get { return _enemies.ToArray(); } }
 
     public GameObject cubePrefab;
-    public float timer = 0;
+    private float timer = 0;
     public float spawnRate = 1;
     public float coordinate_X = -5;
     public float coordinate_Y = 5;
@@ -53,5 +53,10 @@ public class EnemyManager : MonoBehaviour
         coordinate_X = horizontal.x * 0.04f;
         coordinate_Y = vertical.z *0.2f;
         spawnHeight = 2f + GameProperties.FloorHeight;
+    }
+
+    public void StopSpawning()
+    {
+        started = false;
     }
 }

@@ -8,6 +8,7 @@ namespace Pathfinding
     //Used to dynamically generate a pathfinding mesh based on obstacles in the environment
     public static class PathfindingGraphGenerator
     {
+
         struct ObstacleData
         {
             public readonly Bounds bounds;
@@ -31,7 +32,7 @@ namespace Pathfinding
 
         public static PathfindingNode[] GetPathfindingGraph()
         {
-            if(GetObstacleDataEvent != null) GetObstacleDataEvent.Invoke(null, null);
+            if (GetObstacleDataEvent != null) GetObstacleDataEvent.Invoke(null, null);
             List<PathfindingNode> graph = nodesFromObstacleData();
             for (int i = 0; i < graph.Count; i++)
             {
@@ -48,6 +49,7 @@ namespace Pathfinding
                         graph[i].AddNeighbour(graph[j], distance);
                         graph[j].AddNeighbour(graph[i], distance);
                         Debug.DrawLine(graph[i].position, graph[i].position + directionRay, Color.red, 60);
+
                     }
                 }
             }
@@ -62,15 +64,25 @@ namespace Pathfinding
                 for (int j = 0; j < obstacleData[i].possiblePFPoints.Length; j++)
                 {
                     bool notInsideTerrain = true;
+                    bool withinPlaneBounds = false;
+
+                    Vector3 pos = obstacleData[i].possiblePFPoints[j];
+
                     for (int k = 0; k < obstacleData.Count; k++)
                     {
-                        if (obstacleData[k].bounds.Contains(obstacleData[i].possiblePFPoints[j]))
+                        if (obstacleData[k].bounds.Contains(pos))
                         {
                             notInsideTerrain = false;
                             break;
                         }
                     }
-                    if (notInsideTerrain) graph.Add(new PathfindingNode(i * 10 + j, obstacleData[i].possiblePFPoints[j]));
+
+                    if (pos.x > GameProperties.BottomLeftCorner.x &&
+                        pos.x < GameProperties.BottomRightCorner.x &&
+                        pos.z > GameProperties.BottomLeftCorner.z &&
+                        pos.z < GameProperties.TopLeftCorner.z) withinPlaneBounds = true;
+
+                    if (notInsideTerrain && withinPlaneBounds) graph.Add(new PathfindingNode(i * 10 + j, pos));
                 }
             }
             obstacleData.Clear();

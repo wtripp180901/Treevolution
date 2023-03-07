@@ -10,16 +10,9 @@ public class RealWorldPropertyMapper : MonoBehaviour
     {
         planeMapper = GetComponent<PlaneMapper>();
     }
-    bool hasStarted = false;
-    float time = 15f;
     private void Update()
     {
-        time -= Time.deltaTime;
-        if(time < 0 && !hasStarted)
-        {
-            GetComponent<PhaseTransition>().GoToGamePhase();
-            hasStarted = true;
-        }
+        if (Input.GetKeyDown("z")) GetComponent<PhaseTransition>().GetComponent<PhaseTransition>().GoToGamePhase();
     }
 
     public void MapProperties()
