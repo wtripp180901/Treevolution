@@ -89,9 +89,7 @@ public class EnemyScript : MonoBehaviour
             followingPath = false;
         }else if(collider.gameObject.tag == "Bullet")
         {
-            health -= 1;
-            if (health <= 0) Destroy(gameObject);
-            else StartCoroutine(DamageIndicator());
+            Damage();
         }
         else if (climbableTags.Contains(collider.gameObject.tag))
         {
@@ -133,6 +131,12 @@ public class EnemyScript : MonoBehaviour
 
     public void Damage()
     {
-        Debug.Log("Enemy hit");
+        health -= 1;
+        if (health <= 0)
+        {
+            GameObject.FindWithTag("Logic").GetComponent<EnemyManager>().RemoveEnemy(gameObject);
+            Destroy(gameObject);
+        }
+        else StartCoroutine(DamageIndicator());
     }
 }

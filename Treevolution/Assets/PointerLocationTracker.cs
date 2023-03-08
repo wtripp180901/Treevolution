@@ -18,7 +18,9 @@ public class PointerLocationTracker : MonoBehaviour
                 {
                     if(!(p is IMixedRealityNearPointer) && p.Result != null)
                     {
-                        pointer.transform.position =  p.Result.Details.Point;
+                        /*Vector3 pos =  p.Result.Details.Point;
+                        pos = new Vector3(pos.x, GameProperties.FloorHeight + 0.0005f, pos.z);*/
+                        pointer.transform.position = p.Result.Details.Point;
                     }
                 }
             }
