@@ -31,6 +31,7 @@ public class EnemyScript : MonoBehaviour
     {
         rig = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+        Initialise();
     }
 
     // Update is called once per frame
@@ -108,7 +109,6 @@ public class EnemyScript : MonoBehaviour
         if(!hasHitFloor && (collider.gameObject.tag == "Floor" || collider.gameObject.tag == "Wall"))
         {
             hasHitFloor = true;
-            Initialise();
         }
     }
 
