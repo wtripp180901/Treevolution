@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class VoiceCommandReceiver : MonoBehaviour
 {
-    public void TestVoiceCommand()
+    public GameObject pointer;
+    public void LightningBolt()
     {
-        Debug.Log("Test");
+        StartCoroutine(Indicator());
+    }
+    IEnumerator Indicator()
+    {
+        Color defaultColour = pointer.GetComponent<Renderer>().material.color;
+        pointer.GetComponent<Renderer>().material.color = Color.red;
+        yield return new WaitForSeconds(0.3f);
+        pointer.GetComponent<Renderer>().material.color = defaultColour;
     }
 }
