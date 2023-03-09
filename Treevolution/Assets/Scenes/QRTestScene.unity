@@ -1219,6 +1219,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1165626843556793669, guid: b03d6137db94da542a85a178758d9d56, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 3.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452924587219484702, guid: b03d6137db94da542a85a178758d9d56, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 3.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452924587219484702, guid: b03d6137db94da542a85a178758d9d56, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.16
+      objectReference: {fileID: 0}
     - target: {fileID: 8213314841196470945, guid: b03d6137db94da542a85a178758d9d56, type: 3}
       propertyPath: m_Name
       value: NextRoundButton
