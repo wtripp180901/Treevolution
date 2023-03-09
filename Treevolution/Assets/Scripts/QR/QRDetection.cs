@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Microsoft.MixedReality.QR;
@@ -11,7 +10,7 @@ using Microsoft.MixedReality.Toolkit;
 
 
 
-public class QRDetection : MonoBehaviour 
+public class QRDetection : MonoBehaviour
 {
     public TMP_Text debugText;
     public PlaneMapper planeMapper;
@@ -148,76 +147,41 @@ public class QRDetection : MonoBehaviour
                 Vector3 markerSize = new Vector3(sideLength, sideLength, sideLength);
                 GameObject tempMarker = trackedCodes[updatedCode.Id].obj;
                 GameObject markerType = null;
-
-                Quaternion rotation = new Quaternion();
                 bool scaleToMarker = false;
-                Vector3 markerOffset = Vector3.zero;
-
+                Vector3 markerOffset = sideLength / 2 * (currentPose.right + currentPose.up);
                 String[] data = updatedCode.Data.Split(' ');
 
+                Quaternion rotation = Quaternion.LookRotation(-currentPose.up, currentPose.forward);
                 switch (data[0])
                 {
                     case "Tower":
                         if (tempMarker == null) markerType = towerMarker;
                         break;
+
                     case "Wall":
                         if (tempMarker == null)
                         {
                             markerType = wallMarker;
-                            markerOffset = new Vector3(0, markerType.GetComponent<Collider>().bounds.extents.y, 0);
-                            GameObject xAxis = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                            GameObject yAxis = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                            GameObject zAxis = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                            xAxis.transform.localScale *= 0.05f;
-                            yAxis.transform.localScale *= 0.05f;
-                            zAxis.transform.localScale *= 0.05f;
-                            xAxis.GetComponent<Renderer>().material.color = Color.red;
-                            yAxis.GetComponent<Renderer>().material.color = Color.green;
-                            zAxis.GetComponent<Renderer>().material.color = Color.blue;
-                            xAxis.tag = "X";
-                            yAxis.tag = "Y";
-                            zAxis.tag = "Z";
-
+                            markerOffset += currentPose.forward * markerType.GetComponent<Collider>().transform.lossyScale.y / 2;
                         }
                         else
                         {
-                            markerOffset = new Vector3(0, trackedCodes[updatedCode.Id].obj.GetComponent<Collider>().bounds.extents.y, 0);
+                            markerOffset += currentPose.forward * trackedCodes[updatedCode.Id].obj.GetComponent<Collider>().transform.lossyScale.y / 2;
                         }
-                        GameObject.FindWithTag("X").transform.position = currentPose.position + currentPose.right * 0.2f;
-                        GameObject.FindWithTag("Y").transform.position = currentPose.position + currentPose.up * 0.2f;
-                        GameObject.FindWithTag("Z").transform.position = currentPose.position + currentPose.forward * 0.2f;
-                        rotation = Quaternion.Euler(new Vector3(0, currentPose.rotation.eulerAngles.x, 0));
-                        //rotation = currentPose.rotation;
                         break;
                     default:
                         if (tempMarker == null) markerType = defaultMarker;
                         scaleToMarker = true;
-                        rotation = currentPose.rotation;
                         break;
                 }
                 if (tempMarker == null)
                 {
                     tempMarker = Instantiate(markerType, currentPose.position + markerOffset, rotation);
                     tempMarker.SetActive(true);
-                    if (data[0] == "Tower")
-                    {
-                        spawnObjectOnQR(updatedCode, tempMarker);
-                    }
                 }
                 else
                 {
-                    if (data[0] == "Tower")
-                    {
-                        Vector3 qrCentreWorld = currentPose.position + currentPose.right * sideLength / 2 + currentPose.up * sideLength / 2; // QR Centre in world coordinate
-                        tempMarker.transform.position = qrCentreWorld;
-                        tempMarker.transform.right = currentPose.right;
-                        tempMarker.transform.up = currentPose.forward;
-                        tempMarker.transform.forward = -currentPose.up;
-                    }
-                    else {
-                        tempMarker.transform.SetPositionAndRotation(currentPose.position + markerOffset, rotation);
-
-                    }
+                    tempMarker.transform.SetPositionAndRotation(currentPose.position + markerOffset, rotation);
                 }
 
                 if (scaleToMarker) tempMarker.transform.localScale = markerSize;
@@ -271,12 +235,13 @@ public class QRDetection : MonoBehaviour
     {
         Pose currentPose;
         SpatialGraphNode.FromStaticNodeId(args.Code.SpatialGraphNodeId).TryLocate(FrameTime.OnUpdate, out currentPose);
-        if(currentPose == Pose.identity)
+        if (currentPose == Pose.identity)
         {
             return; // Disregards
         }
 
-        lock (updatedCodeQueue) {
+        lock (updatedCodeQueue)
+        {
             updatedCodeQueue.Enqueue(args.Code);
         }
 
@@ -360,6 +325,6 @@ public class QRDetection : MonoBehaviour
 
     public void StopQR()
     {
-        if(QRCodeWatcher.IsSupported())watcher.Stop();
+        if (QRCodeWatcher.IsSupported()) watcher.Stop();
     }
 }
