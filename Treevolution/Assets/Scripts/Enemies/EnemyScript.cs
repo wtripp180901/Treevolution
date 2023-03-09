@@ -24,13 +24,16 @@ public class EnemyScript : MonoBehaviour
     public float baseHeight;
     public TMP_Text debugText;
 
-    AudioSource audioSource;
+    [SerializeField]
+    private AudioSource damageAudio;
+    [SerializeField]
+    private AudioSource spawnAudio;
 
     // Start is called before the first frame update
     void Start()
     {
         rig = GetComponent<Rigidbody>();
-        audioSource = GetComponent<AudioSource>();
+        spawnAudio.Play();
     }
 
     // Update is called once per frame
@@ -123,7 +126,7 @@ public class EnemyScript : MonoBehaviour
     IEnumerator DamageIndicator()
     {
         Color defaultColour = GetComponent<Renderer>().material.color;
-        audioSource.Play();
+        damageAudio.Play();
         GetComponent<Renderer>().material.color = Color.red;
         yield return new WaitForSeconds(0.3f);
         GetComponent<Renderer>().material.color = defaultColour;
