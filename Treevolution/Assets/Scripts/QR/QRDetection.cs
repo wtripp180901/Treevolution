@@ -159,8 +159,6 @@ public class QRDetection : MonoBehaviour
                 {
                     case "Tower":
                         if (tempMarker == null) markerType = towerMarker;
-                        //rotation = Quaternion.identity;
-                        //markerOffset = new Vector3(sideLength / 2, 0.005f, -sideLength / 2);
                         break;
                     case "Wall":
                         if (tempMarker == null)
@@ -221,9 +219,6 @@ public class QRDetection : MonoBehaviour
 
                     }
                 }
-                // sideLength / 2 * Vector3.up;
-                //Quaternion finalRotation = currentPose.rotation;
-                //finalRotation.eulerAngles += rotationOffset;
 
                 if (scaleToMarker) tempMarker.transform.localScale = markerSize;
 
