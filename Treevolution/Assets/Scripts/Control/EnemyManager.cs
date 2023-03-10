@@ -71,6 +71,11 @@ public class EnemyManager : MonoBehaviour
         spawnHeight = 2f + GameProperties.FloorHeight;
     }
 
+    public void RemoveEnemy(GameObject enemy)
+    {
+        _enemies.Remove(enemy);
+    }
+
     public void StopSpawning()
     {
         started = false;
