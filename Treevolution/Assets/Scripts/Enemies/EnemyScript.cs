@@ -79,6 +79,7 @@ public class EnemyScript : MonoBehaviour
             currentTarget = path[pathCounter];
             directionVector = (currentTarget - transform.position).normalized * speed;
             directionVector.y = 0;
+            transform.rotation = Quaternion.LookRotation(directionVector, transform.up);
             pathCounter += 1;
         }
     }
@@ -118,7 +119,6 @@ public class EnemyScript : MonoBehaviour
         Vector3 pos = transform.position;
         path = Pathfinding.Pathfinder.GetPath(pos, GameObject.FindGameObjectWithTag("Tree").transform.position);
         baseHeight = pos.y;
-        rig.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         rig.freezeRotation = true;
         startMoveToNextTarget();
     }
