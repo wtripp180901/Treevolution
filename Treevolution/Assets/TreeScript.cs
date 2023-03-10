@@ -13,7 +13,7 @@ public class TreeScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<EnemyScript>().DestroyEnemy();
             health -= 1;
         }
         if (health == 0)

@@ -24,14 +24,17 @@ public class EnemyScript : MonoBehaviour
     public float baseHeight;
     public TMP_Text debugText;
 
-    AudioSource audioSource;
+    [SerializeField]
+    private AudioSource damageAudio;
+    [SerializeField]
+    private AudioSource spawnAudio;
 
     // Start is called before the first frame update
     void Start()
     {
         rig = GetComponent<Rigidbody>();
-        audioSource = GetComponent<AudioSource>();
         Initialise();
+        spawnAudio.Play();
     }
 
     // Update is called once per frame
@@ -90,9 +93,7 @@ public class EnemyScript : MonoBehaviour
             followingPath = false;
         }else if(collider.gameObject.tag == "Bullet")
         {
-            health -= 1;
-            if (health <= 0) Destroy(gameObject);
-            else StartCoroutine(DamageIndicator());
+            Damage();
         }
         else if (climbableTags.Contains(collider.gameObject.tag))
         {
@@ -125,7 +126,7 @@ public class EnemyScript : MonoBehaviour
     IEnumerator DamageIndicator()
     {
         Color defaultColour = GetComponent<Renderer>().material.color;
-        audioSource.Play();
+        damageAudio.Play();
         GetComponent<Renderer>().material.color = Color.red;
         yield return new WaitForSeconds(0.3f);
         GetComponent<Renderer>().material.color = defaultColour;
@@ -133,6 +134,17 @@ public class EnemyScript : MonoBehaviour
 
     public void Damage()
     {
-        Debug.Log("Enemy hit");
+        health -= 1;
+        if (health <= 0)
+        {
+            DestroyEnemy();
+        }
+        else StartCoroutine(DamageIndicator());
+    }
+
+    public void DestroyEnemy()
+    {
+        GameObject.FindWithTag("Logic").GetComponent<EnemyManager>().RemoveEnemy(gameObject);
+        Destroy(gameObject);
     }
 }
