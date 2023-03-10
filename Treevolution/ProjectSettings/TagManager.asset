@@ -15,6 +15,7 @@ TagManager:
   - NextRoundButton
   - Bullet
   - TargetReceiver
+  - Logic
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - UI
   - EnemyCollisionLayer
   - IgnoreCollisions
-  - 
+  - FloorLayer
   - 
   - 
   - 

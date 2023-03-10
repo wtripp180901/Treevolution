@@ -7,8 +7,9 @@ using UnityEngine;
 public class PointerLocationTracker : MonoBehaviour
 {
     public GameObject pointer;
+    private int mask = 1 << 8;
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         foreach(IMixedRealityInputSource s in CoreServices.InputSystem.DetectedInputSources)
         {
@@ -18,9 +19,13 @@ public class PointerLocationTracker : MonoBehaviour
                 {
                     if(!(p is IMixedRealityNearPointer) && p.Result != null)
                     {
-                        /*Vector3 pos =  p.Result.Details.Point;
-                        pos = new Vector3(pos.x, GameProperties.FloorHeight + 0.0005f, pos.z);*/
-                        pointer.transform.position = p.Result.Details.Point;
+                        //pointer.transform.position = p.Result.Details.Point;
+                        Ray ray = new Ray(p.Position, p.Result.Details.Point - p.Position);
+                        RaycastHit hit;
+                        if (Physics.Raycast(ray, out hit,Mathf.Infinity,mask))
+                        {
+                            pointer.transform.position = hit.point;
+                        }
                     }
                 }
             }
