@@ -34,6 +34,7 @@ namespace Pathfinding
         {
             if (GetObstacleDataEvent != null) GetObstacleDataEvent.Invoke(null, null);
             List<PathfindingNode> graph = nodesFromObstacleData();
+            graph.Add(new PathfindingNode(-1, GameObject.FindWithTag("Tree").transform.position));
             for (int i = 0; i < graph.Count; i++)
             {
                 for (int j = i + 1; j < graph.Count; j++)
