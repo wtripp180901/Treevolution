@@ -24,24 +24,31 @@ namespace Pathfinding
         }
         void GetObstacleBoundsEventHandler(object sender, EventArgs args)
         {
-            //GameObject marker = GameObject.FindGameObjectWithTag("PlaneMarker");
-            float halfWidth = myCollider.transform.lossyScale.x / 2 + nodeMargins;
-            float halfDepth = myCollider.transform.lossyScale.z / 2 + nodeMargins;
-            //Instantiate(marker, centre + halfWidth * myCollider.transform.right, Quaternion.identity);
-            //Instantiate(marker, centre + halfDepth * myCollider.transform.forward, Quaternion.identity);
+            float halfWidthWithMargin = myCollider.transform.lossyScale.x / 2 + nodeMargins;
+            float halfDepthWithMargin = myCollider.transform.lossyScale.z / 2 + nodeMargins;
+            float halfHeightExact = myCollider.transform.lossyScale.y / 2;
 
             Vector3 centre = transform.position;
+            Vector3 floorPosition = centre - (myCollider.transform.up * (halfHeightExact - floorOffset));
+            Debug.DrawLine(floorPosition, floorPosition + 20 * myCollider.transform.up, Color.magenta, 100);
 
-            Vector3 floorPosition = centre - (myCollider.transform.up * (bounds.extents.y - floorOffset));
-            Debug.DrawLine(centre, centre + halfWidth * myCollider.transform.right, Color.black, 100);
-            Debug.DrawLine(centre, centre + halfDepth * myCollider.transform.forward, Color.black, 100);
+
+            Debug.DrawLine(floorPosition, floorPosition + halfWidthWithMargin * myCollider.transform.right, Color.blue, 100);
+            Debug.DrawLine(floorPosition, floorPosition + halfDepthWithMargin * myCollider.transform.forward, Color.blue, 100);
             Vector3[] possiblePFPoints = new Vector3[]
             {
-            floorPosition + halfWidth * myCollider.transform.right + halfDepth * myCollider.transform.forward,
-            floorPosition + halfWidth * myCollider.transform.right - halfDepth * myCollider.transform.forward,
-            floorPosition - halfWidth * myCollider.transform.right + halfDepth * myCollider.transform.forward,
-            floorPosition - halfWidth * myCollider.transform.right - halfDepth * myCollider.transform.forward
+                floorPosition + halfWidthWithMargin * myCollider.transform.right + halfDepthWithMargin * myCollider.transform.forward,
+                floorPosition + halfWidthWithMargin * myCollider.transform.right - halfDepthWithMargin * myCollider.transform.forward,
+                floorPosition - halfWidthWithMargin * myCollider.transform.right + halfDepthWithMargin * myCollider.transform.forward,
+                floorPosition - halfWidthWithMargin * myCollider.transform.right - halfDepthWithMargin * myCollider.transform.forward
             };
+            Debug.DrawLine(possiblePFPoints[0], possiblePFPoints[0] + Vector3.up, Color.green, 1000);
+            Debug.DrawLine(possiblePFPoints[1], possiblePFPoints[1] + Vector3.up, Color.green, 1000);
+            Debug.DrawLine(possiblePFPoints[2], possiblePFPoints[2] + Vector3.up, Color.green, 1000);
+            Debug.DrawLine(possiblePFPoints[3], possiblePFPoints[3] + Vector3.up, Color.green, 1000);
+
+
+
             PathfindingGraphGenerator.AddObstacleData(bounds, possiblePFPoints);
         }
     }
