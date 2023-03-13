@@ -16,6 +16,9 @@ TagManager:
   - Bullet
   - TargetReceiver
   - Logic
+  - EnemyDirectionIndicator
+  - LeftIndicator
+  - RightIndicator
   layers:
   - Default
   - TransparentFX
