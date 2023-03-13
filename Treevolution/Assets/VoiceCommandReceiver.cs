@@ -22,7 +22,7 @@ public class VoiceCommandReceiver : MonoBehaviour
 
             if ((enemyPoint - pointerPoint).magnitude < 0.25f)
             {
-                enemies[i].GetComponent<EnemyScript>().Damage();
+                enemies[i].GetComponent<EnemyScript>().Damage(10);
             }
         }
         StartCoroutine(Indicator());
