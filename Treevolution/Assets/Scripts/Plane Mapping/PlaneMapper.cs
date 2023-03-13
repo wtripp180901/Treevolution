@@ -10,6 +10,8 @@ public class PlaneMapper : MonoBehaviour
     GameObject floor;
     [SerializeField]
     int markerCount = 2;
+    [SerializeField]
+    GameObject startButton;
 
     public GameObject treeModel;
 
@@ -104,7 +106,8 @@ public class PlaneMapper : MonoBehaviour
             treeObject.transform.position = boardCentre;
         }
 
-        GameObject.FindWithTag("NextRoundButton").transform.position = boardCentre + new Vector3(0, 0.9f, 0);
+        startButton.transform.position = boardCentre + new Vector3(0, 0.9f, 0);
+        startButton.SetActive(true);
     }
 
     public void ClearPlane()

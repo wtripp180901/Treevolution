@@ -220,6 +220,7 @@ MonoBehaviour:
   planeMarker: {fileID: 7802905023559956919, guid: 322042a7d7a41554b883d4c8685e82ae, type: 3}
   floor: {fileID: 6052068750231831381, guid: 33c6a9a811257f4429d253d4c93aa655, type: 3}
   markerCount: 2
+  startButton: {fileID: 1064493251}
   treeModel: {fileID: 4047742926485375969, guid: 13815b32147eea64e9a773ef69b3240e, type: 3}
 --- !u!114 &100754435
 MonoBehaviour:
@@ -281,7 +282,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tree: {fileID: 4047742926485375969, guid: 13815b32147eea64e9a773ef69b3240e, type: 3}
-  devMode: 1
+  startButton: {fileID: 1064493251}
+  devMode: 0
 --- !u!114 &100754439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -955,7 +957,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.091, y: 0.19819152}
-  m_SizeDelta: {x: 197, y: 47.7}
+  m_SizeDelta: {x: 198.09, y: 47.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &933276254
 MonoBehaviour:
@@ -977,7 +979,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Planning
+  m_text: Planning Phase
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1256,6 +1258,11 @@ MonoBehaviour:
   m_TrackingType: 0
   m_UpdateType: 0
   m_UseRelativeTransform: 0
+--- !u!1 &1064493251 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8213314841196470945, guid: b03d6137db94da542a85a178758d9d56, type: 3}
+  m_PrefabInstance: {fileID: 1746220882}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1166455506
 GameObject:
   m_ObjectHideFlags: 0
@@ -1315,7 +1322,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8213314841196470945, guid: b03d6137db94da542a85a178758d9d56, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8213314841196470948, guid: b03d6137db94da542a85a178758d9d56, type: 3}
       propertyPath: m_Enabled
