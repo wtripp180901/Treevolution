@@ -60,7 +60,7 @@ public class EnemyScript : MonoBehaviour
             }
             else
             {
-                rig.MovePosition(pos + new Vector3(60*directionVector.x,0,60*directionVector.z));
+                rig.MovePosition(pos + new Vector3(60 * directionVector.x, 0, 60 * directionVector.z));
                 climbing = false;
                 followingPath = true;
                 rig.useGravity = true;
@@ -87,19 +87,20 @@ public class EnemyScript : MonoBehaviour
     bool hasHitFloor = false;
     private void OnCollisionEnter(Collision collision)
     {
-        Collider collider = collision.collider;
-        if (collider.gameObject.tag == "Tree")
+        Collider otherCollider = collision.collider;
+        if (otherCollider.gameObject.tag == "Tree")
         {
             Debug.Log("Reached tree");
             followingPath = false;
-        }else if(collider.gameObject.tag == "Bullet")
+        }
+        else if (otherCollider.gameObject.tag == "Bullet")
         {
             Damage();
         }
-        else if (climbableTags.Contains(collider.gameObject.tag))
+        else if (climbableTags.Contains(otherCollider.gameObject.tag))
         {
-            float topOfCollider = collider.bounds.extents.y + collider.gameObject.transform.position.y;
-            float heightAboveObject = topOfCollider + GetComponent<Collider>().bounds.extents.y + 0.01f;
+            float topOfCollider = otherCollider.bounds.extents.y / 2 + collision.gameObject.transform.position.y;
+            float heightAboveObject = topOfCollider + gameObject.GetComponent<Collider>().bounds.extents.y;// + 0.01f;
             if (transform.position.y < topOfCollider)
             {
                 followingPath = false;
@@ -108,7 +109,7 @@ public class EnemyScript : MonoBehaviour
                 targetHeight = heightAboveObject;
             }
         }
-        if(!hasHitFloor && (collider.gameObject.tag == "Floor" || collider.gameObject.tag == "Wall"))
+        if (!hasHitFloor && (GetComponent<Collider>().gameObject.tag == "Floor" || GetComponent<Collider>().gameObject.tag == "Wall"))
         {
             hasHitFloor = true;
         }
