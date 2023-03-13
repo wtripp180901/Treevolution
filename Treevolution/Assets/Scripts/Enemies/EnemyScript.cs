@@ -24,10 +24,17 @@ public class EnemyScript : MonoBehaviour
     public float baseHeight;
     public TMP_Text debugText;
 
+    [SerializeField]
+    private AudioSource damageAudio;
+    [SerializeField]
+    private AudioSource spawnAudio;
+
     // Start is called before the first frame update
     void Start()
     {
         rig = GetComponent<Rigidbody>();
+        Initialise();
+        spawnAudio.Play();
     }
 
     // Update is called once per frame
@@ -53,7 +60,7 @@ public class EnemyScript : MonoBehaviour
             }
             else
             {
-                rig.MovePosition(pos + new Vector3(60*directionVector.x,0,60*directionVector.z));
+                rig.MovePosition(pos + new Vector3(60 * directionVector.x, 0, 60 * directionVector.z));
                 climbing = false;
                 followingPath = true;
                 rig.useGravity = true;
@@ -72,6 +79,7 @@ public class EnemyScript : MonoBehaviour
             currentTarget = path[pathCounter];
             directionVector = (currentTarget - transform.position).normalized * speed;
             directionVector.y = 0;
+            transform.rotation = Quaternion.LookRotation(directionVector, transform.up);
             pathCounter += 1;
         }
     }
@@ -79,20 +87,20 @@ public class EnemyScript : MonoBehaviour
     bool hasHitFloor = false;
     private void OnCollisionEnter(Collision collision)
     {
-        Collider collider = collision.collider;
-        if (collider.gameObject.tag == "Tree")
+        Collider otherCollider = collision.collider;
+        if (otherCollider.gameObject.tag == "Tree")
         {
             Debug.Log("Reached tree");
             followingPath = false;
-        }else if(collider.gameObject.tag == "Bullet")
-        {
-            health -= 1;
-            if (health <= 0) Destroy(gameObject);
         }
-        else if (climbableTags.Contains(collider.gameObject.tag))
+        else if (otherCollider.gameObject.tag == "Bullet")
         {
-            float topOfCollider = collider.bounds.extents.y + collider.gameObject.transform.position.y;
-            float heightAboveObject = topOfCollider + GetComponent<Collider>().bounds.extents.y + 0.01f;
+            Damage();
+        }
+        else if (climbableTags.Contains(otherCollider.gameObject.tag))
+        {
+            float topOfCollider = otherCollider.bounds.extents.y / 2 + collision.gameObject.transform.position.y;
+            float heightAboveObject = topOfCollider + gameObject.GetComponent<Collider>().bounds.extents.y;// + 0.01f;
             if (transform.position.y < topOfCollider)
             {
                 followingPath = false;
@@ -101,10 +109,9 @@ public class EnemyScript : MonoBehaviour
                 targetHeight = heightAboveObject;
             }
         }
-        if(!hasHitFloor && (collider.gameObject.tag == "Floor" || collider.gameObject.tag == "Wall"))
+        if (!hasHitFloor && (GetComponent<Collider>().gameObject.tag == "Floor" || GetComponent<Collider>().gameObject.tag == "Wall"))
         {
             hasHitFloor = true;
-            Initialise();
         }
     }
 
@@ -113,13 +120,32 @@ public class EnemyScript : MonoBehaviour
         Vector3 pos = transform.position;
         path = Pathfinding.Pathfinder.GetPath(pos, GameObject.FindGameObjectWithTag("Tree").transform.position);
         baseHeight = pos.y;
-        rig.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         rig.freezeRotation = true;
         startMoveToNextTarget();
     }
 
+    IEnumerator DamageIndicator()
+    {
+        Color defaultColour = GetComponent<Renderer>().material.color;
+        damageAudio.Play();
+        GetComponent<Renderer>().material.color = Color.red;
+        yield return new WaitForSeconds(0.3f);
+        GetComponent<Renderer>().material.color = defaultColour;
+    }
+
     public void Damage()
     {
-        Debug.Log("Enemy hit");
+        health -= 1;
+        if (health <= 0)
+        {
+            DestroyEnemy();
+        }
+        else StartCoroutine(DamageIndicator());
+    }
+
+    public void DestroyEnemy()
+    {
+        GameObject.FindWithTag("Logic").GetComponent<EnemyManager>().RemoveEnemy(gameObject);
+        Destroy(gameObject);
     }
 }

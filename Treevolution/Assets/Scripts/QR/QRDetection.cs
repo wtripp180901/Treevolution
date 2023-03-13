@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Microsoft.MixedReality.QR;
@@ -11,7 +10,7 @@ using Microsoft.MixedReality.Toolkit;
 
 
 
-public class QRDetection : MonoBehaviour 
+public class QRDetection : MonoBehaviour
 {
     public TMP_Text debugText;
     public PlaneMapper planeMapper;
@@ -52,7 +51,6 @@ public class QRDetection : MonoBehaviour
             await accessRequester;
         }
         initProperties();
-        //GetComponent<PlaneMapper>().CreateNewPlane(new Vector3(0, 0, 0), new Vector3(1, 0, 1));
     }
 
     // Update is called once per frame
@@ -119,6 +117,24 @@ public class QRDetection : MonoBehaviour
         }
     }
 
+    public void spawnObjectOnQR(QRCode qr, GameObject obj)
+    {
+        Pose qrPose;
+        SpatialGraphNode.FromStaticNodeId(qr.SpatialGraphNodeId).TryLocate(FrameTime.OnUpdate, out qrPose); // Get pose of QR Code
+        float qrSideLength = qr.PhysicalSideLength;
+        Vector3 markerSize = new Vector3(qrSideLength, qrSideLength, qrSideLength);
+        Vector3 qrCentreWorld = qrPose.position + qrPose.right * qrSideLength / 2 + qrPose.up * qrSideLength / 2; // QR Centre in world coordinates
+        obj.transform.right = qrPose.right;
+        obj.transform.up = qrPose.forward;
+        obj.transform.forward = -qrPose.up;
+        obj.transform.position = qrCentreWorld;
+        GameObject qrPlane = GameObject.CreatePrimitive(PrimitiveType.Plane);
+        qrPlane.transform.rotation = qrPose.rotation;
+        qrPlane.transform.Rotate(qrPose.right, 90);
+        qrPlane.transform.position = qrCentreWorld;
+        qrPlane.transform.localScale = markerSize * 0.1f;
+    }
+
     private void updateCodeHologram(QRCode updatedCode)
     {
         lock (trackedCodes)
@@ -131,58 +147,42 @@ public class QRDetection : MonoBehaviour
                 Vector3 markerSize = new Vector3(sideLength, sideLength, sideLength);
                 GameObject tempMarker = trackedCodes[updatedCode.Id].obj;
                 GameObject markerType = null;
-
-                Quaternion rotation = new Quaternion();
                 bool scaleToMarker = false;
-                Vector3 markerOffset = Vector3.zero;
+                Vector3 markerOffset = sideLength / 2 * (currentPose.right + currentPose.up);
+                String[] data = updatedCode.Data.Split(' ');
 
+                Quaternion rotation = Quaternion.LookRotation(-currentPose.up, currentPose.forward);
+                switch (data[0])
+                {
+                    case "Tower":
+                        if (tempMarker == null) markerType = towerMarker;
+                        break;
+
+                    case "Wall":
+                        if (tempMarker == null)
+                        {
+                            markerType = wallMarker;
+                            markerOffset += currentPose.forward * markerType.GetComponent<Collider>().transform.lossyScale.y / 2;
+                        }
+                        else
+                        {
+                            markerOffset += currentPose.forward * trackedCodes[updatedCode.Id].obj.GetComponent<Collider>().transform.lossyScale.y / 2;
+                        }
+                        break;
+                    default:
+                        if (tempMarker == null) markerType = defaultMarker;
+                        scaleToMarker = true;
+                        break;
+                }
                 if (tempMarker == null)
                 {
-                    switch (updatedCode.Data)
-                    {
-                        case "Tower":
-                            markerType = towerMarker;
-                            rotation = Quaternion.identity;
-                            markerOffset = new Vector3(sideLength/2, 0.005f, -sideLength/2);
-                            break;
-                        case "Wall":
-                            markerType = wallMarker;
-                            markerOffset = new Vector3(0, markerType.GetComponent<Collider>().bounds.extents.y, 0);
-                            rotation = Quaternion.Euler(new Vector3(0, currentPose.rotation.eulerAngles.x, 0));
-                            //rotation = currentPose.rotation;
-                            break;
-                        default:
-                            markerType = defaultMarker;
-                            scaleToMarker = true;
-                            rotation = currentPose.rotation;
-                            break;
-                    }
                     tempMarker = Instantiate(markerType, currentPose.position + markerOffset, rotation);
                     tempMarker.SetActive(true);
                 }
                 else
                 {
-                    switch (updatedCode.Data)
-                    {
-                        case "Tower":
-                            rotation = Quaternion.identity;
-                            markerOffset = new Vector3(sideLength / 2, 0.005f, -sideLength / 2);
-                            break;
-                        case "Wall":
-                            rotation = Quaternion.Euler(new Vector3(0, currentPose.rotation.eulerAngles.x, 0));
-                            //rotation = currentPose.rotation;
-                            markerOffset = new Vector3(0, trackedCodes[updatedCode.Id].obj.GetComponent<Collider>().bounds.extents.y, 0);
-                            break;
-                        default:
-                            scaleToMarker = true;
-                            rotation = currentPose.rotation;
-                            break;
-                    }
                     tempMarker.transform.SetPositionAndRotation(currentPose.position + markerOffset, rotation);
                 }
-                // sideLength / 2 * Vector3.up;
-                //Quaternion finalRotation = currentPose.rotation;
-                //finalRotation.eulerAngles += rotationOffset;
 
                 if (scaleToMarker) tempMarker.transform.localScale = markerSize;
 
@@ -235,12 +235,13 @@ public class QRDetection : MonoBehaviour
     {
         Pose currentPose;
         SpatialGraphNode.FromStaticNodeId(args.Code.SpatialGraphNodeId).TryLocate(FrameTime.OnUpdate, out currentPose);
-        if(currentPose == Pose.identity)
+        if (currentPose == Pose.identity)
         {
             return; // Disregards
         }
 
-        lock (updatedCodeQueue) {
+        lock (updatedCodeQueue)
+        {
             updatedCodeQueue.Enqueue(args.Code);
         }
 
@@ -324,6 +325,6 @@ public class QRDetection : MonoBehaviour
 
     public void StopQR()
     {
-        if(QRCodeWatcher.IsSupported())watcher.Stop();
+        if (QRCodeWatcher.IsSupported()) watcher.Stop();
     }
 }

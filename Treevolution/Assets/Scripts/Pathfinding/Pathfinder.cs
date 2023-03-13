@@ -15,11 +15,11 @@ namespace Pathfinding
         //TODO: Implement A* pathfinding on pathfindingGraph
         public static Vector3[] GetPath(Vector3 source, Vector3 target)
         {
-            if (source == target)
-                return new Vector3[] { source };
-
             UpdatePathfindingGraph(); // Should be called by enemy etc.
             initializeScores(graph.Count, (float.MaxValue, float.MaxValue, float.MaxValue));
+
+            if (source == target || graph.Count == 0)
+                return new Vector3[] { target };
 
             (int srcIndex, PathfindingNode srcNode) = closestNodeToPosition(source);
             (int tgtIndex, PathfindingNode tgtNode) = closestNodeToPositionFromDirection(target, source);
@@ -39,7 +39,7 @@ namespace Pathfinding
                 {
                     int neighbourIndex = graph.IndexOf(neighbour);
                     (float F, float G, float H) tempScores = (
-                        F: 0, 
+                        F: 0,
                         G: scores[bestIndex].G + bestNode.costToNeighbours[neighbour],
                         H: Vector3.Distance(neighbour.position, tgtNode.position));
                     tempScores.F = tempScores.G + tempScores.H;
@@ -70,7 +70,7 @@ namespace Pathfinding
         {
             List<Vector3> positions = new List<Vector3>();
             PathfindingNode currentNode = target;
-            while(currentNode != null)
+            while (currentNode != null)
             {
                 positions.Insert(0, currentNode.position);
                 currentNode = currentNode.parentNode;
@@ -84,7 +84,7 @@ namespace Pathfinding
                 return (-1, null);
 
             int bestIndex = nodes[0].index;
-            foreach((int index, PathfindingNode node) n in nodes)
+            foreach ((int index, PathfindingNode node) n in nodes)
             {
                 if (scores[n.index].F < scores[bestIndex].F)
                 {
@@ -131,7 +131,7 @@ namespace Pathfinding
         private static void initializeScores(int size, (float, float, float) initialValues)
         {
             scores = new (float F, float G, float H)[size];
-            for(int i = 0; i < size; i++)
+            for (int i = 0; i < size; i++)
             {
                 scores[i] = initialValues;
             }
