@@ -12,6 +12,9 @@ public class EnemyTouchHandler : MonoBehaviour, IMixedRealityTouchHandler
         {
             receivers[i].GetComponent<TowerScript>().SetTarget(transform);
         }
+
+        GameObject logic = GameObject.FindGameObjectWithTag("Logic");
+        logic.GetComponent<EnemyManager>().targetNewEnemy(gameObject);
     }
 
     public void OnTouchStarted(HandTrackingInputEventData eventData)
