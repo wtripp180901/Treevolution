@@ -126,11 +126,19 @@ public class EnemyScript : MonoBehaviour
 
     IEnumerator DamageIndicator()
     {
-        Color defaultColour = GetComponent<Renderer>().material.color;
+        List<Color> defaultColours = new List<Color>();
+        Renderer[] childRenderers = transform.GetComponentsInChildren<Renderer>();
+        for(int i = 0;i < childRenderers.Length; i++)
+        {
+            defaultColours.Add(childRenderers[i].material.color);
+            childRenderers[i].material.color = Color.red;
+        }
         damageAudio.Play();
-        GetComponent<Renderer>().material.color = Color.red;
         yield return new WaitForSeconds(0.3f);
-        GetComponent<Renderer>().material.color = defaultColour;
+        for (int i = 0; i < defaultColours.Count; i++)
+        {
+            childRenderers[i].material.color = defaultColours[i];
+        }
     }
 
     public void Damage()
