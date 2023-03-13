@@ -5,7 +5,16 @@ using UnityEngine;
 public class PhaseTransition : MonoBehaviour
 {
     public GameObject tree;
+    public GameObject startButton;
     public bool devMode = false;
+
+    private void Start()
+    {
+        if (devMode)
+        {
+            startButton.SetActive(true);
+        }
+    }
 
     public void GoToGamePhase()
     {
