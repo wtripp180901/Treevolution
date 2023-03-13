@@ -122,6 +122,12 @@ public class EnemyScript : MonoBehaviour
         baseHeight = pos.y;
         rig.freezeRotation = true;
         startMoveToNextTarget();
+
+        Vector2 screenSpawnPos = Camera.main.WorldToScreenPoint(transform.position);
+        SpawnDirectionIndicator spawnDirectionIndicator = null;
+        if (screenSpawnPos.x < 0) spawnDirectionIndicator = GameObject.FindWithTag("LeftIndicator").GetComponent<SpawnDirectionIndicator>();
+        if (screenSpawnPos.x > Screen.width) spawnDirectionIndicator = GameObject.FindWithTag("RightIndicator").GetComponent<SpawnDirectionIndicator>();
+        if(spawnDirectionIndicator != null) spawnDirectionIndicator.IndicateDirection();
     }
 
     IEnumerator DamageIndicator()
