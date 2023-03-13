@@ -95,7 +95,7 @@ public class EnemyScript : MonoBehaviour
         }
         else if (otherCollider.gameObject.tag == "Bullet")
         {
-            Damage();
+            Damage(1);
         }
         else if (climbableTags.Contains(otherCollider.gameObject.tag))
         {
@@ -133,9 +133,9 @@ public class EnemyScript : MonoBehaviour
         GetComponent<Renderer>().material.color = defaultColour;
     }
 
-    public void Damage()
+    public void Damage(int power)
     {
-        health -= 1;
+        health -= power;
         if (health <= 0)
         {
             DestroyEnemy();
