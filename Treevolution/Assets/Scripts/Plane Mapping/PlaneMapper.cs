@@ -47,6 +47,7 @@ public class PlaneMapper : MonoBehaviour
         tl.y = bl.y;
         br.y = bl.y;
         tr.y = bl.y;
+
         //Debug.DrawLine(tl,tl + Vector3.up,Color.green);
         Instantiate(planeMarker, tl, Quaternion.identity);
         Instantiate(planeMarker, tr, Quaternion.identity);
