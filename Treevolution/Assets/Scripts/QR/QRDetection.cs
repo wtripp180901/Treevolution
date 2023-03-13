@@ -26,9 +26,7 @@ public class QRDetection : MonoBehaviour
 
     private bool planeCreated;
     private bool c1Set;
-    private bool c2Set;
     private Vector3 cornerMarker1;
-    private Vector3 cornerMarker2;
 
 
     private void initProperties()
@@ -40,7 +38,6 @@ public class QRDetection : MonoBehaviour
         lastCode = (null, Pose.identity);
         planeCreated = false;
         c1Set = false;
-        c2Set = false;
     }
 
     async void Start()
@@ -79,7 +76,7 @@ public class QRDetection : MonoBehaviour
                         QRCode code = updatedCodeQueue.Dequeue();
                         updateCodeHologram(code);
                         //debugText.text = "Code: " + lastCode.code.Data + " @ " + lastCode.pose.position;
-                        drawPlane("C1", "C2", code);
+                        drawPlane("C1", code);
                     }
                 }
             }
@@ -93,12 +90,12 @@ public class QRDetection : MonoBehaviour
 
 
 
-    private void drawPlane(string c1Data, string c2Data, QRCode code)
+    private void drawPlane(string c1Data, QRCode code)
     {
-        Pose qrPose;
-        SpatialGraphNode.FromStaticNodeId(code.SpatialGraphNodeId).TryLocate(FrameTime.OnUpdate, out qrPose); // Get pose of QR Code
         lock (trackedCodes)
         {
+            Pose qrPose;
+            SpatialGraphNode.FromStaticNodeId(code.SpatialGraphNodeId).TryLocate(FrameTime.OnUpdate, out qrPose); // Get pose of QR Code
             if (code.Data.ToString() == c1Data)
             {
                 cornerMarker1 = tryGetNewCornerMarkerPosition(trackedCodes[code.Id].obj.transform.position, c1Set, cornerMarker1);

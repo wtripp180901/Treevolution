@@ -36,6 +36,7 @@ public class PlaneMapper : MonoBehaviour
     public void CreateNewPlane(Vector3 marker1, Pose orientation)
     {
         GameObject.FindWithTag("InfoText").transform.position = marker1 + new Vector3(0, 0.3f, 0);
+        _minY = marker1.y;
         ClearPlane();
 
         bl = marker1;
