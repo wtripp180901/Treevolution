@@ -11,6 +11,9 @@ public class PlaneMapper : MonoBehaviour
     [SerializeField]
     int markerCount = 2;
 
+    float tableWidth = 240;
+    float tableDepth = 160;
+
     public GameObject treeModel;
 
 
@@ -30,50 +33,19 @@ public class PlaneMapper : MonoBehaviour
         //CreateNewPlane(new Vector3(0, 0, 0),new Vector3(1, 0, 1)); // Commented
     }
 
-    public void CreateNewPlane(Vector3 marker1,Vector3 marker2)
+    public void CreateNewPlane(Vector3 marker1, Pose orientation)
     {
         GameObject.FindWithTag("InfoText").transform.position = marker1 + new Vector3(0, 0.3f, 0);
-        _minY = Mathf.Min(marker2.y,marker1.y);
-        marker1.y = _minY;
-        marker2.y = _minY;
         ClearPlane();
 
-        Vector3 m1VerticalOpposite = new Vector3(marker1.x, marker1.y, marker2.z);
-        Vector3 m2VerticalOpposite = new Vector3(marker2.x, marker2.y, marker1.z);
-        if (marker1.x > marker2.x)
-        {
-            if(marker1.z > marker2.z)
-            {
-                tr = marker1;
-                br = m1VerticalOpposite;
-                tl = m2VerticalOpposite;
-                bl = marker2;
-            }
-            else
-            {
-                tr = m1VerticalOpposite;
-                br = marker1;
-                tl = marker2;
-                bl = m2VerticalOpposite;
-            }
-        }
-        else
-        {
-            if (marker1.z > marker2.z)
-            {
-                tl = marker1;
-                bl = m1VerticalOpposite;
-                tr = m2VerticalOpposite;
-                br = marker2;
-            }
-            else
-            {
-                tl = m1VerticalOpposite;
-                bl = marker1;
-                tr = marker2;
-                br = m2VerticalOpposite;
-            }
-        }
+        bl = marker1;
+        tl = marker1 + orientation.right * tableDepth * 0.01f;
+        br = marker1 + orientation.up * tableWidth * 0.01f;
+        tr = marker1 + orientation.right * tableDepth * 0.01f + orientation.up * tableWidth * 0.01f;
+
+        tl.y = bl.y;
+        br.y = bl.y;
+        tr.y = bl.y;
         //Debug.DrawLine(tl,tl + Vector3.up,Color.green);
         Instantiate(planeMarker, tl, Quaternion.identity);
         Instantiate(planeMarker, tr, Quaternion.identity);
@@ -81,19 +53,19 @@ public class PlaneMapper : MonoBehaviour
         Instantiate(planeMarker, br, Quaternion.identity);
 
         if (markerCount > 0) {
-            Vector3 xStep = new Vector3((marker2.x - marker1.x) / (markerCount + 1),0, 0);
-            Vector3 zStep = new Vector3(0, 0, (marker2.z - marker1.z) / (markerCount + 1));
+            Vector3 depthStep = (tl - bl) / (markerCount + 1);
+            Vector3 widthStep = (br - bl) / (markerCount + 1);
             for (int i = 0;i < markerCount; i++)
             {
-                Instantiate(planeMarker, marker1 + ((i + 1) * xStep), Quaternion.identity);
-                Instantiate(planeMarker, marker1 + ((i + 1) * zStep), Quaternion.identity);
-                Instantiate(planeMarker, marker2 - ((i + 1) * xStep), Quaternion.identity);
-                Instantiate(planeMarker, marker2 - ((i + 1) * zStep), Quaternion.identity);
+                Instantiate(planeMarker, bl + ((i + 1) * depthStep), Quaternion.identity);
+                Instantiate(planeMarker, bl + ((i + 1) * widthStep), Quaternion.identity);
+                Instantiate(planeMarker, tr - ((i + 1) * depthStep), Quaternion.identity);
+                Instantiate(planeMarker, tr - ((i + 1) * widthStep), Quaternion.identity);
             }
         }
-        GameObject newFloor = Instantiate(floor, (marker1 + marker2) * 0.5f, Quaternion.identity);
-        newFloor.transform.localScale = new Vector3(0.1f*Mathf.Abs(marker1.x - marker2.x), newFloor.transform.localScale.y, 0.1f*Mathf.Abs(marker1.z - marker2.z));
-        Vector3 treeLocation = (marker1 + marker2) * 0.5f; // Centre of board
+        GameObject newFloor = Instantiate(floor, (bl + tr) * 0.5f, Quaternion.LookRotation(-orientation.up, orientation.forward));
+        newFloor.transform.localScale = new Vector3(0.1f*Vector3.Distance(bl, tl), newFloor.transform.localScale.y, 0.1f*Vector3.Distance(bl, br));
+        Vector3 treeLocation = (bl + tr) * 0.5f; // Centre of board
         GameObject treeObject = GameObject.FindWithTag("Tree");
         if (treeObject == null)
         {
