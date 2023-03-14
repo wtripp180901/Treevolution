@@ -168,6 +168,7 @@ public class QRDetection : MonoBehaviour
                         {
                             markerOffset += currentPose.forward * trackedCodes[updatedCode.Id].obj.GetComponent<Collider>().transform.lossyScale.y / 2;
                         }
+                        rotation = Quaternion.Euler(0, rotation.eulerAngles.y, 0);
                         break;
                     default:
                         if (tempMarker == null) markerType = defaultMarker;
