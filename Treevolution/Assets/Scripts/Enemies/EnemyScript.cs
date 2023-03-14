@@ -95,7 +95,7 @@ public class EnemyScript : MonoBehaviour
         }
         else if (otherCollider.gameObject.tag == "Bullet")
         {
-            Damage();
+            Damage(1);
         }
         else if (climbableTags.Contains(otherCollider.gameObject.tag))
         {
@@ -122,20 +122,34 @@ public class EnemyScript : MonoBehaviour
         baseHeight = pos.y;
         rig.freezeRotation = true;
         startMoveToNextTarget();
+
+        Vector2 screenSpawnPos = Camera.main.WorldToScreenPoint(transform.position);
+        SpawnDirectionIndicator spawnDirectionIndicator = null;
+        if (screenSpawnPos.x < 0) spawnDirectionIndicator = GameObject.FindWithTag("LeftIndicator").GetComponent<SpawnDirectionIndicator>();
+        if (screenSpawnPos.x > Screen.width) spawnDirectionIndicator = GameObject.FindWithTag("RightIndicator").GetComponent<SpawnDirectionIndicator>();
+        if(spawnDirectionIndicator != null) spawnDirectionIndicator.IndicateDirection();
     }
 
     IEnumerator DamageIndicator()
     {
-        Color defaultColour = GetComponent<Renderer>().material.color;
+        List<Color> defaultColours = new List<Color>();
+        Renderer[] childRenderers = transform.GetComponentsInChildren<Renderer>();
+        for(int i = 0;i < childRenderers.Length; i++)
+        {
+            defaultColours.Add(childRenderers[i].material.color);
+            childRenderers[i].material.color = Color.red;
+        }
         damageAudio.Play();
-        GetComponent<Renderer>().material.color = Color.red;
         yield return new WaitForSeconds(0.3f);
-        GetComponent<Renderer>().material.color = defaultColour;
+        for (int i = 0; i < defaultColours.Count; i++)
+        {
+            childRenderers[i].material.color = defaultColours[i];
+        }
     }
 
-    public void Damage()
+    public void Damage(int power)
     {
-        health -= 1;
+        health -= power;
         if (health <= 0)
         {
             DestroyEnemy();
