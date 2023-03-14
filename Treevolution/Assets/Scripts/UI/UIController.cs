@@ -5,23 +5,28 @@ using TMPro;
 
 public class UIController : MonoBehaviour
 {
-    public TMP_Text text;
-
+    public TMP_Text infoText;
     int time = 60;
+
+    private void Start()
+    {
+        UnityEngine.Animations.LookAtConstraint lookAtConstraint = infoText.GetComponent<UnityEngine.Animations.LookAtConstraint>();
+        lookAtConstraint.constraintActive = true;
+    }
 
     public void Win()
     {
-        text.text = "You win!";
+        infoText.text = "You win!";
     }
 
     public void Lose()
     {
-        text.text = "You lose!";
+        infoText.text = "You lose!";
     }
 
     public void DecreaseTime()
     {
-        text.text = "" + time;
+        infoText.text = "" + time;
         time -= 1;
     }
 }
