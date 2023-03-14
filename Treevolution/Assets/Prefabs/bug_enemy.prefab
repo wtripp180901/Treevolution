@@ -959,7 +959,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: e024dec76d2f81649aac2b12488f93b8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -981,6 +981,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!122 &7398150628619437552
+Halo:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7479068726099194787}
+  m_Enabled: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4280025343
+  m_Size: 0.02
 --- !u!114 &-6925451145284482706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1029,15 +1041,3 @@ MonoBehaviour:
   eventsToReceive: 0
   debounceThreshold: 0.01
   touchableCollider: {fileID: 4030984713373917242}
---- !u!114 &8301457350342176690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7479068726099194787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c369702e33341104bb399eefb6ae39ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
