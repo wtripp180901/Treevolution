@@ -25,6 +25,7 @@ public class VoiceCommandReceiver : MonoBehaviour
                 enemies[i].GetComponent<EnemyScript>().Damage(10);
             }
         }
+        GetComponent<AudioSource>().Play();
         StartCoroutine(Indicator());
     }
     IEnumerator Indicator()
