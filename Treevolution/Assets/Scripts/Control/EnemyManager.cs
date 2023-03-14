@@ -6,7 +6,7 @@ public class EnemyManager : MonoBehaviour
 {
     private List<GameObject> _enemies = new List<GameObject>();
     public GameObject[] enemies { get { return _enemies.ToArray(); } }
-
+    private GameObject targetEnemy;
     public GameObject cubePrefab;
     private float timer = 0;
     public float spawnRate = 1;
@@ -39,7 +39,25 @@ public class EnemyManager : MonoBehaviour
                 spawnEnemy();
                 timer = 0;
             }
+
+            if (targetEnemy != null) { 
+            
+            }
         }
+    }
+
+    public void targetNewEnemy(GameObject enemy)
+    {
+        if (targetEnemy != null) {
+            lock (targetEnemy)
+            {
+                Behaviour oldHalo = (Behaviour)targetEnemy.GetComponent("Halo");
+                oldHalo.enabled = false;
+            }
+        }
+        Behaviour newHalo = (Behaviour)enemy.GetComponent("Halo");
+        newHalo.enabled = true;
+        targetEnemy = enemy;
     }
 
     void spawnEnemy()
