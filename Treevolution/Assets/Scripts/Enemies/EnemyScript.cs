@@ -152,14 +152,14 @@ public class EnemyScript : MonoBehaviour
         health -= power;
         if (health <= 0)
         {
-            DestroyEnemy();
+            DestroyEnemy(true);
         }
         else StartCoroutine(DamageIndicator());
     }
 
-    public void DestroyEnemy()
+    public void DestroyEnemy(bool killedByPlayer)
     {
-        GameObject.FindWithTag("Logic").GetComponent<EnemyManager>().RemoveEnemy(gameObject);
+        GameObject.FindWithTag("Logic").GetComponent<EnemyManager>().RemoveEnemy(gameObject, killedByPlayer);
         Destroy(gameObject);
     }
 }
