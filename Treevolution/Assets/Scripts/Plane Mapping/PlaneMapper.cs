@@ -27,6 +27,8 @@ public class PlaneMapper : MonoBehaviour
     public Vector3 bottomRight { get { return br; } }
     private float _minY;
     public float floorHeight { get { return _minY; } }
+    private Bounds _planeBounds;
+    public Bounds planeBounds { get { return _planeBounds; } }
 
     private void Start()
     {
@@ -48,6 +50,8 @@ public class PlaneMapper : MonoBehaviour
         br.y = bl.y;
         tr.y = bl.y;
 
+   
+
         //Debug.DrawLine(tl,tl + Vector3.up,Color.green);
         Instantiate(planeMarker, tl, Quaternion.identity);
         Instantiate(planeMarker, tr, Quaternion.identity);
@@ -65,9 +69,15 @@ public class PlaneMapper : MonoBehaviour
                 Instantiate(planeMarker, tr - ((i + 1) * widthStep), Quaternion.identity);
             }
         }
-        GameObject newFloor = Instantiate(floor, (bl + tr) * 0.5f, Quaternion.LookRotation(-orientation.up, orientation.forward));
-        newFloor.transform.localScale = new Vector3(0.1f*Vector3.Distance(bl, tl), newFloor.transform.localScale.y, 0.1f*Vector3.Distance(bl, br));
         Vector3 treeLocation = (bl + tr) * 0.5f; // Centre of board
+
+        GameObject newFloor = Instantiate(floor, (bl + tr) * 0.5f, Quaternion.LookRotation(-orientation.up, orientation.forward));
+        Vector3 floorScale = new Vector3(0.1f*Vector3.Distance(bl, tl), newFloor.transform.localScale.y, 0.1f*Vector3.Distance(bl, br));
+        newFloor.transform.localScale = floorScale;
+
+        Matrix4x4 transformMatrix = Matrix4x4.TRS((bl + tr) * 0.5f, Quaternion.LookRotation(-orientation.up, orientation.forward), Vector3.one);
+        _planeBounds = GeometryUtility.CalculateBounds(new Vector3[] { bl, tl, tr, br }, transformMatrix);
+        _planeBounds.center = treeLocation;
         GameObject treeObject = GameObject.FindWithTag("Tree");
         if (treeObject == null)
         {
