@@ -106,7 +106,7 @@ public class PlaneMapper : MonoBehaviour
             treeObject.transform.position = boardCentre;
         }
 
-        startButton.transform.position = boardCentre + new Vector3(0, 0.9f, 0);
+        startButton.transform.position = boardCentre + new Vector3(0, 0.8f, 0);
         startButton.SetActive(true);
     }
 

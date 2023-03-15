@@ -1018,7 +1018,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rig: {fileID: 7545518852106094609}
-  speed: 0.001
+  speed: 0.0015
   climbableTags:
   - Wall
   - Tower
