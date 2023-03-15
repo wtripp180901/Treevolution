@@ -59,6 +59,7 @@ namespace Pathfinding
 
         private static List<PathfindingNode> nodesFromObstacleData()
         {
+           
             List<PathfindingNode> graph = new List<PathfindingNode>();
             for (int i = 0; i < obstacleData.Count; i++)
             {
@@ -78,12 +79,21 @@ namespace Pathfinding
                         }
                     }
 
-                    if (pos.x > GameProperties.BottomLeftCorner.x &&
+                    Bounds bnds = GameProperties.bounds;
+                    Debug.DrawLine(bnds.center, bnds.center + Vector3.up * 5, Color.yellow, 100);
+                    Debug.DrawLine(bnds.center + bnds.extents, bnds.center - bnds.extents, Color.blue, 100);
+
+                    if (bnds.IntersectRay(new Ray(pos + Vector3.up*5, Vector3.down*100))) withinPlaneBounds = true;
+
+                    /*if (pos.x > GameProperties.BottomLeftCorner.x &&
                         pos.x < GameProperties.BottomRightCorner.x &&
                         pos.z > GameProperties.BottomLeftCorner.z &&
-                        pos.z < GameProperties.TopLeftCorner.z) withinPlaneBounds = true;
-
+                        pos.z < GameProperties.TopLeftCorner.z) withinPlaneBounds = true;*/
                     if (notInsideTerrain && withinPlaneBounds) graph.Add(new PathfindingNode(i * 10 + j, pos));
+                    else
+                    {
+                        Debug.DrawLine(pos, pos + Vector3.up * 5, Color.red, 1000);
+                    }
                 }
             }
             obstacleData.Clear();
