@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubePrefab: {fileID: 7479068726099194787, guid: 53495b08017947b41b28df3bb405356b, type: 3}
-  spawnRate: 5
+  spawnInterval: 4
   coordinate_X: -5
   coordinate_Y: 5
   spawnCentre: {x: 0, y: 0, z: 0}
@@ -1179,7 +1179,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.091, y: 0.19819152}
-  m_SizeDelta: {x: 198.09, y: 47.7}
+  m_SizeDelta: {x: 200, y: 47.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &933276254
 MonoBehaviour:

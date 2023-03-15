@@ -8,8 +8,9 @@ public class EnemyManager : MonoBehaviour
     public GameObject[] enemies { get { return _enemies.ToArray(); } }
     private GameObject targetEnemy;
     public GameObject cubePrefab;
+    private int enemiesKilled = 0;
     private float timer = 0;
-    public float spawnRate = 1;
+    public float spawnInterval = 3;
     public float coordinate_X = -5;
     public float coordinate_Y = 5;
 
@@ -19,6 +20,7 @@ public class EnemyManager : MonoBehaviour
     private (Vector3 centre, Vector3 vert, Vector3 horz)[] spawnVectors = new (Vector3 centre, Vector3 vert, Vector3 horz)[2];
 
     bool started = false;
+    bool firstSpawn = false;
     public bool DevMode = false;
 
     // Start is called before the first frame update
@@ -32,7 +34,12 @@ public class EnemyManager : MonoBehaviour
     {
         if (started)
         {
-            if (timer < spawnRate)
+            if (!firstSpawn)
+            {
+                spawnEnemy();
+                firstSpawn = true;
+            }
+            if (timer < spawnInterval)
                 timer = timer + Time.deltaTime;
             else if (started)
             {
@@ -58,6 +65,11 @@ public class EnemyManager : MonoBehaviour
         Behaviour newHalo = (Behaviour)enemy.GetComponent("Halo");
         newHalo.enabled = true;
         targetEnemy = enemy;
+    }
+
+    public int getEnemiesKilled()
+    {
+        return enemiesKilled;
     }
 
     void spawnEnemy()
@@ -89,8 +101,12 @@ public class EnemyManager : MonoBehaviour
         spawnHeight = 2f + GameProperties.FloorHeight;
     }
 
-    public void RemoveEnemy(GameObject enemy)
+    public void RemoveEnemy(GameObject enemy, bool killedByPlayer)
     {
+        if (killedByPlayer)
+        {
+            enemiesKilled += 1;
+        }
         _enemies.Remove(enemy);
     }
 
