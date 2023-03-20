@@ -849,6 +849,8 @@ PlayerSettings:
   platformCapabilities:
     WindowsStoreApps:
       GazeInput: True
+      PrivateNetworkClientServer: False
+      InternetClientServer: False
       SpatialPerception: True
       InternetClient: True
       WebCam: True
