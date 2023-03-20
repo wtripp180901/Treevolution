@@ -19,6 +19,7 @@ TagManager:
   - EnemyDirectionIndicator
   - LeftIndicator
   - RightIndicator
+  - Buddy
   layers:
   - Default
   - TransparentFX
