@@ -1,0 +1,9 @@
+{
+	"name": "MainGameAssembly",
+	"references": [
+		"Microsoft.MixedReality.Toolkit",
+		"Unity.TextMeshPro",
+		"Unity.XR.WindowsMR",
+		"Microsoft.MixedReality.OpenXR"
+	]
+}
