@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/TurretScene.unity
+    path: 
     guid: e73b812072b31a84cbef7412b032ec1d
   - enabled: 1
     path: Assets/Scenes/QRTestScene.unity
