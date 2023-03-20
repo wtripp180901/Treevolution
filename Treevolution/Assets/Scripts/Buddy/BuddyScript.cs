@@ -31,7 +31,8 @@ public class BuddyScript : MonoBehaviour
         //If you have visited every point in the path, the action is complete
     }
 
-    //As a test I am calling this from PhaseTransition - Will
+    //As a test I am calling this from PhaseTransition.cs, currently 2 Move actions are added. When fully working, the buddy will move aroud the wall and
+    //then back to its original location - Will
     public void GiveInstructions(List<BuddyAction> actions)
     {
         //Add actions to actionQueue
