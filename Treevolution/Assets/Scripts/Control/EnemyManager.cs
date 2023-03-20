@@ -6,19 +6,21 @@ public class EnemyManager : MonoBehaviour
 {
     private List<GameObject> _enemies = new List<GameObject>();
     public GameObject[] enemies { get { return _enemies.ToArray(); } }
-
-    public GameObject cubePrefab;
+    private GameObject targetEnemy;
+    public GameObject enemyPrefab;
+    private int enemiesKilled = 0;
     private float timer = 0;
-    public float spawnRate = 1;
+    public float spawnInterval = 3;
     public float coordinate_X = -5;
     public float coordinate_Y = 5;
 
     float spawnHeight = 0.5f;
     public Vector3 spawnCentre = new Vector3(0, 0, 0);
 
-    private (Vector3 centre, Vector3 vert, Vector3 horz)[] spawnVectors = new (Vector3 centre, Vector3 vert, Vector3 horz)[2];
+    private (Vector3 origin, Vector3 vert, Vector3 horz)[] spawnVectors = new (Vector3 origin, Vector3 vert, Vector3 horz)[2];
 
     bool started = false;
+    bool firstSpawn = false;
     public bool DevMode = false;
 
     // Start is called before the first frame update
@@ -32,14 +34,42 @@ public class EnemyManager : MonoBehaviour
     {
         if (started)
         {
-            if (timer < spawnRate)
+            if (!firstSpawn)
+            {
+                spawnEnemy();
+                firstSpawn = true;
+            }
+            if (timer < spawnInterval)
                 timer = timer + Time.deltaTime;
             else if (started)
             {
                 spawnEnemy();
                 timer = 0;
             }
+
+            if (targetEnemy != null) { 
+            
+            }
         }
+    }
+
+    public void targetNewEnemy(GameObject enemy)
+    {
+        if (targetEnemy != null) {
+            lock (targetEnemy)
+            {
+                Behaviour oldHalo = (Behaviour)targetEnemy.GetComponent("Halo");
+                oldHalo.enabled = false;
+            }
+        }
+        Behaviour newHalo = (Behaviour)enemy.GetComponent("Halo");
+        newHalo.enabled = true;
+        targetEnemy = enemy;
+    }
+
+    public int getEnemiesKilled()
+    {
+        return enemiesKilled;
     }
 
     void spawnEnemy()
@@ -47,12 +77,13 @@ public class EnemyManager : MonoBehaviour
         //Vector3 randomSpawnPosition = spawnCentre + new Vector3(Random.Range(-coordinate_X, coordinate_X), spawnHeight, Random.Range(-coordinate_Y, coordinate_Y));
 
         int LR = Random.Range(0, 2); // Random
-        (Vector3 centre, Vector3 vert, Vector3 horz) spawnAxes = spawnVectors[LR]; // chooses either the left or right edge to spawn from.
+        (Vector3 origin, Vector3 vert, Vector3 horz) spawnAxes = spawnVectors[LR]; // chooses either the left or right edge to spawn from.
         float vFraction = Random.value; // vertical fraction
         float hFraction = Random.value; // horizontal fraction
 
-        Vector3 randomSpawnPosition = spawnAxes.centre + spawnAxes.vert * vFraction + spawnAxes.horz * hFraction;
-        _enemies.Add(Instantiate(cubePrefab, randomSpawnPosition, transform.rotation));
+        Vector3 randomSpawnPosition = spawnAxes.origin + spawnAxes.vert * vFraction + spawnAxes.horz * hFraction;
+        randomSpawnPosition.y = spawnHeight;
+        _enemies.Add(Instantiate(enemyPrefab, randomSpawnPosition, transform.rotation));
     }
 
     public void StartSpawning()
@@ -68,11 +99,15 @@ public class EnemyManager : MonoBehaviour
         //coordinate_X = horizontal.x * 0.04f;
         //coordinate_Y = vertical.z *0.2f;
 
-        spawnHeight = 2f + GameProperties.FloorHeight;
+        spawnHeight = 0.05f + GameProperties.FloorHeight;
     }
 
-    public void RemoveEnemy(GameObject enemy)
+    public void RemoveEnemy(GameObject enemy, bool killedByPlayer)
     {
+        if (killedByPlayer)
+        {
+            enemiesKilled += 1;
+        }
         _enemies.Remove(enemy);
     }
 
