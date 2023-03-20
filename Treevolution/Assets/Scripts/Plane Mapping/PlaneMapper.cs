@@ -52,7 +52,7 @@ public class PlaneMapper : MonoBehaviour
 
    
 
-        //Debug.DrawLine(tl,tl + Vector3.up,Color.green);
+        Debug.DrawLine(bl,bl + Vector3.up,Color.green,1000);
         Instantiate(planeMarker, tl, Quaternion.identity);
         Instantiate(planeMarker, tr, Quaternion.identity);
         Instantiate(planeMarker, bl, Quaternion.identity);
@@ -78,6 +78,13 @@ public class PlaneMapper : MonoBehaviour
         Matrix4x4 transformMatrix = Matrix4x4.TRS((bl + tr) * 0.5f, Quaternion.LookRotation(-orientation.up, orientation.forward), Vector3.one);
         _planeBounds = GeometryUtility.CalculateBounds(new Vector3[] { bl, tl, tr, br }, transformMatrix);
         _planeBounds.center = treeLocation;
+        Debug.DrawLine(bl, tl, Color.blue, 1000);
+        Debug.DrawLine(bl, br, Color.blue, 1000);
+        Debug.DrawLine(tr, tl, Color.blue, 1000);
+        Debug.DrawLine(tr, br, Color.blue, 1000);
+
+
+
         GameObject treeObject = GameObject.FindWithTag("Tree");
         if (treeObject == null)
         {
