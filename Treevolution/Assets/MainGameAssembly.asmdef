@@ -4,6 +4,8 @@
 		"Microsoft.MixedReality.Toolkit",
 		"Unity.TextMeshPro",
 		"Unity.XR.WindowsMR",
-		"Microsoft.MixedReality.OpenXR"
+		"Microsoft.MixedReality.OpenXR",
+		"Microsoft.MixedReality.Toolkit.SDK",
+		"Microsoft.MixedReality.Toolkit.Services.InputSystem"
 	]
 }
