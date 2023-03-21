@@ -11,22 +11,15 @@ public class EnemyManager : MonoBehaviour
     private int enemiesKilled = 0;
     private float timer = 0;
     public float spawnInterval = 3;
-    public float coordinate_X = -5;
-    public float coordinate_Y = 5;
-
-    float spawnHeight = 0.5f;
-    public Vector3 spawnCentre = new Vector3(0, 0, 0);
-
+    private float spawnHeight;
     private (Vector3 origin, Vector3 vert, Vector3 horz)[] spawnVectors = new (Vector3 origin, Vector3 vert, Vector3 horz)[2];
 
     bool started = false;
     bool firstSpawn = false;
-    public bool DevMode = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (DevMode) started = true;
     }
 
     // Update is called once per frame
@@ -84,6 +77,8 @@ public class EnemyManager : MonoBehaviour
         Vector3 randomSpawnPosition = spawnAxes.origin + spawnAxes.vert * vFraction + spawnAxes.horz * hFraction;
         randomSpawnPosition.y = spawnHeight;
         _enemies.Add(Instantiate(enemyPrefab, randomSpawnPosition, transform.rotation));
+        Debug.DrawLine(spawnAxes.origin, spawnAxes.origin + spawnAxes.vert, Color.white, 1000);
+        Debug.DrawLine(spawnAxes.origin, spawnAxes.origin + spawnAxes.horz, Color.white, 1000);
     }
 
     public void StartSpawning()
@@ -99,7 +94,7 @@ public class EnemyManager : MonoBehaviour
         //coordinate_X = horizontal.x * 0.04f;
         //coordinate_Y = vertical.z *0.2f;
 
-        spawnHeight = 0.05f + GameProperties.FloorHeight;
+        spawnHeight = 0.01f + GameProperties.FloorHeight;
     }
 
     public void RemoveEnemy(GameObject enemy, bool killedByPlayer)
