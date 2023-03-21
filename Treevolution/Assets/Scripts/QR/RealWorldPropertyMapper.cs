@@ -22,6 +22,6 @@ public class RealWorldPropertyMapper : MonoBehaviour
         GameProperties.TopLeftCorner = planeMapper.topLeft;
         GameProperties.TopRightCorner = planeMapper.topRight;
         GameProperties.FloorHeight = planeMapper.floorHeight;
-        GameProperties.bounds = planeMapper.planeBounds;
+        GameProperties.Pose = planeMapper.pose;
     }
 }
