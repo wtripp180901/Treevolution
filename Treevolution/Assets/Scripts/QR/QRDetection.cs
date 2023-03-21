@@ -101,16 +101,10 @@ public class QRDetection : MonoBehaviour
                 cornerMarker1 = tryGetNewCornerMarkerPosition(trackedCodes[code.Id].obj.transform.position, c1Set, cornerMarker1);
                 c1Set = true;
             }
-            /*else if (code.Data.ToString() == c2Data)
-            {
-                cornerMarker2 = tryGetNewCornerMarkerPosition(trackedCodes[code.Id].obj.transform.position, c2Set, cornerMarker2);
-                c2Set = true;
-            }*/
             if (c1Set && !planeCreated)
             {
                 planeMapper.CreateNewPlane(cornerMarker1, qrPose);
                 planeCreated = true;
-                //debugText.text = "planeCreated: " + planeCreated + "\nc1: " + c1Set + " " + cornerMarker1 + "\nc2: " + c2Set + " " + cornerMarker2;
 
             }
         }
@@ -156,6 +150,7 @@ public class QRDetection : MonoBehaviour
                     case "Tower":
                         if (tempMarker == null) markerType = towerMarker;
                         markerOffset = sideLength / 2 * (currentPose.right + currentPose.up);
+                        markerOffset += currentPose.forward * markerType.GetComponent<Collider>().transform.lossyScale.y / 2;
                         break;
 
                     case "Wall":
@@ -173,6 +168,8 @@ public class QRDetection : MonoBehaviour
                         break;
                     default:
                         if (tempMarker == null) markerType = defaultMarker;
+                        markerOffset = sideLength / 2 * (currentPose.right + currentPose.up);
+                        markerOffset += currentPose.forward * markerType.GetComponent<Collider>().transform.lossyScale.y / 2;
                         scaleToMarker = true;
                         break;
                 }
