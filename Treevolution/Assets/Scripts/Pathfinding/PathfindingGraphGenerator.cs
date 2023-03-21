@@ -79,16 +79,19 @@ namespace Pathfinding
                         }
                     }
 
-                    Bounds bnds = GameProperties.bounds;
-                    Debug.DrawLine(bnds.center, bnds.center + Vector3.up * 5, Color.yellow, 100);
-                    Debug.DrawLine(bnds.center + bnds.extents, bnds.center - bnds.extents, Color.blue, 100);
 
-                    if (bnds.IntersectRay(new Ray(pos + Vector3.up*5, Vector3.down*100))) withinPlaneBounds = true;
-
-                    /*if (pos.x > GameProperties.BottomLeftCorner.x &&
-                        pos.x < GameProperties.BottomRightCorner.x &&
-                        pos.z > GameProperties.BottomLeftCorner.z &&
-                        pos.z < GameProperties.TopLeftCorner.z) withinPlaneBounds = true;*/
+                    // Checks if point lies within the rectangle from a top-down view
+                    Vector2 pos2D = new Vector2(pos.x, pos.z);
+                    Vector2 a = new Vector2(GameProperties.TopLeftCorner.x, GameProperties.TopLeftCorner.z);
+                    Vector2 b = new Vector2(GameProperties.TopRightCorner.x, GameProperties.TopRightCorner.z);
+                    Vector2 d = new Vector2(GameProperties.BottomLeftCorner.x, GameProperties.BottomLeftCorner.z);
+                    if (0 < Vector2.Dot((pos2D - a), (b - a)) && Vector2.Dot((pos2D - a), (b - a)) < Vector2.Dot((b - a), (b - a)))
+                    {
+                        if (0 < Vector2.Dot((pos2D - a), (d - a)) && Vector2.Dot((pos2D - a), (d - a)) < Vector2.Dot((d - a), (d - a)))
+                        {
+                            withinPlaneBounds = true;
+                        }
+                    }
                     if (notInsideTerrain && withinPlaneBounds) graph.Add(new PathfindingNode(i * 10 + j, pos));
                     else
                     {

@@ -31,7 +31,8 @@ public class PlaneMapper : MonoBehaviour
     public float floorHeight { get { return _minY; } }
     private Bounds _planeBounds;
     public Bounds planeBounds { get { return _planeBounds; } }
-
+    private Pose _pose;
+    public Pose pose { get { return _pose; } }
     private void Start()
     {
         //CreateNewPlane(new Vector3(0, 0, 0),new Vector3(1, 0, 1)); // Commented
@@ -39,16 +40,17 @@ public class PlaneMapper : MonoBehaviour
 
     public void CreateNewPlane(Vector3 marker1, Pose orientation)
     {
-        orientation.rotation = Quaternion.LookRotation(-orientation.up, orientation.forward);
+        orientation.rotation = Quaternion.LookRotation(orientation.up, orientation.forward);
+        orientation.rotation = Quaternion.Euler(0, orientation.rotation.eulerAngles.y + 180, 0);
+        _pose = orientation;
+
         _minY = marker1.y;
         ClearPlane();
-        Debug.Log(orientation.rotation.eulerAngles.y);
-        orientation.rotation = Quaternion.Euler(0, orientation.rotation.eulerAngles.y, 0);
-
+       
         bl = marker1;
-        tl = marker1 + orientation.right * tableDepth * 0.01f;
-        br = marker1 + orientation.forward * tableWidth * 0.01f;
-        tr = marker1 + orientation.right * tableDepth * 0.01f + orientation.forward * tableWidth * 0.01f;
+        tl = marker1 + _pose.right * tableDepth * 0.01f;
+        br = marker1 + _pose.forward * tableWidth * 0.01f;
+        tr = marker1 + _pose.right * tableDepth * 0.01f + _pose.forward * tableWidth * 0.01f;
 
         tl.y = bl.y;
         br.y = bl.y;
@@ -76,13 +78,14 @@ public class PlaneMapper : MonoBehaviour
 
         Vector3 boardCentre = (bl + tr) * 0.5f; // Centre of board
         GameObject.FindWithTag("InfoText").transform.position = boardCentre + new Vector3(0, 0.7f, 0);
-        GameObject newFloor = Instantiate(floor, (bl + tr) * 0.5f, orientation.rotation);
+        GameObject newFloor = Instantiate(floor, (bl + tr) * 0.5f, _pose.rotation);
         Vector3 floorScale = new Vector3(0.1f*Vector3.Distance(bl, tl), newFloor.transform.localScale.y, 0.1f*Vector3.Distance(bl, br));
         newFloor.transform.localScale = floorScale;
 
-        Matrix4x4 transformMatrix = Matrix4x4.TRS((bl + tr) * 0.5f, orientation.rotation, Vector3.one);
+        Matrix4x4 transformMatrix = Matrix4x4.TRS((bl + tr) * 0.5f, Pose.identity.rotation, Vector3.one);
         _planeBounds = GeometryUtility.CalculateBounds(new Vector3[] { bl, tl, tr, br }, transformMatrix);
         _planeBounds.center = boardCentre;
+
 
         Debug.DrawLine(GameProperties.BottomLeftCorner, GameProperties.TopLeftCorner, Color.blue, 1000);
         Debug.DrawLine(GameProperties.BottomLeftCorner, GameProperties.BottomRightCorner, Color.blue, 1000);
