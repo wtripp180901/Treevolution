@@ -39,13 +39,16 @@ public class PlaneMapper : MonoBehaviour
 
     public void CreateNewPlane(Vector3 marker1, Pose orientation)
     {
+        orientation.rotation = Quaternion.LookRotation(-orientation.up, orientation.forward);
         _minY = marker1.y;
         ClearPlane();
+        Debug.Log(orientation.rotation.eulerAngles.y);
+        orientation.rotation = Quaternion.Euler(0, orientation.rotation.eulerAngles.y, 0);
 
         bl = marker1;
         tl = marker1 + orientation.right * tableDepth * 0.01f;
-        br = marker1 + orientation.up * tableWidth * 0.01f;
-        tr = marker1 + orientation.right * tableDepth * 0.01f + orientation.up * tableWidth * 0.01f;
+        br = marker1 + orientation.forward * tableWidth * 0.01f;
+        tr = marker1 + orientation.right * tableDepth * 0.01f + orientation.forward * tableWidth * 0.01f;
 
         tl.y = bl.y;
         br.y = bl.y;
@@ -73,18 +76,18 @@ public class PlaneMapper : MonoBehaviour
 
         Vector3 boardCentre = (bl + tr) * 0.5f; // Centre of board
         GameObject.FindWithTag("InfoText").transform.position = boardCentre + new Vector3(0, 0.7f, 0);
-
-        GameObject newFloor = Instantiate(floor, (bl + tr) * 0.5f, Quaternion.LookRotation(-orientation.up, orientation.forward));
+        GameObject newFloor = Instantiate(floor, (bl + tr) * 0.5f, orientation.rotation);
         Vector3 floorScale = new Vector3(0.1f*Vector3.Distance(bl, tl), newFloor.transform.localScale.y, 0.1f*Vector3.Distance(bl, br));
         newFloor.transform.localScale = floorScale;
 
-        Matrix4x4 transformMatrix = Matrix4x4.TRS((bl + tr) * 0.5f, Quaternion.LookRotation(-orientation.up, orientation.forward), Vector3.one);
+        Matrix4x4 transformMatrix = Matrix4x4.TRS((bl + tr) * 0.5f, orientation.rotation, Vector3.one);
         _planeBounds = GeometryUtility.CalculateBounds(new Vector3[] { bl, tl, tr, br }, transformMatrix);
         _planeBounds.center = boardCentre;
-        Debug.DrawLine(bl, tl, Color.blue, 1000);
-        Debug.DrawLine(bl, br, Color.blue, 1000);
-        Debug.DrawLine(tr, tl, Color.blue, 1000);
-        Debug.DrawLine(tr, br, Color.blue, 1000);
+
+        Debug.DrawLine(GameProperties.BottomLeftCorner, GameProperties.TopLeftCorner, Color.blue, 1000);
+        Debug.DrawLine(GameProperties.BottomLeftCorner, GameProperties.BottomRightCorner, Color.blue, 1000);
+        Debug.DrawLine(GameProperties.TopRightCorner, GameProperties.TopLeftCorner, Color.blue, 1000);
+        Debug.DrawLine(GameProperties.TopRightCorner, GameProperties.BottomRightCorner, Color.blue, 1000);
 
         GameObject treeObject = GameObject.FindWithTag("Tree");
         if (treeObject == null)

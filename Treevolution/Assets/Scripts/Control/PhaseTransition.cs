@@ -7,12 +7,14 @@ public class PhaseTransition : MonoBehaviour
     public GameObject tree;
     public GameObject startButton;
     public bool devMode = false;
+    public GameObject debugQR;
 
     private void Start()
     {
         if (devMode)
         {
             startButton.SetActive(true);
+            debugQR.SetActive(true);
         }
     }
 
@@ -21,9 +23,10 @@ public class PhaseTransition : MonoBehaviour
         if (devMode)
         {
             PlaneMapper planeMapper = gameObject.GetComponent<PlaneMapper>();
-            Pose newPose = Pose.identity;
-            newPose.rotation = Quaternion.LookRotation(newPose.up, newPose.forward);
-            planeMapper.CreateNewPlane(new Vector3(0.842f, -0.392f, 1.203f), newPose);//, new Vector3(-1.063f, -0.392f, 2.13f));
+            Pose newPose = new Pose(debugQR.transform.position, debugQR.transform.rotation);
+            //newPose.rotation = Quaternion.LookRotation(newPose.up, newPose.forward);
+            //newPose.rotation.eulerAngles = newPose.rotation.eulerAngles + new Vector3(90, 15, 20);
+            planeMapper.CreateNewPlane(newPose.position, newPose);//, new Vector3(-1.063f, -0.392f, 2.13f));
         }
         GetComponent<RealWorldPropertyMapper>().MapProperties();
         // Game Start Animation?
