@@ -1,15 +1,32 @@
+using Microsoft.MixedReality.Toolkit.Input;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class VoiceCommandReceiver : MonoBehaviour
 {
     public GameObject pointer;
     private EnemyManager enemyManager;
+    public TMP_Text txt;
 
     private void Start()
     {
         enemyManager = GetComponent<EnemyManager>();
+    }
+
+    public void Record()
+    {
+        try
+        {
+            DictationHandler handler = GetComponent<DictationHandler>();
+            lock(handler){
+                handler.StartRecording();
+            }
+        }catch (System.Exception e)
+        {
+            txt.text = e.Message;
+        }
     }
 
     public void LightningBolt()
