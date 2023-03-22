@@ -484,7 +484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d876093c5f4a4ec499dd1bbfbd0085bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SettingsDialog: {fileID: 8138641467027762944, guid: 79fc4995b7f507b4ca6dfe9f9421a63b, type: 3}
+  SettingsDialog: {fileID: 2330315304125546656, guid: 766e5f633464bf6439b1f9ae210f9427, type: 3}
 --- !u!1 &2114725311
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,6 +693,10 @@ PrefabInstance:
       propertyPath: iconQuadTexture
       value: 
       objectReference: {fileID: 2800000, guid: ac8550a474419054d9621216812fd098, type: 3}
+    - target: {fileID: 8667154919375532781, guid: 69a2c734d0cc1c44dbc6b304439d25c3, type: 3}
+      propertyPath: defaultDistance
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 8772063850523022022, guid: 69a2c734d0cc1c44dbc6b304439d25c3, type: 3}
       propertyPath: m_Size.x
       value: 0.24

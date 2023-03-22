@@ -13,12 +13,13 @@ public class PlaneMapper : MonoBehaviour
     [SerializeField]
     GameObject startButton;
 
-    float tableWidth = 240;
-    float tableDepth = 160;
+    public float tableWidth = 240;
+    public float tableDepth = 160;
 
     public GameObject treeModel;
+    public PhaseTransition phaseTransition;
 
-
+    private bool planeIsMapped = false;
     private Vector3 tl;
     public Vector3 topLeft { get { return tl; } }
     private Vector3 tr;
@@ -33,11 +34,16 @@ public class PlaneMapper : MonoBehaviour
     public Pose pose { get { return _pose; } }
     private void Start()
     {
-        //CreateNewPlane(new Vector3(0, 0, 0),new Vector3(1, 0, 1)); // Commented
+        phaseTransition = GetComponent<PhaseTransition>();
     }
 
     public void CreateNewPlane(Pose marker)
     {
+        if (planeIsMapped == false)
+        {
+            phaseTransition.planeMapped.Invoke();
+        }
+        planeIsMapped = true;
         marker.rotation = Quaternion.LookRotation(marker.up, marker.forward);
         marker.rotation = Quaternion.Euler(0, marker.rotation.eulerAngles.y, 0);
         _pose = marker;

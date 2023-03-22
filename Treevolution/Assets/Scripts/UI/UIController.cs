@@ -2,18 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Microsoft.MixedReality.Toolkit.UI;
 
 public class UIController : MonoBehaviour
 {
+    public GameObject infoDialogPrefab;
+    public GameObject buttonDialogPrefab;
     public TMP_Text infoText;
-    int time = 60;
+    public int roundTime = 60;
     private EnemyManager enemyManager;
+
 
     private void Start()
     {
-        UnityEngine.Animations.LookAtConstraint lookAtConstraint = infoText.GetComponent<UnityEngine.Animations.LookAtConstraint>();
-        lookAtConstraint.constraintActive = true;
         enemyManager = GetComponent<EnemyManager>();
+    }
+
+    public void CalibrationPopUp()
+    {
+        Dialog.Open(infoDialogPrefab, DialogButtonType.None, "Calibrate Game Board", "Find, and look at the QR Code in the corner of the table to calibrate the Game Board.", true);
+    }
+
+    public void CalibrationSuccessPopUp()
+    {
+        Dialog.Open(buttonDialogPrefab, DialogButtonType.Close, "Calibration Success", "You have successfully calibrated the Game Board! Ensure that the board bounds line up with the table.", true);
     }
 
     public void Win()
@@ -30,8 +42,8 @@ public class UIController : MonoBehaviour
 
     public void DecreaseTime()
     {
-        infoText.text = "" + time;
-        time -= 1;
+        infoText.text = "" + roundTime;
+        roundTime -= 1;
     }
 }
 

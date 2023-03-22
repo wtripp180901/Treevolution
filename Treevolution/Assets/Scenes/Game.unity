@@ -205,7 +205,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de6e73a716bbfec47ad998cdfdd12c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infoDialogPrefab: {fileID: 2330315304125546656, guid: 7fed0f9b7bf28df4796e266e8c5d9e49, type: 3}
+  buttonDialogPrefab: {fileID: 2330315304125546656, guid: 766e5f633464bf6439b1f9ae210f9427, type: 3}
   infoText: {fileID: 933276254}
+  roundTime: 60
 --- !u!114 &100754434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,7 +225,10 @@ MonoBehaviour:
   floor: {fileID: 6052068750231831381, guid: 33c6a9a811257f4429d253d4c93aa655, type: 3}
   markerCount: 2
   startButton: {fileID: 1064493251}
+  tableWidth: 240
+  tableDepth: 160
   treeModel: {fileID: 4047742926485375969, guid: 13815b32147eea64e9a773ef69b3240e, type: 3}
+  phaseTransition: {fileID: 100754438}
 --- !u!114 &100754435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,10 +284,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ce337a804f93d4fbb6848e32298a0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infoText: {fileID: 933276254}
   tree: {fileID: 4047742926485375969, guid: 13815b32147eea64e9a773ef69b3240e, type: 3}
   startButton: {fileID: 1064493251}
   devMode: 0
   debugQR: {fileID: 1261470959}
+  planeMapped:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &100754439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,7 +475,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100793310}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.6800301}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1051,8 +1061,8 @@ GameObject:
   - component: {fileID: 933276253}
   - component: {fileID: 933276255}
   - component: {fileID: 933276254}
-  - component: {fileID: 933276257}
-  - component: {fileID: 933276258}
+  - component: {fileID: 933276260}
+  - component: {fileID: 933276259}
   m_Layer: 5
   m_Name: InfoText
   m_TagString: InfoText
@@ -1069,7 +1079,7 @@ RectTransform:
   m_GameObject: {fileID: 933276252}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.29547098, y: 0.29547098, z: 0.29547098}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 100793311}
@@ -1077,8 +1087,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.091, y: 0.19819152}
-  m_SizeDelta: {x: 200, y: 47.7}
+  m_AnchoredPosition: {x: -0.182, y: 0}
+  m_SizeDelta: {x: 196.86, y: 47.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &933276254
 MonoBehaviour:
@@ -1100,7 +1110,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Planning Phase
+  m_text: InfoText
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1127,8 +1137,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.5
-  m_fontSizeBase: 0.5
+  m_fontSize: 0.2
+  m_fontSizeBase: 0.2
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1163,7 +1173,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 97.40124, y: 24.18158, z: 96.89064, w: 22.841702}
+  m_margin: {x: 97.40124, y: 24.18158, z: 96.89064, w: 23.139837}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1177,7 +1187,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 933276252}
   m_CullTransparentMesh: 1
---- !u!114 &933276257
+--- !u!114 &933276259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933276252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4479a0bd44d822241a4c5f4890c481c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateLinkedTransform: 0
+  moveLerpTime: 0.1
+  rotateLerpTime: 0.1
+  scaleLerpTime: 0
+  maintainScaleOnInitialization: 1
+  smoothing: 1
+  lifetime: 0
+  orientationType: 1
+  faceTrackedObjectWhileClamped: 1
+  faceUserDefinedTargetTransform: 1
+  targetToFace: {fileID: 963194228}
+  pivotAxis: 7
+  minDistance: 0.4
+  maxDistance: 0.45
+  defaultDistance: 0.4
+  maxViewHorizontalDegrees: 1
+  maxViewVerticalDegrees: 1
+  reorientWhenOutsideParameters: 1
+  orientToControllerDeadzoneDegrees: 2
+  ignoreAngleClamp: 1
+  ignoreDistanceClamp: 1
+  ignoreReferencePitchAndRoll: 0
+  pitchOffset: 0
+  verticalMaxDistance: 10
+  angularClampMode: 0
+  tetherAngleSteps: 6
+  boundsScaler: 1
+--- !u!114 &933276260
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1196,25 +1245,6 @@ MonoBehaviour:
   additionalOffset: {x: 0, y: 0, z: 0}
   additionalRotation: {x: 0, y: 0, z: 0}
   updateSolvers: 1
---- !u!1183024399 &933276258
-LookAtConstraint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 933276252}
-  m_Enabled: 1
-  m_Weight: 1
-  m_RotationAtRest: {x: 0, y: 0, z: 0}
-  m_RotationOffset: {x: 0, y: 180, z: 0}
-  m_Roll: 0
-  m_WorldUpObject: {fileID: 0}
-  m_UseUpObject: 0
-  m_IsContraintActive: 0
-  m_IsLocked: 1
-  m_Sources:
-  - sourceTransform: {fileID: 963194228}
-    weight: 1
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1724,7 +1754,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8213314841196470945, guid: b03d6137db94da542a85a178758d9d56, type: 3}
       propertyPath: m_Name
-      value: NextRoundButton
+      value: GameStartButton
       objectReference: {fileID: 0}
     - target: {fileID: 8213314841196470945, guid: b03d6137db94da542a85a178758d9d56, type: 3}
       propertyPath: m_IsActive
