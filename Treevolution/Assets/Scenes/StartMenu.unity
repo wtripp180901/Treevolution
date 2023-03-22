@@ -545,6 +545,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 20f25674b9512834f88938d45ed495d7, type: 3}
+    - target: {fileID: 481148232007040589, guid: 69a2c734d0cc1c44dbc6b304439d25c3, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 997376206139266462, guid: 69a2c734d0cc1c44dbc6b304439d25c3, type: 3}
       propertyPath: iconStyle
       value: 0
@@ -552,7 +556,7 @@ PrefabInstance:
     - target: {fileID: 997376206139266462, guid: 69a2c734d0cc1c44dbc6b304439d25c3, type: 3}
       propertyPath: iconQuadTexture
       value: 
-      objectReference: {fileID: 2800000, guid: d6a8d6d764af76740ad06383ee810941, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 1333223820795536211, guid: 69a2c734d0cc1c44dbc6b304439d25c3, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -649,6 +653,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7150958888239386719, guid: 69a2c734d0cc1c44dbc6b304439d25c3, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 7486619081788993065, guid: 69a2c734d0cc1c44dbc6b304439d25c3, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -673,14 +681,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 4300004, guid: b566bbce04d66f4428421e81a3af0299, type: 3}
-    - target: {fileID: 7486619082895233805, guid: 69a2c734d0cc1c44dbc6b304439d25c3, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7486619082895233805, guid: 69a2c734d0cc1c44dbc6b304439d25c3, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ccf34f78a6419584fa9cea97b5e46131, type: 2}
     - target: {fileID: 7701609849143938572, guid: 69a2c734d0cc1c44dbc6b304439d25c3, type: 3}
       propertyPath: m_IsActive
       value: 0
