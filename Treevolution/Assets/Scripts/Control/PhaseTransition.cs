@@ -1,13 +1,37 @@
+using Microsoft.MixedReality.Toolkit.UI;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PhaseTransition : MonoBehaviour
 {
+    public TMP_Text infoText;
     public GameObject tree;
     public GameObject startButton;
     public bool devMode = false;
     public GameObject debugQR;
+    private UIController UIController;
+    private PlaneMapper planeMapper;
+    private GameState currentState;
+    private enum GameState
+    {
+        Calibration,
+        Plane_Mapped,
+        Tutorial_Plan,
+        Tutorial_Battle,
+        Round1_Plan,
+        Round1_Battle,
+        Round2_Plan,
+        Round2_Battle,
+        Round3_Plan,
+        Round3_Battle
+    }
+    private bool firstRun = true;
+
+    [HideInInspector]
+    public UnityEvent planeMapped;
 
     private void Start()
     {
@@ -16,6 +40,23 @@ public class PhaseTransition : MonoBehaviour
             startButton.SetActive(true);
             debugQR.SetActive(true);
         }
+        currentState = GameState.Calibration;
+        UIController = GetComponent<UIController>();
+        planeMapper = GetComponent<PlaneMapper>();
+
+        planeMapped.AddListener(PlaneMappedHandler);
+
+
+
+        infoText.text = "";
+        UIController.CalibrationPopUp();
+    }
+
+    void PlaneMappedHandler()
+    {
+        currentState = GameState.Plane_Mapped;
+        UIController.CalibrationSuccessPopUp();
+        //infoText.text = "Calibration Successful";
     }
 
     public void GoToGamePhase()

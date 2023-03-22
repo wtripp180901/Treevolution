@@ -21,7 +21,7 @@ public class StartMenuLogic : MonoBehaviour
 
     public void OpenSettings(GameObject caller)
     {
-        Dialog d = Dialog.Open(SettingsDialog, DialogButtonType.OK, "Settings", "Lorem Ipsum", true);
+        Dialog d = Dialog.Open(SettingsDialog, DialogButtonType.Close, "Settings", "Lorem Ipsum", true);
         d.OnClosed = delegate (DialogResult dr) { caller.SetActive(true); };
 
     }
