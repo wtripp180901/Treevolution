@@ -59,6 +59,7 @@ namespace Pathfinding
 
         private static List<PathfindingNode> nodesFromObstacleData()
         {
+           
             List<PathfindingNode> graph = new List<PathfindingNode>();
             for (int i = 0; i < obstacleData.Count; i++)
             {
@@ -78,12 +79,24 @@ namespace Pathfinding
                         }
                     }
 
-                    if (pos.x > GameProperties.BottomLeftCorner.x &&
-                        pos.x < GameProperties.BottomRightCorner.x &&
-                        pos.z > GameProperties.BottomLeftCorner.z &&
-                        pos.z < GameProperties.TopLeftCorner.z) withinPlaneBounds = true;
 
+                    // Checks if point lies within the rectangle from a top-down view
+                    Vector2 pos2D = new Vector2(pos.x, pos.z);
+                    Vector2 a = new Vector2(GameProperties.TopLeftCorner.x, GameProperties.TopLeftCorner.z);
+                    Vector2 b = new Vector2(GameProperties.TopRightCorner.x, GameProperties.TopRightCorner.z);
+                    Vector2 d = new Vector2(GameProperties.BottomLeftCorner.x, GameProperties.BottomLeftCorner.z);
+                    if (0 < Vector2.Dot((pos2D - a), (b - a)) && Vector2.Dot((pos2D - a), (b - a)) < Vector2.Dot((b - a), (b - a)))
+                    {
+                        if (0 < Vector2.Dot((pos2D - a), (d - a)) && Vector2.Dot((pos2D - a), (d - a)) < Vector2.Dot((d - a), (d - a)))
+                        {
+                            withinPlaneBounds = true;
+                        }
+                    }
                     if (notInsideTerrain && withinPlaneBounds) graph.Add(new PathfindingNode(i * 10 + j, pos));
+                    else
+                    {
+                        Debug.DrawLine(pos, pos + Vector3.up * 5, Color.red, 1000);
+                    }
                 }
             }
             obstacleData.Clear();
