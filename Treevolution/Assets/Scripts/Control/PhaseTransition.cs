@@ -26,7 +26,7 @@ public class PhaseTransition : MonoBehaviour
             Pose newPose = new Pose(debugQR.transform.position, debugQR.transform.rotation);
             //newPose.rotation = Quaternion.LookRotation(newPose.up, newPose.forward);
             //newPose.rotation.eulerAngles = newPose.rotation.eulerAngles + new Vector3(90, 15, 20);
-            planeMapper.CreateNewPlane(newPose.position, newPose);//, new Vector3(-1.063f, -0.392f, 2.13f));
+            planeMapper.CreateNewPlane(newPose);//, new Vector3(-1.063f, -0.392f, 2.13f));
         }
         GetComponent<RealWorldPropertyMapper>().MapProperties();
         // Game Start Animation?

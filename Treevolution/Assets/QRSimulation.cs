@@ -21,7 +21,7 @@ public class QRSimulation : MonoBehaviour
                 //Vector3 jiggle = new Vector3(-90 + Random.Range(-5, 5), Random.Range(-5, 5), Random.Range(-5, 5));
                 //gameObject.transform.rotation = Quaternion.Euler(jiggle.x, jiggle.y, jiggle.z);
                 Pose pose = new Pose(gameObject.transform.position, gameObject.transform.rotation);
-                planeMapper.CreateNewPlane(gameObject.transform.position, pose);
+                planeMapper.CreateNewPlane(pose);
             }
             
         }
