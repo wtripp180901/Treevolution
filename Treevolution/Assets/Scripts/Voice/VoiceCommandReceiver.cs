@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using Newtonsoft.Json.Linq;
 
 public class VoiceCommandReceiver : MonoBehaviour
 {
@@ -50,12 +51,20 @@ public class VoiceCommandReceiver : MonoBehaviour
     public void ProcessDictation(string dictation)
     {
         string[] words = dictation.Split(' ');
-        if(words.Length > 0) StartCoroutine(new ThesaurusAPICaller("APIKey").GetSynonyms(words[0]));
+        if(words.Length > 0) StartCoroutine(new ThesaurusAPICaller("APIKey").GetSynonyms(words));
     }
 
-    public void HandleDictationProcessingResults(string[] synonyms)
+    public void HandleDictationProcessingResults(JArray[] wordData)
     {
-        if(synonyms.Length > 0) GetComponent<UIController>().ShowDictation(synonyms[0]);
+        if(LanguageParser.GetInstructionStream(wordData).Count > 0)
+        {
+            Debug.Log("Identified move action");
+        }
+        else
+        {
+            Debug.Log("no actions found");
+        }
+        //if(wordData.Length > 0) GetComponent<UIController>().ShowDictation(wordData[0]);
     }
 
     IEnumerator Indicator()

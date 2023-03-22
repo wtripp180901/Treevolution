@@ -286,7 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tree: {fileID: 4047742926485375969, guid: 13815b32147eea64e9a773ef69b3240e, type: 3}
   startButton: {fileID: 1064493251}
-  devMode: 0
+  devMode: 1
 --- !u!114 &100754439
 MonoBehaviour:
   m_ObjectHideFlags: 0

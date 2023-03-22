@@ -31,20 +31,40 @@ public class ThesaurusAPICaller
         }
     }
 
-    public IEnumerator GetSynonyms(string word)
+    public IEnumerator GetSynonyms(string[] words)
     {
-        UnityWebRequest request = UnityWebRequest.Get(getUrl(word));
-        yield return request.SendWebRequest();
-        if(request.result == UnityWebRequest.Result.Success)
+        JArray[] wordData = new JArray[words.Length];
+        for(int i = 0;i < words.Length; i++) { 
+            UnityWebRequest request = UnityWebRequest.Get(getUrl(words[i]));
+            yield return request.SendWebRequest();
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                wordData[i] = JArray.Parse(request.downloadHandler.text);
+            }
+            else
+            {
+                Debug.Log("Thesaurus error");
+            }
+        }
+        GameObject.FindWithTag("Logic").GetComponent<VoiceCommandReceiver>().HandleDictationProcessingResults(wordData);
+        /*if(request.result == UnityWebRequest.Result.Success)
         {
-            GameObject.FindWithTag("Logic").GetComponent<VoiceCommandReceiver>().HandleDictationProcessingResults(
-                JArray.Parse(request.downloadHandler.text)[0]["meta"]["syns"][0].ToObject<string[]>()
-                );
+            JArray data = JArray.Parse(request.downloadHandler.text);
+            for(int i = 0;i < data.Count; i++)
+            {
+                if(data[i]["fl"].ToString() == desiredFuncLabel)
+                {
+                    GameObject.FindWithTag("Logic").GetComponent<VoiceCommandReceiver>().HandleDictationProcessingResults(
+                        JArray.Parse(request.downloadHandler.text)[i]["meta"]["syns"][0].ToObject<string[]>()
+                    );
+                }
+            }
+            
         }
         else
         {
             Debug.Log("Thesaurus error");
-        }
+        }*/
     }
 
     string getUrl(string word)
