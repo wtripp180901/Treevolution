@@ -22,13 +22,12 @@ public class QRDetection : MonoBehaviour
     private Queue<QRCode> updatedCodeQueue;
     private System.Threading.Tasks.Task<QRCodeWatcherAccessStatus> accessRequester;
     private (QRCode code, Pose pose) lastCode;
+    private Pose oldPlanePose;
     private bool hasStarted;
 
     private bool planeCreated;
     private bool c1Set;
-    private bool c2Set;
     private Vector3 cornerMarker1;
-    private Vector3 cornerMarker2;
 
 
     private void initProperties()
@@ -40,7 +39,6 @@ public class QRDetection : MonoBehaviour
         lastCode = (null, Pose.identity);
         planeCreated = false;
         c1Set = false;
-        c2Set = false;
     }
 
     async void Start()
@@ -79,7 +77,7 @@ public class QRDetection : MonoBehaviour
                         QRCode code = updatedCodeQueue.Dequeue();
                         updateCodeHologram(code);
                         //debugText.text = "Code: " + lastCode.code.Data + " @ " + lastCode.pose.position;
-                        drawPlane("C1", "C2", code);
+                        drawPlane("C1", code);
                     }
                 }
             }
@@ -93,26 +91,22 @@ public class QRDetection : MonoBehaviour
 
 
 
-    private void drawPlane(string c1Data, string c2Data, QRCode code)
+    private void drawPlane(string c1Data, QRCode code)
     {
         lock (trackedCodes)
         {
+            Pose newPose;
+            SpatialGraphNode.FromStaticNodeId(code.SpatialGraphNodeId).TryLocate(FrameTime.OnUpdate, out newPose); // Get pose of QR Code
             if (code.Data.ToString() == c1Data)
             {
-                cornerMarker1 = tryGetNewCornerMarkerPosition(trackedCodes[code.Id].obj.transform.position, c1Set, cornerMarker1);
+                newPose = tryGetNewCornerMarkerPose(newPose, c1Set, oldPlanePose);
                 c1Set = true;
             }
-            else if (code.Data.ToString() == c2Data)
+            if (c1Set && !planeCreated)
             {
-                cornerMarker2 = tryGetNewCornerMarkerPosition(trackedCodes[code.Id].obj.transform.position, c2Set, cornerMarker2);
-                c2Set = true;
-            }
-            if (c1Set && c2Set && !planeCreated)
-            {
-                planeMapper.CreateNewPlane(cornerMarker1, cornerMarker2);
+                planeMapper.CreateNewPlane(newPose);
                 planeCreated = true;
-                //debugText.text = "planeCreated: " + planeCreated + "\nc1: " + c1Set + " " + cornerMarker1 + "\nc2: " + c2Set + " " + cornerMarker2;
-
+                oldPlanePose = newPose;
             }
         }
     }
@@ -148,7 +142,7 @@ public class QRDetection : MonoBehaviour
                 GameObject tempMarker = trackedCodes[updatedCode.Id].obj;
                 GameObject markerType = null;
                 bool scaleToMarker = false;
-                Vector3 markerOffset = sideLength / 2 * (currentPose.right + currentPose.up);
+                Vector3 markerOffset = sideLength / 2 * (currentPose.right + currentPose.up); ;
                 String[] data = updatedCode.Data.Split(' ');
 
                 Quaternion rotation = Quaternion.LookRotation(-currentPose.up, currentPose.forward);
@@ -185,7 +179,7 @@ public class QRDetection : MonoBehaviour
                     tempMarker.transform.SetPositionAndRotation(currentPose.position + markerOffset, rotation);
                 }
 
-                if (scaleToMarker) tempMarker.transform.localScale = markerSize;
+                if (scaleToMarker) tempMarker.transform.localScale = new Vector3(sideLength, sideLength * 0.2f, sideLength);
 
                 trackedCodes[updatedCode.Id] = (updatedCode, tempMarker);
                 this.lastCode = (updatedCode, currentPose);
@@ -201,14 +195,14 @@ public class QRDetection : MonoBehaviour
         }
     }
 
-    Vector3 tryGetNewCornerMarkerPosition(Vector3 newPos, bool cornerSet, Vector3 oldMarkerPos)
+    Pose tryGetNewCornerMarkerPose(Pose newPose, bool cornerSet, Pose oldPose)
     {
-        if (!cornerSet || (oldMarkerPos - newPos).magnitude > 0.01)
+        if (!cornerSet || Vector3.Distance(oldPose.position, newPose.position) > 0.01 || Math.Abs(Quaternion.Angle(oldPose.rotation, newPose.rotation)) > 5)
         {
-            oldMarkerPos = newPos;
+            oldPose = newPose;
             planeCreated = false;
         }
-        return oldMarkerPos;
+        return oldPose;
     }
 
     private void updatedCodeEvent(object sender, QRCodeUpdatedEventArgs args)
