@@ -207,6 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoText: {fileID: 933276254}
+  dictationText: {fileID: 807997091}
 --- !u!114 &100754434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -480,9 +481,9 @@ MonoBehaviour:
   OnDictationResult:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 807997091}
-        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: set_text
+      - m_Target: {fileID: 100754439}
+        m_TargetAssemblyTypeName: VoiceCommandReceiver, MainGameAssembly
+        m_MethodName: ProcessDictation
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
