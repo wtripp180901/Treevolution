@@ -11,6 +11,7 @@ public class UIController : MonoBehaviour
     public TMP_Text infoText;
     public int roundTime = 60;
     private EnemyManager enemyManager;
+    private List<Dialog> openDialogs = new List<Dialog>();
 
 
     private void Start()
@@ -20,12 +21,23 @@ public class UIController : MonoBehaviour
 
     public void CalibrationPopUp()
     {
-        Dialog.Open(infoDialogPrefab, DialogButtonType.None, "Calibrate Game Board", "Find, and look at the QR Code in the corner of the table to calibrate the Game Board.", true);
+        Dialog d = Dialog.Open(infoDialogPrefab, DialogButtonType.None, "Calibrate Game Board", "Find, and look at the QR Code in the corner of the table to calibrate the Game Board.", true);
+        openDialogs.Add(d);
     }
 
     public void CalibrationSuccessPopUp()
     {
-        Dialog.Open(buttonDialogPrefab, DialogButtonType.Close, "Calibration Success", "You have successfully calibrated the Game Board! Ensure that the board bounds line up with the table.", true);
+        closeOpenDialogs();
+        Dialog d = Dialog.Open(buttonDialogPrefab, DialogButtonType.Close, "Calibration Success", "You have successfully calibrated the Game Board! Ensure that the board bounds line up with the table.", true);
+        openDialogs.Add(d);
+    }
+
+    private void closeOpenDialogs()
+    {
+        for (int i = 0; i < openDialogs.Count; i++)
+        {
+            openDialogs[i].DismissDialog();
+        }
     }
 
     public void Win()
