@@ -6,6 +6,7 @@ using TMPro;
 public class UIController : MonoBehaviour
 {
     public TMP_Text infoText;
+    public TMP_Text dictationText;
     int time = 60;
     private EnemyManager enemyManager;
 
@@ -32,5 +33,10 @@ public class UIController : MonoBehaviour
     {
         infoText.text = "" + time;
         time -= 1;
+    }
+
+    public void ShowDictation(string dictation)
+    {
+        dictationText.text = dictation;
     }
 }

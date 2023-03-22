@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class VoiceCommandReceiver : MonoBehaviour
 {
@@ -45,6 +46,18 @@ public class VoiceCommandReceiver : MonoBehaviour
         GetComponent<AudioSource>().Play();
         StartCoroutine(Indicator());
     }
+
+    public void ProcessDictation(string dictation)
+    {
+        string[] words = dictation.Split(' ');
+        if(words.Length > 0) StartCoroutine(new ThesaurusAPICaller("APIKey").GetSynonyms(words[0]));
+    }
+
+    public void HandleDictationProcessingResults(string[] synonyms)
+    {
+        if(synonyms.Length > 0) GetComponent<UIController>().ShowDictation(synonyms[0]);
+    }
+
     IEnumerator Indicator()
     {
         Color defaultColour = pointer.GetComponent<Renderer>().material.color;
