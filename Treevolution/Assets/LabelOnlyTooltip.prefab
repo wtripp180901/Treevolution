@@ -1,11 +1,11 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2325658820532451243
+--- !u!1001 &3325334741277818937
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 5928373394682135430}
+    m_TransformParent: {fileID: 6640065092875564052}
     m_Modifications:
     - target: {fileID: 1874729665501627384, guid: 3f1f46cbecbe08e46a303ccfdb5b498a, type: 3}
       propertyPath: m_IsActive
@@ -194,7 +194,7 @@ PrefabInstance:
     - target: {fileID: 8779034279059886464, guid: 3f1f46cbecbe08e46a303ccfdb5b498a, type: 3}
       propertyPath: profiles.Array.data[2].Target
       value: 
-      objectReference: {fileID: 4526130565787984932}
+      objectReference: {fileID: 3509319993292673974}
     - target: {fileID: 8779034279059886464, guid: 3f1f46cbecbe08e46a303ccfdb5b498a, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -209,12 +209,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f1f46cbecbe08e46a303ccfdb5b498a, type: 3}
---- !u!1 &4526130565787984932 stripped
+--- !u!1 &3509319993292673974 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2204069623052342159, guid: 3f1f46cbecbe08e46a303ccfdb5b498a, type: 3}
-  m_PrefabInstance: {fileID: 2325658820532451243}
+  m_PrefabInstance: {fileID: 3325334741277818937}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &5929689001777102532
+--- !u!1001 &6641099223464970582
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -227,7 +227,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1083549605185280, guid: afaef0108a478c44a9eac26658bc29bf, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1486990241750050, guid: afaef0108a478c44a9eac26658bc29bf, type: 3}
       propertyPath: m_IsActive
@@ -279,19 +279,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4892726138630008, guid: afaef0108a478c44a9eac26658bc29bf, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.18694258
+      value: 0.21366131
       objectReference: {fileID: 0}
-    - target: {fileID: 4892726138630008, guid: afaef0108a478c44a9eac26658bc29bf, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.0549071
-      objectReference: {fileID: 0}
-    - target: {fileID: 23685411902306870, guid: afaef0108a478c44a9eac26658bc29bf, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 88886e323de80bc40b327994bb1b08c9, type: 2}
     - target: {fileID: 114071207091359978, guid: afaef0108a478c44a9eac26658bc29bf, type: 3}
       propertyPath: toolTipText
-      value: Plane Calibration Marker
+      value: Speech Confirmation
       objectReference: {fileID: 0}
     - target: {fileID: 114071207091359978, guid: afaef0108a478c44a9eac26658bc29bf, type: 3}
       propertyPath: showConnector
@@ -299,10 +291,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114254035704318198, guid: afaef0108a478c44a9eac26658bc29bf, type: 3}
       propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114254035704318198, guid: afaef0108a478c44a9eac26658bc29bf, type: 3}
-      propertyPath: endPoint.position.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114570207066485496, guid: afaef0108a478c44a9eac26658bc29bf, type: 3}
@@ -319,15 +307,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7446970764068212843, guid: afaef0108a478c44a9eac26658bc29bf, type: 3}
       propertyPath: m_text
-      value: Calibration Marker
+      value: Speech Confirmation
       objectReference: {fileID: 0}
     - target: {fileID: 7446970764068212843, guid: afaef0108a478c44a9eac26658bc29bf, type: 3}
       propertyPath: m_textAlignment
       value: 65535
-      objectReference: {fileID: 0}
-    - target: {fileID: 7446970764068212843, guid: afaef0108a478c44a9eac26658bc29bf, type: 3}
-      propertyPath: m_TextStyleHashCode
-      value: -1183493901
       objectReference: {fileID: 0}
     - target: {fileID: 7446970764068212843, guid: afaef0108a478c44a9eac26658bc29bf, type: 3}
       propertyPath: m_VerticalAlignment
@@ -347,8 +331,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afaef0108a478c44a9eac26658bc29bf, type: 3}
---- !u!4 &5928373394682135430 stripped
+--- !u!4 &6640065092875564052 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4411840848280898, guid: afaef0108a478c44a9eac26658bc29bf, type: 3}
-  m_PrefabInstance: {fileID: 5929689001777102532}
+  m_PrefabInstance: {fileID: 6641099223464970582}
   m_PrefabAsset: {fileID: 0}
