@@ -10,8 +10,8 @@ public class PhaseTransition : MonoBehaviour
     public TMP_Text infoText;
     public GameObject tree;
     public GameObject startButton;
+    public GameObject debugObject;
     public bool devMode = false;
-    public GameObject debugQR;
     private UIController UIController;
     private PlaneMapper planeMapper;
     private GameState currentState;
@@ -38,7 +38,7 @@ public class PhaseTransition : MonoBehaviour
         if (devMode)
         {
             startButton.SetActive(true);
-            debugQR.SetActive(true);
+            debugObject.SetActive(true);
         }
         currentState = GameState.Calibration;
         UIController = GetComponent<UIController>();
@@ -63,6 +63,7 @@ public class PhaseTransition : MonoBehaviour
     {
         if (devMode)
         {
+            GameObject debugQR = GameObject.Find("DebugQR");
             PlaneMapper planeMapper = gameObject.GetComponent<PlaneMapper>();
             Pose newPose = new Pose(debugQR.transform.position, debugQR.transform.rotation);
             //newPose.rotation = Quaternion.LookRotation(newPose.up, newPose.forward);

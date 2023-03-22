@@ -14,7 +14,7 @@ public class QRDetection : MonoBehaviour
 {
     public TMP_Text debugText;
     public PlaneMapper planeMapper;
-    public GameObject defaultMarker;
+    public GameObject planeMarker;
     public GameObject towerMarker;
     public GameObject wallMarker;
     private QRCodeWatcher watcher;
@@ -165,7 +165,7 @@ public class QRDetection : MonoBehaviour
                         rotation = Quaternion.Euler(0, rotation.eulerAngles.y, 0);
                         break;
                     default:
-                        if (tempMarker == null) markerType = defaultMarker;
+                        if (tempMarker == null) markerType = planeMarker;
                         scaleToMarker = true;
                         break;
                 }
