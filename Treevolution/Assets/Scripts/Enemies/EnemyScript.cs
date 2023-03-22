@@ -54,7 +54,7 @@ public class EnemyScript : MonoBehaviour
             directionVector = enemyToTarget.normalized * speed;
             rig.MovePosition(pos + directionVector);
         }
-        if (climbing)
+        /*if (climbing)
         {
             if (pos.y < targetHeight)
             {
@@ -67,7 +67,7 @@ public class EnemyScript : MonoBehaviour
                 followingPath = true;
                 rig.useGravity = true;
             }
-        }
+        }*/
     }
 
     private void startMoveToNextTarget()
@@ -99,7 +99,7 @@ public class EnemyScript : MonoBehaviour
         {
             Damage(1);
         }
-        else if (climbableTags.Contains(otherCollider.gameObject.tag))
+        /*else if (climbableTags.Contains(otherCollider.gameObject.tag))
         {
             float topOfCollider = otherCollider.bounds.extents.y / 2 + collision.gameObject.transform.position.y;
             float heightAboveObject = topOfCollider + gameObject.GetComponent<Collider>().bounds.extents.y;// + 0.01f;
@@ -110,7 +110,7 @@ public class EnemyScript : MonoBehaviour
                 climbing = true;
                 targetHeight = heightAboveObject;
             }
-        }
+        }*/
         if (!hasHitFloor && (GetComponent<Collider>().gameObject.tag == "Floor" || GetComponent<Collider>().gameObject.tag == "Wall"))
         {
             hasHitFloor = true;

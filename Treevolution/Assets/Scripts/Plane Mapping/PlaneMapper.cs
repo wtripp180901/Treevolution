@@ -36,19 +36,19 @@ public class PlaneMapper : MonoBehaviour
         //CreateNewPlane(new Vector3(0, 0, 0),new Vector3(1, 0, 1)); // Commented
     }
 
-    public void CreateNewPlane(Vector3 marker1, Pose orientation)
+    public void CreateNewPlane(Pose marker)
     {
-        orientation.rotation = Quaternion.LookRotation(orientation.up, orientation.forward);
-        orientation.rotation = Quaternion.Euler(0, orientation.rotation.eulerAngles.y, 0);
-        _pose = orientation;
+        marker.rotation = Quaternion.LookRotation(marker.up, marker.forward);
+        marker.rotation = Quaternion.Euler(0, marker.rotation.eulerAngles.y, 0);
+        _pose = marker;
 
-        _minY = marker1.y;
+        _minY = marker.position.y;
         ClearPlane();
        
-        bl = marker1;
-        br = marker1 + _pose.forward * tableWidth * 0.01f;
-        tl = marker1 - _pose.right * tableDepth * 0.01f;
-        tr = marker1 + _pose.forward * tableWidth * 0.01f - _pose.right * tableDepth * 0.01f;
+        bl = marker.position;
+        br = marker.position + _pose.forward * tableWidth * 0.01f;
+        tl = marker.position - _pose.right * tableDepth * 0.01f;
+        tr = marker.position + _pose.forward * tableWidth * 0.01f - _pose.right * tableDepth * 0.01f;
 
         tl.y = bl.y;
         br.y = bl.y;
