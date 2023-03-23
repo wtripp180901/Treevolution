@@ -295,6 +295,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &732510925 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2426066842972927839, guid: 69a2c734d0cc1c44dbc6b304439d25c3, type: 3}
+  m_PrefabInstance: {fileID: 3509188127252800148}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &781735610
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,7 +489,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d876093c5f4a4ec499dd1bbfbd0085bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SettingsDialog: {fileID: 2330315304125546656, guid: 766e5f633464bf6439b1f9ae210f9427, type: 3}
+  SettingsDialogPrefab: {fileID: 2330315304125546656, guid: 38f4719e0c0d6ce45bdde4bdcf66057f, type: 3}
+  StartMenu: {fileID: 732510925}
 --- !u!1 &2114725311
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,8 +700,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2800000, guid: ac8550a474419054d9621216812fd098, type: 3}
     - target: {fileID: 8667154919375532781, guid: 69a2c734d0cc1c44dbc6b304439d25c3, type: 3}
+      propertyPath: maxDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8667154919375532781, guid: 69a2c734d0cc1c44dbc6b304439d25c3, type: 3}
+      propertyPath: minDistance
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8667154919375532781, guid: 69a2c734d0cc1c44dbc6b304439d25c3, type: 3}
       propertyPath: defaultDistance
-      value: 0.6
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 8772063850523022022, guid: 69a2c734d0cc1c44dbc6b304439d25c3, type: 3}
       propertyPath: m_Size.x

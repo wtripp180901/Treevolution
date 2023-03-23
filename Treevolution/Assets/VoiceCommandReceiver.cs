@@ -12,6 +12,12 @@ public class VoiceCommandReceiver : MonoBehaviour
         enemyManager = GetComponent<EnemyManager>();
     }
 
+    public void PauseGame()
+    {
+        //Time.timeScale = 0f;
+        GetComponent<RoundTimer>().PauseTimer();
+    }
+
     public void LightningBolt()
     {
         GameObject[] enemies = enemyManager.enemies;

@@ -6,11 +6,17 @@ using Microsoft.MixedReality.QR;
 
 public class StartMenuLogic : MonoBehaviour
 {
-    public GameObject SettingsDialog;
+    public GameObject SettingsDialogPrefab;
+    public GameObject StartMenu;
 
     private void Start()
     {
         QRCodeWatcher.RequestAccessAsync();
+    }
+
+    public void openStartMenu()
+    {
+        StartMenu.SetActive(true);
     }
 
     public void StartGame()
@@ -21,9 +27,8 @@ public class StartMenuLogic : MonoBehaviour
 
     public void OpenSettings(GameObject caller)
     {
-        Dialog d = Dialog.Open(SettingsDialog, DialogButtonType.Close, "Settings", "Lorem Ipsum", true);
-        d.OnClosed = delegate (DialogResult dr) { caller.SetActive(true); };
-
+        Dialog d = Dialog.Open(SettingsDialogPrefab, DialogButtonType.Close, "Settings", "There are currently no settings available... Sorry :ss(", true);
+        d.OnClosed = delegate (DialogResult dr) { openStartMenu(); };
     }
 }
 
