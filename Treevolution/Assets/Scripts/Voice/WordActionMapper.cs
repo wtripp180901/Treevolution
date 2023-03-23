@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class WordActionMapper
 {
     Dictionary<string, Dictionary<BUDDY_ACTION_TYPES, List<string>>> flCategoriesOfActions = new Dictionary<string, Dictionary<BUDDY_ACTION_TYPES, List<string>>>();
     
-    public void LoadCachedWords()
+    public WordActionMapper()
+    {
+        LoadCachedWords();
+    }
+    private void LoadCachedWords()
     {
         string[] data = Resources.Load<TextAsset>("basewords").text.Split("\n");
         for(int i = 0;i < data.Length;i += 3)
@@ -65,6 +70,26 @@ public class WordActionMapper
                         actionType = keyType;
                         return true;
                     }
+                }
+            }
+        }
+        actionType = BUDDY_ACTION_TYPES.Error;
+        return false;
+    }
+
+    public bool GetActionIfSynonymsMatchCachedWords(string functionalLabel,List<string> synonyms,out BUDDY_ACTION_TYPES actionType)
+    {
+        Dictionary<BUDDY_ACTION_TYPES, List<string>> wordsOfActionTypes;
+        if(flCategoriesOfActions.TryGetValue(functionalLabel,out wordsOfActionTypes))
+        {
+            foreach(BUDDY_ACTION_TYPES keyType in wordsOfActionTypes.Keys)
+            {
+                List<string> knownWords;
+                wordsOfActionTypes.TryGetValue(keyType, out knownWords);
+                if (synonyms.Intersect(knownWords).Any())
+                {
+                    actionType = keyType;
+                    return true;
                 }
             }
         }
