@@ -31,22 +31,18 @@ public class ThesaurusAPICaller
         }
     }
 
-    public IEnumerator GetSynonyms(string[] words)
+    public JArray GetSynonyms(string word)
     {
-        JArray[] wordData = new JArray[words.Length];
-        for(int i = 0;i < words.Length; i++) { 
-            UnityWebRequest request = UnityWebRequest.Get(getUrl(words[i]));
-            yield return request.SendWebRequest();
-            if (request.result == UnityWebRequest.Result.Success)
-            {
-                wordData[i] = JArray.Parse(request.downloadHandler.text);
-            }
-            else
-            {
-                Debug.Log("Thesaurus error");
-            }
+        UnityWebRequest request = UnityWebRequest.Get(getUrl(word));
+        request.SendWebRequest();
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            return JArray.Parse(request.downloadHandler.text);
         }
-        GameObject.FindWithTag("Logic").GetComponent<VoiceCommandReceiver>().HandleDictationProcessingResults(wordData);
+        else
+        {
+            return null;
+        }
         /*if(request.result == UnityWebRequest.Result.Success)
         {
             JArray data = JArray.Parse(request.downloadHandler.text);

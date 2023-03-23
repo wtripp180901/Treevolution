@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json.Linq;
 
-public static class LanguageParser
+public class LanguageParser
 {
     const string meta = "meta";
     const string fl = "fl";
     const string syns = "syns";
-    public static List<BuddyAction> GetInstructionStream(JArray[] wordData)
+
+    WordActionMapper wordActionMapper = new WordActionMapper();
+    ThesaurusAPICaller APICaller = new ThesaurusAPICaller("APIKey");
+
+    public List<BuddyAction> GetInstructionStream(JArray[] wordData)
     {
         List<BuddyAction> instructions = new List<BuddyAction>();
         for (int i = 0; i < wordData.Length; i++)
@@ -34,7 +38,45 @@ public static class LanguageParser
         return instructions;
     }
 
-    private static void getSynonymsForEachFunctionalLabel(JArray word, Dictionary<string, List<string>> synonymsOfFunctionalLabel)
+    public IEnumerator GetInstructionStream(string[] words)
+    {
+        List<BuddyAction> instructions = new List<BuddyAction>();
+
+        foreach(string word in words)
+        {
+            BUDDY_ACTION_TYPES actionType;
+            if(wordActionMapper.GetActionIfCached(word,out actionType))
+            {
+                //Word is known
+                instructions.Add(new BuddyAction(actionType, new Vector3(0, 0, 0)));
+                yield return null;
+            }
+            else
+            {
+                //Word is unknown, test if any of it's synonyms match known words
+                JArray synonymData = APICaller.GetSynonyms(word);
+                if (synonymData != null)
+                {
+                    Dictionary<string, List<string>> synonymsOfFunctionalLabel = new Dictionary<string, List<string>>();
+                    getSynonymsForEachFunctionalLabel(synonymData, synonymsOfFunctionalLabel);
+                    foreach(string fl in synonymsOfFunctionalLabel.Keys)
+                    {
+                        List<string> flWords;
+                        synonymsOfFunctionalLabel.TryGetValue(fl, out flWords);
+                        BUDDY_ACTION_TYPES currentActionType;
+                        if(wordActionMapper.GetActionIfSynonymsMatchCachedWords(fl,flWords,out currentActionType))
+                        {
+                            instructions.Add(new BuddyAction(currentActionType, new Vector3(0, 0, 0)));
+                        }
+                    }
+                }
+                yield return null;
+            }
+        }
+        //GameObject.FindWithTag("Logic").Ge
+    }
+
+    private void getSynonymsForEachFunctionalLabel(JArray word, Dictionary<string, List<string>> synonymsOfFunctionalLabel)
     {
         for (int homograph = 0; homograph < word.Count; homograph++)
         {
