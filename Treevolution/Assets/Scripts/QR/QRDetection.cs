@@ -17,6 +17,8 @@ public class QRDetection : MonoBehaviour
     public GameObject planeMarker;
     public GameObject towerMarker;
     public GameObject wallMarker;
+    public bool lockPlane;
+
     private QRCodeWatcher watcher;
     private SortedDictionary<System.Guid, (QRCode code, GameObject obj)> trackedCodes;
     private Queue<QRCode> updatedCodeQueue;
@@ -24,7 +26,6 @@ public class QRDetection : MonoBehaviour
     private (QRCode code, Pose pose) lastCode;
     private Pose oldPlanePose;
     private bool hasStarted;
-
     private bool planeCreated;
     private bool c1Set;
     private Vector3 cornerMarker1;
@@ -75,6 +76,8 @@ public class QRDetection : MonoBehaviour
                     while (updatedCodeQueue.Count > 0)
                     {
                         QRCode code = updatedCodeQueue.Dequeue();
+                        if (lockPlane && code.Data == "C1")
+                            continue;
                         updateCodeHologram(code);
                         //debugText.text = "Code: " + lastCode.code.Data + " @ " + lastCode.pose.position;
                         drawPlane("C1", code);
@@ -197,7 +200,7 @@ public class QRDetection : MonoBehaviour
 
     Pose tryGetNewCornerMarkerPose(Pose newPose, bool cornerSet, Pose oldPose)
     {
-        if (!cornerSet || Vector3.Distance(oldPose.position, newPose.position) > 0.01 || Math.Abs(Quaternion.Angle(oldPose.rotation, newPose.rotation)) > 5)
+        if (!cornerSet || Vector3.Distance(oldPose.position, newPose.position) > 0.03 || Math.Abs(Quaternion.Angle(oldPose.rotation, newPose.rotation)) > 5)
         {
             oldPose = newPose;
             planeCreated = false;
@@ -321,5 +324,9 @@ public class QRDetection : MonoBehaviour
     public void StopQR()
     {
         if (QRCodeWatcher.IsSupported()) watcher.Stop();
+    }
+    public void StartQR()
+    {
+        if (QRCodeWatcher.IsSupported()) watcher.Start();
     }
 }

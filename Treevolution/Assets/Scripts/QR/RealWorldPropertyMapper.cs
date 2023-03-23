@@ -12,7 +12,7 @@ public class RealWorldPropertyMapper : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown("z")) GetComponent<PhaseTransition>().GetComponent<PhaseTransition>().GoToGamePhase();
+        if (Input.GetKeyDown("z")) GetComponent<GameStateManager>().GetComponent<GameStateManager>().BeginBattle();
     }
 
     public void MapProperties()
@@ -23,5 +23,6 @@ public class RealWorldPropertyMapper : MonoBehaviour
         GameProperties.TopRightCorner = planeMapper.topRight;
         GameProperties.FloorHeight = planeMapper.floorHeight;
         GameProperties.Pose = planeMapper.pose;
+        GameProperties.Centre = (GameProperties.BottomLeftCorner + GameProperties.TopRightCorner) * 0.5f;
     }
 }

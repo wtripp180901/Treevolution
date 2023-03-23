@@ -16,12 +16,14 @@ public class UIController : MonoBehaviour
     public TMP_Text infoText;
     public int roundTime = 60;
     private EnemyManager enemyManager;
+    private GameStateManager gameStateManager;
     private List<Dialog> openDialogs = new List<Dialog>();
 
 
     private void Start()
     {
         enemyManager = GetComponent<EnemyManager>();
+        gameStateManager = GetComponent<GameStateManager>();
     }
 
     public void CalibrationPopUp()
@@ -34,9 +36,44 @@ public class UIController : MonoBehaviour
     public void CalibrationSuccessPopUp()
     {
         closeOpenDialogs();
-        Dialog d = Dialog.Open(buttonDialogPrefab, DialogButtonType.Close, "Calibration Success", "You have successfully calibrated the Game Board! Ensure that it lines up with the table, otherwise adjust.", true);
+        Dialog d = Dialog.Open(buttonDialogPrefab, DialogButtonType.Confirm, "Calibration Success", "You have successfully calibrated the Game Board! Ensure that it lines up with the table, then click Confirm to lock the board.", true);
         d.gameObject.transform.GetChild(3).gameObject.GetComponent<MeshRenderer>().material = backPlateGreen;
+        d.OnClosed = delegate (DialogResult dr) {
+            GetComponent<QRDetection>().lockPlane = true;
+            GetComponent<RealWorldPropertyMapper>().MapProperties(); 
+            TutorialSelectionPopUp(); 
+        };
         openDialogs.Add(d);
+    }
+
+    private void TutorialSelectionPopUp()
+    {
+        closeOpenDialogs();
+        Dialog d = Dialog.Open(buttonDialogPrefab, DialogButtonType.Yes | DialogButtonType.No, "Begin Tutorial", "Would you like to proceed with the tutorial level?", true);
+        d.OnClosed += HandleTutorialSelectionEvent;// delegate (DialogResult dr) { TutorialSelectionPopUp(); };
+        openDialogs.Add(d);
+    }
+
+    private void HandleTutorialSelectionEvent(DialogResult result)
+    {
+        if (result.Result == DialogButtonType.Yes)
+        {
+            gameStateManager.BeginTutorial();
+        }
+        else
+        {
+            gameStateManager.BeginRound();
+        }
+    }
+
+    public void TutorialPlanPopUp()
+    {
+
+    }
+
+    public void TutorialBattlePopUp()
+    {
+
     }
 
     private void closeOpenDialogs()
@@ -45,6 +82,7 @@ public class UIController : MonoBehaviour
         {
             openDialogs[i].DismissDialog();
         }
+        openDialogs.Clear();
     }
 
     public void Win()
@@ -59,10 +97,15 @@ public class UIController : MonoBehaviour
         infoText.text = "You lose!\nEnemies Killed: " + enemiesKilled;
     }
 
+    public void ResetTimer(int time)
+    {
+        roundTime = time;
+    }
+
     public void DecreaseTime()
     {
-        infoText.text = "" + roundTime;
         roundTime -= 1;
+        infoText.text = "" + roundTime.ToString();
     }
 }
 

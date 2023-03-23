@@ -7,13 +7,18 @@ public class EnemyManager : MonoBehaviour
     private List<GameObject> _enemies = new List<GameObject>();
     public GameObject[] enemies { get { return _enemies.ToArray(); } }
     private GameObject targetEnemy;
-    public GameObject enemyPrefab;
+    public GameObject antPrefab;
+    public GameObject armouredBugPrefab;
+    public GameObject armouredCockroachPrefab;
+    public GameObject armouredStagbeetlePrefab;
+    public GameObject DragonflyPrefab;
+
     private int enemiesKilled = 0;
     private float timer = 0;
     public float spawnInterval = 3;
     private float spawnHeight;
     private (Vector3 origin, Vector3 vert, Vector3 horz)[] spawnVectors = new (Vector3 origin, Vector3 vert, Vector3 horz)[2];
-
+    private Dictionary<GameStateManager.EnemyType, int> enemiesLeft;
     bool started = false;
     bool firstSpawn = false;
 
@@ -39,10 +44,6 @@ public class EnemyManager : MonoBehaviour
                 spawnEnemy();
                 timer = 0;
             }
-
-            if (targetEnemy != null) { 
-            
-            }
         }
     }
 
@@ -65,9 +66,38 @@ public class EnemyManager : MonoBehaviour
         return enemiesKilled;
     }
 
+    GameObject getEnemyPrefab(GameStateManager.EnemyType enemyType)
+    {
+        switch (enemyType)
+        {
+            case GameStateManager.EnemyType.Ant:
+                return antPrefab;
+            case GameStateManager.EnemyType.Armoured_Bug:
+                return armouredBugPrefab;
+            case GameStateManager.EnemyType.Armoured_Cockroach:
+                return armouredCockroachPrefab;
+            case GameStateManager.EnemyType.Armoured_Stagbeetle:
+                return armouredStagbeetlePrefab;
+            case GameStateManager.EnemyType.Dragonfly:
+                return DragonflyPrefab;
+        }
+        return antPrefab;
+    }
+
     void spawnEnemy()
     {
-        //Vector3 randomSpawnPosition = spawnCentre + new Vector3(Random.Range(-coordinate_X, coordinate_X), spawnHeight, Random.Range(-coordinate_Y, coordinate_Y));
+        GameStateManager.EnemyType enemyType = (GameStateManager.EnemyType)Random.Range(0, enemiesLeft.Count);
+        while (enemiesLeft.Count > 0 && enemiesLeft[enemyType] == 0)
+        {
+            enemiesLeft.Remove(enemyType);
+            enemyType = (GameStateManager.EnemyType)Random.Range(0, enemiesLeft.Count);
+        }
+        if(enemiesLeft.Count == 0)
+        {
+            return;
+        }
+        enemiesLeft[enemyType]--;
+        GameObject enemyPrefab = getEnemyPrefab(enemyType);
 
         int LR = Random.Range(0, 2); // Random
         (Vector3 origin, Vector3 vert, Vector3 horz) spawnAxes = spawnVectors[LR]; // chooses either the left or right edge to spawn from.
@@ -81,20 +111,17 @@ public class EnemyManager : MonoBehaviour
         Debug.DrawLine(spawnAxes.origin, spawnAxes.origin + spawnAxes.horz, Color.white, 1000);
     }
 
-    public void StartSpawning()
+    public void StartSpawning(Dictionary<GameStateManager.EnemyType, int> enemies)
     {
-        started = true;
+        enemiesLeft = enemies;
         Vector3 verticalLeft = GameProperties.BottomLeftCorner - GameProperties.TopLeftCorner;
         Vector3 horizontalLeft = (GameProperties.TopRightCorner - GameProperties.TopLeftCorner) * 0.1f;
         Vector3 verticalRight = GameProperties.BottomRightCorner - GameProperties.TopRightCorner;
         Vector3 horizontalRight = (GameProperties.TopLeftCorner - GameProperties.TopRightCorner) * 0.1f;
         spawnVectors[0] = (GameProperties.TopLeftCorner, verticalLeft, horizontalLeft);
         spawnVectors[1] = (GameProperties.TopRightCorner, verticalRight, horizontalRight);
-        //spawnCentre = GameProperties.BottomLeftCorner + (0.5f * vertical) + (0.1f * horizontal);
-        //coordinate_X = horizontal.x * 0.04f;
-        //coordinate_Y = vertical.z *0.2f;
-
         spawnHeight = 0.01f + GameProperties.FloorHeight;
+        started = true;
     }
 
     public void RemoveEnemy(GameObject enemy, bool killedByPlayer)

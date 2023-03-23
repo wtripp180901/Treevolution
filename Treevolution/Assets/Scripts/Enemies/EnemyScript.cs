@@ -7,6 +7,7 @@ using TMPro;
 
 public class EnemyScript : MonoBehaviour
 {
+    RoundTimer roundTimer;
     public Rigidbody rig;
     [SerializeField] // This allows the private field to be edited from the Unity inspecter
     private float speed = 0.1f;
@@ -16,15 +17,7 @@ public class EnemyScript : MonoBehaviour
     Vector3 directionVector;
     Vector3 currentTarget;
     int pathCounter = 0;
-    int health = 10;
-
-    [SerializeField]
-    private List<string> climbableTags = new List<string>() { "Wall", "Tower" };
-    bool climbing = false;
-    float targetHeight;
-    public float baseHeight;
-    
-    public TMP_Text debugText;
+    int health = 10;    
 
     [SerializeField]
     private AudioSource damageAudio;
@@ -37,11 +30,14 @@ public class EnemyScript : MonoBehaviour
         rig = GetComponent<Rigidbody>();
         Initialise();
         spawnAudio.Play();
+        roundTimer = GameObject.Find("Logic").GetComponent<RoundTimer>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (roundTimer.IsPaused)
+            return;
         Vector3 pos = transform.position;
         if (followingPath && rig.velocity.y >= -5f)
         {
@@ -54,20 +50,6 @@ public class EnemyScript : MonoBehaviour
             directionVector = enemyToTarget.normalized * speed;
             rig.MovePosition(pos + directionVector);
         }
-        /*if (climbing)
-        {
-            if (pos.y < targetHeight)
-            {
-                rig.MovePosition(pos + transform.up * speed);
-            }
-            else
-            {
-                rig.MovePosition(pos + new Vector3(60 * directionVector.x, 0, 60 * directionVector.z));
-                climbing = false;
-                followingPath = true;
-                rig.useGravity = true;
-            }
-        }*/
     }
 
     private void startMoveToNextTarget()
@@ -99,18 +81,6 @@ public class EnemyScript : MonoBehaviour
         {
             Damage(1);
         }
-        /*else if (climbableTags.Contains(otherCollider.gameObject.tag))
-        {
-            float topOfCollider = otherCollider.bounds.extents.y / 2 + collision.gameObject.transform.position.y;
-            float heightAboveObject = topOfCollider + gameObject.GetComponent<Collider>().bounds.extents.y;// + 0.01f;
-            if (transform.position.y < topOfCollider)
-            {
-                followingPath = false;
-                rig.useGravity = false;
-                climbing = true;
-                targetHeight = heightAboveObject;
-            }
-        }*/
         if (!hasHitFloor && (GetComponent<Collider>().gameObject.tag == "Floor" || GetComponent<Collider>().gameObject.tag == "Wall"))
         {
             hasHitFloor = true;
@@ -121,7 +91,6 @@ public class EnemyScript : MonoBehaviour
     {
         Vector3 pos = transform.position;
         path = Pathfinding.Pathfinder.GetPath(pos, GameObject.FindGameObjectWithTag("Tree").transform.position);
-        baseHeight = pos.y;
         rig.freezeRotation = true;
         startMoveToNextTarget();
 

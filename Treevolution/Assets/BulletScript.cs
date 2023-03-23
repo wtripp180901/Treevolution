@@ -13,8 +13,6 @@ public class BulletScript : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-
-        //  Destroy(collision.gameObject);
         if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Tree") Destroy(gameObject);
     }
 }
