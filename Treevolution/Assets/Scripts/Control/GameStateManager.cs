@@ -81,6 +81,11 @@ public class GameStateManager : MonoBehaviour
         UIController.CalibrationPopUp();
     }
 
+    private void Update()
+    {
+        debugText.text = Time.deltaTime.ToString();
+    }
+
     public void CalibrationSuccess()
     {
         currentState = GameState.Plane_Mapped;
@@ -107,7 +112,6 @@ public class GameStateManager : MonoBehaviour
         infoText.text = "Round " + roundNumber.ToString() + "\n-[Planning]-";
         startButton.transform.position = GameProperties.Centre + new Vector3(0, 0.6f, 0);
         startButton.SetActive(true);
-        debugText.text = "paused = " + roundTimer.IsPaused.ToString() + "\n" + "firstSpawn = " + enemyManager.firstSpawn + "\nspawning = " + enemyManager.started;
 
     }
 
@@ -118,7 +122,6 @@ public class GameStateManager : MonoBehaviour
         enemyManager.StartSpawning(enemyWaves[roundNumber]);
         roundTimer.StartTimer();
         currentState = GameState.Round_Battle;
-        debugText.text = "paused = " + roundTimer.IsPaused.ToString() + "\n" + "firstSpawn = " + enemyManager.firstSpawn + "\nspawning = " + enemyManager.started;
 
     }
 

@@ -19,7 +19,8 @@ public class EnemyManager : MonoBehaviour
     public float spawnInterval = 3;
     private float spawnHeight;
     private (Vector3 origin, Vector3 vert, Vector3 horz)[] spawnVectors = new (Vector3 origin, Vector3 vert, Vector3 horz)[2];
-    private Dictionary<GameStateManager.EnemyType, int> enemiesLeft;
+    private Dictionary<GameStateManager.EnemyType, int> roundEnemies;
+    private GameStateManager.EnemyType[] enemiesLeft;
     public bool started = false;
     public bool firstSpawn = false;
 
@@ -88,17 +89,19 @@ public class EnemyManager : MonoBehaviour
 
     void spawnEnemy()
     {
-        GameStateManager.EnemyType enemyType = (GameStateManager.EnemyType)Random.Range(0, enemiesLeft.Count);
-        while (enemiesLeft.Count > 0 && enemiesLeft[enemyType] == 0)
+        enemiesLeft = new GameStateManager.EnemyType[roundEnemies.Count];
+        roundEnemies.Keys.CopyTo(enemiesLeft, 0);
+        GameStateManager.EnemyType enemyType = enemiesLeft[Random.Range(0, roundEnemies.Count)];
+        while (roundEnemies.Count > 0 && roundEnemies[enemyType] == 0)
         {
-            enemiesLeft.Remove(enemyType);
-            enemyType = (GameStateManager.EnemyType)Random.Range(0, enemiesLeft.Count);
+            roundEnemies.Remove(enemyType);
+            enemyType = enemiesLeft[Random.Range(0, roundEnemies.Count)];
         }
-        if(enemiesLeft.Count == 0)
+        if(roundEnemies.Count == 0)
         {
             return;
         }
-        enemiesLeft[enemyType]--;
+        roundEnemies[enemyType]--;
         GameObject enemyPrefab = getEnemyPrefab(enemyType);
 
         int LR = Random.Range(0, 2); // Random
@@ -115,7 +118,7 @@ public class EnemyManager : MonoBehaviour
 
     public void StartSpawning(Dictionary<GameStateManager.EnemyType, int> enemies)
     {
-        enemiesLeft = enemies;
+        roundEnemies = enemies;
         Vector3 verticalLeft = GameProperties.BottomLeftCorner - GameProperties.TopLeftCorner;
         Vector3 horizontalLeft = (GameProperties.TopRightCorner - GameProperties.TopLeftCorner) * 0.1f;
         Vector3 verticalRight = GameProperties.BottomRightCorner - GameProperties.TopRightCorner;

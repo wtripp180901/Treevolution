@@ -79,7 +79,7 @@ public class QRDetection : MonoBehaviour
         }
         else if (!QRCodeWatcher.IsSupported())
         {
-            debugText.text = "QR Is Unsupported";
+            //debugText.text = "QR Is Unsupported";
         }
     }
 
