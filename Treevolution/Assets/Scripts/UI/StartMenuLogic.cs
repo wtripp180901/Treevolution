@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Microsoft.MixedReality.Toolkit.UI;
 using Microsoft.MixedReality.QR;
+using Microsoft.MixedReality.Toolkit.SceneSystem;
+using Microsoft.MixedReality.Toolkit;
+using UnityEngine.SceneManagement;
 
 public class StartMenuLogic : MonoBehaviour
 {
@@ -12,8 +15,6 @@ public class StartMenuLogic : MonoBehaviour
     private void Start()
     {
         QRCodeWatcher.RequestAccessAsync();
-        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Game", UnityEngine.SceneManagement.UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
-
     }
 
     public void openStartMenu()
