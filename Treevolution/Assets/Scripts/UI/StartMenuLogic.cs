@@ -12,6 +12,8 @@ public class StartMenuLogic : MonoBehaviour
     private void Start()
     {
         QRCodeWatcher.RequestAccessAsync();
+        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Game", UnityEngine.SceneManagement.UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
+
     }
 
     public void openStartMenu()
