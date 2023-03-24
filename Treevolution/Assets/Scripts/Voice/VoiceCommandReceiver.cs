@@ -33,7 +33,6 @@ public class VoiceCommandReceiver : MonoBehaviour
 
     public void LightningBolt()
     {
-        ProcessDictation("proceed and dispatch");
         GameObject[] enemies = enemyManager.enemies;
         Vector2 pointerPoint = new Vector2(pointer.transform.position.x, pointer.transform.position.z);
         for (int i = 0;i < enemies.Length; i++)
