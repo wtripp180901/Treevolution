@@ -9,10 +9,15 @@ public class LanguageParser
     const string fl = "fl";
     const string syns = "syns";
 
-    WordActionMapper wordActionMapper = new WordActionMapper();
+    WordActionMapper wordActionMapper;
     ThesaurusAPICaller APICaller = new ThesaurusAPICaller("APIKey");
 
-    public List<BuddyAction> GetInstructionStream(JArray[] wordData)
+    public LanguageParser(string rawBasewordData)
+    {
+        wordActionMapper = new WordActionMapper(rawBasewordData);
+    }
+
+    /*public List<BuddyAction> GetInstructionStream(JArray[] wordData)
     {
         List<BuddyAction> instructions = new List<BuddyAction>();
         for (int i = 0; i < wordData.Length; i++)
@@ -36,11 +41,12 @@ public class LanguageParser
             }
         }
         return instructions;
-    }
+    }*/
+
+    List<BuddyAction> instructions = new List<BuddyAction>();
 
     public IEnumerator GetInstructionStream(string[] words)
     {
-        List<BuddyAction> instructions = new List<BuddyAction>();
 
         foreach(string word in words)
         {
@@ -54,26 +60,32 @@ public class LanguageParser
             else
             {
                 //Word is unknown, test if any of it's synonyms match known words
-                JArray synonymData = APICaller.GetSynonyms(word);
-                if (synonymData != null)
-                {
-                    Dictionary<string, List<string>> synonymsOfFunctionalLabel = new Dictionary<string, List<string>>();
-                    getSynonymsForEachFunctionalLabel(synonymData, synonymsOfFunctionalLabel);
-                    foreach(string fl in synonymsOfFunctionalLabel.Keys)
-                    {
-                        List<string> flWords;
-                        synonymsOfFunctionalLabel.TryGetValue(fl, out flWords);
-                        BUDDY_ACTION_TYPES currentActionType;
-                        if(wordActionMapper.GetActionIfSynonymsMatchCachedWords(fl,flWords,out currentActionType))
-                        {
-                            instructions.Add(new BuddyAction(currentActionType, new Vector3(0, 0, 0)));
-                        }
-                    }
-                }
-                yield return null;
+                yield return APICaller.GetSynonyms(word,synonymAPICallResults);
+                //Rest of exection defered to APICaller.GetSynonyms and synonymAPICallResults
             }
         }
-        //GameObject.FindWithTag("Logic").Ge
+        GameObject.FindWithTag("Logic").GetComponent<VoiceCommandReceiver>().HandleDictationProcessingResults(instructions);
+    }
+
+    public IEnumerator synonymAPICallResults(JArray results)
+    {
+        Debug.Log("hit");
+        if (results != null)
+        {
+            Dictionary<string, List<string>> synonymsOfFunctionalLabel = new Dictionary<string, List<string>>();
+            getSynonymsForEachFunctionalLabel(results, synonymsOfFunctionalLabel);
+            foreach (string fl in synonymsOfFunctionalLabel.Keys)
+            {
+                List<string> flWords;
+                synonymsOfFunctionalLabel.TryGetValue(fl, out flWords);
+                BUDDY_ACTION_TYPES currentActionType;
+                if (wordActionMapper.GetActionIfSynonymsMatchCachedWords(fl, flWords, out currentActionType))
+                {
+                    instructions.Add(new BuddyAction(currentActionType, new Vector3(0, 0, 0)));
+                }
+            }
+        }
+        yield return null;
     }
 
     private void getSynonymsForEachFunctionalLabel(JArray word, Dictionary<string, List<string>> synonymsOfFunctionalLabel)

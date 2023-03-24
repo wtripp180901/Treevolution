@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BUDDY_ACTION_TYPES { Move, Error }
+public enum BUDDY_ACTION_TYPES { Move, Error, Attack }
 
 public class BuddyAction
 {
