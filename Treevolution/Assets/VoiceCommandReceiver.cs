@@ -6,16 +6,18 @@ public class VoiceCommandReceiver : MonoBehaviour
 {
     public GameObject pointer;
     private EnemyManager enemyManager;
+    private GameStateManager gameStateManager;
 
     private void Start()
     {
         enemyManager = GetComponent<EnemyManager>();
+        gameStateManager = GetComponent<GameStateManager>();
     }
 
     public void PauseGame()
     {
-        //Time.timeScale = 0f;
-        GetComponent<RoundTimer>().PauseTimer();
+        if(gameStateManager.CurrentGameState == GameStateManager.GameState.Round_Battle || gameStateManager.CurrentGameState == GameStateManager.GameState.Tutorial_Battle)
+            GetComponent<RoundTimer>().PauseTimer();
     }
 
     public void LightningBolt()

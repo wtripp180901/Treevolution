@@ -8,26 +8,27 @@ using UnityEngine.Events;
 public class GameStateManager : MonoBehaviour
 {
     public TMP_Text infoText;
+    public TMP_Text debugText;
     public GameObject tree;
     public GameObject startButton;
     public GameObject debugObject;
     public bool devMode = false;
+    private QRDetection qrDetection;
     private UIController UIController;
+    private EnemyManager enemyManager;
+    private RoundTimer roundTimer;
     private GameState currentState;
+    public GameState CurrentGameState { get { return currentState; } }
     private int roundNumber = 0;
 
-    private enum GameState
+    public enum GameState
     {
         Calibration,
         Plane_Mapped,
         Tutorial_Plan,
         Tutorial_Battle,
-        Round1_Plan,
-        Round1_Battle,
-        Round2_Plan,
-        Round2_Battle,
-        Round3_Plan,
-        Round3_Battle
+        Round_Plan,
+        Round_Battle
     }
     public enum EnemyType
     {
@@ -65,7 +66,6 @@ public class GameStateManager : MonoBehaviour
         }
     };
 
-
     private void Start()
     {
         if (devMode)
@@ -74,6 +74,9 @@ public class GameStateManager : MonoBehaviour
         }
         currentState = GameState.Calibration;
         UIController = GetComponent<UIController>();
+        qrDetection = GetComponent<QRDetection>();
+        enemyManager = GetComponent<EnemyManager>();
+        roundTimer = GetComponent<RoundTimer>();
         infoText.text = "";
         UIController.CalibrationPopUp();
     }
@@ -88,6 +91,7 @@ public class GameStateManager : MonoBehaviour
 
     public void BeginTutorial()
     {
+        roundNumber = 0;
         currentState = GameState.Tutorial_Plan;
         UIController.TutorialPlanPopUp();
         currentState = GameState.Tutorial_Battle;
@@ -97,19 +101,25 @@ public class GameStateManager : MonoBehaviour
 
     public void BeginRound()
     {
-        currentState++;
+        infoText.transform.position = GameProperties.Centre + new Vector3(0, 0.7f, 0);
+        currentState = GameState.Round_Plan;
         roundNumber++;
-        infoText.text = "Round " + roundNumber.ToString() + " - Planning";
+        infoText.text = "Round " + roundNumber.ToString() + "\n-[Planning]-";
         startButton.transform.position = GameProperties.Centre + new Vector3(0, 0.6f, 0);
         startButton.SetActive(true);
+        debugText.text = "paused = " + roundTimer.IsPaused.ToString() + "\n" + "firstSpawn = " + enemyManager.firstSpawn + "\nspawning = " + enemyManager.started;
+
     }
 
     public void BeginBattle()
     {
-        infoText.text = "";
-        GetComponent<QRDetection>().StopQR();
-        GetComponent<EnemyManager>().StartSpawning(enemyWaves[roundNumber-1]);
-        GetComponent<RoundTimer>().StartTimer();
+        infoText.transform.position = GameProperties.Centre + new Vector3(0, 0.6f, 0);
+        qrDetection.StopQR();
+        enemyManager.StartSpawning(enemyWaves[roundNumber]);
+        roundTimer.StartTimer();
+        currentState = GameState.Round_Battle;
+        debugText.text = "paused = " + roundTimer.IsPaused.ToString() + "\n" + "firstSpawn = " + enemyManager.firstSpawn + "\nspawning = " + enemyManager.started;
+
     }
 
     public void EndBattle()
@@ -117,24 +127,35 @@ public class GameStateManager : MonoBehaviour
         try
         {
             clearEnemies();
-            GetComponent<RoundTimer>().StopTimer();
-            GetComponent<EnemyManager>().StopSpawning();
-            GetComponent<QRDetection>().StartQR();
-            startButton.SetActive(true);
+            roundTimer.StopTimer();
+            enemyManager.StopSpawning();
+            qrDetection.StartQR();
             int enemiesKilled = GetComponent<EnemyManager>().getEnemiesKilled();
-            infoText.text = "Round " + roundNumber.ToString() + " Over\n" + enemiesKilled.ToString() + " Enemies Killed";
-            StartCoroutine(waitAndNextRound(3));
+            infoText.text = "Round " + roundNumber.ToString() + " Over\n-[" + enemiesKilled.ToString() + " Enemies Killed]-";
+            StartCoroutine(displayScore(3));
         }
-        catch(UnityException e)
+        catch(System.Exception e)
         {
             Debug.Log(e.Message);
         }
     }
 
-    IEnumerator waitAndNextRound(int secs)
+    private void EndGame()
+    {
+        UIController.EndPopUp();
+    }
+
+    IEnumerator displayScore(int secs)
     {
         yield return new WaitForSeconds(secs);
-        BeginRound();
+        if (roundNumber <= 3)
+        {
+            BeginRound();
+        }
+        else
+        { 
+            EndGame();
+        }
     }
     
 
@@ -143,7 +164,7 @@ public class GameStateManager : MonoBehaviour
         GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy");
         for (int i = 0; i < enemyList.Length; i++)
         {
-            Destroy(enemyList[i]);
+            enemyList[i].GetComponent<EnemyScript>().DestroyEnemy(false);
         }
     }
 

@@ -40,15 +40,16 @@ public class PlaneMapper : MonoBehaviour
 
     public void CreateNewPlane(Pose marker)
     {
+        if (qrDetection.lockPlane)
+        {
+            return;
+        }
         if (planeIsMapped == false)
         {
             gameStateManager.CalibrationSuccess();
             planeIsMapped = true;
         }
-        if (qrDetection.lockPlane)
-        {
-            return;
-        }
+
         marker.rotation = Quaternion.LookRotation(marker.up, marker.forward);
         marker.rotation = Quaternion.Euler(0, marker.rotation.eulerAngles.y, 0);
         _pose = marker;

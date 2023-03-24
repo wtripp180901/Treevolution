@@ -40,22 +40,6 @@ public class RoundTimer : MonoBehaviour
         PauseTimer();
     }
 
-    private void OnApplicationPause(bool pause)
-    {
-        return;
-        switch (pause)
-        {
-            case true:
-                if (hasStarted && !isStopped)
-                    PauseTimer();
-                break;
-            case false:
-                if (hasStarted && isPaused && !isStopped)
-                    PauseTimer();
-                break;
-        }
-    }
-
     public void StartTimer()
     {
         roundTimer = 0;

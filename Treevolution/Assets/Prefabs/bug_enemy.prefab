@@ -813,7 +813,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.01, y: 0.042305432, z: 0.028293617}
+  m_Size: {x: 0.015, y: 0.042305432, z: 0.028293617}
   m_Center: {x: 0, y: 0.020402716, z: 0.00009233724}
 --- !u!82 &-8574627122206256241
 AudioSource:
@@ -1060,18 +1060,6 @@ Halo:
     serializedVersion: 2
     rgba: 4280025343
   m_Size: 0.02
---- !u!114 &-6925451145284482706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7479068726099194787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c369702e33341104bb399eefb6ae39ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4176392743308775270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1086,14 +1074,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rig: {fileID: 7545518852106094609}
   speed: 0.0015
-  climbableTags:
-  - Wall
-  - Tower
-  baseHeight: 0
-  debugText: {fileID: 0}
   damageAudio: {fileID: 3515251500103657986}
   spawnAudio: {fileID: -8574627122206256241}
---- !u!114 &5445011000139634217
+--- !u!114 &506596140577107290
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1108,3 +1091,15 @@ MonoBehaviour:
   eventsToReceive: 0
   debounceThreshold: 0.01
   touchableCollider: {fileID: 4030984713373917242}
+--- !u!114 &7485063446225539945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7479068726099194787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c369702e33341104bb399eefb6ae39ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

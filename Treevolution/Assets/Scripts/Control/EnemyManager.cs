@@ -13,24 +13,26 @@ public class EnemyManager : MonoBehaviour
     public GameObject armouredStagbeetlePrefab;
     public GameObject DragonflyPrefab;
 
+    private RoundTimer roundTimer;
     private int enemiesKilled = 0;
     private float timer = 0;
     public float spawnInterval = 3;
     private float spawnHeight;
     private (Vector3 origin, Vector3 vert, Vector3 horz)[] spawnVectors = new (Vector3 origin, Vector3 vert, Vector3 horz)[2];
     private Dictionary<GameStateManager.EnemyType, int> enemiesLeft;
-    bool started = false;
-    bool firstSpawn = false;
+    public bool started = false;
+    public bool firstSpawn = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        roundTimer = GetComponent<RoundTimer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (started)
+        if (started && !roundTimer.IsPaused)
         {
             if (!firstSpawn)
             {

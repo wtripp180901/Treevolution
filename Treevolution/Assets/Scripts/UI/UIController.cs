@@ -14,7 +14,7 @@ public class UIController : MonoBehaviour
     public Material backPlateGreen;
 
     public TMP_Text infoText;
-    public int roundTime = 60;
+    private int roundTime = 60;
     private EnemyManager enemyManager;
     private GameStateManager gameStateManager;
     private List<Dialog> openDialogs = new List<Dialog>();
@@ -36,11 +36,11 @@ public class UIController : MonoBehaviour
     public void CalibrationSuccessPopUp()
     {
         closeOpenDialogs();
-        Dialog d = Dialog.Open(buttonDialogPrefab, DialogButtonType.Confirm, "Calibration Success", "You have successfully calibrated the Game Board! Ensure that it lines up with the table, then click Confirm to lock the board.", true);
+        Dialog d = Dialog.Open(buttonDialogPrefab, DialogButtonType.Confirm, "Calibration Success", "You have successfully calibrated the Game Board! Ensure that it lines up with the table, then click Confirm to lock the board in place.", true);
         d.gameObject.transform.GetChild(3).gameObject.GetComponent<MeshRenderer>().material = backPlateGreen;
         d.OnClosed = delegate (DialogResult dr) {
             GetComponent<QRDetection>().lockPlane = true;
-            GetComponent<RealWorldPropertyMapper>().MapProperties(); 
+            GetComponent<RealWorldPropertyMapper>().MapProperties();
             TutorialSelectionPopUp(); 
         };
         openDialogs.Add(d);
@@ -74,6 +74,17 @@ public class UIController : MonoBehaviour
     public void TutorialBattlePopUp()
     {
 
+    }
+
+    public void EndPopUp()
+    {
+        closeOpenDialogs();
+        Dialog d = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Congratulations!", "Score: " + enemyManager.getEnemiesKilled(), true);
+        d.OnClosed += delegate (DialogResult dr)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("StartMenu");
+        };
+        openDialogs.Add(d);
     }
 
     private void closeOpenDialogs()
