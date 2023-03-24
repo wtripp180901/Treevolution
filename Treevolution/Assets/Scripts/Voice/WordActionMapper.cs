@@ -7,13 +7,20 @@ public class WordActionMapper
 {
     Dictionary<string, Dictionary<BUDDY_ACTION_TYPES, List<string>>> flCategoriesOfActions = new Dictionary<string, Dictionary<BUDDY_ACTION_TYPES, List<string>>>();
     
-    public WordActionMapper()
+    public WordActionMapper(string rawBasewordData)
     {
-        LoadCachedWords();
+        LoadCachedWords(rawBasewordData);
     }
-    private void LoadCachedWords()
+    private void LoadCachedWords(string rawData)
     {
-        string[] data = Resources.Load<TextAsset>("basewords").text.Split("\n");
+        string[] data = rawData.Split('\n');
+
+        //Truncating random characters added to end of read data
+        for(int i = 0;i < data.Length - 1; i++)
+        {
+            data[i] = data[i].Substring(0, data[i].Length - 1);
+        }
+
         for(int i = 0;i < data.Length;i += 3)
         {
             string fl = data[i];
@@ -50,8 +57,10 @@ public class WordActionMapper
         {
             case "Move":
                 return BUDDY_ACTION_TYPES.Move;
+            case "Attack":
+                return BUDDY_ACTION_TYPES.Attack;
             default:
-                Debug.Log(toConvert + "not mapped in stringToAction");
+                Debug.Log(toConvert + " not mapped in stringToAction");
                 return BUDDY_ACTION_TYPES.Error;
         }
     }

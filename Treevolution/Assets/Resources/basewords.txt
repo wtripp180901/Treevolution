@@ -1,3 +1,6 @@
 verb
 Move
 go move
+verb
+Attack
+attack shoot kill

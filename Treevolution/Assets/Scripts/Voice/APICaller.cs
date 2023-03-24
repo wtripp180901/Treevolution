@@ -31,17 +31,18 @@ public class ThesaurusAPICaller
         }
     }
 
-    public JArray GetSynonyms(string word)
+    public IEnumerator GetSynonyms(string word,Func<JArray,IEnumerator> callback)
     {
         UnityWebRequest request = UnityWebRequest.Get(getUrl(word));
-        request.SendWebRequest();
+        yield return request.SendWebRequest();
         if (request.result == UnityWebRequest.Result.Success)
         {
-            return JArray.Parse(request.downloadHandler.text);
+            yield return callback(JArray.Parse(request.downloadHandler.text));
         }
         else
         {
-            return null;
+            Debug.Log("web request failed: "+request.result);
+            yield return callback(null);
         }
         /*if(request.result == UnityWebRequest.Result.Success)
         {
