@@ -30,9 +30,13 @@ public class UIController : MonoBehaviour
 
     public void CalibrationPopUp()
     {
+        closeOpenDialogs();
         Dialog d = Dialog.Open(infoDialogPrefab, DialogButtonType.None, "Calibrate Game Board", "Find, and look at the QR Code in the corner of the table to calibrate the Game Board.", true);
         d.gameObject.transform.GetChild(3).gameObject.GetComponent<MeshRenderer>().material = backPlateOrange;
-        openDialogs.Add(d);
+        lock (openDialogs)
+        {
+            openDialogs.Add(d);
+        }
     }
 
     public void CalibrationSuccessPopUp()
@@ -45,7 +49,10 @@ public class UIController : MonoBehaviour
             GetComponent<RealWorldPropertyMapper>().MapProperties();
             TutorialSelectionPopUp(); 
         };
-        openDialogs.Add(d);
+        lock (openDialogs)
+        {
+            openDialogs.Add(d);
+        }
     }
 
     private void TutorialSelectionPopUp()
@@ -53,7 +60,10 @@ public class UIController : MonoBehaviour
         closeOpenDialogs();
         Dialog d = Dialog.Open(buttonDialogPrefab, DialogButtonType.Yes | DialogButtonType.No, "Begin Tutorial", "Would you like to proceed with the tutorial level?", true);
         d.OnClosed += HandleTutorialSelectionEvent;// delegate (DialogResult dr) { TutorialSelectionPopUp(); };
-        openDialogs.Add(d);
+        lock (openDialogs)
+        {
+            openDialogs.Add(d);
+        }
     }
 
     private void HandleTutorialSelectionEvent(DialogResult result)
@@ -86,16 +96,25 @@ public class UIController : MonoBehaviour
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("StartMenu");
         };
-        openDialogs.Add(d);
+        lock (openDialogs)
+        {
+            openDialogs.Add(d);
+        }
     }
 
     private void closeOpenDialogs()
     {
-        for (int i = 0; i < openDialogs.Count; i++)
+        if (openDialogs != null)
         {
-            openDialogs[i].DismissDialog();
+            lock (openDialogs)
+            {
+                for (int i = 0; i < openDialogs.Count; i++)
+                {
+                    openDialogs[i].DismissDialog();
+                }
+                openDialogs.Clear();
+            }
         }
-        openDialogs.Clear();
     }
 
     public void Win()
