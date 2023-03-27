@@ -5,6 +5,7 @@ using TMPro;
 using Microsoft.MixedReality.Toolkit.UI;
 using Microsoft.MixedReality.Toolkit.SceneSystem;
 using Microsoft.MixedReality.Toolkit;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -94,7 +95,8 @@ public class UIController : MonoBehaviour
         Dialog d = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Congratulations!", "Score: " + enemyManager.getEnemiesKilled(), true);
         d.OnClosed += delegate (DialogResult dr)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("StartMenu");
+            SceneManager.LoadScene("StartMenu");
+            SceneManager.UnloadSceneAsync("Game");
         };
         lock (openDialogs)
         {
