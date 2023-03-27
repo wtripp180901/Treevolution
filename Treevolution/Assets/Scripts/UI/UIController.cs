@@ -37,6 +37,6 @@ public class UIController : MonoBehaviour
 
     public void ShowDictation(string dictation)
     {
-        dictationText.text = dictation;
+        dictationText.text += dictation;
     }
 }
