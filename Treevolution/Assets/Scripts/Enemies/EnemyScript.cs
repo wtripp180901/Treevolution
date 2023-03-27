@@ -11,7 +11,7 @@ public class EnemyScript : MonoBehaviour
     public Rigidbody rig;
     [SerializeField] // This allows the private field to be edited from the Unity inspecter
     private float speed = 0.1f;
-
+    private HealthBar healthBar;
     private Vector3[] path;
     private bool followingPath = true;
     private Vector3 directionVector;
@@ -23,6 +23,9 @@ public class EnemyScript : MonoBehaviour
     private AudioSource damageAudio;
     [SerializeField]
     private AudioSource spawnAudio;
+    private EnemyManager enemyManager;
+    private SpawnDirectionIndicator leftIndicator;
+    private SpawnDirectionIndicator rightIndicator;
 
     private Vector3 defaultOrientation;
 
@@ -30,16 +33,24 @@ public class EnemyScript : MonoBehaviour
     void Start()
     {
         defaultOrientation = transform.rotation.eulerAngles;
+        roundTimer = GameObject.Find("Logic").GetComponent<RoundTimer>();
         rig = GetComponent<Rigidbody>();
+        healthBar = GetComponent<HealthBar>();
+        leftIndicator = GameObject.FindWithTag("LeftIndicator").GetComponent<SpawnDirectionIndicator>();
+        rightIndicator = GameObject.FindWithTag("RightIndicator").GetComponent<SpawnDirectionIndicator>();
+        enemyManager = GameObject.FindWithTag("Logic").GetComponent<EnemyManager>();
+        if (flying)
+            rig.useGravity = false;
+        else
+            rig.useGravity = true;
         Initialise();
         //spawnAudio.Play();
-        roundTimer = GameObject.Find("Logic").GetComponent<RoundTimer>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (roundTimer.IsPaused)
+        if (roundTimer != null && roundTimer.IsPaused)
             return;
         Vector3 pos = transform.position;
         if (followingPath && rig.velocity.y >= -5f)
@@ -66,9 +77,10 @@ public class EnemyScript : MonoBehaviour
             currentTarget = path[pathCounter];
             directionVector = (currentTarget - transform.position).normalized * speed;
             directionVector.y = 0;
-            transform.rotation = Quaternion.Euler(Quaternion.LookRotation(directionVector, transform.up).eulerAngles-defaultOrientation);
+            transform.rotation = Quaternion.Euler(Quaternion.LookRotation(directionVector, transform.up).eulerAngles+defaultOrientation);
             pathCounter += 1;
         }
+        GameObject.FindGameObjectWithTag("DebugText").GetComponent<TMP_Text>().text = "pathLen=" + path.Length.ToString() + "\nfollowingPath=" + followingPath.ToString() + "\vtarg=" + currentTarget.ToString() + "\npathCounter=" + pathCounter.ToString() + "\nTimer=" + roundTimer.isRunning;
     }
 
     bool hasHitFloor = false;
@@ -84,7 +96,7 @@ public class EnemyScript : MonoBehaviour
         {
             Damage(1);
         }
-        if (!hasHitFloor && (GetComponent<Collider>().gameObject.tag == "Floor" || GetComponent<Collider>().gameObject.tag == "Wall"))
+        if (!hasHitFloor && (otherCollider.gameObject.tag == "Floor" || otherCollider.gameObject.tag == "Wall"))
         {
             hasHitFloor = true;
         }
@@ -92,7 +104,7 @@ public class EnemyScript : MonoBehaviour
 
     private void Initialise()
     {
-        
+        healthBar.SetMaxHealth(health);
         if (flying)
         {
             transform.position = transform.position + Vector3.up * 0.25f;
@@ -100,12 +112,13 @@ public class EnemyScript : MonoBehaviour
         Vector3 pos = transform.position;
         path = Pathfinder.GetPath(pos, GameObject.FindGameObjectWithTag("Tree").transform.position);
         rig.freezeRotation = true;
+
         startMoveToNextTarget();
 
         Vector2 screenSpawnPos = Camera.main.WorldToScreenPoint(transform.position);
         SpawnDirectionIndicator spawnDirectionIndicator = null;
-        if (screenSpawnPos.x < 0) spawnDirectionIndicator = GameObject.FindWithTag("LeftIndicator").GetComponent<SpawnDirectionIndicator>();
-        if (screenSpawnPos.x > Screen.width) spawnDirectionIndicator = GameObject.FindWithTag("RightIndicator").GetComponent<SpawnDirectionIndicator>();
+        if (screenSpawnPos.x < 0) spawnDirectionIndicator = leftIndicator;
+        if (screenSpawnPos.x > Screen.width) spawnDirectionIndicator = rightIndicator;
         if(spawnDirectionIndicator != null) spawnDirectionIndicator.IndicateDirection();
     }
 
@@ -129,6 +142,7 @@ public class EnemyScript : MonoBehaviour
     public void Damage(int power)
     {
         health -= power;
+        healthBar.SetHealth(health);
         if (health <= 0)
         {
             DestroyEnemy(true);
@@ -138,7 +152,8 @@ public class EnemyScript : MonoBehaviour
 
     public void DestroyEnemy(bool killedByPlayer)
     {
-        GameObject.FindWithTag("Logic").GetComponent<EnemyManager>().RemoveEnemy(gameObject, killedByPlayer);
+        
+        enemyManager.RemoveEnemy(gameObject, killedByPlayer);
         Destroy(gameObject);
     }
 }

@@ -258,6 +258,7 @@ MonoBehaviour:
   armouredCockroachPrefab: {fileID: 1401480492395099975, guid: 9173789dc3d7cf347b9618eaa986d686, type: 3}
   armouredStagbeetlePrefab: {fileID: 3230766117565264235, guid: 834074bac70495f45a8d04bf6a4c05a8, type: 3}
   DragonflyPrefab: {fileID: 2325871866633357825, guid: 28eaac28c6410f849a628749c9ada0f9, type: 3}
+  HornetPrefab: {fileID: 7205856713176979134, guid: b04e84fbb1ef0dd4b9ac1097a11eb340, type: 3}
   spawnInterval: 2
 --- !u!114 &100754437
 MonoBehaviour:
@@ -294,7 +295,7 @@ MonoBehaviour:
   tree: {fileID: 4047742926485375969, guid: 13815b32147eea64e9a773ef69b3240e, type: 3}
   startButton: {fileID: 1064493251}
   debugObject: {fileID: 1931168448}
-  devMode: 0
+  devMode: 1
   maxRoundNum: 4
 --- !u!114 &100754439
 MonoBehaviour:
@@ -1744,7 +1745,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1743768123
 RectTransform:
   m_ObjectHideFlags: 0

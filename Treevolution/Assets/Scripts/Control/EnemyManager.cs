@@ -13,6 +13,7 @@ public class EnemyManager : MonoBehaviour
     public GameObject armouredCockroachPrefab;
     public GameObject armouredStagbeetlePrefab;
     public GameObject DragonflyPrefab;
+    public GameObject HornetPrefab;
 
     private RoundTimer roundTimer;
     private int enemiesKilled = 0;
@@ -84,6 +85,8 @@ public class EnemyManager : MonoBehaviour
                 return armouredStagbeetlePrefab;
             case GameStateManager.EnemyType.Dragonfly:
                 return DragonflyPrefab;
+            case GameStateManager.EnemyType.Hornet:
+                return HornetPrefab;
         }
         return antPrefab;
     }
@@ -91,10 +94,13 @@ public class EnemyManager : MonoBehaviour
     void spawnEnemy()
     {
         enemiesLeft = roundEnemies.Keys.ToArray();
+        if (enemiesLeft.Length == 0)
+            return;
         GameStateManager.EnemyType enemyType = enemiesLeft[Random.Range(0, enemiesLeft.Length)];
         while (enemiesLeft.Length > 0 && roundEnemies[enemyType] == 0)
         {
             roundEnemies.Remove(enemyType);
+            enemiesLeft = roundEnemies.Keys.ToArray();
             enemyType = enemiesLeft[Random.Range(0, enemiesLeft.Length)];
         }
         if(roundEnemies.Count == 0)
