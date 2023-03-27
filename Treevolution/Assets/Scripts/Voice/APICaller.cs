@@ -41,7 +41,7 @@ public class ThesaurusAPICaller
         }
         else
         {
-            Debug.Log("web request failed: "+request.result);
+            Debug.Log(word +" web request failed: "+request.result);
             yield return callback(null);
         }
         /*if(request.result == UnityWebRequest.Result.Success)
