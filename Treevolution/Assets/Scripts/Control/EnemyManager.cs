@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
@@ -21,8 +22,8 @@ public class EnemyManager : MonoBehaviour
     private (Vector3 origin, Vector3 vert, Vector3 horz)[] spawnVectors = new (Vector3 origin, Vector3 vert, Vector3 horz)[2];
     private Dictionary<GameStateManager.EnemyType, int> roundEnemies;
     private GameStateManager.EnemyType[] enemiesLeft;
-    public bool started = false;
-    public bool firstSpawn = false;
+    private bool started = false;
+    private bool firstSpawn = false;
 
     // Start is called before the first frame update
     void Start()
@@ -89,13 +90,12 @@ public class EnemyManager : MonoBehaviour
 
     void spawnEnemy()
     {
-        enemiesLeft = new GameStateManager.EnemyType[roundEnemies.Count];
-        roundEnemies.Keys.CopyTo(enemiesLeft, 0);
-        GameStateManager.EnemyType enemyType = enemiesLeft[Random.Range(0, roundEnemies.Count)];
-        while (roundEnemies.Count > 0 && roundEnemies[enemyType] == 0)
+        enemiesLeft = roundEnemies.Keys.ToArray();
+        GameStateManager.EnemyType enemyType = enemiesLeft[Random.Range(0, enemiesLeft.Length)];
+        while (enemiesLeft.Length > 0 && roundEnemies[enemyType] == 0)
         {
             roundEnemies.Remove(enemyType);
-            enemyType = enemiesLeft[Random.Range(0, roundEnemies.Count)];
+            enemyType = enemiesLeft[Random.Range(0, enemiesLeft.Length)];
         }
         if(roundEnemies.Count == 0)
         {
@@ -111,7 +111,7 @@ public class EnemyManager : MonoBehaviour
 
         Vector3 randomSpawnPosition = spawnAxes.origin + spawnAxes.vert * vFraction + spawnAxes.horz * hFraction;
         randomSpawnPosition.y = spawnHeight;
-        _enemies.Add(Instantiate(enemyPrefab, randomSpawnPosition, transform.rotation));
+        _enemies.Add(Instantiate(enemyPrefab, randomSpawnPosition, enemyPrefab.transform.rotation));
         Debug.DrawLine(spawnAxes.origin, spawnAxes.origin + spawnAxes.vert, Color.white, 1000);
         Debug.DrawLine(spawnAxes.origin, spawnAxes.origin + spawnAxes.horz, Color.white, 1000);
     }
@@ -119,6 +119,7 @@ public class EnemyManager : MonoBehaviour
     public void StartSpawning(Dictionary<GameStateManager.EnemyType, int> enemies)
     {
         roundEnemies = enemies;
+        spawnInterval = (roundTimer.roundLengthSecs*0.8f)/enemies.Values.Sum();
         Vector3 verticalLeft = GameProperties.BottomLeftCorner - GameProperties.TopLeftCorner;
         Vector3 horizontalLeft = (GameProperties.TopRightCorner - GameProperties.TopLeftCorner) * 0.1f;
         Vector3 verticalRight = GameProperties.BottomRightCorner - GameProperties.TopRightCorner;

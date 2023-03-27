@@ -12,24 +12,27 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] // This allows the private field to be edited from the Unity inspecter
     private float speed = 0.1f;
 
-    Vector3[] path;
-    bool followingPath = true;
-    Vector3 directionVector;
-    Vector3 currentTarget;
-    int pathCounter = 0;
-    int health = 10;    
-
+    private Vector3[] path;
+    private bool followingPath = true;
+    private Vector3 directionVector;
+    private Vector3 currentTarget;
+    private int pathCounter = 0;
+    public int health = 10;
+    public bool flying = false;
     [SerializeField]
     private AudioSource damageAudio;
     [SerializeField]
     private AudioSource spawnAudio;
 
+    private Vector3 defaultOrientation;
+
     // Start is called before the first frame update
     void Start()
     {
+        defaultOrientation = transform.rotation.eulerAngles;
         rig = GetComponent<Rigidbody>();
         Initialise();
-        spawnAudio.Play();
+        //spawnAudio.Play();
         roundTimer = GameObject.Find("Logic").GetComponent<RoundTimer>();
     }
 
@@ -63,7 +66,7 @@ public class EnemyScript : MonoBehaviour
             currentTarget = path[pathCounter];
             directionVector = (currentTarget - transform.position).normalized * speed;
             directionVector.y = 0;
-            transform.rotation = Quaternion.LookRotation(directionVector, transform.up);
+            transform.rotation = Quaternion.Euler(Quaternion.LookRotation(directionVector, transform.up).eulerAngles-defaultOrientation);
             pathCounter += 1;
         }
     }
@@ -89,8 +92,13 @@ public class EnemyScript : MonoBehaviour
 
     private void Initialise()
     {
+        
+        if (flying)
+        {
+            transform.position = transform.position + Vector3.up * 0.25f;
+        }
         Vector3 pos = transform.position;
-        path = Pathfinding.Pathfinder.GetPath(pos, GameObject.FindGameObjectWithTag("Tree").transform.position);
+        path = Pathfinder.GetPath(pos, GameObject.FindGameObjectWithTag("Tree").transform.position);
         rig.freezeRotation = true;
         startMoveToNextTarget();
 

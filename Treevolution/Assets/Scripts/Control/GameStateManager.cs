@@ -13,6 +13,7 @@ public class GameStateManager : MonoBehaviour
     public GameObject startButton;
     public GameObject debugObject;
     public bool devMode = false;
+    public int maxRoundNum = 4;
     private QRDetection qrDetection;
     private UIController UIController;
     private EnemyManager enemyManager;
@@ -39,30 +40,27 @@ public class GameStateManager : MonoBehaviour
         Dragonfly
     }
     private Dictionary<EnemyType, int>[] enemyWaves = {
-        new Dictionary<EnemyType, int>(){ 
-            { EnemyType.Ant, 10 } 
+        new Dictionary<EnemyType, int>(){
+            { EnemyType.Ant, 15 },
+            { EnemyType.Armoured_Bug, 10 }
         },
         new Dictionary<EnemyType, int>(){
-            { EnemyType.Ant, 10 },
-            { EnemyType.Armoured_Bug, 5 }
+            { EnemyType.Ant, 15 },
+            { EnemyType.Armoured_Bug, 10 },
+            { EnemyType.Armoured_Cockroach, 8}
         },
         new Dictionary<EnemyType, int>(){
-            { EnemyType.Ant, 10 },
-            { EnemyType.Armoured_Bug, 8 },
-            { EnemyType.Armoured_Cockroach, 5}
-        },
-        new Dictionary<EnemyType, int>(){
-            { EnemyType.Ant, 10 },
-            { EnemyType.Armoured_Bug, 8 },
-            { EnemyType.Armoured_Cockroach, 5},
+            { EnemyType.Ant, 15 },
+            { EnemyType.Armoured_Bug, 10 },
+            { EnemyType.Armoured_Cockroach, 8},
             { EnemyType.Armoured_Stagbeetle, 5 }
         },
         new Dictionary<EnemyType, int>(){
-            { EnemyType.Ant, 10 },
-            { EnemyType.Armoured_Bug, 8 },
-            { EnemyType.Armoured_Cockroach, 5},
+            { EnemyType.Ant, 15 },
+            { EnemyType.Armoured_Bug, 10 },
+            { EnemyType.Armoured_Cockroach, 8},
             { EnemyType.Armoured_Stagbeetle, 5 },
-            { EnemyType.Dragonfly, 3}
+            { EnemyType.Dragonfly, 5}
         }
     };
 
@@ -106,7 +104,7 @@ public class GameStateManager : MonoBehaviour
 
     public void BeginRound()
     {
-        infoText.transform.position = GameProperties.Centre + new Vector3(0, 0.7f, 0);
+        infoText.transform.position = GameProperties.Centre + new Vector3(0, 0.65f, 0);
         currentState = GameState.Round_Plan;
         roundNumber++;
         infoText.text = "Round " + roundNumber.ToString() + "\n-[Planning]-";
@@ -117,9 +115,9 @@ public class GameStateManager : MonoBehaviour
 
     public void BeginBattle()
     {
-        infoText.transform.position = GameProperties.Centre + new Vector3(0, 0.6f, 0);
+        infoText.transform.position = GameProperties.Centre + new Vector3(0, 0.5f, 0);
         qrDetection.StopQR();
-        enemyManager.StartSpawning(enemyWaves[roundNumber]);
+        enemyManager.StartSpawning(enemyWaves[roundNumber-1]);
         roundTimer.StartTimer();
         currentState = GameState.Round_Battle;
 
@@ -151,7 +149,7 @@ public class GameStateManager : MonoBehaviour
     IEnumerator displayScore(int secs)
     {
         yield return new WaitForSeconds(secs);
-        if (roundNumber <= 3)
+        if (roundNumber < maxRoundNum)
         {
             BeginRound();
         }

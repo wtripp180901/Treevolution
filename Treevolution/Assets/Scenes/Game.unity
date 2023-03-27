@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3de42c8a6c088247bc3a4b5d69651ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundLengthSecs: 5
+  roundLengthSecs: 60
   _SecondTickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -253,14 +253,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83075b0934598fa41bb8442ae93fe169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  antPrefab: {fileID: 7479068726099194787, guid: 53495b08017947b41b28df3bb405356b, type: 3}
-  armouredBugPrefab: {fileID: 7479068726099194787, guid: 53495b08017947b41b28df3bb405356b, type: 3}
-  armouredCockroachPrefab: {fileID: 7479068726099194787, guid: 53495b08017947b41b28df3bb405356b, type: 3}
-  armouredStagbeetlePrefab: {fileID: 7479068726099194787, guid: 53495b08017947b41b28df3bb405356b, type: 3}
-  DragonflyPrefab: {fileID: 7479068726099194787, guid: 53495b08017947b41b28df3bb405356b, type: 3}
-  spawnInterval: 3
-  started: 0
-  firstSpawn: 0
+  antPrefab: {fileID: 3946733360163872345, guid: 2e520fc84caf2f945b2d6dd53f66a4a1, type: 3}
+  armouredBugPrefab: {fileID: 8203687735036754710, guid: 5d6fb06c685a2484085aa83a465e5af1, type: 3}
+  armouredCockroachPrefab: {fileID: 1401480492395099975, guid: 9173789dc3d7cf347b9618eaa986d686, type: 3}
+  armouredStagbeetlePrefab: {fileID: 3230766117565264235, guid: 834074bac70495f45a8d04bf6a4c05a8, type: 3}
+  DragonflyPrefab: {fileID: 2325871866633357825, guid: 28eaac28c6410f849a628749c9ada0f9, type: 3}
+  spawnInterval: 2
 --- !u!114 &100754437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,6 +295,7 @@ MonoBehaviour:
   startButton: {fileID: 1064493251}
   debugObject: {fileID: 1931168448}
   devMode: 0
+  maxRoundNum: 4
 --- !u!114 &100754439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1745,7 +1744,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1743768123
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1753,18 +1752,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1743768122}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 807997090}
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 1931168449}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.0001199618, y: 0}
   m_SizeDelta: {x: 2, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1743768124
@@ -2156,8 +2155,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1261470963}
+  - {fileID: 1743768123}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2052329093
 GameObject:
