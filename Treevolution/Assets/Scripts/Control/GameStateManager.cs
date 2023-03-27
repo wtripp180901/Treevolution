@@ -37,30 +37,34 @@ public class GameStateManager : MonoBehaviour
         Armoured_Bug,
         Armoured_Cockroach,
         Armoured_Stagbeetle,
-        Dragonfly
+        Dragonfly,
+        Hornet
     }
     private Dictionary<EnemyType, int>[] enemyWaves = {
         new Dictionary<EnemyType, int>(){
-            { EnemyType.Ant, 15 },
+            { EnemyType.Ant, 10 },
             { EnemyType.Armoured_Bug, 10 }
         },
         new Dictionary<EnemyType, int>(){
-            { EnemyType.Ant, 15 },
-            { EnemyType.Armoured_Bug, 10 },
+            { EnemyType.Ant, 10 },
+            { EnemyType.Armoured_Bug, 8 },
             { EnemyType.Armoured_Cockroach, 8}
         },
         new Dictionary<EnemyType, int>(){
-            { EnemyType.Ant, 15 },
-            { EnemyType.Armoured_Bug, 10 },
-            { EnemyType.Armoured_Cockroach, 8},
-            { EnemyType.Armoured_Stagbeetle, 5 }
-        },
-        new Dictionary<EnemyType, int>(){
-            { EnemyType.Ant, 15 },
-            { EnemyType.Armoured_Bug, 10 },
+            { EnemyType.Ant, 8 },
+            { EnemyType.Armoured_Bug, 8 },
             { EnemyType.Armoured_Cockroach, 8},
             { EnemyType.Armoured_Stagbeetle, 5 },
-            { EnemyType.Dragonfly, 5}
+            { EnemyType.Dragonfly, 5},
+
+        },
+        new Dictionary<EnemyType, int>(){
+            { EnemyType.Ant, 8 },
+            { EnemyType.Armoured_Bug, 5 },
+            { EnemyType.Armoured_Cockroach, 8},
+            { EnemyType.Armoured_Stagbeetle, 5 },
+            { EnemyType.Dragonfly, 5},
+            { EnemyType.Hornet, 5}
         }
     };
 
@@ -77,11 +81,6 @@ public class GameStateManager : MonoBehaviour
         roundTimer = GetComponent<RoundTimer>();
         infoText.text = "";
         UIController.CalibrationPopUp();
-    }
-
-    private void Update()
-    {
-        debugText.text = Time.deltaTime.ToString();
     }
 
     public void CalibrationSuccess()
@@ -107,7 +106,7 @@ public class GameStateManager : MonoBehaviour
         infoText.transform.position = GameProperties.Centre + new Vector3(0, 0.65f, 0);
         currentState = GameState.Round_Plan;
         roundNumber++;
-        infoText.text = "Round " + roundNumber.ToString() + "\n-[Planning]-";
+        infoText.text = "Round " + roundNumber.ToString() + "\n[Planning]";
         startButton.transform.position = GameProperties.Centre + new Vector3(0, 0.6f, 0);
         startButton.SetActive(true);
 
@@ -132,7 +131,7 @@ public class GameStateManager : MonoBehaviour
             enemyManager.StopSpawning();
             qrDetection.StartQR();
             int enemiesKilled = GetComponent<EnemyManager>().getEnemiesKilled();
-            infoText.text = "Round " + roundNumber.ToString() + " Over\n-[" + enemiesKilled.ToString() + " Enemies Killed]-";
+            infoText.text = "Round " + roundNumber.ToString() + " Over\n[" + enemiesKilled.ToString() + " Enemies Killed]";
             StartCoroutine(displayScore(3));
         }
         catch(System.Exception e)

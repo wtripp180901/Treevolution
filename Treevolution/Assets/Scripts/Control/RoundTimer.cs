@@ -10,7 +10,8 @@ public class RoundTimer : MonoBehaviour
     private bool isPaused = false;
     public bool IsPaused { get { return isPaused; } }
     private bool isStopped = false;
-    private bool hasStarted = false;
+    private bool running = false;
+    public bool isRunning { get { return running; } }
 
 
     public UnityEvent _SecondTickEvent = new UnityEvent();
@@ -46,7 +47,7 @@ public class RoundTimer : MonoBehaviour
         secondTimer = 0;
         isStopped = false;
         isPaused = false;
-        hasStarted = true;
+        running = true;
         _StartTimer?.Invoke();
     }
 
@@ -85,7 +86,7 @@ public class RoundTimer : MonoBehaviour
     //Stop timer
     public void StopTimer()
     {
-        hasStarted = false;
+        running = false;
         isStopped = true;
         isPaused = false;
         _StopTimer?.Invoke();
@@ -94,6 +95,7 @@ public class RoundTimer : MonoBehaviour
     public void PauseTimer()
     {
         isPaused = !isPaused;
+        running = !running;
         _PauseTimer?.Invoke();
     }
 
