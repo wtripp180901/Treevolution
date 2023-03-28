@@ -7,19 +7,22 @@ public class EnemyTouchHandler : MonoBehaviour, IMixedRealityTouchHandler
 {
     public void OnTouchCompleted(HandTrackingInputEventData eventData)
     {
-        GameObject[] receivers = GameObject.FindGameObjectsWithTag("TargetReceiver");
-        for(int i = 0;i < receivers.Length; i++)
-        {
-            receivers[i].GetComponent<TowerScript>().SetTarget(transform);
-        }
 
-        GameObject logic = GameObject.FindGameObjectWithTag("Logic");
-        logic.GetComponent<EnemyManager>().targetNewEnemy(gameObject);
     }
 
     public void OnTouchStarted(HandTrackingInputEventData eventData)
     {
-        
+        if (!GameObject.FindGameObjectWithTag("Logic").GetComponent<RoundTimer>().IsPaused)
+        {
+            GameObject[] receivers = GameObject.FindGameObjectsWithTag("TargetReceiver");
+            for (int i = 0; i < receivers.Length; i++)
+            {
+                receivers[i].GetComponent<TowerScript>().SetTarget(transform);
+            }
+
+            GameObject logic = GameObject.FindGameObjectWithTag("Logic");
+            logic.GetComponent<EnemyManager>().targetNewEnemy(gameObject);
+        }
     }
 
     public void OnTouchUpdated(HandTrackingInputEventData eventData)

@@ -10,15 +10,15 @@ public class PlaneMapper : MonoBehaviour
     GameObject floor;
     [SerializeField]
     int markerCount = 2;
-    [SerializeField]
-    GameObject startButton;
 
-    float tableWidth = 240;
-    float tableDepth = 160;
+    public float tableWidth = 240;
+    public float tableDepth = 160;
 
     public GameObject treeModel;
+    private GameStateManager gameStateManager;
+    private QRDetection qrDetection;
 
-
+    private bool planeIsMapped = false;
     private Vector3 tl;
     public Vector3 topLeft { get { return tl; } }
     private Vector3 tr;
@@ -31,13 +31,25 @@ public class PlaneMapper : MonoBehaviour
     public float floorHeight { get { return _minY; } }
     private Pose _pose;
     public Pose pose { get { return _pose; } }
+
     private void Start()
     {
-        //CreateNewPlane(new Vector3(0, 0, 0),new Vector3(1, 0, 1)); // Commented
+        gameStateManager = GetComponent<GameStateManager>();
+        qrDetection = GetComponent<QRDetection>();
     }
 
     public void CreateNewPlane(Pose marker)
     {
+        if (qrDetection.lockPlane)
+        {
+            return;
+        }
+        if (planeIsMapped == false)
+        {
+            gameStateManager.CalibrationSuccess();
+            planeIsMapped = true;
+        }
+
         marker.rotation = Quaternion.LookRotation(marker.up, marker.forward);
         marker.rotation = Quaternion.Euler(0, marker.rotation.eulerAngles.y, 0);
         _pose = marker;
@@ -75,7 +87,6 @@ public class PlaneMapper : MonoBehaviour
         }
 
         Vector3 boardCentre = (bl + tr) * 0.5f; // Centre of board
-        GameObject.FindWithTag("InfoText").transform.position = boardCentre + new Vector3(0, 0.7f, 0);
         GameObject newFloor = Instantiate(floor, (bl + tr) * 0.5f, _pose.rotation);
         Vector3 floorScale = new Vector3(0.1f * Vector3.Distance(bl, tl), newFloor.transform.localScale.y, 0.1f * Vector3.Distance(bl, br));
         newFloor.transform.localScale = floorScale;
@@ -94,9 +105,6 @@ public class PlaneMapper : MonoBehaviour
         {
             treeObject.transform.position = boardCentre;
         }
-
-        startButton.transform.position = boardCentre + new Vector3(0, 0.8f, 0);
-        startButton.SetActive(true);
     }
 
     public void ClearPlane()

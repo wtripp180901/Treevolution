@@ -14,20 +14,21 @@ public class QRDetection : MonoBehaviour
 {
     public TMP_Text debugText;
     public PlaneMapper planeMapper;
-    public GameObject defaultMarker;
+    public GameObject planeMarker;
     public GameObject towerMarker;
     public GameObject wallMarker;
+    public bool lockPlane;
+
     private QRCodeWatcher watcher;
     private SortedDictionary<System.Guid, (QRCode code, GameObject obj)> trackedCodes;
     private Queue<QRCode> updatedCodeQueue;
     private System.Threading.Tasks.Task<QRCodeWatcherAccessStatus> accessRequester;
     private (QRCode code, Pose pose) lastCode;
     private Pose oldPlanePose;
-    private bool hasStarted;
-
+    private bool running;
     private bool planeCreated;
     private bool c1Set;
-    private Vector3 cornerMarker1;
+    private bool initialRun = true;
 
 
     private void initProperties()
@@ -35,7 +36,7 @@ public class QRDetection : MonoBehaviour
         planeMapper.ClearPlane();
         resetTrackedCodes();
         resetCodeQueue();
-        hasStarted = false;
+        running = false;
         lastCode = (null, Pose.identity);
         planeCreated = false;
         c1Set = false;
@@ -54,38 +55,31 @@ public class QRDetection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //debugText.text = "Update";
-        if (!hasStarted && (accessRequester.IsCompletedSuccessfully && accessRequester.Result == QRCodeWatcherAccessStatus.Allowed))
-            InitialiseQR();
 
-        else if (hasStarted)
+        if (initialRun && !running && (accessRequester.IsCompletedSuccessfully && accessRequester.Result == QRCodeWatcherAccessStatus.Allowed))
+            InitialiseQR();
+        else if (running)
         {
             int trackedCodesCount = 0;
             lock (trackedCodes) { trackedCodesCount = trackedCodes.Count; }
-
-            if (lastCode.code == null && trackedCodesCount == 0)
+            //debugText.text = trackedCodesCount + " / " + watcher.GetList().Count.ToString() + " : " + updatedCodeQueue.Count.ToString();
+            lock (updatedCodeQueue)
             {
-                //debugText.text = "Scanning Started";
-            }
-            else
-            {
-                //debugText.text = trackedCodesCount + " / " + watcher.GetList().Count.ToString() + " : " + updatedCodeQueue.Count.ToString();
-                lock (updatedCodeQueue)
+                while (updatedCodeQueue.Count > 0)
                 {
-                    while (updatedCodeQueue.Count > 0)
-                    {
-                        QRCode code = updatedCodeQueue.Dequeue();
-                        updateCodeHologram(code);
-                        //debugText.text = "Code: " + lastCode.code.Data + " @ " + lastCode.pose.position;
-                        drawPlane("C1", code);
-                    }
+                    QRCode code = updatedCodeQueue.Dequeue();
+                    if (lockPlane && code.Data == "C1")
+                        continue;
+                    updateCodeHologram(code);
+                    //debugText.text = "Code: " + lastCode.code.Data + " @ " + lastCode.pose.position;
+                    drawPlane("C1", code);
                 }
             }
 
         }
         else if (!QRCodeWatcher.IsSupported())
         {
-            debugText.text = "QR Is Unsupported";
+            //debugText.text = "QR Is Unsupported";
         }
     }
 
@@ -165,7 +159,7 @@ public class QRDetection : MonoBehaviour
                         rotation = Quaternion.Euler(0, rotation.eulerAngles.y, 0);
                         break;
                     default:
-                        if (tempMarker == null) markerType = defaultMarker;
+                        if (tempMarker == null) markerType = planeMarker;
                         scaleToMarker = true;
                         break;
                 }
@@ -197,7 +191,7 @@ public class QRDetection : MonoBehaviour
 
     Pose tryGetNewCornerMarkerPose(Pose newPose, bool cornerSet, Pose oldPose)
     {
-        if (!cornerSet || Vector3.Distance(oldPose.position, newPose.position) > 0.01 || Math.Abs(Quaternion.Angle(oldPose.rotation, newPose.rotation)) > 5)
+        if (!cornerSet || Vector3.Distance(oldPose.position, newPose.position) > 0.03 || Math.Abs(Quaternion.Angle(oldPose.rotation, newPose.rotation)) > 5)
         {
             oldPose = newPose;
             planeCreated = false;
@@ -220,9 +214,7 @@ public class QRDetection : MonoBehaviour
         lock (trackedCodes)
         {
             if (!trackedCodes.ContainsKey(args.Code.Id))
-            {
                 trackedCodes[args.Code.Id] = (args.Code, null);
-            }
         }
     }
 
@@ -234,7 +226,6 @@ public class QRDetection : MonoBehaviour
         {
             return; // Disregards
         }
-
         lock (updatedCodeQueue)
         {
             updatedCodeQueue.Enqueue(args.Code);
@@ -242,7 +233,8 @@ public class QRDetection : MonoBehaviour
 
         lock (trackedCodes)
         {
-            trackedCodes[args.Code.Id] = (args.Code, null);
+            if(!trackedCodes.ContainsKey(args.Code.Id))
+                trackedCodes[args.Code.Id] = (args.Code, null);
         }
     }
 
@@ -259,11 +251,11 @@ public class QRDetection : MonoBehaviour
     {
         if (QRCodeWatcher.IsSupported())
         {
-            hasStarted = true;
+            running = true;
             watcher = new QRCodeWatcher();
             watcher.Added += new System.EventHandler<QRCodeAddedEventArgs>(this.addedCodeEvent);
             watcher.Updated += new System.EventHandler<QRCodeUpdatedEventArgs>(this.updatedCodeEvent);
-            watcher.Removed += new System.EventHandler<QRCodeRemovedEventArgs>(this.removedCodeEvent);
+            //watcher.Removed += new System.EventHandler<QRCodeRemovedEventArgs>(this.removedCodeEvent);
             foreach (Guid id in trackedCodes.Keys)
             {
                 Destroy(trackedCodes[id].obj);
@@ -275,6 +267,7 @@ public class QRDetection : MonoBehaviour
         {
             debugText.text = "QR Tracking Not Supported";
         }
+        initialRun = false;
     }
 
     private void resetTrackedCodes()
@@ -309,17 +302,15 @@ public class QRDetection : MonoBehaviour
         }
     }
 
-    void OnApplicationFocus(bool hasFocus)
-    {
-        if (hasStarted && hasFocus)
-        {
-            initProperties();
-            hasStarted = true;
-        }
-    }
-
     public void StopQR()
     {
-        if (QRCodeWatcher.IsSupported()) watcher.Stop();
+        //if (QRCodeWatcher.IsSupported()) watcher.Stop();
+        running = false;
+    }
+    public void StartQR()
+    {
+        resetCodeQueue();
+        //if (QRCodeWatcher.IsSupported()) watcher.Start();
+        running = true;
     }
 }

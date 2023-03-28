@@ -19,7 +19,7 @@ public class TreeScript : MonoBehaviour
         if (health == 0)
         {
             Destroy(gameObject);
-            GameObject.FindWithTag("Logic").GetComponent<PhaseTransition>().GameOverScreen(false);
+            GameObject.FindWithTag("Logic").GetComponent<GameStateManager>().GameOverScreen(false);
         }
     }
 
