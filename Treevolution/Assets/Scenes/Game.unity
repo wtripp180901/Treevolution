@@ -158,7 +158,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100754430}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.11296964, y: 0.056116465, z: 1.7254112}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -207,6 +207,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   infoDialogPrefab: {fileID: 2330315304125546656, guid: 7fed0f9b7bf28df4796e266e8c5d9e49, type: 3}
   buttonDialogPrefab: {fileID: 2330315304125546656, guid: 38f4719e0c0d6ce45bdde4bdcf66057f, type: 3}
+  buttonImageDiaglogPrefab: {fileID: 2330315304125546656, guid: 90c7603907a27d84f9f7f8471b27a690, type: 3}
+  antImage: {fileID: 21300000, guid: 78daa91cacdf60949a1d917cbe31c44a, type: 3}
+  armouredBeetleImage: {fileID: 21300000, guid: c99bd2417985dfa49b9abcc97d7b6f0e, type: 3}
+  armouredCockroachImage: {fileID: 21300000, guid: 6b1876119164d5b47a70d0416f9fb785, type: 3}
+  armouredStegbeetleImage: {fileID: 21300000, guid: 7a3d758a097d25545abc0627a3056a6c, type: 3}
+  dragonflyImage: {fileID: 21300000, guid: bae8a532b4f7fc049b8326b766df56c5, type: 3}
+  hornetImage: {fileID: 21300000, guid: 50d60d55750c86143b76fb01fb7552d5, type: 3}
   backPlateGrey: {fileID: 2100000, guid: 88886e323de80bc40b327994bb1b08c9, type: 2}
   backPlateOrange: {fileID: 2100000, guid: 79add422ab91cd746bc94d61e0b6da5c, type: 2}
   backPlateGreen: {fileID: 2100000, guid: 137e807a4e7fe25489b10d6bfe05228d, type: 2}

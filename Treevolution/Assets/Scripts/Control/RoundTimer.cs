@@ -99,4 +99,9 @@ public class RoundTimer : MonoBehaviour
         _PauseTimer?.Invoke();
     }
 
+    public void SetRoundLength(int secs)
+    {
+        roundLengthSecs = secs;
+    }
+
 }

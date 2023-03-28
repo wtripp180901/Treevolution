@@ -23,6 +23,8 @@ public class EnemyScript : MonoBehaviour
     private AudioSource damageAudio;
     [SerializeField]
     private AudioSource spawnAudio;
+    [SerializeField]
+    private AudioSource deathAudio;
     private EnemyManager enemyManager;
     private SpawnDirectionIndicator leftIndicator;
     private SpawnDirectionIndicator rightIndicator;
@@ -44,7 +46,7 @@ public class EnemyScript : MonoBehaviour
         else
             rig.useGravity = true;
         Initialise();
-        //spawnAudio.Play();
+        spawnAudio.Play();
     }
 
     // Update is called once per frame
@@ -145,6 +147,7 @@ public class EnemyScript : MonoBehaviour
         healthBar.SetHealth(health);
         if (health <= 0)
         {
+            deathAudio.Play();
             DestroyEnemy(true);
         }
         else StartCoroutine(DamageIndicator());
@@ -152,7 +155,6 @@ public class EnemyScript : MonoBehaviour
 
     public void DestroyEnemy(bool killedByPlayer)
     {
-        
         enemyManager.RemoveEnemy(gameObject, killedByPlayer);
         Destroy(gameObject);
     }
