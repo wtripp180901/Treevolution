@@ -5,7 +5,9 @@ using System;
 
 namespace Pathfinding
 {
-    //Should be attached to any obstacles which should be avoided during pathfinding
+    /// <summary>
+    /// Script to be attached to any object which enemies will pathfind around during the game
+    /// </summary>
     public class PathfindingObstacle : MonoBehaviour
     {
         //TODO: move these to central location

@@ -5,7 +5,9 @@ using System;
 
 namespace Pathfinding
 {
-    //Used to dynamically generate a pathfinding mesh based on obstacles in the environment
+    /// <summary>
+    /// Used to dynamically generate a pathfinding mesh based on obstacles in the environment
+    /// </summary>
     public static class PathfindingGraphGenerator
     {
 
@@ -30,6 +32,10 @@ namespace Pathfinding
             obstacleData.Add(new ObstacleData(bounds, possiblePoints));
         }
 
+        /// <summary>
+        /// Generates pathfinding graph based on current obstacles in the environment
+        /// </summary>
+        /// <returns>List of pathfining nodes based on current state of environment</returns>
         public static PathfindingNode[] GetPathfindingGraph()
         {
             if (GetObstacleDataEvent != null) GetObstacleDataEvent.Invoke(null, null);
