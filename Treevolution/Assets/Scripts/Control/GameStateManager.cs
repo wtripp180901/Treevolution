@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using System.Threading;
+using System;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -12,7 +14,6 @@ public class GameStateManager : MonoBehaviour
     public GameObject tree;
     public GameObject startButton;
     public GameObject debugObject;
-    public bool devMode = false;
     public int maxRoundNum = 4;
     private QRDetection qrDetection;
     private UIController UIController;
@@ -73,9 +74,9 @@ public class GameStateManager : MonoBehaviour
 
     private void Start()
     {
-        if (devMode)
+        if (Application.platform == RuntimePlatform.WindowsEditor)
         {
-            debugObject.SetActive(true);
+            debugObject.SetActive(true); // Dev mode
         }
         currentState = GameState.Calibration;
         UIController = GetComponent<UIController>();
@@ -111,30 +112,40 @@ public class GameStateManager : MonoBehaviour
         startButton.SetActive(true);
     }
 
-    private void BeginTutorialBattle()
+    private IEnumerator BeginTutorialBattleInfo()
     {
         currentState = GameState.Tutorial_Battle;
-        enemyManager.StartSpawning(enemyWaves[0]);
         roundTimer.SetRoundLength(30);
+        enemyManager.StartSpawning(enemyWaves[0]);
+        roundTimer.StartTimer(); // play
+        yield return StartCoroutine(pause(1));
+        roundTimer.PauseTimer();
         UIController.TutorialBattlePopUps();
     }
 
-    public void TutorialBattlePlay()
+    public IEnumerator BeginTutorialBattle()
     {
-        roundTimer.StartTimer(); // play
-        //while (enemyManager.getEnemiesKilled() == 0) { }
+        roundTimer.PauseTimer(); // play
+        yield return new WaitUntil(() => enemyManager.getEnemiesKilled() != 0);
         roundTimer.PauseTimer(); // pause
         UIController.TutorialBugPopUps();
     }
-    public void TutorialBattleContinue()
+    public void ContinueTutorialBattle()
     {
-
+        roundTimer.PauseTimer();
     }
 
-
+    private IEnumerator EndTutorialBattle(int enemiesKilled)
+    {
+        enemyManager.resetEnemiesKilled();
+        infoText.text = "Tutorial Over\n[" + enemiesKilled.ToString() + " Enemies Killed]";
+        yield return StartCoroutine(pause(3));
+        UIController.EndTutorial();
+    }
 
     public void BeginRound()
     {
+        roundTimer.SetRoundLength(60);
         infoText.transform.position = GameProperties.Centre + new Vector3(0, 0.65f, 0);
         currentState = GameState.Round_Plan;
         roundNumber++;
@@ -145,11 +156,12 @@ public class GameStateManager : MonoBehaviour
 
     public void BeginBattle()
     {
+        startButton.SetActive(false);
         infoText.transform.position = GameProperties.Centre + new Vector3(0, 0.5f, 0);
         qrDetection.StopQR();
         if (currentState == GameState.Tutorial_Plan)
         {
-            BeginTutorialBattle();
+            StartCoroutine(BeginTutorialBattleInfo());
             return;
         }
         enemyManager.StartSpawning(enemyWaves[roundNumber]);
@@ -158,21 +170,26 @@ public class GameStateManager : MonoBehaviour
 
     }
 
-    public void EndBattle()
+    public IEnumerator EndBattle()
     {
-        try
+        clearEnemies();
+        enemyManager.StopSpawning();
+        qrDetection.StartQR();
+        int enemiesKilled = GetComponent<EnemyManager>().getEnemiesKilled();
+        if(CurrentGameState == GameState.Tutorial_Battle)
         {
-            clearEnemies();
-            roundTimer.StopTimer();
-            enemyManager.StopSpawning();
-            qrDetection.StartQR();
-            int enemiesKilled = GetComponent<EnemyManager>().getEnemiesKilled();
-            infoText.text = "Round " + roundNumber.ToString() + " Over\n[" + enemiesKilled.ToString() + " Enemies Killed]";
-            StartCoroutine(roundCooldownPause());
+            StartCoroutine(EndTutorialBattle(enemiesKilled));
+            yield break;
         }
-        catch(System.Exception e)
+        infoText.text = "Round " + roundNumber.ToString() + " Over\n[" + enemiesKilled.ToString() + " Enemies Killed]";
+        yield return StartCoroutine(pause(3));
+        if (roundNumber < maxRoundNum)
         {
-            Debug.Log(e.Message);
+            BeginRound();
+        }
+        else
+        {
+            EndGame();
         }
     }
 
@@ -181,17 +198,9 @@ public class GameStateManager : MonoBehaviour
         UIController.EndPopUp();
     }
 
-    IEnumerator roundCooldownPause()
+    IEnumerator pause(int seconds)
     {
-        yield return new WaitForSeconds(3);
-        if (roundNumber < maxRoundNum)
-        {
-            BeginRound();
-        }
-        else
-        { 
-            EndGame();
-        }
+        yield return new WaitForSeconds(seconds);
     }
     
 

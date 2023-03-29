@@ -20,9 +20,9 @@ public class EnemyScript : MonoBehaviour
     public int health = 10;
     public bool flying = false;
     [SerializeField]
-    private AudioSource damageAudio;
-    [SerializeField]
     private AudioSource spawnAudio;
+    [SerializeField]
+    private AudioSource damageAudio;
     [SerializeField]
     private AudioSource deathAudio;
     private EnemyManager enemyManager;
@@ -124,7 +124,7 @@ public class EnemyScript : MonoBehaviour
         if(spawnDirectionIndicator != null) spawnDirectionIndicator.IndicateDirection();
     }
 
-    IEnumerator DamageIndicator()
+    private IEnumerator DamageIndicator()
     {
         List<Color> defaultColours = new List<Color>();
         Renderer[] childRenderers = transform.GetComponentsInChildren<Renderer>();
@@ -141,14 +141,23 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
+    private IEnumerator KillEnemy()
+    {
+        followingPath = false;
+        gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, 0, gameObject.transform.localScale.z);
+        deathAudio.Play();
+        yield return new WaitForSeconds(1f);
+        DestroyEnemy(true);
+    }
+
+
     public void Damage(int power)
     {
         health -= power;
         healthBar.SetHealth(health);
         if (health <= 0)
         {
-            deathAudio.Play();
-            DestroyEnemy(true);
+            StartCoroutine(KillEnemy());
         }
         else StartCoroutine(DamageIndicator());
     }
@@ -156,6 +165,6 @@ public class EnemyScript : MonoBehaviour
     public void DestroyEnemy(bool killedByPlayer)
     {
         enemyManager.RemoveEnemy(gameObject, killedByPlayer);
-        Destroy(gameObject);
+        Destroy(gameObject.GetComponent<Collider>().gameObject);
     }
 }

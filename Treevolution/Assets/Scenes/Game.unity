@@ -302,7 +302,6 @@ MonoBehaviour:
   tree: {fileID: 4047742926485375969, guid: 13815b32147eea64e9a773ef69b3240e, type: 3}
   startButton: {fileID: 1064493251}
   debugObject: {fileID: 1931168448}
-  devMode: 1
   maxRoundNum: 4
 --- !u!114 &100754439
 MonoBehaviour:
@@ -1904,7 +1903,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2855530887453255010, guid: b03d6137db94da542a85a178758d9d56, type: 3}
       propertyPath: m_text
-      value: Start Battle
+      value: Battle
       objectReference: {fileID: 0}
     - target: {fileID: 2855530887453255010, guid: b03d6137db94da542a85a178758d9d56, type: 3}
       propertyPath: m_margin.w
