@@ -4,6 +4,7 @@ using UnityEngine;
 using Pathfinding;
 
 using TMPro;
+using Microsoft.MixedReality.Toolkit.Utilities;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -117,11 +118,17 @@ public class EnemyScript : MonoBehaviour
 
         startMoveToNextTarget();
 
-        Vector2 screenSpawnPos = Camera.main.WorldToScreenPoint(transform.position);
+        spawnIndicator();
+    }
+
+    private void spawnIndicator()
+    {
+        Camera cam = Camera.main;// CameraCache.Main;
+        Vector3 viewPortSpawnPos = cam.WorldToViewportPoint(transform.position);
         SpawnDirectionIndicator spawnDirectionIndicator = null;
-        if (screenSpawnPos.x < 0) spawnDirectionIndicator = leftIndicator;
-        if (screenSpawnPos.x > Screen.width) spawnDirectionIndicator = rightIndicator;
-        if(spawnDirectionIndicator != null) spawnDirectionIndicator.IndicateDirection();
+        if (viewPortSpawnPos.x < 0f || (viewPortSpawnPos.z < 0 && viewPortSpawnPos.x < 0.5f)) spawnDirectionIndicator = leftIndicator;
+        if (viewPortSpawnPos.x > 1f || (viewPortSpawnPos.z < 0 && viewPortSpawnPos.x >= 0.5f)) spawnDirectionIndicator = rightIndicator;
+        if (spawnDirectionIndicator != null) spawnDirectionIndicator.IndicateDirection();
     }
 
     private IEnumerator DamageIndicator()
