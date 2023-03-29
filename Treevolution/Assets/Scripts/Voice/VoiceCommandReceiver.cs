@@ -19,15 +19,6 @@ public class VoiceCommandReceiver : MonoBehaviour
         uiController = GetComponent<UIController>();
     }
 
-    float dictationCooldown = 0f;
-    private void Update()
-    {
-        if (dictationCooldown > 0f)
-        {
-            dictationCooldown -= Time.deltaTime;
-        }
-    }
-
     public void Record()
     {
         try
@@ -63,13 +54,10 @@ public class VoiceCommandReceiver : MonoBehaviour
 
     public void ProcessDictation(string dictation)
     {
-        if (dictationCooldown <= 0f)
-        {
-            uiController.ShowDictation("Initial dictation: " + dictation + "\n");
-            string[] words = dictation.Split(' ');
-            if (words.Length > 0) StartCoroutine(new LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(words));
-            dictationCooldown = 2f;
-        }
+        uiController.ShowDictation("Initial dictation: " + dictation + "\n");
+        string[] words = dictation.Split(' ');
+        if (words.Length > 0) StartCoroutine(new LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(words));
+        GameObject.FindWithTag("Buddy").GetComponent<Renderer>().material.color = Color.white;
     }
 
     public void HandleDictationProcessingResults(List<BuddyAction> instructions)
@@ -79,7 +67,6 @@ public class VoiceCommandReceiver : MonoBehaviour
         {
             actionStream = actionStream + i.actionType.ToString() + " ";
         }
-        GameObject.FindWithTag("Buddy").GetComponent<Renderer>().material.color = Color.white;
         //if(wordData.Length > 0) GetComponent<UIController>().ShowDictation(wordData[0]);
         Debug.Log("Action stream: " + actionStream);
         uiController.ShowDictation("Action stream: "+actionStream);
