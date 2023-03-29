@@ -253,7 +253,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 35d634a774d827d4faaaa1863f156c10, type: 2}
   m_audioClip: {fileID: 8300000, guid: f4cc6c052dc0292479022df068992d34, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -261,8 +261,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 10
-  MaxDistance: 500
+  MinDistance: 1
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -349,7 +349,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 35d634a774d827d4faaaa1863f156c10, type: 2}
   m_audioClip: {fileID: 8300000, guid: 8168ba78f1d13174c959a39a392d5023, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -453,7 +453,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 0.5
+  MinDistance: 1
   MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
@@ -573,25 +573,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c369702e33341104bb399eefb6ae39ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-1796759988118272248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3946733360163872345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98c748f3768ab714a8449b60fb9edc5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventsToReceive: 0
-  debounceThreshold: 0.1
-  localForward: {x: -0, y: 1, z: 0}
-  localUp: {x: 0, y: 0, z: 1}
-  localCenter: {x: 0, y: 0.041555434, z: -0.007255202}
-  bounds: {x: 0.015, y: 0.04298871}
-  touchableCollider: {fileID: -7846035428835533243}
 --- !u!114 &-1114109619256159426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -605,7 +586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventsToReceive: 0
-  debounceThreshold: 0.1
+  debounceThreshold: 0.2
   touchableCollider: {fileID: -7846035428835533243}
 --- !u!114 &1964058033964755811
 MonoBehaviour:
