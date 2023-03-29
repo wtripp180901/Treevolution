@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Microsoft.MixedReality.Toolkit.Input;
+using Microsoft.MixedReality.Toolkit.Utilities;
 
 public class EnemyTouchHandler : MonoBehaviour, IMixedRealityTouchHandler
 {
@@ -14,7 +15,13 @@ public class EnemyTouchHandler : MonoBehaviour, IMixedRealityTouchHandler
 
     public void OnTouchStarted(HandTrackingInputEventData eventData)
     {
-        enemyScript.Damage(5);
+        Handedness hand = eventData.Handedness;
+        float ifc = HandPoseUtils.IndexFingerCurl(hand);
+        float mfc = HandPoseUtils.MiddleFingerCurl(hand);
+        float rfc = HandPoseUtils.RingFingerCurl(hand);
+        float pfc = HandPoseUtils.PinkyFingerCurl(hand);
+        if((ifc > 0.7f && mfc > 0.6f && rfc > 0.5f && pfc > 0.4f) || Application.platform == RuntimePlatform.WindowsEditor)
+            enemyScript.Damage(5);
         /*if (!GameObject.FindGameObjectWithTag("Logic").GetComponent<RoundTimer>().IsPaused)
         {
             GameObject[] receivers = GameObject.FindGameObjectsWithTag("TargetReceiver");
