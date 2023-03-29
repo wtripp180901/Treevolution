@@ -472,13 +472,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isFocusRequired: 0
   initialSilenceTimeout: 5
-  autoSilenceTimeout: 20
+  autoSilenceTimeout: 15
   recordingTime: 10
   startRecordingOnStart: 0
   OnDictationHypothesis:
     m_PersistentCalls:
       m_Calls: []
   OnDictationResult:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDictationComplete:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 100754439}
@@ -493,9 +496,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnDictationComplete:
-    m_PersistentCalls:
-      m_Calls: []
   OnDictationError:
     m_PersistentCalls:
       m_Calls: []
