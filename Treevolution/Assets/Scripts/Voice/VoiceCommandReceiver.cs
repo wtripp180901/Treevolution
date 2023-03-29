@@ -36,7 +36,6 @@ public class VoiceCommandReceiver : MonoBehaviour
 
     public void LightningBolt()
     {
-        ProcessDictation("move and attack");
         GameObject[] enemies = enemyManager.enemies;
         Vector2 pointerPoint = new Vector2(pointer.transform.position.x, pointer.transform.position.z);
         for (int i = 0;i < enemies.Length; i++)
@@ -54,6 +53,11 @@ public class VoiceCommandReceiver : MonoBehaviour
 
     public void ProcessDictation(string dictation)
     {
+        DictationHandler handler = GetComponent<DictationHandler>();
+        lock (handler)
+        {
+            handler.StopRecording();
+        }
         uiController.ShowDictation("Initial dictation: " + dictation + "\n");
         string[] words = dictation.Split(' ');
         if (words.Length > 0) StartCoroutine(new LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(words));

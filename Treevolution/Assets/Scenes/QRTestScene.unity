@@ -480,9 +480,6 @@ MonoBehaviour:
       m_Calls: []
   OnDictationResult:
     m_PersistentCalls:
-      m_Calls: []
-  OnDictationComplete:
-    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 100754439}
         m_TargetAssemblyTypeName: VoiceCommandReceiver, MainGameAssembly
@@ -496,6 +493,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnDictationComplete:
+    m_PersistentCalls:
+      m_Calls: []
   OnDictationError:
     m_PersistentCalls:
       m_Calls: []
