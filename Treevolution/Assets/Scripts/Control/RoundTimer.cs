@@ -34,7 +34,7 @@ public class RoundTimer : MonoBehaviour
     {
         //_SecondTickEvent.AddListener(() => Debug.Log("Tick"));
         //_RoundOverEvent.AddListener(() => Debug.Log(roundLengthSecs.ToString() + "s Passed"));
-        _RoundOverEvent.AddListener(() => GetComponent<GameStateManager>().EndBattle());
+        _RoundOverEvent.AddListener(() => StartCoroutine(GetComponent<GameStateManager>().EndBattle()));
         _StartTimer.AddListener(() => GetComponent<UIController>().ResetTimer((int)roundLengthSecs));
         _StopTimer.AddListener(() => Debug.Log("Timer Stopped"));
         _PauseTimer.AddListener(() => Debug.Log("Pause/Play"));
@@ -78,6 +78,7 @@ public class RoundTimer : MonoBehaviour
 
         if (roundTimer >= roundLengthSecs)
         {
+            StopTimer();
             RoundOverEvent();
         }
 

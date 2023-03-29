@@ -9,7 +9,7 @@ public class EnemyTouchHandler : MonoBehaviour, IMixedRealityTouchHandler
 
     public void OnTouchCompleted(HandTrackingInputEventData eventData)
     {
-        throw new System.NotImplementedException();
+
     }
 
     public void OnTouchStarted(HandTrackingInputEventData eventData)

@@ -28,7 +28,8 @@ public class UIController : MonoBehaviour
     public Material backPlateGreen;
 
     public TMP_Text infoText;
-    private int roundTime = 60;
+    private int roundTime = -1;
+    public int timeRemaining { get { return roundTime; } }
     private EnemyManager enemyManager;
     private GameStateManager gameStateManager;
     private List<Dialog> openDialogs = new List<Dialog>();
@@ -90,24 +91,16 @@ public class UIController : MonoBehaviour
         }
     }
 
-    private void WaitForDialogClosed(Dialog d)
-    {
-        while (d.State != DialogState.Closed)
-        {
-            Thread.Sleep(100);
-        }
-    }
-
     public void TutorialPlanPopUps()
     {
         closeOpenDialogs();
-        Dialog d1 = Dialog.Open(buttonDialogPrefab, DialogButtonType.Confirm, "Treevolution Tutorial", "You must protect your Home Tree from the enemy bugs! Some bugs you can simply whack, whereas others you must use the help of your plant buddies.", true);
+        Dialog d1 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Treevolution Tutorial", "Protect your Home Tree from the enemy bugs! Some bugs you can simply squash, whereas others you must utilise the help of your plant buddies.", true);
         d1.OnClosed = delegate (DialogResult dr)
         {
-            Dialog d2 = Dialog.Open(buttonDialogPrefab, DialogButtonType.Confirm, "Treevolution Tutorial - Planning Phase", "The enemy bugs will come in waves from either far end of the table. Place your obstacles and plants strategically during each Planning Phase to maximise your score.", true);
+            Dialog d2 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Planning Phase", "The enemy bugs will come in waves from either end of the table. Place your obstacles and plants during each Planning Phase, try to maximise your strategy and learn from previous mistakes.", true);
             d2.OnClosed = delegate (DialogResult dr)
             {
-                Dialog d3 = Dialog.Open(buttonDialogPrefab, DialogButtonType.Confirm, "Treevolution Tutorial - Planning Phase", "Have a go, place your objects where you would like, and when you are happy then press the big red button above your Home Tree in the centre.", true);
+                Dialog d3 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Give it a Try", "Have a go, place your objects where you would like, and when you are happy, press the big red button above your Home Tree in the centre.\nBring On The Bugs!", true);
                 d3.OnClosed = delegate (DialogResult dr)
                 {
                     gameStateManager.BeginTutorialPlan();
@@ -119,17 +112,17 @@ public class UIController : MonoBehaviour
     public void TutorialBattlePopUps()
     {
         closeOpenDialogs();
-        Dialog d1 = Dialog.Open(buttonDialogPrefab, DialogButtonType.Confirm, "Treevolution Tutorial - Battle Phase", "During the Battle Phase the time remaining is displayed above your Home Tree.", true);
+        Dialog d1 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Battle Phase", "During the Battle Phase the time remaining is displayed above your Home Tree. Kill as many bugs as you can before the time runs out!", true);
         d1.OnClosed = delegate (DialogResult dr)
         {
-            Dialog d2 = Dialog.Open(buttonDialogPrefab, DialogButtonType.Confirm, "Treevolution Tutorial - Bugs", "You will need to keep an eye out for new bugs spawning. There are various types of bugs in fact, starting with the most basic - Ants.", true);
+            Dialog d2 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Bugs", "Keep an eye out for new bugs approaching, the most basic of which is the Ant.", true);
             d2.OnClosed = delegate (DialogResult dr)
             {
-                Dialog d3 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.Confirm, "Treevolution Tutorial - Ants", "Ants can be damaged by *whacking* them, *splatting* them, *swatting* them, or any other similar action. It may take a few tries to get used to, but have a go!", true);
+                Dialog d3 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.OK, "Ants", "Ants can be killed by *splatting* them, and is easiest with your hand in a fist. It may take a few tries to get used to, but have a go!", true);
                 d3.gameObject.GetComponentInChildren<Image>().sprite = antImage;
                 d3.OnClosed = delegate (DialogResult dr)
                 {
-                    gameStateManager.TutorialBattlePlay();
+                    StartCoroutine(gameStateManager.BeginTutorialBattle());
                 };
             };
         };
@@ -138,35 +131,45 @@ public class UIController : MonoBehaviour
     public void TutorialBugPopUps()
     {
         closeOpenDialogs();
-        Dialog d1 = Dialog.Open(buttonDialogPrefab, DialogButtonType.Confirm, "Treevolution Tutorial - Bugs", "More types of bugs will be introduced as you progress through the rounds. Some of them can only be damaged using your plants, and others can even break down obstacles that you place!", true);
+        Dialog d1 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Bugs", "More types of bugs will be introduced as you progress through the rounds. Some of them can only be damaged using your plants, and others can even break down obstacles that you place!", true);
         d1.OnClosed = delegate (DialogResult dr)
         {
-            Dialog d2 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.Confirm, "Treevolution Tutorial - Beetle", "The Beetle is slightly stronger than the ant, but its armour slows it down. It can be damaged by hitting it, although it isn't a one-hit-wonder like with the ant. Alternatively target it with your towers.", true);
+            Dialog d2 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.OK, "Beetles", "The Beetle is stronger than the ant, but its armour slows it down. It can also be damaged by hitting it, although may take a few strikes. Alternatively target it with your plants.", true);
             d2.gameObject.GetComponentInChildren<Image>().sprite = armouredBeetleImage;
             d2.OnClosed = delegate (DialogResult dr)
             {
-                Dialog d3 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.Confirm, "Treevolution Tutorial - Cockroach", "The Cockroach is strong and fast! Be sure to target these when you first see them, and don't let them get too close to your Home Tree. Their armour is so strong that you cannot damage them with pure force - plant power must be used.", true);
+                Dialog d3 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.OK, "Cockroaches", "The Cockroach is strong and fast. Their armour is so strong that you cannot damage them with pure force - plant power must be used.", true);
                 d3.gameObject.GetComponentInChildren<Image>().sprite = armouredCockroachImage;
                 d3.OnClosed = delegate (DialogResult dr)
                 {
-                    Dialog d4 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.Confirm, "Treevolution Tutorial - Stagbeetle", "The Stagbeetle may seem slow, but its health and attack damage sure does make up for it. They can break through obstacles with a few hits, and have a large amount health.", true);
+                    Dialog d4 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.OK, "Stagbeetles", "The Stagbeetle may seem slow, but its health and attack damage makes up for it. They can break through obstacles with a few hits, and have a large amount health.", true);
                     d4.gameObject.GetComponentInChildren<Image>().sprite = armouredStegbeetleImage;
                     d4.OnClosed = delegate (DialogResult dr)
                     {
-                        Dialog d5 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.Confirm, "Treevolution Tutorial - Dragonfly", "These beautiful creatures can fly straight over your obstacles and will deal a large amount of damage to your Home Tree, so be sure to swat them when you see them.", true);
+                        Dialog d5 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.OK, "Dragonflies", "These beautiful creatures can fly straight over your obstacles and will deal a large amount of damage to your Home Tree, so be sure to swat them when you see them.", true);
                         d5.gameObject.GetComponentInChildren<Image>().sprite = dragonflyImage;
                         d5.OnClosed = delegate (DialogResult dr)
                         {
-                            Dialog d6 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.Confirm, "Treevolution Tutorial - Hornet", "I'd stay away from these if I were you - swatting will just result in a painful sting! Instead, use your plants to damage these pests!", true);
+                            Dialog d6 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.OK, "Hornets", "I'd stay away from these if I were you - swatting will just result in a painful sting - instead, use your plants!", true);
                             d6.gameObject.GetComponentInChildren<Image>().sprite = hornetImage;
                             d6.OnClosed = delegate (DialogResult dr)
                             {
-                                gameStateManager.TutorialBattleContinue();
+                                gameStateManager.ContinueTutorialBattle();
                             };
                         };
                     };
                 };
             };
+        };
+    }
+
+    public void EndTutorial()
+    {
+        closeOpenDialogs();
+        Dialog d1 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Tutorial Complete", "Now it's time to start for real. Strategically place your items, and click the red button when you are ready to begin the first battle!", true);
+        d1.OnClosed = delegate (DialogResult dr)
+        {
+            gameStateManager.BeginRound();
         };
     }
 
@@ -222,5 +225,6 @@ public class UIController : MonoBehaviour
         roundTime -= 1;
         infoText.text = "" + roundTime.ToString();
     }
+    
 }
 
