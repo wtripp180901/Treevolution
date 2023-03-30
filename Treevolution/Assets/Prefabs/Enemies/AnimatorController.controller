@@ -46,7 +46,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 74b2fdc8c5f54d64ca753e80ca1c7fdc, type: 2}
+  m_Motion: {fileID: 0}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -136,8 +136,8 @@ AnimatorStateMachine:
   m_Name: Hornet
   m_ChildStates:
   - serializedVersion: 1
-    m_State: {fileID: 7838719921481426854}
-    m_Position: {x: 273.65088, y: 280.4541, z: 0}
+    m_State: {fileID: 5781955216808011584}
+    m_Position: {x: 109.999985, y: 226, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -147,7 +147,7 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: 7838719921481426854}
+  m_DefaultState: {fileID: 5781955216808011584}
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
@@ -344,7 +344,7 @@ AnimatorStateMachine:
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -4718150238328704303}
---- !u!1102 &7838719921481426854
+--- !u!1102 &5781955216808011584
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -364,7 +364,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1827226128182048838, guid: d00ec1401ea18204ca30f4b017834b0c, type: 3}
+  m_Motion: {fileID: 7400000, guid: fde18328294701d478ea4bd3b07843b8, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
