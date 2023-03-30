@@ -34,7 +34,7 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (started && !roundTimer.IsPaused)
+        if (started && !roundTimer.isPaused)
         {
             if (!firstSpawn)
             {
