@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using NUnit.Framework;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.TestTools;
 
@@ -15,7 +14,7 @@ public class PathfindingTests
         //tree.AddComponent<Transform>();
         tree.transform.position = new Vector3(0, 0, 0);
         //Assert.AreEqual(Pathfinding.PathfindingGraphGenerator.GetPathfindingGraph().Length, 0,"error");
-        Assert.AreEqual(Pathfinding.Pathfinder.GetPath(new Vector3(0, 0, 0), new Vector3(0,0,0)).Length, 1);
+        Assert.AreEqual(Pathfinding.Pathfinder.GetPath(new Vector3(0, 0, 0), new Vector3(0, 0, 0)).Length, 1);
         yield return null;
     }
 

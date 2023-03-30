@@ -14,13 +14,15 @@ public class ShootingScript : MonoBehaviour
     {
         if (timer < shootingRate)
             timer = timer + Time.deltaTime;
-        else {
+        else
+        {
             enemyShoot();
             timer = 0;
         }
     }
 
-    void enemyShoot() {
+    void enemyShoot()
+    {
 
     }
 }

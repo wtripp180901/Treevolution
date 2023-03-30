@@ -1,9 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 //using UnityEditor.PackageManager;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public static class TowerGenerator
 {
@@ -22,16 +19,17 @@ public static class TowerGenerator
         }
         List<TowerData> towers = new List<TowerData>();
         points -= TowerData.numAttributes;
-        for (int i = 0; i < numberOfTowers; i++) {
+        for (int i = 0; i < numberOfTowers; i++)
+        {
             float split1 = Random.Range(0.0f, 1.0f);
             float split2 = Random.Range(split1, 1.0f);
 
             int damage = 1 + (int)Mathf.Round(points * split1);
-            int range = 1 + (int)Mathf.Round(points * (1-split2));
+            int range = 1 + (int)Mathf.Round(points * (1 - split2));
             int speed = 3 + points - damage - range; // baseline of 1, +2 for the 2 subtracted
             towers.Add(new TowerData(damage, range, speed));
         }
 
         return towers;
-    }   
+    }
 }

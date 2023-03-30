@@ -158,7 +158,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100754430}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.11296964, y: 0.056116465, z: 1.7254112}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3de42c8a6c088247bc3a4b5d69651ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundLengthSecs: 5
+  roundLengthSecs: 60
   _SecondTickEvent:
     m_PersistentCalls:
       m_Calls:
@@ -207,6 +207,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   infoDialogPrefab: {fileID: 2330315304125546656, guid: 7fed0f9b7bf28df4796e266e8c5d9e49, type: 3}
   buttonDialogPrefab: {fileID: 2330315304125546656, guid: 38f4719e0c0d6ce45bdde4bdcf66057f, type: 3}
+  buttonImageDiaglogPrefab: {fileID: 2330315304125546656, guid: 90c7603907a27d84f9f7f8471b27a690, type: 3}
+  antImage: {fileID: 21300000, guid: 78daa91cacdf60949a1d917cbe31c44a, type: 3}
+  armouredBeetleImage: {fileID: 21300000, guid: c99bd2417985dfa49b9abcc97d7b6f0e, type: 3}
+  armouredCockroachImage: {fileID: 21300000, guid: 6b1876119164d5b47a70d0416f9fb785, type: 3}
+  armouredStegbeetleImage: {fileID: 21300000, guid: 7a3d758a097d25545abc0627a3056a6c, type: 3}
+  dragonflyImage: {fileID: 21300000, guid: bae8a532b4f7fc049b8326b766df56c5, type: 3}
+  hornetImage: {fileID: 21300000, guid: 50d60d55750c86143b76fb01fb7552d5, type: 3}
   backPlateGrey: {fileID: 2100000, guid: 88886e323de80bc40b327994bb1b08c9, type: 2}
   backPlateOrange: {fileID: 2100000, guid: 79add422ab91cd746bc94d61e0b6da5c, type: 2}
   backPlateGreen: {fileID: 2100000, guid: 137e807a4e7fe25489b10d6bfe05228d, type: 2}
@@ -253,14 +260,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83075b0934598fa41bb8442ae93fe169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  antPrefab: {fileID: 7479068726099194787, guid: 53495b08017947b41b28df3bb405356b, type: 3}
-  armouredBugPrefab: {fileID: 7479068726099194787, guid: 53495b08017947b41b28df3bb405356b, type: 3}
-  armouredCockroachPrefab: {fileID: 7479068726099194787, guid: 53495b08017947b41b28df3bb405356b, type: 3}
-  armouredStagbeetlePrefab: {fileID: 7479068726099194787, guid: 53495b08017947b41b28df3bb405356b, type: 3}
-  DragonflyPrefab: {fileID: 7479068726099194787, guid: 53495b08017947b41b28df3bb405356b, type: 3}
-  spawnInterval: 3
-  started: 0
-  firstSpawn: 0
+  antPrefab: {fileID: 8476436578862352915, guid: 93d35b4eebdb9b24286770538c6e96ad, type: 3}
+  armouredBugPrefab: {fileID: 8203687735036754710, guid: 5d6fb06c685a2484085aa83a465e5af1, type: 3}
+  armouredCockroachPrefab: {fileID: 1401480492395099975, guid: 9173789dc3d7cf347b9618eaa986d686, type: 3}
+  armouredStagbeetlePrefab: {fileID: 3230766117565264235, guid: 834074bac70495f45a8d04bf6a4c05a8, type: 3}
+  DragonflyPrefab: {fileID: 2325871866633357825, guid: 28eaac28c6410f849a628749c9ada0f9, type: 3}
+  HornetPrefab: {fileID: 7205856713176979134, guid: b04e84fbb1ef0dd4b9ac1097a11eb340, type: 3}
+  spawnInterval: 2
 --- !u!114 &100754437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,7 +302,7 @@ MonoBehaviour:
   tree: {fileID: 4047742926485375969, guid: 13815b32147eea64e9a773ef69b3240e, type: 3}
   startButton: {fileID: 1064493251}
   debugObject: {fileID: 1931168448}
-  devMode: 0
+  maxRoundNum: 4
 --- !u!114 &100754439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1514,8 +1520,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateLinkedTransform: 0
-  moveLerpTime: 0.1
-  rotateLerpTime: 0.1
+  moveLerpTime: 0
+  rotateLerpTime: 0
   scaleLerpTime: 0
   maintainScaleOnInitialization: 1
   smoothing: 1
@@ -1531,8 +1537,8 @@ MonoBehaviour:
   maxViewHorizontalDegrees: 30
   maxViewVerticalDegrees: 20
   reorientWhenOutsideParameters: 1
-  orientToControllerDeadzoneDegrees: 10
-  ignoreAngleClamp: 0
+  orientToControllerDeadzoneDegrees: 1
+  ignoreAngleClamp: 1
   ignoreDistanceClamp: 0
   ignoreReferencePitchAndRoll: 0
   pitchOffset: 0
@@ -1753,18 +1759,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1743768122}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 807997090}
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 1931168449}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.0001199618, y: 0}
   m_SizeDelta: {x: 2, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1743768124
@@ -1897,7 +1903,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2855530887453255010, guid: b03d6137db94da542a85a178758d9d56, type: 3}
       propertyPath: m_text
-      value: Start Battle
+      value: Battle
       objectReference: {fileID: 0}
     - target: {fileID: 2855530887453255010, guid: b03d6137db94da542a85a178758d9d56, type: 3}
       propertyPath: m_margin.w
@@ -2156,8 +2162,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1261470963}
+  - {fileID: 1743768123}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2052329093
 GameObject:

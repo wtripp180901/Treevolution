@@ -1,7 +1,6 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 namespace Pathfinding
 {
@@ -65,7 +64,7 @@ namespace Pathfinding
 
         private static List<PathfindingNode> nodesFromObstacleData()
         {
-           
+
             List<PathfindingNode> graph = new List<PathfindingNode>();
             for (int i = 0; i < obstacleData.Count; i++)
             {
