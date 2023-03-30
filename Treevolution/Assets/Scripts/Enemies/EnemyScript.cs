@@ -17,7 +17,12 @@ public class EnemyScript : MonoBehaviour
     Vector3 directionVector;
     Vector3 currentTarget;
     int pathCounter = 0;
-    int health = 10;    
+    int health = 10;
+
+    [SerializeField]
+    float inWallDamageInterval = 0.5f;
+    float currentInWallInterval = 0f;
+    bool inWall = false;
 
     [SerializeField]
     private AudioSource damageAudio;
@@ -31,6 +36,19 @@ public class EnemyScript : MonoBehaviour
         Initialise();
         spawnAudio.Play();
         roundTimer = GameObject.Find("Logic").GetComponent<RoundTimer>();
+    }
+
+    private void Update()
+    {
+        if(inWall)
+        {
+            currentInWallInterval -= Time.deltaTime;
+            if(currentInWallInterval < 0f)
+            {
+                currentInWallInterval = inWallDamageInterval;
+                Damage(1);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -85,6 +103,17 @@ public class EnemyScript : MonoBehaviour
         {
             hasHitFloor = true;
         }
+    }
+
+    private void OnTriggerEnter(Collider trigger)
+    {
+        inWall = true;
+    }
+
+    private void OnTriggerExit(Collider trigger)
+    {
+        inWall = false;
+        currentInWallInterval = inWallDamageInterval;
     }
 
     private void Initialise()
