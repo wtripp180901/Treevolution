@@ -47,9 +47,12 @@ public class UIController : MonoBehaviour
         closeOpenDialogs();
         lock (openDialogs)
         {
-            Dialog d = Dialog.Open(infoDialogPrefab, DialogButtonType.None, "Calibrate Game Board", "Find, and look at the QR Code in the corner of the table to calibrate the Game Board.", true);
-            d.gameObject.transform.GetChild(3).gameObject.GetComponent<MeshRenderer>().material = backPlateOrange;
-            openDialogs.Add(d);
+            if (gameStateManager.CurrentGameState != GameStateManager.GameState.Plane_Mapped)
+            {
+                Dialog d = Dialog.Open(infoDialogPrefab, DialogButtonType.None, "Calibrate Game Board", "Find, and look at the QR Code in the corner of the table to calibrate the Game Board.", true);
+                d.gameObject.transform.GetChild(3).gameObject.GetComponent<MeshRenderer>().material = backPlateOrange;
+                openDialogs.Add(d);
+            }
         }
     }
 
@@ -192,16 +195,13 @@ public class UIController : MonoBehaviour
 
     private void closeOpenDialogs()
     {
-        if (openDialogs != null)
+        lock (openDialogs)
         {
-            lock (openDialogs)
+            for (int i = 0; i < openDialogs.Count; i++)
             {
-                for (int i = 0; i < openDialogs.Count; i++)
-                {
-                    openDialogs[i].DismissDialog();
-                }
-                openDialogs.Clear();
+                openDialogs[i].DismissDialog();
             }
+            openDialogs.Clear();
         }
     }
 

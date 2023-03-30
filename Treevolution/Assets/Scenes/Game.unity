@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83075b0934598fa41bb8442ae93fe169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  antPrefab: {fileID: 3946733360163872345, guid: 2e520fc84caf2f945b2d6dd53f66a4a1, type: 3}
+  antPrefab: {fileID: 8476436578862352915, guid: 93d35b4eebdb9b24286770538c6e96ad, type: 3}
   armouredBugPrefab: {fileID: 8203687735036754710, guid: 5d6fb06c685a2484085aa83a465e5af1, type: 3}
   armouredCockroachPrefab: {fileID: 1401480492395099975, guid: 9173789dc3d7cf347b9618eaa986d686, type: 3}
   armouredStagbeetlePrefab: {fileID: 3230766117565264235, guid: 834074bac70495f45a8d04bf6a4c05a8, type: 3}

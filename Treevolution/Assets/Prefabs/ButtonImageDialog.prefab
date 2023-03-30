@@ -2125,8 +2125,8 @@ MonoBehaviour:
   maintainScaleOnInitialization: 1
   smoothing: 1
   lifetime: 0
-  orientationType: 1
-  faceTrackedObjectWhileClamped: 1
+  orientationType: 0
+  faceTrackedObjectWhileClamped: 0
   faceUserDefinedTargetTransform: 0
   targetToFace: {fileID: 0}
   pivotAxis: 7
@@ -2141,7 +2141,7 @@ MonoBehaviour:
   ignoreDistanceClamp: 0
   ignoreReferencePitchAndRoll: 0
   pitchOffset: 0
-  verticalMaxDistance: 0.4
+  verticalMaxDistance: 1
   angularClampMode: 0
   tetherAngleSteps: 6
   boundsScaler: 1
