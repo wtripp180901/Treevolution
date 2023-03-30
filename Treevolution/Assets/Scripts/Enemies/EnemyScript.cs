@@ -1,9 +1,8 @@
+using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using Pathfinding;
-
 using TMPro;
+using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -11,32 +10,47 @@ public class EnemyScript : MonoBehaviour
     public Rigidbody rig;
     [SerializeField] // This allows the private field to be edited from the Unity inspecter
     private float speed = 0.1f;
-
-    Vector3[] path;
-    bool followingPath = true;
-    Vector3 directionVector;
-    Vector3 currentTarget;
-    int pathCounter = 0;
-    int health = 10;    
-
+    private HealthBar healthBar;
+    private Vector3[] path;
+    private bool followingPath = true;
+    private Vector3 directionVector;
+    private Vector3 currentTarget;
+    private int pathCounter = 0;
+    public int health = 10;
+    public bool flying = false;
+    [SerializeField]
+    private AudioSource spawnAudio;
     [SerializeField]
     private AudioSource damageAudio;
     [SerializeField]
-    private AudioSource spawnAudio;
+    private AudioSource deathAudio;
+    private EnemyManager enemyManager;
+    private SpawnDirectionIndicator leftIndicator;
+    private SpawnDirectionIndicator rightIndicator;
+
+    private Vector3 defaultOrientation;
 
     // Start is called before the first frame update
     void Start()
     {
-        rig = GetComponent<Rigidbody>();
-        Initialise();
-        spawnAudio.Play();
+        defaultOrientation = transform.rotation.eulerAngles;
         roundTimer = GameObject.Find("Logic").GetComponent<RoundTimer>();
+        rig = GetComponent<Rigidbody>();
+        healthBar = GetComponent<HealthBar>();
+        leftIndicator = GameObject.FindWithTag("LeftIndicator").GetComponent<SpawnDirectionIndicator>();
+        rightIndicator = GameObject.FindWithTag("RightIndicator").GetComponent<SpawnDirectionIndicator>();
+        enemyManager = GameObject.FindWithTag("Logic").GetComponent<EnemyManager>();
+        if (flying)
+            rig.useGravity = false;
+        else
+            rig.useGravity = true;
+        Initialise();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (roundTimer.IsPaused)
+        if (roundTimer != null && roundTimer.IsPaused)
             return;
         Vector3 pos = transform.position;
         if (followingPath && rig.velocity.y >= -5f)
@@ -63,9 +77,10 @@ public class EnemyScript : MonoBehaviour
             currentTarget = path[pathCounter];
             directionVector = (currentTarget - transform.position).normalized * speed;
             directionVector.y = 0;
-            transform.rotation = Quaternion.LookRotation(directionVector, transform.up);
+            transform.rotation = Quaternion.Euler(Quaternion.LookRotation(directionVector, transform.up).eulerAngles + defaultOrientation);
             pathCounter += 1;
         }
+        GameObject.FindGameObjectWithTag("DebugText").GetComponent<TMP_Text>().text = "pathLen=" + path.Length.ToString() + "\nfollowingPath=" + followingPath.ToString() + "\vtarg=" + currentTarget.ToString() + "\npathCounter=" + pathCounter.ToString() + "\nTimer=" + roundTimer.isRunning;
     }
 
     bool hasHitFloor = false;
@@ -81,7 +96,7 @@ public class EnemyScript : MonoBehaviour
         {
             Damage(1);
         }
-        if (!hasHitFloor && (GetComponent<Collider>().gameObject.tag == "Floor" || GetComponent<Collider>().gameObject.tag == "Wall"))
+        if (!hasHitFloor && (otherCollider.gameObject.tag == "Floor" || otherCollider.gameObject.tag == "Wall"))
         {
             hasHitFloor = true;
         }
@@ -89,23 +104,35 @@ public class EnemyScript : MonoBehaviour
 
     private void Initialise()
     {
+        healthBar.SetMaxHealth(health);
+        if (flying)
+        {
+            transform.position = transform.position + Vector3.up * 0.25f;
+        }
         Vector3 pos = transform.position;
-        path = Pathfinding.Pathfinder.GetPath(pos, GameObject.FindGameObjectWithTag("Tree").transform.position);
+        path = Pathfinder.GetPath(pos, GameObject.FindGameObjectWithTag("Tree").transform.position);
         rig.freezeRotation = true;
+
         startMoveToNextTarget();
 
-        Vector2 screenSpawnPos = Camera.main.WorldToScreenPoint(transform.position);
-        SpawnDirectionIndicator spawnDirectionIndicator = null;
-        if (screenSpawnPos.x < 0) spawnDirectionIndicator = GameObject.FindWithTag("LeftIndicator").GetComponent<SpawnDirectionIndicator>();
-        if (screenSpawnPos.x > Screen.width) spawnDirectionIndicator = GameObject.FindWithTag("RightIndicator").GetComponent<SpawnDirectionIndicator>();
-        if(spawnDirectionIndicator != null) spawnDirectionIndicator.IndicateDirection();
+        spawnIndicator();
     }
 
-    IEnumerator DamageIndicator()
+    private void spawnIndicator()
+    {
+        Camera cam = Camera.main;// CameraCache.Main;
+        Vector3 viewPortSpawnPos = cam.WorldToViewportPoint(transform.position);
+        SpawnDirectionIndicator spawnDirectionIndicator = null;
+        if (viewPortSpawnPos.x < 0f || (viewPortSpawnPos.z < 0 && viewPortSpawnPos.x < 0.5f)) spawnDirectionIndicator = leftIndicator;
+        if (viewPortSpawnPos.x > 1f || (viewPortSpawnPos.z < 0 && viewPortSpawnPos.x >= 0.5f)) spawnDirectionIndicator = rightIndicator;
+        if (spawnDirectionIndicator != null) spawnDirectionIndicator.IndicateDirection();
+    }
+
+    private IEnumerator DamageIndicator()
     {
         List<Color> defaultColours = new List<Color>();
         Renderer[] childRenderers = transform.GetComponentsInChildren<Renderer>();
-        for(int i = 0;i < childRenderers.Length; i++)
+        for (int i = 0; i < childRenderers.Length; i++)
         {
             defaultColours.Add(childRenderers[i].material.color);
             childRenderers[i].material.color = Color.red;
@@ -118,19 +145,30 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
+    private IEnumerator KillEnemy()
+    {
+        followingPath = false;
+        gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, 0, gameObject.transform.localScale.z);
+        deathAudio.Play();
+        yield return new WaitForSeconds(1f);
+        DestroyEnemy(true);
+    }
+
+
     public void Damage(int power)
     {
         health -= power;
+        healthBar.SetHealth(health);
         if (health <= 0)
         {
-            DestroyEnemy(true);
+            StartCoroutine(KillEnemy());
         }
         else StartCoroutine(DamageIndicator());
     }
 
     public void DestroyEnemy(bool killedByPlayer)
     {
-        GameObject.FindWithTag("Logic").GetComponent<EnemyManager>().RemoveEnemy(gameObject, killedByPlayer);
-        Destroy(gameObject);
+        enemyManager.RemoveEnemy(gameObject, killedByPlayer);
+        Destroy(gameObject.GetComponent<Collider>().gameObject);
     }
 }

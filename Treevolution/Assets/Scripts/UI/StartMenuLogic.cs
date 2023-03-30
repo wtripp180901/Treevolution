@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Microsoft.MixedReality.Toolkit.UI;
 using Microsoft.MixedReality.QR;
-using Microsoft.MixedReality.Toolkit.SceneSystem;
-using Microsoft.MixedReality.Toolkit;
+using Microsoft.MixedReality.Toolkit.UI;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class StartMenuLogic : MonoBehaviour
@@ -24,13 +20,12 @@ public class StartMenuLogic : MonoBehaviour
 
     public void StartGame()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
-        //Dialog.Open(DialogPrefabGuide1, DialogButtonType.OK, "Test Dialog1", "This is Test1", true);
+        SceneManager.LoadScene("Game");
     }
 
     public void OpenSettings(GameObject caller)
     {
-        Dialog d = Dialog.Open(SettingsDialogPrefab, DialogButtonType.Close, "Settings", "There are currently no settings available... Sorry :ss(", true);
+        Dialog d = Dialog.Open(SettingsDialogPrefab, DialogButtonType.Close, "Settings", "There are currently no settings available... Sorry :(", true);
         d.OnClosed = delegate (DialogResult dr) { openStartMenu(); };
     }
 }

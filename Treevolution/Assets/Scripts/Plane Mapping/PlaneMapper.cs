@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlaneMapper : MonoBehaviour
@@ -56,7 +54,7 @@ public class PlaneMapper : MonoBehaviour
 
         _minY = marker.position.y;
         ClearPlane();
-       
+
         bl = marker.position;
         br = marker.position + _pose.forward * tableWidth * 0.01f;
         tl = marker.position - _pose.right * tableDepth * 0.01f;
@@ -66,18 +64,19 @@ public class PlaneMapper : MonoBehaviour
         br.y = bl.y;
         tr.y = bl.y;
 
-   
 
-        Debug.DrawLine(bl,bl + Vector3.up,Color.green,1000);
+
+        Debug.DrawLine(bl, bl + Vector3.up, Color.green, 1000);
         Instantiate(planeMarker, tl, Quaternion.identity);
         Instantiate(planeMarker, tr, Quaternion.identity);
         Instantiate(planeMarker, bl, Quaternion.identity);
         Instantiate(planeMarker, br, Quaternion.identity);
 
-        if (markerCount > 0) {
+        if (markerCount > 0)
+        {
             Vector3 depthStep = (tl - bl) / (markerCount + 1);
             Vector3 widthStep = (br - bl) / (markerCount + 1);
-            for (int i = 0;i < markerCount; i++)
+            for (int i = 0; i < markerCount; i++)
             {
                 Instantiate(planeMarker, bl + ((i + 1) * depthStep), Quaternion.identity);
                 Instantiate(planeMarker, bl + ((i + 1) * widthStep), Quaternion.identity);
@@ -111,7 +110,7 @@ public class PlaneMapper : MonoBehaviour
     {
         Destroy(GameObject.FindWithTag("Floor"));
         GameObject[] existingMarkers = GameObject.FindGameObjectsWithTag("PlaneMarker");
-        for(int i = 0;i < existingMarkers.Length; i++)
+        for (int i = 0; i < existingMarkers.Length; i++)
         {
             Destroy(existingMarkers[i]);
         }

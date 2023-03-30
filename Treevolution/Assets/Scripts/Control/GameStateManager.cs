@@ -7,7 +7,7 @@ using UnityEngine;
 /// Manages and keeps track of the game state as the user progresses through each round or tutorial.
 /// </summary>
 public class GameStateManager : MonoBehaviour
-{   
+{
     /// <summary>
     /// TextMeshPro Game Object to display UI elements on.
     /// </summary>
@@ -19,19 +19,43 @@ public class GameStateManager : MonoBehaviour
     /// <summary>
     /// A Debug wrapper object which will be enabled when playing in the Unity Editor.
     /// </summary>
-    public GameObject DebugObject;
+    public GameObject debugObject;
     /// <summary>
-    /// 
+    /// Returns the current GameState of the game.
     /// </summary>
-    public bool devMode = false;
-    private QRDetection qrDetection;
-    private UIController UIController;
-    private EnemyManager enemyManager;
-    private RoundTimer roundTimer;
-    private GameState currentState;
-    public GameState CurrentGameState { get { return currentState; } }
-    private int roundNumber = 0;
+    public GameState currentGameState { get { return _currentState; } }
+    /// <summary>
+    /// Specifies the maximum number of rounds to play.
+    /// </summary>
+    public int maxRoundNumber = 4;
+    /// <summary>
+    /// Running QRDetection instance.
+    /// </summary>
+    private QRDetection _qRDetection;
+    /// <summary>
+    /// Running UIController instance.
+    /// </summary>
+    private UIController _uIController;
+    /// <summary>
+    /// Running EnemyManager instance.
+    /// </summary>
+    private EnemyManager _enemyManager;
+    /// <summary>
+    /// Running RoundTimer instance.
+    /// </summary>
+    private RoundTimer _roundTimer;
+    /// <summary>
+    /// The current GameState value.
+    /// </summary>
+    private GameState _currentState;
+    /// <summary>
+    /// The current round number (0 = None/Tutorial, 1 = Round 1, etc.).
+    /// </summary>
+    private int _currentRoundNumber = 0;
 
+    /// <summary>
+    /// Values the GameState can take.
+    /// </summary>
     public enum GameState
     {
         Calibration,
@@ -41,155 +65,225 @@ public class GameStateManager : MonoBehaviour
         Round_Plan,
         Round_Battle
     }
+    /// <summary>
+    /// Types of enemies.
+    /// </summary>
     public enum EnemyType
     {
         Ant,
         Armoured_Bug,
         Armoured_Cockroach,
         Armoured_Stagbeetle,
-        Dragonfly
+        Dragonfly,
+        Hornet
     }
-    private Dictionary<EnemyType, int>[] enemyWaves = {
-        new Dictionary<EnemyType, int>(){ 
-            { EnemyType.Ant, 10 } 
+    /// <summary>
+    /// Count of each EnemyType to spawn during each round.
+    /// </summary>
+    private Dictionary<EnemyType, int>[] _enemyWaves = {
+        new Dictionary<EnemyType, int>(){
+            { EnemyType.Ant, 10 },
         },
         new Dictionary<EnemyType, int>(){
             { EnemyType.Ant, 10 },
-            { EnemyType.Armoured_Bug, 5 }
-        },
-        new Dictionary<EnemyType, int>(){
-            { EnemyType.Ant, 10 },
-            { EnemyType.Armoured_Bug, 8 },
-            { EnemyType.Armoured_Cockroach, 5}
-        },
-        new Dictionary<EnemyType, int>(){
-            { EnemyType.Ant, 10 },
-            { EnemyType.Armoured_Bug, 8 },
-            { EnemyType.Armoured_Cockroach, 5},
-            { EnemyType.Armoured_Stagbeetle, 5 }
+            { EnemyType.Armoured_Bug, 10 }
         },
         new Dictionary<EnemyType, int>(){
             { EnemyType.Ant, 10 },
             { EnemyType.Armoured_Bug, 8 },
-            { EnemyType.Armoured_Cockroach, 5},
+            { EnemyType.Armoured_Cockroach, 8}
+        },
+        new Dictionary<EnemyType, int>(){
+            { EnemyType.Ant, 8 },
+            { EnemyType.Armoured_Bug, 8 },
+            { EnemyType.Armoured_Cockroach, 8},
             { EnemyType.Armoured_Stagbeetle, 5 },
-            { EnemyType.Dragonfly, 3}
+            { EnemyType.Dragonfly, 5},
+
+        },
+        new Dictionary<EnemyType, int>(){
+            { EnemyType.Ant, 8 },
+            { EnemyType.Armoured_Bug, 5 },
+            { EnemyType.Armoured_Cockroach, 8},
+            { EnemyType.Armoured_Stagbeetle, 5 },
+            { EnemyType.Dragonfly, 5},
+            { EnemyType.Hornet, 5}
         }
     };
 
+    /// <summary>
+    /// Start runs when loading the GameObject that this script is attached to.
+    /// </summary>
     private void Start()
     {
-        if (devMode)
+        if (Application.platform == RuntimePlatform.WindowsEditor)
         {
-            DebugObject.SetActive(true);
+            debugObject.SetActive(true); // Unity Editor Mode
         }
-        currentState = GameState.Calibration;
-        UIController = GetComponent<UIController>();
-        qrDetection = GetComponent<QRDetection>();
-        enemyManager = GetComponent<EnemyManager>();
-        roundTimer = GetComponent<RoundTimer>();
         InfoText.text = "";
-        UIController.CalibrationPopUp();
+        _currentState = GameState.Calibration;
+        _uIController = GetComponent<UIController>();
+        _qRDetection = GetComponent<QRDetection>();
+        _enemyManager = GetComponent<EnemyManager>();
+        _roundTimer = GetComponent<RoundTimer>();
+        _uIController.CalibrationPopUp();
     }
 
-    private void Update()
-    {
-    }
-
+    /// <summary>
+    /// Called when the GameBoard QR Code is first recognised to move the state to <c>Plane_Mapped</c> and open a success dialog.
+    /// </summary>
     public void CalibrationSuccess()
     {
-        currentState = GameState.Plane_Mapped;
-        UIController.CalibrationSuccessPopUp();
-        //infoText.text = "Calibration Successful";
+        _currentState = GameState.Plane_Mapped;
+        _uIController.CalibrationSuccessPopUp();
     }
 
-
+    /// <summary>
+    /// Starts the Tutorial if it is selected.
+    /// </summary>
     public void BeginTutorial()
     {
-        roundNumber = 0;
-        currentState = GameState.Tutorial_Plan;
-        UIController.TutorialPlanPopUp();
-        currentState = GameState.Tutorial_Battle;
-        UIController.TutorialBattlePopUp();
+        _currentRoundNumber = 0;
+        _uIController.TutorialPlanPopUps();
     }
 
-
-    public void BeginRound()
+    /// <summary>
+    /// Begins the Tutorial Planning Phase and progresses the state to <c>Tutorial_Plan</c>.
+    /// </summary>
+    public void BeginTutorialPlan()
     {
-        InfoText.transform.position = GameProperties.Centre + new Vector3(0, 0.7f, 0);
-        currentState = GameState.Round_Plan;
-        roundNumber++;
-        InfoText.text = "Round " + roundNumber.ToString() + "\n-[Planning]-";
+        _currentState = GameState.Tutorial_Plan;
+        InfoText.transform.position = GameProperties.Centre + new Vector3(0, 0.65f, 0);
+        InfoText.text = "Tutorial\n[Planning]";
         BeginBattleButton.transform.position = GameProperties.Centre + new Vector3(0, 0.6f, 0);
         BeginBattleButton.SetActive(true);
-
     }
 
+    /// <summary>
+    /// Begins the Tutorial Battle Information pop-ups being displayed and progresses the state into <c>Tutorial_Battle</c>.
+    /// </summary>
+    /// <returns>This method runs a coroutine and so a <c>yield return</c> is used.</returns>
+    private IEnumerator BeginTutorialBattleInfo()
+    {
+        _currentState = GameState.Tutorial_Battle;
+        _roundTimer.SetRoundLength(30);
+        _enemyManager.StartSpawning(_enemyWaves[0]);
+        _roundTimer.StartTimer(); // play
+        yield return new WaitForSeconds(1);
+        _roundTimer.PauseTimer();
+        _uIController.TutorialBattlePopUps();
+    }
+
+    /// <summary>
+    /// Begins the Tutorial Battle phase.
+    /// </summary>
+    /// <returns>This method runs a coroutine and so a <c>yield return</c> is used.</returns>
+    public IEnumerator BeginTutorialBattle()
+    {
+        _roundTimer.PauseTimer(); // play
+        yield return new WaitUntil(() => _enemyManager.getEnemiesKilled() != 0);
+        _roundTimer.PauseTimer(); // pause
+        _uIController.TutorialBugPopUps();
+    }
+
+    /// <summary>
+    /// Continues the Tutorial Battle phase after the pop-ups have been read.
+    /// </summary>
+    public void ContinueTutorialBattle()
+    {
+        _roundTimer.PauseTimer();
+    }
+
+    /// <summary>
+    /// Ends the Tutorial Battle phase and displays the enemies killed.
+    /// </summary>
+    /// <param name="enemiesKilled">Number of enemies killed.</param>
+    /// <returns>This method runs a coroutine and so a <c>yield return</c> is used.</returns>
+    private IEnumerator EndTutorialBattle(int enemiesKilled)
+    {
+        _enemyManager.resetEnemiesKilled();
+        InfoText.text = "Tutorial Over\n[" + enemiesKilled.ToString() + " Enemies Killed]";
+        yield return new WaitForSeconds(3);
+        _uIController.EndTutorial();
+    }
+
+    /// <summary>
+    /// Begins a regular game round and progresses the state to <c>Round_Plan</c>.
+    /// </summary>
+    public void BeginRound()
+    {
+        _roundTimer.SetRoundLength(60);
+        InfoText.transform.position = GameProperties.Centre + new Vector3(0, 0.65f, 0);
+        _currentState = GameState.Round_Plan;
+        _currentRoundNumber++;
+        InfoText.text = "Round " + _currentRoundNumber.ToString() + "\n[Planning]";
+        BeginBattleButton.transform.position = GameProperties.Centre + new Vector3(0, 0.6f, 0);
+        BeginBattleButton.SetActive(true);
+    }
+
+    /// <summary>
+    /// Run by a button press, and begins the enemy spawning for the current round. If it isn't a tutorial it progresses the state to <c>Round_Battle</c>.
+    /// </summary>
     public void BeginBattle()
     {
-        InfoText.transform.position = GameProperties.Centre + new Vector3(0, 0.6f, 0);
-        qrDetection.StopQR();
-        enemyManager.StartSpawning(enemyWaves[roundNumber]);
-        roundTimer.StartTimer();
-        currentState = GameState.Round_Battle;
-
-    }
-
-    public void EndBattle()
-    {
-        try
+        BeginBattleButton.SetActive(false);
+        InfoText.transform.position = GameProperties.Centre + new Vector3(0, 0.5f, 0);
+        _qRDetection.StopQR();
+        if (_currentState == GameState.Tutorial_Plan)
         {
-            clearEnemies();
-            roundTimer.StopTimer();
-            enemyManager.StopSpawning();
-            qrDetection.StartQR();
-            int enemiesKilled = GetComponent<EnemyManager>().getEnemiesKilled();
-            InfoText.text = "Round " + roundNumber.ToString() + " Over\n-[" + enemiesKilled.ToString() + " Enemies Killed]-";
-            StartCoroutine(displayScore(3));
+            StartCoroutine(BeginTutorialBattleInfo());
+            return;
         }
-        catch(System.Exception e)
+        _enemyManager.StartSpawning(_enemyWaves[_currentRoundNumber]);
+        _roundTimer.StartTimer();
+        _currentState = GameState.Round_Battle;
+
+    }
+
+    /// <summary>
+    /// Ends the battle phase and prepares for the next planning phase or alternatively ends the game if has completed the final round.
+    /// </summary>
+    /// <returns>This method runs a coroutine and so a <c>yield return</c> is used.</returns>
+    public IEnumerator EndBattle()
+    {
+        clearEnemies();
+        _enemyManager.StopSpawning();
+        _qRDetection.StartQR();
+        int enemiesKilled = GetComponent<EnemyManager>().getEnemiesKilled();
+        if (currentGameState == GameState.Tutorial_Battle)
         {
-            Debug.Log(e.Message);
+            StartCoroutine(EndTutorialBattle(enemiesKilled));
+            yield break;
         }
-    }
-
-    private void EndGame()
-    {
-        UIController.EndPopUp();
-    }
-
-    IEnumerator displayScore(int secs)
-    {
-        yield return new WaitForSeconds(secs);
-        if (roundNumber <= 3)
+        InfoText.text = "Round " + _currentRoundNumber.ToString() + " Over\n[" + enemiesKilled.ToString() + " Enemies Killed]";
+        yield return new WaitForSeconds(3);
+        if (_currentRoundNumber < maxRoundNumber)
         {
             BeginRound();
         }
         else
-        { 
+        {
             EndGame();
         }
     }
-    
 
+    /// <summary>
+    /// Ends the game and calls a pop-up which displays the player's score.
+    /// </summary>
+    private void EndGame()
+    {
+        _uIController.EndPopUp();
+    }
+
+    /// <summary>
+    /// Destroys all enemies still active the EnemyManager.
+    /// </summary>
     private void clearEnemies()
     {
         GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy");
         for (int i = 0; i < enemyList.Length; i++)
         {
             enemyList[i].GetComponent<EnemyScript>().DestroyEnemy(false);
-        }
-    }
-
-    public void GameOverScreen(bool win)
-    {
-        clearEnemies();
-        if (win)
-        {
-            GetComponent<UIController>().Win();
-        }else
-        {
-            GetComponent<UIController>().Lose();
         }
     }
 }

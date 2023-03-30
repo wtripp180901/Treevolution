@@ -1,10 +1,10 @@
-using System.Collections.Generic;
-using UnityEngine;
-using Microsoft.MixedReality.QR;
-using TMPro;
 using Microsoft.MixedReality.OpenXR;
-using System;
+using Microsoft.MixedReality.QR;
 using Microsoft.MixedReality.Toolkit;
+using System;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
 //using Microsoft.MixedReality.Toolkit.Utilities;
 //HandPoseUtils.CalculateIndexPinch();
 
@@ -17,6 +17,7 @@ public class QRDetection : MonoBehaviour
     public GameObject planeMarker;
     public GameObject towerMarker;
     public GameObject wallMarker;
+    [HideInInspector]
     public bool lockPlane;
 
     private QRCodeWatcher watcher;
@@ -233,7 +234,7 @@ public class QRDetection : MonoBehaviour
 
         lock (trackedCodes)
         {
-            if(!trackedCodes.ContainsKey(args.Code.Id))
+            if (!trackedCodes.ContainsKey(args.Code.Id))
                 trackedCodes[args.Code.Id] = (args.Code, null);
         }
     }
