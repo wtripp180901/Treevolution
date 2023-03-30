@@ -4,130 +4,199 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Controls enemy behaviour.
+/// </summary>
 public class EnemyScript : MonoBehaviour
 {
-    RoundTimer roundTimer;
-    public Rigidbody rig;
-    [SerializeField] // This allows the private field to be edited from the Unity inspecter
-    private float speed = 0.1f;
-    private HealthBar healthBar;
-    private Vector3[] path;
-    private bool followingPath = true;
-    private Vector3 directionVector;
-    private Vector3 currentTarget;
-    private int pathCounter = 0;
+    /// <summary>
+    /// Health given to the current enemy (default = 10).
+    /// </summary>
     public int health = 10;
+    /// <summary>
+    /// Determines if the current enemy is flying or not (off by default).
+    /// </summary>
     public bool flying = false;
-    [SerializeField]
-    private AudioSource spawnAudio;
+    /// <summary>
+    /// Sets the speed of the current enemy.
+    /// </summary>
+    [SerializeField] // This allows the private field to be edited from the Unity inspecter
+    private float speed = 0.01f;
+    /// <summary>
+    /// Sound effect to be played when the enemy gets damaged.
+    /// </summary>
     [SerializeField]
     private AudioSource damageAudio;
+    /// <summary>
+    /// Sound effect to be played when the enemy dies.
+    /// </summary>
     [SerializeField]
     private AudioSource deathAudio;
-    private EnemyManager enemyManager;
-    private SpawnDirectionIndicator leftIndicator;
-    private SpawnDirectionIndicator rightIndicator;
 
-    private Vector3 defaultOrientation;
+    /// <summary>
+    /// Current Enemy's Rigidbody component.
+    /// </summary>
+    private Rigidbody _rigidbody;
+    /// <summary>
+    /// Current Enemy's Healthbar component.
+    /// </summary>
+    private HealthBar _healthBar;
+    /// <summary>
+    /// Pathfinding path to follow.
+    /// </summary>
+    private Vector3[] _path;
+    /// <summary>
+    /// Whether the current enemy is following a path.
+    /// </summary>
+    private bool _followingPath = true;
+    /// <summary>
+    /// Current direction of movement.
+    /// </summary>
+    private Vector3 _directionVector;
+    /// <summary>
+    /// Current target node that the enemy is moving towards.
+    /// </summary>
+    private Vector3 _currentTarget;
+    /// <summary>
+    /// Counter for the pathfinding path node, specifying which node the current enemy is moving towards.
+    /// </summary>
+    private int _pathCounter = 0;
+    /// <summary>
+    /// Running RoundTimer instance.
+    /// </summary>
+    private RoundTimer _roundTimer;
+    /// <summary>
+    /// Running EnemyManager instance.
+    /// </summary>
+    private EnemyManager _enemyManager;
+    /// <summary>
+    /// Reference to the Left Spawn Indicator.
+    /// </summary>
+    private SpawnDirectionIndicator _leftIndicator;
+    /// <summary>
+    /// Reference to the Right Spawn Indicator.
+    /// </summary>
+    private SpawnDirectionIndicator _rightIndicator;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Initial orientation of the enemy prefab
+    /// </summary>
+    private Vector3 _defaultOrientation;
+
+    /// <summary>
+    /// Start runs when loading the GameObject that this script is attached to.
+    /// </summary>
     void Start()
     {
-        defaultOrientation = transform.rotation.eulerAngles;
-        roundTimer = GameObject.Find("Logic").GetComponent<RoundTimer>();
-        rig = GetComponent<Rigidbody>();
-        healthBar = GetComponent<HealthBar>();
-        leftIndicator = GameObject.FindWithTag("LeftIndicator").GetComponent<SpawnDirectionIndicator>();
-        rightIndicator = GameObject.FindWithTag("RightIndicator").GetComponent<SpawnDirectionIndicator>();
-        enemyManager = GameObject.FindWithTag("Logic").GetComponent<EnemyManager>();
+        _defaultOrientation = transform.rotation.eulerAngles;
+        _roundTimer = GameObject.Find("Logic").GetComponent<RoundTimer>();
+        _rigidbody = GetComponent<Rigidbody>();
+        _healthBar = GetComponent<HealthBar>();
+        _leftIndicator = GameObject.FindWithTag("LeftIndicator").GetComponent<SpawnDirectionIndicator>();
+        _rightIndicator = GameObject.FindWithTag("RightIndicator").GetComponent<SpawnDirectionIndicator>();
+        _enemyManager = GameObject.FindWithTag("Logic").GetComponent<EnemyManager>();
         if (flying)
-            rig.useGravity = false;
+            _rigidbody.useGravity = false;
         else
-            rig.useGravity = true;
+            _rigidbody.useGravity = true;
         Initialise();
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Called once per fixed framerate frame. This moves the enemy towards its current pathfinding target.
+    /// </summary>
     void FixedUpdate()
     {
-        if (roundTimer != null && roundTimer.IsPaused)
+        if (_roundTimer != null && _roundTimer.isPaused)
             return;
         Vector3 pos = transform.position;
-        if (followingPath && rig.velocity.y >= -5f)
+        if (_followingPath && _rigidbody.velocity.y >= -5f)
         {
-            Vector3 enemyToTarget = currentTarget - pos;
+            Vector3 enemyToTarget = _currentTarget - pos;
             enemyToTarget.y = 0;
             if (enemyToTarget.magnitude < 0.005f)
             {
-                startMoveToNextTarget();
+                StartMoveToNextTarget();
             }
-            directionVector = enemyToTarget.normalized * speed;
-            rig.MovePosition(pos + directionVector);
+            _directionVector = enemyToTarget.normalized * speed;
+            _rigidbody.MovePosition(pos + _directionVector);
         }
     }
 
-    private void startMoveToNextTarget()
+    /// <summary>
+    /// Starts moving the enemy to the next pathfinding target.
+    /// </summary>
+    private void StartMoveToNextTarget()
     {
-        if (pathCounter >= path.Length)
+        if (_pathCounter >= _path.Length)
         {
-            followingPath = false;
+            _followingPath = false;
         }
         else
         {
-            currentTarget = path[pathCounter];
-            directionVector = (currentTarget - transform.position).normalized * speed;
-            directionVector.y = 0;
-            transform.rotation = Quaternion.Euler(Quaternion.LookRotation(directionVector, transform.up).eulerAngles + defaultOrientation);
-            pathCounter += 1;
+            _currentTarget = _path[_pathCounter];
+            _directionVector = (_currentTarget - transform.position).normalized * speed;
+            _directionVector.y = 0;
+            transform.rotation = Quaternion.Euler(Quaternion.LookRotation(_directionVector, transform.up).eulerAngles + _defaultOrientation);
+            _pathCounter += 1;
         }
-        GameObject.FindGameObjectWithTag("DebugText").GetComponent<TMP_Text>().text = "pathLen=" + path.Length.ToString() + "\nfollowingPath=" + followingPath.ToString() + "\vtarg=" + currentTarget.ToString() + "\npathCounter=" + pathCounter.ToString() + "\nTimer=" + roundTimer.isRunning;
+        GameObject.FindGameObjectWithTag("DebugText").GetComponent<TMP_Text>().text = "pathLen=" + _path.Length.ToString() + "\nfollowingPath=" + _followingPath.ToString() + "\vtarg=" + _currentTarget.ToString() + "\npathCounter=" + _pathCounter.ToString() + "\nTimer=" + _roundTimer.isRunning;
     }
 
-    bool hasHitFloor = false;
+    /// <summary>
+    /// Runs when the enemy collides with another objects collider, such as reaching the Home Tree or being hit by a projectile.
+    /// </summary>
+    /// <param name="collision">Collision data.</param>
     private void OnCollisionEnter(Collision collision)
     {
         Collider otherCollider = collision.collider;
         if (otherCollider.gameObject.tag == "Tree")
         {
             Debug.Log("Reached tree");
-            followingPath = false;
+            _followingPath = false;
         }
         else if (otherCollider.gameObject.tag == "Bullet")
         {
             Damage(1);
         }
-        if (!hasHitFloor && (otherCollider.gameObject.tag == "Floor" || otherCollider.gameObject.tag == "Wall"))
-        {
-            hasHitFloor = true;
-        }
     }
 
+    /// <summary>
+    /// Initialises some of the enemies initial properties, such as healthbar, rotation, and spawn indicator.
+    /// </summary>
     private void Initialise()
     {
-        healthBar.SetMaxHealth(health);
+        _healthBar.SetMaxHealth(health);
         if (flying)
         {
             transform.position = transform.position + Vector3.up * 0.25f;
         }
         Vector3 pos = transform.position;
-        path = Pathfinder.GetPath(pos, GameObject.FindGameObjectWithTag("Tree").transform.position);
-        rig.freezeRotation = true;
+        _path = Pathfinder.GetPath(pos, GameObject.FindGameObjectWithTag("Tree").transform.position);
+        _rigidbody.freezeRotation = true;
 
-        startMoveToNextTarget();
+        StartMoveToNextTarget();
 
-        spawnIndicator();
+        SpawnIndicator();
     }
 
-    private void spawnIndicator()
+    /// <summary>
+    /// Indicates the spawn direction of the enemy if it is out of the player's fielf of view.
+    /// </summary>
+    private void SpawnIndicator()
     {
         Camera cam = Camera.main;// CameraCache.Main;
         Vector3 viewPortSpawnPos = cam.WorldToViewportPoint(transform.position);
         SpawnDirectionIndicator spawnDirectionIndicator = null;
-        if (viewPortSpawnPos.x < 0f || (viewPortSpawnPos.z < 0 && viewPortSpawnPos.x < 0.5f)) spawnDirectionIndicator = leftIndicator;
-        if (viewPortSpawnPos.x > 1f || (viewPortSpawnPos.z < 0 && viewPortSpawnPos.x >= 0.5f)) spawnDirectionIndicator = rightIndicator;
+        if (viewPortSpawnPos.x < 0f || (viewPortSpawnPos.z < 0 && viewPortSpawnPos.x < 0.5f)) spawnDirectionIndicator = _leftIndicator;
+        if (viewPortSpawnPos.x > 1f || (viewPortSpawnPos.z < 0 && viewPortSpawnPos.x >= 0.5f)) spawnDirectionIndicator = _rightIndicator;
         if (spawnDirectionIndicator != null) spawnDirectionIndicator.IndicateDirection();
     }
 
+    /// <summary>
+    /// Indicates the enemy has been damaged by turning its body red for a brief time and playing the damaged sound effect.
+    /// </summary>
+    /// <returns>This method runs a coroutine and so a <c>yield return</c> is used.</returns>
     private IEnumerator DamageIndicator()
     {
         List<Color> defaultColours = new List<Color>();
@@ -145,20 +214,27 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Kills the current enemy, playing a death sound and squashing the enemies geometry.
+    /// </summary>
+    /// <returns>This method runs a coroutine and so a <c>yield return</c> is used.</returns>
     private IEnumerator KillEnemy()
     {
-        followingPath = false;
+        _followingPath = false;
         gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, 0, gameObject.transform.localScale.z);
         deathAudio.Play();
         yield return new WaitForSeconds(1f);
         DestroyEnemy(true);
     }
 
-
+    /// <summary>
+    /// Damages the current enemy, and checks if it has run out of health.
+    /// </summary>
+    /// <param name="power">Power to damage the enemy by.</param>
     public void Damage(int power)
     {
         health -= power;
-        healthBar.SetHealth(health);
+        _healthBar.SetHealth(health);
         if (health <= 0)
         {
             StartCoroutine(KillEnemy());
@@ -166,9 +242,13 @@ public class EnemyScript : MonoBehaviour
         else StartCoroutine(DamageIndicator());
     }
 
+    /// <summary>
+    /// Destroys the enemy object and removes it from the EnemyManager's enemy list.
+    /// </summary>
+    /// <param name="killedByPlayer">Whether the enemy was killed by the player, or is bein destroyed as part of the ClearEnemies method and so shouldn't count towards the user's score.</param>
     public void DestroyEnemy(bool killedByPlayer)
     {
-        enemyManager.RemoveEnemy(gameObject, killedByPlayer);
+        _enemyManager.RemoveEnemy(gameObject, killedByPlayer);
         Destroy(gameObject.GetComponent<Collider>().gameObject);
     }
 }
