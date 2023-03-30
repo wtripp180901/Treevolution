@@ -100,72 +100,97 @@ public class UIController : MonoBehaviour
     {
         closeOpenDialogs();
         Dialog d1 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Treevolution Tutorial", "Protect your Home Tree from the enemy bugs! Some bugs you can simply squash, whereas others you must utilise the help of your plant buddies.", true);
+        (Vector3 position, Quaternion rotation) t = (d1.transform.position, d1.transform.rotation);
         d1.OnClosed = delegate (DialogResult dr)
         {
             Dialog d2 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Planning Phase", "The enemy bugs will come in waves from either end of the table. Place your obstacles and plants during each Planning Phase, try to maximise your strategy and learn from previous mistakes.", true);
+            d2.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
             d2.OnClosed = delegate (DialogResult dr)
             {
                 Dialog d3 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Give it a Try", "Have a go, place your objects where you would like, and when you are happy, press the big red button above your Home Tree in the centre.\nBring On The Bugs!", true);
+                d3.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
                 d3.OnClosed = delegate (DialogResult dr)
                 {
                     gameStateManager.BeginTutorialPlan();
                 };
             };
+            t = (d2.transform.position, d2.transform.rotation);
         };
+        t = (d1.transform.position, d1.transform.rotation);
     }
 
     public void TutorialBattlePopUps()
     {
         closeOpenDialogs();
         Dialog d1 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Battle Phase", "During the Battle Phase the time remaining is displayed above your Home Tree. Kill as many bugs as you can before the time runs out!", true);
+        (Vector3 position, Quaternion rotation) t = (d1.transform.position, d1.transform.rotation);
         d1.OnClosed = delegate (DialogResult dr)
         {
             Dialog d2 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Bugs", "Keep an eye out for new bugs approaching, the most basic of which is the Ant.", true);
+            d2.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
             d2.OnClosed = delegate (DialogResult dr)
             {
                 Dialog d3 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.OK, "Ants", "Ants can be killed by *splatting* them, and is easiest with your hand in a fist. It may take a few tries to get used to, but have a go!", true);
+                d3.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
                 d3.gameObject.GetComponentInChildren<Image>().sprite = antImage;
                 d3.OnClosed = delegate (DialogResult dr)
                 {
                     StartCoroutine(gameStateManager.BeginTutorialBattle());
                 };
             };
+            t = (d2.transform.position, d2.transform.rotation);
         };
+        t = (d1.transform.position, d1.transform.rotation);
     }
 
     public void TutorialBugPopUps()
     {
         closeOpenDialogs();
         Dialog d1 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Bugs", "More types of bugs will be introduced as you progress through the rounds. Some of them can only be damaged using your plants, and others can even break down obstacles that you place!", true);
+        (Vector3 position, Quaternion rotation) t = (d1.transform.position, d1.transform.rotation);
         d1.OnClosed = delegate (DialogResult dr)
         {
             Dialog d2 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.OK, "Beetles", "The Beetle is stronger than the ant, but its armour slows it down. It can also be damaged by hitting it, although may take a few strikes. Alternatively target it with your plants.", true);
+            d2.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
             d2.gameObject.GetComponentInChildren<Image>().sprite = armouredBeetleImage;
             d2.OnClosed = delegate (DialogResult dr)
             {
                 Dialog d3 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.OK, "Cockroaches", "The Cockroach is strong and fast. Their armour is so strong that you cannot damage them with pure force - plant power must be used.", true);
+                d3.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
                 d3.gameObject.GetComponentInChildren<Image>().sprite = armouredCockroachImage;
                 d3.OnClosed = delegate (DialogResult dr)
                 {
                     Dialog d4 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.OK, "Stagbeetles", "The Stagbeetle may seem slow, but its health and attack damage makes up for it. They can break through obstacles with a few hits, and have a large amount health.", true);
+                    d4.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
                     d4.gameObject.GetComponentInChildren<Image>().sprite = armouredStegbeetleImage;
                     d4.OnClosed = delegate (DialogResult dr)
                     {
                         Dialog d5 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.OK, "Dragonflies", "These beautiful creatures can fly straight over your obstacles and will deal a large amount of damage to your Home Tree, so be sure to swat them when you see them.", true);
+                        d5.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
                         d5.gameObject.GetComponentInChildren<Image>().sprite = dragonflyImage;
                         d5.OnClosed = delegate (DialogResult dr)
                         {
                             Dialog d6 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.OK, "Hornets", "I'd stay away from these if I were you - swatting will just result in a painful sting - instead, use your plants!", true);
+                            d6.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
                             d6.gameObject.GetComponentInChildren<Image>().sprite = hornetImage;
                             d6.OnClosed = delegate (DialogResult dr)
                             {
                                 gameStateManager.ContinueTutorialBattle();
                             };
                         };
+                        t = (d5.transform.position, d5.transform.rotation);
+
                     };
+                    t = (d4.transform.position, d4.transform.rotation);
+
                 };
+                t = (d3.transform.position, d3.transform.rotation);
+
             };
+            t = (d2.transform.position, d2.transform.rotation);
+
         };
+        t = (d1.transform.position, d1.transform.rotation);
     }
 
     public void EndTutorial()
