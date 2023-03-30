@@ -1,0 +1,85 @@
+\hypertarget{class_game_state_manager}{}\doxysection{Game\+State\+Manager Class Reference}
+\label{class_game_state_manager}\index{GameStateManager@{GameStateManager}}
+Inheritance diagram for Game\+State\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_game_state_manager}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_game_state_manager_a6597239164490f188c6d64e67aac4f97}\label{class_game_state_manager_a6597239164490f188c6d64e67aac4f97}} 
+enum {\bfseries Game\+State} \{ \newline
+{\bfseries Calibration}
+, {\bfseries Plane\+\_\+\+Mapped}
+, {\bfseries Tutorial\+\_\+\+Plan}
+, {\bfseries Tutorial\+\_\+\+Battle}
+, \newline
+{\bfseries Round\+\_\+\+Plan}
+, {\bfseries Round\+\_\+\+Battle}
+ \}
+\item 
+\mbox{\Hypertarget{class_game_state_manager_adebf6d9d1d66a14769f2355320656dc3}\label{class_game_state_manager_adebf6d9d1d66a14769f2355320656dc3}} 
+enum {\bfseries Enemy\+Type} \{ \newline
+{\bfseries Ant}
+, {\bfseries Armoured\+\_\+\+Bug}
+, {\bfseries Armoured\+\_\+\+Cockroach}
+, {\bfseries Armoured\+\_\+\+Stagbeetle}
+, \newline
+{\bfseries Dragonfly}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_game_state_manager_ad63150334041b7ad11f224aa21942875}\label{class_game_state_manager_ad63150334041b7ad11f224aa21942875}} 
+void {\bfseries Calibration\+Success} ()
+\item 
+\mbox{\Hypertarget{class_game_state_manager_a8b391d772cdff200ea5d7bad29d563ae}\label{class_game_state_manager_a8b391d772cdff200ea5d7bad29d563ae}} 
+void {\bfseries Begin\+Tutorial} ()
+\item 
+\mbox{\Hypertarget{class_game_state_manager_a5c77b16a6569b6c55dd0be4242af2b77}\label{class_game_state_manager_a5c77b16a6569b6c55dd0be4242af2b77}} 
+void {\bfseries Begin\+Round} ()
+\item 
+\mbox{\Hypertarget{class_game_state_manager_a2d785142b62053298c77e0185cc44960}\label{class_game_state_manager_a2d785142b62053298c77e0185cc44960}} 
+void {\bfseries Begin\+Battle} ()
+\item 
+\mbox{\Hypertarget{class_game_state_manager_afff376de421937dbdd313e6e47c4a2e1}\label{class_game_state_manager_afff376de421937dbdd313e6e47c4a2e1}} 
+void {\bfseries End\+Battle} ()
+\item 
+\mbox{\Hypertarget{class_game_state_manager_aca229a956c5f38981eebc94acac6770e}\label{class_game_state_manager_aca229a956c5f38981eebc94acac6770e}} 
+void {\bfseries Game\+Over\+Screen} (bool win)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_game_state_manager_a8292f7da3f1299950a534e862c4f0f15}\label{class_game_state_manager_a8292f7da3f1299950a534e862c4f0f15}} 
+TMP\+\_\+\+Text {\bfseries info\+Text}
+\item 
+\mbox{\Hypertarget{class_game_state_manager_a20c1820b3db10451fd9ea2a498672bb6}\label{class_game_state_manager_a20c1820b3db10451fd9ea2a498672bb6}} 
+TMP\+\_\+\+Text {\bfseries debug\+Text}
+\item 
+\mbox{\Hypertarget{class_game_state_manager_a5f6e5f890943b8732f9690ed58bbbdc4}\label{class_game_state_manager_a5f6e5f890943b8732f9690ed58bbbdc4}} 
+Game\+Object {\bfseries tree}
+\item 
+\mbox{\Hypertarget{class_game_state_manager_a66ad26f957aea2f0a684542e3d86e29a}\label{class_game_state_manager_a66ad26f957aea2f0a684542e3d86e29a}} 
+Game\+Object {\bfseries start\+Button}
+\item 
+\mbox{\Hypertarget{class_game_state_manager_aa5fb263e2a01f58b07d6d3669fa4bd3d}\label{class_game_state_manager_aa5fb263e2a01f58b07d6d3669fa4bd3d}} 
+Game\+Object {\bfseries debug\+Object}
+\item 
+\mbox{\Hypertarget{class_game_state_manager_afecaa70fbe180a30868249ee5c0a887a}\label{class_game_state_manager_afecaa70fbe180a30868249ee5c0a887a}} 
+bool {\bfseries dev\+Mode} = false
+\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_game_state_manager_a1c32ee2e93c179a0d1f72a8444290ce9}\label{class_game_state_manager_a1c32ee2e93c179a0d1f72a8444290ce9}} 
+Game\+State {\bfseries Current\+Game\+State}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Treevolution/\+Assets/\+Scripts/\+Control/Game\+State\+Manager.\+cs\end{DoxyCompactItemize}
