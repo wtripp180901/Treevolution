@@ -178,21 +178,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roundLengthSecs: 60
-  _SecondTickEvent:
+  SecondTickEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 100754433}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: DecreaseTime
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  RoundOverEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StopTimerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  PauseTimerEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  StartTimerEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &100754433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,7 +280,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugText: {fileID: 807997091}
-  planeMapper: {fileID: 100754434}
   planeMarker: {fileID: 2878154885871524007, guid: ebdca683e95c2fb4d97ea79d2f10113e, type: 3}
   towerMarker: {fileID: 6326299771774420509, guid: 22e69887cb11e62438c3a5244409fb3d, type: 3}
   wallMarker: {fileID: 7800950396249785354, guid: 50a2c23351a556c4fa297b86d5adaee4, type: 3}
@@ -297,12 +296,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ce337a804f93d4fbb6848e32298a0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  infoText: {fileID: 1732258050}
-  debugText: {fileID: 807997091}
-  tree: {fileID: 4047742926485375969, guid: 13815b32147eea64e9a773ef69b3240e, type: 3}
-  startButton: {fileID: 1064493251}
+  InfoText: {fileID: 1732258050}
+  BeginBattleButton: {fileID: 1064493251}
   debugObject: {fileID: 1931168448}
-  maxRoundNum: 4
+  maxRoundNumber: 4
 --- !u!114 &100754439
 MonoBehaviour:
   m_ObjectHideFlags: 0

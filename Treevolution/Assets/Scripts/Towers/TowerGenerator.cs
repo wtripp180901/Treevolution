@@ -11,6 +11,12 @@ public static class TowerGenerator
     //It should generate a list towers, each of them with the given points randomly but fairly divided between each of the stats.
     //Define a setter method to give TowerScript a reference to its own unique TowerData
 
+    /// <summary>
+    /// Generates a number of TowerData objects each with an allocated number of points randomly distributed between each of their attributes.
+    /// </summary>
+    /// <param name="points">Number of points to allocate between attributes.</param>
+    /// <param name="numberOfTowers">Number of towers to generate.</param>
+    /// <returns></returns>
     public static List<TowerData> GenerateTowers(int points, int numberOfTowers)
     {
         if (points < TowerData.numAttributes)
