@@ -69,6 +69,7 @@ public class RoundTimer : MonoBehaviour
     /// </summary>
     void Start()
     {
+        SecondTickEvent.AddListener(() => GetComponent<UIController>().DecreaseTime());
         RoundOverEvent.AddListener(() => StartCoroutine(GetComponent<GameStateManager>().EndBattle()));
         StartTimerEvent.AddListener(() => GetComponent<UIController>().ResetTimer((int)roundLengthSecs));
         StopTimerEvent.AddListener(() => Debug.Log("Timer Stopped"));

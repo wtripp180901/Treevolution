@@ -87,6 +87,7 @@ public class QRDetection : MonoBehaviour
 
     async void Start()
     {
+        _planeMapper = GetComponent<PlaneMapper>();
         _accessRequester = QRCodeWatcher.RequestAccessAsync();
         if (_accessRequester.Status != System.Threading.Tasks.TaskStatus.RanToCompletion)
         {
