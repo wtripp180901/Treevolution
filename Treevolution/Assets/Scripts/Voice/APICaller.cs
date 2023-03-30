@@ -6,7 +6,7 @@ using System.IO;
 using System;
 using Newtonsoft.Json.Linq;
 
-[Serializable]
+/*[Serializable]
 public class SynonymsObject
 {
     public object meta;
@@ -14,10 +14,26 @@ public class SynonymsObject
     public string fl;
     public object[] def;
     public string[] shortdef;
+}*/
+
+public struct SynonymData
+{
+    public string partOfWord;
+    public string[] synonyms;
+
+    public SynonymData(string partOfWord,string[] synonyms)
+    {
+        this.partOfWord = partOfWord;
+        this.synonyms = synonyms;
+    }
 }
 
 public class ThesaurusAPICaller
 {
+    const string meta = "meta";
+    const string fl = "fl";
+    const string syns = "syns";
+
     string baseUrl = "https://www.dictionaryapi.com/api/v3/references/thesaurus/json/";
     string apiKey;
     public ThesaurusAPICaller(string keyFile)
@@ -31,13 +47,26 @@ public class ThesaurusAPICaller
         }
     }
 
-    public IEnumerator GetSynonyms(string word,Func<JArray,IEnumerator> callback)
+    public IEnumerator GetSynonyms(string word,Func<List<SynonymData>,IEnumerator> callback)
     {
         UnityWebRequest request = UnityWebRequest.Get(getUrl(word));
         yield return request.SendWebRequest();
         if (request.result == UnityWebRequest.Result.Success)
         {
-            yield return callback(JArray.Parse(request.downloadHandler.text));
+            List<SynonymData> homographSynonyms = new List<SynonymData>();
+            try
+            {
+                JArray result = JArray.Parse(request.downloadHandler.text);
+                for(int homograph = 0;homograph < result.Count; homograph++)
+                {
+                    homographSynonyms.Add(new SynonymData(result[homograph][fl].ToString(), result[homograph][meta][syns][0].ToObject<string[]>()));
+                }
+                
+            }catch (Exception e)
+            {
+                Debug.Log("API parsing error: " + e.Message);
+            }
+            yield return callback(homographSynonyms);
         }
         else
         {
