@@ -17,10 +17,7 @@ public class EnemyTouchHandler : MonoBehaviour, IMixedRealityTouchHandler
     {
         Handedness hand = eventData.Handedness;
         float ifc = HandPoseUtils.IndexFingerCurl(hand);
-        float mfc = HandPoseUtils.MiddleFingerCurl(hand);
-        float rfc = HandPoseUtils.RingFingerCurl(hand);
-        float pfc = HandPoseUtils.PinkyFingerCurl(hand);
-        if((ifc > 0.7f && mfc > 0.6f && rfc > 0.5f && pfc > 0.4f) || Application.platform == RuntimePlatform.WindowsEditor)
+        if((ifc > 0.7f) || Application.platform == RuntimePlatform.WindowsEditor)
             enemyScript.Damage(5);
         /*if (!GameObject.FindGameObjectWithTag("Logic").GetComponent<RoundTimer>().IsPaused)
         {
