@@ -1,17 +1,28 @@
-using Microsoft.MixedReality.Toolkit.UI;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 
+/// <summary>
+/// Manages and keeps track of the game state as the user progresses through each round or tutorial.
+/// </summary>
 public class GameStateManager : MonoBehaviour
-{
-    public TMP_Text infoText;
-    public TMP_Text debugText;
-    public GameObject tree;
-    public GameObject startButton;
-    public GameObject debugObject;
+{   
+    /// <summary>
+    /// TextMeshPro Game Object to display UI elements on.
+    /// </summary>
+    public TMP_Text InfoText;
+    /// <summary>
+    /// The button GameObject in the scene which should call the BeginBattle() method.
+    /// </summary>
+    public GameObject BeginBattleButton;
+    /// <summary>
+    /// A Debug wrapper object which will be enabled when playing in the Unity Editor.
+    /// </summary>
+    public GameObject DebugObject;
+    /// <summary>
+    /// 
+    /// </summary>
     public bool devMode = false;
     private QRDetection qrDetection;
     private UIController UIController;
@@ -70,20 +81,19 @@ public class GameStateManager : MonoBehaviour
     {
         if (devMode)
         {
-            debugObject.SetActive(true);
+            DebugObject.SetActive(true);
         }
         currentState = GameState.Calibration;
         UIController = GetComponent<UIController>();
         qrDetection = GetComponent<QRDetection>();
         enemyManager = GetComponent<EnemyManager>();
         roundTimer = GetComponent<RoundTimer>();
-        infoText.text = "";
+        InfoText.text = "";
         UIController.CalibrationPopUp();
     }
 
     private void Update()
     {
-        debugText.text = Time.deltaTime.ToString();
     }
 
     public void CalibrationSuccess()
@@ -106,18 +116,18 @@ public class GameStateManager : MonoBehaviour
 
     public void BeginRound()
     {
-        infoText.transform.position = GameProperties.Centre + new Vector3(0, 0.7f, 0);
+        InfoText.transform.position = GameProperties.Centre + new Vector3(0, 0.7f, 0);
         currentState = GameState.Round_Plan;
         roundNumber++;
-        infoText.text = "Round " + roundNumber.ToString() + "\n-[Planning]-";
-        startButton.transform.position = GameProperties.Centre + new Vector3(0, 0.6f, 0);
-        startButton.SetActive(true);
+        InfoText.text = "Round " + roundNumber.ToString() + "\n-[Planning]-";
+        BeginBattleButton.transform.position = GameProperties.Centre + new Vector3(0, 0.6f, 0);
+        BeginBattleButton.SetActive(true);
 
     }
 
     public void BeginBattle()
     {
-        infoText.transform.position = GameProperties.Centre + new Vector3(0, 0.6f, 0);
+        InfoText.transform.position = GameProperties.Centre + new Vector3(0, 0.6f, 0);
         qrDetection.StopQR();
         enemyManager.StartSpawning(enemyWaves[roundNumber]);
         roundTimer.StartTimer();
@@ -134,7 +144,7 @@ public class GameStateManager : MonoBehaviour
             enemyManager.StopSpawning();
             qrDetection.StartQR();
             int enemiesKilled = GetComponent<EnemyManager>().getEnemiesKilled();
-            infoText.text = "Round " + roundNumber.ToString() + " Over\n-[" + enemiesKilled.ToString() + " Enemies Killed]-";
+            InfoText.text = "Round " + roundNumber.ToString() + " Over\n-[" + enemiesKilled.ToString() + " Enemies Killed]-";
             StartCoroutine(displayScore(3));
         }
         catch(System.Exception e)
