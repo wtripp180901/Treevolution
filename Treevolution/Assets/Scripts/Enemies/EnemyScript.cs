@@ -47,7 +47,6 @@ public class EnemyScript : MonoBehaviour
         else
             rig.useGravity = true;
         Initialise();
-        spawnAudio.Play();
     }
 
     // Update is called once per frame

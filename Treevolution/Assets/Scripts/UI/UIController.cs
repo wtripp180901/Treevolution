@@ -48,7 +48,6 @@ public class UIController : MonoBehaviour
         lock (openDialogs)
         {
             Dialog d = Dialog.Open(infoDialogPrefab, DialogButtonType.None, "Calibrate Game Board", "Find, and look at the QR Code in the corner of the table to calibrate the Game Board.", true);
-            d.gameObject.GetComponent<Follow>().enabled = false;
             d.gameObject.transform.GetChild(3).gameObject.GetComponent<MeshRenderer>().material = backPlateOrange;
             openDialogs.Add(d);
         }
@@ -60,7 +59,6 @@ public class UIController : MonoBehaviour
         lock (openDialogs)
         {
             Dialog d = Dialog.Open(buttonDialogPrefab, DialogButtonType.Confirm, "Calibration Success", "You have successfully calibrated the Game Board! Ensure that it lines up with the table, then click Confirm to lock the board in place.", true);
-            d.gameObject.GetComponent<Follow>().enabled = false;
             d.gameObject.transform.GetChild(3).gameObject.GetComponent<MeshRenderer>().material = backPlateGreen;
             d.OnClosed = delegate (DialogResult dr)
             {
