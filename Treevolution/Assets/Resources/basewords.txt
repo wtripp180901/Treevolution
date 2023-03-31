@@ -4,3 +4,9 @@ go move
 verb
 Attack
 attack shoot kill
+noun
+PointerLocation
+here
+conjunction
+Connective
+and then
