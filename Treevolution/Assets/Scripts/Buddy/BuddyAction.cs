@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum BUDDY_ACTION_TYPES { Move, Error, Attack }
+public enum BUDDY_SUBJECT_TYPES { PointerLocation, Error}
 
 public class BuddyAction
 {

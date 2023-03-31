@@ -7,12 +7,12 @@ using System;
 public class LanguageParser
 {
 
-    WordActionMapper wordActionMapper;
+    WordTokenMapper WordTokenMapper;
     ThesaurusAPICaller APICaller = new ThesaurusAPICaller("APIKey");
 
     public LanguageParser(string rawBasewordData)
     {
-        wordActionMapper = new WordActionMapper(rawBasewordData);
+        WordTokenMapper = new WordTokenMapper(rawBasewordData);
     }
 
     /*public List<BuddyAction> GetInstructionStream(JArray[] wordData)
@@ -41,7 +41,7 @@ public class LanguageParser
         return instructions;
     }*/
 
-    List<BuddyAction> instructions = new List<BuddyAction>();
+    List<BuddyToken> tokenStream = new List<BuddyToken>();
 
     public IEnumerator GetInstructionStream(string[] words)
     {
@@ -51,11 +51,11 @@ public class LanguageParser
             string word = sanitiseInput(rawWord);
             if (word.Length > 0)
             {
-                BUDDY_ACTION_TYPES actionType;
-                if (wordActionMapper.GetActionIfCached(word, out actionType))
+                BuddyToken token;
+                if (WordTokenMapper.GetTokenIfMatched(word, out token))
                 {
                     //Word is known
-                    instructions.Add(new BuddyAction(actionType, new Vector3(0, 0, 0)));
+                    tokenStream.Add(token);
                     yield return null;
                 }
                 else
@@ -70,12 +70,52 @@ public class LanguageParser
                 Debug.Log("strange character");
             }
         }
-        string localResult = "";
-        foreach(BuddyAction i in instructions)
+        GameObject.FindWithTag("Logic").GetComponent<VoiceCommandReceiver>().HandleDictationProcessingResults(getInstructionsFromTokens());
+    }
+
+    List<BuddyAction> getInstructionsFromTokens()
+    {
+        List<BuddyAction> instructions = new List<BuddyAction>();
+        bool resolvingAction = false;
+        bool connectiveMode = false;
+        BUDDY_ACTION_TYPES actionToResolve= BUDDY_ACTION_TYPES.Error;
+        BUDDY_SUBJECT_TYPES lastSubject = BUDDY_SUBJECT_TYPES.Error;
+        foreach(BuddyToken token in tokenStream)
         {
-            localResult = localResult + i.actionType.ToString();
+            switch (token.tokenType)
+            {
+                case TOKEN_TYPES.Action:
+                    if (resolvingAction)
+                    {
+                        //Handle unresolved tokens
+                    }
+                    resolvingAction = true;
+                    actionToResolve = ((ActionBuddyToken)token).actionType;
+                    break;
+                case TOKEN_TYPES.Subject:
+                    if (resolvingAction)
+                    {
+                        lastSubject = BUDDY_SUBJECT_TYPES.PointerLocation;
+                        instructions.Add(new BuddyAction(actionToResolve, getSubject(lastSubject)));
+                        resolvingAction = false;
+                    }
+                    break;
+                case TOKEN_TYPES.Connective:
+                    connectiveMode = true;
+                    break;
+            }
         }
-        GameObject.FindWithTag("Logic").GetComponent<VoiceCommandReceiver>().HandleDictationProcessingResults(instructions);
+        return instructions;
+    }
+
+    Vector3 getSubject(BUDDY_SUBJECT_TYPES subjectType)
+    {
+        switch (subjectType)
+        {
+            case BUDDY_SUBJECT_TYPES.PointerLocation:
+                return GameObject.FindWithTag("Logic").GetComponent<PointerLocationTracker>().pointer.transform.position;
+        }
+        return new Vector3(0,0,0);
     }
 
     string sanitiseInput(string word)
@@ -92,7 +132,6 @@ public class LanguageParser
     }
     public IEnumerator synonymAPICallResults(List<SynonymData> results)
     {
-        Debug.Log("hit");
         if (results != null && results.Count > 0)
         {
             Dictionary<string, List<string>> synonymsOfFunctionalLabel = new Dictionary<string, List<string>>();
@@ -101,10 +140,10 @@ public class LanguageParser
             {
                 List<string> flWords;
                 synonymsOfFunctionalLabel.TryGetValue(fl, out flWords);
-                BUDDY_ACTION_TYPES currentActionType;
-                if (wordActionMapper.GetActionIfSynonymsMatchCachedWords(fl, flWords, out currentActionType))
+                BuddyToken token;
+                if (WordTokenMapper.GetTokenIfSynonymsMatchCachedWords(fl, flWords, out token))
                 {
-                    instructions.Add(new BuddyAction(currentActionType, new Vector3(0, 0, 0)));
+                    tokenStream.Add(token);
                 }
             }
         }
