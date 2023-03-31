@@ -23,7 +23,7 @@ public class PhaseTransition : MonoBehaviour
             PlaneMapper planeMapper = gameObject.GetComponent<PlaneMapper>();
             planeMapper.CreateNewPlane(new Vector3(0.842f, -0.392f, 1.203f), new Vector3(-1.063f, -0.392f, 2.13f));
             GameProperties.FloorHeight = -0.392f;
-            GameObject.FindWithTag("Buddy").GetComponent<BuddyScript>().GiveInstructions(new List<BuddyAction>() { new BuddyAction(BUDDY_ACTION_TYPES.Move, new Vector3(-0.52f, -0.295f, 1.336f)), new BuddyAction(BUDDY_ACTION_TYPES.Move, new Vector3(-0.144f, -0.295f, 1.336f)) });
+            GameObject.FindWithTag("Buddy").GetComponent<BuddyScript>().GiveInstructions(new List<BuddyAction>() { new BuddyAction(BUDDY_ACTION_TYPES.Move, new Vector3(-0.6f, -0.295f, 1.739f)), new BuddyAction(BUDDY_ACTION_TYPES.Attack, new Vector3(0,0,0)) });
         }
         GetComponent<RealWorldPropertyMapper>().MapProperties();
         // Game Start Animation?
