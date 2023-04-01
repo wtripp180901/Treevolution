@@ -20,6 +20,7 @@ TagManager:
   - LeftIndicator
   - RightIndicator
   - Buddy
+  - MoveToMarker
   layers:
   - Default
   - TransparentFX
