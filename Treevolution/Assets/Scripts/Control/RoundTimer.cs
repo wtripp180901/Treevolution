@@ -10,7 +10,8 @@ public class RoundTimer : MonoBehaviour
     private bool isPaused = false;
     public bool IsPaused { get { return isPaused; } }
     private bool isStopped = false;
-    private bool hasStarted = false;
+    private bool running = false;
+    public bool isRunning { get { return running; } }
 
 
     public UnityEvent _SecondTickEvent = new UnityEvent();
@@ -33,7 +34,7 @@ public class RoundTimer : MonoBehaviour
     {
         //_SecondTickEvent.AddListener(() => Debug.Log("Tick"));
         //_RoundOverEvent.AddListener(() => Debug.Log(roundLengthSecs.ToString() + "s Passed"));
-        _RoundOverEvent.AddListener(() => GetComponent<GameStateManager>().EndBattle());
+        _RoundOverEvent.AddListener(() => StartCoroutine(GetComponent<GameStateManager>().EndBattle()));
         _StartTimer.AddListener(() => GetComponent<UIController>().ResetTimer((int)roundLengthSecs));
         _StopTimer.AddListener(() => Debug.Log("Timer Stopped"));
         _PauseTimer.AddListener(() => Debug.Log("Pause/Play"));
@@ -46,7 +47,7 @@ public class RoundTimer : MonoBehaviour
         secondTimer = 0;
         isStopped = false;
         isPaused = false;
-        hasStarted = true;
+        running = true;
         _StartTimer?.Invoke();
     }
 
@@ -77,6 +78,7 @@ public class RoundTimer : MonoBehaviour
 
         if (roundTimer >= roundLengthSecs)
         {
+            StopTimer();
             RoundOverEvent();
         }
 
@@ -85,7 +87,7 @@ public class RoundTimer : MonoBehaviour
     //Stop timer
     public void StopTimer()
     {
-        hasStarted = false;
+        running = false;
         isStopped = true;
         isPaused = false;
         _StopTimer?.Invoke();
@@ -94,7 +96,13 @@ public class RoundTimer : MonoBehaviour
     public void PauseTimer()
     {
         isPaused = !isPaused;
+        running = !running;
         _PauseTimer?.Invoke();
+    }
+
+    public void SetRoundLength(int secs)
+    {
+        roundLengthSecs = secs;
     }
 
 }

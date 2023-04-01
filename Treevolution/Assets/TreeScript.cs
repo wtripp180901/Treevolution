@@ -7,7 +7,7 @@ public class TreeScript : MonoBehaviour
     // Start is called before the first frame update
 
     [SerializeField]
-    private int health = 5;
+    private int health = 10000;
 
     void OnCollisionEnter(Collision collision)
     {
@@ -18,8 +18,8 @@ public class TreeScript : MonoBehaviour
         }
         if (health == 0)
         {
-            Destroy(gameObject);
-            GameObject.FindWithTag("Logic").GetComponent<GameStateManager>().GameOverScreen(false);
+            //Destroy(gameObject);
+            //GameObject.FindWithTag("Logic").GetComponent<GameStateManager>().GameOverScreen(false);
         }
     }
 

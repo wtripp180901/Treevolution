@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using System.Threading;
+using System;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -12,7 +14,7 @@ public class GameStateManager : MonoBehaviour
     public GameObject tree;
     public GameObject startButton;
     public GameObject debugObject;
-    public bool devMode = false;
+    public int maxRoundNum = 4;
     private QRDetection qrDetection;
     private UIController UIController;
     private EnemyManager enemyManager;
@@ -36,41 +38,45 @@ public class GameStateManager : MonoBehaviour
         Armoured_Bug,
         Armoured_Cockroach,
         Armoured_Stagbeetle,
-        Dragonfly
+        Dragonfly,
+        Hornet
     }
     private Dictionary<EnemyType, int>[] enemyWaves = {
-        new Dictionary<EnemyType, int>(){ 
-            { EnemyType.Ant, 10 } 
+        new Dictionary<EnemyType, int>(){
+            { EnemyType.Ant, 10 },
         },
         new Dictionary<EnemyType, int>(){
             { EnemyType.Ant, 10 },
-            { EnemyType.Armoured_Bug, 5 }
-        },
-        new Dictionary<EnemyType, int>(){
-            { EnemyType.Ant, 10 },
-            { EnemyType.Armoured_Bug, 8 },
-            { EnemyType.Armoured_Cockroach, 5}
+            { EnemyType.Armoured_Bug, 10 }
         },
         new Dictionary<EnemyType, int>(){
             { EnemyType.Ant, 10 },
             { EnemyType.Armoured_Bug, 8 },
-            { EnemyType.Armoured_Cockroach, 5},
-            { EnemyType.Armoured_Stagbeetle, 5 }
+            { EnemyType.Armoured_Cockroach, 8}
         },
         new Dictionary<EnemyType, int>(){
-            { EnemyType.Ant, 10 },
+            { EnemyType.Ant, 8 },
             { EnemyType.Armoured_Bug, 8 },
-            { EnemyType.Armoured_Cockroach, 5},
+            { EnemyType.Armoured_Cockroach, 8},
             { EnemyType.Armoured_Stagbeetle, 5 },
-            { EnemyType.Dragonfly, 3}
+            { EnemyType.Dragonfly, 5},
+
+        },
+        new Dictionary<EnemyType, int>(){
+            { EnemyType.Ant, 8 },
+            { EnemyType.Armoured_Bug, 5 },
+            { EnemyType.Armoured_Cockroach, 8},
+            { EnemyType.Armoured_Stagbeetle, 5 },
+            { EnemyType.Dragonfly, 5},
+            { EnemyType.Hornet, 5}
         }
     };
 
     private void Start()
     {
-        if (devMode)
+        if (Application.platform == RuntimePlatform.WindowsEditor)
         {
-            debugObject.SetActive(true);
+            debugObject.SetActive(true); // Dev mode
         }
         currentState = GameState.Calibration;
         UIController = GetComponent<UIController>();
@@ -79,11 +85,6 @@ public class GameStateManager : MonoBehaviour
         roundTimer = GetComponent<RoundTimer>();
         infoText.text = "";
         UIController.CalibrationPopUp();
-    }
-
-    private void Update()
-    {
-        debugText.text = Time.deltaTime.ToString();
     }
 
     public void CalibrationSuccess()
@@ -98,48 +99,97 @@ public class GameStateManager : MonoBehaviour
     {
         roundNumber = 0;
         currentState = GameState.Tutorial_Plan;
-        UIController.TutorialPlanPopUp();
-        currentState = GameState.Tutorial_Battle;
-        UIController.TutorialBattlePopUp();
+        UIController.TutorialPlanPopUps();
     }
 
 
-    public void BeginRound()
+    public void BeginTutorialPlan()
     {
-        infoText.transform.position = GameProperties.Centre + new Vector3(0, 0.7f, 0);
-        currentState = GameState.Round_Plan;
-        roundNumber++;
-        infoText.text = "Round " + roundNumber.ToString() + "\n-[Planning]-";
+        infoText.transform.position = GameProperties.Centre + new Vector3(0, 0.65f, 0);
+        currentState = GameState.Tutorial_Plan;
+        infoText.text = "Tutorial\n[Planning]";
         startButton.transform.position = GameProperties.Centre + new Vector3(0, 0.6f, 0);
         startButton.SetActive(true);
+    }
 
+    private IEnumerator BeginTutorialBattleInfo()
+    {
+        currentState = GameState.Tutorial_Battle;
+        roundTimer.SetRoundLength(30);
+        enemyManager.StartSpawning(enemyWaves[0]);
+        roundTimer.StartTimer(); // play
+        yield return StartCoroutine(pause(1));
+        roundTimer.PauseTimer();
+        UIController.TutorialBattlePopUps();
+    }
+
+    public IEnumerator BeginTutorialBattle()
+    {
+        roundTimer.PauseTimer(); // play
+        yield return new WaitUntil(() => enemyManager.getEnemiesKilled() != 0);
+        roundTimer.PauseTimer(); // pause
+        UIController.TutorialBugPopUps();
+    }
+    public void ContinueTutorialBattle()
+    {
+        roundTimer.PauseTimer();
+    }
+
+    private IEnumerator EndTutorialBattle(int enemiesKilled)
+    {
+        enemyManager.resetEnemiesKilled();
+        infoText.text = "Tutorial Over\n[" + enemiesKilled.ToString() + " Enemies Killed]";
+        yield return StartCoroutine(pause(3));
+        UIController.EndTutorial();
+    }
+
+    public void BeginRound()
+    {
+        roundTimer.SetRoundLength(60);
+        infoText.transform.position = GameProperties.Centre + new Vector3(0, 0.65f, 0);
+        currentState = GameState.Round_Plan;
+        roundNumber++;
+        infoText.text = "Round " + roundNumber.ToString() + "\n[Planning]";
+        startButton.transform.position = GameProperties.Centre + new Vector3(0, 0.6f, 0);
+        startButton.SetActive(true);
     }
 
     public void BeginBattle()
     {
-        infoText.transform.position = GameProperties.Centre + new Vector3(0, 0.6f, 0);
+        startButton.SetActive(false);
+        infoText.transform.position = GameProperties.Centre + new Vector3(0, 0.5f, 0);
         qrDetection.StopQR();
+        if (currentState == GameState.Tutorial_Plan)
+        {
+            StartCoroutine(BeginTutorialBattleInfo());
+            return;
+        }
         enemyManager.StartSpawning(enemyWaves[roundNumber]);
         roundTimer.StartTimer();
         currentState = GameState.Round_Battle;
 
     }
 
-    public void EndBattle()
+    public IEnumerator EndBattle()
     {
-        try
+        clearEnemies();
+        enemyManager.StopSpawning();
+        qrDetection.StartQR();
+        int enemiesKilled = GetComponent<EnemyManager>().getEnemiesKilled();
+        if(CurrentGameState == GameState.Tutorial_Battle)
         {
-            clearEnemies();
-            roundTimer.StopTimer();
-            enemyManager.StopSpawning();
-            qrDetection.StartQR();
-            int enemiesKilled = GetComponent<EnemyManager>().getEnemiesKilled();
-            infoText.text = "Round " + roundNumber.ToString() + " Over\n-[" + enemiesKilled.ToString() + " Enemies Killed]-";
-            StartCoroutine(displayScore(3));
+            StartCoroutine(EndTutorialBattle(enemiesKilled));
+            yield break;
         }
-        catch(System.Exception e)
+        infoText.text = "Round " + roundNumber.ToString() + " Over\n[" + enemiesKilled.ToString() + " Enemies Killed]";
+        yield return StartCoroutine(pause(3));
+        if (roundNumber < maxRoundNum)
         {
-            Debug.Log(e.Message);
+            BeginRound();
+        }
+        else
+        {
+            EndGame();
         }
     }
 
@@ -148,17 +198,9 @@ public class GameStateManager : MonoBehaviour
         UIController.EndPopUp();
     }
 
-    IEnumerator displayScore(int secs)
+    IEnumerator pause(int seconds)
     {
-        yield return new WaitForSeconds(secs);
-        if (roundNumber <= 3)
-        {
-            BeginRound();
-        }
-        else
-        { 
-            EndGame();
-        }
+        yield return new WaitForSeconds(seconds);
     }
     
 
