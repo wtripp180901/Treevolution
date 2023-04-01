@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -35,7 +34,7 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (started && !roundTimer.IsPaused)
+        if (started && !roundTimer.isPaused)
         {
             if (!firstSpawn)
             {
@@ -54,7 +53,8 @@ public class EnemyManager : MonoBehaviour
 
     public void targetNewEnemy(GameObject enemy)
     {
-        if (targetEnemy != null) {
+        if (targetEnemy != null)
+        {
             lock (targetEnemy)
             {
                 Behaviour oldHalo = (Behaviour)targetEnemy.GetComponent("Halo");
@@ -130,7 +130,7 @@ public class EnemyManager : MonoBehaviour
     public void StartSpawning(Dictionary<GameStateManager.EnemyType, int> enemies)
     {
         spawnPool = unpackEnemies(enemies);
-        spawnInterval = (roundTimer.roundLengthSecs*0.8f)/enemies.Values.Sum();
+        spawnInterval = (roundTimer.roundLengthSecs * 0.8f) / enemies.Values.Sum();
         Vector3 verticalLeft = GameProperties.BottomLeftCorner - GameProperties.TopLeftCorner;
         Vector3 horizontalLeft = (GameProperties.TopRightCorner - GameProperties.TopLeftCorner) * 0.1f;
         Vector3 verticalRight = GameProperties.BottomRightCorner - GameProperties.TopRightCorner;

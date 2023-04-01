@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyTestScript : MonoBehaviour
@@ -28,7 +26,7 @@ public class EnemyTestScript : MonoBehaviour
             Quaternion toRotation = Quaternion.LookRotation(-direction, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(toRotation, transform.rotation, rotationSpeed * Time.deltaTime);
         }
-            
+
         /* if (transform.position != target[current].position)
          {
              Vector3 pos = Vector3.MoveTowards(transform.position, target[current].position, Speed * Time.deltaTime);
@@ -38,12 +36,12 @@ public class EnemyTestScript : MonoBehaviour
              current = (current + 1) % target.Length;
      */
     }
-        
 
-     /*   void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Enemy")
-            Destroy(collision.gameObject);
-    }
-     */
+
+    /*   void OnCollisionEnter(Collision collision)
+   {
+       if (collision.gameObject.tag == "Enemy")
+           Destroy(collision.gameObject);
+   }
+    */
 }
