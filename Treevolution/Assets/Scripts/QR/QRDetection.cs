@@ -74,12 +74,14 @@ public class QRDetection : MonoBehaviour
     /// </summary>
     private bool _initialRun = true;
 
-
-    private void initProperties()
+    /// <summary>
+    /// Initialises certain QR Detection fields.
+    /// </summary>
+    private void InitProperties()
     {
         _planeMapper.ClearPlane();
-        resetTrackedCodes();
-        resetCodeQueue();
+        ResetTrackedCodes();
+        ResetCodeQueue();
         _running = false;
         _planeCreated = false;
         _planeMarkerSet = false;
@@ -93,7 +95,7 @@ public class QRDetection : MonoBehaviour
         {
             await _accessRequester;
         }
-        initProperties();
+        InitProperties();
     }
 
     // Update is called once per frame
@@ -114,9 +116,9 @@ public class QRDetection : MonoBehaviour
                     if (lockPlane && code.Data == "C1") // If plane marker and plane is locked, ignore it
                         continue;
                     else if (!lockPlane && code.Data == "C1")
-                        drawPlane("C1", code); // Draw the plane
+                        DrawPlane("C1", code); // Draw the plane
                     
-                    updateCodeHologram(code); // Update the hologram on the code
+                    UpdateCodeHologram(code); // Update the hologram on the code
                 }
             }
 
@@ -129,7 +131,7 @@ public class QRDetection : MonoBehaviour
     /// </summary>
     /// <param name="c1Data">Data that should be displayed on the QRCode of the plane marker.</param>
     /// <param name="code">Object representing a potential plane marker.</param>
-    private void drawPlane(string c1Data, QRCode code)
+    private void DrawPlane(string c1Data, QRCode code)
     {
         lock (_trackedCodes)
         {
@@ -137,7 +139,7 @@ public class QRDetection : MonoBehaviour
             SpatialGraphNode.FromStaticNodeId(code.SpatialGraphNodeId).TryLocate(FrameTime.OnUpdate, out newPose); // Get pose of QR Code
             if (code.Data.ToString() == c1Data)
             {
-                newPose = tryGetNewCornerMarkerPose(newPose, _planeMarkerSet, _oldPlanePose);
+                newPose = TryGetNewCornerMarkerPose(newPose, _planeMarkerSet, _oldPlanePose);
                 _planeMarkerSet = true;
             }
             if (_planeMarkerSet && !_planeCreated)
@@ -154,7 +156,7 @@ public class QRDetection : MonoBehaviour
     /// </summary>
     /// <param name="qr">QrCode to spawn the object on.</param>
     /// <param name="obj">GameObject to spawn.</param>
-    public GameObject spawnObjectOnQR(QRCode qr, GameObject obj)
+    public GameObject SpawnObjectOnQR(QRCode qr, GameObject obj)
     {
         Pose qrPose;
         SpatialGraphNode.FromStaticNodeId(qr.SpatialGraphNodeId).TryLocate(FrameTime.OnUpdate, out qrPose); // Get pose of QR Code
@@ -172,7 +174,11 @@ public class QRDetection : MonoBehaviour
         return obj;
     }
 
-    private void updateCodeHologram(QRCode qrCode)
+    /// <summary>
+    /// Updates the hologram GameObject on a particular QRCode (called for a QRCode Update or Added event).
+    /// </summary>
+    /// <param name="qrCode">The QRCode object which is being modified.</param>
+    private void UpdateCodeHologram(QRCode qrCode)
     {
         lock (_trackedCodes)
         {
@@ -242,7 +248,14 @@ public class QRDetection : MonoBehaviour
         }
     }
 
-    private Pose tryGetNewCornerMarkerPose(Pose newPose, bool cornerSet, Pose oldPose)
+    /// <summary>
+    /// Attempts to get the new pose of the game board corner marker. This will only return a new post if the updated QR pose isn't too similar to what it was previously.
+    /// </summary>
+    /// <param name="newPose">The new pose recognised of the game board corner marker.</param>
+    /// <param name="cornerSet">Whether the corner has previously been set.</param>
+    /// <param name="oldPose">The old pose of thr game board corner marker.</param>
+    /// <returns></returns>
+    private Pose TryGetNewCornerMarkerPose(Pose newPose, bool cornerSet, Pose oldPose)
     {
         if (!cornerSet || Vector3.Distance(oldPose.position, newPose.position) > 0.03 || Math.Abs(Quaternion.Angle(oldPose.rotation, newPose.rotation)) > 5)
         {
@@ -252,7 +265,12 @@ public class QRDetection : MonoBehaviour
         return oldPose;
     }
 
-    private void updatedCodeEvent(object sender, QRCodeUpdatedEventArgs args)
+    /// <summary>
+    /// Called by the QRCodeWatcher when a QRCode is updated.
+    /// </summary>
+    /// <param name="sender">QRCodeWatcher instance invoking the QRCodeUpdated event.</param>
+    /// <param name="args">QRCodeUpdatedEventArgs event arguments.</param>
+    private void UpdatedCodeEvent(object sender, QRCodeUpdatedEventArgs args)
     {
         Pose currentPose;
         SpatialGraphNode.FromStaticNodeId(args.Code.SpatialGraphNodeId).TryLocate(FrameTime.OnUpdate, out currentPose);
@@ -271,7 +289,12 @@ public class QRDetection : MonoBehaviour
         }
     }
 
-    private void addedCodeEvent(object sender, QRCodeAddedEventArgs args)
+    /// <summary>
+    /// Called by the QRCodeWatcher when a QRCode is added.
+    /// </summary>
+    /// <param name="sender">QRCodeWatcher instance invoking the QRCodeUpdated event.</param>
+    /// <param name="args">QRCodeAddedEventArgs event arguments.</param>
+    private void AddedCodeEvent(object sender, QRCodeAddedEventArgs args)
     {
         Pose currentPose;
         SpatialGraphNode.FromStaticNodeId(args.Code.SpatialGraphNodeId).TryLocate(FrameTime.OnUpdate, out currentPose);
@@ -291,24 +314,17 @@ public class QRDetection : MonoBehaviour
         }
     }
 
-    private void removedCodeEvent(object sender, QRCodeRemovedEventArgs args)
-    {
-        lock (_trackedCodes)
-        {
-            Destroy(_trackedCodes[args.Code.Id].obj);
-            _trackedCodes.Remove(args.Code.Id);
-        }
-    }
-
+    /// <summary>
+    /// Initialises the QRCodeWatcher instance and starts tracking.
+    /// </summary>
     private void InitialiseQR()
     {
         if (QRCodeWatcher.IsSupported())
         {
             _running = true;
             _qRCodeWatcher = new QRCodeWatcher();
-            _qRCodeWatcher.Added += new System.EventHandler<QRCodeAddedEventArgs>(this.addedCodeEvent);
-            _qRCodeWatcher.Updated += new System.EventHandler<QRCodeUpdatedEventArgs>(this.updatedCodeEvent);
-            _qRCodeWatcher.Removed += new System.EventHandler<QRCodeRemovedEventArgs>(this.removedCodeEvent);
+            _qRCodeWatcher.Added += new System.EventHandler<QRCodeAddedEventArgs>(this.AddedCodeEvent);
+            _qRCodeWatcher.Updated += new System.EventHandler<QRCodeUpdatedEventArgs>(this.UpdatedCodeEvent);
             foreach (Guid id in _trackedCodes.Keys)
             {
                 Destroy(_trackedCodes[id].obj);
@@ -323,7 +339,10 @@ public class QRDetection : MonoBehaviour
         _initialRun = false;
     }
 
-    private void resetTrackedCodes()
+    /// <summary>
+    /// Removes any tracked QRCodes from the list.
+    /// </summary>
+    private void ResetTrackedCodes()
     {
         if (_trackedCodes.IsNotNull())
         {
@@ -342,8 +361,10 @@ public class QRDetection : MonoBehaviour
         }
     }
 
-
-    private void resetCodeQueue()
+    /// <summary>
+    /// Removes any QRCodes from the queue of updates waiting to be processed.
+    /// </summary>
+    private void ResetCodeQueue()
     {
         if (_updatedCodeQueue.IsNotNull())
         {
@@ -368,7 +389,7 @@ public class QRDetection : MonoBehaviour
     /// </summary>
     public void StartQR()
     {
-        resetCodeQueue();
+        ResetCodeQueue();
         //if (QRCodeWatcher.IsSupported()) watcher.Start();
         _running = true;
     }
