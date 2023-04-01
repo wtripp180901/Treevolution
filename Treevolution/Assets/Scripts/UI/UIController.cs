@@ -104,7 +104,7 @@ public class UIController : MonoBehaviour
         CloseOpenDialogs();
         lock (_openDialogs)
         {
-            if (_gameStateManager.currentGameState != GameStateManager.GameState.Plane_Mapped)
+            if (_gameStateManager.currentGameState != GameStateManager.GameState.Calibration_Success)
             {
                 Dialog d = Dialog.Open(infoDialogPrefab, DialogButtonType.None, "Calibrate Game Board", "Find, and look at the QR Code in the corner of the table to calibrate the Game Board.", true);
                 d.gameObject.transform.GetChild(3).gameObject.GetComponent<MeshRenderer>().material = backPlateOrange;

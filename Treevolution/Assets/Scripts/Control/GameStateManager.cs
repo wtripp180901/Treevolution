@@ -47,7 +47,7 @@ public class GameStateManager : MonoBehaviour
     /// <summary>
     /// The current GameState value.
     /// </summary>
-    private GameState _currentState;
+    private GameState _currentState = GameState.Calibration;
     /// <summary>
     /// The current round number (0 = None/Tutorial, 1 = Round 1, etc.).
     /// </summary>
@@ -59,7 +59,7 @@ public class GameStateManager : MonoBehaviour
     public enum GameState
     {
         Calibration,
-        Plane_Mapped,
+        Calibration_Success,
         Tutorial_Plan,
         Tutorial_Battle,
         Round_Plan,
@@ -111,6 +111,16 @@ public class GameStateManager : MonoBehaviour
         }
     };
 
+    public GameStateManager(bool dev)
+    {
+        if (dev)
+        {
+            BeginBattleButton = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            _uIController = new UIController();
+            _qRDetection = new QRDetection();
+        }
+    }
+
     /// <summary>
     /// Start runs when loading the GameObject that this script is attached to.
     /// </summary>
@@ -120,7 +130,8 @@ public class GameStateManager : MonoBehaviour
         {
             debugObject.SetActive(true); // Unity Editor Mode
         }
-        InfoText.text = "";
+        if(InfoText != null)
+            InfoText.text = "";
         _currentState = GameState.Calibration;
         _uIController = GetComponent<UIController>();
         _qRDetection = GetComponent<QRDetection>();
@@ -134,7 +145,7 @@ public class GameStateManager : MonoBehaviour
     /// </summary>
     public void CalibrationSuccess()
     {
-        _currentState = GameState.Plane_Mapped;
+        _currentState = GameState.Calibration_Success;
         _uIController.CalibrationSuccessPopUp();
     }
 
@@ -153,19 +164,21 @@ public class GameStateManager : MonoBehaviour
     public void BeginTutorialPlan()
     {
         _currentState = GameState.Tutorial_Plan;
-        InfoText.transform.position = GameProperties.Centre + new Vector3(0, 0.65f, 0);
-        InfoText.text = "Tutorial\n[Planning]";
+        if (InfoText != null)
+        {
+             InfoText.transform.position = GameProperties.Centre + new Vector3(0, 0.65f, 0);
+             InfoText.text = "Tutorial\n[Planning]";
+        }
         BeginBattleButton.transform.position = GameProperties.Centre + new Vector3(0, 0.6f, 0);
         BeginBattleButton.SetActive(true);
     }
 
     /// <summary>
-    /// Begins the Tutorial Battle Information pop-ups being displayed and progresses the state into <c>Tutorial_Battle</c>.
+    /// Begins the Tutorial Battle Information pop-ups being displayed.
     /// </summary>
     /// <returns>This method runs a coroutine and so a <c>yield return</c> is used.</returns>
     private IEnumerator BeginTutorialBattleInfo()
     {
-        _currentState = GameState.Tutorial_Battle;
         _roundTimer.SetRoundLength(30);
         _enemyManager.StartSpawning(_enemyWaves[0]);
         _roundTimer.StartTimer(); // play
@@ -202,7 +215,8 @@ public class GameStateManager : MonoBehaviour
     private IEnumerator EndTutorialBattle(int enemiesKilled)
     {
         _enemyManager.resetEnemiesKilled();
-        InfoText.text = "Tutorial Over\n[" + enemiesKilled.ToString() + " Enemies Killed]";
+         if(InfoText != null) 
+            InfoText.text = "Tutorial Over\n[" + enemiesKilled.ToString() + " Enemies Killed]";
         yield return new WaitForSeconds(3);
         _uIController.EndTutorial();
     }
@@ -212,32 +226,39 @@ public class GameStateManager : MonoBehaviour
     /// </summary>
     public void BeginRound()
     {
-        _roundTimer.SetRoundLength(60);
-        InfoText.transform.position = GameProperties.Centre + new Vector3(0, 0.65f, 0);
         _currentState = GameState.Round_Plan;
+        _roundTimer.SetRoundLength(60);
         _currentRoundNumber++;
-        InfoText.text = "Round " + _currentRoundNumber.ToString() + "\n[Planning]";
+        if (InfoText != null)
+        {
+            InfoText.transform.position = GameProperties.Centre + new Vector3(0, 0.65f, 0);
+            InfoText.text = "Round " + _currentRoundNumber.ToString() + "\n[Planning]";
+        }
         BeginBattleButton.transform.position = GameProperties.Centre + new Vector3(0, 0.6f, 0);
         BeginBattleButton.SetActive(true);
     }
 
     /// <summary>
-    /// Run by a button press, and begins the enemy spawning for the current round. If it isn't a tutorial it progresses the state to <c>Round_Battle</c>.
+    /// Run by a button press, and begins the enemy spawning for the current round. If it isn't a tutorial it progresses the state to <c>Round_Battle</c>, otherwise to <c>Tutorial_Battle</c>.
     /// </summary>
     public void BeginBattle()
     {
         BeginBattleButton.SetActive(false);
-        InfoText.transform.position = GameProperties.Centre + new Vector3(0, 0.5f, 0);
+        if(InfoText != null)
+             InfoText.transform.position = GameProperties.Centre + new Vector3(0, 0.5f, 0);
         _qRDetection.StopQR();
         if (_currentState == GameState.Tutorial_Plan)
         {
+            _currentState = GameState.Tutorial_Battle;
             StartCoroutine(BeginTutorialBattleInfo());
             return;
         }
-        _enemyManager.StartSpawning(_enemyWaves[_currentRoundNumber]);
-        _roundTimer.StartTimer();
-        _currentState = GameState.Round_Battle;
-
+        else
+        {
+            _currentState = GameState.Round_Battle;
+            _enemyManager.StartSpawning(_enemyWaves[_currentRoundNumber]);
+            _roundTimer.StartTimer();
+        }
     }
 
     /// <summary>
@@ -255,7 +276,8 @@ public class GameStateManager : MonoBehaviour
             StartCoroutine(EndTutorialBattle(enemiesKilled));
             yield break;
         }
-        InfoText.text = "Round " + _currentRoundNumber.ToString() + " Over\n[" + enemiesKilled.ToString() + " Enemies Killed]";
+        if(InfoText != null)
+            InfoText.text = "Round " + _currentRoundNumber.ToString() + " Over\n[" + enemiesKilled.ToString() + " Enemies Killed]";
         yield return new WaitForSeconds(3);
         if (_currentRoundNumber < maxRoundNumber)
         {
