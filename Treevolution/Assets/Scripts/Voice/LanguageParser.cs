@@ -80,8 +80,9 @@ public class LanguageParser
         bool connectiveMode = false;
         BUDDY_ACTION_TYPES actionToResolve= BUDDY_ACTION_TYPES.Error;
         BUDDY_SUBJECT_TYPES lastSubject = BUDDY_SUBJECT_TYPES.Error;
-        foreach(BuddyToken token in tokenStream)
+        for(int i = 0;i < tokenStream.Count;i++)
         {
+            BuddyToken token = tokenStream[i];
             switch (token.tokenType)
             {
                 case TOKEN_TYPES.Action:
@@ -96,7 +97,7 @@ public class LanguageParser
                     if (resolvingAction)
                     {
                         lastSubject = BUDDY_SUBJECT_TYPES.PointerLocation;
-                        instructions.Add(new BuddyAction(actionToResolve, getSubject(lastSubject)));
+                        instructions.Add(new BuddyAction(actionToResolve, getSubject(lastSubject,i)));
                         resolvingAction = false;
                     }
                     break;
@@ -108,13 +109,12 @@ public class LanguageParser
         return instructions;
     }
 
-    Vector3 getSubject(BUDDY_SUBJECT_TYPES subjectType)
+    Vector3 getSubject(BUDDY_SUBJECT_TYPES subjectType,int index)
     {
         switch (subjectType)
         {
             case BUDDY_SUBJECT_TYPES.PointerLocation:
-                Vector3 pointer = GameObject.FindWithTag("Logic").GetComponent<PointerLocationTracker>().pointer.transform.position;
-                GameObject.FindWithTag("MoveToMarker").transform.position = pointer;
+                Vector3 pointer = GameObject.FindWithTag("Logic").GetComponent<PointerLocationTracker>().GetSampleAtWordIndex(index);
                 return pointer;
         }
         return new Vector3(0,0,0);
