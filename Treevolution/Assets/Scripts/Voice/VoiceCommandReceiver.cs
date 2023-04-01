@@ -74,6 +74,7 @@ public class VoiceCommandReceiver : MonoBehaviour
         //if(wordData.Length > 0) GetComponent<UIController>().ShowDictation(wordData[0]);
         Debug.Log("Action stream: " + actionStream);
         uiController.ShowDictation("Action stream: "+actionStream);
+        GameObject.FindWithTag("Buddy").GetComponent<BuddyScript>().GiveInstructions(instructions);
     }
 
     IEnumerator Indicator()
