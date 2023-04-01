@@ -17,6 +17,7 @@ public class QRDetection : MonoBehaviour
     public GameObject planeMarker;
     public GameObject towerMarker;
     public GameObject wallMarker;
+    [HideInInspector]
     public bool lockPlane;
 
     private QRCodeWatcher watcher;
