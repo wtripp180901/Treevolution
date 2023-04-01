@@ -1,5 +1,10 @@
 \hypertarget{class_start_menu_logic}{}\doxysection{Start\+Menu\+Logic Class Reference}
 \label{class_start_menu_logic}\index{StartMenuLogic@{StartMenuLogic}}
+
+
+Logic of the Start\+Menu Scene.  
+
+
 Inheritance diagram for Start\+Menu\+Logic\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -11,22 +16,42 @@ Inheritance diagram for Start\+Menu\+Logic\+:\begin{figure}[H]
 \item 
 \mbox{\Hypertarget{class_start_menu_logic_a1e64262af3d4fb92529ad82fb7abbe09}\label{class_start_menu_logic_a1e64262af3d4fb92529ad82fb7abbe09}} 
 void {\bfseries open\+Start\+Menu} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Opens the start menu. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_start_menu_logic_a21cd95add1159250d964577d47ca630b}\label{class_start_menu_logic_a21cd95add1159250d964577d47ca630b}} 
 void {\bfseries Start\+Game} ()
-\item 
-\mbox{\Hypertarget{class_start_menu_logic_afd05a67d86bc267e552e553edc6e80ce}\label{class_start_menu_logic_afd05a67d86bc267e552e553edc6e80ce}} 
-void {\bfseries Open\+Settings} (Game\+Object caller)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Starts the game. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_start_menu_logic_a60ff94cf6fafeba5c1c1bad53ec41935}{Open\+Settings}} ()
+\begin{DoxyCompactList}\small\item\em Opens the settings menu dialog, and re-\/opens the start menu when it is closed. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{class_start_menu_logic_a9c44854e13a4c29e189139e42989cf62}\label{class_start_menu_logic_a9c44854e13a4c29e189139e42989cf62}} 
 Game\+Object {\bfseries Settings\+Dialog\+Prefab}
-\item 
+\begin{DoxyCompactList}\small\item\em Settings Menu Dialog Prefab. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_start_menu_logic_abaa6dd5f7baea9b756067b0d3e8b6a1e}\label{class_start_menu_logic_abaa6dd5f7baea9b756067b0d3e8b6a1e}} 
 Game\+Object {\bfseries Start\+Menu}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Start Menu Dialog Prefab. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Logic of the Start\+Menu Scene. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_start_menu_logic_a60ff94cf6fafeba5c1c1bad53ec41935}\label{class_start_menu_logic_a60ff94cf6fafeba5c1c1bad53ec41935}} 
+\index{StartMenuLogic@{StartMenuLogic}!OpenSettings@{OpenSettings}}
+\index{OpenSettings@{OpenSettings}!StartMenuLogic@{StartMenuLogic}}
+\doxysubsubsection{\texorpdfstring{OpenSettings()}{OpenSettings()}}
+{\footnotesize\ttfamily void Start\+Menu\+Logic.\+Open\+Settings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Opens the settings menu dialog, and re-\/opens the start menu when it is closed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em caller} & \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

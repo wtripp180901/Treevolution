@@ -76,6 +76,9 @@ $(function() {
   <div class="headertitle"><div class="title">EnemyScript Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Controls enemy behaviour.  
+ <a href="class_enemy_script.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for EnemyScript:</div>
 <div class="dyncontent">
@@ -85,19 +88,79 @@ Inheritance diagram for EnemyScript:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aec67fe782ffea207a114872969101ffe"><td class="memItemLeft" align="right" valign="top"><a id="aec67fe782ffea207a114872969101ffe" name="aec67fe782ffea207a114872969101ffe"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Damage</b> (int power)</td></tr>
+<tr class="memitem:aec67fe782ffea207a114872969101ffe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy_script.html#aec67fe782ffea207a114872969101ffe">Damage</a> (int power)</td></tr>
+<tr class="memdesc:aec67fe782ffea207a114872969101ffe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Damages the current enemy, and checks if it has run out of health.  <br /></td></tr>
 <tr class="separator:aec67fe782ffea207a114872969101ffe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed2130573dc1ec6e62bc21baf08cf9f9"><td class="memItemLeft" align="right" valign="top"><a id="aed2130573dc1ec6e62bc21baf08cf9f9" name="aed2130573dc1ec6e62bc21baf08cf9f9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DestroyEnemy</b> (bool killedByPlayer)</td></tr>
+<tr class="memitem:aed2130573dc1ec6e62bc21baf08cf9f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy_script.html#aed2130573dc1ec6e62bc21baf08cf9f9">DestroyEnemy</a> (bool killedByPlayer)</td></tr>
+<tr class="memdesc:aed2130573dc1ec6e62bc21baf08cf9f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the enemy object and removes it from the <a class="el" href="class_enemy_manager.html">EnemyManager</a>'s enemy list.  <br /></td></tr>
 <tr class="separator:aed2130573dc1ec6e62bc21baf08cf9f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a603b18bbe56e328c8923e8fbb73da42c"><td class="memItemLeft" align="right" valign="top"><a id="a603b18bbe56e328c8923e8fbb73da42c" name="a603b18bbe56e328c8923e8fbb73da42c"></a>
-Rigidbody&#160;</td><td class="memItemRight" valign="bottom"><b>rig</b></td></tr>
-<tr class="separator:a603b18bbe56e328c8923e8fbb73da42c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac784ddaec229d61c5dfff47a5f3df4bb"><td class="memItemLeft" align="right" valign="top"><a id="ac784ddaec229d61c5dfff47a5f3df4bb" name="ac784ddaec229d61c5dfff47a5f3df4bb"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>health</b> = 10</td></tr>
+<tr class="memdesc:ac784ddaec229d61c5dfff47a5f3df4bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Health given to the current enemy (default = 10). <br /></td></tr>
+<tr class="separator:ac784ddaec229d61c5dfff47a5f3df4bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54d1f0ce57b57f7f561a37a75bf8eb69"><td class="memItemLeft" align="right" valign="top"><a id="a54d1f0ce57b57f7f561a37a75bf8eb69" name="a54d1f0ce57b57f7f561a37a75bf8eb69"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>flying</b> = false</td></tr>
+<tr class="memdesc:a54d1f0ce57b57f7f561a37a75bf8eb69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if the current enemy is flying or not (off by default). <br /></td></tr>
+<tr class="separator:a54d1f0ce57b57f7f561a37a75bf8eb69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Controls enemy behaviour. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aec67fe782ffea207a114872969101ffe" name="aec67fe782ffea207a114872969101ffe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec67fe782ffea207a114872969101ffe">&#9670;&#160;</a></span>Damage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EnemyScript.Damage </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>power</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Damages the current enemy, and checks if it has run out of health. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">power</td><td>Power to damage the enemy by.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aed2130573dc1ec6e62bc21baf08cf9f9" name="aed2130573dc1ec6e62bc21baf08cf9f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed2130573dc1ec6e62bc21baf08cf9f9">&#9670;&#160;</a></span>DestroyEnemy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EnemyScript.DestroyEnemy </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>killedByPlayer</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destroys the enemy object and removes it from the <a class="el" href="class_enemy_manager.html">EnemyManager</a>'s enemy list. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">killedByPlayer</td><td>Whether the enemy was killed by the player, or is bein destroyed as part of the ClearEnemies method and so shouldn't count towards the user's score.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Treevolution/Assets/Scripts/Enemies/EnemyScript.cs</li>
 </ul>

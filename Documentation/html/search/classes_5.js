@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['mountpoint_0',['MountPoint',['../class_mount_point.html',1,'']]]
+  ['managerscenelogic_0',['ManagerSceneLogic',['../class_manager_scene_logic.html',1,'']]],
+  ['mountpoint_1',['MountPoint',['../class_mount_point.html',1,'']]]
 ];

@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['towerdata_0',['TowerData',['../class_tower_data.html',1,'']]],
-  ['towergenerationtests_1',['TowerGenerationTests',['../class_tower_generation_tests.html',1,'']]],
-  ['towergenerator_2',['TowerGenerator',['../class_tower_generator.html',1,'']]],
-  ['towerholder_3',['TowerHolder',['../class_tower_holder.html',1,'']]],
-  ['towerscript_4',['TowerScript',['../class_tower_script.html',1,'']]],
-  ['treescript_5',['TreeScript',['../class_tree_script.html',1,'']]],
-  ['turretscript_6',['TurretScript',['../class_turret_script.html',1,'']]]
+  ['managerscenelogic_0',['ManagerSceneLogic',['../class_manager_scene_logic.html',1,'']]],
+  ['maxroundnumber_1',['maxRoundNumber',['../class_game_state_manager.html#a3cf9cf170a1d08d49fe7bd15ceba114e',1,'GameStateManager']]],
+  ['microsoft_2',['Microsoft',['../namespace_microsoft.html',1,'']]],
+  ['mixedreality_3',['MixedReality',['../namespace_microsoft_1_1_mixed_reality.html',1,'Microsoft']]],
+  ['mountpoint_4',['MountPoint',['../class_mount_point.html',1,'']]],
+  ['qr_5',['QR',['../namespace_microsoft_1_1_mixed_reality_1_1_q_r.html',1,'Microsoft::MixedReality']]]
 ];

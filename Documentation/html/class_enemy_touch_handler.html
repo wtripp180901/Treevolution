@@ -75,6 +75,9 @@ $(function() {
   <div class="headertitle"><div class="title">EnemyTouchHandler Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Handles user touching the GameObject this script is attached to (via NearInteractionTouchable). Implements IMixedRealityTouchHandler interface.  
+ <a href="class_enemy_touch_handler.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for EnemyTouchHandler:</div>
 <div class="dyncontent">
@@ -84,18 +87,99 @@ Inheritance diagram for EnemyTouchHandler:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6d512997b672dec32268b9ef031354eb"><td class="memItemLeft" align="right" valign="top"><a id="a6d512997b672dec32268b9ef031354eb" name="a6d512997b672dec32268b9ef031354eb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>OnTouchCompleted</b> (HandTrackingInputEventData eventData)</td></tr>
+<tr class="memitem:a6d512997b672dec32268b9ef031354eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy_touch_handler.html#a6d512997b672dec32268b9ef031354eb">OnTouchCompleted</a> (HandTrackingInputEventData eventData)</td></tr>
+<tr class="memdesc:a6d512997b672dec32268b9ef031354eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface method called when touch event is completed (not used).  <br /></td></tr>
 <tr class="separator:a6d512997b672dec32268b9ef031354eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6c3e2e7c57c7022715102ef928bca2e"><td class="memItemLeft" align="right" valign="top"><a id="ab6c3e2e7c57c7022715102ef928bca2e" name="ab6c3e2e7c57c7022715102ef928bca2e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>OnTouchStarted</b> (HandTrackingInputEventData eventData)</td></tr>
+<tr class="memitem:ab6c3e2e7c57c7022715102ef928bca2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy_touch_handler.html#ab6c3e2e7c57c7022715102ef928bca2e">OnTouchStarted</a> (HandTrackingInputEventData eventData)</td></tr>
+<tr class="memdesc:ab6c3e2e7c57c7022715102ef928bca2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface method called when touch event is started. Used to check if the user's hand is in a fist and if so damage the enemy this script is attached to.  <br /></td></tr>
 <tr class="separator:ab6c3e2e7c57c7022715102ef928bca2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20591aa878165e6747dcacc159bfaead"><td class="memItemLeft" align="right" valign="top"><a id="a20591aa878165e6747dcacc159bfaead" name="a20591aa878165e6747dcacc159bfaead"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>OnTouchUpdated</b> (HandTrackingInputEventData eventData)</td></tr>
+<tr class="memitem:a20591aa878165e6747dcacc159bfaead"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy_touch_handler.html#a20591aa878165e6747dcacc159bfaead">OnTouchUpdated</a> (HandTrackingInputEventData eventData)</td></tr>
+<tr class="memdesc:a20591aa878165e6747dcacc159bfaead"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface method called when a touch event is updated (not used).  <br /></td></tr>
 <tr class="separator:a20591aa878165e6747dcacc159bfaead"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Handles user touching the GameObject this script is attached to (via NearInteractionTouchable). Implements IMixedRealityTouchHandler interface. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a6d512997b672dec32268b9ef031354eb" name="a6d512997b672dec32268b9ef031354eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d512997b672dec32268b9ef031354eb">&#9670;&#160;</a></span>OnTouchCompleted()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EnemyTouchHandler.OnTouchCompleted </td>
+          <td>(</td>
+          <td class="paramtype">HandTrackingInputEventData&#160;</td>
+          <td class="paramname"><em>eventData</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Interface method called when touch event is completed (not used). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">eventData</td><td>Touch event data.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab6c3e2e7c57c7022715102ef928bca2e" name="ab6c3e2e7c57c7022715102ef928bca2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6c3e2e7c57c7022715102ef928bca2e">&#9670;&#160;</a></span>OnTouchStarted()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EnemyTouchHandler.OnTouchStarted </td>
+          <td>(</td>
+          <td class="paramtype">HandTrackingInputEventData&#160;</td>
+          <td class="paramname"><em>eventData</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Interface method called when touch event is started. Used to check if the user's hand is in a fist and if so damage the enemy this script is attached to. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">eventData</td><td>Touch event data.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a20591aa878165e6747dcacc159bfaead" name="a20591aa878165e6747dcacc159bfaead"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20591aa878165e6747dcacc159bfaead">&#9670;&#160;</a></span>OnTouchUpdated()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EnemyTouchHandler.OnTouchUpdated </td>
+          <td>(</td>
+          <td class="paramtype">HandTrackingInputEventData&#160;</td>
+          <td class="paramname"><em>eventData</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Interface method called when a touch event is updated (not used). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">eventData</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Treevolution/Assets/EnemyTouchHandler.cs</li>
+<li>Treevolution/Assets/Scripts/Enemies/EnemyTouchHandler.cs</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
