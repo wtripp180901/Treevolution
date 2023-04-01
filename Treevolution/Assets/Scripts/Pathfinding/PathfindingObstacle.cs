@@ -16,6 +16,18 @@ namespace Pathfinding
         Bounds bounds;
         Collider myCollider;
 
+        public static Vector3[] CalculateCorners(Vector3 centreFloor, float extentsWidth, Vector3 widthVec, float extentsDepth, Vector3 depthVec)
+        {
+            Vector3[] offsetCorners = new Vector3[]
+            {
+                centreFloor + extentsWidth * widthVec + extentsDepth * depthVec,
+                centreFloor + extentsWidth * widthVec - extentsDepth * depthVec,
+                centreFloor - extentsWidth * widthVec + extentsDepth * depthVec,
+                centreFloor - extentsWidth * widthVec - extentsDepth * depthVec
+            };
+            return offsetCorners;
+        }
+
         private void Start()
         {
             myCollider = gameObject.GetComponent<Collider>();
@@ -35,19 +47,11 @@ namespace Pathfinding
 
             Debug.DrawLine(floorPosition, floorPosition + halfWidthWithMargin * myCollider.transform.right, Color.blue, 100);
             Debug.DrawLine(floorPosition, floorPosition + halfDepthWithMargin * myCollider.transform.forward, Color.blue, 100);
-            Vector3[] possiblePFPoints = new Vector3[]
-            {
-                floorPosition + halfWidthWithMargin * myCollider.transform.right + halfDepthWithMargin * myCollider.transform.forward,
-                floorPosition + halfWidthWithMargin * myCollider.transform.right - halfDepthWithMargin * myCollider.transform.forward,
-                floorPosition - halfWidthWithMargin * myCollider.transform.right + halfDepthWithMargin * myCollider.transform.forward,
-                floorPosition - halfWidthWithMargin * myCollider.transform.right - halfDepthWithMargin * myCollider.transform.forward
-            };
+            Vector3[] possiblePFPoints = CalculateCorners(floorPosition, halfWidthWithMargin, myCollider.transform.right, halfDepthWithMargin, myCollider.transform.forward);
             Debug.DrawLine(possiblePFPoints[0], possiblePFPoints[0] + Vector3.up, Color.green, 1000);
             Debug.DrawLine(possiblePFPoints[1], possiblePFPoints[1] + Vector3.up, Color.green, 1000);
             Debug.DrawLine(possiblePFPoints[2], possiblePFPoints[2] + Vector3.up, Color.green, 1000);
             Debug.DrawLine(possiblePFPoints[3], possiblePFPoints[3] + Vector3.up, Color.green, 1000);
-
-
 
             PathfindingGraphGenerator.AddObstacleData(bounds, possiblePFPoints);
         }

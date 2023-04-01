@@ -4,9 +4,18 @@ public class RealWorldPropertyMapper : MonoBehaviour
 {
     private PlaneMapper planeMapper;
     // Start is called before the first frame update
+
+    public RealWorldPropertyMapper() { }
+    public RealWorldPropertyMapper(PlaneMapper planeMapper)
+    {
+        this.planeMapper = planeMapper;
+    }
+
+
     void Start()
     {
-        planeMapper = GetComponent<PlaneMapper>();
+        if(planeMapper == null)
+            planeMapper = GetComponent<PlaneMapper>();
     }
     private void Update()
     {

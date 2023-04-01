@@ -2,20 +2,17 @@ using UnityEngine;
 
 public class PlaneMapper : MonoBehaviour
 {
-    [SerializeField]
-    GameObject planeMarker;
-    [SerializeField]
-    GameObject floor;
-    [SerializeField]
-    int markerCount = 2;
-
+    public GameObject planeMarker;
+    public GameObject floor;
+    public int markerCount = 2;
+    public GameObject treeModel;
     public float tableWidth = 240;
     public float tableDepth = 160;
 
-    public GameObject treeModel;
+
     private GameStateManager gameStateManager;
     private QRDetection qrDetection;
-
+   
     private bool planeIsMapped = false;
     private Vector3 tl;
     public Vector3 topLeft { get { return tl; } }
@@ -30,6 +27,11 @@ public class PlaneMapper : MonoBehaviour
     private Pose _pose;
     public Pose pose { get { return _pose; } }
 
+    public PlaneMapper(bool planeMapped)
+    {
+       this.planeIsMapped = planeMapped;
+    }
+
     private void Start()
     {
         gameStateManager = GetComponent<GameStateManager>();
@@ -38,7 +40,7 @@ public class PlaneMapper : MonoBehaviour
 
     public void CreateNewPlane(Pose marker)
     {
-        if (qrDetection.lockPlane)
+        if (qrDetection != null && qrDetection.lockPlane)
         {
             return;
         }
