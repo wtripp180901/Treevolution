@@ -11,12 +11,14 @@ public class VoiceCommandReceiver : MonoBehaviour
     public GameObject pointer;
     private EnemyManager enemyManager;
     public TMP_Text txt;
+    PointerLocationTracker pointerTracker;
     UIController uiController;
 
     private void Start()
     {
         enemyManager = GetComponent<EnemyManager>();
         uiController = GetComponent<UIController>();
+        pointerTracker = GetComponent<PointerLocationTracker>();
     }
 
     public void Record()
@@ -24,6 +26,7 @@ public class VoiceCommandReceiver : MonoBehaviour
         try
         {
             DictationHandler handler = GetComponent<DictationHandler>();
+            pointerTracker.StartSampling();
             lock(handler){
                 handler.StartRecording();
                 GameObject.FindWithTag("Buddy").GetComponent<Renderer>().material.color = Color.red;
@@ -66,6 +69,7 @@ public class VoiceCommandReceiver : MonoBehaviour
 
     public void HandleDictationProcessingResults(List<BuddyAction> instructions)
     {
+        pointerTracker.FinishSampling();
         string actionStream = "";
         foreach(BuddyAction i in instructions)
         {

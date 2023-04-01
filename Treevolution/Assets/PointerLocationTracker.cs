@@ -31,4 +31,51 @@ public class PointerLocationTracker : MonoBehaviour
             }
         }
     }
+
+    List<Vector3> locationSamples = new List<Vector3>();
+    bool isSampling = false;
+
+    /// <summary>
+    /// Clears previously sampled pointer locations and locks access to sampling list in preparation for new sampling session
+    /// </summary>
+    public void StartSampling()
+    {
+        if (!isSampling)
+        {
+            locationSamples.Clear();
+            isSampling = true;
+        }
+    }
+
+
+    /// <summary>
+    /// End sampling session, allowing a new one to safely clear previous samples and begin
+    /// </summary>
+    public void FinishSampling()
+    {
+        isSampling = false;
+    }
+
+
+    /// <summary>
+    /// Creates a sample of the pointers location at the time of calling. To be called by the DictationHandler's OnDictationHypothesis event
+    /// </summary>
+    public void SampleLocation()
+    {
+        locationSamples.Add(pointer.transform.position);
+    }
+
+    /// <summary>
+    /// Returns the pointer location sampled on the wordIndex'th word during the last buddy command recording session
+    /// </summary>
+    /// <param name="wordIndex">The index of the word in a space separated array of words in the dictation string that you wish to get the corresponding location of</param>
+    /// <returns></returns>
+    public Vector3 GetSampleAtWordIndex(int wordIndex)
+    {
+        int index;
+        if (wordIndex < locationSamples.Count) index = wordIndex;
+        else index = locationSamples.Count - 1;
+        Instantiate(GameObject.FindWithTag("MoveToMarker"),locationSamples[index],Quaternion.identity);
+        return locationSamples[index];
+    }
 }
