@@ -113,7 +113,9 @@ public class LanguageParser
         switch (subjectType)
         {
             case BUDDY_SUBJECT_TYPES.PointerLocation:
-                return GameObject.FindWithTag("Logic").GetComponent<PointerLocationTracker>().pointer.transform.position;
+                Vector3 pointer = GameObject.FindWithTag("Logic").GetComponent<PointerLocationTracker>().pointer.transform.position;
+                GameObject.FindWithTag("MoveToMarker").transform.position = pointer;
+                return pointer;
         }
         return new Vector3(0,0,0);
     }
