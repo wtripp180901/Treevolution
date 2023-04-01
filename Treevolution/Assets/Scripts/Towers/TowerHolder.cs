@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 //Holds a list of towers for a round
 public class TowerHolder

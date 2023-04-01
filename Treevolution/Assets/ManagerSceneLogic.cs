@@ -1,7 +1,5 @@
 using Microsoft.MixedReality.Toolkit;
 using Microsoft.MixedReality.Toolkit.SceneSystem;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,7 +14,7 @@ public class ManagerSceneLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public async void loadStartMenu()
