@@ -5,9 +5,8 @@ using UnityEngine;
 public class SingleTargetTower : TowerScript
 {
     [SerializeField]
-    private float _rotationSpeed = 5f;
-
-    private float _distanceToTarget;
+    private float _rotationSpeed = 3f;
+    private float _distanceToCurrentTarget;
     private Transform _targetTransform;
     private Gun _currentGun;
     private float _fireRateDelta;
@@ -17,8 +16,9 @@ public class SingleTargetTower : TowerScript
     new void Start()
     {
         base.Start();
+        damage = 2;
         _currentGun = GetComponentInChildren<Gun>();
-        _distanceToTarget = float.MaxValue;
+        _distanceToCurrentTarget = float.MaxValue;
         _fireRateDelta = fireRate;
     }
 
@@ -30,7 +30,7 @@ public class SingleTargetTower : TowerScript
         {
             Vector3 enemyGroundPosition = _targetTransform.position;
             enemyGroundPosition.y = transform.position.y;
-            _distanceToTarget = DistToTarget(enemyGroundPosition);
+            _distanceToCurrentTarget = DistToTarget(enemyGroundPosition);
             Vector3 enemyDirection = enemyGroundPosition - transform.position;
             float turretRotationStep = _rotationSpeed * Time.deltaTime;
             Vector3 newLookDirection = Vector3.RotateTowards(transform.forward, enemyDirection, turretRotationStep, 0f);
@@ -41,6 +41,10 @@ public class SingleTargetTower : TowerScript
                 Attack();
             }
         }
+        else
+        {
+            _distanceToCurrentTarget = float.MaxValue;
+        }
         if (rangeVisual.activeInHierarchy)
         {
             UpdateRangeVisual();
@@ -49,7 +53,7 @@ public class SingleTargetTower : TowerScript
 
     public override void Attack()
     {
-        _currentGun.Fire();
+        _currentGun.Fire(damage);
         _fireRateDelta = fireRate;
     }
 
@@ -59,10 +63,10 @@ public class SingleTargetTower : TowerScript
         for (int i = 0; i < enemies.Length; i++)
         {
             float distToEnemy = DistToTarget(enemies[i].transform.position);
-            if (distToEnemy < _distanceToTarget && distToEnemy <= rangeRadius)
+            if (distToEnemy < _distanceToCurrentTarget && distToEnemy <= rangeRadius)
             {
                 _targetTransform = enemies[i].transform;
-                _distanceToTarget = distToEnemy;
+                _distanceToCurrentTarget = distToEnemy;
             }
         }
     }

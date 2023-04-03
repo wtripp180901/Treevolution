@@ -283,6 +283,7 @@ MonoBehaviour:
   debugText: {fileID: 807997091}
   planeMarker: {fileID: 2878154885871524007, guid: ebdca683e95c2fb4d97ea79d2f10113e, type: 3}
   towerMarker: {fileID: 6326299771774420509, guid: 22e69887cb11e62438c3a5244409fb3d, type: 3}
+  tower2Marker: {fileID: 4477643921730069817, guid: 6155a45166ff2a14bb09c391691bc3fb, type: 3}
   wallMarker: {fileID: 7800950396249785354, guid: 50a2c23351a556c4fa297b86d5adaee4, type: 3}
   lockPlane: 0
 --- !u!114 &100754438

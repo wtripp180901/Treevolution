@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9144992818270802089}
     m_Modifications:
+    - target: {fileID: 81136281018377950, guid: 1dea98db1beb10341b643cfafc4f11bd, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 530406500350650949, guid: 1dea98db1beb10341b643cfafc4f11bd, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -658,11 +662,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f3973aac8d54604188fc9bed5e813c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rig: {fileID: -3582427849017369200}
-  speed: 0.0016
   health: 5
   flying: 0
-  spawnAudio: {fileID: 2629533411675271167}
+  speed: 0.0016
   damageAudio: {fileID: -7630589381388368797}
   deathAudio: {fileID: -737026046191525132}
 --- !u!4 &9144992818270802089 stripped

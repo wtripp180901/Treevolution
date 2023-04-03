@@ -11,9 +11,12 @@ public class Gun : MonoBehaviour
         gunPoint = GetComponentInChildren<GunPoint>().transform;
     }
 
-    public void Fire()
+    public void Fire(int damage)
     {
-        if(gunPoint != null)
-            Instantiate(projectile, gunPoint.position, gunPoint.rotation);
+        if (gunPoint != null)
+        {
+            GameObject p = Instantiate(projectile, gunPoint.position, gunPoint.rotation);
+            p.GetComponent<BulletScript>().damage = damage;
+        }
     }
 }

@@ -2,30 +2,29 @@ using UnityEngine;
 
 public abstract class TowerScript : MonoBehaviour
 {
-    [SerializeField]
-    public float rangeRadius;
-    [SerializeField]
-    public float fireRate;
+    public float rangeRadius = 0.2f;
+    public float fireRate = 0.5f;
+    public int damage = 1;
+    public Material rangeVisualMaterial;
+
     [HideInInspector]
     public EnemyManager enemyManager;
     [HideInInspector]
     public GameObject rangeVisual;
-    [SerializeField]
-    public Material rangeVisualMaterial;
-    [HideInInspector]
-    private TowerManager towerManager;
+
+    private TowerManager _towerManager;
 
     public void Start()
     {
         GameObject logic = GameObject.FindGameObjectWithTag("Logic");
-        towerManager = logic.GetComponent<TowerManager>();
+        _towerManager = logic.GetComponent<TowerManager>();
         enemyManager = logic.GetComponent<EnemyManager>();
         rangeVisual = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         rangeVisual.GetComponent<MeshRenderer>().material = rangeVisualMaterial;
         rangeVisual.GetComponent<Collider>();
         GameObject.Destroy(rangeVisual.GetComponent<Collider>());
         DisplayRange(true);
-        towerManager.AddTower(this.gameObject);
+        _towerManager.AddTower(this.gameObject);
     }
 
     public void DisplayRange(bool toggle)

@@ -2129,9 +2129,9 @@ MonoBehaviour:
   faceUserDefinedTargetTransform: 0
   targetToFace: {fileID: 0}
   pivotAxis: 7
-  minDistance: 0.4
-  maxDistance: 0.8
-  defaultDistance: 0.5
+  minDistance: 0.3
+  maxDistance: 0.6
+  defaultDistance: 0.4
   maxViewHorizontalDegrees: 90
   maxViewVerticalDegrees: 90
   reorientWhenOutsideParameters: 1
@@ -2140,7 +2140,7 @@ MonoBehaviour:
   ignoreDistanceClamp: 0
   ignoreReferencePitchAndRoll: 1
   pitchOffset: 0
-  verticalMaxDistance: 1
+  verticalMaxDistance: 0.3
   angularClampMode: 0
   tetherAngleSteps: 6
   boundsScaler: 1
