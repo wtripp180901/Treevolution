@@ -977,13 +977,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f3973aac8d54604188fc9bed5e813c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rig: {fileID: -5427824462792128357}
-  speed: 0.001
   health: 5
   flying: 1
-  spawnAudio: {fileID: -309641081279517555}
+  speed: 0.001
+  inWallDamageInterval: 0.5
   damageAudio: {fileID: 5598323894227803506}
   deathAudio: {fileID: 7610176344477563601}
+  AvoidsWall: 0
 --- !u!114 &7688757958584638836
 MonoBehaviour:
   m_ObjectHideFlags: 0

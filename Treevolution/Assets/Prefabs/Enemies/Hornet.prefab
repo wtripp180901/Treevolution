@@ -498,13 +498,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f3973aac8d54604188fc9bed5e813c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rig: {fileID: 275322165140136425}
-  speed: 0.0015
   health: 20
   flying: 1
-  spawnAudio: {fileID: -3032504134506569711}
+  speed: 0.0015
+  inWallDamageInterval: 0.5
   damageAudio: {fileID: 5460668780083771171}
   deathAudio: {fileID: 6250072581387160617}
+  AvoidsWall: 0
 --- !u!4 &8019653284056222724 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d00ec1401ea18204ca30f4b017834b0c, type: 3}
