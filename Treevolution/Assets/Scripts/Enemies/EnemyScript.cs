@@ -97,6 +97,11 @@ public class EnemyScript : MonoBehaviour
     private Vector3 _defaultOrientation;
 
     /// <summary>
+    /// Determines if enemy requests path around walls or not
+    /// </summary>
+    public bool AvoidsWall = true;
+
+    /// <summary>
     /// Start runs when loading the GameObject that this script is attached to.
     /// </summary>
     void Start()
@@ -209,7 +214,7 @@ public class EnemyScript : MonoBehaviour
             transform.position = transform.position + Vector3.up * 0.25f;
         }
         Vector3 pos = transform.position;
-        _path = Pathfinder.GetPath(pos, GameObject.FindGameObjectWithTag("Tree").transform.position);
+        _path = Pathfinder.GetPath(pos, GameObject.FindGameObjectWithTag("Tree").transform.position,AvoidsWall);
         _rigidbody.freezeRotation = true;
 
         StartMoveToNextTarget();
