@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WallScript : MonoBehaviour
+public class WallScript : MonoBehaviour, IRuntimeMovableBehaviourScript
 {
     [SerializeField] int baseHealth = 10;
     int health;
@@ -10,12 +10,15 @@ public class WallScript : MonoBehaviour
     Pathfinding.PathfindingObstacle nodeGenerator;
     bool isDestroyed = false;
 
+    Collider myCollider;
+
     float baseScale;
     
     // Start is called before the first frame update
     void Start()
     {
         nodeGenerator = GetComponent<Pathfinding.PathfindingObstacle>();
+        myCollider = GetComponent<Collider>();
         health = baseHealth;
         baseScale = transform.localScale.y;
     }
@@ -42,14 +45,24 @@ public class WallScript : MonoBehaviour
 
     void SetDestroyed(bool destroyed)
     {
-        GetComponent<Collider>().enabled = !destroyed;
-        nodeGenerator.SendNodes = !destroyed;
+        myCollider.enabled = !destroyed;
+        nodeGenerator.SetSendsNodes(!destroyed);
         isDestroyed = destroyed;
 
         float scale = baseScale;
         if (destroyed) scale *= 0.05f;
         transform.localScale = new Vector3(transform.localScale.x, scale, transform.localScale.z);
+    }
 
-        Pathfinding.PathfindingUpdatePublisher.NotifyObstacleChanged();
+    public void ApplyMovementPenalty()
+    {
+        myCollider.enabled = false;
+        GetComponent<Renderer>().material.color = Color.gray;
+    }
+
+    public void EndMovementPenalty()
+    {
+        if (!isDestroyed) myCollider.enabled = true;
+        GetComponent<Renderer>().material.color = Color.white;
     }
 }

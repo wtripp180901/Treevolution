@@ -19,7 +19,7 @@ namespace Pathfinding
         /// <summary>
         /// Determines if the PathfindingObstacle will send nodes to PathfindingGraphGenerator
         /// </summary>
-        public bool SendNodes = true;
+        bool sendNodes = true;
 
         public static Vector3[] CalculateCorners(Vector3 centreFloor, float extentsWidth, Vector3 widthVec, float extentsDepth, Vector3 depthVec)
         {
@@ -41,7 +41,7 @@ namespace Pathfinding
         }
         void GetObstacleBoundsEventHandler(object sender, EventArgs args)
         {
-            if (SendNodes)
+            if (sendNodes)
             {
                 float halfWidthWithMargin = myCollider.transform.lossyScale.x / 2 + nodeMargins;
                 float halfDepthWithMargin = myCollider.transform.lossyScale.z / 2 + nodeMargins;
@@ -62,6 +62,12 @@ namespace Pathfinding
 
                 PathfindingGraphGenerator.AddObstacleData(bounds, possiblePFPoints);
             }
+        }
+
+        public void SetSendsNodes(bool sends)
+        {
+            sendNodes = sends;
+            Pathfinding.PathfindingUpdatePublisher.NotifyObstacleChanged();
         }
     }
 
