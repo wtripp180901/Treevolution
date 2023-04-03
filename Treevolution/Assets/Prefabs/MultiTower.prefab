@@ -13,9 +13,8 @@ GameObject:
   - component: {fileID: 4477643921730069819}
   - component: {fileID: 4477643921730069816}
   - component: {fileID: 4477643921730069959}
-  - component: {fileID: 4477643921730069956}
   m_Layer: 3
-  m_Name: Tower 1
+  m_Name: MultiTower
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4477643921730069817}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.611, y: -0.392, z: 1.253}
-  m_LocalScale: {x: 0.100000106, y: 0.1, z: 0.100000106}
+  m_LocalPosition: {x: 2e-15, y: 0, z: 2e-15}
+  m_LocalScale: {x: 0.100000106, y: 0.05051, z: 0.100000106}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -64,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 26d130db82e88ed4988c93dcb2df2c74, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,20 +108,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4477643921730069817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fe7b32d6abe38f499ba15f3190e175e, type: 3}
+  m_Script: {fileID: 11500000, guid: 489b2b1d3a2299b459d9cb608bc59353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4477643921730069956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4477643921730069817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0d8007209f0f9a4cae8ef5f99bf20ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nodeMargins: 0.1
-  floorOffset: 0.01
+  rangeRadius: 0.4
+  fireRate: 2
+  damage: 1
+  enemyManager: {fileID: 0}
+  rangeVisual: {fileID: 0}
+  rangeVisualMaterial: {fileID: 2100000, guid: 714cb720816de7b45b83dbdc97e4e1a6, type: 2}

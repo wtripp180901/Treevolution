@@ -155,9 +155,9 @@ public class EnemyScript : MonoBehaviour
             Debug.Log("Reached tree");
             _followingPath = false;
         }
-        else if (otherCollider.gameObject.tag == "Bullet")
+        else if (collision.gameObject.tag == "Bullet")
         {
-            Damage(1);
+            Damage(collision.gameObject.GetComponent<BulletScript>().damage);
         }
     }
 
@@ -233,13 +233,17 @@ public class EnemyScript : MonoBehaviour
     /// <param name="power">Power to damage the enemy by.</param>
     public void Damage(int power)
     {
-        health -= power;
-        _healthBar.SetHealth(health);
-        if (health <= 0)
+        try
         {
-            StartCoroutine(KillEnemy());
+            health -= power;
+            _healthBar.SetHealth(health);
+            if (health <= 0)
+            {
+                StartCoroutine(KillEnemy());
+            }
+            else StartCoroutine(DamageIndicator());
         }
-        else StartCoroutine(DamageIndicator());
+        catch { }
     }
 
     /// <summary>

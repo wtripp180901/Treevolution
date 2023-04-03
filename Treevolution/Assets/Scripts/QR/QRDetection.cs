@@ -23,6 +23,7 @@ public class QRDetection : MonoBehaviour
     /// GameObject which is placed on a tower marker.
     /// </summary>
     public GameObject towerMarker;
+    public GameObject tower2Marker;
     /// <summary>
     /// GameObject which is placed on a wall marker.
     /// </summary>
@@ -198,7 +199,8 @@ public class QRDetection : MonoBehaviour
                 switch (data[0])
                 {
                     case "Tower":
-                        if (tempMarker == null) markerType = towerMarker;
+                        if (tempMarker == null && data[1] == "1") markerType = towerMarker;
+                        else if (tempMarker == null && data[1] == "2") markerType = tower2Marker;
                         break;
 
                     case "Wall":
