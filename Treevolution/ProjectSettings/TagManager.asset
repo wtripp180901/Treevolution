@@ -21,6 +21,7 @@ TagManager:
   - RightIndicator
   - Buddy
   - MoveToMarker
+  - RecordingIndicator
   layers:
   - Default
   - TransparentFX
