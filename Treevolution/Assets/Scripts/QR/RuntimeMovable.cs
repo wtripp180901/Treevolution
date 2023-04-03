@@ -37,7 +37,7 @@ public class RuntimeMovable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if((transform.position - lastPosition).magnitude > MovementThreshold)
+        if((transform.position - lastPosition).magnitude > MovementThreshold && GameProperties.BattlePhase)
         {
             StartCoroutine(penaliseMovementThenStartAgain());
         }

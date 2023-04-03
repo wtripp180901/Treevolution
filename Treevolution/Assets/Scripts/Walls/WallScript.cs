@@ -57,7 +57,7 @@ public class WallScript : MonoBehaviour, IRuntimeMovableBehaviourScript
     public void ApplyMovementPenalty()
     {
         myCollider.enabled = false;
-        GetComponent<Renderer>().material.color = Color.gray;
+        GetComponent<Renderer>().material.color = Color.red;
     }
 
     public void EndMovementPenalty()
