@@ -80,36 +80,41 @@ public class GameStateManager : MonoBehaviour
     /// <summary>
     /// Count of each EnemyType to spawn during each round.
     /// </summary>
-    private Dictionary<EnemyType, int>[] _enemyWaves = {
-        new Dictionary<EnemyType, int>(){
-            { EnemyType.Ant, 10 },
-        },
-        new Dictionary<EnemyType, int>(){
-            { EnemyType.Ant, 10 },
-            { EnemyType.Armoured_Bug, 10 }
-        },
-        new Dictionary<EnemyType, int>(){
-            { EnemyType.Ant, 10 },
-            { EnemyType.Armoured_Bug, 8 },
-            { EnemyType.Armoured_Cockroach, 8}
-        },
-        new Dictionary<EnemyType, int>(){
-            { EnemyType.Ant, 8 },
-            { EnemyType.Armoured_Bug, 8 },
-            { EnemyType.Armoured_Cockroach, 8},
-            { EnemyType.Armoured_Stagbeetle, 5 },
-            { EnemyType.Dragonfly, 5},
+    private Dictionary<EnemyType, int>[] _enemyWaves;
+    
+    private void InitialiseEnemyWaves()
+    {
+        this._enemyWaves = new Dictionary<EnemyType, int>[]{
+            new Dictionary<EnemyType, int>(){
+                { EnemyType.Ant, 10 },
+            },
+            new Dictionary<EnemyType, int>(){
+                { EnemyType.Ant, 10 },
+                { EnemyType.Armoured_Bug, 10 }
+            },
+            new Dictionary<EnemyType, int>(){
+                { EnemyType.Ant, 10 },
+                { EnemyType.Armoured_Bug, 8 },
+                { EnemyType.Armoured_Cockroach, 8}
+            },
+            new Dictionary<EnemyType, int>(){
+                { EnemyType.Ant, 8 },
+                { EnemyType.Armoured_Bug, 8 },
+                { EnemyType.Armoured_Cockroach, 8},
+                { EnemyType.Armoured_Stagbeetle, 5 },
+                { EnemyType.Dragonfly, 5},
 
-        },
-        new Dictionary<EnemyType, int>(){
-            { EnemyType.Ant, 8 },
-            { EnemyType.Armoured_Bug, 5 },
-            { EnemyType.Armoured_Cockroach, 8},
-            { EnemyType.Armoured_Stagbeetle, 5 },
-            { EnemyType.Dragonfly, 5},
-            { EnemyType.Hornet, 5}
-        }
-    };
+            },
+            new Dictionary<EnemyType, int>(){
+                { EnemyType.Ant, 8 },
+                { EnemyType.Armoured_Bug, 5 },
+                { EnemyType.Armoured_Cockroach, 8},
+                { EnemyType.Armoured_Stagbeetle, 5 },
+                { EnemyType.Dragonfly, 5},
+                { EnemyType.Hornet, 5}
+            }
+        };
+    }
 
     public GameStateManager(bool dev)
     {
@@ -132,6 +137,7 @@ public class GameStateManager : MonoBehaviour
         }
         if(InfoText != null)
             InfoText.text = "";
+        InitialiseEnemyWaves();
         _currentState = GameState.Calibration;
         _uIController = GetComponent<UIController>();
         _qRDetection = GetComponent<QRDetection>();
