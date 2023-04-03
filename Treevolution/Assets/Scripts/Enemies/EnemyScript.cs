@@ -102,6 +102,11 @@ public class EnemyScript : MonoBehaviour
     public bool AvoidsWall = true;
 
     /// <summary>
+    /// Determines if enemies destroy walls on collision
+    /// </summary>
+    public bool DamagesWall = false;
+
+    /// <summary>
     /// Start runs when loading the GameObject that this script is attached to.
     /// </summary>
     void Start()
@@ -117,6 +122,7 @@ public class EnemyScript : MonoBehaviour
             _rigidbody.useGravity = false;
         else
             _rigidbody.useGravity = true;
+        Pathfinding.PathfindingUpdatePublisher.RefindPathNeededEvent.AddListener(restartPathfinding);
         Initialise();
     }
 
@@ -152,6 +158,13 @@ public class EnemyScript : MonoBehaviour
             _directionVector = enemyToTarget.normalized * speed;
             _rigidbody.MovePosition(pos + _directionVector);
         }
+    }
+
+    private void restartPathfinding()
+    {
+        _pathCounter = 0;
+        _path = Pathfinder.GetPath(transform.position, GameObject.FindGameObjectWithTag("Tree").transform.position, AvoidsWall);
+        StartMoveToNextTarget();
     }
 
     /// <summary>
@@ -194,7 +207,15 @@ public class EnemyScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider trigger)
     {
-        inWall = true;
+        GameObject collision = trigger.gameObject;
+        if (DamagesWall && collision.tag == "Wall")
+        {
+            collision.GetComponent<WallScript>().Damage(10);
+        }
+        else
+        {
+            inWall = true;
+        }
     }
 
     private void OnTriggerExit(Collider trigger)

@@ -1462,6 +1462,7 @@ MonoBehaviour:
   damageAudio: {fileID: -6752669965687374870}
   deathAudio: {fileID: -1155387178807300771}
   AvoidsWall: 0
+  DamagesWall: 1
 --- !u!114 &6167780777422753341
 MonoBehaviour:
   m_ObjectHideFlags: 0

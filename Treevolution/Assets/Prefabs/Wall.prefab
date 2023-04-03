@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7800950396249785349}
   - component: {fileID: 7800950396249785348}
   - component: {fileID: 7800950396249785355}
+  - component: {fileID: 5436372200425055053}
   m_Layer: 3
   m_Name: Wall
   m_TagString: Wall
@@ -112,3 +113,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeMargins: 0.04
   floorOffset: 0.01
+--- !u!114 &5436372200425055053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7800950396249785354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce1b8170d555ce14a90bee59c9a1ddb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
