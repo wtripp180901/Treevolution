@@ -845,6 +845,7 @@ MonoBehaviour:
   damageAudio: {fileID: -7630589381388368797}
   deathAudio: {fileID: -737026046191525132}
   AvoidsWall: 1
+  DamagesWall: 0
 --- !u!4 &9144992818270802089 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fbb7381d883727b4da21eb91dc90ec39, type: 3}

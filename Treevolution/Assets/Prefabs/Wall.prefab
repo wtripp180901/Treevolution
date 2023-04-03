@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7800950396249785348}
   - component: {fileID: 7800950396249785355}
   - component: {fileID: 5436372200425055053}
+  - component: {fileID: 5824218682972284883}
   m_Layer: 3
   m_Name: Wall
   m_TagString: Wall
@@ -125,3 +126,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce1b8170d555ce14a90bee59c9a1ddb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseHealth: 10
+--- !u!114 &5824218682972284883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7800950396249785354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a937bce38b39334bb3c5231c39d339c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovementThreshold: 0.005
+  behaviourScript: {fileID: 5436372200425055053}
+  PenaltyDuration: 5
