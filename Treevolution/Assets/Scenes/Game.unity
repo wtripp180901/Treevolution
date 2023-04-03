@@ -143,6 +143,7 @@ GameObject:
   - component: {fileID: 100754439}
   - component: {fileID: 100754441}
   - component: {fileID: 100754442}
+  - component: {fileID: 100754443}
   m_Layer: 0
   m_Name: Logic
   m_TagString: Logic
@@ -233,9 +234,9 @@ MonoBehaviour:
   planeMarker: {fileID: 7802905023559956919, guid: 322042a7d7a41554b883d4c8685e82ae, type: 3}
   floor: {fileID: 6052068750231831381, guid: 33c6a9a811257f4429d253d4c93aa655, type: 3}
   markerCount: 2
+  treeModel: {fileID: 4047742926485375969, guid: 13815b32147eea64e9a773ef69b3240e, type: 3}
   tableWidth: 240
   tableDepth: 160
-  treeModel: {fileID: 4047742926485375969, guid: 13815b32147eea64e9a773ef69b3240e, type: 3}
 --- !u!114 &100754435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,6 +471,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &100754443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100754430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02189a585ced9a84592479b6b30748d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &310463084
 GameObject:
   m_ObjectHideFlags: 0

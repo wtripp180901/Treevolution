@@ -2,23 +2,18 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    [SerializeField] GameObject projectile;
-    [SerializeField] float rateOfFire = 0.5f;
+    [SerializeField]
+    private GameObject projectile;
     [SerializeField] Transform gunPoint;
     // Start is called before the first frame update
     void Start()
     {
-        if (gunPoint == null)
-            gunPoint = GetComponentInChildren<GunPoint>().transform;
-    }
-
-    public float GetRateOfFire()
-    {
-        return rateOfFire;
+        gunPoint = GetComponentInChildren<GunPoint>().transform;
     }
 
     public void Fire()
     {
-        Instantiate(projectile, gunPoint.position, gunPoint.rotation);
+        if(gunPoint != null)
+            Instantiate(projectile, gunPoint.position, gunPoint.rotation);
     }
 }

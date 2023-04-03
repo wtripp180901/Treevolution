@@ -21,7 +21,6 @@ public class EnemyManager : MonoBehaviour
     private float spawnHeight;
     private (Vector3 origin, Vector3 vert, Vector3 horz)[] spawnVectors = new (Vector3 origin, Vector3 vert, Vector3 horz)[2];
     private List<GameStateManager.EnemyType> spawnPool;
-    private GameStateManager.EnemyType[] enemyTypesLeft;
     private bool started = false;
     private bool firstSpawn = false;
 
