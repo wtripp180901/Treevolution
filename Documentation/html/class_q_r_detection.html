@@ -76,6 +76,9 @@ $(function() {
   <div class="headertitle"><div class="title">QRDetection Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Runs QR Detection via MRTK's QRCodeWatcher.  
+ <a href="class_q_r_detection.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for QRDetection:</div>
 <div class="dyncontent">
@@ -85,37 +88,81 @@ Inheritance diagram for QRDetection:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a534366fd569a6eb20d71e72f73cda355"><td class="memItemLeft" align="right" valign="top"><a id="a534366fd569a6eb20d71e72f73cda355" name="a534366fd569a6eb20d71e72f73cda355"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>spawnObjectOnQR</b> (QRCode qr, GameObject obj)</td></tr>
-<tr class="separator:a534366fd569a6eb20d71e72f73cda355"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f963f7bcc0d7b46b1ff1c034f1d74f2"><td class="memItemLeft" align="right" valign="top">GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_r_detection.html#a0f963f7bcc0d7b46b1ff1c034f1d74f2">SpawnObjectOnQR</a> (QRCode qr, GameObject obj)</td></tr>
+<tr class="memdesc:a0f963f7bcc0d7b46b1ff1c034f1d74f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spawns a GameObject on a QRCode, and covers the QR with a plane.  <br /></td></tr>
+<tr class="separator:a0f963f7bcc0d7b46b1ff1c034f1d74f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeaf9d3e90f853d04fdf98ea2ba6658b2"><td class="memItemLeft" align="right" valign="top"><a id="aeaf9d3e90f853d04fdf98ea2ba6658b2" name="aeaf9d3e90f853d04fdf98ea2ba6658b2"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>StopQR</b> ()</td></tr>
+<tr class="memdesc:aeaf9d3e90f853d04fdf98ea2ba6658b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Halts QR Detection. <br /></td></tr>
 <tr class="separator:aeaf9d3e90f853d04fdf98ea2ba6658b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adcc7802da95f364fbb13fcf81e00b029"><td class="memItemLeft" align="right" valign="top"><a id="adcc7802da95f364fbb13fcf81e00b029" name="adcc7802da95f364fbb13fcf81e00b029"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>StartQR</b> ()</td></tr>
+<tr class="memdesc:adcc7802da95f364fbb13fcf81e00b029"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts QR Detection. <br /></td></tr>
 <tr class="separator:adcc7802da95f364fbb13fcf81e00b029"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ab0aefcabc1c4907b17cc32687b3d24b9"><td class="memItemLeft" align="right" valign="top"><a id="ab0aefcabc1c4907b17cc32687b3d24b9" name="ab0aefcabc1c4907b17cc32687b3d24b9"></a>
 TMP_Text&#160;</td><td class="memItemRight" valign="bottom"><b>debugText</b></td></tr>
+<tr class="memdesc:ab0aefcabc1c4907b17cc32687b3d24b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">TextMeshPro Game Object to display debug information on. <br /></td></tr>
 <tr class="separator:ab0aefcabc1c4907b17cc32687b3d24b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a707e7749f88b134da02eb462145d2d10"><td class="memItemLeft" align="right" valign="top"><a id="a707e7749f88b134da02eb462145d2d10" name="a707e7749f88b134da02eb462145d2d10"></a>
-<a class="el" href="class_plane_mapper.html">PlaneMapper</a>&#160;</td><td class="memItemRight" valign="bottom"><b>planeMapper</b></td></tr>
-<tr class="separator:a707e7749f88b134da02eb462145d2d10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9c727a63c782a7e9f760a36e8c6986d"><td class="memItemLeft" align="right" valign="top"><a id="ac9c727a63c782a7e9f760a36e8c6986d" name="ac9c727a63c782a7e9f760a36e8c6986d"></a>
 GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>planeMarker</b></td></tr>
+<tr class="memdesc:ac9c727a63c782a7e9f760a36e8c6986d"><td class="mdescLeft">&#160;</td><td class="mdescRight">GameObject which is placed on the QR Code marking the corner of the game board. <br /></td></tr>
 <tr class="separator:ac9c727a63c782a7e9f760a36e8c6986d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2df15972749275793d9fb2d0d62e262b"><td class="memItemLeft" align="right" valign="top"><a id="a2df15972749275793d9fb2d0d62e262b" name="a2df15972749275793d9fb2d0d62e262b"></a>
 GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>towerMarker</b></td></tr>
+<tr class="memdesc:a2df15972749275793d9fb2d0d62e262b"><td class="mdescLeft">&#160;</td><td class="mdescRight">GameObject which is placed on a tower marker. <br /></td></tr>
 <tr class="separator:a2df15972749275793d9fb2d0d62e262b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67c3945a8ea0644f48cc008b25714340"><td class="memItemLeft" align="right" valign="top"><a id="a67c3945a8ea0644f48cc008b25714340" name="a67c3945a8ea0644f48cc008b25714340"></a>
 GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>wallMarker</b></td></tr>
+<tr class="memdesc:a67c3945a8ea0644f48cc008b25714340"><td class="mdescLeft">&#160;</td><td class="mdescRight">GameObject which is placed on a wall marker. <br /></td></tr>
 <tr class="separator:a67c3945a8ea0644f48cc008b25714340"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9fe0c68679c6867826ca182cccc79ab1"><td class="memItemLeft" align="right" valign="top"><a id="a9fe0c68679c6867826ca182cccc79ab1" name="a9fe0c68679c6867826ca182cccc79ab1"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>lockPlane</b></td></tr>
+<tr class="memdesc:a9fe0c68679c6867826ca182cccc79ab1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates whether the plane should lock and stop searching for plane marker updates. <br /></td></tr>
 <tr class="separator:a9fe0c68679c6867826ca182cccc79ab1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Runs QR Detection via MRTK's QRCodeWatcher. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a0f963f7bcc0d7b46b1ff1c034f1d74f2" name="a0f963f7bcc0d7b46b1ff1c034f1d74f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f963f7bcc0d7b46b1ff1c034f1d74f2">&#9670;&#160;</a></span>SpawnObjectOnQR()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GameObject QRDetection.SpawnObjectOnQR </td>
+          <td>(</td>
+          <td class="paramtype">QRCode&#160;</td>
+          <td class="paramname"><em>qr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GameObject&#160;</td>
+          <td class="paramname"><em>obj</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Spawns a GameObject on a QRCode, and covers the QR with a plane. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">qr</td><td>QrCode to spawn the object on.</td></tr>
+    <tr><td class="paramname">obj</td><td>GameObject to spawn.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Treevolution/Assets/Scripts/QR/QRDetection.cs</li>
 </ul>
