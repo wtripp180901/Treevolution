@@ -13,32 +13,37 @@ public class VoiceCommandReceiver : MonoBehaviour
     public TMP_Text txt;
     PointerLocationTracker pointerTracker;
     UIController uiController;
+    GameObject recordingIndicator;
 
     private void Start()
     {
         enemyManager = GetComponent<EnemyManager>();
         uiController = GetComponent<UIController>();
         pointerTracker = GetComponent<PointerLocationTracker>();
+        recordingIndicator = GameObject.FindWithTag("RecordingIndicator");
+        recordingIndicator.SetActive(false);
     }
 
     public void Record()
     {
+        recordingIndicator.SetActive(true);
         try
         {
             DictationHandler handler = GetComponent<DictationHandler>();
             pointerTracker.StartSampling();
             lock(handler){
                 handler.StartRecording();
-                GameObject.FindWithTag("Buddy").GetComponent<Renderer>().material.color = Color.red;
             }
         }catch (System.Exception e)
         {
             txt.text = e.Message;
+            Debug.Log(e.Message);
         }
     }
 
     public void LightningBolt()
     {
+        Record();
         GameObject[] enemies = enemyManager.enemies;
         Vector2 pointerPoint = new Vector2(pointer.transform.position.x, pointer.transform.position.z);
         for (int i = 0;i < enemies.Length; i++)
@@ -64,7 +69,7 @@ public class VoiceCommandReceiver : MonoBehaviour
         uiController.ShowDictation(dictation);
         string[] words = dictation.Split(' ');
         if (words.Length > 0) StartCoroutine(new LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(words));
-        GameObject.FindWithTag("Buddy").GetComponent<Renderer>().material.color = Color.white;
+        recordingIndicator.SetActive(false);
     }
 
     public void HandleDictationProcessingResults(List<BuddyAction> instructions)
