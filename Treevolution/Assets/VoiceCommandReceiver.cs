@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class VoiceCommandReceiver : MonoBehaviour
@@ -16,7 +15,7 @@ public class VoiceCommandReceiver : MonoBehaviour
 
     public void PauseGame()
     {
-        if(gameStateManager.CurrentGameState == GameStateManager.GameState.Round_Battle || gameStateManager.CurrentGameState == GameStateManager.GameState.Tutorial_Battle)
+        if (gameStateManager.currentGameState == GameStateManager.GameState.Round_Battle || gameStateManager.currentGameState == GameStateManager.GameState.Tutorial_Battle)
             GetComponent<RoundTimer>().PauseTimer();
     }
 
@@ -24,7 +23,7 @@ public class VoiceCommandReceiver : MonoBehaviour
     {
         GameObject[] enemies = enemyManager.enemies;
         Vector2 pointerPoint = new Vector2(pointer.transform.position.x, pointer.transform.position.z);
-        for (int i = 0;i < enemies.Length; i++)
+        for (int i = 0; i < enemies.Length; i++)
         {
             Vector2 enemyPoint = new Vector2(enemies[i].transform.position.x, enemies[i].transform.position.z);
 

@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
@@ -12,6 +12,7 @@ public class EnemyManager : MonoBehaviour
     public GameObject armouredCockroachPrefab;
     public GameObject armouredStagbeetlePrefab;
     public GameObject DragonflyPrefab;
+    public GameObject HornetPrefab;
 
     private RoundTimer roundTimer;
     private int enemiesKilled = 0;
@@ -19,10 +20,10 @@ public class EnemyManager : MonoBehaviour
     public float spawnInterval = 3;
     private float spawnHeight;
     private (Vector3 origin, Vector3 vert, Vector3 horz)[] spawnVectors = new (Vector3 origin, Vector3 vert, Vector3 horz)[2];
-    private Dictionary<GameStateManager.EnemyType, int> roundEnemies;
-    private GameStateManager.EnemyType[] enemiesLeft;
-    public bool started = false;
-    public bool firstSpawn = false;
+    private List<GameStateManager.EnemyType> spawnPool;
+    private GameStateManager.EnemyType[] enemyTypesLeft;
+    private bool started = false;
+    private bool firstSpawn = false;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +34,7 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (started && !roundTimer.IsPaused)
+        if (started && !roundTimer.isPaused)
         {
             if (!firstSpawn)
             {
@@ -52,7 +53,8 @@ public class EnemyManager : MonoBehaviour
 
     public void targetNewEnemy(GameObject enemy)
     {
-        if (targetEnemy != null) {
+        if (targetEnemy != null)
+        {
             lock (targetEnemy)
             {
                 Behaviour oldHalo = (Behaviour)targetEnemy.GetComponent("Halo");
@@ -69,6 +71,11 @@ public class EnemyManager : MonoBehaviour
         return enemiesKilled;
     }
 
+    public void resetEnemiesKilled()
+    {
+        enemiesKilled = 0;
+    }
+
     GameObject getEnemyPrefab(GameStateManager.EnemyType enemyType)
     {
         switch (enemyType)
@@ -83,25 +90,19 @@ public class EnemyManager : MonoBehaviour
                 return armouredStagbeetlePrefab;
             case GameStateManager.EnemyType.Dragonfly:
                 return DragonflyPrefab;
+            case GameStateManager.EnemyType.Hornet:
+                return HornetPrefab;
         }
         return antPrefab;
     }
 
     void spawnEnemy()
     {
-        enemiesLeft = new GameStateManager.EnemyType[roundEnemies.Count];
-        roundEnemies.Keys.CopyTo(enemiesLeft, 0);
-        GameStateManager.EnemyType enemyType = enemiesLeft[Random.Range(0, roundEnemies.Count)];
-        while (roundEnemies.Count > 0 && roundEnemies[enemyType] == 0)
-        {
-            roundEnemies.Remove(enemyType);
-            enemyType = enemiesLeft[Random.Range(0, roundEnemies.Count)];
-        }
-        if(roundEnemies.Count == 0)
-        {
+        if (spawnPool.Count == 0)
             return;
-        }
-        roundEnemies[enemyType]--;
+        int randI = Random.Range(0, spawnPool.Count);
+        GameStateManager.EnemyType enemyType = spawnPool[randI];
+        spawnPool.RemoveAt(randI);
         GameObject enemyPrefab = getEnemyPrefab(enemyType);
 
         int LR = Random.Range(0, 2); // Random
@@ -111,14 +112,25 @@ public class EnemyManager : MonoBehaviour
 
         Vector3 randomSpawnPosition = spawnAxes.origin + spawnAxes.vert * vFraction + spawnAxes.horz * hFraction;
         randomSpawnPosition.y = spawnHeight;
-        _enemies.Add(Instantiate(enemyPrefab, randomSpawnPosition, transform.rotation));
+        _enemies.Add(Instantiate(enemyPrefab, randomSpawnPosition, enemyPrefab.transform.rotation));
         Debug.DrawLine(spawnAxes.origin, spawnAxes.origin + spawnAxes.vert, Color.white, 1000);
         Debug.DrawLine(spawnAxes.origin, spawnAxes.origin + spawnAxes.horz, Color.white, 1000);
     }
 
+    private List<GameStateManager.EnemyType> unpackEnemies(Dictionary<GameStateManager.EnemyType, int> enemies)
+    {
+        List<GameStateManager.EnemyType> enemyPool = new List<GameStateManager.EnemyType>();
+        foreach (GameStateManager.EnemyType enemyType in enemies.Keys)
+        {
+            enemyPool.AddRange(Enumerable.Repeat(enemyType, enemies[enemyType]));
+        }
+        return enemyPool;
+    }
+
     public void StartSpawning(Dictionary<GameStateManager.EnemyType, int> enemies)
     {
-        roundEnemies = enemies;
+        spawnPool = unpackEnemies(enemies);
+        spawnInterval = (roundTimer.roundLengthSecs * 0.8f) / enemies.Values.Sum();
         Vector3 verticalLeft = GameProperties.BottomLeftCorner - GameProperties.TopLeftCorner;
         Vector3 horizontalLeft = (GameProperties.TopRightCorner - GameProperties.TopLeftCorner) * 0.1f;
         Vector3 verticalRight = GameProperties.BottomRightCorner - GameProperties.TopRightCorner;
