@@ -44,6 +44,7 @@ public class GameStateManager : MonoBehaviour
     /// Running RoundTimer instance.
     /// </summary>
     private RoundTimer _roundTimer;
+    private TowerManager _towerManager;
     /// <summary>
     /// The current GameState value.
     /// </summary>
@@ -52,6 +53,10 @@ public class GameStateManager : MonoBehaviour
     /// The current round number (0 = None/Tutorial, 1 = Round 1, etc.).
     /// </summary>
     private int _currentRoundNumber = 0;
+    /// <summary>
+    /// Count of each EnemyType to spawn during each round.
+    /// </summary>
+    private Dictionary<EnemyType, int>[] _enemyWaves;
 
     /// <summary>
     /// Values the GameState can take.
@@ -77,10 +82,11 @@ public class GameStateManager : MonoBehaviour
         Dragonfly,
         Hornet
     }
-    /// <summary>
-    /// Count of each EnemyType to spawn during each round.
-    /// </summary>
-    private Dictionary<EnemyType, int>[] _enemyWaves = {
+
+
+    private void InitialiseEnemyWaves()
+    {
+        this._enemyWaves = new Dictionary<EnemyType, int>[]{
         new Dictionary<EnemyType, int>(){
             { EnemyType.Ant, 10 },
         },
@@ -110,6 +116,8 @@ public class GameStateManager : MonoBehaviour
             { EnemyType.Hornet, 5}
         }
     };
+    }
+    
 
     public GameStateManager(bool dev)
     {
@@ -132,11 +140,13 @@ public class GameStateManager : MonoBehaviour
         }
         if(InfoText != null)
             InfoText.text = "";
+        InitialiseEnemyWaves();
         _currentState = GameState.Calibration;
         _uIController = GetComponent<UIController>();
         _qRDetection = GetComponent<QRDetection>();
         _enemyManager = GetComponent<EnemyManager>();
         _roundTimer = GetComponent<RoundTimer>();
+        _towerManager = GetComponent<TowerManager>();
         _uIController.CalibrationPopUp();
     }
 
@@ -169,6 +179,7 @@ public class GameStateManager : MonoBehaviour
              InfoText.transform.position = GameProperties.Centre + new Vector3(0, 0.65f, 0);
              InfoText.text = "Tutorial\n[Planning]";
         }
+
         BeginBattleButton.transform.position = GameProperties.Centre + new Vector3(0, 0.6f, 0);
         BeginBattleButton.SetActive(true);
     }
@@ -236,6 +247,7 @@ public class GameStateManager : MonoBehaviour
         }
         BeginBattleButton.transform.position = GameProperties.Centre + new Vector3(0, 0.6f, 0);
         BeginBattleButton.SetActive(true);
+        _towerManager.ToggleAllRangeVisuals(true);
     }
 
     /// <summary>
@@ -258,6 +270,7 @@ public class GameStateManager : MonoBehaviour
             _currentState = GameState.Round_Battle;
             _enemyManager.StartSpawning(_enemyWaves[_currentRoundNumber]);
             _roundTimer.StartTimer();
+            _towerManager.ToggleAllRangeVisuals(false);
         }
     }
 

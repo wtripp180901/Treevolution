@@ -1,61 +1,57 @@
 using UnityEngine;
 
-public class TowerScript : MonoBehaviour
+public abstract class TowerScript : MonoBehaviour
 {
-    [SerializeField] float turretRange = 13f;
-    [SerializeField] float turretRotationSpeed = 5f;
+    [SerializeField]
+    public float rangeRadius;
+    [SerializeField]
+    public float fireRate;
+    [HideInInspector]
+    public EnemyManager enemyManager;
+    [HideInInspector]
+    public GameObject rangeVisual;
+    [SerializeField]
+    public Material rangeVisualMaterial;
+    [HideInInspector]
+    private TowerManager towerManager;
 
-    public Transform targetTransform;
-    private Gun currentGun;
-    private float fireRate;
-    private float fireRateDelta;
-
-
-    // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        //targetTransform = FindObjectOfType<PlayerController>().transform;
-        currentGun = GetComponentInChildren<Gun>();
-        fireRate = currentGun.GetRateOfFire();
+        GameObject logic = GameObject.FindGameObjectWithTag("Logic");
+        towerManager = logic.GetComponent<TowerManager>();
+        enemyManager = logic.GetComponent<EnemyManager>();
+        rangeVisual = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        rangeVisual.GetComponent<MeshRenderer>().material = rangeVisualMaterial;
+        rangeVisual.GetComponent<Collider>();
+        GameObject.Destroy(rangeVisual.GetComponent<Collider>());
+        DisplayRange(true);
+        towerManager.AddTower(this.gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void DisplayRange(bool toggle)
     {
-        if (targetTransform != null)
+        if (toggle)
         {
-            Vector3 enemyGroundPosition = new Vector3(targetTransform.position.x, transform.position.y, targetTransform.position.z);
-
-            if (Vector3.Distance(transform.position, enemyGroundPosition) > turretRange)
-                return;
-            Vector3 enemyDirection = enemyGroundPosition - transform.position;
-            float turretRotationStep = turretRotationSpeed * Time.deltaTime;
-            Vector3 newLookDirection = Vector3.RotateTowards(transform.forward, enemyDirection, turretRotationStep, 0f);
-            transform.rotation = Quaternion.LookRotation(newLookDirection);
-            fireRateDelta = fireRateDelta - Time.deltaTime;
-            if (fireRateDelta <= 0)
-            {
-                currentGun.Fire();
-                fireRateDelta = fireRate;
-            }
+            rangeVisual.SetActive(true);
         }
-        /*else
+        else if (rangeVisual != null)
         {
-            /*GameObject placeHolderEnemy = GameObject.FindGameObjectWithTag("Enemy");
-            if(placeHolderEnemy != null)
-            {
-                targetTransform = placeHolderEnemy.transform;
-            }
-        }*/
+            rangeVisual.SetActive(false);
+        }
+    }
+    public abstract void Attack();
+    public abstract void UpdateTargets();
+    public float DistToTarget(Vector3 target)
+    {
+        float distance = Vector3.Distance(target, transform.position);
+        return distance;
+    }
+    private void OnDestroy()
+    {
+        Destroy(rangeVisual);
     }
 
-    public void SetTarget(Transform newTargetTrans)
-    {
-        targetTransform = newTargetTrans;
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawWireSphere(transform.position, turretRange);
-    }
 }
+
+
+
