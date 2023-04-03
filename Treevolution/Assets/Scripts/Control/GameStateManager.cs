@@ -80,11 +80,7 @@ public class GameStateManager : MonoBehaviour
     /// <summary>
     /// Count of each EnemyType to spawn during each round.
     /// </summary>
-    private Dictionary<EnemyType, int>[] _enemyWaves;
-    
-    private void InitialiseEnemyWaves()
-    {
-        this._enemyWaves = new Dictionary<EnemyType, int>[]{
+    private Dictionary<EnemyType, int>[] _enemyWaves = new Dictionary<EnemyType, int>[]{
             new Dictionary<EnemyType, int>(){
                 { EnemyType.Ant, 10 },
             },
@@ -114,16 +110,14 @@ public class GameStateManager : MonoBehaviour
                 { EnemyType.Hornet, 5}
             }
         };
-    }
 
-    public GameStateManager(bool dev)
+    
+
+    public void SetupGameStateManagerTesting()
     {
-        if (dev)
-        {
-            BeginBattleButton = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            _uIController = new UIController();
-            _qRDetection = new QRDetection();
-        }
+        BeginBattleButton = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        _uIController = new UIController();
+        _qRDetection = new QRDetection();
     }
 
     /// <summary>
@@ -137,7 +131,6 @@ public class GameStateManager : MonoBehaviour
         }
         if(InfoText != null)
             InfoText.text = "";
-        InitialiseEnemyWaves();
         _currentState = GameState.Calibration;
         _uIController = GetComponent<UIController>();
         _qRDetection = GetComponent<QRDetection>();
