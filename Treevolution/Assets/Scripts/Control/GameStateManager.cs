@@ -276,8 +276,9 @@ public class GameStateManager : MonoBehaviour
     {
         GameProperties.BattlePhase = false;
         clearEnemies();
+        repairAllWalls();
         _enemyManager.StopSpawning();
-        _qRDetection.StartQR();
+        //_qRDetection.StartQR();
         int enemiesKilled = GetComponent<EnemyManager>().getEnemiesKilled();
         if (currentGameState == GameState.Tutorial_Battle)
         {
@@ -314,6 +315,15 @@ public class GameStateManager : MonoBehaviour
         for (int i = 0; i < enemyList.Length; i++)
         {
             enemyList[i].GetComponent<EnemyScript>().DestroyEnemy(false);
+        }
+    }
+
+    private void repairAllWalls()
+    {
+        GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
+        for(int i = 0;i < walls.Length; i++)
+        {
+            walls[i].GetComponent<WallScript>().Repair(10);
         }
     }
 }
