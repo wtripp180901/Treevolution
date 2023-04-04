@@ -220,8 +220,11 @@ public class EnemyScript : MonoBehaviour
 
     private void OnTriggerExit(Collider trigger)
     {
-        inWall = false;
-        currentInWallInterval = inWallDamageInterval;
+        if (trigger.gameObject.tag == "Wall")
+        {
+            inWall = false;
+            currentInWallInterval = inWallDamageInterval;
+        }
     }
 
     /// <summary>
