@@ -184,7 +184,7 @@ public class EnemyScript : MonoBehaviour
             transform.rotation = Quaternion.Euler(Quaternion.LookRotation(_directionVector, transform.up).eulerAngles + _defaultOrientation);
             _pathCounter += 1;
         }
-        GameObject.FindGameObjectWithTag("DebugText").GetComponent<TMP_Text>().text = "pathLen=" + _path.Length.ToString() + "\nfollowingPath=" + _followingPath.ToString() + "\vtarg=" + _currentTarget.ToString() + "\npathCounter=" + _pathCounter.ToString() + "\nTimer=" + _roundTimer.isRunning;
+        //GameObject.FindGameObjectWithTag("DebugText").GetComponent<TMP_Text>().text = "pathLen=" + _path.Length.ToString() + "\nfollowingPath=" + _followingPath.ToString() + "\vtarg=" + _currentTarget.ToString() + "\npathCounter=" + _pathCounter.ToString() + "\nTimer=" + _roundTimer.isRunning;
     }
 
     /// <summary>
@@ -311,6 +311,7 @@ public class EnemyScript : MonoBehaviour
     /// <param name="killedByPlayer">Whether the enemy was killed by the player, or is bein destroyed as part of the ClearEnemies method and so shouldn't count towards the user's score.</param>
     public void DestroyEnemy(bool killedByPlayer)
     {
+        Pathfinding.PathfindingUpdatePublisher.RefindPathNeededEvent.RemoveListener(restartPathfinding);
         _enemyManager.RemoveEnemy(gameObject, killedByPlayer);
         Destroy(gameObject.GetComponent<Collider>().gameObject);
     }
