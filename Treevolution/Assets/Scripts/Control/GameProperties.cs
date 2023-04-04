@@ -10,6 +10,7 @@ public static class GameProperties
     public static Vector3 Centre;
     public static Pose Pose;
     public static float FloorHeight;
+    public static bool BattlePhase = false;
 
     public static void SetTestProperties(Vector3 tlc, Vector3 trc, Vector3 blc, Vector3 brc, Vector3 ext, Vector3 cnt, Pose pose, float floor)
     {

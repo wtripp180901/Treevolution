@@ -245,7 +245,8 @@ public class GameStateManager : MonoBehaviour
         BeginBattleButton.SetActive(false);
         if(InfoText != null)
              InfoText.transform.position = GameProperties.Centre + new Vector3(0, 0.5f, 0);
-        _qRDetection.StopQR();
+        //_qRDetection.StopQR();
+        GameProperties.BattlePhase = true;
         if (_currentState == GameState.Tutorial_Plan)
         {
             _currentState = GameState.Tutorial_Battle;
@@ -266,9 +267,11 @@ public class GameStateManager : MonoBehaviour
     /// <returns>This method runs a coroutine and so a <c>yield return</c> is used.</returns>
     public IEnumerator EndBattle()
     {
+        GameProperties.BattlePhase = false;
         clearEnemies();
+        repairAllWalls();
         _enemyManager.StopSpawning();
-        _qRDetection.StartQR();
+        //_qRDetection.StartQR();
         int enemiesKilled = GetComponent<EnemyManager>().getEnemiesKilled();
         if (currentGameState == GameState.Tutorial_Battle)
         {
@@ -305,6 +308,15 @@ public class GameStateManager : MonoBehaviour
         for (int i = 0; i < enemyList.Length; i++)
         {
             enemyList[i].GetComponent<EnemyScript>().DestroyEnemy(false);
+        }
+    }
+
+    private void repairAllWalls()
+    {
+        GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
+        for(int i = 0;i < walls.Length; i++)
+        {
+            walls[i].GetComponent<WallScript>().Repair(10);
         }
     }
 }
