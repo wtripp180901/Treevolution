@@ -27,10 +27,12 @@ namespace Pathfinding
                 UpdatePathfindingGraph(); // Updates the local graph to correspond to the environment (e.g. obstacles).
                 initializeScores(graph.Count, (float.MaxValue, float.MaxValue, float.MaxValue)); // Initialises all the score values in the FGH array.
 
-                if (source == target || graph.Count == 0)
+
+                if (source == target || graph.Count == 0 || !Physics.Raycast(source, target - source, (target - source).magnitude, 1 << 3))
                     return new Vector3[] { target }; // If the agent is already at the target, or no obstacles are in the environment, then return the target.
 
-                (int srcIndex, PathfindingNode srcNode) = closestNodeToPosition(source); // Calculate the closest graph node to the source position.
+
+                    (int srcIndex, PathfindingNode srcNode) = closestNodeToPosition(source); // Calculate the closest graph node to the source position.
                 (int tgtIndex, PathfindingNode tgtNode) = closestNodeToPositionFromDirection(target, source); // Calculate the closest node to the target from the direction of the source.
 
                 scores[srcIndex] = (Vector3.Distance(srcNode.position, tgtNode.position), 0, Vector3.Distance(srcNode.position, tgtNode.position));
