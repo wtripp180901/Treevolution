@@ -1,0 +1,9 @@
+name: Activate License
+on:
+  workflow_dispatch: {}
+jobs:
+  activation:
+    name: Unity - Activate
+    # You may pin to the exact commit or the version.
+    # uses: game-ci/unity-activate@33cd3ea96f11f3a1ddcf8fa9d8d265d5ea81e240
+    uses: game-ci/unity-activate@v2.0.0
