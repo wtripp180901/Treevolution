@@ -1,0 +1,46 @@
+\hypertarget{class_pathfinding_1_1_pathfinder}{}\doxysection{Pathfinding.\+Pathfinder Class Reference}
+\label{class_pathfinding_1_1_pathfinder}\index{Pathfinding.Pathfinder@{Pathfinding.Pathfinder}}
+
+
+Can be utilised by agents who wish to pathfind to get a list of Vector3 coordinates that they can use to navigate through the environment.  
+
+
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Vector3\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_pathfinding_1_1_pathfinder_a4c5e7dabd1cd9cfb2ff40d4da94d1521}{Get\+Path}} (Vector3 source, Vector3 target)
+\begin{DoxyCompactList}\small\item\em A$\ast$ Implementation to calculate the shortest path through the generated graph. Since the graph generated includes line-\/of-\/sight calculations, this algorithm closely resembles Theta$\ast$. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_pathfinding_1_1_pathfinder_a835ab0c51fce5821012ee3b8aa4f5f22}\label{class_pathfinding_1_1_pathfinder_a835ab0c51fce5821012ee3b8aa4f5f22}} 
+static void {\bfseries Update\+Pathfinding\+Graph} ()
+\begin{DoxyCompactList}\small\item\em Updates the Pathfinder\textquotesingle{}s graph of nodes to reflect the current obstacles in the environment. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Can be utilised by agents who wish to pathfind to get a list of Vector3 coordinates that they can use to navigate through the environment. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_pathfinding_1_1_pathfinder_a4c5e7dabd1cd9cfb2ff40d4da94d1521}\label{class_pathfinding_1_1_pathfinder_a4c5e7dabd1cd9cfb2ff40d4da94d1521}} 
+\index{Pathfinding.Pathfinder@{Pathfinding.Pathfinder}!GetPath@{GetPath}}
+\index{GetPath@{GetPath}!Pathfinding.Pathfinder@{Pathfinding.Pathfinder}}
+\doxysubsubsection{\texorpdfstring{GetPath()}{GetPath()}}
+{\footnotesize\ttfamily static Vector3\mbox{[}$\,$\mbox{]} Pathfinding.\+Pathfinder.\+Get\+Path (\begin{DoxyParamCaption}\item[{Vector3}]{source,  }\item[{Vector3}]{target }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+A$\ast$ Implementation to calculate the shortest path through the generated graph. Since the graph generated includes line-\/of-\/sight calculations, this algorithm closely resembles Theta$\ast$. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & Source location (of the agent).\\
+\hline
+{\em target} & Target location (of the destination).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Array of positions to which the agent can follow to reach the target destination.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Treevolution/\+Assets/\+Scripts/\+Pathfinding/Pathfinder.\+cs\end{DoxyCompactItemize}

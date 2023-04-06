@@ -1,70 +1,86 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+
 
 namespace Pathfinding
 {
-    //Can be called to by agents to get a list of Vector3 coordinates to navigate through the environment
+    /// <summary>
+    /// Can be utilised by agents who wish to pathfind to get a list of Vector3 coordinates that they can use to navigate through the environment.
+    /// </summary>
     public static class Pathfinder
     {
         private static (float F, float G, float H)[] scores = new (float F, float G, float H)[] { }; // Stores the F, G, H scores of each node, indexed the same as graph
         private static List<PathfindingNode> graph = new List<PathfindingNode>();
 
-        //TODO: Implement A* pathfinding on pathfindingGraph
-        public static Vector3[] GetPath(Vector3 source, Vector3 target)
+        /// <summary>
+        /// A* Implementation to calculate the shortest path through the generated graph.
+        /// Since the graph generated includes line-of-sight calculations, this algorithm closely resembles Theta*
+        /// </summary>
+        /// <param name="source">Source location (of the agent).</param>
+        /// <param name="target">Target location (of the destination).</param>
+        /// <returns>Array of positions to which the agent can follow to reach the target destination.</returns>
+        public static Vector3[] GetPath(Vector3 source, Vector3 target,bool avoidWalls)
         {
-            UpdatePathfindingGraph(); // Should be called by enemy etc.
-            initializeScores(graph.Count, (float.MaxValue, float.MaxValue, float.MaxValue));
-
-            if (source == target || graph.Count == 0)
-                return new Vector3[] { target };
-
-            (int srcIndex, PathfindingNode srcNode) = closestNodeToPosition(source);
-            (int tgtIndex, PathfindingNode tgtNode) = closestNodeToPositionFromDirection(target, source);
-
-
-            scores[srcIndex] = (Vector3.Distance(srcNode.position, tgtNode.position), 0, Vector3.Distance(srcNode.position, tgtNode.position));
-
-            List<(int index, PathfindingNode node)> open = new List<(int index, PathfindingNode node)> { (srcIndex, srcNode) };
-            List<(int index, PathfindingNode node)> closed = new List<(int index, PathfindingNode node)> { };
-
-            while (open.Count > 0)
+            if (avoidWalls)
             {
-                (int bestIndex, PathfindingNode bestNode) = getBestNode(open);
-                open.Remove((bestIndex, bestNode));
-                PathfindingNode[] bestNodeNeighbours = bestNode.neighbours;
-                foreach (PathfindingNode neighbour in bestNodeNeighbours)
-                {
-                    int neighbourIndex = graph.IndexOf(neighbour);
-                    (float F, float G, float H) tempScores = (
-                        F: 0,
-                        G: scores[bestIndex].G + bestNode.costToNeighbours[neighbour],
-                        H: Vector3.Distance(neighbour.position, tgtNode.position));
-                    tempScores.F = tempScores.G + tempScores.H;
-                    if (closed.Contains((neighbourIndex, neighbour)))
-                        continue;
-                    else if (!open.Contains((neighbourIndex, neighbour)))
-                    {
-                        neighbour.parentNode = bestNode;
-                        open.Add((neighbourIndex, neighbour));
-                        scores[neighbourIndex] = tempScores;
-                    }
-                    else if (open.Contains((neighbourIndex, neighbour)) && tempScores.F < scores[neighbourIndex].F)
-                    {
-                        neighbour.parentNode = bestNode;
-                        scores[neighbourIndex] = tempScores;
-                    }
+                UpdatePathfindingGraph(); // Updates the local graph to correspond to the environment (e.g. obstacles).
+                initializeScores(graph.Count, (float.MaxValue, float.MaxValue, float.MaxValue)); // Initialises all the score values in the FGH array.
 
+
+                if (source == target || graph.Count == 0 || !Physics.Raycast(source, target - source, (target - source).magnitude, 1 << 3))
+                    return new Vector3[] { target }; // If the agent is already at the target, or no obstacles are in the environment, then return the target.
+
+
+                    (int srcIndex, PathfindingNode srcNode) = closestNodeToPosition(source); // Calculate the closest graph node to the source position.
+                (int tgtIndex, PathfindingNode tgtNode) = closestNodeToPositionFromDirection(target, source); // Calculate the closest node to the target from the direction of the source.
+
+                scores[srcIndex] = (Vector3.Distance(srcNode.position, tgtNode.position), 0, Vector3.Distance(srcNode.position, tgtNode.position));
+
+                List<(int index, PathfindingNode node)> open = new List<(int index, PathfindingNode node)> { (srcIndex, srcNode) }; // List of open nodes
+                List<(int index, PathfindingNode node)> closed = new List<(int index, PathfindingNode node)> { }; // List of closed nodes
+
+                while (open.Count > 0) // Whilst there are still nodes to consider ...
+                {
+                    (int bestIndex, PathfindingNode bestNode) = getBestNode(open); // Calculate the best node in the open list
+                    open.Remove((bestIndex, bestNode)); // Close the node
+                    PathfindingNode[] bestNodeNeighbours = bestNode.neighbours;
+                    foreach (PathfindingNode neighbour in bestNodeNeighbours) // Iterate over it's neighbours
+                    {
+                        int neighbourIndex = graph.IndexOf(neighbour);
+                        (float F, float G, float H) tempScores = (
+                            F: 0,
+                            G: scores[bestIndex].G + bestNode.costToNeighbours[neighbour],
+                            H: Vector3.Distance(neighbour.position, tgtNode.position));
+                        tempScores.F = tempScores.G + tempScores.H;// Calculate temporary F, G, and H scores of the neighbour
+                        if (closed.Contains((neighbourIndex, neighbour))) // If the neighbour is already closed then ignore it
+                            continue;
+                        else if (!open.Contains((neighbourIndex, neighbour))) // Otherwise, if the neighbour isn't already open ...
+                        {
+                            neighbour.parentNode = bestNode; // Update the neighbours parent
+                            open.Add((neighbourIndex, neighbour)); // Open the neighbour
+                            scores[neighbourIndex] = tempScores; // Assign the neighbour's score
+                        }
+                        else if (open.Contains((neighbourIndex, neighbour)) && tempScores.F < scores[neighbourIndex].F) // Otherwise, if the neighbour is already open and the current temporary score is an improvement to before...
+                        {
+                            neighbour.parentNode = bestNode; // Update the neighbour's parent
+                            scores[neighbourIndex] = tempScores; // Update the neighbour's score
+                        }
+
+                    }
+                    closed.Add((bestIndex, bestNode));
                 }
-                closed.Add((bestIndex, bestNode));
+                List<Vector3> path = traverseFromTarget(tgtNode);
+                if (tgtNode.position != target)
+                    path.Add(target); // Path to target position, excluding source position
+                return path.ToArray();
             }
-            List<Vector3> path = traverseFromTarget(tgtNode);
-            if (tgtNode.position != target)
-                path.Add(target); // Path to target position, excluding source position
-            return path.ToArray();
+            else
+            {
+                return new Vector3[] { source, target };
+            }
         }
+
 
         private static List<Vector3> traverseFromTarget(PathfindingNode target)
         {
@@ -138,7 +154,9 @@ namespace Pathfinding
 
         }
 
-        //Should be called whenever a change is made to the position of pathfinding obstacles
+        /// <summary>
+        /// Updates the Pathfinder's graph of nodes to reflect the current obstacles in the environment.
+        /// </summary>
         public static void UpdatePathfindingGraph()
         {
             graph = PathfindingGraphGenerator.GetPathfindingGraph().ToList();

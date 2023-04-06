@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 7800950396249785349}
   - component: {fileID: 7800950396249785348}
   - component: {fileID: 7800950396249785355}
-  - component: {fileID: 4385265026822026737}
+  - component: {fileID: 5436372200425055053}
+  - component: {fileID: 5824218682972284883}
   m_Layer: 3
   m_Name: Wall
   m_TagString: Wall
@@ -94,10 +95,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7800950396249785354}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.1, y: 2, z: 1.4}
+  m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!114 &7800950396249785355
 MonoBehaviour:
@@ -111,21 +112,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0d8007209f0f9a4cae8ef5f99bf20ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeMargins: 0.1
+  nodeMargins: 0.04
   floorOffset: 0.01
---- !u!54 &4385265026822026737
-Rigidbody:
+--- !u!114 &5436372200425055053
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7800950396249785354}
-  serializedVersion: 2
-  m_Mass: 10
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce1b8170d555ce14a90bee59c9a1ddb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseHealth: 10
+--- !u!114 &5824218682972284883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7800950396249785354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a937bce38b39334bb3c5231c39d339c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovementThreshold: 0.05
+  behaviourScript: {fileID: 5436372200425055053}
+  PenaltyDuration: 5

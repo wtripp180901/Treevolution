@@ -1,11 +1,12 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 namespace Pathfinding
 {
-    //Used to dynamically generate a pathfinding mesh based on obstacles in the environment
+    /// <summary>
+    /// Used to dynamically generate a pathfinding mesh based on obstacles in the environment
+    /// </summary>
     public static class PathfindingGraphGenerator
     {
 
@@ -30,11 +31,18 @@ namespace Pathfinding
             obstacleData.Add(new ObstacleData(bounds, possiblePoints));
         }
 
+        /// <summary>
+        /// Generates pathfinding graph based on current obstacles in the environment
+        /// </summary>
+        /// <returns>List of pathfining nodes based on current state of environment</returns>
         public static PathfindingNode[] GetPathfindingGraph()
         {
             if (GetObstacleDataEvent != null) GetObstacleDataEvent.Invoke(null, null);
-            List<PathfindingNode> graph = nodesFromObstacleData();
+            List<PathfindingNode> graph = new List<PathfindingNode>();
+            // Graph[0] = tree
             graph.Add(new PathfindingNode(-1, GameObject.FindWithTag("Tree").transform.position));
+            graph.AddRange(nodesFromObstacleData());
+            
             for (int i = 0; i < graph.Count; i++)
             {
                 for (int j = i + 1; j < graph.Count; j++)
@@ -47,6 +55,8 @@ namespace Pathfinding
 
                     if (!Physics.Raycast(graph[i].position, directionRay, distance, layerMask))
                     {
+                        if (i == 0)
+                            distance = 0;
                         graph[i].AddNeighbour(graph[j], distance);
                         graph[j].AddNeighbour(graph[i], distance);
                         Debug.DrawLine(graph[i].position, graph[i].position + directionRay, Color.red, 60);
@@ -59,6 +69,7 @@ namespace Pathfinding
 
         private static List<PathfindingNode> nodesFromObstacleData()
         {
+
             List<PathfindingNode> graph = new List<PathfindingNode>();
             for (int i = 0; i < obstacleData.Count; i++)
             {
@@ -78,12 +89,24 @@ namespace Pathfinding
                         }
                     }
 
-                    if (pos.x > GameProperties.BottomLeftCorner.x &&
-                        pos.x < GameProperties.BottomRightCorner.x &&
-                        pos.z > GameProperties.BottomLeftCorner.z &&
-                        pos.z < GameProperties.TopLeftCorner.z) withinPlaneBounds = true;
 
+                    // Checks if point lies within the rectangle from a top-down view
+                    Vector2 pos2D = new Vector2(pos.x, pos.z);
+                    Vector2 a = new Vector2(GameProperties.TopLeftCorner.x, GameProperties.TopLeftCorner.z);
+                    Vector2 b = new Vector2(GameProperties.TopRightCorner.x, GameProperties.TopRightCorner.z);
+                    Vector2 d = new Vector2(GameProperties.BottomLeftCorner.x, GameProperties.BottomLeftCorner.z);
+                    if (0 < Vector2.Dot((pos2D - a), (b - a)) && Vector2.Dot((pos2D - a), (b - a)) < Vector2.Dot((b - a), (b - a)))
+                    {
+                        if (0 < Vector2.Dot((pos2D - a), (d - a)) && Vector2.Dot((pos2D - a), (d - a)) < Vector2.Dot((d - a), (d - a)))
+                        {
+                            withinPlaneBounds = true;
+                        }
+                    }
                     if (notInsideTerrain && withinPlaneBounds) graph.Add(new PathfindingNode(i * 10 + j, pos));
+                    else
+                    {
+                        Debug.DrawLine(pos, pos + Vector3.up * 5, Color.red, 1000);
+                    }
                 }
             }
             obstacleData.Clear();

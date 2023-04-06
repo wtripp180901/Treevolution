@@ -1,21 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlaneMapper : MonoBehaviour
 {
-    [SerializeField]
-    GameObject planeMarker;
-    [SerializeField]
-    GameObject floor;
-    [SerializeField]
-    int markerCount = 2;
-    [SerializeField]
-    GameObject startButton;
-
+    public GameObject planeMarker;
+    public GameObject floor;
+    public int markerCount = 2;
     public GameObject treeModel;
+    public float tableWidth = 240;
+    public float tableDepth = 160;
 
 
+    private GameStateManager gameStateManager;
+    private QRDetection qrDetection;
+   
+    private bool planeIsMapped = false;
     private Vector3 tl;
     public Vector3 topLeft { get { return tl; } }
     private Vector3 tr;
@@ -26,76 +24,79 @@ public class PlaneMapper : MonoBehaviour
     public Vector3 bottomRight { get { return br; } }
     private float _minY;
     public float floorHeight { get { return _minY; } }
+    private Pose _pose;
+    public Pose pose { get { return _pose; } }
+
+    public PlaneMapper(bool planeMapped)
+    {
+       this.planeIsMapped = planeMapped;
+    }
 
     private void Start()
     {
-        //CreateNewPlane(new Vector3(0, 0, 0),new Vector3(1, 0, 1)); // Commented
+        gameStateManager = GetComponent<GameStateManager>();
+        qrDetection = GetComponent<QRDetection>();
     }
 
-    public void CreateNewPlane(Vector3 marker1,Vector3 marker2)
+    public void CreateNewPlane(Pose marker)
     {
-        _minY = Mathf.Min(marker2.y,marker1.y);
-        marker1.y = _minY;
-        marker2.y = _minY;
+        if (qrDetection != null && qrDetection.lockPlane)
+        {
+            return;
+        }
+        if (planeIsMapped == false)
+        {
+            gameStateManager.CalibrationSuccess();
+            planeIsMapped = true;
+        }
+
+        marker.rotation = Quaternion.LookRotation(marker.up, marker.forward);
+        marker.rotation = Quaternion.Euler(0, marker.rotation.eulerAngles.y, 0);
+        _pose = marker;
+
+        _minY = marker.position.y;
         ClearPlane();
 
-        Vector3 m1VerticalOpposite = new Vector3(marker1.x, marker1.y, marker2.z);
-        Vector3 m2VerticalOpposite = new Vector3(marker2.x, marker2.y, marker1.z);
-        if (marker1.x > marker2.x)
-        {
-            if(marker1.z > marker2.z)
-            {
-                tr = marker1;
-                br = m1VerticalOpposite;
-                tl = m2VerticalOpposite;
-                bl = marker2;
-            }
-            else
-            {
-                tr = m1VerticalOpposite;
-                br = marker1;
-                tl = marker2;
-                bl = m2VerticalOpposite;
-            }
-        }
-        else
-        {
-            if (marker1.z > marker2.z)
-            {
-                tl = marker1;
-                bl = m1VerticalOpposite;
-                tr = m2VerticalOpposite;
-                br = marker2;
-            }
-            else
-            {
-                tl = m1VerticalOpposite;
-                bl = marker1;
-                tr = marker2;
-                br = m2VerticalOpposite;
-            }
-        }
-        //Debug.DrawLine(tl,tl + Vector3.up,Color.green);
+        bl = marker.position;
+        br = marker.position + _pose.forward * tableWidth * 0.01f;
+        tl = marker.position - _pose.right * tableDepth * 0.01f;
+        tr = marker.position + _pose.forward * tableWidth * 0.01f - _pose.right * tableDepth * 0.01f;
+
+        tl.y = bl.y;
+        br.y = bl.y;
+        tr.y = bl.y;
+
+
+
+        Debug.DrawLine(bl, bl + Vector3.up, Color.green, 1000);
         Instantiate(planeMarker, tl, Quaternion.identity);
         Instantiate(planeMarker, tr, Quaternion.identity);
         Instantiate(planeMarker, bl, Quaternion.identity);
         Instantiate(planeMarker, br, Quaternion.identity);
 
-        if (markerCount > 0) {
-            Vector3 xStep = new Vector3((marker2.x - marker1.x) / (markerCount + 1),0, 0);
-            Vector3 zStep = new Vector3(0, 0, (marker2.z - marker1.z) / (markerCount + 1));
-            for (int i = 0;i < markerCount; i++)
+        if (markerCount > 0)
+        {
+            Vector3 depthStep = (tl - bl) / (markerCount + 1);
+            Vector3 widthStep = (br - bl) / (markerCount + 1);
+            for (int i = 0; i < markerCount; i++)
             {
-                Instantiate(planeMarker, marker1 + ((i + 1) * xStep), Quaternion.identity);
-                Instantiate(planeMarker, marker1 + ((i + 1) * zStep), Quaternion.identity);
-                Instantiate(planeMarker, marker2 - ((i + 1) * xStep), Quaternion.identity);
-                Instantiate(planeMarker, marker2 - ((i + 1) * zStep), Quaternion.identity);
+                Instantiate(planeMarker, bl + ((i + 1) * depthStep), Quaternion.identity);
+                Instantiate(planeMarker, bl + ((i + 1) * widthStep), Quaternion.identity);
+                Instantiate(planeMarker, tr - ((i + 1) * depthStep), Quaternion.identity);
+                Instantiate(planeMarker, tr - ((i + 1) * widthStep), Quaternion.identity);
             }
         }
-        GameObject newFloor = Instantiate(floor, (marker1 + marker2) * 0.5f, Quaternion.identity);
-        newFloor.transform.localScale = new Vector3(0.1f*Mathf.Abs(marker1.x - marker2.x), newFloor.transform.localScale.y, 0.1f*Mathf.Abs(marker1.z - marker2.z));
-        Vector3 boardCentre = (marker1 + marker2) * 0.5f; // Centre of board
-        GameObject.FindWithTag("InfoText").transform.position = boardCentre + new Vector3(0, 0.7f, 0);
+
+        Vector3 boardCentre = (bl + tr) * 0.5f; // Centre of board
+        GameObject newFloor = Instantiate(floor, (bl + tr) * 0.5f, _pose.rotation);
+        Vector3 floorScale = new Vector3(0.1f * Vector3.Distance(bl, tl), newFloor.transform.localScale.y, 0.1f * Vector3.Distance(bl, br));
+        newFloor.transform.localScale = floorScale;
+
+        Debug.DrawLine(GameProperties.BottomLeftCorner, GameProperties.TopLeftCorner, Color.blue, 1000);
+        Debug.DrawLine(GameProperties.BottomLeftCorner, GameProperties.BottomRightCorner, Color.blue, 1000);
+        Debug.DrawLine(GameProperties.TopRightCorner, GameProperties.TopLeftCorner, Color.blue, 1000);
+        Debug.DrawLine(GameProperties.TopRightCorner, GameProperties.BottomRightCorner, Color.blue, 1000);
+
         GameObject treeObject = GameObject.FindWithTag("Tree");
         if (treeObject == null)
         {
@@ -105,16 +106,13 @@ public class PlaneMapper : MonoBehaviour
         {
             treeObject.transform.position = boardCentre;
         }
-
-        startButton.transform.position = boardCentre + new Vector3(0, 0.8f, 0);
-        startButton.SetActive(true);
     }
 
     public void ClearPlane()
     {
         Destroy(GameObject.FindWithTag("Floor"));
         GameObject[] existingMarkers = GameObject.FindGameObjectsWithTag("PlaneMarker");
-        for(int i = 0;i < existingMarkers.Length; i++)
+        for (int i = 0; i < existingMarkers.Length; i++)
         {
             Destroy(existingMarkers[i]);
         }

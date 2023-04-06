@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerScript : MonoBehaviour
+public class TowerScript : MonoBehaviour, IRuntimeMovableBehaviourScript
 {
     [SerializeField] float turretRange = 13f;
     [SerializeField] float turretRotationSpeed = 5f;
@@ -11,6 +9,8 @@ public class TowerScript : MonoBehaviour
     private Gun currentGun;
     private float fireRate;
     private float fireRateDelta;
+
+    bool shootingDisabled = false;
 
 
     // Start is called before the first frame update
@@ -24,7 +24,7 @@ public class TowerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (targetTransform != null)
+        if (targetTransform != null && !shootingDisabled)
         {
             Vector3 enemyGroundPosition = new Vector3(targetTransform.position.x, transform.position.y, targetTransform.position.z);
 
@@ -59,5 +59,15 @@ public class TowerScript : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(transform.position, turretRange);
+    }
+
+    public void ApplyMovementPenalty()
+    {
+        shootingDisabled = true;
+    }
+
+    public void EndMovementPenalty()
+    {
+        shootingDisabled = false;
     }
 }
