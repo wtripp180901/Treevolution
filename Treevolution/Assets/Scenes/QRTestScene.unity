@@ -362,6 +362,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointer: {fileID: 1390908068}
+  tapAction:
+    id: 1
+    description: Select
+    axisConstraint: 2
 --- !u!82 &100754442
 AudioSource:
   m_ObjectHideFlags: 0
@@ -477,19 +481,7 @@ MonoBehaviour:
   startRecordingOnStart: 0
   OnDictationHypothesis:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 100754441}
-        m_TargetAssemblyTypeName: PointerLocationTracker, MainGameAssembly
-        m_MethodName: SampleLocation
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnDictationResult:
     m_PersistentCalls:
       m_Calls:
@@ -2054,7 +2046,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1206022649}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.015
   m_Height: 0.06
   m_Direction: 1
