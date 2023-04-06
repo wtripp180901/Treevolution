@@ -27,9 +27,9 @@ public class PlaneMapper : MonoBehaviour
     private Pose _pose;
     public Pose pose { get { return _pose; } }
 
-    public PlaneMapper(bool planeMapped)
+    public void SetupForTest(bool planeMapped)
     {
-       this.planeIsMapped = planeMapped;
+        planeIsMapped = planeMapped;
     }
 
     private void Start()
@@ -106,6 +106,8 @@ public class PlaneMapper : MonoBehaviour
         {
             treeObject.transform.position = boardCentre;
         }
+
+        GameObject.FindWithTag("Buddy").transform.position = boardCentre + new Vector3(0, 1, 0);
     }
 
     public void ClearPlane()

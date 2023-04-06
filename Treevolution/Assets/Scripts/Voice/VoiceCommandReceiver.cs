@@ -10,7 +10,6 @@ public class VoiceCommandReceiver : MonoBehaviour
 {
     public GameObject pointer;
     private EnemyManager enemyManager;
-    public TMP_Text txt;
     PointerLocationTracker pointerTracker;
     UIController uiController;
     GameObject recordingIndicator;
@@ -44,7 +43,7 @@ public class VoiceCommandReceiver : MonoBehaviour
             }
         }catch (System.Exception e)
         {
-            txt.text = e.Message;
+            uiController.ShowDictation(e.Message);
             Debug.Log(e.Message);
         }
     }
@@ -68,20 +67,38 @@ public class VoiceCommandReceiver : MonoBehaviour
 
     public void ProcessDictation(string dictation)
     {
+        //uiController.ShowDictation("Dictation recieved: " + dictation);
+        try
+        {
+            finishDictation();
+            uiController.ShowDictation(dictation);
+            string[] words = dictation.Split(' ');
+            if (words.Length > 0) StartCoroutine(new LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(words));
+        }catch(Exception e)
+        {
+            uiController.ShowDictation(e.Message);
+        }
+    }
+
+    public void DictationError(string error)
+    {
+        uiController.ShowDictation("Dictation error: " + error);
+        finishDictation();
+    }
+
+    void finishDictation()
+    {
         DictationHandler handler = GetComponent<DictationHandler>();
         lock (handler)
         {
             handler.StopRecording();
         }
-        uiController.ShowDictation(dictation);
-        string[] words = dictation.Split(' ');
-        if (words.Length > 0) StartCoroutine(new LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(words));
+        pointerTracker.FinishSampling();
         recordingIndicator.SetActive(false);
     }
 
     public void HandleDictationProcessingResults(List<BuddyAction> instructions)
     {
-        pointerTracker.FinishSampling();
         string actionStream = "";
         foreach(BuddyAction i in instructions)
         {
