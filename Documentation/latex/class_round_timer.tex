@@ -1,0 +1,89 @@
+\hypertarget{class_round_timer}{}\doxysection{Round\+Timer Class Reference}
+\label{class_round_timer}\index{RoundTimer@{RoundTimer}}
+
+
+Manages the timer for each round and invokes events for each second tick and round over.  
+
+
+Inheritance diagram for Round\+Timer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_round_timer}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_round_timer_aa302dba6ab858aceeaf08c40fd065992}\label{class_round_timer_aa302dba6ab858aceeaf08c40fd065992}} 
+void {\bfseries Start\+Timer} ()
+\begin{DoxyCompactList}\small\item\em Starts the timer and invokes the start timer event. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_round_timer_a1212411b69fff7fec357818e3e2fbde4}\label{class_round_timer_a1212411b69fff7fec357818e3e2fbde4}} 
+void {\bfseries Stop\+Timer} ()
+\begin{DoxyCompactList}\small\item\em Stops the timer, invoking the stop timer event. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_round_timer_a34341cf1eacdca2e5bf680f2c7616f4d}\label{class_round_timer_a34341cf1eacdca2e5bf680f2c7616f4d}} 
+void {\bfseries Pause\+Timer} ()
+\begin{DoxyCompactList}\small\item\em Toggles the pause state of the timer, invoking the pause timer event. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_round_timer_a5fb4b18f47684c55dac93ab7f32bc22e}{Set\+Round\+Length}} (int secs)
+\begin{DoxyCompactList}\small\item\em Sets the round length to the given number of seconds. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_round_timer_a5f8601b4e2846fd5cd55311448cb2c4e}\label{class_round_timer_a5f8601b4e2846fd5cd55311448cb2c4e}} 
+void {\bfseries Second\+Tick} ()
+\begin{DoxyCompactList}\small\item\em Invokes the second tick event. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_round_timer_a63c15cf1fe12319eb0de5cb550bbe7da}\label{class_round_timer_a63c15cf1fe12319eb0de5cb550bbe7da}} 
+void {\bfseries Round\+Over} ()
+\begin{DoxyCompactList}\small\item\em Invokes the round over event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_round_timer_a68bc698ad515966ff3c360f5fdc68570}\label{class_round_timer_a68bc698ad515966ff3c360f5fdc68570}} 
+float {\bfseries round\+Length\+Secs} = 60
+\begin{DoxyCompactList}\small\item\em Length of the round in seconds. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_round_timer_a555228224a28e46d02990f45a3543569}\label{class_round_timer_a555228224a28e46d02990f45a3543569}} 
+Unity\+Event {\bfseries Second\+Tick\+Event} = new Unity\+Event()
+\begin{DoxyCompactList}\small\item\em Event called on each second tick whilst the timer is running. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_round_timer_ac5dba4d4621eaf59bbf380b9a8393b69}\label{class_round_timer_ac5dba4d4621eaf59bbf380b9a8393b69}} 
+Unity\+Event {\bfseries Round\+Over\+Event} = new Unity\+Event()
+\begin{DoxyCompactList}\small\item\em Event called when the timer exceeds the round length. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_round_timer_ae9d6dbabec1d06c930a3e27c69daad49}\label{class_round_timer_ae9d6dbabec1d06c930a3e27c69daad49}} 
+Unity\+Event {\bfseries Stop\+Timer\+Event} = new Unity\+Event()
+\begin{DoxyCompactList}\small\item\em Event called when the timer is stopped. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_round_timer_a87213305cd2a73b321c9405af00f7884}\label{class_round_timer_a87213305cd2a73b321c9405af00f7884}} 
+Unity\+Event {\bfseries Pause\+Timer\+Event} = new Unity\+Event()
+\begin{DoxyCompactList}\small\item\em Event called when the timer is paused. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_round_timer_afb213ab2abf1acc49778850658d9f118}\label{class_round_timer_afb213ab2abf1acc49778850658d9f118}} 
+Unity\+Event {\bfseries Start\+Timer\+Event} = new Unity\+Event()
+\begin{DoxyCompactList}\small\item\em Event called when the timer is started. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_round_timer_ab03bf081facfabca7c8ab0df759d50ea}\label{class_round_timer_ab03bf081facfabca7c8ab0df759d50ea}} 
+bool {\bfseries is\+Paused}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Pause state of the timer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_round_timer_afa4f85374f2e532fb7e0a7d71e9cb121}\label{class_round_timer_afa4f85374f2e532fb7e0a7d71e9cb121}} 
+bool {\bfseries is\+Running}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Running state of the timer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages the timer for each round and invokes events for each second tick and round over. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_round_timer_a5fb4b18f47684c55dac93ab7f32bc22e}\label{class_round_timer_a5fb4b18f47684c55dac93ab7f32bc22e}} 
+\index{RoundTimer@{RoundTimer}!SetRoundLength@{SetRoundLength}}
+\index{SetRoundLength@{SetRoundLength}!RoundTimer@{RoundTimer}}
+\doxysubsubsection{\texorpdfstring{SetRoundLength()}{SetRoundLength()}}
+{\footnotesize\ttfamily void Round\+Timer.\+Set\+Round\+Length (\begin{DoxyParamCaption}\item[{int}]{secs }\end{DoxyParamCaption})}
+
+
+
+Sets the round length to the given number of seconds. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em secs} & Number of seconds to set the round length to.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Treevolution/\+Assets/\+Scripts/\+Control/Round\+Timer.\+cs\end{DoxyCompactItemize}

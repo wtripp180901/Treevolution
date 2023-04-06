@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnDirectionIndicator : MonoBehaviour
@@ -30,7 +29,7 @@ public class SpawnDirectionIndicator : MonoBehaviour
     void toggleVisible(bool visible)
     {
         myRenderer.enabled = visible;
-        foreach(Renderer r in childRenderers)
+        foreach (Renderer r in childRenderers)
         {
             r.enabled = visible;
         }

@@ -14,14 +14,22 @@ public class VoiceCommandReceiver : MonoBehaviour
     PointerLocationTracker pointerTracker;
     UIController uiController;
     GameObject recordingIndicator;
+    GameStateManager gameStateManager;
 
     private void Start()
     {
         enemyManager = GetComponent<EnemyManager>();
         uiController = GetComponent<UIController>();
         pointerTracker = GetComponent<PointerLocationTracker>();
+        gameStateManager = GetComponent<GameStateManager>();
         recordingIndicator = GameObject.FindWithTag("RecordingIndicator");
         recordingIndicator.SetActive(false);
+    }
+	
+	public void PauseGame()
+    {
+        if (gameStateManager.currentGameState == GameStateManager.GameState.Round_Battle || gameStateManager.currentGameState == GameStateManager.GameState.Tutorial_Battle)
+            GetComponent<RoundTimer>().PauseTimer();
     }
 
     public void Record()

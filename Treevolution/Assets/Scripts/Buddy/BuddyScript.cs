@@ -35,7 +35,7 @@ public class BuddyScript : MonoBehaviour
             {
                 isok = false;
                 //getpath
-                 pos=Pathfinding.Pathfinder.GetPath(transform.position,temp.location);
+                 pos=Pathfinding.Pathfinder.GetPath(transform.position,temp.location,false);
                 Currentpos = 0;
                 if (pos != null && pos.Length > 0) directionVector = getNewDirectionVector(pos[0]);
                 //StartCoroutine(Delay(2f, () =>

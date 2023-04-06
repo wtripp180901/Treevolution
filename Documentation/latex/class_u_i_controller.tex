@@ -1,0 +1,116 @@
+\hypertarget{class_u_i_controller}{}\doxysection{UIController Class Reference}
+\label{class_u_i_controller}\index{UIController@{UIController}}
+
+
+Controls the instantiation and removal of UI elements.  
+
+
+Inheritance diagram for UIController\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_u_i_controller}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_u_i_controller_a8531008b50c148d2a037c30f4d5106c1}\label{class_u_i_controller_a8531008b50c148d2a037c30f4d5106c1}} 
+void {\bfseries Calibration\+Pop\+Up} ()
+\begin{DoxyCompactList}\small\item\em Displays an orange info pop-\/up requesting calibration of the game board. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_u_i_controller_a8e1d28ddcf235500e39220969c2a1830}\label{class_u_i_controller_a8e1d28ddcf235500e39220969c2a1830}} 
+void {\bfseries Calibration\+Success\+Pop\+Up} ()
+\begin{DoxyCompactList}\small\item\em Displays a green button pop-\/up displaying calibration success, and continuing to Tutorial selection when it is closed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_u_i_controller_a55e8fe8e8c9430983b330373f8309741}\label{class_u_i_controller_a55e8fe8e8c9430983b330373f8309741}} 
+void {\bfseries Tutorial\+Plan\+Pop\+Ups} ()
+\begin{DoxyCompactList}\small\item\em Displays a number of sequential tutorial pop-\/ups containing information about the planning phase, the last of which initiates the tutorial planning phase on closure. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_u_i_controller_a71c1bcdef1c771b4877571273b6a0d66}\label{class_u_i_controller_a71c1bcdef1c771b4877571273b6a0d66}} 
+void {\bfseries Tutorial\+Battle\+Pop\+Ups} ()
+\begin{DoxyCompactList}\small\item\em Displays a number of sequential tutorial pop-\/ups containing information about the battle phase, the last of which initiates the tutorial battle phase on closure. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_u_i_controller_adc57c92b83f31d64061aa5435203ea1f}\label{class_u_i_controller_adc57c92b83f31d64061aa5435203ea1f}} 
+void {\bfseries Tutorial\+Bug\+Pop\+Ups} ()
+\begin{DoxyCompactList}\small\item\em Displays a number of sequential tutorial pop-\/ups containing information about the bug types, the last of which continues the tutorial battle phase on closure. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_u_i_controller_a1df17092c002e355497c907066e808da}\label{class_u_i_controller_a1df17092c002e355497c907066e808da}} 
+void {\bfseries End\+Tutorial} ()
+\begin{DoxyCompactList}\small\item\em Displays a button pop-\/up denoting the end of the tutorial and subsequently commencing the initial round\textquotesingle{}s planning phase. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_u_i_controller_a000988faa05a436594dcb4cdfd132557}\label{class_u_i_controller_a000988faa05a436594dcb4cdfd132557}} 
+void {\bfseries End\+Pop\+Up} ()
+\begin{DoxyCompactList}\small\item\em Displays a button pop-\/up denoting the end of the game and the player\textquotesingle{}s score, continuing to the main menu on closure. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_u_i_controller_a97f67b542ee6a05570e1218695d48ae9}{Reset\+Timer}} (int time)
+\begin{DoxyCompactList}\small\item\em Resets the local timer to the specified time in seconds. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_u_i_controller_ae659464ba09da48da4d39015d3c99ba4}\label{class_u_i_controller_ae659464ba09da48da4d39015d3c99ba4}} 
+void {\bfseries Decrease\+Time} ()
+\begin{DoxyCompactList}\small\item\em Decreases the timer by 1 second. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_u_i_controller_ac96624bd82376e9a6d0ffe73e9da4bd1}\label{class_u_i_controller_ac96624bd82376e9a6d0ffe73e9da4bd1}} 
+Game\+Object {\bfseries info\+Dialog\+Prefab}
+\begin{DoxyCompactList}\small\item\em Adapted MRTK Dialog Prefab to display only text with no buttons or images. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_u_i_controller_a0cb3530ce98e4585599078a81bd02ed9}\label{class_u_i_controller_a0cb3530ce98e4585599078a81bd02ed9}} 
+Game\+Object {\bfseries button\+Dialog\+Prefab}
+\begin{DoxyCompactList}\small\item\em Adapted MRTK Dialog Prefab to display text and button(s). \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_u_i_controller_aaf148d88e5929c1c2f4894ae1cbd563a}\label{class_u_i_controller_aaf148d88e5929c1c2f4894ae1cbd563a}} 
+Game\+Object {\bfseries button\+Image\+Diaglog\+Prefab}
+\begin{DoxyCompactList}\small\item\em Adapted MRTK Dialog Prefab to display text, an image, and button(s). \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_u_i_controller_a8493d986f954ce508696a647c6dba003}\label{class_u_i_controller_a8493d986f954ce508696a647c6dba003}} 
+Sprite {\bfseries ant\+Image}
+\begin{DoxyCompactList}\small\item\em Image of ant enemy. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_u_i_controller_ac4c0003eddb921b18c7e44fb69471a5b}\label{class_u_i_controller_ac4c0003eddb921b18c7e44fb69471a5b}} 
+Sprite {\bfseries armoured\+Beetle\+Image}
+\begin{DoxyCompactList}\small\item\em Image of beetle enemy. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_u_i_controller_a60dc195a872095b5e1188d3ff15b1db2}\label{class_u_i_controller_a60dc195a872095b5e1188d3ff15b1db2}} 
+Sprite {\bfseries armoured\+Cockroach\+Image}
+\begin{DoxyCompactList}\small\item\em Image of cockroach enemy. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_u_i_controller_ae07ff5b8cb4832b7d98a99fe2808743d}\label{class_u_i_controller_ae07ff5b8cb4832b7d98a99fe2808743d}} 
+Sprite {\bfseries armoured\+Stegbeetle\+Image}
+\begin{DoxyCompactList}\small\item\em Image of stagbeetle enemy. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_u_i_controller_a7939f18338584b9915a22f84ea4abb54}\label{class_u_i_controller_a7939f18338584b9915a22f84ea4abb54}} 
+Sprite {\bfseries dragonfly\+Image}
+\begin{DoxyCompactList}\small\item\em Image of dragonfly enemy. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_u_i_controller_a1703d3e06823ac8f828d211be1302cf3}\label{class_u_i_controller_a1703d3e06823ac8f828d211be1302cf3}} 
+Sprite {\bfseries hornet\+Image}
+\begin{DoxyCompactList}\small\item\em Image of hornet enemy. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_u_i_controller_af1292291a640e6dedc22c5e1755b85ed}\label{class_u_i_controller_af1292291a640e6dedc22c5e1755b85ed}} 
+Material {\bfseries back\+Plate\+Grey}
+\begin{DoxyCompactList}\small\item\em Material for a grey dialog pop-\/up. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_u_i_controller_a16bc65d366d4450246aadd1297ab64b9}\label{class_u_i_controller_a16bc65d366d4450246aadd1297ab64b9}} 
+Material {\bfseries back\+Plate\+Orange}
+\begin{DoxyCompactList}\small\item\em Material for an orange dialog pop-\/up. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_u_i_controller_a2d3f09d7514340cb6424960ee9be36cd}\label{class_u_i_controller_a2d3f09d7514340cb6424960ee9be36cd}} 
+Material {\bfseries back\+Plate\+Green}
+\begin{DoxyCompactList}\small\item\em Material for a green dialog pop-\/up. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_u_i_controller_a02a52473dae002b907f64dfc977463f8}\label{class_u_i_controller_a02a52473dae002b907f64dfc977463f8}} 
+TMP\+\_\+\+Text {\bfseries info\+Text}
+\begin{DoxyCompactList}\small\item\em Text\+Mesh\+Pro Game Object to display UI elements on. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_u_i_controller_a9707e586998d7e962c7f3842a77154fc}\label{class_u_i_controller_a9707e586998d7e962c7f3842a77154fc}} 
+int {\bfseries time\+Remaining}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the time remaining in the current round. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controls the instantiation and removal of UI elements. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_u_i_controller_a97f67b542ee6a05570e1218695d48ae9}\label{class_u_i_controller_a97f67b542ee6a05570e1218695d48ae9}} 
+\index{UIController@{UIController}!ResetTimer@{ResetTimer}}
+\index{ResetTimer@{ResetTimer}!UIController@{UIController}}
+\doxysubsubsection{\texorpdfstring{ResetTimer()}{ResetTimer()}}
+{\footnotesize\ttfamily void UIController.\+Reset\+Timer (\begin{DoxyParamCaption}\item[{int}]{time }\end{DoxyParamCaption})}
+
+
+
+Resets the local timer to the specified time in seconds. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em time} & Timer limit in seconds.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Treevolution/\+Assets/\+Scripts/\+UI/UIController.\+cs\end{DoxyCompactItemize}
