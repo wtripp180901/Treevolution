@@ -47,7 +47,7 @@ jobs:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
       
       - name: Activate Unity License
-        run: Start-UnityEditor -Credential (New-Object System.Management.Automation.PSCredential ("$env:UNITY_EMAIL", (ConvertTo-SecureString "$env:UNITY_PASSWORD" -AsPlainText -Force))) -manualLicenseFile Unity_v2021.x.ulf -LogFile ./CILogs\Activation.log -AdditionalArguments "-verbose -nographics" -Wait -Verbose -ErrorAction SilentlyContinue
+        run: Start-UnityEditor -Credential (New-Object System.Management.Automation.PSCredential ("$env:UNITY_EMAIL", (ConvertTo-SecureString "$env:UNITY_PASSWORD" -AsPlainText -Force))) -manualLicenseFile "Unity_v2021.x.ulf" -LogFile ./CILogs\Activation.log -AdditionalArguments "-verbose -nographics" -Wait -Verbose -ErrorAction SilentlyContinue
         shell: pwsh
         env:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
