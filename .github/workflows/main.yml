@@ -8,7 +8,7 @@ jobs:
     name: Build Unity (UWP ARM64)
     runs-on: windows-latest
     env:
-      UNITY_VERSION: 2019.4.15f1
+      UNITY_VERSION: 2021.3.10f1
         
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -41,28 +41,28 @@ jobs:
           key: UnityCache-${{ env.UNITY_VERSION }}  
       
       - name: Activate Unity License
-        run: Start-UnityEditor -Credential (New-Object System.Management.Automation.PSCredential ("$env:UNITY_EMAIL", (ConvertTo-SecureString "$env:UNITY_PASSWORD" -AsPlainText -Force))) -Serial (ConvertTo-SecureString "$env:UNITY_LICENSE" -AsPlainText -Force) -LogFile ./Treevolution/Logs\Activation.log -AdditionalArguments "-verbose -nographics" -Wait -Verbose -ErrorAction SilentlyContinue
+        run: Start-UnityEditor -Credential (New-Object System.Management.Automation.PSCredential ("$env:UNITY_EMAIL", (ConvertTo-SecureString "$env:UNITY_PASSWORD" -AsPlainText -Force))) -Serial (ConvertTo-SecureString "$env:UNITY_LICENSE" -AsPlainText -Force) -LogFile ./CILogs\Activation.log -AdditionalArguments "-verbose -nographics" -Wait -Verbose -ErrorAction SilentlyContinue
         shell: pwsh
         env:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-        #continue-on-error: true # Can output errors even if activation is successful. Using -LogFile reports them as error. As an alternative, log silently as AdditionalArgument "-logFile ./Treevolution/Logs\Activation.log" instead.
+        #continue-on-error: true # Can output errors even if activation is successful. Using -LogFile reports them as error. As an alternative, log silently as AdditionalArgument "-logFile ./CILogs\Activation.log" instead.
 
       #- name: Build Unity Project
-       # run: Start-UnityEditor -Project ./Treevolution/ -ExecuteMethod Microsoft.MixedReality.Toolkit.Build.Editor.UnityPlayerBuildTools.StartCommandLineBuild -BuildTarget WSAPlayer -BatchMode -Quit -LogFile ./Treevolution/Logs\Build.log -Wait -AdditionalArguments "-verbose -nographics -logDirectory Logs -arm64" -Verbose
+       # run: Start-UnityEditor -Project ./Treevolution/ -ExecuteMethod Microsoft.MixedReality.Toolkit.Build.Editor.UnityPlayerBuildTools.StartCommandLineBuild -BuildTarget WSAPlayer -BatchMode -Quit -LogFile ./CILogs\Build.log -Wait -AdditionalArguments "-verbose -nographics -logDirectory Logs -arm64" -Verbose
         # Build with appx takes very long, do not use -Quit until https://github.com/microsoft/MixedRealityToolkit-Unity/issues/8901 is resolved
-        #run: Start-UnityEditor -Project ./Treevolution/ -ExecuteMethod Microsoft.MixedReality.Toolkit.Build.Editor.UnityPlayerBuildTools.StartCommandLineBuild -BuildTarget WSAPlayer -BatchMode -LogFile ./Treevolution/Logs\Build.log -Wait -AdditionalArguments "-verbose -nographics -logDirectory Logs -buildAppx -arm64" -Verbose
+        #run: Start-UnityEditor -Project ./Treevolution/ -ExecuteMethod Microsoft.MixedReality.Toolkit.Build.Editor.UnityPlayerBuildTools.StartCommandLineBuild -BuildTarget WSAPlayer -BatchMode -LogFile ./CILogs\Build.log -Wait -AdditionalArguments "-verbose -nographics -logDirectory Logs -buildAppx -arm64" -Verbose
         #shell: pwsh
         
-      - name: Build Unity Project
-        run: Start-UnityEditor -Project ./Treevolution/ -runTests -BatchMode -Quit -LogFile ./Treevolution/Logs\Build.log -Wait -AdditionalArguments "-verbose -nographics -logDirectory Logs -arm64" -Verbose
+      - name: Run Tests
+        run: Start-UnityEditor -Project ./Treevolution/ -runTests -BatchMode -Quit -LogFile ./CILogs\Build.log -Wait -AdditionalArguments "-verbose -nographics -logDirectory Logs -arm64" -Verbose
         # Build with appx takes very long, do not use -Quit until https://github.com/microsoft/MixedRealityToolkit-Unity/issues/8901 is resolved
-        #run: Start-UnityEditor -Project ./Treevolution/ -ExecuteMethod Microsoft.MixedReality.Toolkit.Build.Editor.UnityPlayerBuildTools.StartCommandLineBuild -BuildTarget WSAPlayer -BatchMode -LogFile ./Treevolution/Logs\Build.log -Wait -AdditionalArguments "-verbose -nographics -logDirectory Logs -buildAppx -arm64" -Verbose
+        #run: Start-UnityEditor -Project ./Treevolution/ -ExecuteMethod Microsoft.MixedReality.Toolkit.Build.Editor.UnityPlayerBuildTools.StartCommandLineBuild -BuildTarget WSAPlayer -BatchMode -LogFile ./CILogs\Build.log -Wait -AdditionalArguments "-verbose -nographics -logDirectory Logs -buildAppx -arm64" -Verbose
         #shell: pwsh
 
       - name: Return Unity License
-        run: Start-UnityEditor -Credential (New-Object System.Management.Automation.PSCredential ("$env:UNITY_EMAIL", (ConvertTo-SecureString "$env:UNITY_PASSWORD" -AsPlainText -Force))) -ReturnLicense -LogFile ./Treevolution/Logs\Deactivation.log -Wait -Verbose
+        run: Start-UnityEditor -Credential (New-Object System.Management.Automation.PSCredential ("$env:UNITY_EMAIL", (ConvertTo-SecureString "$env:UNITY_PASSWORD" -AsPlainText -Force))) -ReturnLicense -LogFile ./CILogs\Deactivation.log -Wait -Verbose
         shell: pwsh
         env:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
