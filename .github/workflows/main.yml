@@ -1,7 +1,7 @@
 # GitHub Actions CI for Unity Hololens 2 UWP running on windows.
 
 name: CI
-on: [push, pull_request, workflow_dispatch]
+on: [push, workflow_dispatch]
 
 jobs:
   build:
