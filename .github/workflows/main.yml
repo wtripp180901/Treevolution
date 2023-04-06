@@ -39,14 +39,19 @@ jobs:
         with:
           path: Library
           key: UnityCache-${{ env.UNITY_VERSION }}  
+        
+      - name: Write Secret to Activation file
+        run:
+          echo "$UNITY_LICENSE" > Unity_v2021.x.ulf
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
       
       - name: Activate Unity License
-        run: Start-UnityEditor -Credential (New-Object System.Management.Automation.PSCredential ("$env:UNITY_EMAIL", (ConvertTo-SecureString "$env:UNITY_PASSWORD" -AsPlainText -Force))) -Serial (ConvertTo-SecureString "$env:UNITY_SERIAL" -AsPlainText -Force) -LogFile ./CILogs\Activation.log -AdditionalArguments "-verbose -nographics" -Wait -Verbose -ErrorAction SilentlyContinue
+        run: Start-UnityEditor -Credential (New-Object System.Management.Automation.PSCredential ("$env:UNITY_EMAIL", (ConvertTo-SecureString "$env:UNITY_PASSWORD" -AsPlainText -Force))) -manualLicenseFile "$env:UNITY_LICENSE" -LogFile ./CILogs\Activation.log -AdditionalArguments "-verbose -nographics" -Wait -Verbose -ErrorAction SilentlyContinue
         shell: pwsh
         env:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
         #continue-on-error: true # Can output errors even if activation is successful. Using -LogFile reports them as error. As an alternative, log silently as AdditionalArgument "-logFile ./CILogs\Activation.log" instead.
 
       #- name: Build Unity Project
