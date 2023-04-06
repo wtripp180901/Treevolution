@@ -4,10 +4,16 @@ using Microsoft.MixedReality.Toolkit;
 using Microsoft.MixedReality.Toolkit.Input;
 using UnityEngine;
 
-public class PointerLocationTracker : MonoBehaviour
+public class PointerLocationTracker : MonoBehaviour, IMixedRealityGestureHandler
 {
     public GameObject pointer;
     private int mask = 1 << 8;
+
+    void Start()
+    {
+        CoreServices.InputSystem?.RegisterHandler<IMixedRealityGestureHandler>(this);
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -54,15 +60,17 @@ public class PointerLocationTracker : MonoBehaviour
     public void FinishSampling()
     {
         isSampling = false;
+        if (locationSamples.Count == 0) locationSamples.Add(pointer.transform.position);
     }
 
 
     /// <summary>
     /// Creates a sample of the pointers location at the time of calling. To be called by the DictationHandler's OnDictationHypothesis event
     /// </summary>
-    public void SampleLocation()
+    void SampleLocation()
     {
         locationSamples.Add(pointer.transform.position);
+        GameObject.FindWithTag("MoveToMarker").transform.position = pointer.transform.position;
     }
 
     /// <summary>
@@ -78,4 +86,19 @@ public class PointerLocationTracker : MonoBehaviour
         Instantiate(GameObject.FindWithTag("MoveToMarker"),locationSamples[index],Quaternion.identity);
         return locationSamples[index];
     }
+
+    public void OnGestureStarted(InputEventData eventData) { }
+
+    public void OnGestureUpdated(InputEventData eventData) { }
+
+    public MixedRealityInputAction tapAction;
+    public void OnGestureCompleted(InputEventData eventData)
+    {
+        if (eventData.MixedRealityInputAction == tapAction)
+        {
+            SampleLocation();
+        }
+    }
+
+    public void OnGestureCanceled(InputEventData eventData) { }
 }
