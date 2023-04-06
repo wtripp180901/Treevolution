@@ -5,7 +5,7 @@ on: [push, workflow_dispatch]
 
 jobs:
   build:
-    name: Build Unity (UWP ARM64)
+    name: Run Tests for Unity Hololens Build (UWP ARM64)
     runs-on: windows-latest
     env:
       UNITY_VERSION: 2021.3.10f1
