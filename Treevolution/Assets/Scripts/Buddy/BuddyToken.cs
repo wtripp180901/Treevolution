@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum TOKEN_TYPES { Action, Subject, Connective, Error }
+public enum TOKEN_TYPES { Action, Subject, Connective, Restriction, Error }
+public enum RESTRICTION_TYPES { Grounded, Flying, Left, Right, Armoured, Unarmoured, CloseTo }
 public abstract class BuddyToken
 {
     public readonly TOKEN_TYPES tokenType;
@@ -28,6 +29,15 @@ public class SubjectBuddyToken : BuddyToken
     public SubjectBuddyToken(BUDDY_SUBJECT_TYPES subjectType) : base(TOKEN_TYPES.Subject)
     {
         this.subjectType = subjectType;
+    }
+}
+
+public class RestrictionBuddyToken : BuddyToken
+{
+    public readonly RESTRICTION_TYPES restrictionType;
+    public RestrictionBuddyToken(RESTRICTION_TYPES restrictionType) : base(TOKEN_TYPES.Restriction)
+    {
+        this.restrictionType = restrictionType;
     }
 }
 

@@ -10,3 +10,15 @@ here
 conjunction
 Connective
 and then
+pronoun
+Objective Singular Pronoun
+it him her
+pronoun
+Subject Singular Pronoun
+this that
+pronoun
+Subject Plural Pronoun
+those these
+pronoun
+Objective Plural Pronoun
+them
