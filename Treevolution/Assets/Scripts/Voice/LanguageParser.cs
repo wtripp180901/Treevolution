@@ -43,7 +43,7 @@ public class LanguageParser
 
     List<BuddyToken> tokenStream = new List<BuddyToken>();
 
-    public IEnumerator GetInstructionStream(string[] words)
+    public IEnumerator GetInstructionStream(string[] words,Action<List<BuddyAction>> callback)
     {
 
         foreach(string rawWord in words)
@@ -70,7 +70,7 @@ public class LanguageParser
                 Debug.Log("strange character");
             }
         }
-        GameObject.FindWithTag("Logic").GetComponent<VoiceCommandReceiver>().HandleDictationProcessingResults(getInstructionsFromTokens());
+        callback(getInstructionsFromTokens());
     }
 
     List<BuddyAction> getInstructionsFromTokens()

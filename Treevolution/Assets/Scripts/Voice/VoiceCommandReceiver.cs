@@ -73,7 +73,7 @@ public class VoiceCommandReceiver : MonoBehaviour
             finishDictation();
             uiController.ShowDictation(dictation);
             string[] words = dictation.Split(' ');
-            if (words.Length > 0) StartCoroutine(new LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(words));
+            if (words.Length > 0) StartCoroutine(new LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(words,HandleDictationProcessingResults));
         }catch(Exception e)
         {
             uiController.ShowDictation(e.Message);

@@ -68,6 +68,14 @@ public class WordTokenMapper
                 return new SubjectBuddyToken(BUDDY_SUBJECT_TYPES.PointerLocation);
             case "Connective":
                 return new ConnectiveBuddyToken();
+            case "Objective Singular Pronoun":
+                return new RestrictionBuddyToken(RESTRICTION_TYPES.Grounded);
+            case "Subject Singular Pronoun":
+                return new RestrictionBuddyToken(RESTRICTION_TYPES.Flying);
+            case "Objective Plural Pronoun":
+                return new RestrictionBuddyToken(RESTRICTION_TYPES.Armoured);
+            case "Subject Plural Pronoun":
+                return new RestrictionBuddyToken(RESTRICTION_TYPES.Unarmoured);
             default:
                 Debug.Log(toConvert + " not mapped in stringToToken");
                 return null;
