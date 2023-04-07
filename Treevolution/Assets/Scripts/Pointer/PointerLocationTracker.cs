@@ -17,20 +17,23 @@ public class PointerLocationTracker : MonoBehaviour, IMixedRealityGestureHandler
     // Update is called once per frame
     void FixedUpdate()
     {
-        foreach(IMixedRealityInputSource s in CoreServices.InputSystem.DetectedInputSources)
+        if (CoreServices.InputSystem != null)
         {
-            if(s.SourceType == InputSourceType.Hand)
+            foreach (IMixedRealityInputSource s in CoreServices.InputSystem.DetectedInputSources)
             {
-                foreach(IMixedRealityPointer p in s.Pointers)
+                if (s.SourceType == InputSourceType.Hand)
                 {
-                    if(!(p is IMixedRealityNearPointer) && p.Result != null)
+                    foreach (IMixedRealityPointer p in s.Pointers)
                     {
-                        //pointer.transform.position = p.Result.Details.Point;
-                        Ray ray = new Ray(p.Position, p.Result.Details.Point - p.Position);
-                        RaycastHit hit;
-                        if (Physics.Raycast(ray, out hit,Mathf.Infinity,mask))
+                        if (!(p is IMixedRealityNearPointer) && p.Result != null)
                         {
-                            pointer.transform.position = hit.point;
+                            //pointer.transform.position = p.Result.Details.Point;
+                            Ray ray = new Ray(p.Position, p.Result.Details.Point - p.Position);
+                            RaycastHit hit;
+                            if (Physics.Raycast(ray, out hit, Mathf.Infinity, mask))
+                            {
+                                pointer.transform.position = hit.point;
+                            }
                         }
                     }
                 }
