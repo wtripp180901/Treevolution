@@ -16,8 +16,8 @@ public class DictationTests
         setupBasicMovementScene(out pointer);
 
         List<BuddyAction> result = null;
-        yield return new LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(new string[]{ "go", "here."}, (x => result = x));
-        Assert.AreEqual(result[0].location, pointer.transform.position);
+        yield return new LanguageParsing.LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(new string[]{ "go", "here."}, (x => result = x));
+        Assert.AreEqual(((MoveBuddyAction)result[0]).location, pointer.transform.position);
     }
 
     [UnityTest]
@@ -27,8 +27,8 @@ public class DictationTests
         setupBasicMovementScene(out pointer);
 
         List<BuddyAction> result = null;
-        yield return new LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(new string[] { "proceed", "here." }, (x => result = x));
-        Assert.AreEqual(result[0].location, pointer.transform.position);
+        yield return new LanguageParsing.LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(new string[] { "proceed", "here." }, (x => result = x));
+        Assert.AreEqual(((MoveBuddyAction)result[0]).location, pointer.transform.position);
     }
 
     void setupBasicMovementScene(out GameObject pointer)

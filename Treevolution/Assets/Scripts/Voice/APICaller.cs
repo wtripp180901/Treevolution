@@ -16,85 +16,74 @@ public class SynonymsObject
     public string[] shortdef;
 }*/
 
-public struct SynonymData
+namespace LanguageParsing
 {
-    public string partOfWord;
-    public string[] synonyms;
 
-    public SynonymData(string partOfWord,string[] synonyms)
+    public struct SynonymData
     {
-        this.partOfWord = partOfWord;
-        this.synonyms = synonyms;
-    }
-}
+        public string partOfWord;
+        public string[] synonyms;
 
-public class ThesaurusAPICaller
-{
-    const string meta = "meta";
-    const string fl = "fl";
-    const string syns = "syns";
-
-    string baseUrl = "https://www.dictionaryapi.com/api/v3/references/thesaurus/json/";
-    string apiKey;
-    public ThesaurusAPICaller(string keyFile)
-    {
-        try
+        public SynonymData(string partOfWord, string[] synonyms)
         {
-            apiKey = Resources.Load<TextAsset>(keyFile).text;
-        }catch(Exception e)
-        {
-            Debug.Log("If you're seeing this error, ask Will for the API key!");
+            this.partOfWord = partOfWord;
+            this.synonyms = synonyms;
         }
     }
 
-    public IEnumerator GetSynonyms(string word,Func<List<SynonymData>,IEnumerator> callback)
+    class ThesaurusAPICaller
     {
-        UnityWebRequest request = UnityWebRequest.Get(getUrl(word));
-        yield return request.SendWebRequest();
-        if (request.result == UnityWebRequest.Result.Success)
+        const string meta = "meta";
+        const string fl = "fl";
+        const string syns = "syns";
+
+        string baseUrl = "https://www.dictionaryapi.com/api/v3/references/thesaurus/json/";
+        string apiKey;
+        public ThesaurusAPICaller(string keyFile)
         {
-            List<SynonymData> homographSynonyms = new List<SynonymData>();
             try
             {
-                JArray result = JArray.Parse(request.downloadHandler.text);
-                for(int homograph = 0;homograph < result.Count; homograph++)
-                {
-                    homographSynonyms.Add(new SynonymData(result[homograph][fl].ToString(), result[homograph][meta][syns][0].ToObject<string[]>()));
-                }
-                
-            }catch (Exception e)
-            {
-                Debug.Log("API parsing error: " + e.Message);
+                apiKey = Resources.Load<TextAsset>(keyFile).text;
             }
-            yield return callback(homographSynonyms);
-        }
-        else
-        {
-            Debug.Log(word +" web request failed: "+request.result);
-            yield return callback(null);
-        }
-        /*if(request.result == UnityWebRequest.Result.Success)
-        {
-            JArray data = JArray.Parse(request.downloadHandler.text);
-            for(int i = 0;i < data.Count; i++)
+            catch (Exception e)
             {
-                if(data[i]["fl"].ToString() == desiredFuncLabel)
-                {
-                    GameObject.FindWithTag("Logic").GetComponent<VoiceCommandReceiver>().HandleDictationProcessingResults(
-                        JArray.Parse(request.downloadHandler.text)[i]["meta"]["syns"][0].ToObject<string[]>()
-                    );
-                }
+                Debug.Log("If you're seeing this error, ask Will for the API key!");
             }
-            
         }
-        else
+
+        public IEnumerator GetSynonyms(string word, Func<List<SynonymData>, IEnumerator> callback)
         {
-            Debug.Log("Thesaurus error");
-        }*/
+            UnityWebRequest request = UnityWebRequest.Get(getUrl(word));
+            yield return request.SendWebRequest();
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                List<SynonymData> homographSynonyms = new List<SynonymData>();
+                try
+                {
+                    JArray result = JArray.Parse(request.downloadHandler.text);
+                    for (int homograph = 0; homograph < result.Count; homograph++)
+                    {
+                        homographSynonyms.Add(new SynonymData(result[homograph][fl].ToString(), result[homograph][meta][syns][0].ToObject<string[]>()));
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Debug.Log("API parsing error: " + e.Message);
+                }
+                yield return callback(homographSynonyms);
+            }
+            else
+            {
+                Debug.Log(word + " web request failed: " + request.result);
+                yield return callback(null);
+            }
+        }
+
+        string getUrl(string word)
+        {
+            return baseUrl + word + "?key=" + apiKey;
+        }
     }
 
-    string getUrl(string word)
-    {
-        return baseUrl + word + "?key=" + apiKey;
-    }
 }

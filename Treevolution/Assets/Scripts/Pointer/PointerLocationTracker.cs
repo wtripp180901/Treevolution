@@ -9,6 +9,9 @@ public class PointerLocationTracker : MonoBehaviour, IMixedRealityGestureHandler
     public GameObject pointer;
     private int mask = 1 << 8;
 
+    [SerializeField] private float _ClosenessThreshold = 0.2f;
+    public float ClosenessThreshold { get { return _ClosenessThreshold; } }
+
     void Start()
     {
         CoreServices.InputSystem?.RegisterHandler<IMixedRealityGestureHandler>(this);
