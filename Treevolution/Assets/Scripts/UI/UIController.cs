@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 
 /// <summary>
 /// Controls the instantiation and removal of UI elements.
@@ -343,13 +344,13 @@ public class UIController : MonoBehaviour
     public void ShowDictation(string dictation)
     {
         dictationText.text = dictation;
-        //StartCoroutine(clearTextAfterDelay(3, dictationText));
+        StartCoroutine(clearTextAfterDelay(3, dictationText));
     }
 
-    /*IEnumerator clearTextAfterDelay(int delay,TMP_Text text)
+    IEnumerator clearTextAfterDelay(int delay,TMP_Text text)
     {
         yield return new WaitForSeconds(delay);
         text.text = "";
-    }*/
+    }
 }
 

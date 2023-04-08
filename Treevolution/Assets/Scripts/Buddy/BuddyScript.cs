@@ -35,13 +35,22 @@ public class BuddyScript : MonoBehaviour
             {
                 isok = false;
                 //getpath
-                 pos=Pathfinding.Pathfinder.GetPath(transform.position,temp.location,false);
+                 pos=Pathfinding.Pathfinder.GetPath(transform.position,((MoveBuddyAction)temp).location,false);
                 Currentpos = 0;
                 if (pos != null && pos.Length > 0) directionVector = getNewDirectionVector(pos[0]);
                 //StartCoroutine(Delay(2f, () =>
                 //{
 
                 //}));
+            }
+            if(temp.actionType == BUDDY_ACTION_TYPES.Attack)
+            {
+                GameObject[] targets = ((TargetedBuddyAction)temp).targets;
+                for(int i = 0;i < targets.Length; i++)
+                {
+                    Debug.DrawLine(targets[i].transform.position, targets[i].transform.position + new Vector3(0, 1, 0),Color.red,5);
+                }
+                isok = true;
             }
             
         }

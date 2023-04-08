@@ -392,6 +392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointer: {fileID: 1390908068}
+  _ClosenessThreshold: 0.4
   tapAction:
     id: 1
     description: Select

@@ -4,174 +4,174 @@ using UnityEngine;
 using Newtonsoft.Json.Linq;
 using System;
 
-public class LanguageParser
+namespace LanguageParsing
 {
-
-    WordTokenMapper WordTokenMapper;
-    ThesaurusAPICaller APICaller = new ThesaurusAPICaller("APIKey");
-
-    public LanguageParser(string rawBasewordData)
+    /// <summary>
+    /// Entrypoint class for converting recorded dictation into a stream of BuddyActions
+    /// </summary>
+    public class LanguageParser
     {
-        WordTokenMapper = new WordTokenMapper(rawBasewordData);
-    }
 
-    /*public List<BuddyAction> GetInstructionStream(JArray[] wordData)
-    {
-        List<BuddyAction> instructions = new List<BuddyAction>();
-        for (int i = 0; i < wordData.Length; i++)
+        WordTokenMapper WordTokenMapper;
+        ThesaurusAPICaller APICaller = new ThesaurusAPICaller("APIKey");
+        ActionResolver actionResolver = new ActionResolver();
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="rawBasewordData">The result of TextAsset.text from the TextAsset of basewords.txt via Resources.Load()</param>
+        public LanguageParser(string rawBasewordData)
         {
-            Dictionary<string, List<string>> synonymsOfFunctionalLabel = new Dictionary<string, List<string>>();
-            getSynonymsForEachFunctionalLabel(wordData[i], synonymsOfFunctionalLabel);
-            foreach(string key in synonymsOfFunctionalLabel.Keys)
-            {
-                switch (key)
-                {
-                    case "verb":
-                        List<string> synonyms;
-                        if(synonymsOfFunctionalLabel.TryGetValue(key,out synonyms))
-                        {
-                            if (synonyms.Contains("go")) instructions.Add(new BuddyAction(BUDDY_ACTION_TYPES.Move, new Vector3(0, 0, 0)));
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            }
+            WordTokenMapper = new WordTokenMapper(rawBasewordData);
         }
-        return instructions;
-    }*/
 
-    List<BuddyToken> tokenStream = new List<BuddyToken>();
+        List<BuddyToken> tokenStream = new List<BuddyToken>();
 
-    public IEnumerator GetInstructionStream(string[] words,Action<List<BuddyAction>> callback)
-    {
-
-        foreach(string rawWord in words)
+        /// <summary>
+        /// Converts recorded dictation into an ordered list of BuddyActions
+        /// </summary>
+        /// <param name="words">The dictation result separated by spaces</param>
+        /// <param name="callback">A callback function to handle the resulting list of BuddyActions when they arrive</param>
+        /// <returns></returns>
+        public IEnumerator GetInstructionStream(string[] words, Action<List<BuddyAction>> callback)
         {
-            string word = sanitiseInput(rawWord);
-            if (word.Length > 0)
+
+            foreach (string rawWord in words)
             {
-                BuddyToken token;
-                if (WordTokenMapper.GetTokenIfMatched(word, out token))
+                string word = sanitiseInput(rawWord);
+                if (word.Length > 0)
                 {
-                    //Word is known
-                    tokenStream.Add(token);
-                    yield return null;
+                    BuddyToken token;
+                    if (WordTokenMapper.GetTokenIfMatched(word, out token))
+                    {
+                        //Word is known
+                        tokenStream.Add(token);
+                        yield return null;
+                    }
+                    else
+                    {
+                        //Word is unknown, test if any of it's synonyms match known words
+                        yield return APICaller.GetSynonyms(word, synonymAPICallResults);
+                        //Rest of exection defered to APICaller.GetSynonyms and synonymAPICallResults
+                    }
                 }
                 else
                 {
-                    //Word is unknown, test if any of it's synonyms match known words
-                    yield return APICaller.GetSynonyms(word, synonymAPICallResults);
-                    //Rest of exection defered to APICaller.GetSynonyms and synonymAPICallResults
+                    Debug.Log("strange character");
                 }
             }
-            else
-            {
-                Debug.Log("strange character");
-            }
+            callback(getInstructionsFromTokens());
         }
-        callback(getInstructionsFromTokens());
-    }
 
-    List<BuddyAction> getInstructionsFromTokens()
-    {
-        List<BuddyAction> instructions = new List<BuddyAction>();
-        bool resolvingAction = false;
-        bool connectiveMode = false;
-        BUDDY_ACTION_TYPES actionToResolve= BUDDY_ACTION_TYPES.Error;
-        BUDDY_SUBJECT_TYPES lastSubject = BUDDY_SUBJECT_TYPES.Error;
-        for(int i = 0;i < tokenStream.Count;i++)
-        {
-            BuddyToken token = tokenStream[i];
-            switch (token.tokenType)
-            {
-                case TOKEN_TYPES.Action:
-                    if (resolvingAction)
-                    {
-                        //Handle unresolved tokens
-                    }
-                    resolvingAction = true;
-                    actionToResolve = ((ActionBuddyToken)token).actionType;
-                    break;
-                case TOKEN_TYPES.Subject:
-                    if (resolvingAction)
-                    {
-                        lastSubject = BUDDY_SUBJECT_TYPES.PointerLocation;
-                        instructions.Add(new BuddyAction(actionToResolve, getSubject(lastSubject,i)));
-                        resolvingAction = false;
-                    }
-                    break;
-                case TOKEN_TYPES.Connective:
-                    connectiveMode = true;
-                    break;
-            }
-        }
-        return instructions;
-    }
 
-    Vector3 getSubject(BUDDY_SUBJECT_TYPES subjectType,int index)
-    {
-        switch (subjectType)
+        /// <summary>
+        /// Parses ordered list of BuddyTokens into BuddyActions
+        /// </summary>
+        /// <returns></returns>
+        List<BuddyAction> getInstructionsFromTokens()
         {
-            case BUDDY_SUBJECT_TYPES.PointerLocation:
-                Vector3 pointer = GameObject.FindWithTag("Logic").GetComponent<PointerLocationTracker>().GetSampleAtWordIndex(index);
-                return pointer;
-        }
-        return new Vector3(0,0,0);
-    }
-
-    string sanitiseInput(string word)
-    {
-        string output = "";
-        foreach(char c in word)
-        {
-            if(c != '.' && c != ',' && c != '!' && c != '?')
+            List<BuddyAction> instructions = new List<BuddyAction>();
+            bool resolvingAction = false;
+            bool connectiveMode = false;
+            BUDDY_ACTION_TYPES actionToResolve = BUDDY_ACTION_TYPES.Error;
+            BUDDY_SUBJECT_TYPES lastSubject = BUDDY_SUBJECT_TYPES.Error;
+            for (int i = 0; i < tokenStream.Count; i++)
             {
-                output = output + c;
-            }
-        }
-        return output;
-    }
-    public IEnumerator synonymAPICallResults(List<SynonymData> results)
-    {
-        if (results != null && results.Count > 0)
-        {
-            Dictionary<string, List<string>> synonymsOfFunctionalLabel = new Dictionary<string, List<string>>();
-            getSynonymsForEachFunctionalLabel(results, synonymsOfFunctionalLabel);
-            foreach (string fl in synonymsOfFunctionalLabel.Keys)
-            {
-                List<string> flWords;
-                synonymsOfFunctionalLabel.TryGetValue(fl, out flWords);
-                BuddyToken token;
-                if (WordTokenMapper.GetTokenIfSynonymsMatchCachedWords(fl, flWords, out token))
+                BuddyToken token = tokenStream[i];
+                switch (token.tokenType)
                 {
-                    tokenStream.Add(token);
+                    case TOKEN_TYPES.Action:
+                        if (resolvingAction)
+                        {
+                            //Handle unresolved tokens
+                        }
+                        resolvingAction = true;
+                        actionToResolve = ((ActionBuddyToken)token).actionType;
+                        break;
+                    case TOKEN_TYPES.Subject:
+                        if (resolvingAction)
+                        {
+                            lastSubject = ((SubjectBuddyToken)token).subjectType;
+                            //instructions.Add(new BuddyAction(actionToResolve, getSubject(lastSubject, i)));
+                            BuddyAction resolvedAction = actionResolver.ResolveAction(actionToResolve, lastSubject, new RESTRICTION_TYPES[] { });
+                            if(resolvedAction != null) instructions.Add(resolvedAction);
+                            resolvingAction = false;
+                        }
+                        break;
+                    case TOKEN_TYPES.Connective:
+                        connectiveMode = true;
+                        break;
                 }
             }
+            return instructions;
         }
-        yield return null;
+
+        string sanitiseInput(string word)
+        {
+            string output = "";
+            foreach (char c in word)
+            {
+                if (c != '.' && c != ',' && c != '!' && c != '?')
+                {
+                    output = output + c;
+                }
+            }
+            return output;
+        }
+
+        /// <summary>
+        /// A callback function handling the results of an API call to a Thesaurus. Adds tokens to the current list if the synonyms contain any items from basewords.txt
+        /// </summary>
+        /// <param name="results">The synonyms identified by the API call</param>
+        /// <returns></returns>
+        public IEnumerator synonymAPICallResults(List<SynonymData> results)
+        {
+            if (results != null && results.Count > 0)
+            {
+                Dictionary<string, List<string>> synonymsOfFunctionalLabel = new Dictionary<string, List<string>>();
+                getSynonymsForEachFunctionalLabel(results, synonymsOfFunctionalLabel);
+                foreach (string fl in synonymsOfFunctionalLabel.Keys)
+                {
+                    List<string> flWords;
+                    synonymsOfFunctionalLabel.TryGetValue(fl, out flWords);
+                    BuddyToken token;
+                    if (WordTokenMapper.GetTokenIfSynonymsMatchCachedWords(fl, flWords, out token))
+                    {
+                        tokenStream.Add(token);
+                    }
+                }
+            }
+            yield return null;
+        }
+
+
+        /// <summary>
+        /// Helper function for synonymAPICallResults which initialises a dictionary of synonyms of a word organised by their functional labels
+        /// </summary>
+        /// <param name="homographSynonyms">The synonyms of one homograph of the word</param>
+        /// <param name="synonymsOfFunctionalLabel">Dictionary to initialise</param>
+        private void getSynonymsForEachFunctionalLabel(List<SynonymData> homographSynonyms, Dictionary<string, List<string>> synonymsOfFunctionalLabel)
+        {
+            for (int homograph = 0; homograph < homographSynonyms.Count; homograph++)
+            {
+                List<string> synonyms;
+                string partOfWord = homographSynonyms[homograph].partOfWord;
+                if (synonymsOfFunctionalLabel.TryGetValue(partOfWord, out synonyms))
+                {
+                    synonyms.AddRange(homographSynonyms[homograph].synonyms);
+                }
+                else
+                {
+                    synonyms = new List<string>();
+                    synonyms.AddRange(homographSynonyms[homograph].synonyms);
+                    synonymsOfFunctionalLabel.Add(partOfWord, synonyms);
+                }
+                /*if (wordData[i][j]["fl"].ToString() == "noun")
+                {
+                    GetComponent<UIController>().ShowDictation(wordData[i][j]["meta"]["id"] + " " + wordData[i][j]["meta"]["syns"][0].ToObject<string[]>()[0]);
+                }*/
+            }
+        }
     }
 
-    private void getSynonymsForEachFunctionalLabel(List<SynonymData> homographSynonyms, Dictionary<string, List<string>> synonymsOfFunctionalLabel)
-    {
-        for (int homograph = 0; homograph < homographSynonyms.Count; homograph++)
-        {
-            List<string> synonyms;
-            string partOfWord = homographSynonyms[homograph].partOfWord;
-            if (synonymsOfFunctionalLabel.TryGetValue(partOfWord, out synonyms))
-            {
-                synonyms.AddRange(homographSynonyms[homograph].synonyms);
-            }
-            else
-            {
-                synonyms = new List<string>();
-                synonyms.AddRange(homographSynonyms[homograph].synonyms);
-                synonymsOfFunctionalLabel.Add(partOfWord, synonyms);
-            }
-            /*if (wordData[i][j]["fl"].ToString() == "noun")
-            {
-                GetComponent<UIController>().ShowDictation(wordData[i][j]["meta"]["id"] + " " + wordData[i][j]["meta"]["syns"][0].ToObject<string[]>()[0]);
-            }*/
-        }
-    }
 }
