@@ -31,6 +31,9 @@ namespace LanguageParsing
         }
     }
 
+    /// <summary>
+    /// Used for returning data from API calls to synonym APIs
+    /// </summary>
     class ThesaurusAPICaller
     {
         const string meta = "meta";
@@ -51,6 +54,12 @@ namespace LanguageParsing
             }
         }
 
+        /// <summary>
+        /// Gets synonyms of a word and returns them using a callback function once completed as a Coroutine
+        /// </summary>
+        /// <param name="word">The word synonyms are being requested for</param>
+        /// <param name="callback">The function data will be returned to once the Coroutine finishes</param>
+        /// <returns></returns>
         public IEnumerator GetSynonyms(string word, Func<List<SynonymData>, IEnumerator> callback)
         {
             UnityWebRequest request = UnityWebRequest.Get(getUrl(word));

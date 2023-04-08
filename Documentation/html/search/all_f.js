@@ -13,9 +13,13 @@ var searchData=
   ['startmenu_10',['StartMenu',['../class_start_menu_logic.html#abaa6dd5f7baea9b756067b0d3e8b6a1e',1,'StartMenuLogic']]],
   ['startmenulogic_11',['StartMenuLogic',['../class_start_menu_logic.html',1,'']]],
   ['startqr_12',['StartQR',['../class_q_r_detection.html#adcc7802da95f364fbb13fcf81e00b029',1,'QRDetection']]],
-  ['starttimer_13',['StartTimer',['../class_round_timer.html#aa302dba6ab858aceeaf08c40fd065992',1,'RoundTimer']]],
-  ['starttimerevent_14',['StartTimerEvent',['../class_round_timer.html#afb213ab2abf1acc49778850658d9f118',1,'RoundTimer']]],
-  ['stopqr_15',['StopQR',['../class_q_r_detection.html#aeaf9d3e90f853d04fdf98ea2ba6658b2',1,'QRDetection']]],
-  ['stoptimer_16',['StopTimer',['../class_round_timer.html#a1212411b69fff7fec357818e3e2fbde4',1,'RoundTimer']]],
-  ['stoptimerevent_17',['StopTimerEvent',['../class_round_timer.html#ae9d6dbabec1d06c930a3e27c69daad49',1,'RoundTimer']]]
+  ['startsampling_13',['StartSampling',['../class_pointer_location_tracker.html#a59f1321500ab4bec66dfa4365f55f130',1,'PointerLocationTracker']]],
+  ['starttimer_14',['StartTimer',['../class_round_timer.html#aa302dba6ab858aceeaf08c40fd065992',1,'RoundTimer']]],
+  ['starttimerevent_15',['StartTimerEvent',['../class_round_timer.html#afb213ab2abf1acc49778850658d9f118',1,'RoundTimer']]],
+  ['stopqr_16',['StopQR',['../class_q_r_detection.html#aeaf9d3e90f853d04fdf98ea2ba6658b2',1,'QRDetection']]],
+  ['stoptimer_17',['StopTimer',['../class_round_timer.html#a1212411b69fff7fec357818e3e2fbde4',1,'RoundTimer']]],
+  ['stoptimerevent_18',['StopTimerEvent',['../class_round_timer.html#ae9d6dbabec1d06c930a3e27c69daad49',1,'RoundTimer']]],
+  ['subjectbuddytoken_19',['SubjectBuddyToken',['../class_subject_buddy_token.html',1,'']]],
+  ['synonymapicallresults_20',['synonymAPICallResults',['../class_language_parsing_1_1_language_parser.html#a294603613da6140fa707d9c6f0b6d0a9',1,'LanguageParsing::LanguageParser']]],
+  ['synonymdata_21',['SynonymData',['../struct_language_parsing_1_1_synonym_data.html',1,'LanguageParsing']]]
 ];

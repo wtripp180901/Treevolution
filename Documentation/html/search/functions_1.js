@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['calibrationpopup_0',['CalibrationPopUp',['../class_u_i_controller.html#a8531008b50c148d2a037c30f4d5106c1',1,'UIController']]],
-  ['calibrationsuccess_1',['CalibrationSuccess',['../class_game_state_manager.html#ad63150334041b7ad11f224aa21942875',1,'GameStateManager']]],
-  ['calibrationsuccesspopup_2',['CalibrationSuccessPopUp',['../class_u_i_controller.html#a8e1d28ddcf235500e39220969c2a1830',1,'UIController']]],
-  ['continuetutorialbattle_3',['ContinueTutorialBattle',['../class_game_state_manager.html#ab424c6a483bddbcbe9a655e92eea04c5',1,'GameStateManager']]]
+  ['beginbattle_0',['BeginBattle',['../class_game_state_manager.html#a2d785142b62053298c77e0185cc44960',1,'GameStateManager']]],
+  ['beginround_1',['BeginRound',['../class_game_state_manager.html#a5c77b16a6569b6c55dd0be4242af2b77',1,'GameStateManager']]],
+  ['begintutorial_2',['BeginTutorial',['../class_game_state_manager.html#a8b391d772cdff200ea5d7bad29d563ae',1,'GameStateManager']]],
+  ['begintutorialbattle_3',['BeginTutorialBattle',['../class_game_state_manager.html#a26a3cd48dc86a446bbb8e11f3c39738f',1,'GameStateManager']]],
+  ['begintutorialplan_4',['BeginTutorialPlan',['../class_game_state_manager.html#a6e7a398b1b24e9e7a0dd979c5bdd2086',1,'GameStateManager']]]
 ];

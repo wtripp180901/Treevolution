@@ -4,10 +4,21 @@ using UnityEngine;
 using System.Linq;
 
 namespace LanguageParsing
-{ 
+{
+    /// <summary>
+    /// Maps data provided by LanguageParser to concrete objects in the scene and returns them as BuddyActions
+    /// </summary>
     class ActionResolver
     {
         int moveActionIndex = 0;
+        
+        /// <summary>
+        /// Maps data provided by LanguageParser to concrete objects in the scene and returns them as BuddyActions
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="subject"></param>
+        /// <param name="restrictions"></param>
+        /// <returns></returns>
         public BuddyAction ResolveAction(BUDDY_ACTION_TYPES action,BUDDY_SUBJECT_TYPES subject,RESTRICTION_TYPES[] restrictions)
         {
             if(action == BUDDY_ACTION_TYPES.Move)
