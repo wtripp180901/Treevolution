@@ -117,6 +117,11 @@ public class EnemyManager : MonoBehaviour
         Debug.DrawLine(spawnAxes.origin, spawnAxes.origin + spawnAxes.horz, Color.white, 1000);
     }
 
+    public void AddToSceneAsEnemyForTest(GameObject enemy)
+    {
+        _enemies.Add(enemy);
+    }
+
     private List<GameStateManager.EnemyType> unpackEnemies(Dictionary<GameStateManager.EnemyType, int> enemies)
     {
         List<GameStateManager.EnemyType> enemyPool = new List<GameStateManager.EnemyType>();

@@ -70,7 +70,9 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#properties">Properties</a> &#124;
 <a href="class_pointer_location_tracker-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">PointerLocationTracker Class Reference</div></div>
 </div><!--header-->
@@ -82,14 +84,77 @@ Inheritance diagram for PointerLocationTracker:</div>
   <img src="class_pointer_location_tracker.png" alt=""/>
  </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a59f1321500ab4bec66dfa4365f55f130"><td class="memItemLeft" align="right" valign="top"><a id="a59f1321500ab4bec66dfa4365f55f130" name="a59f1321500ab4bec66dfa4365f55f130"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>StartSampling</b> ()</td></tr>
+<tr class="memdesc:a59f1321500ab4bec66dfa4365f55f130"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears previously sampled pointer locations and locks access to sampling list in preparation for new sampling session. <br /></td></tr>
+<tr class="separator:a59f1321500ab4bec66dfa4365f55f130"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a662c91d9d4cd4edff43d6f8bb1294a65"><td class="memItemLeft" align="right" valign="top"><a id="a662c91d9d4cd4edff43d6f8bb1294a65" name="a662c91d9d4cd4edff43d6f8bb1294a65"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>FinishSampling</b> ()</td></tr>
+<tr class="memdesc:a662c91d9d4cd4edff43d6f8bb1294a65"><td class="mdescLeft">&#160;</td><td class="mdescRight">End sampling session, allowing a new one to safely clear previous samples and begin. <br /></td></tr>
+<tr class="separator:a662c91d9d4cd4edff43d6f8bb1294a65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad071c419ee4393f8ffec608215402c6"><td class="memItemLeft" align="right" valign="top">Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pointer_location_tracker.html#aad071c419ee4393f8ffec608215402c6">GetSampleAtWordIndex</a> (int wordIndex)</td></tr>
+<tr class="memdesc:aad071c419ee4393f8ffec608215402c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the pointer location sampled on the wordIndex'th word during the last buddy command recording session.  <br /></td></tr>
+<tr class="separator:aad071c419ee4393f8ffec608215402c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82004d1163d185e17d126420a277aa5b"><td class="memItemLeft" align="right" valign="top"><a id="a82004d1163d185e17d126420a277aa5b" name="a82004d1163d185e17d126420a277aa5b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>OnGestureStarted</b> (InputEventData eventData)</td></tr>
+<tr class="separator:a82004d1163d185e17d126420a277aa5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82feb53197ea881442468804e6f38031"><td class="memItemLeft" align="right" valign="top"><a id="a82feb53197ea881442468804e6f38031" name="a82feb53197ea881442468804e6f38031"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>OnGestureUpdated</b> (InputEventData eventData)</td></tr>
+<tr class="separator:a82feb53197ea881442468804e6f38031"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad7d8700fbb6c1edb08358bf77e4b338"><td class="memItemLeft" align="right" valign="top"><a id="aad7d8700fbb6c1edb08358bf77e4b338" name="aad7d8700fbb6c1edb08358bf77e4b338"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>OnGestureCompleted</b> (InputEventData eventData)</td></tr>
+<tr class="separator:aad7d8700fbb6c1edb08358bf77e4b338"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8f92ed6101d5775176c0e7a33ce699f"><td class="memItemLeft" align="right" valign="top"><a id="ab8f92ed6101d5775176c0e7a33ce699f" name="ab8f92ed6101d5775176c0e7a33ce699f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>OnGestureCanceled</b> (InputEventData eventData)</td></tr>
+<tr class="separator:ab8f92ed6101d5775176c0e7a33ce699f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a9e1ee8a735d3d68496ff23862c6a2040"><td class="memItemLeft" align="right" valign="top"><a id="a9e1ee8a735d3d68496ff23862c6a2040" name="a9e1ee8a735d3d68496ff23862c6a2040"></a>
 GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>pointer</b></td></tr>
 <tr class="separator:a9e1ee8a735d3d68496ff23862c6a2040"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cd1baa2a79218f228120e88a49c5490"><td class="memItemLeft" align="right" valign="top"><a id="a4cd1baa2a79218f228120e88a49c5490" name="a4cd1baa2a79218f228120e88a49c5490"></a>
+MixedRealityInputAction&#160;</td><td class="memItemRight" valign="bottom"><b>tapAction</b></td></tr>
+<tr class="separator:a4cd1baa2a79218f228120e88a49c5490"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:ad3b0c17a8352579ea63d7c1d67e1c329"><td class="memItemLeft" align="right" valign="top"><a id="ad3b0c17a8352579ea63d7c1d67e1c329" name="ad3b0c17a8352579ea63d7c1d67e1c329"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>ClosenessThreshold</b><code> [get]</code></td></tr>
+<tr class="separator:ad3b0c17a8352579ea63d7c1d67e1c329"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="aad071c419ee4393f8ffec608215402c6" name="aad071c419ee4393f8ffec608215402c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad071c419ee4393f8ffec608215402c6">&#9670;&#160;</a></span>GetSampleAtWordIndex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector3 PointerLocationTracker.GetSampleAtWordIndex </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>wordIndex</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the pointer location sampled on the wordIndex'th word during the last buddy command recording session. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">wordIndex</td><td>The index of the word in a space separated array of words in the dictation string that you wish to get the corresponding location of</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Treevolution/Assets/PointerLocationTracker.cs</li>
+<li>Treevolution/Assets/Scripts/Pointer/PointerLocationTracker.cs</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

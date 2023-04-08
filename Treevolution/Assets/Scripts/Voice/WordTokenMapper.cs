@@ -5,7 +5,9 @@ using System.Linq;
 
 namespace LanguageParsing
 {
-
+    /// <summary>
+    /// Converts words from recorded dictation into tokens for interpretation by LanguageParser
+    /// </summary>
     class WordTokenMapper
     {
         Dictionary<string, Dictionary<BuddyToken, List<string>>> flCategoriesOfActions = new Dictionary<string, Dictionary<BuddyToken, List<string>>>();
@@ -83,6 +85,13 @@ namespace LanguageParsing
             }
         }
 
+
+        /// <summary>
+        /// Checks if a word is stored locally in basewords.txt and returns the appropriate token if it is
+        /// </summary>
+        /// <param name="word">The word to match</param>
+        /// <param name="token">Will be written to with appropriate token if word is stored locally</param>
+        /// <returns>True if word matches one stored locally, indicating that token has a result written</returns>
         public bool GetTokenIfMatched(string word, out BuddyToken token)
         {
             foreach (Dictionary<BuddyToken, List<string>> fl in flCategoriesOfActions.Values)
@@ -104,6 +113,13 @@ namespace LanguageParsing
             return false;
         }
 
+        /// <summary>
+        /// Checks if a list of synonyms match any words stored locally in basewords.txt. If they do, returns true and gives the corresponding token of that words
+        /// </summary>
+        /// <param name="functionalLabel">The functional label of the synonyms</param>
+        /// <param name="synonyms">A list of synonyms to match ot the cache</param>
+        /// <param name="token">If true, the appropriate buddy token is written to this</param>
+        /// <returns>True if synoynms match any cached words, indicating that token has a result written</returns>
         public bool GetTokenIfSynonymsMatchCachedWords(string functionalLabel, List<string> synonyms, out BuddyToken token)
         {
             Dictionary<BuddyToken, List<string>> wordsOfActionTypes;

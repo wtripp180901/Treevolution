@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['endbattle_0',['EndBattle',['../class_game_state_manager.html#a2f7f877ae49841a498669fc4e7e37a5e',1,'GameStateManager']]],
-  ['endpopup_1',['EndPopUp',['../class_u_i_controller.html#a000988faa05a436594dcb4cdfd132557',1,'UIController']]],
-  ['endtutorial_2',['EndTutorial',['../class_u_i_controller.html#a1df17092c002e355497c907066e808da',1,'UIController']]]
+  ['damage_0',['Damage',['../class_enemy_script.html#aec67fe782ffea207a114872969101ffe',1,'EnemyScript']]],
+  ['decreasetime_1',['DecreaseTime',['../class_u_i_controller.html#ae659464ba09da48da4d39015d3c99ba4',1,'UIController']]],
+  ['destroyenemy_2',['DestroyEnemy',['../class_enemy_script.html#aed2130573dc1ec6e62bc21baf08cf9f9',1,'EnemyScript']]]
 ];
