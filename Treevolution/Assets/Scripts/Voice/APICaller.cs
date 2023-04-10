@@ -78,7 +78,7 @@ namespace LanguageParsing
                 }
                 catch (Exception e)
                 {
-                    Debug.Log("API parsing error: " + e.Message);
+                    Debug.Log("API parsing error for word: "+word + " - " + e.Message);
                 }
                 yield return callback(homographSynonyms);
             }
