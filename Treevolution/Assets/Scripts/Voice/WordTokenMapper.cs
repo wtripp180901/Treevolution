@@ -11,6 +11,9 @@ namespace LanguageParsing
     class WordTokenMapper
     {
         Dictionary<string, Dictionary<BuddyToken, List<string>>> flCategoriesOfActions = new Dictionary<string, Dictionary<BuddyToken, List<string>>>();
+        Dictionary<BuddyToken, List<string>> tokensForPluralNouns = new Dictionary<BuddyToken, List<string>>();
+
+        const string nounFunctionalLabel = "noun";
 
         public WordTokenMapper(string rawBasewordData)
         {
@@ -44,10 +47,15 @@ namespace LanguageParsing
                     if (actionDictionary.TryGetValue(stringToToken(tokenType), out cachedWords))
                     {
                         cachedWords.AddRange(wordList);
+                        if (fl == nounFunctionalLabel && tokensForPluralNouns.TryGetValue(stringToToken(tokenType),out cachedWords))
+                        {
+                            cachedWords.AddRange(wordList.Select(x => pluralize(x)).ToList());
+                        }
                     }
                     else
                     {
                         actionDictionary.Add(stringToToken(tokenType), new List<string>(wordList));
+                        if (fl == nounFunctionalLabel) tokensForPluralNouns.Add(stringToToken(tokenType), wordList.Select(x => pluralize(x)).ToList());
                     }
                 }
                 else
@@ -106,19 +114,9 @@ namespace LanguageParsing
         {
             foreach (Dictionary<BuddyToken, List<string>> fl in flCategoriesOfActions.Values)
             {
-                foreach (BuddyToken keyToken in fl.Keys)
-                {
-                    List<string> wordsOfActionType;
-                    if (fl.TryGetValue(keyToken, out wordsOfActionType))
-                    {
-                        if (wordsOfActionType.Contains(word))
-                        {
-                            token = keyToken;
-                            return true;
-                        }
-                    }
-                }
+                if (tokenDictionaryContainsWordOrSynonyms(fl, word, out token)) return true;
             }
+            if (tokenDictionaryContainsWordOrSynonyms(tokensForPluralNouns, word, out token)) return true;
             token = null;
             return false;
         }
@@ -133,21 +131,58 @@ namespace LanguageParsing
         public bool GetTokenIfSynonymsMatchCachedWords(string functionalLabel, List<string> synonyms, out BuddyToken token)
         {
             Dictionary<BuddyToken, List<string>> wordsOfActionTypes;
+            if (functionalLabel == nounFunctionalLabel)
+            {
+                if (tokenDictionaryContainsWordOrSynonyms(tokensForPluralNouns, synonyms, out token)) return true;
+            }
             if (flCategoriesOfActions.TryGetValue(functionalLabel, out wordsOfActionTypes))
             {
-                foreach (BuddyToken tokenType in wordsOfActionTypes.Keys)
+                if (tokenDictionaryContainsWordOrSynonyms(wordsOfActionTypes, synonyms, out token)) return true;
+            }
+            token = null;
+            return false;
+        }
+
+        bool tokenDictionaryContainsWordOrSynonyms(Dictionary<BuddyToken, List<string>> dictionary, string word, out BuddyToken token)
+        {
+            return tokenDictionaryContainsWordOrSynonyms(dictionary, new List<string>() { word }, out token);
+        }
+        bool tokenDictionaryContainsWordOrSynonyms(Dictionary<BuddyToken,List<string>> dictionary,List<string> synonyms,out BuddyToken token)
+        {
+            foreach (BuddyToken tokenType in dictionary.Keys)
+            {
+                List<string> knownWords;
+                dictionary.TryGetValue(tokenType, out knownWords);
+                if (synonyms.Intersect(knownWords).Any())
                 {
-                    List<string> knownWords;
-                    wordsOfActionTypes.TryGetValue(tokenType, out knownWords);
-                    if (synonyms.Intersect(knownWords).Any())
-                    {
-                        token = tokenType;
-                        return true;
-                    }
+                    token = tokenType;
+                    return true;
                 }
             }
             token = null;
             return false;
+        }
+
+        /*bool containsOrContainsPlural(string word,List<string> list,out bool isPlural)
+        {
+            isPlural = false;
+            if (list.Contains(word)) return true;
+            List<string> pluralList = list.Select
+        }*/
+
+        string pluralize(string original)
+        {
+            int lastCharIndex = original.Length - 1;
+            string truncated = original.Substring(0, original.Length - 1);
+            switch (original[lastCharIndex])
+            {
+                case 'h':
+                    return original + "es";
+                case 'y':
+                    return truncated + "ies";
+                default:
+                    return original + "s";
+            }
         }
     }
 }

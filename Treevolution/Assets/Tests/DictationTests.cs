@@ -123,6 +123,19 @@ public class DictationTests
     }
 
     [UnityTest]
+    public IEnumerator AttackWithPluralNounAndNoSubject()
+    {
+        GameObject closerEnemy, furtherEnemy;
+        setupAttackScene(out closerEnemy, out furtherEnemy);
+
+        List<BuddyAction> results = null;
+        yield return new LanguageParsing.LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(new string[] { "attack", "ants." }, (x => results = x));
+        Assert.AreEqual(results.Count, 1);
+        Assert.AreEqual(((TargetedBuddyAction)results[0]).targets.Length, 1);
+        Assert.Contains(furtherEnemy, ((TargetedBuddyAction)results[0]).targets);
+    }
+
+    [UnityTest]
     public IEnumerator SelectsCorrectSingularTargetForRestrictions()
     {
         GameObject closerEnemy, furtherEnemy;
