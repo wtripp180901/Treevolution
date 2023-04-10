@@ -1463,6 +1463,19 @@ MonoBehaviour:
   deathAudio: {fileID: -1155387178807300771}
   AvoidsWall: 0
   DamagesWall: 1
+--- !u!114 &-665603846225819085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3230766117565264235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4e31b69e3c4704792a4fbe3c6d0357, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BuddySystemProperties: 05000000
 --- !u!114 &6167780777422753341
 MonoBehaviour:
   m_ObjectHideFlags: 0

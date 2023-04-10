@@ -116,8 +116,13 @@ public class GameStateManager : MonoBehaviour
     public void SetupGameStateManagerTesting()
     {
         BeginBattleButton = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        _uIController = new UIController();
-        _qRDetection = new QRDetection();
+        _uIController = gameObject.AddComponent<UIController>();
+        _qRDetection = gameObject.AddComponent<QRDetection>();
+        _roundTimer = gameObject.AddComponent<RoundTimer>();
+        _enemyManager = gameObject.AddComponent<EnemyManager>();
+        gameObject.AddComponent<PlaneMapper>();
+        _uIController.SetupForTest();
+        _enemyManager.SetupForTest();
     }
 
     /// <summary>
@@ -127,7 +132,7 @@ public class GameStateManager : MonoBehaviour
     {
         if (Application.platform == RuntimePlatform.WindowsEditor)
         {
-            debugObject.SetActive(true); // Unity Editor Mode
+            debugObject?.SetActive(true); // Unity Editor Mode
         }
         if(InfoText != null)
             InfoText.text = "";

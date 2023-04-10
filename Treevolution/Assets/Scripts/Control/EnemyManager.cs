@@ -31,6 +31,11 @@ public class EnemyManager : MonoBehaviour
         roundTimer = GetComponent<RoundTimer>();
     }
 
+    public void SetupForTest()
+    {
+        roundTimer = GetComponent<RoundTimer>();
+    }
+
     // Update is called once per frame
     void Update()
     {

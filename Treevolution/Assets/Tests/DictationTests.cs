@@ -58,6 +58,29 @@ public class DictationTests
     }
 
     [UnityTest]
+    public IEnumerator SingularAttackAtPronounSubjectGetsClosest()
+    {
+        GameObject closerEnemy, furtherEnemy, pointer;
+        setupAttackScene(out pointer, out closerEnemy, out furtherEnemy);
+
+        PointerLocationTracker tracker = GameObject.FindWithTag("Logic").GetComponent<PointerLocationTracker>();
+
+        List<BuddyAction> results = null;
+        tracker.FinishSampling();
+        yield return new LanguageParsing.LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(new string[] { "attack", "it" }, (x => results = x));
+        Assert.AreEqual(results.Count, 1);
+        Assert.AreEqual(((TargetedBuddyAction)results[0]).targets.Length, 1);
+        Assert.AreSame(((TargetedBuddyAction)results[0]).targets[0], closerEnemy);
+        pointer.transform.position = new Vector3(0.15f, 0, 0);
+        tracker.StartSampling();
+        tracker.FinishSampling();
+        yield return new LanguageParsing.LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(new string[] { "attack", "it" }, (x => results = x));
+        Assert.AreEqual(results.Count, 1);
+        Assert.AreEqual(((TargetedBuddyAction)results[0]).targets.Length, 1);
+        Assert.AreSame(((TargetedBuddyAction)results[0]).targets[0], furtherEnemy);
+    }
+
+    [UnityTest]
     public IEnumerator MultiAttackWorksWithObjectivePronoun()
     {
         GameObject closerEnemy, furtherEnemy;
@@ -104,13 +127,20 @@ public class DictationTests
     void setupAttackScene(out GameObject closerEnemy,out GameObject furtherEnemy)
     {
         GameObject pointer;
+        setupAttackScene(out pointer,out closerEnemy,out furtherEnemy);
+    }
+
+    void setupAttackScene(out GameObject pointer,out GameObject closerEnemy, out GameObject furtherEnemy)
+    {
         setupBasicMovementScene(out pointer);
-        EnemyManager manager = GameObject.FindWithTag("Logic").AddComponent<EnemyManager>();
-        Debug.Log(GameObject.FindGameObjectsWithTag("Logic").Length);
+        GameObject logic = GameObject.FindWithTag("Logic");
+        EnemyManager manager = logic.AddComponent<EnemyManager>();
         closerEnemy = new GameObject();
         closerEnemy.transform.position = new Vector3(0.1f, 0, 0);
+        closerEnemy.AddComponent<BuddyInteractable>();
         furtherEnemy = new GameObject();
         furtherEnemy.transform.position = new Vector3(0.15f, 0, 0);
+        furtherEnemy.AddComponent<BuddyInteractable>();
         manager.AddToSceneAsEnemyForTest(closerEnemy);
         manager.AddToSceneAsEnemyForTest(furtherEnemy);
     }

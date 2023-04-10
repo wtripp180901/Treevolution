@@ -78,7 +78,7 @@ namespace LanguageParsing
 
         GameObject[] filterByRestrictions(GameObject[] baseList, RESTRICTION_TYPES[] restrictions)
         {
-            return baseList;
+            return baseList.Where(x => x.GetComponent<BuddyInteractable>().SatisfiesConstraints(restrictions,new RESTRICTION_TYPES[] { })).ToArray();
         }
 
         Vector3 getNextPointerSample()
@@ -98,7 +98,11 @@ namespace LanguageParsing
                 for (int i = 0; i < possibleTargets.Length; i++)
                 {
                     float currentDist = (possibleTargets[i].transform.position - pointerPos).magnitude;
-                    if (currentDist < closestDist) closest = possibleTargets[i];
+                    if (currentDist < closestDist)
+                    {
+                        closest = possibleTargets[i];
+                        closestDist = currentDist;
+                    }
                 }
                 return closest;
             }

@@ -104,6 +104,13 @@ public class UIController : MonoBehaviour
         _gameStateManager = GetComponent<GameStateManager>();
     }
 
+    public void SetupForTest()
+    {
+        _enemyManager = GetComponent<EnemyManager>();
+        _gameStateManager = GetComponent<GameStateManager>();
+        infoDialogPrefab = new GameObject();
+    }
+
     /// <summary>
     /// Displays an orange info pop-up requesting calibration of the game board.
     /// </summary>
