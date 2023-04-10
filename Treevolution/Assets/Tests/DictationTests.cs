@@ -108,6 +108,48 @@ public class DictationTests
         Assert.Contains(furtherEnemy, ((TargetedBuddyAction)results[0]).targets);
     }
 
+    [UnityTest]
+    public IEnumerator NoSubjectAttackDefaults()
+    {
+        GameObject closerEnemy, furtherEnemy;
+        setupAttackScene(out closerEnemy, out furtherEnemy);
+
+        List<BuddyAction> results = null;
+        yield return new LanguageParsing.LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(new string[] { "attack." }, (x => results = x));
+        Assert.AreEqual(results.Count, 1);
+        Assert.AreEqual(((TargetedBuddyAction)results[0]).targets.Length, 2);
+        Assert.Contains(closerEnemy, ((TargetedBuddyAction)results[0]).targets);
+        Assert.Contains(furtherEnemy, ((TargetedBuddyAction)results[0]).targets);
+    }
+
+    [UnityTest]
+    public IEnumerator SelectsCorrectSingularTargetForRestrictions()
+    {
+        GameObject closerEnemy, furtherEnemy;
+        setupAttackScene(out closerEnemy, out furtherEnemy);
+
+        List<BuddyAction> results = null;
+        yield return new LanguageParsing.LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(new string[] { "attack", "that", "ant." }, (x => results = x));
+        Assert.AreEqual(results.Count, 1);
+        Assert.AreEqual(((TargetedBuddyAction)results[0]).targets.Length, 1);
+        Assert.AreSame(((TargetedBuddyAction)results[0]).targets[0], furtherEnemy);
+    }
+
+    [UnityTest]
+    public IEnumerator DifferentRestrictionsAreAppliedToDifferentSubjects()
+    {
+        GameObject closerEnemy, furtherEnemy;
+        setupAttackScene(out closerEnemy, out furtherEnemy);
+
+        List<BuddyAction> results = null;
+        yield return new LanguageParsing.LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(new string[] { "attack", "that", "ant", "and", "then", "attack", "that", "hornet." }, (x => results = x));
+        Assert.AreEqual(results.Count, 2);
+        Assert.AreEqual(((TargetedBuddyAction)results[0]).targets.Length, 1);
+        Assert.AreSame(((TargetedBuddyAction)results[0]).targets[0], furtherEnemy);
+        Assert.AreEqual(((TargetedBuddyAction)results[1]).targets.Length, 1);
+        Assert.AreSame(((TargetedBuddyAction)results[1]).targets[0], closerEnemy);
+    }
+
     void setupBasicMovementScene(out GameObject pointer)
     {
         GameObject logic = new GameObject();
@@ -143,6 +185,10 @@ public class DictationTests
         furtherEnemy.AddComponent<BuddyInteractable>();
         manager.AddToSceneAsEnemyForTest(closerEnemy);
         manager.AddToSceneAsEnemyForTest(furtherEnemy);
+        closerEnemy.AddComponent<BuddyInteractable>();
+        furtherEnemy.AddComponent<BuddyInteractable>();
+        closerEnemy.GetComponent<BuddyInteractable>().SetupForTest(new RESTRICTION_TYPES[] { RESTRICTION_TYPES.Hornet });
+        furtherEnemy.GetComponent<BuddyInteractable>().SetupForTest(new RESTRICTION_TYPES[] { RESTRICTION_TYPES.Ant });
     }
 
     [TearDown]

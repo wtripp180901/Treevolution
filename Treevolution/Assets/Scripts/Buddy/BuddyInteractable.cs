@@ -16,4 +16,9 @@ public class BuddyInteractable : MonoBehaviour
         if (softConstraints.Length == 0) return true;
         return softConstraints.Intersect(BuddySystemProperties).Any();
     }
+
+    public void SetupForTest(RESTRICTION_TYPES[] properties)
+    {
+        BuddySystemProperties = properties;
+    }
 }

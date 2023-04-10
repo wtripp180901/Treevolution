@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<coverage version="1.0" date="2023-04-10_20-19-43" tag="">
+  <assembly name="MainGameAssembly">
+    <class name="ActionBuddyToken" coveredlines="4" coverablelines="4" totallines="47" coveredbranches="0" totalbranches="0" />
+    <class name="BuddyAction" coveredlines="4" coverablelines="4" totallines="58" coveredbranches="0" totalbranches="0" />
+    <class name="BuddyInteractable" coveredlines="9" coverablelines="11" totallines="24" coveredbranches="0" totalbranches="0" />
+    <class name="BuddyScript" coveredlines="0" coverablelines="62" totallines="108" coveredbranches="0" totalbranches="0" />
+    <class name="BuddyToken" coveredlines="4" coverablelines="4" totallines="47" coveredbranches="0" totalbranches="0" />
+    <class name="BulletScript" coveredlines="0" coverablelines="7" totallines="16" coveredbranches="0" totalbranches="0" />
+    <class name="ConnectiveBuddyToken" coveredlines="1" coverablelines="1" totallines="47" coveredbranches="0" totalbranches="0" />
+    <class name="EnemyManager" coveredlines="40" coverablelines="110" totallines="167" coveredbranches="0" totalbranches="0" />
+    <class name="EnemyScript" coveredlines="0" coverablelines="156" totallines="321" coveredbranches="0" totalbranches="0" />
+    <class name="EnemyTestScript" coveredlines="0" coverablelines="16" totallines="47" coveredbranches="0" totalbranches="0" />
+    <class name="EnemyTouchHandler" coveredlines="0" coverablelines="13" totallines="64" coveredbranches="0" totalbranches="0" />
+    <class name="GameProperties" coveredlines="10" coverablelines="10" totallines="26" coveredbranches="0" totalbranches="0" />
+    <class name="GameStateManager" coveredlines="64" coverablelines="137" totallines="327" coveredbranches="0" totalbranches="0" />
+    <class name="Gun" coveredlines="0" coverablelines="11" totallines="24" coveredbranches="0" totalbranches="0" />
+    <class name="GunPoint" coveredlines="0" coverablelines="4" totallines="16" coveredbranches="0" totalbranches="0" />
+    <class name="GunScript" coveredlines="0" coverablelines="8" totallines="18" coveredbranches="0" totalbranches="0" />
+    <class name="HealthBar" coveredlines="0" coverablelines="13" totallines="27" coveredbranches="0" totalbranches="0" />
+    <class name="LanguageParsing.ActionResolver" coveredlines="51" coverablelines="59" totallines="112" coveredbranches="0" totalbranches="0" />
+    <class name="LanguageParsing.LanguageParser" coveredlines="101" coverablelines="106" totallines="188" coveredbranches="0" totalbranches="0" />
+    <class name="LanguageParsing.SynonymData" coveredlines="4" coverablelines="4" totallines="98" coveredbranches="0" totalbranches="0" />
+    <class name="LanguageParsing.ThesaurusAPICaller" coveredlines="26" coverablelines="38" totallines="98" coveredbranches="0" totalbranches="0" />
+    <class name="LanguageParsing.WordTokenMapper" coveredlines="75" coverablelines="80" totallines="153" coveredbranches="0" totalbranches="0" />
+    <class name="ManagerSceneLogic" coveredlines="0" coverablelines="9" totallines="25" coveredbranches="0" totalbranches="0" />
+    <class name="MountPoint" coveredlines="0" coverablelines="33" totallines="58" coveredbranches="0" totalbranches="0" />
+    <class name="MoveBuddyAction" coveredlines="4" coverablelines="4" totallines="58" coveredbranches="0" totalbranches="0" />
+    <class name="Pathfinding.Pathfinder" coveredlines="20" coverablelines="109" totallines="165" coveredbranches="0" totalbranches="0" />
+    <class name="Pathfinding.PathfindingGraphGenerator" coveredlines="62" coverablelines="68" totallines="116" coveredbranches="0" totalbranches="0" />
+    <class name="Pathfinding.PathfindingNode" coveredlines="13" coverablelines="15" totallines="34" coveredbranches="0" totalbranches="0" />
+    <class name="Pathfinding.PathfindingObstacle" coveredlines="4" coverablelines="35" totallines="74" coveredbranches="0" totalbranches="0" />
+    <class name="Pathfinding.PathfindingUpdatePublisher" coveredlines="0" coverablelines="4" totallines="22" coveredbranches="0" totalbranches="0" />
+    <class name="PlaneMapper" coveredlines="69" coverablelines="81" totallines="123" coveredbranches="0" totalbranches="0" />
+    <class name="PlayerController" coveredlines="0" coverablelines="15" totallines="35" coveredbranches="0" totalbranches="0" />
+    <class name="PointerLocationTracker" coveredlines="27" coverablelines="60" totallines="110" coveredbranches="0" totalbranches="0" />
+    <class name="QRDetection" coveredlines="42" coverablelines="203" totallines="396" coveredbranches="0" totalbranches="0" />
+    <class name="QRSimulation" coveredlines="0" coverablelines="16" totallines="28" coveredbranches="0" totalbranches="0" />
+    <class name="RealWorldPropertyMapper" coveredlines="18" coverablelines="19" totallines="34" coveredbranches="0" totalbranches="0" />
+    <class name="RestrictionBuddyToken" coveredlines="4" coverablelines="4" totallines="47" coveredbranches="0" totalbranches="0" />
+    <class name="RoundTimer" coveredlines="42" coverablelines="67" totallines="165" coveredbranches="0" totalbranches="0" />
+    <class name="RuntimeMovable" coveredlines="0" coverablelines="23" totallines="56" coveredbranches="0" totalbranches="0" />
+    <class name="Shooting" coveredlines="0" coverablelines="8" totallines="18" coveredbranches="0" totalbranches="0" />
+    <class name="ShootingScript" coveredlines="0" coverablelines="13" totallines="28" coveredbranches="0" totalbranches="0" />
+    <class name="Shot" coveredlines="0" coverablelines="17" totallines="36" coveredbranches="0" totalbranches="0" />
+    <class name="SpawnDirectionIndicator" coveredlines="0" coverablelines="20" totallines="37" coveredbranches="0" totalbranches="0" />
+    <class name="StartMenuLogic" coveredlines="0" coverablelines="13" totallines="52" coveredbranches="0" totalbranches="0" />
+    <class name="SubjectBuddyToken" coveredlines="4" coverablelines="4" totallines="47" coveredbranches="0" totalbranches="0" />
+    <class name="TargetedBuddyAction" coveredlines="4" coverablelines="8" totallines="58" coveredbranches="0" totalbranches="0" />
+    <class name="test" coveredlines="0" coverablelines="5" totallines="16" coveredbranches="0" totalbranches="0" />
+    <class name="TowerData" coveredlines="10" coverablelines="10" totallines="15" coveredbranches="0" totalbranches="0" />
+    <class name="TowerGenerator" coveredlines="15" coverablelines="17" totallines="41" coveredbranches="0" totalbranches="0" />
+    <class name="TowerHolder" coveredlines="0" coverablelines="5" totallines="13" coveredbranches="0" totalbranches="0" />
+    <class name="TowerScript" coveredlines="0" coverablelines="37" totallines="73" coveredbranches="0" totalbranches="0" />
+    <class name="TreeScript" coveredlines="0" coverablelines="11" totallines="24" coveredbranches="0" totalbranches="0" />
+    <class name="TurretScript" coveredlines="0" coverablelines="4" totallines="16" coveredbranches="0" totalbranches="0" />
+    <class name="UIController" coveredlines="31" coverablelines="191" totallines="363" coveredbranches="0" totalbranches="0" />
+    <class name="VoiceCommandReceiver" coveredlines="0" coverablelines="79" totallines="119" coveredbranches="0" totalbranches="0" />
+    <class name="WallScript" coveredlines="0" coverablelines="40" totallines="68" coveredbranches="0" totalbranches="0" />
+  </assembly>
+  <assembly name="Tests">
+    <class name="DictationTests" coveredlines="117" coverablelines="127" totallines="202" coveredbranches="0" totalbranches="0" />
+    <class name="GameStateManagerTests" coveredlines="28" coverablelines="37" totallines="65" coveredbranches="0" totalbranches="0" />
+    <class name="PathfindingTests" coveredlines="38" coverablelines="38" totallines="60" coveredbranches="0" totalbranches="0" />
+    <class name="TowerGenerationTests" coveredlines="16" coverablelines="16" totallines="27" coveredbranches="0" totalbranches="0" />
+  </assembly>
+</coverage>

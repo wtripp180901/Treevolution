@@ -75,7 +75,7 @@ namespace LanguageParsing
             bool connectiveMode = false;
             List<RESTRICTION_TYPES> currentRestrictions = new List<RESTRICTION_TYPES>();
             BUDDY_ACTION_TYPES actionToResolve = BUDDY_ACTION_TYPES.Error;
-            BUDDY_SUBJECT_TYPES lastSubject = BUDDY_SUBJECT_TYPES.Error;
+            BUDDY_SUBJECT_TYPES lastSubject = BUDDY_SUBJECT_TYPES.Unresolved;
             for (int i = 0; i < tokenStream.Count; i++)
             {
                 BuddyToken token = tokenStream[i];
@@ -84,7 +84,8 @@ namespace LanguageParsing
                     case TOKEN_TYPES.Action:
                         if (resolvingAction)
                         {
-                            //Handle unresolved tokens
+                            resolveAction(actionToResolve, lastSubject, currentRestrictions,instructions);
+                            currentRestrictions.Clear();
                         }
                         resolvingAction = true;
                         actionToResolve = ((ActionBuddyToken)token).actionType;
@@ -93,10 +94,9 @@ namespace LanguageParsing
                         if (resolvingAction)
                         {
                             lastSubject = ((SubjectBuddyToken)token).subjectType;
-                            //instructions.Add(new BuddyAction(actionToResolve, getSubject(lastSubject, i)));
-                            BuddyAction resolvedAction = actionResolver.ResolveAction(actionToResolve, lastSubject, currentRestrictions.ToArray());
+                            /*BuddyAction resolvedAction = actionResolver.ResolveAction(actionToResolve, lastSubject, currentRestrictions.ToArray());
                             if(resolvedAction != null) instructions.Add(resolvedAction);
-                            resolvingAction = false;
+                            resolvingAction = false;*/
                         }
                         break;
                     case TOKEN_TYPES.Restriction:
@@ -107,7 +107,14 @@ namespace LanguageParsing
                         break;
                 }
             }
+            if (resolvingAction) resolveAction(actionToResolve, lastSubject, currentRestrictions, instructions);
             return instructions;
+        }
+
+        void resolveAction(BUDDY_ACTION_TYPES actionToResolve,BUDDY_SUBJECT_TYPES subject,List<RESTRICTION_TYPES> restrictions,List<BuddyAction> instructions)
+        {
+            BuddyAction action = actionResolver.ResolveAction(actionToResolve, subject, restrictions.ToArray());
+            if(action != null) instructions.Add(action);
         }
 
         string sanitiseInput(string word)
