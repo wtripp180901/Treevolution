@@ -79,6 +79,16 @@ namespace LanguageParsing
                 case "Objective Plural Pronoun":
                 case "Subject Plural Pronoun":
                     return new SubjectBuddyToken(BUDDY_SUBJECT_TYPES.GroupCloseToPointer);
+                case "Ant":
+                    return new RestrictionBuddyToken(RESTRICTION_TYPES.Ant);
+                case "Hornet":
+                    return new RestrictionBuddyToken(RESTRICTION_TYPES.Hornet);
+                case "Stag Beetle":
+                    return new RestrictionBuddyToken(RESTRICTION_TYPES.Stagbeetle);
+                case "Cockroach":
+                    return new RestrictionBuddyToken(RESTRICTION_TYPES.Cockroach);
+                case "Dragonfly":
+                    return new RestrictionBuddyToken(RESTRICTION_TYPES.Dragonfly);
                 default:
                     Debug.Log(toConvert + " not mapped in stringToToken");
                     return null;

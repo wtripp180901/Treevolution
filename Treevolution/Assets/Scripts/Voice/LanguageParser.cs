@@ -73,6 +73,7 @@ namespace LanguageParsing
             List<BuddyAction> instructions = new List<BuddyAction>();
             bool resolvingAction = false;
             bool connectiveMode = false;
+            List<RESTRICTION_TYPES> currentRestrictions = new List<RESTRICTION_TYPES>();
             BUDDY_ACTION_TYPES actionToResolve = BUDDY_ACTION_TYPES.Error;
             BUDDY_SUBJECT_TYPES lastSubject = BUDDY_SUBJECT_TYPES.Error;
             for (int i = 0; i < tokenStream.Count; i++)
@@ -93,10 +94,13 @@ namespace LanguageParsing
                         {
                             lastSubject = ((SubjectBuddyToken)token).subjectType;
                             //instructions.Add(new BuddyAction(actionToResolve, getSubject(lastSubject, i)));
-                            BuddyAction resolvedAction = actionResolver.ResolveAction(actionToResolve, lastSubject, new RESTRICTION_TYPES[] { });
+                            BuddyAction resolvedAction = actionResolver.ResolveAction(actionToResolve, lastSubject, currentRestrictions.ToArray());
                             if(resolvedAction != null) instructions.Add(resolvedAction);
                             resolvingAction = false;
                         }
+                        break;
+                    case TOKEN_TYPES.Restriction:
+                        currentRestrictions.Add(((RestrictionBuddyToken)token).restrictionType);
                         break;
                     case TOKEN_TYPES.Connective:
                         connectiveMode = true;
