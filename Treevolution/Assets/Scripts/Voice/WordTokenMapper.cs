@@ -97,6 +97,22 @@ namespace LanguageParsing
                     return new RestrictionBuddyToken(RESTRICTION_TYPES.Cockroach);
                 case "Dragonfly":
                     return new RestrictionBuddyToken(RESTRICTION_TYPES.Dragonfly);
+                case "Flying":
+                case "In Air":
+                    return new RestrictionBuddyToken(RESTRICTION_TYPES.Flying);
+                case "Armoured":
+                    return new RestrictionBuddyToken(RESTRICTION_TYPES.Armoured);
+                case "Unarmoured":
+                    return new RestrictionBuddyToken(RESTRICTION_TYPES.Unarmoured);
+                case "Big":
+                    return new RestrictionBuddyToken(RESTRICTION_TYPES.Large);
+                case "Small":
+                    return new RestrictionBuddyToken(RESTRICTION_TYPES.Small);
+                case "Grounded":
+                case "On Ground":
+                    return new RestrictionBuddyToken(RESTRICTION_TYPES.Grounded);
+                case "Ignore":
+                    return new DummyToken();
                 default:
                     Debug.Log(toConvert + " not mapped in stringToToken");
                     return null;

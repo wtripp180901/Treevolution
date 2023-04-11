@@ -45,7 +45,7 @@ namespace LanguageParsing
                     if (WordTokenMapper.GetTokenIfMatched(word, out token))
                     {
                         //Word is known
-                        tokenStream.Add(token);
+                        if(token.tokenType != TOKEN_TYPES.Error) tokenStream.Add(token);
                         yield return null;
                     }
                     else
@@ -148,7 +148,7 @@ namespace LanguageParsing
                     BuddyToken token;
                     if (WordTokenMapper.GetTokenIfSynonymsMatchCachedWords(fl, flWords, out token))
                     {
-                        tokenStream.Add(token);
+                        if(token.tokenType != TOKEN_TYPES.Error) tokenStream.Add(token);
                     }
                 }
             }

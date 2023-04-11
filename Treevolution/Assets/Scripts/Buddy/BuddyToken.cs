@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum TOKEN_TYPES { Action, Subject, Connective, Restriction, Error }
-public enum RESTRICTION_TYPES { Ant, ArmouredBug, Hornet, Dragonfly, Cockroach, Stagbeetle}
+public enum RESTRICTION_TYPES { Ant, ArmouredBug, Hornet, Dragonfly, Cockroach, Stagbeetle, Flying, Armoured,Unarmoured,Large,Small,Grounded}
 public abstract class BuddyToken
 {
     public readonly TOKEN_TYPES tokenType;
@@ -12,6 +12,11 @@ public abstract class BuddyToken
     {
         this.tokenType = tokenType;
     }
+}
+
+public class DummyToken : BuddyToken
+{
+    public DummyToken(): base(TOKEN_TYPES.Error) { }
 }
 
 public class ActionBuddyToken : BuddyToken
