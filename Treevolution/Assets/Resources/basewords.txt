@@ -49,3 +49,39 @@ cockroach roach
 noun
 Stag Beetle
 beetle
+
+adjective
+Flying
+flying airborne winged
+
+noun
+In Air
+air sky
+
+adjective
+Armoured
+armoured
+
+adjective
+Unarmoured
+unarmoured
+
+adjective
+Big
+big large huge
+
+adjective
+Small
+small little tiny
+
+adjective
+Grounded
+grounded crawling
+
+noun
+On Ground
+ground floor
+
+ignoretype
+Ignore
+one ones bug bugs
