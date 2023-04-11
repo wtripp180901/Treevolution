@@ -101,6 +101,7 @@ namespace LanguageParsing
                 case "In Air":
                     return new RestrictionBuddyToken(RESTRICTION_TYPES.Flying);
                 case "Armoured":
+                case "Has Armour":
                     return new RestrictionBuddyToken(RESTRICTION_TYPES.Armoured);
                 case "Unarmoured":
                     return new RestrictionBuddyToken(RESTRICTION_TYPES.Unarmoured);
@@ -115,7 +116,7 @@ namespace LanguageParsing
                     return new DummyToken();
                 default:
                     Debug.Log(toConvert + " not mapped in stringToToken");
-                    return null;
+                    return new DummyToken();
             }
         }
 

@@ -182,6 +182,37 @@ public class DictationTests
     }
 
     [UnityTest]
+    public IEnumerator AppliesRestrictionsBasedOnAdditionalNouns()
+    {
+        GameObject closerEnemy, furtherEnemy;
+        setupAttackScene(out closerEnemy, out furtherEnemy);
+
+        List<BuddyAction> results = null;
+        yield return new LanguageParsing.LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(new string[] { "attack", "the", "ones", "in", "the", "air" }, (x => results = x));
+        Assert.AreEqual(results.Count, 1);
+        Assert.AreEqual(((TargetedBuddyAction)results[0]).targets.Length, 1);
+        Assert.Contains(closerEnemy, ((TargetedBuddyAction)results[0]).targets);
+
+        PointerLocationTracker tracker = GameObject.FindWithTag("Logic").GetComponent<PointerLocationTracker>();
+        tracker.StartSampling();
+        tracker.FinishSampling();
+
+        yield return new LanguageParsing.LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(new string[] { "attack", "the", "bugs", "on", "the", "ground" }, (x => results = x));
+        Assert.AreEqual(results.Count, 1);
+        Assert.AreEqual(((TargetedBuddyAction)results[0]).targets.Length, 1);
+        Assert.Contains(furtherEnemy, ((TargetedBuddyAction)results[0]).targets);
+
+        tracker.StartSampling();
+        tracker.FinishSampling();
+
+        yield return new LanguageParsing.LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(new string[] { "attack", "the", "bugs", "with", "armor" }, (x => results = x));
+        Assert.AreEqual(results.Count, 1);
+        Assert.AreEqual(((TargetedBuddyAction)results[0]).targets.Length, 1);
+        Assert.Contains(closerEnemy, ((TargetedBuddyAction)results[0]).targets);
+
+    }
+
+    [UnityTest]
     public IEnumerator DifferentRestrictionsAreAppliedToDifferentSubjects()
     {
         GameObject closerEnemy, furtherEnemy;

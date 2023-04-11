@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CoverageReport scope="Summary">
   <Summary>
-    <Generatedon>11/04/2023 - 20:18:25</Generatedon>
+    <Generatedon>11/04/2023 - 20:55:06</Generatedon>
     <Parser>OpenCoverParser</Parser>
     <Assemblies>2</Assemblies>
     <Classes>61</Classes>
     <Files>53</Files>
-    <Coveredlines>1040</Coveredlines>
-    <Uncoveredlines>1356</Uncoveredlines>
-    <Coverablelines>2396</Coverablelines>
-    <Totallines>4680</Totallines>
-    <Linecoverage>43.4</Linecoverage>
+    <Coveredlines>1064</Coveredlines>
+    <Uncoveredlines>1353</Uncoveredlines>
+    <Coverablelines>2417</Coverablelines>
+    <Totallines>4712</Totallines>
+    <Linecoverage>44</Linecoverage>
     <Coveredbranches>0</Coveredbranches>
     <Totalbranches>0</Totalbranches>
   </Summary>
   <Coverage>
-    <Assembly name="MainGameAssembly" classes="57" coverage="37.1" coveredlines="797" coverablelines="2144" totallines="4751" branchcoverage="" coveredbranches="0" totalbranches="0">
+    <Assembly name="MainGameAssembly" classes="57" coverage="37.3" coveredlines="800" coverablelines="2144" totallines="4752" branchcoverage="" coveredbranches="0" totalbranches="0">
       <Class name="ActionBuddyToken" coverage="100" coveredlines="4" coverablelines="4" totallines="52" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="BuddyAction" coverage="100" coveredlines="4" coverablelines="4" totallines="58" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="BuddyInteractable" coverage="90.9" coveredlines="10" coverablelines="11" totallines="24" branchcoverage="" coveredbranches="0" totalbranches="0" />
@@ -38,7 +38,7 @@
       <Class name="LanguageParsing.LanguageParser" coverage="97.1" coveredlines="103" coverablelines="106" totallines="188" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="LanguageParsing.SynonymData" coverage="100" coveredlines="4" coverablelines="4" totallines="98" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="LanguageParsing.ThesaurusAPICaller" coverage="68.4" coveredlines="26" coverablelines="38" totallines="98" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="LanguageParsing.WordTokenMapper" coverage="88.5" coveredlines="93" coverablelines="105" totallines="204" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="LanguageParsing.WordTokenMapper" coverage="91.4" coveredlines="96" coverablelines="105" totallines="205" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="ManagerSceneLogic" coverage="0" coveredlines="0" coverablelines="9" totallines="25" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="MountPoint" coverage="0" coveredlines="0" coverablelines="33" totallines="58" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="MoveBuddyAction" coverage="100" coveredlines="4" coverablelines="4" totallines="58" branchcoverage="" coveredbranches="0" totalbranches="0" />
@@ -74,8 +74,8 @@
       <Class name="VoiceCommandReceiver" coverage="0" coveredlines="0" coverablelines="79" totallines="119" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="WallScript" coverage="0" coveredlines="0" coverablelines="40" totallines="68" branchcoverage="" coveredbranches="0" totalbranches="0" />
     </Assembly>
-    <Assembly name="Tests" classes="4" coverage="96.4" coveredlines="243" coverablelines="252" totallines="403" branchcoverage="" coveredbranches="0" totalbranches="0">
-      <Class name="DictationTests" coverage="100" coveredlines="161" coverablelines="161" totallines="251" branchcoverage="" coveredbranches="0" totalbranches="0" />
+    <Assembly name="Tests" classes="4" coverage="96.7" coveredlines="264" coverablelines="273" totallines="434" branchcoverage="" coveredbranches="0" totalbranches="0">
+      <Class name="DictationTests" coverage="100" coveredlines="182" coverablelines="182" totallines="282" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="GameStateManagerTests" coverage="75.6" coveredlines="28" coverablelines="37" totallines="65" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="PathfindingTests" coverage="100" coveredlines="38" coverablelines="38" totallines="60" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="TowerGenerationTests" coverage="100" coveredlines="16" coverablelines="16" totallines="27" branchcoverage="" coveredbranches="0" totalbranches="0" />
