@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 namespace LanguageParsing
 {
@@ -27,8 +28,27 @@ namespace LanguageParsing
             }
             else
             {
+                Vector3 buddyPos = GameObject.FindWithTag("Buddy").transform.position;
                 GameObject[] subjects = getSubject(subject, action,restrictions);
+                Array.Sort(subjects, new ClosestToBuddyComparer(buddyPos));
                 return new TargetedBuddyAction(action, subjects);
+            }
+        }
+
+        private class ClosestToBuddyComparer : IComparer<GameObject>
+        {
+            Vector3 buddyPos;
+            public ClosestToBuddyComparer(Vector3 buddyPos)
+            {
+                this.buddyPos = buddyPos;
+            }
+            public int Compare(GameObject x, GameObject y)
+            {
+                float distX = (x.transform.position - buddyPos).magnitude;
+                float distY = (y.transform.position - buddyPos).magnitude;
+                if (distX > distY) return 1;
+                else if (distY > distX) return -1;
+                else return 0;
             }
         }
 
