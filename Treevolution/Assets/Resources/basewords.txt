@@ -60,11 +60,15 @@ air sky
 
 adjective
 Armoured
-armoured
+armored
+
+noun
+Has Armour
+armor
 
 adjective
 Unarmoured
-unarmoured
+unarmored
 
 adjective
 Big
