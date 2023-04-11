@@ -123,6 +123,20 @@ public class DictationTests
     }
 
     [UnityTest]
+    public IEnumerator BuddyTargetsClosestOfMultipleFirst()
+    {
+        GameObject closerEnemy, furtherEnemy;
+        setupAttackScene(out closerEnemy, out furtherEnemy);
+
+        List<BuddyAction> results = null;
+        yield return new LanguageParsing.LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(new string[] { "attack." }, (x => results = x));
+        Assert.AreEqual(results.Count, 1);
+        Assert.AreEqual(((TargetedBuddyAction)results[0]).targets.Length, 2);
+        Assert.AreSame(closerEnemy, ((TargetedBuddyAction)results[0]).targets[0]);
+        Assert.AreSame(furtherEnemy, ((TargetedBuddyAction)results[0]).targets[1]);
+    }
+
+    [UnityTest]
     public IEnumerator AttackWithPluralNounAndNoSubject()
     {
         GameObject closerEnemy, furtherEnemy;
@@ -202,6 +216,9 @@ public class DictationTests
         furtherEnemy.AddComponent<BuddyInteractable>();
         closerEnemy.GetComponent<BuddyInteractable>().SetupForTest(new RESTRICTION_TYPES[] { RESTRICTION_TYPES.Hornet });
         furtherEnemy.GetComponent<BuddyInteractable>().SetupForTest(new RESTRICTION_TYPES[] { RESTRICTION_TYPES.Ant });
+        GameObject buddy = new GameObject();
+        buddy.tag = "Buddy";
+        buddy.transform.position = new Vector3(0, 0, 0);
     }
 
     [TearDown]
