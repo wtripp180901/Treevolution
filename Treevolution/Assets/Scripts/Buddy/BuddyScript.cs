@@ -12,13 +12,24 @@ public class BuddyScript : MonoBehaviour
     bool isok = true;
 
     Vector3 directionVector;
-    float speed = 0.05f;
+    [SerializeField] float speed = 0.05f;
+    [SerializeField] int damage = 2;
+
+    [SerializeField] private float AttackRate = 1;
+    float attackCooldown;
 
     // Start is called before the first frame update
     void Start()
     {
         rig = GetComponent<Rigidbody>();
+        attackCooldown = AttackRate;
     }
+
+    BUDDY_ACTION_TYPES currentAction;
+
+    Queue<GameObject> targets;
+    GameObject currentTarget = null;
+
     Vector3[] pos=null;
     int Currentpos=-1;
     // Update is called once per frame
@@ -31,28 +42,24 @@ public class BuddyScript : MonoBehaviour
         if (actionQueue.Count != 0 && isok)
         {
             BuddyAction temp= actionQueue.Dequeue();
-            
-                //StartCoroutine(Delay(2f, () =>
-                //{
+            currentAction = temp.actionType;
 
-                //}));
+            //StartCoroutine(Delay(2f, () =>
+            //{
+
+            //}));
+            isok = false;
             switch (temp.actionType) {
             case BUDDY_ACTION_TYPES.Move:
-                    isok = false;
                     //getpath
                     pos = Pathfinding.Pathfinder.GetPath(transform.position, ((MoveBuddyAction)temp).location, false);
                     Currentpos = 0;
                     if (pos != null && pos.Length > 0) directionVector = getNewDirectionVector(pos[0]);
                     break;
             case BUDDY_ACTION_TYPES.Attack:
-
-                    GameObject[] targets = ((TargetedBuddyAction)temp).targets;
-                    for (int i = 0; i < targets.Length; i++)
-                    {
-                        //Debug.DrawLine(targets[i].transform.position, targets[i].transform.position + new Vector3(0, 1, 0),Color.red,5);
-                        targets[i].GetComponent<EnemyScript>().Damage(10);
-                    }
-                    isok = true;
+                    targets = new Queue<GameObject>(((TargetedBuddyAction)temp).targets);
+                    if (targets.Count > 0) currentTarget = targets.Dequeue();
+                    else isok = true;
                     break;
                 case BUDDY_ACTION_TYPES.Repair:
                     GameObject[] walls = ((TargetedBuddyAction)temp).targets;
@@ -82,21 +89,62 @@ public class BuddyScript : MonoBehaviour
     //Used for physics updates to move the object
     private void FixedUpdate()
     {
+        if (!isok)
+        {
+            switch (currentAction)
+            {
+                case BUDDY_ACTION_TYPES.Move:
+                    movementFixedUpdate();
+                    break;
+                case BUDDY_ACTION_TYPES.Attack:
+                    attackFixedUpdate();
+                    break;
+                default:
+                    break;
+            }
+            
+        }
+    }
 
-        //You can move the buddy using rig.MovePosition(newPosition)
-        //You can get the current position of the buddy using transform.position, so to move it use rig.MovePosition(transform.position + direction)
-        //When you are close enough to a point (e.g (currentTarget - transform.position).magnitude < 0.05f), start moving to the next point in the path.
-        //If you have visited every point in the path, the action is complete
-        if (!isok && pos != null)
+    void attackFixedUpdate()
+    {
+        if (currentTarget == null)
+        {
+            if (targets.Count > 0) currentTarget = targets.Dequeue();
+            else isok = true;
+        }
+        else
+        {
+            Vector3 vecToTarget = new Vector3(currentTarget.transform.position.x,0,currentTarget.transform.position.z) - new Vector3(transform.position.x,0,transform.position.z);
+            if (vecToTarget.magnitude < 0.05f)
+            {
+                if (attackCooldown <= 0)
+                {
+                    currentTarget.GetComponent<EnemyScript>().Damage(damage);
+                    attackCooldown = AttackRate;
+                }
+                else attackCooldown -= Time.fixedDeltaTime;
+            }
+            else
+            {
+                rig.MovePosition(transform.position + vecToTarget.normalized * speed);
+            }
+        }
+    }
+
+    void movementFixedUpdate()
+    {
+        if (pos != null)
         {
             rig.MovePosition(transform.position + directionVector * Time.fixedDeltaTime);
-            if (Vector3.Distance(new Vector2(transform.position.x,transform.position.z), new Vector2(pos[Currentpos].x,pos[Currentpos].z)) < 0.05f)
+            if (Vector3.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(pos[Currentpos].x, pos[Currentpos].z)) < 0.05f)
             {
                 Currentpos++;
                 if (Currentpos >= pos.Length)
                 {
                     isok = true;
                     Currentpos = -1;
+                    pos = null;
                 }
                 else
                 {
