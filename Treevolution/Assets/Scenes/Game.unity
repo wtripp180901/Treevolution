@@ -850,6 +850,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1623155547679166956, guid: 9b13d603597c81e40b07958175d829de, type: 3}
+      propertyPath: AttackRate
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 1893748864571288767, guid: 9b13d603597c81e40b07958175d829de, type: 3}
       propertyPath: m_Name
       value: bird_buddy

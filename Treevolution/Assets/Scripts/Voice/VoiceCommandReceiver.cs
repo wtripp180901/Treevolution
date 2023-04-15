@@ -17,7 +17,6 @@ public class VoiceCommandReceiver : MonoBehaviour
 
     private void Start()
     {
-        Debug.Assert(0 == 1);
         enemyManager = GetComponent<EnemyManager>();
         uiController = GetComponent<UIController>();
         pointerTracker = GetComponent<PointerLocationTracker>();
