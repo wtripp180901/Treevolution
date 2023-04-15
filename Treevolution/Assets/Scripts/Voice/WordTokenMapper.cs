@@ -77,6 +77,8 @@ namespace LanguageParsing
                     return new ActionBuddyToken(BUDDY_ACTION_TYPES.Move);
                 case "Attack":
                     return new ActionBuddyToken(BUDDY_ACTION_TYPES.Attack);
+                case "Repair":
+                    return new ActionBuddyToken(BUDDY_ACTION_TYPES.Repair);
                 case "PointerLocation":
                     return new SubjectBuddyToken(BUDDY_SUBJECT_TYPES.PointerLocation);
                 case "Connective":

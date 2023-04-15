@@ -31,26 +31,37 @@ public class BuddyScript : MonoBehaviour
         if (actionQueue.Count != 0 && isok)
         {
             BuddyAction temp= actionQueue.Dequeue();
-            if (temp.actionType == BUDDY_ACTION_TYPES.Move)
-            {
-                isok = false;
-                //getpath
-                 pos=Pathfinding.Pathfinder.GetPath(transform.position,((MoveBuddyAction)temp).location,false);
-                Currentpos = 0;
-                if (pos != null && pos.Length > 0) directionVector = getNewDirectionVector(pos[0]);
+            
                 //StartCoroutine(Delay(2f, () =>
                 //{
 
                 //}));
-            }
-            if(temp.actionType == BUDDY_ACTION_TYPES.Attack)
-            {
-                GameObject[] targets = ((TargetedBuddyAction)temp).targets;
-                for(int i = 0;i < targets.Length; i++)
-                {
-                    Debug.DrawLine(targets[i].transform.position, targets[i].transform.position + new Vector3(0, 1, 0),Color.red,5);
-                }
-                isok = true;
+            switch (temp.actionType) {
+            case BUDDY_ACTION_TYPES.Move:
+                    isok = false;
+                    //getpath
+                    pos = Pathfinding.Pathfinder.GetPath(transform.position, ((MoveBuddyAction)temp).location, false);
+                    Currentpos = 0;
+                    if (pos != null && pos.Length > 0) directionVector = getNewDirectionVector(pos[0]);
+                    break;
+            case BUDDY_ACTION_TYPES.Attack:
+
+                    GameObject[] targets = ((TargetedBuddyAction)temp).targets;
+                    for (int i = 0; i < targets.Length; i++)
+                    {
+                        //Debug.DrawLine(targets[i].transform.position, targets[i].transform.position + new Vector3(0, 1, 0),Color.red,5);
+                        targets[i].GetComponent<EnemyScript>().Damage(10);
+                    }
+                    isok = true;
+                    break;
+                case BUDDY_ACTION_TYPES.Repair:
+                    GameObject[] walls = ((TargetedBuddyAction)temp).targets;
+                    for(int i = 0;i < walls.Length; i++)
+                    {
+                        walls[i].GetComponent<WallScript>().Repair(10);
+                    }
+                    isok = true;
+                    break;
             }
             
         }

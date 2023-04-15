@@ -91,6 +91,8 @@ namespace LanguageParsing
             {
                 case BUDDY_ACTION_TYPES.Attack:
                     return GameObject.FindWithTag("Logic").GetComponent<EnemyManager>().enemies;
+                case BUDDY_ACTION_TYPES.Repair:
+                    return GameObject.FindGameObjectsWithTag("Wall");
             }
             Debug.Log("Not implemented in defaultTargetsOfAction: " + action.ToString());
             return null;
