@@ -69,6 +69,11 @@ namespace Pathfinding
             sendNodes = sends;
             Pathfinding.PathfindingUpdatePublisher.NotifyObstacleChanged();
         }
+
+        public void CleanForTest()
+        {
+            PathfindingGraphGenerator.GetObstacleDataEvent -= GetObstacleBoundsEventHandler;
+        }
     }
 
 }

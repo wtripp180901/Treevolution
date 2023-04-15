@@ -17,6 +17,7 @@ public class VoiceCommandReceiver : MonoBehaviour
 
     private void Start()
     {
+        Debug.Assert(0 == 1);
         enemyManager = GetComponent<EnemyManager>();
         uiController = GetComponent<UIController>();
         pointerTracker = GetComponent<PointerLocationTracker>();
@@ -72,7 +73,7 @@ public class VoiceCommandReceiver : MonoBehaviour
         {
             finishDictation();
             uiController.ShowDictation(dictation);
-            string[] words = dictation.ToLower().Split(' ');
+            string[] words = dictation.Split(' ');
             if (words.Length > 0) StartCoroutine(new LanguageParsing.LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(words,HandleDictationProcessingResults));
         }catch(Exception e)
         {

@@ -119,6 +119,7 @@ namespace LanguageParsing
 
         string sanitiseInput(string word)
         {
+            word = word.ToLower();
             string output = "";
             foreach (char c in word)
             {

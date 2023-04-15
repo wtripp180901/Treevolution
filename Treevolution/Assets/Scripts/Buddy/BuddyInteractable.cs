@@ -7,7 +7,12 @@ public class BuddyInteractable : MonoBehaviour
 {
     [SerializeField] private RESTRICTION_TYPES[] BuddySystemProperties;
 
-    public bool SatisfiesConstraints(RESTRICTION_TYPES[] hardConstraints, RESTRICTION_TYPES[] softConstraints)
+    public virtual bool SatisfiesConstraints(RESTRICTION_TYPES[] hardConstraints, RESTRICTION_TYPES[] softConstraints)
+    {
+        return PropertiesSatisfyConstraints(hardConstraints, softConstraints);
+    }
+
+    protected bool PropertiesSatisfyConstraints(RESTRICTION_TYPES[] hardConstraints, RESTRICTION_TYPES[] softConstraints)
     {
         foreach (RESTRICTION_TYPES c in hardConstraints)
         {

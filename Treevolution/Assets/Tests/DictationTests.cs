@@ -227,6 +227,41 @@ public class DictationTests
         Assert.AreSame(((TargetedBuddyAction)results[1]).targets[0], closerEnemy);
     }
 
+    [UnityTest]
+    public IEnumerator RepairsDamagedOrBrokenWallsByDictation()
+    {
+        GameObject buddy = new GameObject();
+        buddy.tag = "Buddy";
+        GameObject normalWall = new GameObject();
+        GameObject damagedWall = new GameObject();
+        GameObject brokenWall = new GameObject();
+        WallScript currentWall;
+        WallBuddyInteractable dummy;
+        initialiseWall(normalWall,out dummy,out currentWall);
+        initialiseWall(damagedWall, out dummy, out currentWall);
+        currentWall.Damage(5);
+        initialiseWall(brokenWall, out dummy, out currentWall);
+        currentWall.Damage(10);
+        List<BuddyAction> results = null;
+        yield return new LanguageParsing.LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(new string[] { "repair", "the", "walls." }, (x => results = x));
+        Assert.AreEqual(results.Count, 1);
+        Assert.AreEqual(((TargetedBuddyAction)results[0]).targets.Length, 2);
+        Assert.Contains(damagedWall, ((TargetedBuddyAction)results[0]).targets);
+        Assert.Contains(brokenWall, ((TargetedBuddyAction)results[0]).targets);
+    }
+
+    void initialiseWall(GameObject wall, out WallBuddyInteractable buddyInteractable, out WallScript wallScript)
+    {
+        buddyInteractable = wall.AddComponent<WallBuddyInteractable>();
+        wallScript = wall.AddComponent<WallScript>();
+        wall.AddComponent<BoxCollider>();
+        wall.AddComponent<Pathfinding.PathfindingObstacle>();
+        wall.tag = "Wall";
+        wallScript.SetupForTest(wall.GetComponent<Collider>(), wall.GetComponent<Pathfinding.PathfindingObstacle>());
+        buddyInteractable.SetupForTest(new RESTRICTION_TYPES[] { }, wallScript);
+
+    }
+
     void setupBasicMovementScene(out GameObject pointer)
     {
         GameObject logic = new GameObject();
@@ -275,6 +310,9 @@ public class DictationTests
         Object[] all = GameObject.FindObjectsOfType(typeof(GameObject));
         for(int i =0;i < all.Length; i++)
         {
+            GameObject dirty = (GameObject)(all[i]);
+            Pathfinding.PathfindingObstacle dirtyObstacleScript = dirty.GetComponent<Pathfinding.PathfindingObstacle>();
+            if (dirtyObstacleScript != null) dirtyObstacleScript.CleanForTest();
             Object.Destroy(all[i]);
         }
     }

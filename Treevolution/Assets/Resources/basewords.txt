@@ -86,6 +86,10 @@ noun
 On Ground
 ground floor
 
+verb
+Repair
+fix mend repair rebuild
+
 ignoretype
 Ignore
 one ones bug bugs
