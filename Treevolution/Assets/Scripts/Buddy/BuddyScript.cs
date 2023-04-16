@@ -38,6 +38,19 @@ public class BuddyScript : MonoBehaviour
                 //{
                     
                 //}));
+            else if (temp.actionType == BUDDY_ACTION_TYPES.BuddyAction)
+            {
+                isok = false;
+                //Find all the entities in the Logic tag with the GameObject.FindWithTag function
+                GameObject[] enemiesList = GameObject.FindGameObjectsWithTag(" Logic ");
+                //List<GameObject> enemiesList = GameObject.FindWithTag(" Logic ").GetComponent().enemies;
+                //According to the nearest rule, find the enemy closest to the current character
+                if(enemiesList.Length>0){
+                    GameObject target = findNearest(enemiesList);
+                    if(target!=null){
+                        target.GetComponent(EnemyScript).Damage();
+                    }
+                }
             }
             
         }
@@ -81,5 +94,18 @@ public class BuddyScript : MonoBehaviour
         {
             actionQueue.Enqueue(item);
         }
+    }
+
+    GameObject void findNearest(GameObject[] enemiesList){
+        float dis1 = 9999;//Its own attack range, this can be modified, if the enemy is larger than this range then there is no target to attack
+        GameObject target;
+        foreach(GameObject obj in enemiesList){
+            float dis2 = Vector3.Distance(obj.transform.position, transform.position);
+            if(dis2<dis1){
+                target = obj;
+                dis1 = dis2;
+            }
+        }
+        return target;
     }
 }
