@@ -21,6 +21,9 @@ public class BuddyScript : MonoBehaviour
     }
     Vector3[] pos=null;
     int Currentpos=-1;
+
+    GameObject[] enemiesList = null;
+
     // Update is called once per frame
     void Update()
     {
@@ -35,24 +38,27 @@ public class BuddyScript : MonoBehaviour
             {
                 isok = false;
                 //getpath
-                 pos=Pathfinding.Pathfinder.GetPath(transform.position,temp.location);
+                pos = Pathfinding.Pathfinder.GetPath(transform.position, temp.location);
                 Currentpos = 0;
                 if (pos != null && pos.Length > 0) directionVector = getNewDirectionVector(pos[0]);
                 //StartCoroutine(Delay(2f, () =>
                 //{
 
                 //}));
-            else if (temp.actionType == BUDDY_ACTION_TYPES.BuddyAction)
+            }
+            else if (temp.actionType == BUDDY_ACTION_TYPES.Defend)
             {
                 isok = false;
                 //Find all the entities in the Logic tag with the GameObject.FindWithTag function
-                GameObject[] enemiesList = GameObject.FindGameObjectsWithTag(" Logic ");
+                enemiesList = GameObject.FindGameObjectWithTag("Logic").GetComponent<EnemyManager>().enemies;
                 //List<GameObject> enemiesList = GameObject.FindWithTag(" Logic ").GetComponent().enemies;
                 //According to the nearest rule, find the enemy closest to the current character
-                if(enemiesList.Length>0){
+                if (enemiesList.Length > 0)
+                {
                     GameObject target = findNearest(enemiesList);
-                    if(target!=null){
-                        target.GetComponent(EnemyScript).Damage();
+                    if (target != null)
+                    {
+                        target.GetComponent<EnemyScript>().Damage(2);
                     }
                 }
             }
@@ -110,9 +116,9 @@ public class BuddyScript : MonoBehaviour
         }
     }
 
-    GameObject void findNearest(GameObject[] enemiesList){
+    GameObject findNearest(GameObject[] enemiesList){
         float dis1 = 9999;//Its own attack range, this can be modified, if the enemy is larger than this range then there is no target to attack
-        GameObject target;
+        GameObject target = null;
         foreach(GameObject obj in enemiesList){
             float dis2 = Vector3.Distance(obj.transform.position, transform.position);
             if(dis2<dis1){
