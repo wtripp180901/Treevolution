@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Timeline.Actions;
+//using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
 public class BuddyScript : MonoBehaviour
@@ -9,7 +9,11 @@ public class BuddyScript : MonoBehaviour
     Queue<BuddyAction> actionQueue = new Queue<BuddyAction>();
     Rigidbody rig; //This is what physics are applied to in order to move the object
 
-    bool isok = false;
+    bool isok = true;
+
+    Vector3 directionVector;
+    float speed = 0.05f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,9 +28,8 @@ public class BuddyScript : MonoBehaviour
         //There is only one type of action impemented so far. If the current BuddyAction type is Move, start moving to the location in the BuddyAction
         //You can get a path to the location by calling Pathfinding.Pathfinder.GetPath(transform.position,location) (store this somewhere). This gives an
         //ordered list of points you move to in order to get to the location (this avoids walls).
-        if (actionQueue.Count != 0)
+        if (actionQueue.Count != 0 && isok)
         {
-            if(!isok)return;
             BuddyAction temp= actionQueue.Dequeue();
             if (temp.actionType == BUDDY_ACTION_TYPES.Move)
             {
@@ -34,9 +37,10 @@ public class BuddyScript : MonoBehaviour
                 //getpath
                  pos=Pathfinding.Pathfinder.GetPath(transform.position,temp.location);
                 Currentpos = 0;
+                if (pos != null && pos.Length > 0) directionVector = getNewDirectionVector(pos[0]);
                 //StartCoroutine(Delay(2f, () =>
                 //{
-                    
+
                 //}));
             else if (temp.actionType == BUDDY_ACTION_TYPES.BuddyAction)
             {
@@ -62,6 +66,12 @@ public class BuddyScript : MonoBehaviour
         value?.Invoke();
     }
 
+    Vector3 getNewDirectionVector(Vector3 nextPosition)
+    {
+        Vector3 dirVec = (new Vector3(nextPosition.x,transform.position.y,nextPosition.z) - transform.position).normalized * speed;
+        return dirVec;
+    }
+
     //Used for physics updates to move the object
     private void FixedUpdate()
     {
@@ -72,14 +82,18 @@ public class BuddyScript : MonoBehaviour
         //If you have visited every point in the path, the action is complete
         if (!isok && pos != null)
         {
-            rig.MovePosition(pos[Currentpos]);
-            if (Vector3.Distance(transform.localPosition, pos[Currentpos]) < 0.5f)
+            rig.MovePosition(transform.position + directionVector * Time.fixedDeltaTime);
+            if (Vector3.Distance(new Vector2(transform.position.x,transform.position.z), new Vector2(pos[Currentpos].x,pos[Currentpos].z)) < 0.05f)
             {
                 Currentpos++;
                 if (Currentpos >= pos.Length)
                 {
                     isok = true;
                     Currentpos = -1;
+                }
+                else
+                {
+                    directionVector = getNewDirectionVector(pos[Currentpos]);
                 }
             }
         }
