@@ -29,6 +29,11 @@ public class GameStateManager : MonoBehaviour
     /// </summary>
     public int maxRoundNumber = 4;
     /// <summary>
+    /// Planning Phase Music
+    /// </summary>
+    [SerializeField]
+    private AudioSource _planningMusic;
+    /// <summary>
     /// Running QRDetection instance.
     /// </summary>
     private QRDetection _qRDetection;
@@ -155,6 +160,7 @@ public class GameStateManager : MonoBehaviour
     {
         _currentRoundNumber = 0;
         _uIController.TutorialPlanPopUps();
+        _planningMusic.Play();
     }
 
     /// <summary>
@@ -228,6 +234,7 @@ public class GameStateManager : MonoBehaviour
         _currentState = GameState.Round_Plan;
         _roundTimer.SetRoundLength(60);
         _currentRoundNumber++;
+        _planningMusic.Play();
         if (InfoText != null)
         {
             InfoText.transform.position = GameProperties.Centre + new Vector3(0, 0.65f, 0);
@@ -242,6 +249,7 @@ public class GameStateManager : MonoBehaviour
     /// </summary>
     public void BeginBattle()
     {
+        _planningMusic.Stop();
         BeginBattleButton.SetActive(false);
         if(InfoText != null)
              InfoText.transform.position = GameProperties.Centre + new Vector3(0, 0.5f, 0);
