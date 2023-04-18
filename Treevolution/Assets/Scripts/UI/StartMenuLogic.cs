@@ -12,7 +12,7 @@ public class StartMenuLogic : MonoBehaviour
     /// <summary>
     /// Settings Menu Dialog Prefab.
     /// </summary>
-    public GameObject SettingsDialogPrefab;
+    public GameObject SettingsDialog;
     /// <summary>
     /// Start Menu Dialog Prefab.
     /// </summary>
@@ -26,10 +26,6 @@ public class StartMenuLogic : MonoBehaviour
     private int _tableWidthMM = 240;
     private int _tableDepthMM = 160;
 
-    private void Start()
-    {
-        QRCodeWatcher.RequestAccessAsync();
-    }
 
     private void Update()
     {
@@ -69,7 +65,7 @@ public class StartMenuLogic : MonoBehaviour
     /// </summary>
     public void StartGame()
     {
-        SceneManager.LoadScene("Game");
+        GetComponent<GameStateManager>().InitRounds();
     }
 
     /// <summary>
@@ -78,7 +74,7 @@ public class StartMenuLogic : MonoBehaviour
     /// <param name="caller"></param>
     public void OpenSettings()
     {
-        SettingsDialogPrefab.SetActive(true);
+        SettingsDialog.SetActive(true);
     }
 
 

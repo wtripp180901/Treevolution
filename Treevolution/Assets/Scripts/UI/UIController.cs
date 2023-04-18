@@ -291,8 +291,8 @@ public class UIController : MonoBehaviour
         Dialog d = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Congratulations!", "Score: " + _enemyManager.getEnemiesKilled(), true);
         d.OnClosed += delegate (DialogResult dr)
         {
-            SceneManager.LoadScene("StartMenu");
-            SceneManager.UnloadSceneAsync("Game");
+            GetComponent<StartMenuLogic>().OpenStartMenu();
+
         };
         lock (_openDialogs)
         {

@@ -30,7 +30,8 @@ public class PathfindingTests
     [Test]
     public void PathfindingGraphGeneratorWorksWithObstacles()
     {
-        PlaneMapper pm = new PlaneMapper(true);
+        PlaneMapper pm = new PlaneMapper();
+        pm.InitForTesting();
         pm.floor = GameObject.CreatePrimitive(PrimitiveType.Plane);
         pm.planeMarker = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         GameObject tree = GameObject.CreatePrimitive(PrimitiveType.Capsule);
