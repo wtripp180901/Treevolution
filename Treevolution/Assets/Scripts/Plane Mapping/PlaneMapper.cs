@@ -27,9 +27,9 @@ public class PlaneMapper : MonoBehaviour
     private Pose _pose;
     public Pose pose { get { return _pose; } }
 
-    public PlaneMapper(bool planeMapped)
+    public void InitForTesting()
     {
-       this.planeIsMapped = planeMapped;
+        planeIsMapped = true;
     }
 
     private void Start()
@@ -108,6 +108,12 @@ public class PlaneMapper : MonoBehaviour
         }
     }
 
+    public void ResetPlane()
+    {
+        ClearPlane();
+        planeIsMapped = false;
+    }
+
     public void ClearPlane()
     {
         Destroy(GameObject.FindWithTag("Floor"));
@@ -116,6 +122,5 @@ public class PlaneMapper : MonoBehaviour
         {
             Destroy(existingMarkers[i]);
         }
-
     }
 }
