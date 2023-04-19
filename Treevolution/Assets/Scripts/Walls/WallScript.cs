@@ -39,7 +39,7 @@ public class WallScript : MonoBehaviour, IRuntimeMovableBehaviourScript
     public void Repair(int repaired)
     {
         health += repaired;
-        if(repaired >= baseHealth)
+        if(health >= baseHealth)
         {
             health = baseHealth;
             SetDestroyed(false);
