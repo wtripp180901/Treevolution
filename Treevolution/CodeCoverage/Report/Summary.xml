@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CoverageReport scope="Summary">
   <Summary>
-    <Generatedon>15/04/2023 - 18:39:46</Generatedon>
+    <Generatedon>19/04/2023 - 17:57:11</Generatedon>
     <Parser>OpenCoverParser</Parser>
     <Assemblies>2</Assemblies>
     <Classes>63</Classes>
     <Files>55</Files>
     <Coveredlines>1161</Coveredlines>
-    <Uncoveredlines>1327</Uncoveredlines>
-    <Coverablelines>2488</Coverablelines>
-    <Totallines>4828</Totallines>
-    <Linecoverage>46.6</Linecoverage>
+    <Uncoveredlines>1422</Uncoveredlines>
+    <Coverablelines>2583</Coverablelines>
+    <Totallines>4962</Totallines>
+    <Linecoverage>44.9</Linecoverage>
     <Coveredbranches>0</Coveredbranches>
     <Totalbranches>0</Totalbranches>
   </Summary>
   <Coverage>
-    <Assembly name="MainGameAssembly" classes="59" coverage="39.6" coveredlines="867" coverablelines="2185" totallines="4830" branchcoverage="" coveredbranches="0" totalbranches="0">
+    <Assembly name="MainGameAssembly" classes="59" coverage="38" coveredlines="867" coverablelines="2280" totallines="4964" branchcoverage="" coveredbranches="0" totalbranches="0">
       <Class name="ActionBuddyToken" coverage="100" coveredlines="4" coverablelines="4" totallines="52" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="BuddyAction" coverage="100" coveredlines="4" coverablelines="4" totallines="58" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="BuddyInteractable" coverage="92.8" coveredlines="13" coverablelines="14" totallines="29" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="BuddyScript" coverage="0" coveredlines="0" coverablelines="66" totallines="119" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="BuddyScript" coverage="0" coveredlines="0" coverablelines="147" totallines="230" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="BuddyToken" coverage="100" coveredlines="4" coverablelines="4" totallines="52" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="BulletScript" coverage="0" coveredlines="0" coverablelines="7" totallines="16" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="ConnectiveBuddyToken" coverage="100" coveredlines="1" coverablelines="1" totallines="52" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="Debugger" coverage="0" coveredlines="0" coverablelines="10" totallines="18" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="DummyToken" coverage="100" coveredlines="1" coverablelines="1" totallines="52" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="EmergencyKeyboard" coverage="0" coveredlines="0" coverablelines="26" totallines="42" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="EnemyManager" coverage="36.3" coveredlines="40" coverablelines="110" totallines="167" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="EnemyScript" coverage="0" coveredlines="0" coverablelines="156" totallines="321" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="EnemyTestScript" coverage="0" coveredlines="0" coverablelines="16" totallines="47" branchcoverage="" coveredbranches="0" totalbranches="0" />
@@ -71,8 +71,8 @@
       <Class name="TowerScript" coverage="0" coveredlines="0" coverablelines="37" totallines="73" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="TreeScript" coverage="0" coveredlines="0" coverablelines="11" totallines="24" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="TurretScript" coverage="0" coveredlines="0" coverablelines="4" totallines="16" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="UIController" coverage="16.2" coveredlines="31" coverablelines="191" totallines="363" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="VoiceCommandReceiver" coverage="0" coveredlines="0" coverablelines="80" totallines="120" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="UIController" coverage="16.3" coveredlines="31" coverablelines="190" totallines="363" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="VoiceCommandReceiver" coverage="0" coveredlines="0" coverablelines="79" totallines="119" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="WallBuddyInteractable" coverage="100" coveredlines="11" coverablelines="11" totallines="24" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="WallScript" coverage="65.2" coveredlines="30" coverablelines="46" totallines="77" branchcoverage="" coveredbranches="0" totalbranches="0" />
     </Assembly>

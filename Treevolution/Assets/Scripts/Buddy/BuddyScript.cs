@@ -18,11 +18,15 @@ public class BuddyScript : MonoBehaviour
     [SerializeField] private float AttackRate = 1;
     float attackCooldown;
 
+    [SerializeField] private float RepairRate = 1;
+    float repairCooldown;
+
     // Start is called before the first frame update
     void Start()
     {
         rig = GetComponent<Rigidbody>();
         attackCooldown = AttackRate;
+        repairCooldown = RepairRate;
     }
 
     BUDDY_ACTION_TYPES currentAction;
@@ -32,6 +36,9 @@ public class BuddyScript : MonoBehaviour
 
     Vector3[] pos=null;
     int Currentpos=-1;
+
+    GameObject[] enemiesList = null;
+
     // Update is called once per frame
     void Update()
     {
@@ -49,28 +56,37 @@ public class BuddyScript : MonoBehaviour
 
             //}));
             isok = false;
-            switch (temp.actionType) {
-            case BUDDY_ACTION_TYPES.Move:
+            switch (temp.actionType)
+            {
+                case BUDDY_ACTION_TYPES.Move:
                     //getpath
                     pos = Pathfinding.Pathfinder.GetPath(transform.position, ((MoveBuddyAction)temp).location, false);
                     Currentpos = 0;
                     if (pos != null && pos.Length > 0) directionVector = getNewDirectionVector(pos[0]);
                     break;
-            case BUDDY_ACTION_TYPES.Attack:
+                case BUDDY_ACTION_TYPES.Attack:
+                case BUDDY_ACTION_TYPES.Repair:
                     targets = new Queue<GameObject>(((TargetedBuddyAction)temp).targets);
                     if (targets.Count > 0) currentTarget = targets.Dequeue();
                     else isok = true;
                     break;
-                case BUDDY_ACTION_TYPES.Repair:
-                    GameObject[] walls = ((TargetedBuddyAction)temp).targets;
-                    for(int i = 0;i < walls.Length; i++)
+                case BUDDY_ACTION_TYPES.Defend:
+                    isok = false;
+                    //Find all the entities in the Logic tag with the GameObject.FindWithTag function
+                    enemiesList = GameObject.FindGameObjectWithTag("Logic").GetComponent<EnemyManager>().enemies;
+                    //List<GameObject> enemiesList = GameObject.FindWithTag(" Logic ").GetComponent().enemies;
+                    //According to the nearest rule, find the enemy closest to the current character
+                    if (enemiesList.Length > 0)
                     {
-                        walls[i].GetComponent<WallScript>().Repair(10);
+                        GameObject target = findNearest(enemiesList);
+                        if (target != null)
+                        {
+                            target.GetComponent<EnemyScript>().Damage(2);
+                        }
                     }
-                    isok = true;
                     break;
             }
-            
+
         }
     }
 
@@ -99,10 +115,35 @@ public class BuddyScript : MonoBehaviour
                 case BUDDY_ACTION_TYPES.Attack:
                     attackFixedUpdate();
                     break;
+                case BUDDY_ACTION_TYPES.Repair:
+                    repairFixedUpdate();
+                    break;
                 default:
                     break;
             }
             
+        }
+    }
+
+    void repairFixedUpdate()
+    {
+        if (moveToTargetGameObject(currentTarget))
+        {
+            if (repairCooldown <= 0)
+            {
+                Debug.Log("repairing");
+                currentTarget.GetComponent<WallScript>().Repair(4);
+                repairCooldown = RepairRate;
+                if (!currentTarget.GetComponent<WallScript>().isDestroyed)
+                {
+                    if (targets.Count > 0) currentTarget = targets.Dequeue();
+                    else isok = true;
+                }
+            }
+            else
+            {
+                repairCooldown -= Time.fixedDeltaTime;
+            }
         }
     }
 
@@ -115,8 +156,7 @@ public class BuddyScript : MonoBehaviour
         }
         else
         {
-            Vector3 vecToTarget = new Vector3(currentTarget.transform.position.x,0,currentTarget.transform.position.z) - new Vector3(transform.position.x,0,transform.position.z);
-            if (vecToTarget.magnitude < 0.05f)
+            if (moveToTargetGameObject(currentTarget))
             {
                 if (attackCooldown <= 0)
                 {
@@ -124,10 +164,6 @@ public class BuddyScript : MonoBehaviour
                     attackCooldown = AttackRate;
                 }
                 else attackCooldown -= Time.fixedDeltaTime;
-            }
-            else
-            {
-                rig.MovePosition(transform.position + vecToTarget.normalized * speed);
             }
         }
     }
@@ -154,6 +190,20 @@ public class BuddyScript : MonoBehaviour
         }
     }
 
+    bool moveToTargetGameObject(GameObject target)
+    {
+        Vector3 vecToTarget = new Vector3(target.transform.position.x, 0, target.transform.position.z) - new Vector3(transform.position.x, 0, transform.position.z);
+        if (vecToTarget.magnitude < 0.05f)
+        {
+            return true;
+        }
+        else
+        {
+            rig.MovePosition(transform.position + vecToTarget.normalized * speed);
+            return false;
+        }
+    }
+
     //As a test I am calling this from PhaseTransition.cs, currently 2 Move actions are added. When fully working, the buddy will move aroud the wall and
     //then back to its original location - Will
     public void GiveInstructions(List<BuddyAction> actions)
@@ -163,5 +213,18 @@ public class BuddyScript : MonoBehaviour
         {
             actionQueue.Enqueue(item);
         }
+    }
+
+    GameObject findNearest(GameObject[] enemiesList){
+        float dis1 = 9999;//Its own attack range, this can be modified, if the enemy is larger than this range then there is no target to attack
+        GameObject target = null;
+        foreach(GameObject obj in enemiesList){
+            float dis2 = Vector3.Distance(obj.transform.position, transform.position);
+            if(dis2<dis1){
+                target = obj;
+                dis1 = dis2;
+            }
+        }
+        return target;
     }
 }
