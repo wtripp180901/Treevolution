@@ -82,7 +82,7 @@ namespace LanguageParsing
 
             }
             Debug.Log("Not implemented in getSubject: " + subject.ToString());
-            return null;
+            return possibleSubjects;
         }
 
         GameObject[] defaultTargetsOfActionType(BUDDY_ACTION_TYPES action)

@@ -29,6 +29,11 @@ public class BuddyScript : MonoBehaviour
         repairCooldown = RepairRate;
     }
 
+    public void SetupForTest()
+    {
+        rig = GetComponent<Rigidbody>();
+    }
+
     BUDDY_ACTION_TYPES currentAction;
 
     Queue<GameObject> targets;
@@ -204,10 +209,11 @@ public class BuddyScript : MonoBehaviour
         }
     }
 
-    //As a test I am calling this from PhaseTransition.cs, currently 2 Move actions are added. When fully working, the buddy will move aroud the wall and
-    //then back to its original location - Will
     public void GiveInstructions(List<BuddyAction> actions)
     {
+        actionQueue.Clear();
+        targets?.Clear();
+        isok = true;
         //Add actions to actionQueue
         foreach (BuddyAction item in actions)
         {
@@ -226,5 +232,12 @@ public class BuddyScript : MonoBehaviour
             }
         }
         return target;
+    }
+
+    public void GetTestData(out Queue<GameObject> targets,out GameObject currentTarget,out bool isOk)
+    {
+        targets = this.targets;
+        currentTarget = this.currentTarget;
+        isOk = isok;
     }
 }

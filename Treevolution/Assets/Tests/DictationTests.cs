@@ -228,6 +228,19 @@ public class DictationTests
     }
 
     [UnityTest]
+    public IEnumerator TestPreviouslyFailedCommands()
+    {
+        GameObject closerEnemy, furtherEnemy;
+        setupAttackScene(out closerEnemy, out furtherEnemy);
+        List<BuddyAction> results = null;
+        yield return new LanguageParsing.LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(new string[] { "attack", "those", "ones", "over", "there." }, (x => results = x));
+        Assert.AreEqual(results.Count, 1);
+        Assert.AreEqual(((TargetedBuddyAction)results[0]).targets.Length, 2);
+        Assert.Contains(furtherEnemy, ((TargetedBuddyAction)results[0]).targets);
+        Assert.Contains(closerEnemy, ((TargetedBuddyAction)results[0]).targets);
+    }
+
+    [UnityTest]
     public IEnumerator RepairsDamagedOrBrokenWallsByDictation()
     {
         GameObject buddy = new GameObject();
@@ -262,7 +275,7 @@ public class DictationTests
 
     }
 
-    void setupBasicMovementScene(out GameObject pointer)
+    static void setupBasicMovementScene(out GameObject pointer)
     {
         GameObject logic = new GameObject();
         logic.tag = "Logic";
@@ -278,13 +291,13 @@ public class DictationTests
         pointerTracker.FinishSampling();
     }
 
-    void setupAttackScene(out GameObject closerEnemy,out GameObject furtherEnemy)
+    public static void setupAttackScene(out GameObject closerEnemy,out GameObject furtherEnemy)
     {
         GameObject pointer;
         setupAttackScene(out pointer,out closerEnemy,out furtherEnemy);
     }
 
-    void setupAttackScene(out GameObject pointer,out GameObject closerEnemy, out GameObject furtherEnemy)
+    public static void setupAttackScene(out GameObject pointer,out GameObject closerEnemy, out GameObject furtherEnemy)
     {
         setupBasicMovementScene(out pointer);
         GameObject logic = GameObject.FindWithTag("Logic");
@@ -301,6 +314,9 @@ public class DictationTests
         furtherEnemy.GetComponent<BuddyInteractable>().SetupForTest(new RESTRICTION_TYPES[] { RESTRICTION_TYPES.Ant, RESTRICTION_TYPES.Small, RESTRICTION_TYPES.Grounded, RESTRICTION_TYPES.Unarmoured });
         GameObject buddy = new GameObject();
         buddy.tag = "Buddy";
+        buddy.AddComponent<Rigidbody>();
+        buddy.AddComponent<BuddyScript>();
+        buddy.GetComponent<BuddyScript>().SetupForTest();
         buddy.transform.position = new Vector3(0, 0, 0);
     }
 
