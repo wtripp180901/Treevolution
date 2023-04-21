@@ -33,7 +33,15 @@ public class GameStateManager : MonoBehaviour
     /// </summary>
     [SerializeField]
     private AudioSource _planningMusic;
+    /// <summary>
+    /// Indicates if the planning phase music is playing or not.
+    /// </summary>
     private bool _planningMusicPlaying = true;
+    /// <summary>
+    /// Sound effect for round end.
+    /// </summary>
+    [SerializeField]
+    private AudioSource _roundEndSound;
     /// <summary>
     /// Running QRDetection instance.
     /// </summary>
@@ -294,7 +302,7 @@ public class GameStateManager : MonoBehaviour
         clearEnemies();
         repairAllWalls();
         _enemyManager.StopSpawning();
-
+        _roundEndSound.Play();
         ToggleMusic();
         int enemiesKilled = GetComponent<EnemyManager>().getEnemiesKilled();
         if (currentGameState == GameState.Tutorial_Battle)

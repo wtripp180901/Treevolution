@@ -957,7 +957,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Edit Table Depth
+  m_text: Edit Table Depth (mm)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6a84f857bec7e7345843ae29404c57ce, type: 2}
   m_sharedMaterial: {fileID: 21202819797275496, guid: 6a84f857bec7e7345843ae29404c57ce, type: 2}
@@ -1523,8 +1523,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateLinkedTransform: 0
-  moveLerpTime: 0.5
-  rotateLerpTime: 0.5
+  moveLerpTime: 0.1
+  rotateLerpTime: 0.1
   scaleLerpTime: 1
   maintainScaleOnInitialization: 1
   smoothing: 1
@@ -1534,18 +1534,18 @@ MonoBehaviour:
   faceUserDefinedTargetTransform: 0
   targetToFace: {fileID: 0}
   pivotAxis: 7
-  minDistance: 0.4
+  minDistance: 0.3
   maxDistance: 0.8
-  defaultDistance: 0.5
-  maxViewHorizontalDegrees: 90
-  maxViewVerticalDegrees: 90
+  defaultDistance: 0.6
+  maxViewHorizontalDegrees: 60
+  maxViewVerticalDegrees: 60
   reorientWhenOutsideParameters: 1
-  orientToControllerDeadzoneDegrees: 0
+  orientToControllerDeadzoneDegrees: 10
   ignoreAngleClamp: 0
   ignoreDistanceClamp: 0
-  ignoreReferencePitchAndRoll: 1
+  ignoreReferencePitchAndRoll: 0
   pitchOffset: 0
-  verticalMaxDistance: 1
+  verticalMaxDistance: 0.3
   angularClampMode: 0
   tetherAngleSteps: 6
   boundsScaler: 1
@@ -1561,7 +1561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d876093c5f4a4ec499dd1bbfbd0085bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SettingsDialogPrefab: {fileID: 0}
+  SettingsDialog: {fileID: 0}
   StartMenu: {fileID: 0}
 --- !u!1 &2463334771811497370
 GameObject:
@@ -4939,7 +4939,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Edit Table Width
+  m_text: Edit Table Width (mm)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6a84f857bec7e7345843ae29404c57ce, type: 2}
   m_sharedMaterial: {fileID: 21202819797275496, guid: 6a84f857bec7e7345843ae29404c57ce, type: 2}

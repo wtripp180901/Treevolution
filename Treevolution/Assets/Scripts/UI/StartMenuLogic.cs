@@ -50,6 +50,21 @@ public class StartMenuLogic : MonoBehaviour
             }
             widthOrDepth = -1;
         }
+        if (SettingsDialog.activeInHierarchy)
+        {
+            ButtonConfigHelper[] buttonTexts = SettingsDialog.gameObject.GetComponentsInChildren<ButtonConfigHelper>();
+            foreach (ButtonConfigHelper bch in buttonTexts)
+            {
+                if (bch.gameObject.name.Contains("Width"))
+                {
+                    bch.MainLabelText = _tableWidthMM.ToString() + " mm\nSet Table Width";
+                }
+                else if (bch.gameObject.name.Contains("Depth"))
+                {
+                    bch.MainLabelText = _tableDepthMM.ToString() + " mm\nSet Table Depth";
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -65,6 +80,8 @@ public class StartMenuLogic : MonoBehaviour
     /// </summary>
     public void StartGame()
     {
+        GetComponent<PlaneMapper>().tableWidth = _tableWidthMM;
+        GetComponent<PlaneMapper>().tableDepth = _tableDepthMM;
         GetComponent<GameStateManager>().InitRounds();
     }
 
@@ -81,14 +98,14 @@ public class StartMenuLogic : MonoBehaviour
     public void EditTableWidth()
     {
         widthOrDepth = 0;
-        _keyboard = TouchScreenKeyboard.Open(_tableWidthMM.ToString(), TouchScreenKeyboardType.NumberPad, false, false, false ,false, _tableWidthMM.ToString());
+        _keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.NumberPad, false, false, false ,false, "");
     }
 
 
     public void EditTableDepth()
     {
         widthOrDepth = 1;
-        _keyboard = TouchScreenKeyboard.Open(_tableDepthMM.ToString(), TouchScreenKeyboardType.NumberPad, false, false, false, false, _tableDepthMM.ToString());
+        _keyboard = TouchScreenKeyboard.Open("", TouchScreenKeyboardType.NumberPad, false, false, false, false, "");
 
     }
     //Settings & Credits", "Click OK to change the table dimensions, or Close to go back.\nGame made by Stefan Corneci, Mingtong Du, Oscar Hewlett, Aristotelis Kostelenos, William Tripp, Kuncheng Xiao, Ash Zhuang.\nMusic by Hadi Rahmani and Billy Crook.
