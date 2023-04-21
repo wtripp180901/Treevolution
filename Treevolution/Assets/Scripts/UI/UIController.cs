@@ -348,10 +348,23 @@ public class UIController : MonoBehaviour
         infoText.text = "" + _roundTime.ToString();
     }
 
+    bool hypothesisMode = false;
+    public void StartShowingHypothesis() { hypothesisMode = true; }
     public void ShowDictation(string dictation)
     {
+        hypothesisMode = false;
         dictationText.text = dictation;
-        //StartCoroutine(clearTextAfterDelay(3, dictationText));
+        dictationText.color = Color.white;
+        StartCoroutine(clearTextAfterDelay(3, dictationText));
+    }
+
+    public void ShowHypothesis(string hypothesis)
+    {
+        if (hypothesisMode)
+        {
+            dictationText.text = hypothesis;
+            dictationText.color = Color.red;
+        }
     }
 
     IEnumerator clearTextAfterDelay(int delay,TMP_Text text)

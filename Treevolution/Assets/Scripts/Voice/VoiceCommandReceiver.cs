@@ -31,20 +31,35 @@ public class VoiceCommandReceiver : MonoBehaviour
             GetComponent<RoundTimer>().PauseTimer();
     }
 
+    bool currentlyRecording = false;
+
     public void Record()
     {
         recordingIndicator.SetActive(true);
         try
         {
+            GetComponent<UIController>().StartShowingHypothesis();
             DictationHandler handler = GetComponent<DictationHandler>();
             pointerTracker.StartSampling();
             lock(handler){
                 handler.StartRecording();
             }
+            currentlyRecording = true;
+            StartCoroutine(recordingTimeout());
         }catch (System.Exception e)
         {
             uiController.ShowDictation(e.Message);
             Debug.Log(e.Message);
+        }
+    }
+
+    IEnumerator recordingTimeout()
+    {
+        yield return new WaitForSeconds(10.5f);
+        if (currentlyRecording)
+        {
+            finishDictation();
+            GetComponent<UIController>().ShowDictation("Sorry, I can't talk to Microsoft!");
         }
     }
 
@@ -95,6 +110,7 @@ public class VoiceCommandReceiver : MonoBehaviour
         }
         pointerTracker.FinishSampling();
         recordingIndicator.SetActive(false);
+        currentlyRecording = false;
     }
 
     public void HandleDictationProcessingResults(List<BuddyAction> instructions)
