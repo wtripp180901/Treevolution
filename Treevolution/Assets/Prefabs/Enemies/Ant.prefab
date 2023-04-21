@@ -801,7 +801,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8476436578862352915}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98c748f3768ab714a8449b60fb9edc5c, type: 3}
   m_Name: 
@@ -846,6 +846,21 @@ MonoBehaviour:
   deathAudio: {fileID: -737026046191525132}
   AvoidsWall: 1
   DamagesWall: 0
+--- !u!114 &6355193267100151327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8476436578862352915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183e8dd8b58276c4a8f2b807059981b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventsToReceive: 0
+  debounceThreshold: 0.1
+  touchableCollider: {fileID: 1404011399531355471}
 --- !u!4 &9144992818270802089 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fbb7381d883727b4da21eb91dc90ec39, type: 3}
