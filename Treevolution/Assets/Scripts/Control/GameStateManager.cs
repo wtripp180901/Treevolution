@@ -29,6 +29,20 @@ public class GameStateManager : MonoBehaviour
     /// </summary>
     public int maxRoundNumber = 4;
     /// <summary>
+    /// Planning Phase Music
+    /// </summary>
+    [SerializeField]
+    private AudioSource _planningMusic;
+    /// <summary>
+    /// Indicates if the planning phase music is playing or not.
+    /// </summary>
+    private bool _planningMusicPlaying = true;
+    /// <summary>
+    /// Sound effect for round end.
+    /// </summary>
+    [SerializeField]
+    private AudioSource _roundEndSound;
+    /// <summary>
     /// Running QRDetection instance.
     /// </summary>
     private QRDetection _qRDetection;
@@ -51,7 +65,7 @@ public class GameStateManager : MonoBehaviour
     /// <summary>
     /// The current round number (0 = None/Tutorial, 1 = Round 1, etc.).
     /// </summary>
-    private int _currentRoundNumber = 0;
+    private int _currentRoundNumber;
 
     /// <summary>
     /// Values the GameState can take.
@@ -63,7 +77,8 @@ public class GameStateManager : MonoBehaviour
         Tutorial_Plan,
         Tutorial_Battle,
         Round_Plan,
-        Round_Battle
+        Round_Battle,
+        Start_Menu
     }
     /// <summary>
     /// Types of enemies.
@@ -111,7 +126,6 @@ public class GameStateManager : MonoBehaviour
             }
         };
 
-    
 
     public void SetupGameStateManagerTesting()
     {
@@ -120,18 +134,34 @@ public class GameStateManager : MonoBehaviour
         _qRDetection = new QRDetection();
     }
 
-    /// <summary>
-    /// Start runs when loading the GameObject that this script is attached to.
-    /// </summary>
-    private void Start()
+
+    public void ToggleMusic()
+    {
+        if (_planningMusicPlaying)
+        {
+            _planningMusic.Stop();
+            _planningMusicPlaying = false;
+        }
+        else
+        {
+            _planningMusic.Play();
+            _planningMusicPlaying = true;
+        }
+    }
+
+    public void InitRounds()
     {
         if (Application.platform == RuntimePlatform.WindowsEditor)
         {
             debugObject.SetActive(true); // Unity Editor Mode
         }
-        if(InfoText != null)
+        if (InfoText != null)
+        {
             InfoText.text = "";
+            InfoText.gameObject.SetActive(true);
+        }
         _currentState = GameState.Calibration;
+        _currentRoundNumber = 0;
         _uIController = GetComponent<UIController>();
         _qRDetection = GetComponent<QRDetection>();
         _enemyManager = GetComponent<EnemyManager>();
@@ -242,10 +272,11 @@ public class GameStateManager : MonoBehaviour
     /// </summary>
     public void BeginBattle()
     {
+        _planningMusic.Stop();
         BeginBattleButton.SetActive(false);
         if(InfoText != null)
              InfoText.transform.position = GameProperties.Centre + new Vector3(0, 0.5f, 0);
-        //_qRDetection.StopQR();
+        ToggleMusic();
         GameProperties.BattlePhase = true;
         if (_currentState == GameState.Tutorial_Plan)
         {
@@ -271,7 +302,8 @@ public class GameStateManager : MonoBehaviour
         clearEnemies();
         repairAllWalls();
         _enemyManager.StopSpawning();
-        //_qRDetection.StartQR();
+        _roundEndSound.Play();
+        ToggleMusic();
         int enemiesKilled = GetComponent<EnemyManager>().getEnemiesKilled();
         if (currentGameState == GameState.Tutorial_Battle)
         {
@@ -297,6 +329,18 @@ public class GameStateManager : MonoBehaviour
     private void EndGame()
     {
         _uIController.EndPopUp();
+        _currentState = GameState.Start_Menu;
+        if (Application.platform == RuntimePlatform.WindowsEditor)
+        {
+            debugObject.SetActive(false); // Unity Editor Mode
+        }
+        if (InfoText != null)
+        {
+            InfoText.text = "";
+            InfoText.gameObject.SetActive(false);
+        }
+        GetComponent<PlaneMapper>().ResetPlane();
+        _qRDetection.lockPlane = false;
     }
 
     /// <summary>
