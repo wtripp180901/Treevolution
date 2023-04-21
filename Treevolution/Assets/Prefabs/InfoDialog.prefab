@@ -535,7 +535,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -0.02166555, y: 0, z: -0.117718, w: -0.029087685}
+  m_margin: {x: -0.02166555, y: 0, z: -0.117718, w: -0.03818441}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0
@@ -3337,8 +3337,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5939517194315049537}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0052, z: 0}
-  m_LocalScale: {x: 0.192, y: 0.07, z: 0.01}
+  m_LocalPosition: {x: 0, y: -0.00057, z: 0}
+  m_LocalScale: {x: 0.192, y: 0.081542306, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3313217638574813968}
