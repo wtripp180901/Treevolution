@@ -6,6 +6,10 @@ verb
 Attack
 attack shoot kill
 
+verb
+Defend
+defend guard protect
+
 noun
 PointerLocation
 here there
@@ -86,10 +90,14 @@ noun
 On Ground
 ground floor
 
+noun
+Wall
+wall barricade defense bush thorns spike spikes
+
 verb
 Repair
 fix mend repair rebuild
 
 ignoretype
 Ignore
-one ones bug bugs
+one ones bug bugs the

@@ -39,10 +39,8 @@ public class BuddyScript : MonoBehaviour
     Queue<GameObject> targets;
     GameObject currentTarget = null;
 
-    Vector3[] pos=null;
-    int Currentpos=-1;
-
-    GameObject[] enemiesList = null;
+    Vector3[] pos = null;
+    int Currentpos = -1;
 
     // Update is called once per frame
     void Update()
@@ -53,7 +51,7 @@ public class BuddyScript : MonoBehaviour
         //ordered list of points you move to in order to get to the location (this avoids walls).
         if (actionQueue.Count != 0 && isok)
         {
-            BuddyAction temp= actionQueue.Dequeue();
+            BuddyAction temp = actionQueue.Dequeue();
             currentAction = temp.actionType;
 
             //StartCoroutine(Delay(2f, () =>
@@ -76,19 +74,7 @@ public class BuddyScript : MonoBehaviour
                     else isok = true;
                     break;
                 case BUDDY_ACTION_TYPES.Defend:
-                    isok = false;
-                    //Find all the entities in the Logic tag with the GameObject.FindWithTag function
-                    enemiesList = GameObject.FindGameObjectWithTag("Logic").GetComponent<EnemyManager>().enemies;
-                    //List<GameObject> enemiesList = GameObject.FindWithTag(" Logic ").GetComponent().enemies;
-                    //According to the nearest rule, find the enemy closest to the current character
-                    if (enemiesList.Length > 0)
-                    {
-                        GameObject target = findNearest(enemiesList);
-                        if (target != null)
-                        {
-                            target.GetComponent<EnemyScript>().Damage(2);
-                        }
-                    }
+                    currentTarget = findNearest(GameObject.FindGameObjectWithTag("Logic").GetComponent<EnemyManager>().enemies);
                     break;
             }
 
@@ -103,7 +89,7 @@ public class BuddyScript : MonoBehaviour
 
     Vector3 getNewDirectionVector(Vector3 nextPosition)
     {
-        Vector3 dirVec = (new Vector3(nextPosition.x,transform.position.y,nextPosition.z) - transform.position).normalized * speed;
+        Vector3 dirVec = (new Vector3(nextPosition.x, transform.position.y, nextPosition.z) - transform.position).normalized * speed;
         return dirVec;
     }
 
@@ -123,10 +109,32 @@ public class BuddyScript : MonoBehaviour
                 case BUDDY_ACTION_TYPES.Repair:
                     repairFixedUpdate();
                     break;
+                case BUDDY_ACTION_TYPES.Defend:
+                    defendFixedUpdate();
+                    break;
                 default:
                     break;
             }
-            
+
+        }
+    }
+
+    void defendFixedUpdate()
+    {
+        if (currentTarget == null)
+        {
+            //Find all the entities in the Logic tag with the GameObject.FindWithTag function
+            GameObject[] enemiesList = GameObject.FindGameObjectWithTag("Logic").GetComponent<EnemyManager>().enemies;
+            //List<GameObject> enemiesList = GameObject.FindWithTag(" Logic ").GetComponent().enemies;
+            //According to the nearest rule, find the enemy closest to the current character
+            if (enemiesList.Length > 0)
+            {
+                currentTarget = findNearest(enemiesList);
+            }
+        }
+        else
+        {
+            currentTarget.GetComponent<EnemyScript>().Damage(2);
         }
     }
 

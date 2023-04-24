@@ -5,7 +5,7 @@ using System.Linq;
 
 public class BuddyInteractable : MonoBehaviour
 {
-    [SerializeField] private RESTRICTION_TYPES[] BuddySystemProperties;
+    [SerializeField] protected RESTRICTION_TYPES[] BuddySystemProperties;
 
     public virtual bool SatisfiesConstraints(RESTRICTION_TYPES[] hardConstraints, RESTRICTION_TYPES[] softConstraints)
     {

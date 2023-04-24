@@ -155,4 +155,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 978e90011409a4d4daaec1411a0df81d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BuddySystemProperties: 
+  BuddySystemProperties: 0d000000

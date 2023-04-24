@@ -13,7 +13,18 @@ public class WallBuddyInteractable : BuddyInteractable
     }
     public override bool SatisfiesConstraints(RESTRICTION_TYPES[] hardConstraints, RESTRICTION_TYPES[] softConstraints)
     {
-        if (!wallScript.isDestroyed && !wallScript.isDamaged) return false;
+        if (!wallScript.isDestroyed && !wallScript.isDamaged && Array.Exists(BuddySystemProperties, x => x == RESTRICTION_TYPES.DamagedWall))
+        {
+            List<RESTRICTION_TYPES> temp = new List<RESTRICTION_TYPES>(BuddySystemProperties);
+            temp.Remove(RESTRICTION_TYPES.DamagedWall);
+            BuddySystemProperties = temp.ToArray();
+        }
+        if ((wallScript.isDestroyed || wallScript.isDamaged) && !Array.Exists(BuddySystemProperties, x => x == RESTRICTION_TYPES.DamagedWall))
+        {
+            List<RESTRICTION_TYPES> temp = new List<RESTRICTION_TYPES>(BuddySystemProperties);
+            temp.Add(RESTRICTION_TYPES.DamagedWall);
+            BuddySystemProperties = temp.ToArray();
+        }
         return base.SatisfiesConstraints(hardConstraints, softConstraints);
     }
     public void SetupForTest(RESTRICTION_TYPES[] properties,WallScript wallScript)
