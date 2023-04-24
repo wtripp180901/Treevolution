@@ -263,6 +263,23 @@ public class DictationTests
         Assert.Contains(brokenWall, ((TargetedBuddyAction)results[0]).targets);
     }
 
+    [UnityTest]
+    public IEnumerator DefendDefendsWalls()
+    {
+        GameObject closerEnemy, furtherEnemy;
+        GameObject wall = new GameObject();
+        WallBuddyInteractable dummy;
+        WallScript wDummy;
+        initialiseWall(wall, out dummy,out wDummy);
+        DictationTests.setupAttackScene(out closerEnemy, out furtherEnemy);
+        List<BuddyAction> results = null;
+        yield return new LanguageParsing.LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(new string[] { "defend","the","wall." }, (x => results = x));
+        Assert.AreEqual(results.Count, 2);
+        Assert.AreEqual(results[0].actionType, BUDDY_ACTION_TYPES.Move);
+        Assert.AreEqual(results[1].actionType, BUDDY_ACTION_TYPES.Defend);
+        Assert.LessOrEqual((((MoveBuddyAction)results[0]).location - wall.transform.position).magnitude,0.01f);
+    }
+
     void initialiseWall(GameObject wall, out WallBuddyInteractable buddyInteractable, out WallScript wallScript)
     {
         buddyInteractable = wall.AddComponent<WallBuddyInteractable>();
@@ -271,7 +288,7 @@ public class DictationTests
         wall.AddComponent<Pathfinding.PathfindingObstacle>();
         wall.tag = "Wall";
         wallScript.SetupForTest(wall.GetComponent<Collider>(), wall.GetComponent<Pathfinding.PathfindingObstacle>());
-        buddyInteractable.SetupForTest(new RESTRICTION_TYPES[] { }, wallScript);
+        buddyInteractable.SetupForTest(new RESTRICTION_TYPES[] { RESTRICTION_TYPES.Wall }, wallScript);
 
     }
 

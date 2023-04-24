@@ -31,6 +31,23 @@ public class BuddyTests
 
     }
 
+    [UnityTest]
+    public IEnumerator TestDefendFindsNearest()
+    {
+        GameObject closerEnemy, furtherEnemy;
+        DictationTests.setupAttackScene(out closerEnemy, out furtherEnemy);
+        List<BuddyAction> results = null;
+        yield return new LanguageParsing.LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(new string[] { "defend." }, (x => results = x));
+        BuddyScript buddyScript = GameObject.FindWithTag("Buddy").GetComponent<BuddyScript>();
+        buddyScript.GiveInstructions(results);
+        yield return null;
+        Queue<GameObject> targets;
+        GameObject currentTarget;
+        bool dummy;
+        buddyScript.GetTestData(out targets,out currentTarget,out dummy);
+        Assert.AreEqual(closerEnemy, currentTarget);
+    }
+
     [TearDown]
     public void ResetScene()
     {

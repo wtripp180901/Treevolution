@@ -24,6 +24,12 @@ public class MoveBuddyAction : BuddyAction
     }
 }
 
+public class OngoingBuddyAction : BuddyAction
+{
+    public OngoingBuddyAction(BUDDY_ACTION_TYPES actionType) : base(actionType) {
+    }
+}
+
 /*public abstract class TargettedBuddyAction : BuddyAction
 {
     public readonly bool MultiTarget;

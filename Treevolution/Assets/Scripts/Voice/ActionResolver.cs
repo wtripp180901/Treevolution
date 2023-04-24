@@ -20,19 +20,51 @@ namespace LanguageParsing
         /// <param name="subject"></param>
         /// <param name="restrictions"></param>
         /// <returns></returns>
-        public BuddyAction ResolveAction(BUDDY_ACTION_TYPES action,BUDDY_SUBJECT_TYPES subject,RESTRICTION_TYPES[] restrictions)
+        public List<BuddyAction> ResolveAction(BUDDY_ACTION_TYPES action,BUDDY_SUBJECT_TYPES subject,RESTRICTION_TYPES[] restrictions)
         {
+            restrictions = adjustRestrictionsForEdgeCases(action, subject, restrictions);
+
             if(action == BUDDY_ACTION_TYPES.Move)
             {
-                return new MoveBuddyAction(getMoveSubject(subject));
+                return new List<BuddyAction>() { new MoveBuddyAction(getMoveSubject(subject)) };
+            }else if(action == BUDDY_ACTION_TYPES.Defend)
+            {
+                switch (subject)
+                {
+                    case BUDDY_SUBJECT_TYPES.PointerLocation:
+                        return new List<BuddyAction>() { new MoveBuddyAction(getMoveSubject(subject)), new OngoingBuddyAction(BUDDY_ACTION_TYPES.Defend) };
+                    case BUDDY_SUBJECT_TYPES.Unresolved:
+                        if (restrictions.Length > 0)
+                        {
+                            GameObject[] defendSubjects = getSubject(subject, action, restrictions);
+                            if (defendSubjects.Length > 0) return new List<BuddyAction>() { new MoveBuddyAction(defendSubjects[0].transform.position), new OngoingBuddyAction(BUDDY_ACTION_TYPES.Defend) };
+                            else return new List<BuddyAction>() { new OngoingBuddyAction(BUDDY_ACTION_TYPES.Defend) };
+                        }
+                        else
+                        {
+                            return new List<BuddyAction>() { new OngoingBuddyAction(BUDDY_ACTION_TYPES.Defend) };
+                        }
+                    default:
+                        return new List<BuddyAction>() { new OngoingBuddyAction(BUDDY_ACTION_TYPES.Defend) };
+                }
             }
             else
             {
                 Vector3 buddyPos = GameObject.FindWithTag("Buddy").transform.position;
                 GameObject[] subjects = getSubject(subject, action,restrictions);
                 Array.Sort(subjects, new ClosestToBuddyComparer(buddyPos));
-                return new TargetedBuddyAction(action, subjects);
+                return new List<BuddyAction>() { new TargetedBuddyAction(action, subjects) };
             }
+        }
+
+        RESTRICTION_TYPES[] adjustRestrictionsForEdgeCases(BUDDY_ACTION_TYPES action, BUDDY_SUBJECT_TYPES subject, RESTRICTION_TYPES[] restrictions)
+        {
+            List<RESTRICTION_TYPES> newRestrictions = new List<RESTRICTION_TYPES>(restrictions);
+            if(action == BUDDY_ACTION_TYPES.Repair)
+            {
+                newRestrictions.Add(RESTRICTION_TYPES.DamagedWall);
+            }
+            return newRestrictions.ToArray();
         }
 
         private class ClosestToBuddyComparer : IComparer<GameObject>
@@ -93,6 +125,15 @@ namespace LanguageParsing
                     return GameObject.FindWithTag("Logic").GetComponent<EnemyManager>().enemies;
                 case BUDDY_ACTION_TYPES.Repair:
                     return GameObject.FindGameObjectsWithTag("Wall");
+                case BUDDY_ACTION_TYPES.Defend:
+                    GameObject tree = GameObject.FindWithTag("Tree");
+                    GameObject[] plants = GameObject.FindGameObjectsWithTag("Tower");
+                    GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
+                    List<GameObject> defenceTargets = new List<GameObject>();
+                    defenceTargets.AddRange(plants);
+                    defenceTargets.AddRange(walls);
+                    if (tree != null) defenceTargets.Add(tree);
+                    return defenceTargets.ToArray();
             }
             Debug.Log("Not implemented in defaultTargetsOfAction: " + action.ToString());
             return null;

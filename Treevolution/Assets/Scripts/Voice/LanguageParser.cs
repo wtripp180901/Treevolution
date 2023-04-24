@@ -113,8 +113,8 @@ namespace LanguageParsing
 
         void resolveAction(BUDDY_ACTION_TYPES actionToResolve,BUDDY_SUBJECT_TYPES subject,List<RESTRICTION_TYPES> restrictions,List<BuddyAction> instructions)
         {
-            BuddyAction action = actionResolver.ResolveAction(actionToResolve, subject, restrictions.ToArray());
-            if(action != null) instructions.Add(action);
+            List<BuddyAction> actions = actionResolver.ResolveAction(actionToResolve, subject, restrictions.ToArray());
+            if(actions != null) instructions.AddRange(actions);
         }
 
         string sanitiseInput(string word)

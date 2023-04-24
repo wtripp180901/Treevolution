@@ -79,6 +79,8 @@ namespace LanguageParsing
                     return new ActionBuddyToken(BUDDY_ACTION_TYPES.Attack);
                 case "Repair":
                     return new ActionBuddyToken(BUDDY_ACTION_TYPES.Repair);
+                case "Defend":
+                    return new ActionBuddyToken(BUDDY_ACTION_TYPES.Defend);
                 case "PointerLocation":
                     return new SubjectBuddyToken(BUDDY_SUBJECT_TYPES.PointerLocation);
                 case "Connective":
@@ -89,6 +91,8 @@ namespace LanguageParsing
                 case "Objective Plural Pronoun":
                 case "Subject Plural Pronoun":
                     return new SubjectBuddyToken(BUDDY_SUBJECT_TYPES.GroupCloseToPointer);
+                case "Wall":
+                    return new RestrictionBuddyToken(RESTRICTION_TYPES.Wall);
                 case "Ant":
                     return new RestrictionBuddyToken(RESTRICTION_TYPES.Ant);
                 case "Hornet":
