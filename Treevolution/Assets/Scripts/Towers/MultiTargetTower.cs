@@ -13,9 +13,8 @@ public class MultiTargetTower : TowerScript
     new void Start()
     {
         base.Start();
-        damage = 1;
         _targetEnemies = new List<EnemyScript>();
-        _fireRateDelta = fireRate;
+        _fireRateDelta = 0;
     }
 
     // Update is called once per frame
@@ -47,7 +46,7 @@ public class MultiTargetTower : TowerScript
 
     public override void Attack()
     {
-        _currentTarget.Damage(1);
+        _currentTarget.Damage(damage);
     }
 
     public override void UpdateTargets()

@@ -4,18 +4,18 @@ public class Gun : MonoBehaviour
 {
     [SerializeField]
     private GameObject projectile;
-    [SerializeField] Transform gunPoint;
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
+    [SerializeField] GameObject[] gunPoints;
 
-    public void Fire(int damage)
+
+    public void Fire(Transform target, int damage)
     {
-        if (gunPoint != null)
+        if (gunPoints != null && gunPoints.Length > 0)
         {
-            GameObject p = Instantiate(projectile, gunPoint.position, gunPoint.rotation);
-            p.GetComponent<BulletScript>().damage = damage;
+            foreach (GameObject gunPoint in gunPoints)
+            {
+                GameObject p = Instantiate(projectile, gunPoint.transform.position, Quaternion.LookRotation(target.position-gunPoint.transform.position));
+                p.GetComponent<BulletScript>().damage = damage;
+            }
         }
     }
 }

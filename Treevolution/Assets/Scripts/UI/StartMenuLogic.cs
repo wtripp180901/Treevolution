@@ -18,6 +18,7 @@ public class StartMenuLogic : MonoBehaviour
     /// </summary>
     public GameObject StartMenu;
 
+    private GameStateManager _gameStateManager;
     private TouchScreenKeyboard _keyboard;
     private string _keyboardText = "";
 
@@ -26,6 +27,11 @@ public class StartMenuLogic : MonoBehaviour
     private int _tableWidthMM = 240;
     private int _tableDepthMM = 160;
 
+
+    private void Start()
+    {
+        _gameStateManager = GameObject.FindGameObjectWithTag("Logic").GetComponent<GameStateManager>();
+    }
 
     private void Update()
     {
@@ -73,6 +79,7 @@ public class StartMenuLogic : MonoBehaviour
     public void OpenStartMenu()
     {
         StartMenu.SetActive(true);
+        _gameStateManager.ToggleMusic();
     }
 
     /// <summary>
@@ -92,6 +99,8 @@ public class StartMenuLogic : MonoBehaviour
     public void OpenSettings()
     {
         SettingsDialog.SetActive(true);
+        _gameStateManager.ToggleMusic();
+
     }
 
 

@@ -20,10 +20,25 @@ public class QRDetection : MonoBehaviour
     /// </summary>
     public GameObject planeMarker;
     /// <summary>
-    /// GameObject which is placed on a tower marker.
+    /// Cactus plant to be placed on a Tower 1 Marker.
     /// </summary>
-    public GameObject towerMarker;
-    public GameObject tower2Marker;
+    public GameObject cactusTower;
+    /// <summary>
+    /// Mushroom plant to be placed on a Tower 2 Marker.
+    /// </summary>
+    public GameObject mushroomTower;
+    /// <summary>
+    /// Flower plant to be placed on a Tower 3 Marker.
+    /// </summary>
+    public GameObject flowerTower;
+    /// <summary>
+    /// Venus plant to be placed on a Tower 4 Marker.
+    /// </summary>
+    public GameObject venusTower;
+    /// <summary>
+    /// Poison plant to be placed on a Tower 5 Marker.
+    /// </summary>
+    public GameObject poisonTower;
     /// <summary>
     /// GameObject which is placed on a wall marker.
     /// </summary>
@@ -199,8 +214,11 @@ public class QRDetection : MonoBehaviour
                 switch (data[0])
                 {
                     case "Tower":
-                        if (tempMarker == null && data[1] == "1") markerType = towerMarker;
-                        else if (tempMarker == null && data[1] == "2") markerType = tower2Marker;
+                        if (tempMarker == null && data[1] == "1") markerType = cactusTower;
+                        else if (tempMarker == null && data[1] == "2") markerType = mushroomTower;
+                        else if (tempMarker == null && data[1] == "3") markerType = flowerTower;
+                        else if (tempMarker == null && data[1] == "4") markerType = venusTower;
+                        else if (tempMarker == null && data[1] == "5") markerType = poisonTower;
                         break;
 
                     case "Wall":
@@ -220,19 +238,6 @@ public class QRDetection : MonoBehaviour
                         scaleToMarker = true;
                         break;
                 }
-                /*AdDED
-                if(markerType == towerMarker)
-                {
-                    if (tempMarker == null)
-                    {
-                        tempMarker = spawnObjectOnQR(qrCode, markerType);
-                        Instantiate(tempMarker);
-                    }
-                    else
-                    {
-                        tempMarker.transform.SetPositionAndRotation(currentPose.position + markerOffset, rotation);
-                    }
-                }*/
                 if (tempMarker == null)
                 {
                     tempMarker = Instantiate(markerType, currentPose.position + markerOffset, rotation);

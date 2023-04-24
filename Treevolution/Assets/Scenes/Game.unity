@@ -587,6 +587,7 @@ GameObject:
   - component: {fileID: 100754443}
   - component: {fileID: 100754444}
   - component: {fileID: 100754445}
+  - component: {fileID: 100754446}
   m_Layer: 0
   m_Name: Logic
   m_TagString: Logic
@@ -726,8 +727,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugText: {fileID: 807997091}
   planeMarker: {fileID: 2878154885871524007, guid: ebdca683e95c2fb4d97ea79d2f10113e, type: 3}
-  towerMarker: {fileID: 3697177479182085692, guid: 13d0709e8899ea74792d2dd5684556bc, type: 3}
-  tower2Marker: {fileID: 4477643921730069817, guid: 6155a45166ff2a14bb09c391691bc3fb, type: 3}
+  cactusTower: {fileID: 0}
+  mushroomTower: {fileID: 0}
+  flowerTower: {fileID: 0}
+  venusTower: {fileID: 0}
+  poisonTower: {fileID: 0}
   wallMarker: {fileID: 3870485816279432128, guid: 62d03804440bcbd43bfe0d88532988e0, type: 3}
   lockPlane: 0
 --- !u!114 &100754438
@@ -745,8 +749,14 @@ MonoBehaviour:
   InfoText: {fileID: 1732258050}
   BeginBattleButton: {fileID: 1064493251}
   debugObject: {fileID: 1931168448}
-  maxRoundNumber: 2
-  _planningMusic: {fileID: 100754443}
+  maxRoundNumber: 4
+  _musicPlayer: {fileID: 100754443}
+  _planningMusic: {fileID: 8300000, guid: db574b7e138246945b31abb1043c6662, type: 3}
+  _battleMusicLoop: {fileID: 8300000, guid: eb6dc21e3cbaea24386cae5ee3efacad, type: 3}
+  _battleMusic1: {fileID: 8300000, guid: 4e4cff885d85c874b87b1c34155e4862, type: 3}
+  _battleMusic2: {fileID: 8300000, guid: c3eac152578309246a038071fcfa9a03, type: 3}
+  _battleMusic3: {fileID: 8300000, guid: df9478adb718acf42b8b4c674d6934a7, type: 3}
+  _battleMusic4: {fileID: 8300000, guid: c7d5d022dc8ab8a4684f13e01df562f2, type: 3}
   _roundEndSound: {fileID: 100754445}
 --- !u!114 &100754439
 MonoBehaviour:
@@ -1124,6 +1134,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &100754446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100754430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02189a585ced9a84592479b6b30748d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &310463084
 GameObject:
   m_ObjectHideFlags: 0
