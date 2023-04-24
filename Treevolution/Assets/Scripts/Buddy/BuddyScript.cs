@@ -134,7 +134,12 @@ public class BuddyScript : MonoBehaviour
         }
         else
         {
-            currentTarget.GetComponent<EnemyScript>().Damage(2);
+            if (attackCooldown <= 0)
+            {
+                currentTarget.GetComponent<EnemyScript>().Damage(damage);
+                attackCooldown = AttackRate;
+            }
+            else attackCooldown -= Time.fixedDeltaTime;
         }
     }
 

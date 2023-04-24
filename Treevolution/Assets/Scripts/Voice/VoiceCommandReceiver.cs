@@ -79,8 +79,7 @@ public class VoiceCommandReceiver : MonoBehaviour
 
     public void LightningBolt()
     {
-        Record();
-        /*GameObject[] enemies = enemyManager.enemies;
+        GameObject[] enemies = enemyManager.enemies;
         Vector2 pointerPoint = new Vector2(pointer.transform.position.x, pointer.transform.position.z);
         for (int i = 0;i < enemies.Length; i++)
         {
@@ -92,7 +91,7 @@ public class VoiceCommandReceiver : MonoBehaviour
             }
         }
         GetComponent<AudioSource>().Play();
-        StartCoroutine(Indicator());*/
+        StartCoroutine(Indicator());
     }
 
     public void ProcessDictation(string dictation)
