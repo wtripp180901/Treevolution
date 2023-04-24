@@ -22,6 +22,19 @@ public class EnemyScript : MonoBehaviour
     /// </summary>
     [SerializeField] // This allows the private field to be edited from the Unity inspecter
     private float speed = 0.01f;
+
+    Vector3[] path;
+    bool followingPath = true;
+    Vector3 directionVector;
+    Vector3 currentTarget;
+    int pathCounter = 0;
+
+    [SerializeField]
+    float inWallDamageInterval = 0.5f;
+    float currentInWallInterval = 0f;
+    bool inWall = false;
+
+    
     /// <summary>
     /// Sound effect to be played when the enemy gets damaged.
     /// </summary>
@@ -84,6 +97,16 @@ public class EnemyScript : MonoBehaviour
     private Vector3 _defaultOrientation;
 
     /// <summary>
+    /// Determines if enemy requests path around walls or not
+    /// </summary>
+    public bool AvoidsWall = true;
+
+    /// <summary>
+    /// Determines if enemies destroy walls on collision
+    /// </summary>
+    public bool DamagesWall = false;
+
+    /// <summary>
     /// Start runs when loading the GameObject that this script is attached to.
     /// </summary>
     void Start()
@@ -99,7 +122,21 @@ public class EnemyScript : MonoBehaviour
             _rigidbody.useGravity = false;
         else
             _rigidbody.useGravity = true;
+        Pathfinding.PathfindingUpdatePublisher.RefindPathNeededEvent.AddListener(restartPathfinding);
         Initialise();
+    }
+
+    private void Update()
+    {
+        if(inWall)
+        {
+            currentInWallInterval -= Time.deltaTime;
+            if(currentInWallInterval < 0f)
+            {
+                currentInWallInterval = inWallDamageInterval;
+                Damage(1);
+            }
+        }
     }
 
     /// <summary>
@@ -123,6 +160,13 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
+    private void restartPathfinding()
+    {
+        _pathCounter = 0;
+        _path = Pathfinder.GetPath(transform.position, GameObject.FindGameObjectWithTag("Tree").transform.position, AvoidsWall);
+        StartMoveToNextTarget();
+    }
+
     /// <summary>
     /// Starts moving the enemy to the next pathfinding target.
     /// </summary>
@@ -140,7 +184,7 @@ public class EnemyScript : MonoBehaviour
             transform.rotation = Quaternion.Euler(Quaternion.LookRotation(_directionVector, transform.up).eulerAngles + _defaultOrientation);
             _pathCounter += 1;
         }
-        GameObject.FindGameObjectWithTag("DebugText").GetComponent<TMP_Text>().text = "pathLen=" + _path.Length.ToString() + "\nfollowingPath=" + _followingPath.ToString() + "\vtarg=" + _currentTarget.ToString() + "\npathCounter=" + _pathCounter.ToString() + "\nTimer=" + _roundTimer.isRunning;
+        //GameObject.FindGameObjectWithTag("DebugText").GetComponent<TMP_Text>().text = "pathLen=" + _path.Length.ToString() + "\nfollowingPath=" + _followingPath.ToString() + "\vtarg=" + _currentTarget.ToString() + "\npathCounter=" + _pathCounter.ToString() + "\nTimer=" + _roundTimer.isRunning;
     }
 
     /// <summary>
@@ -161,6 +205,28 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider trigger)
+    {
+        GameObject collision = trigger.gameObject;
+        if (DamagesWall && collision.tag == "Wall")
+        {
+            collision.GetComponent<WallScript>().Damage(10);
+        }
+        else
+        {
+            inWall = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider trigger)
+    {
+        if (trigger.gameObject.tag == "Wall")
+        {
+            inWall = false;
+            currentInWallInterval = inWallDamageInterval;
+        }
+    }
+
     /// <summary>
     /// Initialises some of the enemies initial properties, such as healthbar, rotation, and spawn indicator.
     /// </summary>
@@ -172,7 +238,7 @@ public class EnemyScript : MonoBehaviour
             transform.position = transform.position + Vector3.up * 0.25f;
         }
         Vector3 pos = transform.position;
-        _path = Pathfinder.GetPath(pos, GameObject.FindGameObjectWithTag("Tree").transform.position);
+        _path = Pathfinder.GetPath(pos, GameObject.FindGameObjectWithTag("Tree").transform.position,AvoidsWall);
         _rigidbody.freezeRotation = true;
 
         StartMoveToNextTarget();
@@ -252,6 +318,7 @@ public class EnemyScript : MonoBehaviour
     /// <param name="killedByPlayer">Whether the enemy was killed by the player, or is bein destroyed as part of the ClearEnemies method and so shouldn't count towards the user's score.</param>
     public void DestroyEnemy(bool killedByPlayer)
     {
+        Pathfinding.PathfindingUpdatePublisher.RefindPathNeededEvent.RemoveListener(restartPathfinding);
         _enemyManager.RemoveEnemy(gameObject, killedByPlayer);
         Destroy(gameObject.GetComponent<Collider>().gameObject);
     }

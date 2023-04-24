@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class TowerScript : MonoBehaviour
+public class TowerScript : MonoBehaviour, IRuntimeMovableBehaviourScript
 {
     public float rangeRadius = 0.2f;
     public float fireRate = 0.5f;
@@ -12,7 +12,8 @@ public abstract class TowerScript : MonoBehaviour
     [HideInInspector]
     public GameObject rangeVisual;
 
-    private TowerManager _towerManager;
+    bool shootingDisabled = false;
+
 
     public void Start()
     {
@@ -29,7 +30,7 @@ public abstract class TowerScript : MonoBehaviour
 
     public void DisplayRange(bool toggle)
     {
-        if (toggle)
+        if (toggle && targetTransform != null && !shootingDisabled)
         {
             rangeVisual.SetActive(true);
         }
@@ -50,6 +51,25 @@ public abstract class TowerScript : MonoBehaviour
         Destroy(rangeVisual);
     }
 
+    public void SetTarget(Transform newTargetTrans)
+    {
+        targetTransform = newTargetTrans;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, turretRange);
+    }
+
+    public void ApplyMovementPenalty()
+    {
+        shootingDisabled = true;
+    }
+
+    public void EndMovementPenalty()
+    {
+        shootingDisabled = false;
+    }
 }
 
 

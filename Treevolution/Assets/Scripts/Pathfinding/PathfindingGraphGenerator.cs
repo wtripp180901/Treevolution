@@ -38,8 +38,11 @@ namespace Pathfinding
         public static PathfindingNode[] GetPathfindingGraph()
         {
             if (GetObstacleDataEvent != null) GetObstacleDataEvent.Invoke(null, null);
-            List<PathfindingNode> graph = nodesFromObstacleData();
+            List<PathfindingNode> graph = new List<PathfindingNode>();
+            // Graph[0] = tree
             graph.Add(new PathfindingNode(-1, GameObject.FindWithTag("Tree").transform.position));
+            graph.AddRange(nodesFromObstacleData());
+            
             for (int i = 0; i < graph.Count; i++)
             {
                 for (int j = i + 1; j < graph.Count; j++)
@@ -52,6 +55,8 @@ namespace Pathfinding
 
                     if (!Physics.Raycast(graph[i].position, directionRay, distance, layerMask))
                     {
+                        if (i == 0)
+                            distance = 0;
                         graph[i].AddNeighbour(graph[j], distance);
                         graph[j].AddNeighbour(graph[i], distance);
                         Debug.DrawLine(graph[i].position, graph[i].position + directionRay, Color.red, 60);

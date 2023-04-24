@@ -28,10 +28,10 @@ public class EnemyTouchHandler : MonoBehaviour, IMixedRealityTouchHandler
     /// <param name="eventData">Touch event data.</param>
     public void OnTouchStarted(HandTrackingInputEventData eventData)
     {
-        Handedness hand = eventData.Handedness;
+/*        Handedness hand = eventData.Handedness;
         float ifc = HandPoseUtils.IndexFingerCurl(hand);
-        if ((ifc > 0.7f) || Application.platform == RuntimePlatform.WindowsEditor)
-            _enemyScript.Damage(5);
+        if ((ifc > 0.7f) || Application.platform == RuntimePlatform.WindowsEditor)*/
+        _enemyScript.Damage(5);
         /*if (!GameObject.FindGameObjectWithTag("Logic").GetComponent<RoundTimer>().IsPaused)
         {
             GameObject[] receivers = GameObject.FindGameObjectsWithTag("TargetReceiver");
