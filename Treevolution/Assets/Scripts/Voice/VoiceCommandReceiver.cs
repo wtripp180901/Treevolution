@@ -24,14 +24,28 @@ public class VoiceCommandReceiver : MonoBehaviour
         recordingIndicator = GameObject.FindWithTag("RecordingIndicator");
         recordingIndicator.SetActive(false);
     }
-	
-	public void PauseGame()
+
+    private void Update()
+    {
+        if (currentlyRecording)
+        {
+            timeRecording += Time.deltaTime;
+            if(timeRecording > recordingTimeout)
+            {
+                finishDictation();
+            }
+        }
+    }
+
+    public void PauseGame()
     {
         if (gameStateManager.currentGameState == GameStateManager.GameState.Round_Battle || gameStateManager.currentGameState == GameStateManager.GameState.Tutorial_Battle)
             GetComponent<RoundTimer>().PauseTimer();
     }
 
     bool currentlyRecording = false;
+    float timeRecording = 0;
+    float recordingTimeout = 10;
 
     public void Record()
     {
@@ -45,7 +59,7 @@ public class VoiceCommandReceiver : MonoBehaviour
                 handler.StartRecording();
             }
             currentlyRecording = true;
-            StartCoroutine(recordingTimeout());
+            //StartCoroutine(recordingTimeout());
         }catch (System.Exception e)
         {
             uiController.ShowDictation(e.Message);
@@ -53,7 +67,7 @@ public class VoiceCommandReceiver : MonoBehaviour
         }
     }
 
-    IEnumerator recordingTimeout()
+    /*IEnumerator recordingTimeout()
     {
         yield return new WaitForSeconds(10.5f);
         if (currentlyRecording)
@@ -61,11 +75,12 @@ public class VoiceCommandReceiver : MonoBehaviour
             finishDictation();
             GetComponent<UIController>().ShowDictation("Sorry, I can't talk to Microsoft!");
         }
-    }
+    }*/
 
     public void LightningBolt()
     {
-        GameObject[] enemies = enemyManager.enemies;
+        Record();
+        /*GameObject[] enemies = enemyManager.enemies;
         Vector2 pointerPoint = new Vector2(pointer.transform.position.x, pointer.transform.position.z);
         for (int i = 0;i < enemies.Length; i++)
         {
@@ -77,7 +92,7 @@ public class VoiceCommandReceiver : MonoBehaviour
             }
         }
         GetComponent<AudioSource>().Play();
-        StartCoroutine(Indicator());
+        StartCoroutine(Indicator());*/
     }
 
     public void ProcessDictation(string dictation)
@@ -111,6 +126,7 @@ public class VoiceCommandReceiver : MonoBehaviour
         pointerTracker.FinishSampling();
         recordingIndicator.SetActive(false);
         currentlyRecording = false;
+        timeRecording = 0;
     }
 
     public void HandleDictationProcessingResults(List<BuddyAction> instructions)
