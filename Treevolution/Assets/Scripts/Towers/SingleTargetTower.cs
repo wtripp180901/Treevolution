@@ -17,7 +17,7 @@ public class SingleTargetTower : TowerScript
     {
         base.Start();
         damage = 2;
-        _currentGun = GetComponentInChildren<Gun>();
+        _currentGun = GetComponent<Gun>();
         _distanceToCurrentTarget = float.MaxValue;
         _fireRateDelta = fireRate;
     }
@@ -34,7 +34,7 @@ public class SingleTargetTower : TowerScript
             Vector3 enemyDirection = enemyGroundPosition - transform.position;
             float turretRotationStep = _rotationSpeed * Time.deltaTime;
             Vector3 newLookDirection = Vector3.RotateTowards(transform.forward, enemyDirection, turretRotationStep, 0f);
-            transform.rotation = Quaternion.LookRotation(newLookDirection);
+            gameObject.transform.rotation = Quaternion.LookRotation(newLookDirection);
             _fireRateDelta = _fireRateDelta - Time.deltaTime;
             if (_fireRateDelta <= 0)
             {

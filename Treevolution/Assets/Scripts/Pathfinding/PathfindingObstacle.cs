@@ -14,7 +14,7 @@ namespace Pathfinding
         [SerializeField]
         float floorOffset = 0.1f;
         Bounds bounds;
-        Collider myCollider;
+        BoxCollider myCollider;
 
         /// <summary>
         /// Determines if the PathfindingObstacle will send nodes to PathfindingGraphGenerator
@@ -35,7 +35,7 @@ namespace Pathfinding
 
         private void Start()
         {
-            myCollider = gameObject.GetComponent<Collider>();
+            myCollider = gameObject.GetComponent<BoxCollider>();
             bounds = myCollider.bounds;
             PathfindingGraphGenerator.GetObstacleDataEvent += GetObstacleBoundsEventHandler;
         }
@@ -43,9 +43,9 @@ namespace Pathfinding
         {
             if (sendNodes)
             {
-                float halfWidthWithMargin = myCollider.transform.lossyScale.x / 2 + nodeMargins;
-                float halfDepthWithMargin = myCollider.transform.lossyScale.z / 2 + nodeMargins;
-                float halfHeightExact = myCollider.transform.lossyScale.y / 2;
+                float halfWidthWithMargin = bounds.size.x / 2 + nodeMargins;
+                float halfDepthWithMargin = bounds.size.z / 2 + nodeMargins;
+                float halfHeightExact = bounds.size.y / 2;
 
                 Vector3 centre = transform.position;
                 Vector3 floorPosition = centre - (myCollider.transform.up * (halfHeightExact - floorOffset));
