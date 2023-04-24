@@ -23,16 +23,12 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] // This allows the private field to be edited from the Unity inspecter
     private float speed = 0.01f;
 
-    Vector3[] path;
-    bool followingPath = true;
-    Vector3 directionVector;
-    Vector3 currentTarget;
-    int pathCounter = 0;
-
     [SerializeField]
     float inWallDamageInterval = 0.5f;
     float currentInWallInterval = 0f;
     bool inWall = false;
+
+    public bool frozen = false;
 
     
     /// <summary>
@@ -144,7 +140,7 @@ public class EnemyScript : MonoBehaviour
     /// </summary>
     void FixedUpdate()
     {
-        if (_roundTimer != null && _roundTimer.isPaused)
+        if (frozen || (_roundTimer != null && _roundTimer.isPaused))
             return;
         Vector3 pos = transform.position;
         if (_followingPath && _rigidbody.velocity.y >= -5f)

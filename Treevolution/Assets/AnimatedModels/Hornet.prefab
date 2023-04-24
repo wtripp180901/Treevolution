@@ -347,7 +347,7 @@ Animator:
   m_GameObject: {fileID: 2882559231273109699}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b8263c4c62ebfba428171e2be611536c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -369,7 +369,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f3973aac8d54604188fc9bed5e813c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rig: {fileID: 8666571739791945000}
+  health: 10
+  flying: 0
   speed: 0.0015
+  inWallDamageInterval: 0.5
   damageAudio: {fileID: 8054576430386037956}
-  spawnAudio: {fileID: 2162789797982666786}
+  deathAudio: {fileID: 0}
+  AvoidsWall: 1
+  DamagesWall: 0

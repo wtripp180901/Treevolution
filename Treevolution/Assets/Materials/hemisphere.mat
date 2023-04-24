@@ -92,10 +92,10 @@ Material:
     - _ColorWriteMask: 15
     - _CullMode: 2
     - _CustomMode: 2
-    - _Cutoff: 0.5
+    - _Cutoff: 0
     - _DetailNormalMapScale: 1
     - _DirectionalLight: 1
-    - _DstBlend: 7
+    - _DstBlend: 10
     - _EdgeSmoothingValue: 0.002
     - _EnableChannelMap: 0
     - _EnableEmission: 0
@@ -108,9 +108,9 @@ Material:
     - _EnvironmentColorIntensity: 0.5
     - _EnvironmentColorThreshold: 1.5
     - _EnvironmentColoring: 0
-    - _FadeBeginDistance: 10
-    - _FadeCompleteDistance: 0.5
-    - _FadeMinValue: 0.5
+    - _FadeBeginDistance: 6.7
+    - _FadeCompleteDistance: 1.72
+    - _FadeMinValue: 0.3
     - _FluentLightIntensity: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
@@ -124,9 +124,9 @@ Material:
     - _IridescenceAngle: -0.78
     - _IridescenceIntensity: 0.5
     - _IridescenceThreshold: 0.05
-    - _Metallic: 1
+    - _Metallic: 0.979
     - _MipmapBias: -2
-    - _Mode: 5
+    - _Mode: 2
     - _NearLightFade: 0
     - _NearPlaneFade: 1
     - _NormalMapScale: 1
@@ -144,7 +144,7 @@ Material:
     - _RoundCornerMargin: 0.01
     - _RoundCornerRadius: 0.25
     - _RoundCorners: 0
-    - _Smoothness: 0.658
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 0
     - _SphericalHarmonics: 0
@@ -162,7 +162,7 @@ Material:
     - _ZOffsetFactor: 0
     - _ZOffsetUnits: 0
     - _ZTest: 4
-    - _ZWrite: 1
+    - _ZWrite: 0
     m_Colors:
     - _ClippingBorderColor: {r: 1, g: 0.19999996, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}

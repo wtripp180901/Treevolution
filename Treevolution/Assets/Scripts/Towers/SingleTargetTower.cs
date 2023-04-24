@@ -33,7 +33,7 @@ public class SingleTargetTower : TowerScript
             _distanceToCurrentTarget = DistToTarget(enemyGroundPosition);
             Vector3 enemyDirection = enemyGroundPosition - transform.position;
             float turretRotationStep = _rotationSpeed * Time.deltaTime;
-            Vector3 newLookDirection = Vector3.RotateTowards(transform.forward, enemyDirection, turretRotationStep, 0f);
+            Vector3 newLookDirection = Vector3.RotateTowards(gameObject.transform.forward, enemyDirection, turretRotationStep, 0f);
             gameObject.transform.rotation = Quaternion.LookRotation(newLookDirection);
             _fireRateDelta = _fireRateDelta - Time.deltaTime;
             if (_fireRateDelta <= 0)
@@ -53,7 +53,7 @@ public class SingleTargetTower : TowerScript
 
     public override void Attack()
     {
-        _currentGun.Fire(damage);
+        _currentGun.Fire(_targetTransform, damage);
         _fireRateDelta = fireRate;
     }
 
