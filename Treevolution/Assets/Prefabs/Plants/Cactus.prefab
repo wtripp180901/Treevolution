@@ -53,7 +53,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8fd31c49f1e3ec542aa37ed87853697b, type: 3}
       propertyPath: m_Name
-      value: cactus
+      value: Cactus
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fd31c49f1e3ec542aa37ed87853697b, type: 3}
+--- !u!1 &3697177479182085692 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8fd31c49f1e3ec542aa37ed87853697b, type: 3}
+  m_PrefabInstance: {fileID: 4579714993938092909}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-9150971621495571998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3697177479182085692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50d6a6d384aa7824f8b7dd7e1ba7fe61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rangeRadius: 0.3
+  fireRate: 0.5
+  damage: 1
+  rangeVisualMaterial: {fileID: 2100000, guid: 1dc2beaa8946c8840afa5dc3e30017c2, type: 2}
+  targetTransform: {fileID: 0}
+  enemyManager: {fileID: 0}
+  rangeVisual: {fileID: 0}
+  _rotationSpeed: 5
+--- !u!114 &1588000981995689071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3697177479182085692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c776f0bb45833d4d8350122469a4bea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 5026712391956820197, guid: 72b40dbe244db414b98711cc18fe9757, type: 3}
+  gunPoint: {fileID: 4036584231165015174}
+--- !u!4 &4036584231165015174 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8fd31c49f1e3ec542aa37ed87853697b, type: 3}
+  m_PrefabInstance: {fileID: 4579714993938092909}
+  m_PrefabAsset: {fileID: 0}

@@ -67,10 +67,6 @@ public class GameStateManager : MonoBehaviour
     /// The current round number (0 = None/Tutorial, 1 = Round 1, etc.).
     /// </summary>
     private int _currentRoundNumber = 0;
-    /// <summary>
-    /// Count of each EnemyType to spawn during each round.
-    /// </summary>
-    private Dictionary<EnemyType, int>[] _enemyWaves;
 
     /// <summary>
     /// Values the GameState can take.

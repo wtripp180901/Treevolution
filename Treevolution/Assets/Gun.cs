@@ -8,7 +8,6 @@ public class Gun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gunPoint = GetComponentInChildren<GunPoint>().transform;
     }
 
     public void Fire(int damage)
