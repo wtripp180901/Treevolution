@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CoverageReport scope="Summary">
   <Summary>
-    <Generatedon>01/04/2023 - 13:16:46</Generatedon>
+    <Generatedon>03/04/2023 - 16:48:28</Generatedon>
     <Parser>OpenCoverParser</Parser>
     <Assemblies>2</Assemblies>
     <Classes>41</Classes>
     <Files>41</Files>
-    <Coveredlines>340</Coveredlines>
+    <Coveredlines>337</Coveredlines>
     <Uncoveredlines>1208</Uncoveredlines>
-    <Coverablelines>1548</Coverablelines>
+    <Coverablelines>1545</Coverablelines>
     <Totallines>3096</Totallines>
-    <Linecoverage>21.9</Linecoverage>
+    <Linecoverage>21.8</Linecoverage>
     <Coveredbranches>0</Coveredbranches>
     <Totalbranches>0</Totalbranches>
   </Summary>
   <Coverage>
-    <Assembly name="MainGameAssembly" classes="38" coverage="17.8" coveredlines="262" coverablelines="1464" totallines="2954" branchcoverage="" coveredbranches="0" totalbranches="0">
+    <Assembly name="MainGameAssembly" classes="38" coverage="17.6" coveredlines="258" coverablelines="1460" totallines="2953" branchcoverage="" coveredbranches="0" totalbranches="0">
       <Class name="BulletScript" coverage="0" coveredlines="0" coverablelines="7" totallines="16" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="EnemyManager" coverage="0" coveredlines="0" coverablelines="104" totallines="157" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="EnemyScript" coverage="0" coveredlines="0" coverablelines="115" totallines="254" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="EnemyTestScript" coverage="0" coveredlines="0" coverablelines="16" totallines="47" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="EnemyTouchHandler" coverage="0" coveredlines="0" coverablelines="13" totallines="64" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="GameProperties" coverage="100" coveredlines="10" coverablelines="10" totallines="25" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="GameStateManager" coverage="28.9" coveredlines="37" coverablelines="128" totallines="311" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="GameStateManager" coverage="26.6" coveredlines="33" coverablelines="124" totallines="310" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Gun" coverage="0" coveredlines="0" coverablelines="11" totallines="24" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="GunPoint" coverage="0" coveredlines="0" coverablelines="4" totallines="16" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="GunScript" coverage="0" coveredlines="0" coverablelines="8" totallines="18" branchcoverage="" coveredbranches="0" totalbranches="0" />
@@ -55,8 +55,8 @@
       <Class name="UIController" coverage="7.9" coveredlines="14" coverablelines="177" totallines="337" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="VoiceCommandReceiver" coverage="0" coveredlines="0" coverablelines="28" totallines="45" branchcoverage="" coveredbranches="0" totalbranches="0" />
     </Assembly>
-    <Assembly name="Tests" classes="3" coverage="92.8" coveredlines="78" coverablelines="84" totallines="142" branchcoverage="" coveredbranches="0" totalbranches="0">
-      <Class name="GameStateManagerTests" coverage="82.8" coveredlines="29" coverablelines="35" totallines="63" branchcoverage="" coveredbranches="0" totalbranches="0" />
+    <Assembly name="Tests" classes="3" coverage="92.9" coveredlines="79" coverablelines="85" totallines="143" branchcoverage="" coveredbranches="0" totalbranches="0">
+      <Class name="GameStateManagerTests" coverage="83.3" coveredlines="30" coverablelines="36" totallines="64" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="PathfindingTests" coverage="100" coveredlines="33" coverablelines="33" totallines="52" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="TowerGenerationTests" coverage="100" coveredlines="16" coverablelines="16" totallines="27" branchcoverage="" coveredbranches="0" totalbranches="0" />
     </Assembly>

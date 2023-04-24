@@ -29,6 +29,20 @@ public class GameStateManager : MonoBehaviour
     /// </summary>
     public int maxRoundNumber = 4;
     /// <summary>
+    /// Planning Phase Music
+    /// </summary>
+    [SerializeField]
+    private AudioSource _planningMusic;
+    /// <summary>
+    /// Indicates if the planning phase music is playing or not.
+    /// </summary>
+    private bool _planningMusicPlaying = true;
+    /// <summary>
+    /// Sound effect for round end.
+    /// </summary>
+    [SerializeField]
+    private AudioSource _roundEndSound;
+    /// <summary>
     /// Running QRDetection instance.
     /// </summary>
     private QRDetection _qRDetection;
@@ -68,7 +82,8 @@ public class GameStateManager : MonoBehaviour
         Tutorial_Plan,
         Tutorial_Battle,
         Round_Plan,
-        Round_Battle
+        Round_Battle,
+        Start_Menu
     }
     /// <summary>
     /// Types of enemies.
@@ -82,66 +97,76 @@ public class GameStateManager : MonoBehaviour
         Dragonfly,
         Hornet
     }
-
-
-    private void InitialiseEnemyWaves()
-    {
-        this._enemyWaves = new Dictionary<EnemyType, int>[]{
-        new Dictionary<EnemyType, int>(){
-            { EnemyType.Ant, 10 },
-        },
-        new Dictionary<EnemyType, int>(){
-            { EnemyType.Ant, 10 },
-            { EnemyType.Armoured_Bug, 10 }
-        },
-        new Dictionary<EnemyType, int>(){
-            { EnemyType.Ant, 10 },
-            { EnemyType.Armoured_Bug, 8 },
-            { EnemyType.Armoured_Cockroach, 8}
-        },
-        new Dictionary<EnemyType, int>(){
-            { EnemyType.Ant, 8 },
-            { EnemyType.Armoured_Bug, 8 },
-            { EnemyType.Armoured_Cockroach, 8},
-            { EnemyType.Armoured_Stagbeetle, 5 },
-            { EnemyType.Dragonfly, 5},
-
-        },
-        new Dictionary<EnemyType, int>(){
-            { EnemyType.Ant, 8 },
-            { EnemyType.Armoured_Bug, 5 },
-            { EnemyType.Armoured_Cockroach, 8},
-            { EnemyType.Armoured_Stagbeetle, 5 },
-            { EnemyType.Dragonfly, 5},
-            { EnemyType.Hornet, 5}
-        }
-    };
-    }
-    
-
-    public GameStateManager(bool dev)
-    {
-        if (dev)
-        {
-            BeginBattleButton = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            _uIController = new UIController();
-            _qRDetection = new QRDetection();
-        }
-    }
-
     /// <summary>
-    /// Start runs when loading the GameObject that this script is attached to.
+    /// Count of each EnemyType to spawn during each round.
     /// </summary>
-    private void Start()
+    private Dictionary<EnemyType, int>[] _enemyWaves = new Dictionary<EnemyType, int>[]{
+            new Dictionary<EnemyType, int>(){
+                { EnemyType.Ant, 10 },
+            },
+            new Dictionary<EnemyType, int>(){
+                { EnemyType.Ant, 10 },
+                { EnemyType.Armoured_Bug, 10 }
+            },
+            new Dictionary<EnemyType, int>(){
+                { EnemyType.Ant, 10 },
+                { EnemyType.Armoured_Bug, 8 },
+                { EnemyType.Armoured_Cockroach, 8}
+            },
+            new Dictionary<EnemyType, int>(){
+                { EnemyType.Ant, 8 },
+                { EnemyType.Armoured_Bug, 8 },
+                { EnemyType.Armoured_Cockroach, 8},
+                { EnemyType.Armoured_Stagbeetle, 5 },
+                { EnemyType.Dragonfly, 5},
+
+            },
+            new Dictionary<EnemyType, int>(){
+                { EnemyType.Ant, 8 },
+                { EnemyType.Armoured_Bug, 5 },
+                { EnemyType.Armoured_Cockroach, 8},
+                { EnemyType.Armoured_Stagbeetle, 5 },
+                { EnemyType.Dragonfly, 5},
+                { EnemyType.Hornet, 5}
+            }
+        };
+
+
+    public void SetupGameStateManagerTesting()
+    {
+        BeginBattleButton = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        _uIController = new UIController();
+        _qRDetection = new QRDetection();
+    }
+
+
+    public void ToggleMusic()
+    {
+        if (_planningMusicPlaying)
+        {
+            _planningMusic.Stop();
+            _planningMusicPlaying = false;
+        }
+        else
+        {
+            _planningMusic.Play();
+            _planningMusicPlaying = true;
+        }
+    }
+
+    public void InitRounds()
     {
         if (Application.platform == RuntimePlatform.WindowsEditor)
         {
             debugObject.SetActive(true); // Unity Editor Mode
         }
-        if(InfoText != null)
+        if (InfoText != null)
+        {
             InfoText.text = "";
-        InitialiseEnemyWaves();
+            InfoText.gameObject.SetActive(true);
+        }
         _currentState = GameState.Calibration;
+        _currentRoundNumber = 0;
         _uIController = GetComponent<UIController>();
         _qRDetection = GetComponent<QRDetection>();
         _enemyManager = GetComponent<EnemyManager>();
@@ -255,10 +280,12 @@ public class GameStateManager : MonoBehaviour
     /// </summary>
     public void BeginBattle()
     {
+        _planningMusic.Stop();
         BeginBattleButton.SetActive(false);
         if(InfoText != null)
              InfoText.transform.position = GameProperties.Centre + new Vector3(0, 0.5f, 0);
-        _qRDetection.StopQR();
+        ToggleMusic();
+        GameProperties.BattlePhase = true;
         if (_currentState == GameState.Tutorial_Plan)
         {
             _currentState = GameState.Tutorial_Battle;
@@ -280,9 +307,12 @@ public class GameStateManager : MonoBehaviour
     /// <returns>This method runs a coroutine and so a <c>yield return</c> is used.</returns>
     public IEnumerator EndBattle()
     {
+        GameProperties.BattlePhase = false;
         clearEnemies();
+        repairAllWalls();
         _enemyManager.StopSpawning();
-        _qRDetection.StartQR();
+        _roundEndSound.Play();
+        ToggleMusic();
         int enemiesKilled = GetComponent<EnemyManager>().getEnemiesKilled();
         if (currentGameState == GameState.Tutorial_Battle)
         {
@@ -308,6 +338,18 @@ public class GameStateManager : MonoBehaviour
     private void EndGame()
     {
         _uIController.EndPopUp();
+        _currentState = GameState.Start_Menu;
+        if (Application.platform == RuntimePlatform.WindowsEditor)
+        {
+            debugObject.SetActive(false); // Unity Editor Mode
+        }
+        if (InfoText != null)
+        {
+            InfoText.text = "";
+            InfoText.gameObject.SetActive(false);
+        }
+        GetComponent<PlaneMapper>().ResetPlane();
+        _qRDetection.lockPlane = false;
     }
 
     /// <summary>
@@ -319,6 +361,15 @@ public class GameStateManager : MonoBehaviour
         for (int i = 0; i < enemyList.Length; i++)
         {
             enemyList[i].GetComponent<EnemyScript>().DestroyEnemy(false);
+        }
+    }
+
+    private void repairAllWalls()
+    {
+        GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
+        for(int i = 0;i < walls.Length; i++)
+        {
+            walls[i].GetComponent<WallScript>().Repair(10);
         }
     }
 }
