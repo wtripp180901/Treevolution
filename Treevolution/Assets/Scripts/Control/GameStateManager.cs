@@ -127,8 +127,8 @@ public class GameStateManager : MonoBehaviour
                 { EnemyType.Ant, 10 },
             },
             new Dictionary<EnemyType, int>(){
-                { EnemyType.Ant, 10 },
-                { EnemyType.Armoured_Bug, 10 }
+                { EnemyType.Dragonfly, 10 },
+                { EnemyType.Hornet, 10 }
             },
             new Dictionary<EnemyType, int>(){
                 { EnemyType.Ant, 10 },

@@ -2,49 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SingleTargetTower : TowerScript
+public class DigestTower : TowerScript
 {
     [SerializeField]
     private bool _targetFlying = false;
     [SerializeField]
     private bool _targetGround = true;
-    [SerializeField]
-    private float _rotationSpeed = 3f;
-    private float _distanceToCurrentTarget;
     private Transform _targetTransform;
-    private Gun _currentGun;
-    private float _fireRateDelta;
-
-
+    private float _distanceToCurrentTarget;
+    private float _digestDelta;
+    private bool _currentlyDigesting = false;
+    private Animator _animator;
 
     // Start is called before the first frame update
     new void Start()
     {
         base.Start();
-        damage = 2;
-        _currentGun = GetComponent<Gun>();
         _distanceToCurrentTarget = float.MaxValue;
-        _fireRateDelta = fireRate;
+        _digestDelta = 0;
+        _animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         UpdateTargets();
-        if (_targetTransform != null)
+        if (!_currentlyDigesting && _targetTransform != null)
         {
-            Vector3 enemyGroundPosition = _targetTransform.position;
-            enemyGroundPosition.y = transform.position.y;
-            _distanceToCurrentTarget = DistToTarget(enemyGroundPosition);
-            Vector3 enemyDirection = enemyGroundPosition - transform.position;
-            float turretRotationStep = _rotationSpeed * Time.deltaTime;
-            Vector3 newLookDirection = Vector3.RotateTowards(gameObject.transform.forward, enemyDirection, turretRotationStep, 0f);
-            gameObject.transform.rotation = Quaternion.LookRotation(newLookDirection);
-            _fireRateDelta = _fireRateDelta - Time.deltaTime;
-            if (_fireRateDelta <= 0)
+            _digestDelta = _digestDelta - Time.deltaTime;
+            if (_digestDelta <= 0)
             {
+                _currentlyDigesting = true;
                 Attack();
             }
+        }
+        else if (_currentlyDigesting)
+        {
+            if (_digestDelta <= 0)
+            {
+                TransitionAnimation();
+                _currentlyDigesting = false;
+                _distanceToCurrentTarget = float.MaxValue;
+            }
+            _digestDelta = _digestDelta - Time.deltaTime;
         }
         else
         {
@@ -56,10 +56,23 @@ public class SingleTargetTower : TowerScript
         }
     }
 
+
+
+    public void TransitionAnimation()
+    {
+        /*if (gameObject.name.Contains("Raff"))
+            _animator.SetTrigger("RaffTrigger");
+        if (gameObject.name.Contains("Venus"))
+            _animator.Play("Venus.VenusAnimation", 0, 0);*/
+    }
+
+
     public override void Attack()
     {
-        _currentGun.Fire(_targetTransform, damage);
-        _fireRateDelta = fireRate;
+        TransitionAnimation();
+        _digestDelta = fireRate;
+        _targetTransform.gameObject.GetComponent<EnemyScript>().Damage(damage);
+        _targetTransform.gameObject.GetComponent<EnemyScript>().frozen = true;
     }
 
     public override void UpdateTargets()
