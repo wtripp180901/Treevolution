@@ -79,7 +79,6 @@ public class StartMenuLogic : MonoBehaviour
     public void OpenStartMenu()
     {
         StartMenu.SetActive(true);
-        _gameStateManager.ToggleMusic();
     }
 
     /// <summary>

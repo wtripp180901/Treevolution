@@ -69,11 +69,6 @@ public class GameStateManager : MonoBehaviour
     [SerializeField]
     private AudioClip _battleMusic4;
     /// <summary>
-    /// Sound effect for round end.
-    /// </summary>
-    [SerializeField]
-    private AudioSource _roundEndSound;
-    /// <summary>
     /// Running QRDetection instance.
     /// </summary>
     private QRDetection _qRDetection;
@@ -175,6 +170,7 @@ public class GameStateManager : MonoBehaviour
             _planningMusicPlaying = false;
             AudioClip battleClip = _battleMusicLoop;
             _musicPlayer.loop = false;
+            _musicPlayer.time = 0f;
             switch (_currentRoundNumber)
             {
                 case 0:
@@ -368,7 +364,6 @@ public class GameStateManager : MonoBehaviour
         clearEnemies();
         repairAllWalls();
         _enemyManager.StopSpawning();
-        _roundEndSound.Play();
         int enemiesKilled = GetComponent<EnemyManager>().getEnemiesKilled();
         if (currentGameState == GameState.Tutorial_Battle)
         {
