@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class MultiTargetTower : TowerScript
 {
+    [SerializeField]
+    private bool _targetFlying = false;
+    [SerializeField]
+    private bool _targetGround = true;
     private List<EnemyScript> _targetEnemies;
     private EnemyScript _currentTarget;
     private float _fireRateDelta;
@@ -57,6 +61,10 @@ public class MultiTargetTower : TowerScript
             float distToEnemy = DistToTarget(enemies[i].transform.position);
             if (distToEnemy <= rangeRadius && !_targetEnemies.Contains(enemies[i].GetComponent<EnemyScript>()))
             {
+                if (!_targetFlying && enemies[i].GetComponent<EnemyScript>().flying)
+                    continue; // Ignore flying enemies if specified
+                if (!_targetGround && !enemies[i].GetComponent<EnemyScript>().flying)
+                    continue; // Ignore ground enemies if specified
                 _targetEnemies.Add(enemies[i].GetComponent<EnemyScript>());
             }
         }

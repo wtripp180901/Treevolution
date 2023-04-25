@@ -8,6 +8,7 @@ public class BulletScript : MonoBehaviour
     private float projectileSpeed = 15f;
     public int damage = 1;
     private EnemyManager _enemyManager;
+    private float lifetime = 5f;
 
     private void Start()
     {
@@ -17,6 +18,11 @@ public class BulletScript : MonoBehaviour
     private void Update()   //you can change this to a virtual function for multiple projectile types
     {
         transform.Translate(new Vector3(0f, 0f, projectileSpeed * Time.deltaTime));
+        lifetime = lifetime - Time.deltaTime;
+        if(lifetime < 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

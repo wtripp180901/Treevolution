@@ -494,10 +494,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4181706846292447023, guid: 369ab8e622943e243ae1b735082fbb46, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4181706846292447023, guid: 369ab8e622943e243ae1b735082fbb46, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4181706846292447023, guid: 369ab8e622943e243ae1b735082fbb46, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4181706846292447023, guid: 369ab8e622943e243ae1b735082fbb46, type: 3}
@@ -505,7 +509,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 100754444}
     - target: {fileID: 4181706846292447023, guid: 369ab8e622943e243ae1b735082fbb46, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 100754438}
+    - target: {fileID: 4181706846292447023, guid: 369ab8e622943e243ae1b735082fbb46, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4181706846292447023, guid: 369ab8e622943e243ae1b735082fbb46, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4181706846292447023, guid: 369ab8e622943e243ae1b735082fbb46, type: 3}
@@ -513,11 +525,23 @@ PrefabInstance:
       value: OpenStartMenu
       objectReference: {fileID: 0}
     - target: {fileID: 4181706846292447023, guid: 369ab8e622943e243ae1b735082fbb46, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: ToggleMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 4181706846292447023, guid: 369ab8e622943e243ae1b735082fbb46, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: StartMenuLogic, MainGameAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 4181706846292447023, guid: 369ab8e622943e243ae1b735082fbb46, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: GameStateManager, MainGameAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 4181706846292447023, guid: 369ab8e622943e243ae1b735082fbb46, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4181706846292447023, guid: 369ab8e622943e243ae1b735082fbb46, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8600862979890989330, guid: 369ab8e622943e243ae1b735082fbb46, type: 3}
@@ -754,10 +778,9 @@ MonoBehaviour:
   _planningMusic: {fileID: 8300000, guid: db574b7e138246945b31abb1043c6662, type: 3}
   _battleMusicLoop: {fileID: 8300000, guid: eb6dc21e3cbaea24386cae5ee3efacad, type: 3}
   _battleMusic1: {fileID: 8300000, guid: 4e4cff885d85c874b87b1c34155e4862, type: 3}
-  _battleMusic2: {fileID: 8300000, guid: df9478adb718acf42b8b4c674d6934a7, type: 3}
-  _battleMusic3: {fileID: 8300000, guid: c7d5d022dc8ab8a4684f13e01df562f2, type: 3}
-  _battleMusic4: {fileID: 8300000, guid: 096dd3882ef867b4c8b0f27f4e25127c, type: 3}
-  _roundEndSound: {fileID: 100754445}
+  _battleMusic2: {fileID: 8300000, guid: 096dd3882ef867b4c8b0f27f4e25127c, type: 3}
+  _battleMusic3: {fileID: 8300000, guid: df9478adb718acf42b8b4c674d6934a7, type: 3}
+  _battleMusic4: {fileID: 8300000, guid: c7d5d022dc8ab8a4684f13e01df562f2, type: 3}
 --- !u!114 &100754439
 MonoBehaviour:
   m_ObjectHideFlags: 0
