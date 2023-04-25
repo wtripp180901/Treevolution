@@ -60,10 +60,10 @@ public class DigestTower : TowerScript
 
     public void TransitionAnimation()
     {
-        /*if (gameObject.name.Contains("Raff"))
+        if (gameObject.name.Contains("Raff"))
             _animator.SetTrigger("RaffTrigger");
         if (gameObject.name.Contains("Venus"))
-            _animator.Play("Venus.VenusAnimation", 0, 0);*/
+            _animator.SetTrigger("VenusTrigger");
     }
 
 
