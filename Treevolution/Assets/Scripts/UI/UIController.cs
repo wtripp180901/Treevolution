@@ -374,6 +374,11 @@ public class UIController : MonoBehaviour
         StartCoroutine(clearTextAfterDelay(3, dictationText));
     }
 
+    public void ShowMessageAsDictation(string txt)
+    {
+        dictationText.text = txt;
+    }
+
     public void ShowHypothesis(string hypothesis)
     {
         if (hypothesisMode)
