@@ -15,6 +15,8 @@ public class VoiceCommandReceiver : MonoBehaviour
     GameObject recordingIndicator;
     GameStateManager gameStateManager;
 
+    public bool SafeMode = false;
+
     private void Start()
     {
         enemyManager = GetComponent<EnemyManager>();
@@ -47,23 +49,78 @@ public class VoiceCommandReceiver : MonoBehaviour
     float timeRecording = 0;
     float recordingTimeout = 10;
 
+    bool canManuallyRecord = true;
+    public void SetSafeToRecord() { canManuallyRecord = true; }
+
     public void Record()
     {
-        recordingIndicator.SetActive(true);
+        if (SafeMode)
+        {
+            if (canManuallyRecord)
+            {
+                recordingIndicator.SetActive(true);
+                SafeModeRecordAudio();
+                canManuallyRecord = false;
+            }
+        }
+        else
+        {
+            recordingIndicator.SetActive(true);
+            try
+            {
+                uiController.StartShowingHypothesis();
+                DictationHandler handler = GetComponent<DictationHandler>();
+                pointerTracker.StartSampling();
+                lock (handler)
+                {
+                    handler.StartRecording();
+                }
+                currentlyRecording = true;
+                //StartCoroutine(recordingTimeout());
+            }
+            catch (System.Exception e)
+            {
+                uiController.ShowDictation(e.Message);
+                Debug.Log(e.Message);
+            }
+        }
+    }
+
+    public AudioSource recordingAudioSource;
+    void SafeModeRecordAudio()
+    {
         try
         {
-            GetComponent<UIController>().StartShowingHypothesis();
-            DictationHandler handler = GetComponent<DictationHandler>();
-            pointerTracker.StartSampling();
-            lock(handler){
-                handler.StartRecording();
-            }
-            currentlyRecording = true;
-            //StartCoroutine(recordingTimeout());
-        }catch (System.Exception e)
+            uiController.ShowMessageAsDictation("I'm listening...");
+            int min, max;
+            Microphone.GetDeviceCaps(Microphone.devices[0], out min, out max);
+            recordingAudioSource.clip = Microphone.Start(Microphone.devices[0], true, 4, min);
+            StartCoroutine(writeAfterFinished());
+        }
+        catch (Exception e)
         {
             uiController.ShowDictation(e.Message);
-            Debug.Log(e.Message);
+            recordingIndicator.SetActive(false);
+            canManuallyRecord = true;
+        }
+    }
+
+    IEnumerator writeAfterFinished()
+    {
+        yield return new WaitForSeconds(4.5f);
+        pointerTracker.StartSampling();
+        pointerTracker.FinishSampling();
+        try
+        {
+            Microphone.End(Microphone.devices[0]);
+            string otp;
+            SavWav.Save("recording", recordingAudioSource.clip, out otp);
+            recordingIndicator.SetActive(false);
+            StartCoroutine(GetComponent<AssemblyAPICaller>().UploadFile());
+        }catch(Exception e)
+        {
+            uiController.ShowDictation("File writing error: "+e.Message);
+            canManuallyRecord = true;
         }
     }
 
