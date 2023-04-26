@@ -1,17 +1,25 @@
 fileFormatVersion: 2
-guid: 9518a7a9856ef45448beaf871e7c0dcb
+guid: 94ea86853393bb545994d3ec62828d41
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
-    second: VenusAnimation
+    second: Venus Animation
+  - first:
+      74: -998496362607748373
+    second: Rest
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: blinn1
+    second: {fileID: 2100000, guid: 374648d9928508147b97b922aebe270b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: phong1
-    second: {fileID: 2100000, guid: 473f1e1d0e4f1f849b6d8e73fb03d1d9, type: 2}
+    second: {fileID: 2100000, guid: 8dea917df44dcf54ba7811cc979f5033, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -41,7 +49,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: VenusAnimation
+      name: Venus Animation
       takeName: Take 001
       internalID: 0
       firstFrame: 1
@@ -69,6 +77,35 @@ ModelImporter:
       maskType: 3
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Rest
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 1
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
     isReadable: 0
   meshes:
     lODScreenPercentages: []

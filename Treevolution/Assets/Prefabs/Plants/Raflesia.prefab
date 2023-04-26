@@ -72,7 +72,7 @@ Animator:
   m_GameObject: {fileID: 2695792601862832204}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b8263c4c62ebfba428171e2be611536c, type: 2}
+  m_Controller: {fileID: 9100000, guid: d37d5380a01597e46b897d99e122a141, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -97,6 +97,8 @@ MonoBehaviour:
   rangeRadius: 0.1
   fireRate: 5
   damage: 50
-  rangeVisualMaterial: {fileID: 2100000, guid: 714cb720816de7b45b83dbdc97e4e1a6, type: 2}
+  rangeVisualMaterial: {fileID: 2100000, guid: c806fa5def3085d4387e43c6cce159f4, type: 2}
   enemyManager: {fileID: 0}
   rangeVisual: {fileID: 0}
+  _targetFlying: 0
+  _targetGround: 1
