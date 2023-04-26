@@ -527,7 +527,7 @@ Rigidbody:
   m_GameObject: {fileID: 7205856713176979134}
   serializedVersion: 2
   m_Mass: 0.5
-  m_Drag: 0
+  m_Drag: 25
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
@@ -747,9 +747,9 @@ MonoBehaviour:
   speed: 0.0015
   inWallDamageInterval: 0.5
   frozen: 0
-  spawnAudio: {fileID: 0}
-  damageAudio: {fileID: 0}
-  deathAudio: {fileID: 0}
+  spawnAudio: {fileID: 8300000, guid: f4cc6c052dc0292479022df068992d34, type: 3}
+  damageAudio: {fileID: 8300000, guid: 8168ba78f1d13174c959a39a392d5023, type: 3}
+  deathAudio: {fileID: 8300000, guid: 4a27fe9d6e26f54409a0f402cf2c014f, type: 3}
   AvoidsWall: 0
   DamagesWall: 0
 --- !u!4 &8019653284056222724 stripped

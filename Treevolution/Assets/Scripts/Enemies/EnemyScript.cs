@@ -124,6 +124,7 @@ public class EnemyScript : MonoBehaviour
         _defaultOrientation = transform.rotation.eulerAngles;
         _roundTimer = GameObject.Find("Logic").GetComponent<RoundTimer>();
         _rigidbody = GetComponent<Rigidbody>();
+        _rigidbody.mass = 0.01f;
         _healthBar = GetComponent<HealthBar>();
         _leftIndicator = GameObject.FindWithTag("LeftIndicator").GetComponent<SpawnDirectionIndicator>();
         _rightIndicator = GameObject.FindWithTag("RightIndicator").GetComponent<SpawnDirectionIndicator>();
