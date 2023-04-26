@@ -304,7 +304,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8667154919375532781, guid: 69a2c734d0cc1c44dbc6b304439d25c3, type: 3}
       propertyPath: scaleLerpTime
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8667154919375532781, guid: 69a2c734d0cc1c44dbc6b304439d25c3, type: 3}
       propertyPath: rotateLerpTime
@@ -320,7 +320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8667154919375532781, guid: 69a2c734d0cc1c44dbc6b304439d25c3, type: 3}
       propertyPath: maxViewVerticalDegrees
-      value: 0
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8667154919375532781, guid: 69a2c734d0cc1c44dbc6b304439d25c3, type: 3}
       propertyPath: ignoreReferencePitchAndRoll
@@ -328,7 +328,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8667154919375532781, guid: 69a2c734d0cc1c44dbc6b304439d25c3, type: 3}
       propertyPath: orientToControllerDeadzoneDegrees
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8772063850523022022, guid: 69a2c734d0cc1c44dbc6b304439d25c3, type: 3}
       propertyPath: m_Size.x
@@ -558,7 +558,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8600862979890989330, guid: 369ab8e622943e243ae1b735082fbb46, type: 3}
       propertyPath: scaleLerpTime
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8600862979890989330, guid: 369ab8e622943e243ae1b735082fbb46, type: 3}
       propertyPath: rotateLerpTime
@@ -574,11 +574,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8600862979890989330, guid: 369ab8e622943e243ae1b735082fbb46, type: 3}
       propertyPath: maxViewVerticalDegrees
-      value: 0
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8600862979890989330, guid: 369ab8e622943e243ae1b735082fbb46, type: 3}
       propertyPath: orientToControllerDeadzoneDegrees
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5680182757814887237, guid: 369ab8e622943e243ae1b735082fbb46, type: 3}
@@ -757,7 +757,7 @@ MonoBehaviour:
   mushroomTower: {fileID: 3276322271879168960, guid: 45e088e0f7615ba40ad11d12ea06c233, type: 3}
   flowerTower: {fileID: 2695792601862832204, guid: 0d8fd16c13f42a54aac54a149dd2b082, type: 3}
   venusTower: {fileID: 1037330858851883609, guid: 0c4cc78a21ad8a24aa4511b90a3ca591, type: 3}
-  poisonTower: {fileID: 7532456494485550767, guid: 9f4220cb5ceca0c43a723cdb1200ad83, type: 3}
+  poisonTower: {fileID: 6399890715327637790, guid: 93485793f0f047144b75a35e2b0e79b5, type: 3}
   wallMarker: {fileID: 2876811519643686893, guid: af682109e65343448b62c322f45f5db0, type: 3}
   lockPlane: 0
 --- !u!114 &100754438
