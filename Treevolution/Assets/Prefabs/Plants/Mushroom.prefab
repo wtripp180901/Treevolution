@@ -334,7 +334,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.005
+      scalar: 0.001
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -652,7 +652,7 @@ ParticleSystem:
     randomizeRotationDirection: 0
     maxNumParticles: 1000
     customEmitterVelocity: {x: 0, y: 0, z: 0}
-    size3D: 1
+    size3D: 0
     rotation3D: 0
     gravityModifier:
       serializedVersion: 2
@@ -4879,3 +4879,5 @@ MonoBehaviour:
   rangeVisualMaterial: {fileID: 2100000, guid: 714cb720816de7b45b83dbdc97e4e1a6, type: 2}
   enemyManager: {fileID: 0}
   rangeVisual: {fileID: 0}
+  _targetFlying: 0
+  _targetGround: 0

@@ -225,11 +225,6 @@ public class QRDetection : MonoBehaviour
                         if (tempMarker == null)
                         {
                             markerType = wallMarker;
-                            markerOffset += currentPose.forward * markerType.GetComponent<Collider>().transform.lossyScale.y / 2;
-                        }
-                        else
-                        {
-                            markerOffset += currentPose.forward * _trackedCodes[qrCode.Id].obj.GetComponent<Collider>().transform.lossyScale.y / 2;
                         }
                         rotation = Quaternion.Euler(0, rotation.eulerAngles.y, 0);
                         break;

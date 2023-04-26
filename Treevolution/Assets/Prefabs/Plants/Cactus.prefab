@@ -2830,6 +2830,8 @@ MonoBehaviour:
   rangeVisualMaterial: {fileID: 2100000, guid: 714cb720816de7b45b83dbdc97e4e1a6, type: 2}
   enemyManager: {fileID: 0}
   rangeVisual: {fileID: 0}
+  _targetFlying: 0
+  _targetGround: 1
   _rotationSpeed: 5
 --- !u!114 &1588000981995689071
 MonoBehaviour:
@@ -2843,7 +2845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c776f0bb45833d4d8350122469a4bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 5026712391956820197, guid: 72b40dbe244db414b98711cc18fe9757, type: 3}
+  projectile: {fileID: 5026712391956820197, guid: 00443ff0032ce7643bcca9d6743b5172, type: 3}
   gunPoints:
   - {fileID: 4794763947376255464}
   - {fileID: 8229893904804823132}
