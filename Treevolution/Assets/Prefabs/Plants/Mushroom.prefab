@@ -4879,5 +4879,5 @@ MonoBehaviour:
   rangeVisualMaterial: {fileID: 2100000, guid: 714cb720816de7b45b83dbdc97e4e1a6, type: 2}
   enemyManager: {fileID: 0}
   rangeVisual: {fileID: 0}
-  _targetFlying: 0
-  _targetGround: 0
+  _targetFlying: 1
+  _targetGround: 1

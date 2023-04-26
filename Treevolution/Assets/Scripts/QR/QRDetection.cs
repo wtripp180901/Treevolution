@@ -141,17 +141,11 @@ public class QRDetection : MonoBehaviour
         }
     }
 
-    private bool CodeTooSimilar(Guid codeID, Pose newPose)
+    private bool PosesTooSimilar(Pose oldPose, Pose newPose)
     {
-        Vector3 oldPos = _trackedCodes[codeID].obj.transform.position;
-        Quaternion oldRot = _trackedCodes[codeID].obj.transform.rotation;
-        if (_trackedCodes.ContainsKey(codeID) &&
-                (Vector3.Distance(oldPos, newPose.position) > 0.03 ||
-                Math.Abs(Quaternion.Angle(oldRot, newPose.rotation)) > 5)
-            )
-        {
+        if (Vector3.Distance(oldPose.position, newPose.position) > 0.03 ||
+                Math.Abs(Quaternion.Angle(oldPose.rotation, newPose.rotation)) > 5)
             return false;
-        }
         return true;
 
     }
@@ -216,8 +210,6 @@ public class QRDetection : MonoBehaviour
             {
                 Pose currentPose;
                 SpatialGraphNode.FromStaticNodeId(qrCode.SpatialGraphNodeId).TryLocate(FrameTime.OnUpdate, out currentPose); // Get pose of QR Code
-                if (CodeTooSimilar(qrCode.Id, currentPose))
-                    return;
                 float sideLength = qrCode.PhysicalSideLength;
                 Vector3 markerSize = new Vector3(sideLength, sideLength, sideLength);
                 GameObject tempMarker = _trackedCodes[qrCode.Id].obj;
@@ -290,12 +282,15 @@ public class QRDetection : MonoBehaviour
     /// <param name="args">QRCodeUpdatedEventArgs event arguments.</param>
     private void UpdatedCodeEvent(object sender, QRCodeUpdatedEventArgs args)
     {
-        Pose currentPose;
+        Pose currentPose, oldPose = Pose.identity;
         SpatialGraphNode.FromStaticNodeId(args.Code.SpatialGraphNodeId).TryLocate(FrameTime.OnUpdate, out currentPose);
-        if (currentPose == Pose.identity)
-        {
-            return; // Disregards
-        }
+/*        lock (_trackedCodes) {
+            if (_trackedCodes.ContainsKey(args.Code.Id))
+                oldPose = new Pose(_trackedCodes[args.Code.Id].obj.transform.position, _trackedCodes[args.Code.Id].obj.transform.rotation);
+        }*/
+        if (currentPose == Pose.identity)// || PosesTooSimilar(oldPose, currentPose))
+            return; // Disregards if pose is identity or if code is too similar to before.
+
         lock (_updatedCodeQueue)
         {
             _updatedCodeQueue.Enqueue(args.Code);
