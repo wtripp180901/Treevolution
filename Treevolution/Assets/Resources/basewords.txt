@@ -64,15 +64,15 @@ air sky
 
 adjective
 Armoured
-armored
+armored armoured
 
 noun
 Has Armour
-armor
+armor armour
 
 adjective
 Unarmoured
-unarmored
+unarmored unarmoured
 
 adjective
 Big
