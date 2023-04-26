@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 
 /// <summary>
 /// Controls the instantiation and removal of UI elements.
@@ -69,6 +70,13 @@ public class UIController : MonoBehaviour
     /// TextMeshPro Game Object to display UI elements on.
     /// </summary>
     public TMP_Text infoText;
+
+    public TMP_Text dictationText;
+	
+    int time = 60;
+	
+    private EnemyManager enemyManager;
+	
     /// <summary>
     /// Gets the time remaining in the current round.
     /// </summary>
@@ -98,6 +106,13 @@ public class UIController : MonoBehaviour
     {
         _enemyManager = GetComponent<EnemyManager>();
         _gameStateManager = GetComponent<GameStateManager>();
+    }
+
+    public void SetupForTest()
+    {
+        _enemyManager = GetComponent<EnemyManager>();
+        _gameStateManager = GetComponent<GameStateManager>();
+        infoDialogPrefab = new GameObject();
     }
 
     /// <summary>
@@ -349,5 +364,29 @@ public class UIController : MonoBehaviour
         infoText.text = "" + _roundTime.ToString();
     }
 
+    bool hypothesisMode = false;
+    public void StartShowingHypothesis() { hypothesisMode = true; }
+    public void ShowDictation(string dictation)
+    {
+        hypothesisMode = false;
+        dictationText.text = dictation;
+        dictationText.color = Color.white;
+        StartCoroutine(clearTextAfterDelay(3, dictationText));
+    }
+
+    public void ShowHypothesis(string hypothesis)
+    {
+        if (hypothesisMode)
+        {
+            dictationText.text = hypothesis;
+            dictationText.color = Color.red;
+        }
+    }
+
+    IEnumerator clearTextAfterDelay(int delay,TMP_Text text)
+    {
+        yield return new WaitForSeconds(delay);
+        text.text = "";
+    }
 }
 

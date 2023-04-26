@@ -4,7 +4,9 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "MainGameAssembly"
+        "MainGameAssembly",
+         "Microsoft.MixedReality.Toolkit",
+         "Microsoft.MixedReality.Toolkit.Tests"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -334,7 +334,7 @@ public class QRDetection : MonoBehaviour
         }
         else
         {
-            debugText.text = "QR Tracking Not Supported";
+            if(debugText != null) debugText.text = "QR Tracking Not Supported";
         }
         _initialRun = false;
     }

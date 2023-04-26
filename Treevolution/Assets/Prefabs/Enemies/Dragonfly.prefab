@@ -1421,18 +1421,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-7374652824196681509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2325871866633357825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c369702e33341104bb399eefb6ae39ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-281430652206467600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1465,6 +1453,19 @@ MonoBehaviour:
   deathAudio: {fileID: 7610176344477563601}
   AvoidsWall: 0
   DamagesWall: 0
+--- !u!114 &7136268201614461609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2325871866633357825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4e31b69e3c4704792a4fbe3c6d0357, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BuddySystemProperties: 030000000600000008000000
 --- !u!114 &7688757958584638836
 MonoBehaviour:
   m_ObjectHideFlags: 0

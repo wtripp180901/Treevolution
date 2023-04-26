@@ -19,6 +19,9 @@ TagManager:
   - EnemyDirectionIndicator
   - LeftIndicator
   - RightIndicator
+  - Buddy
+  - MoveToMarker
+  - RecordingIndicator
   - Debugging
   layers:
   - Default

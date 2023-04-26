@@ -31,6 +31,11 @@ public class EnemyManager : MonoBehaviour
         roundTimer = GetComponent<RoundTimer>();
     }
 
+    public void SetupForTest()
+    {
+        roundTimer = GetComponent<RoundTimer>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -115,6 +120,11 @@ public class EnemyManager : MonoBehaviour
         _enemies.Add(Instantiate(enemyPrefab, randomSpawnPosition, enemyPrefab.transform.rotation));
         Debug.DrawLine(spawnAxes.origin, spawnAxes.origin + spawnAxes.vert, Color.white, 1000);
         Debug.DrawLine(spawnAxes.origin, spawnAxes.origin + spawnAxes.horz, Color.white, 1000);
+    }
+
+    public void AddToSceneAsEnemyForTest(GameObject enemy)
+    {
+        _enemies.Add(enemy);
     }
 
     private List<GameStateManager.EnemyType> unpackEnemies(Dictionary<GameStateManager.EnemyType, int> enemies)
