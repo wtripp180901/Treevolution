@@ -5,5 +5,6 @@ var searchData=
   ['microsoft_2',['Microsoft',['../namespace_microsoft.html',1,'']]],
   ['mixedreality_3',['MixedReality',['../namespace_microsoft_1_1_mixed_reality.html',1,'Microsoft']]],
   ['mountpoint_4',['MountPoint',['../class_mount_point.html',1,'']]],
-  ['qr_5',['QR',['../namespace_microsoft_1_1_mixed_reality_1_1_q_r.html',1,'Microsoft::MixedReality']]]
+  ['movebuddyaction_5',['MoveBuddyAction',['../class_move_buddy_action.html',1,'']]],
+  ['qr_6',['QR',['../namespace_microsoft_1_1_mixed_reality_1_1_q_r.html',1,'Microsoft::MixedReality']]]
 ];

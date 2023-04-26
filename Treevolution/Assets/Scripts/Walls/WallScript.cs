@@ -8,7 +8,10 @@ public class WallScript : MonoBehaviour, IRuntimeMovableBehaviourScript
     int health;
 
     Pathfinding.PathfindingObstacle nodeGenerator;
-    bool isDestroyed = false;
+    bool _isDestroyed = false;
+    public bool isDestroyed { get { return _isDestroyed; } }
+    public bool isDamaged { get { return health < baseHealth; } }
+
 
     Collider myCollider;
 
@@ -36,7 +39,7 @@ public class WallScript : MonoBehaviour, IRuntimeMovableBehaviourScript
     public void Repair(int repaired)
     {
         health += repaired;
-        if(repaired >= baseHealth)
+        if(health >= baseHealth)
         {
             health = baseHealth;
             SetDestroyed(false);
@@ -47,7 +50,7 @@ public class WallScript : MonoBehaviour, IRuntimeMovableBehaviourScript
     {
         myCollider.enabled = !destroyed;
         nodeGenerator.SetSendsNodes(!destroyed);
-        isDestroyed = destroyed;
+        _isDestroyed = destroyed;
 
         float scale = baseScale;
         if (destroyed) scale *= 0.05f;
@@ -62,7 +65,13 @@ public class WallScript : MonoBehaviour, IRuntimeMovableBehaviourScript
 
     public void EndMovementPenalty()
     {
-        if (!isDestroyed) myCollider.enabled = true;
+        if (!_isDestroyed) myCollider.enabled = true;
         GetComponent<Renderer>().material.color = Color.white;
+    }
+
+    public void SetupForTest(Collider collider,Pathfinding.PathfindingObstacle nodeGenerator)
+    {
+        myCollider = collider;
+        this.nodeGenerator = nodeGenerator;
     }
 }

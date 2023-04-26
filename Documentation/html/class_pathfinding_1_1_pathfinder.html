@@ -85,9 +85,9 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a4c5e7dabd1cd9cfb2ff40d4da94d1521"><td class="memItemLeft" align="right" valign="top">static Vector3[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinding_1_1_pathfinder.html#a4c5e7dabd1cd9cfb2ff40d4da94d1521">GetPath</a> (Vector3 source, Vector3 target)</td></tr>
-<tr class="memdesc:a4c5e7dabd1cd9cfb2ff40d4da94d1521"><td class="mdescLeft">&#160;</td><td class="mdescRight">A* Implementation to calculate the shortest path through the generated graph. Since the graph generated includes line-of-sight calculations, this algorithm closely resembles Theta*.  <br /></td></tr>
-<tr class="separator:a4c5e7dabd1cd9cfb2ff40d4da94d1521"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a106e93e4d6b5db73aed24432f11b1d72"><td class="memItemLeft" align="right" valign="top">static Vector3[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinding_1_1_pathfinder.html#a106e93e4d6b5db73aed24432f11b1d72">GetPath</a> (Vector3 source, Vector3 target, bool avoidWalls)</td></tr>
+<tr class="memdesc:a106e93e4d6b5db73aed24432f11b1d72"><td class="mdescLeft">&#160;</td><td class="mdescRight">A* Implementation to calculate the shortest path through the generated graph. Since the graph generated includes line-of-sight calculations, this algorithm closely resembles Theta*.  <br /></td></tr>
+<tr class="separator:a106e93e4d6b5db73aed24432f11b1d72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a835ab0c51fce5821012ee3b8aa4f5f22"><td class="memItemLeft" align="right" valign="top"><a id="a835ab0c51fce5821012ee3b8aa4f5f22" name="a835ab0c51fce5821012ee3b8aa4f5f22"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdatePathfindingGraph</b> ()</td></tr>
 <tr class="memdesc:a835ab0c51fce5821012ee3b8aa4f5f22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the Pathfinder's graph of nodes to reflect the current obstacles in the environment. <br /></td></tr>
@@ -96,8 +96,8 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdatePathfind
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Can be utilised by agents who wish to pathfind to get a list of Vector3 coordinates that they can use to navigate through the environment. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a4c5e7dabd1cd9cfb2ff40d4da94d1521" name="a4c5e7dabd1cd9cfb2ff40d4da94d1521"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c5e7dabd1cd9cfb2ff40d4da94d1521">&#9670;&#160;</a></span>GetPath()</h2>
+<a id="a106e93e4d6b5db73aed24432f11b1d72" name="a106e93e4d6b5db73aed24432f11b1d72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a106e93e4d6b5db73aed24432f11b1d72">&#9670;&#160;</a></span>GetPath()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -115,7 +115,13 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdatePathfind
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Vector3&#160;</td>
-          <td class="paramname"><em>target</em>&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>avoidWalls</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

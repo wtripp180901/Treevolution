@@ -11,7 +11,8 @@ public class GameStateManagerTests
     public void GameStateManagerStateTransitions()
     {
         // Calibration
-        GameStateManager gsm = new GameStateManager();
+        GameObject logic = new GameObject();
+        GameStateManager gsm = logic.AddComponent<GameStateManager>();
         gsm.SetupGameStateManagerTesting();
         GameProperties.SetTestProperties(Vector3.zero, Vector3.zero, Vector3.zero, Vector3.zero, Vector3.one, Vector3.zero, Pose.identity, 0);
         Assert.AreEqual(GameStateManager.GameState.Calibration, gsm.currentGameState);

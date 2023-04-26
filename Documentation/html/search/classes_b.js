@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['uicontroller_0',['UIController',['../class_u_i_controller.html',1,'']]]
+  ['qrdetection_0',['QRDetection',['../class_q_r_detection.html',1,'']]],
+  ['qrsimulation_1',['QRSimulation',['../class_q_r_simulation.html',1,'']]]
 ];

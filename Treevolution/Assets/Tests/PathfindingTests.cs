@@ -31,16 +31,24 @@ public class PathfindingTests
     public void PathfindingGraphGeneratorWorksWithObstacles()
     {
         PlaneMapper pm = new PlaneMapper();
-        pm.InitForTesting();
+        GameObject logic = new GameObject();
+        PlaneMapper pm = logic.AddComponent<PlaneMapper>();
+        pm.SetupForTest(true);
         pm.floor = GameObject.CreatePrimitive(PrimitiveType.Plane);
         pm.planeMarker = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+
         GameObject tree = GameObject.CreatePrimitive(PrimitiveType.Capsule);
         tree.tag = "Tree";
         pm.treeModel = tree;
+
+        GameObject bird = new GameObject();
+        bird.tag = "Buddy";
+
         pm.tableWidth = 1000;
         pm.tableDepth = 1000;
         pm.CreateNewPlane(Pose.identity);
-        RealWorldPropertyMapper rwpm = new RealWorldPropertyMapper(pm);
+        RealWorldPropertyMapper rwpm = logic.AddComponent<RealWorldPropertyMapper>();
+        rwpm.SetupForTest(pm);
         rwpm.MapProperties();
         Bounds bounds1 = new Bounds(new Vector3(2, 0, -2), new Vector3(0.5f, 1f, 0.5f));
         Bounds bounds2 = new Bounds(new Vector3(5, 0, -5), new Vector3(0.5f, 1f, 0.5f));
