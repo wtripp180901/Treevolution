@@ -30,17 +30,28 @@ public class EnemyScript : MonoBehaviour
 
     public bool frozen = false;
 
-    
+    /// <summary>
+    /// Audio player to play spatial sounds from the current enemy.
+    /// </summary>
+    private AudioSource _enemyAudioPlayer;
+
+    /// <summary>
+    /// Sound effect to be played when the enemy spawns.
+    /// </summary>
+    [HideInInspector]
+    public AudioClip spawnAudio;
+
     /// <summary>
     /// Sound effect to be played when the enemy gets damaged.
     /// </summary>
-    [SerializeField]
-    private AudioSource damageAudio;
+    [HideInInspector]
+    public AudioClip damageAudio;
+
     /// <summary>
     /// Sound effect to be played when the enemy dies.
     /// </summary>
-    [SerializeField]
-    private AudioSource deathAudio;
+    [HideInInspector]
+    public AudioClip deathAudio;
 
     /// <summary>
     /// Current Enemy's Rigidbody component.
@@ -107,6 +118,9 @@ public class EnemyScript : MonoBehaviour
     /// </summary>
     void Start()
     {
+        _enemyAudioPlayer = GetComponent<AudioSource>();
+        _enemyAudioPlayer.clip = spawnAudio;
+        _enemyAudioPlayer.Play();
         _defaultOrientation = transform.rotation.eulerAngles;
         _roundTimer = GameObject.Find("Logic").GetComponent<RoundTimer>();
         _rigidbody = GetComponent<Rigidbody>();
@@ -118,7 +132,7 @@ public class EnemyScript : MonoBehaviour
             _rigidbody.useGravity = false;
         else
             _rigidbody.useGravity = true;
-        Pathfinding.PathfindingUpdatePublisher.RefindPathNeededEvent.AddListener(restartPathfinding);
+        PathfindingUpdatePublisher.RefindPathNeededEvent.AddListener(restartPathfinding);
         Initialise();
     }
 
@@ -268,7 +282,8 @@ public class EnemyScript : MonoBehaviour
             defaultColours.Add(childRenderers[i].material.color);
             childRenderers[i].material.color = Color.red;
         }
-        damageAudio.Play();
+        _enemyAudioPlayer.clip = damageAudio;
+        _enemyAudioPlayer.Play();
         yield return new WaitForSeconds(0.3f);
         for (int i = 0; i < defaultColours.Count; i++)
         {
@@ -284,7 +299,8 @@ public class EnemyScript : MonoBehaviour
     {
         _followingPath = false;
         gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, 0, gameObject.transform.localScale.z);
-        deathAudio.Play();
+        _enemyAudioPlayer.clip = deathAudio;
+        _enemyAudioPlayer.Play();
         yield return new WaitForSeconds(1f);
         DestroyEnemy(true);
     }

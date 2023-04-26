@@ -735,6 +735,9 @@ MonoBehaviour:
   armouredStagbeetlePrefab: {fileID: 3230766117565264235, guid: 834074bac70495f45a8d04bf6a4c05a8, type: 3}
   DragonflyPrefab: {fileID: 2325871866633357825, guid: 28eaac28c6410f849a628749c9ada0f9, type: 3}
   HornetPrefab: {fileID: 7205856713176979134, guid: b04e84fbb1ef0dd4b9ac1097a11eb340, type: 3}
+  _spawnAudio: {fileID: 8300000, guid: f4cc6c052dc0292479022df068992d34, type: 3}
+  _deathAudio: {fileID: 8300000, guid: 4a27fe9d6e26f54409a0f402cf2c014f, type: 3}
+  _damageAudio: {fileID: 8300000, guid: 8168ba78f1d13174c959a39a392d5023, type: 3}
   spawnInterval: 2
 --- !u!114 &100754437
 MonoBehaviour:

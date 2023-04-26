@@ -13,7 +13,12 @@ public class EnemyManager : MonoBehaviour
     public GameObject armouredStagbeetlePrefab;
     public GameObject DragonflyPrefab;
     public GameObject HornetPrefab;
-
+    [SerializeField]
+    private AudioClip _spawnAudio;
+    [SerializeField]
+    private AudioClip _deathAudio;
+    [SerializeField]
+    private AudioClip _damageAudio;
     private RoundTimer roundTimer;
     private int enemiesKilled = 0;
     private float timer = 0;
@@ -103,6 +108,10 @@ public class EnemyManager : MonoBehaviour
         GameStateManager.EnemyType enemyType = spawnPool[randI];
         spawnPool.RemoveAt(randI);
         GameObject enemyPrefab = getEnemyPrefab(enemyType);
+        EnemyScript enemyPrefabScript = enemyPrefab.GetComponent<EnemyScript>();
+        enemyPrefabScript.damageAudio = _damageAudio;
+        enemyPrefabScript.spawnAudio= _spawnAudio;
+        enemyPrefabScript.deathAudio = _deathAudio;
 
         int LR = Random.Range(0, 2); // Random
         (Vector3 origin, Vector3 vert, Vector3 horz) spawnAxes = spawnVectors[LR]; // chooses either the left or right edge to spawn from.

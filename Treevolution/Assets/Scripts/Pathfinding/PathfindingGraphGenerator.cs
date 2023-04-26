@@ -59,7 +59,7 @@ namespace Pathfinding
                             distance = 0;
                         graph[i].AddNeighbour(graph[j], distance);
                         graph[j].AddNeighbour(graph[i], distance);
-                        Debug.DrawLine(graph[i].position, graph[i].position + directionRay, Color.red, 60);
+                        Debug.DrawLine(graph[i].position, graph[i].position + directionRay, Color.red, 3);
 
                     }
                 }
