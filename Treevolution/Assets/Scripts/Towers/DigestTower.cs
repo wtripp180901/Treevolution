@@ -40,7 +40,6 @@ public class DigestTower : TowerScript
         {
             if (_digestDelta <= 0)
             {
-                TransitionAnimation();
                 _currentlyDigesting = false;
                 _distanceToCurrentTarget = float.MaxValue;
             }
@@ -60,10 +59,7 @@ public class DigestTower : TowerScript
 
     public void TransitionAnimation()
     {
-        if (gameObject.name.Contains("Raff"))
-            _animator.SetTrigger("RaffTrigger");
-        if (gameObject.name.Contains("Venus"))
-            _animator.SetTrigger("VenusTrigger");
+        _animator.SetTrigger("Trigger");
     }
 
 
@@ -72,7 +68,8 @@ public class DigestTower : TowerScript
         TransitionAnimation();
         _digestDelta = fireRate;
         _targetTransform.gameObject.GetComponent<EnemyScript>().Damage(damage);
-        _targetTransform.gameObject.GetComponent<EnemyScript>().frozen = true;
+        //_targetTransform.position = gameObject.transform.position;
+        //_targetTransform.gameObject.GetComponent<EnemyScript>().frozen = true;
     }
 
     public override void UpdateTargets()
@@ -80,22 +77,28 @@ public class DigestTower : TowerScript
         GameObject[] enemies = enemyManager.enemies;
         for (int i = 0; i < enemies.Length; i++)
         {
-            float distToEnemy = DistToTarget(enemies[i].transform.position);
-            if (distToEnemy < _distanceToCurrentTarget && distToEnemy <= rangeRadius)
+            float topDownDistToEnemy = DistToTargetTopDown(enemies[i].transform.position);
+            if (topDownDistToEnemy < _distanceToCurrentTarget && topDownDistToEnemy <= rangeRadius)
             {
                 if (!_targetFlying && enemies[i].GetComponent<EnemyScript>().flying)
                     continue; // Ignore flying enemies if specified
                 if (!_targetGround && !enemies[i].GetComponent<EnemyScript>().flying)
                     continue; // Ignore ground enemies if specified
                 _targetTransform = enemies[i].transform;
-                _distanceToCurrentTarget = distToEnemy;
+                _distanceToCurrentTarget = topDownDistToEnemy;
             }
         }
     }
 
     private void UpdateRangeVisual()
     {
-        rangeVisual.transform.localScale = new Vector3(rangeRadius * 2, rangeRadius * 2, rangeRadius * 2);
-        rangeVisual.transform.position = transform.position;
+        rangeVisual.transform.localScale = new Vector3(rangeRadius * 2, 0.3f, rangeRadius * 2);
+        rangeVisual.transform.position = new Vector3(transform.position.x, GameProperties.FloorHeight + 0.3f, transform.position.z);
+    }
+
+    public override GameObject GetRangeObject()
+    {
+        return GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+
     }
 }

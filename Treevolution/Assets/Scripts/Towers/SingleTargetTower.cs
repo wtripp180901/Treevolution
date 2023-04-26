@@ -85,4 +85,10 @@ public class SingleTargetTower : TowerScript
         rangeVisual.transform.localScale = new Vector3(rangeRadius * 2, rangeRadius * 2, rangeRadius * 2);
         rangeVisual.transform.position = transform.position;
     }
+
+    public override GameObject GetRangeObject()
+    {
+        return GameObject.CreatePrimitive(PrimitiveType.Sphere);
+
+    }
 }

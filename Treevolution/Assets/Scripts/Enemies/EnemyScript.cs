@@ -297,8 +297,14 @@ public class EnemyScript : MonoBehaviour
     /// <returns>This method runs a coroutine and so a <c>yield return</c> is used.</returns>
     private IEnumerator KillEnemy()
     {
+        if (flying)
+            GetComponent<Rigidbody>().useGravity = true;
         _followingPath = false;
-        gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, 0, gameObject.transform.localScale.z);
+        if(flying)
+            gameObject.transform.localScale = new Vector3(0, gameObject.transform.localScale.y + 0.05f, gameObject.transform.localScale.z + 0.05f);
+        else
+            gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x + 0.05f, 0, gameObject.transform.localScale.z + 0.05f);
+
         _enemyAudioPlayer.clip = deathAudio;
         _enemyAudioPlayer.Play();
         yield return new WaitForSeconds(1f);

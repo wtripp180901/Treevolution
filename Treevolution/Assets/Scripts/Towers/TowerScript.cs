@@ -20,13 +20,15 @@ public abstract class TowerScript : MonoBehaviour, IRuntimeMovableBehaviourScrip
         GameObject logic = GameObject.FindGameObjectWithTag("Logic");
         _towerManager = logic.GetComponent<TowerManager>();
         enemyManager = logic.GetComponent<EnemyManager>();
-        rangeVisual = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        rangeVisual = GetRangeObject();
         rangeVisual.GetComponent<MeshRenderer>().material = rangeVisualMaterial;
         rangeVisual.GetComponent<Collider>();
         GameObject.Destroy(rangeVisual.GetComponent<Collider>());
         DisplayRange(true);
         _towerManager.AddTower(this.gameObject);
     }
+
+    public abstract GameObject GetRangeObject();
 
     public void DisplayRange(bool toggle)
     {
@@ -44,6 +46,12 @@ public abstract class TowerScript : MonoBehaviour, IRuntimeMovableBehaviourScrip
     public float DistToTarget(Vector3 target)
     {
         float distance = Vector3.Distance(target, transform.position);
+        return distance;
+    }
+    public float DistToTargetTopDown(Vector3 target)
+    {
+        Vector2 topDownTarget = new Vector2(target.x, target.z);
+        float distance = Vector2.Distance(topDownTarget, new Vector2(transform.position.x, transform.position.z));
         return distance;
     }
     private void OnDestroy()

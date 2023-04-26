@@ -286,26 +286,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 15a81175631fedf47a026ee9effee542, type: 3}
   m_PrefabInstance: {fileID: 190346604348696328}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &-749502198453133040
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1037330858851883609}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1cf9b29fa51589d41bfb177a1590b30a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &-6819182139936797710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,7 +304,8 @@ MonoBehaviour:
   rangeVisualMaterial: {fileID: 2100000, guid: 714cb720816de7b45b83dbdc97e4e1a6, type: 2}
   enemyManager: {fileID: 0}
   rangeVisual: {fileID: 0}
-  _targetFlying: 0
+  _targetFlying: 1
+  _targetGround: 1
   _rotationSpeed: 2
 --- !u!114 &8188577241723287194
 MonoBehaviour:

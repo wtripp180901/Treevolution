@@ -141,6 +141,20 @@ public class QRDetection : MonoBehaviour
         }
     }
 
+    private bool CodeTooSimilar(Guid codeID, Pose newPose)
+    {
+        Vector3 oldPos = _trackedCodes[codeID].obj.transform.position;
+        Quaternion oldRot = _trackedCodes[codeID].obj.transform.rotation;
+        if (_trackedCodes.ContainsKey(codeID) &&
+                (Vector3.Distance(oldPos, newPose.position) > 0.03 ||
+                Math.Abs(Quaternion.Angle(oldRot, newPose.rotation)) > 5)
+            )
+        {
+            return false;
+        }
+        return true;
+
+    }
 
     /// <summary>
     /// Checks and draws the game board plane.
@@ -202,6 +216,8 @@ public class QRDetection : MonoBehaviour
             {
                 Pose currentPose;
                 SpatialGraphNode.FromStaticNodeId(qrCode.SpatialGraphNodeId).TryLocate(FrameTime.OnUpdate, out currentPose); // Get pose of QR Code
+                if (CodeTooSimilar(qrCode.Id, currentPose))
+                    return;
                 float sideLength = qrCode.PhysicalSideLength;
                 Vector3 markerSize = new Vector3(sideLength, sideLength, sideLength);
                 GameObject tempMarker = _trackedCodes[qrCode.Id].obj;
