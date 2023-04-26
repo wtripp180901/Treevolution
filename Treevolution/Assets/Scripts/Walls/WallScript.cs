@@ -13,6 +13,11 @@ public class WallScript : MonoBehaviour, IRuntimeMovableBehaviourScript
     Collider myCollider;
 
     float baseScale;
+
+    [SerializeField]
+    Material enabled;
+    [SerializeField]
+    Material disabled; 
     
     // Start is called before the first frame update
     void Start()
@@ -57,12 +62,12 @@ public class WallScript : MonoBehaviour, IRuntimeMovableBehaviourScript
     public void ApplyMovementPenalty()
     {
         myCollider.enabled = false;
-        GetComponent<Renderer>().material.color = Color.red;
+        gameObject.transform.GetChild(gameObject.transform.childCount-1).GetComponent<Renderer>().material = disabled;
     }
 
     public void EndMovementPenalty()
     {
         if (!isDestroyed) myCollider.enabled = true;
-        GetComponent<Renderer>().material.color = Color.white;
+        gameObject.transform.GetChild(gameObject.transform.childCount - 1).GetComponent<Renderer>().material = enabled;
     }
 }
