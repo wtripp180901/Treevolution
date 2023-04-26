@@ -29,24 +29,7 @@ namespace LanguageParsing
                 return new List<BuddyAction>() { new MoveBuddyAction(getMoveSubject(subject)) };
             }else if(action == BUDDY_ACTION_TYPES.Defend)
             {
-                switch (subject)
-                {
-                    case BUDDY_SUBJECT_TYPES.PointerLocation:
-                        return new List<BuddyAction>() { new MoveBuddyAction(getMoveSubject(subject)), new OngoingBuddyAction(BUDDY_ACTION_TYPES.Defend) };
-                    case BUDDY_SUBJECT_TYPES.Unresolved:
-                        if (restrictions.Length > 0)
-                        {
-                            GameObject[] defendSubjects = getSubject(subject, action, restrictions);
-                            if (defendSubjects.Length > 0) return new List<BuddyAction>() { new MoveBuddyAction(defendSubjects[0].transform.position), new OngoingBuddyAction(BUDDY_ACTION_TYPES.Defend) };
-                            else return new List<BuddyAction>() { new OngoingBuddyAction(BUDDY_ACTION_TYPES.Defend) };
-                        }
-                        else
-                        {
-                            return new List<BuddyAction>() { new OngoingBuddyAction(BUDDY_ACTION_TYPES.Defend) };
-                        }
-                    default:
-                        return new List<BuddyAction>() { new OngoingBuddyAction(BUDDY_ACTION_TYPES.Defend) };
-                }
+                return getDefendBuddyActions(action,subject,restrictions);
             }
             else
             {
@@ -115,6 +98,28 @@ namespace LanguageParsing
             }
             Debug.Log("Not implemented in getSubject: " + subject.ToString());
             return possibleSubjects;
+        }
+
+        List<BuddyAction> getDefendBuddyActions(BUDDY_ACTION_TYPES action,BUDDY_SUBJECT_TYPES subject,RESTRICTION_TYPES[] restrictions)
+        {
+            switch (subject)
+            {
+                case BUDDY_SUBJECT_TYPES.PointerLocation:
+                    return new List<BuddyAction>() { new MoveBuddyAction(getMoveSubject(subject)), new OngoingBuddyAction(BUDDY_ACTION_TYPES.Defend) };
+                case BUDDY_SUBJECT_TYPES.Unresolved:
+                    if (restrictions.Length > 0)
+                    {
+                        GameObject[] defendSubjects = getSubject(subject, action, restrictions);
+                        if (defendSubjects.Length > 0) return new List<BuddyAction>() { new MoveBuddyAction(defendSubjects[0].transform.position), new OngoingBuddyAction(BUDDY_ACTION_TYPES.Defend) };
+                        else return new List<BuddyAction>() { new OngoingBuddyAction(BUDDY_ACTION_TYPES.Defend) };
+                    }
+                    else
+                    {
+                        return new List<BuddyAction>() { new OngoingBuddyAction(BUDDY_ACTION_TYPES.Defend) };
+                    }
+                default:
+                    return new List<BuddyAction>() { new OngoingBuddyAction(BUDDY_ACTION_TYPES.Defend) };
+            }
         }
 
         GameObject[] defaultTargetsOfActionType(BUDDY_ACTION_TYPES action)

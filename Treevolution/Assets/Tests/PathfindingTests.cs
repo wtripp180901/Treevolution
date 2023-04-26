@@ -30,7 +30,6 @@ public class PathfindingTests
     [Test]
     public void PathfindingGraphGeneratorWorksWithObstacles()
     {
-        PlaneMapper pm = new PlaneMapper();
         GameObject logic = new GameObject();
         PlaneMapper pm = logic.AddComponent<PlaneMapper>();
         pm.SetupForTest(true);
