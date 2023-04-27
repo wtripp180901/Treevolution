@@ -31,7 +31,7 @@ public class SingleTargetTower : TowerScript
     void Update()
     {
         UpdateTargets();
-        if (_targetTransform != null)
+        if (!shootingDisabled && _targetTransform != null)
         {
             Vector3 enemyGroundPosition = _targetTransform.position;
             enemyGroundPosition.y = transform.position.y;

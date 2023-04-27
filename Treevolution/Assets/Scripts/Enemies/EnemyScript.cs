@@ -302,9 +302,9 @@ public class EnemyScript : MonoBehaviour
             GetComponent<Rigidbody>().useGravity = true;
         _followingPath = false;
         if(flying)
-            gameObject.transform.localScale = new Vector3(0, gameObject.transform.localScale.y + 0.05f, gameObject.transform.localScale.z + 0.05f);
+            gameObject.transform.localScale = new Vector3(0, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
         else
-            gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x + 0.05f, 0, gameObject.transform.localScale.z + 0.05f);
+            gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, 0, gameObject.transform.localScale.z);
 
         _enemyAudioPlayer.clip = deathAudio;
         _enemyAudioPlayer.Play();

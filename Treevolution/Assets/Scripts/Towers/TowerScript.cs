@@ -6,14 +6,15 @@ public abstract class TowerScript : MonoBehaviour, IRuntimeMovableBehaviourScrip
     public float fireRate = 0.5f;
     public int damage = 1;
     public Material rangeVisualMaterial;
-
+    public Material enabledMaterial;
+    public Material disabledMaterial;
     [HideInInspector]
     public EnemyManager enemyManager;
     [HideInInspector]
     public GameObject rangeVisual;
 
     private TowerManager _towerManager;
-    bool shootingDisabled = false;
+    protected bool shootingDisabled = false;
 
     public void Start()
     {
@@ -63,11 +64,14 @@ public abstract class TowerScript : MonoBehaviour, IRuntimeMovableBehaviourScrip
     public void ApplyMovementPenalty()
     {
         shootingDisabled = true;
+        gameObject.transform.GetChild(gameObject.transform.childCount - 1).GetComponent<Renderer>().material = disabledMaterial;
     }
 
     public void EndMovementPenalty()
     {
         shootingDisabled = false;
+        gameObject.transform.GetChild(gameObject.transform.childCount - 1).GetComponent<Renderer>().material = enabledMaterial;
+
     }
 }
 
