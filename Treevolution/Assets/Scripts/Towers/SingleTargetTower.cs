@@ -14,6 +14,7 @@ public class SingleTargetTower : TowerScript
     private Transform _targetTransform;
     private Gun _currentGun;
     private float _fireRateDelta;
+    [SerializeField] private GameObject rotatingObject;
 
 
 
@@ -38,8 +39,8 @@ public class SingleTargetTower : TowerScript
             _distanceToCurrentTarget = DistToTarget(enemyGroundPosition);
             Vector3 enemyDirection = enemyGroundPosition - transform.position;
             float turretRotationStep = _rotationSpeed * Time.deltaTime;
-            Vector3 newLookDirection = Vector3.RotateTowards(gameObject.transform.forward, enemyDirection, turretRotationStep, 0f);
-            gameObject.transform.rotation = Quaternion.LookRotation(newLookDirection);
+            Vector3 newLookDirection = Vector3.RotateTowards(rotatingObject.transform.forward, enemyDirection, turretRotationStep, 0f);
+            rotatingObject.transform.rotation = Quaternion.LookRotation(newLookDirection);
             _fireRateDelta = _fireRateDelta - Time.deltaTime;
             if (_fireRateDelta <= 0)
             {

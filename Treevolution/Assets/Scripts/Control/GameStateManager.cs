@@ -339,6 +339,7 @@ public class GameStateManager : MonoBehaviour
              InfoText.transform.position = GameProperties.Centre + new Vector3(0, 0.5f, 0);
         GameProperties.BattlePhase = true;
         ToggleMusic();
+        _towerManager.ToggleAllRangeVisuals(false);
         if (_currentState == GameState.Tutorial_Plan)
         {
             _currentState = GameState.Tutorial_Battle;
@@ -350,7 +351,6 @@ public class GameStateManager : MonoBehaviour
             _currentState = GameState.Round_Battle;
             _enemyManager.StartSpawning(_enemyWaves[_currentRoundNumber]);
             _roundTimer.StartTimer();
-            _towerManager.ToggleAllRangeVisuals(false);
         }
     }
 
