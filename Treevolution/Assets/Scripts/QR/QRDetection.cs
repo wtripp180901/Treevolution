@@ -227,6 +227,7 @@ public class QRDetection : MonoBehaviour
                         else if (tempMarker == null && data[1] == "3") markerType = flowerTower;
                         else if (tempMarker == null && data[1] == "4") markerType = venusTower;
                         else if (tempMarker == null && data[1] == "5") markerType = poisonTower;
+                        rotation = Quaternion.Euler(0, rotation.eulerAngles.y, 0);
                         break;
 
                     case "Wall":
