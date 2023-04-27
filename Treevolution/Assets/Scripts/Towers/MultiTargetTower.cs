@@ -26,7 +26,7 @@ public class MultiTargetTower : TowerScript
     {
         UpdateTargets();
         _fireRateDelta = _fireRateDelta - Time.deltaTime;
-        if (_targetEnemies != null && _targetEnemies.Count > 0 && _fireRateDelta <= 0)
+        if (!shootingDisabled && _targetEnemies != null && _targetEnemies.Count > 0 && _fireRateDelta <= 0)
         {
             foreach(EnemyScript enemyScript in _targetEnemies)
             {

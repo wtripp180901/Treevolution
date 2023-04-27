@@ -25,10 +25,10 @@ namespace Pathfinding
         {
             Vector3[] offsetCorners = new Vector3[]
             {
-                (centreFloor + extentsWidth * widthVec + extentsDepth * depthVec),
+                (centreFloor - extentsWidth * widthVec - extentsDepth * depthVec),
                 centreFloor + extentsWidth * widthVec - extentsDepth * depthVec,
-                centreFloor - extentsWidth * widthVec + extentsDepth * depthVec,
-                centreFloor - extentsWidth * widthVec - extentsDepth * depthVec
+                centreFloor + extentsWidth * widthVec + extentsDepth * depthVec,
+                centreFloor - extentsWidth * widthVec + extentsDepth * depthVec
             };
             return offsetCorners;
         }
@@ -59,7 +59,7 @@ namespace Pathfinding
                 Debug.DrawLine(possiblePFPoints[1], possiblePFPoints[1] + Vector3.up * 0.03f, Color.green, 2);
                 Debug.DrawLine(possiblePFPoints[2], possiblePFPoints[2] + Vector3.up * 0.03f, Color.green, 2);
                 Debug.DrawLine(possiblePFPoints[3], possiblePFPoints[3] + Vector3.up * 0.03f, Color.green, 2);
-
+                
                 PathfindingGraphGenerator.AddObstacleData(bounds, possiblePFPoints);
             }
         }

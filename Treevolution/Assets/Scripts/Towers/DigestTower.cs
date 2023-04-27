@@ -27,7 +27,7 @@ public class DigestTower : TowerScript
     void Update()
     {
         UpdateTargets();
-        if (!_currentlyDigesting && _targetTransform != null)
+        if (!shootingDisabled && !_currentlyDigesting && _targetTransform != null)
         {
             _digestDelta = _digestDelta - Time.deltaTime;
             if (_digestDelta <= 0)
