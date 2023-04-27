@@ -15,6 +15,8 @@ namespace Pathfinding
         float floorOffset = 0.1f;
         Bounds bounds;
         BoxCollider myCollider;
+        [SerializeField]
+        GameObject marker;
 
         /// <summary>
         /// Determines if the PathfindingObstacle will send nodes to PathfindingGraphGenerator
@@ -43,9 +45,9 @@ namespace Pathfinding
         {
             if (sendNodes)
             {
-                float halfWidthWithMargin = bounds.size.x / 2 + nodeMargins;
-                float halfDepthWithMargin = bounds.size.z / 2 + nodeMargins;
-                float halfHeightExact = bounds.size.y / 2;
+                float halfWidthWithMargin = myCollider.size.x / 2 + nodeMargins;
+                float halfDepthWithMargin = myCollider.size.z / 2 + nodeMargins;
+                float halfHeightExact = myCollider.size.y / 2;
 
                 Vector3 centre = transform.position;
                 Vector3 floorPosition = new Vector3(centre.x, GameProperties.FloorHeight + floorOffset, centre.z);
@@ -59,7 +61,11 @@ namespace Pathfinding
                 Debug.DrawLine(possiblePFPoints[1], possiblePFPoints[1] + Vector3.up * 0.03f, Color.green, 2);
                 Debug.DrawLine(possiblePFPoints[2], possiblePFPoints[2] + Vector3.up * 0.03f, Color.green, 2);
                 Debug.DrawLine(possiblePFPoints[3], possiblePFPoints[3] + Vector3.up * 0.03f, Color.green, 2);
-                
+                GameObject.Instantiate(marker, possiblePFPoints[0], Quaternion.identity);
+                GameObject.Instantiate(marker, possiblePFPoints[1], Quaternion.identity);
+                GameObject.Instantiate(marker, possiblePFPoints[2], Quaternion.identity);
+                GameObject.Instantiate(marker, possiblePFPoints[3], Quaternion.identity);
+
                 PathfindingGraphGenerator.AddObstacleData(bounds, possiblePFPoints);
             }
         }
