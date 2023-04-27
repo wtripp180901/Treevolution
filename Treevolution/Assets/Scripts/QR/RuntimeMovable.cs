@@ -17,7 +17,7 @@ public class RuntimeMovable : MonoBehaviour
     /// <summary>
     /// The minimum angle from the object's previous position which will cause it to register as moved
     /// </summary>
-    [SerializeField] float RotationThreshold = 45;
+    [SerializeField] float RotationThreshold = 15;
     /// <summary>
     /// A script which implements IRuntimeMovableBehaviourScript that controls the normal behaviour of the object e.g TowerScript, WallScript
     /// </summary>
@@ -45,9 +45,15 @@ public class RuntimeMovable : MonoBehaviour
         if(((transform.position - lastPosition).magnitude > MovementThreshold || System.Math.Abs(Quaternion.Angle(transform.rotation, lastRotation)) > RotationThreshold) && GameProperties.BattlePhase)
         {
             StartCoroutine(penaliseMovementThenStartAgain());
+            lastPosition = transform.position;
+            lastRotation = transform.rotation;
+
         }
-        lastPosition = transform.position;
-        lastRotation = transform.rotation;
+        else if (!GameProperties.BattlePhase)
+        {
+            lastPosition = transform.position;
+            lastRotation = transform.rotation;
+        }
     }
 
     IEnumerator penaliseMovementThenStartAgain()

@@ -4897,7 +4897,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementThreshold: 0.05
-  RotationThreshold: 10
+  RotationThreshold: 15
   behaviourScript: {fileID: 1702270248507759224}
   PenaltyDuration: 5
 --- !u!1 &2922482681461656449

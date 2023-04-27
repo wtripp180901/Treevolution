@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3293663537527008400}
   - component: {fileID: 1749884930275361677}
   - component: {fileID: 2657219877604589510}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,13 +164,77 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -8667184578498139821, guid: 3a94c3531132230428a8c14ca40322a4, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -3086944861826413830, guid: 3a94c3531132230428a8c14ca40322a4, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -2053366705322905981, guid: 3a94c3531132230428a8c14ca40322a4, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -988506798408561025, guid: 3a94c3531132230428a8c14ca40322a4, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -655515190766560270, guid: 3a94c3531132230428a8c14ca40322a4, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -298092508047035362, guid: 3a94c3531132230428a8c14ca40322a4, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 799742280516462902, guid: 3a94c3531132230428a8c14ca40322a4, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3a94c3531132230428a8c14ca40322a4, type: 3}
       propertyPath: m_Name
       value: Mushroom
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3a94c3531132230428a8c14ca40322a4, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3a94c3531132230428a8c14ca40322a4, type: 3}
       propertyPath: m_TagString
       value: Tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 2866621852552652557, guid: 3a94c3531132230428a8c14ca40322a4, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779745573541866595, guid: 3a94c3531132230428a8c14ca40322a4, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930602053348841364, guid: 3a94c3531132230428a8c14ca40322a4, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320835947237081576, guid: 3a94c3531132230428a8c14ca40322a4, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587124136858292125, guid: 3a94c3531132230428a8c14ca40322a4, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6727007405964328823, guid: 3a94c3531132230428a8c14ca40322a4, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6960461950046415205, guid: 3a94c3531132230428a8c14ca40322a4, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9091937519273929458, guid: 3a94c3531132230428a8c14ca40322a4, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a94c3531132230428a8c14ca40322a4, type: 3}
@@ -267,7 +331,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.6
+      scalar: 0.8
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -320,7 +384,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0.1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -436,7 +500,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.001
+      scalar: 0.002
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4975,7 +5039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a937bce38b39334bb3c5231c39d339c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementThreshold: 0.1
+  MovementThreshold: 0.05
   RotationThreshold: 15
   behaviourScript: {fileID: 3115084453131803451}
   PenaltyDuration: 5
@@ -4995,6 +5059,7 @@ MonoBehaviour:
   fireRate: 3
   damage: 1
   rangeVisualMaterial: {fileID: 2100000, guid: 714cb720816de7b45b83dbdc97e4e1a6, type: 2}
+  disabledVisualObject: {fileID: 4177379072038195040}
   enabledMaterial: {fileID: 2100000, guid: cbf4a6a95e5187140985627f2dddcc7c, type: 2}
   disabledMaterial: {fileID: 2100000, guid: 7aba1ecb91a50c14aa70c3f040b977f9, type: 2}
   enemyManager: {fileID: 0}

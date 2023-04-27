@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1523089521539841328}
   - component: {fileID: 7296743592794258275}
   - component: {fileID: 7948908992482641791}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pSphere3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: -8082774157794099349}
   - component: {fileID: -6819182139936797710}
   - component: {fileID: 8188577241723287194}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PoisonPlant
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a937bce38b39334bb3c5231c39d339c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementThreshold: 0.1
+  MovementThreshold: 0.05
   RotationThreshold: 15
   behaviourScript: {fileID: -6819182139936797710}
   PenaltyDuration: 5
@@ -150,6 +150,7 @@ MonoBehaviour:
   fireRate: 2
   damage: 2
   rangeVisualMaterial: {fileID: 2100000, guid: 714cb720816de7b45b83dbdc97e4e1a6, type: 2}
+  disabledVisualObject: {fileID: 7753352342366907809}
   enabledMaterial: {fileID: 2100000, guid: cbf4a6a95e5187140985627f2dddcc7c, type: 2}
   disabledMaterial: {fileID: 2100000, guid: 7aba1ecb91a50c14aa70c3f040b977f9, type: 2}
   enemyManager: {fileID: 0}
@@ -182,7 +183,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5392523423391555250}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pCylinder2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,7 +214,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3133850830293777533}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RotatingPlant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +255,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2803256319186672077}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: transform1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,7 +288,7 @@ GameObject:
   - component: {fileID: 4328693049663393174}
   - component: {fileID: 8397373328687174554}
   - component: {fileID: 9147007321700132728}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pSphere1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -368,7 +369,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6873446201420973318}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: gunPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -399,7 +400,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 764960945053599073}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pCylinder1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -432,7 +433,7 @@ GameObject:
   - component: {fileID: 2201817837791412183}
   - component: {fileID: 165523015883800449}
   - component: {fileID: 2396274124419495381}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pCylinder3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -513,7 +514,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1484661512851495435}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: transform2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -546,7 +547,7 @@ GameObject:
   - component: {fileID: 4864588297265442786}
   - component: {fileID: 452177781220630566}
   - component: {fileID: 4709155319665616861}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pSphere2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -630,7 +631,7 @@ GameObject:
   - component: {fileID: 3359807310639389538}
   - component: {fileID: 4245082345067254275}
   - component: {fileID: 7637581115282179353}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
