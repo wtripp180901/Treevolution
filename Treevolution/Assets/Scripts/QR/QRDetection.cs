@@ -246,8 +246,7 @@ public class QRDetection : MonoBehaviour
                     tempMarker = Instantiate(markerType, currentPose.position + markerOffset, rotation);
                     tempMarker.SetActive(true);
                 }
-                else
-                {
+                else if (Vector3.Distance(_trackedCodes[qrCode.Id].obj.transform.position, currentPose.position + markerOffset) > 0.02 || Math.Abs(Quaternion.Angle(_trackedCodes[qrCode.Id].obj.transform.rotation, currentPose.rotation)) > 5){
                     tempMarker.transform.SetPositionAndRotation(currentPose.position + markerOffset, rotation);
                 }
 

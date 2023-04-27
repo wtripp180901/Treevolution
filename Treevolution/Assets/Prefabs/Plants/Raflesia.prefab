@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5125921951016601707}
   - component: {fileID: 199991205477785179}
   - component: {fileID: 5237967432020237645}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,9 +148,77 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2659280837385750140, guid: e59a0a8c5af903a4b811baa89407117e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -2053366705322905981, guid: e59a0a8c5af903a4b811baa89407117e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -1500838157198093432, guid: e59a0a8c5af903a4b811baa89407117e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -988506798408561025, guid: e59a0a8c5af903a4b811baa89407117e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -655515190766560270, guid: e59a0a8c5af903a4b811baa89407117e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -298092508047035362, guid: e59a0a8c5af903a4b811baa89407117e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 799742280516462902, guid: e59a0a8c5af903a4b811baa89407117e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e59a0a8c5af903a4b811baa89407117e, type: 3}
       propertyPath: m_Name
       value: Raflesia
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e59a0a8c5af903a4b811baa89407117e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e59a0a8c5af903a4b811baa89407117e, type: 3}
+      propertyPath: m_TagString
+      value: Tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779745573541866595, guid: e59a0a8c5af903a4b811baa89407117e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3889987309386925154, guid: e59a0a8c5af903a4b811baa89407117e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930602053348841364, guid: e59a0a8c5af903a4b811baa89407117e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320835947237081576, guid: e59a0a8c5af903a4b811baa89407117e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587124136858292125, guid: e59a0a8c5af903a4b811baa89407117e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6960461950046415205, guid: e59a0a8c5af903a4b811baa89407117e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8978325390916337065, guid: e59a0a8c5af903a4b811baa89407117e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9091937519273929458, guid: e59a0a8c5af903a4b811baa89407117e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e59a0a8c5af903a4b811baa89407117e, type: 3}
@@ -195,6 +263,7 @@ MonoBehaviour:
   fireRate: 5
   damage: 50
   rangeVisualMaterial: {fileID: 2100000, guid: c806fa5def3085d4387e43c6cce159f4, type: 2}
+  disabledVisualObject: {fileID: 1798331119390525323}
   enabledMaterial: {fileID: 2100000, guid: cbf4a6a95e5187140985627f2dddcc7c, type: 2}
   disabledMaterial: {fileID: 2100000, guid: 7aba1ecb91a50c14aa70c3f040b977f9, type: 2}
   enemyManager: {fileID: 0}
@@ -213,7 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a937bce38b39334bb3c5231c39d339c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementThreshold: 0.1
+  MovementThreshold: 0.05
   RotationThreshold: 15
   behaviourScript: {fileID: -9128545978760065337}
   PenaltyDuration: 5
