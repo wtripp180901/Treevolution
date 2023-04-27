@@ -347,7 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a937bce38b39334bb3c5231c39d339c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementThreshold: 0.05
+  MovementThreshold: 0.1
   RotationThreshold: 15
   behaviourScript: {fileID: -3229857070677972331}
   PenaltyDuration: 5
