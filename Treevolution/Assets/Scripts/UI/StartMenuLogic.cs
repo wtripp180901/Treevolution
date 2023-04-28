@@ -31,6 +31,8 @@ public class StartMenuLogic : MonoBehaviour
     private void Start()
     {
         _gameStateManager = GameObject.FindGameObjectWithTag("Logic").GetComponent<GameStateManager>();
+        _tableDepthMM = (int)System.Math.Round(GameObject.FindGameObjectWithTag("Logic").GetComponent<PlaneMapper>().tableDepth);
+        _tableWidthMM = (int)System.Math.Round(GameObject.FindGameObjectWithTag("Logic").GetComponent<PlaneMapper>().tableWidth);
     }
 
     private void Update()

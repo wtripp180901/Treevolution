@@ -2076,8 +2076,8 @@ MonoBehaviour:
   trackedHandedness: 3
   trackedHandJoint: 2
   transformOverride: {fileID: 0}
-  additionalOffset: {x: 0, y: 0, z: 0}
-  additionalRotation: {x: 0, y: 0, z: 0}
+  additionalOffset: {x: 0, y: -0.03, z: 0}
+  additionalRotation: {x: 3, y: 0, z: 0}
   updateSolvers: 1
 --- !u!114 &5345817508591063372
 MonoBehaviour:
@@ -2121,7 +2121,7 @@ MonoBehaviour:
   moveLerpTime: 0.5
   rotateLerpTime: 0.5
   scaleLerpTime: 1
-  maintainScaleOnInitialization: 1
+  maintainScaleOnInitialization: 0
   smoothing: 1
   lifetime: 0
   orientationType: 0
