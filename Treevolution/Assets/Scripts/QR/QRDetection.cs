@@ -222,7 +222,8 @@ public class QRDetection : MonoBehaviour
                 switch (data[0])
                 {
                     case "Tower":
-                        if (tempMarker == null && data[1] == "1") markerType = cactusTower;
+                        if(tempMarker == null && data.Length == 1) markerType = cactusTower;
+                        else if (tempMarker == null && data[1] == "1") markerType = cactusTower;
                         else if (tempMarker == null && data[1] == "2") markerType = mushroomTower;
                         else if (tempMarker == null && data[1] == "3") markerType = flowerTower;
                         else if (tempMarker == null && data[1] == "4") markerType = venusTower;
