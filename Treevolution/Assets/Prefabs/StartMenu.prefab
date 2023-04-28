@@ -157,6 +157,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1954203695318403912, guid: 478732197b53dee4694480aac1a7c98c, type: 3}
+      propertyPath: additionalOffset.y
+      value: -0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: -1954203695318403912, guid: 478732197b53dee4694480aac1a7c98c, type: 3}
+      propertyPath: additionalRotation.x
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 482541237284604122, guid: 478732197b53dee4694480aac1a7c98c, type: 3}
       propertyPath: m_IsActive
       value: 0

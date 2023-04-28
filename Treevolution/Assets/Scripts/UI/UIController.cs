@@ -146,6 +146,7 @@ public class UIController : MonoBehaviour
             {
                 GetComponent<QRDetection>().lockPlane = true;
                 GetComponent<RealWorldPropertyMapper>().MapProperties();
+                GameObject.FindGameObjectWithTag("Floor").GetComponent<Area>().GenerateObjectsByInfo(); //THIS LINE ENABLES GRASS DRAWING
                 TutorialSelectionPopUp();
             };
             _openDialogs.Add(d);

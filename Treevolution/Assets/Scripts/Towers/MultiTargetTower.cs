@@ -14,7 +14,7 @@ public class MultiTargetTower : TowerScript
 
 
     // Start is called before the first frame update
-    new void Start()
+    public void Start()
     {
         base.Start();
         _targetEnemies = new List<EnemyScript>();
@@ -22,9 +22,9 @@ public class MultiTargetTower : TowerScript
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        UpdateTargets();
+        base.Update();
         _fireRateDelta = _fireRateDelta - Time.deltaTime;
         if (!shootingDisabled && _targetEnemies != null && _targetEnemies.Count > 0 && _fireRateDelta <= 0)
         {
@@ -41,10 +41,6 @@ public class MultiTargetTower : TowerScript
         else if (_fireRateDelta <= 0)
         {
              _fireRateDelta = fireRate;
-        }
-        if (rangeVisual.activeInHierarchy)
-        {
-            UpdateRangeVisual();
         }
     }
 
@@ -70,7 +66,7 @@ public class MultiTargetTower : TowerScript
         }
     }
 
-    private void UpdateRangeVisual()
+    public override void UpdateRangeVisual()
     {
         rangeVisual.transform.localScale = new Vector3(rangeRadius * 2, rangeRadius * 2, rangeRadius * 2);
         rangeVisual.transform.position = transform.position;
