@@ -107,7 +107,7 @@ public class PlaneMapper : MonoBehaviour
             treeObject.transform.position = boardCentre;
         }
 
-        GameObject.FindWithTag("Buddy").transform.position = boardCentre + new Vector3(0, 1, 0);
+        GameObject.FindWithTag("Buddy").transform.position = boardCentre + new Vector3(0, 0.435f, 0);
     }
 
     public void ResetPlane()
