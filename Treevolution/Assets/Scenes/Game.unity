@@ -586,6 +586,7 @@ GameObject:
   - component: {fileID: 100754448}
   - component: {fileID: 100754449}
   - component: {fileID: 100754450}
+  - component: {fileID: 100754451}
   m_Layer: 0
   m_Name: Logic
   m_TagString: Logic
@@ -711,6 +712,9 @@ MonoBehaviour:
   armouredStagbeetlePrefab: {fileID: 3230766117565264235, guid: 834074bac70495f45a8d04bf6a4c05a8, type: 3}
   DragonflyPrefab: {fileID: 2325871866633357825, guid: 28eaac28c6410f849a628749c9ada0f9, type: 3}
   HornetPrefab: {fileID: 7205856713176979134, guid: b04e84fbb1ef0dd4b9ac1097a11eb340, type: 3}
+  _spawnAudio: {fileID: 8300000, guid: f4cc6c052dc0292479022df068992d34, type: 3}
+  _deathAudio: {fileID: 8300000, guid: 4a27fe9d6e26f54409a0f402cf2c014f, type: 3}
+  _damageAudio: {fileID: 8300000, guid: 8168ba78f1d13174c959a39a392d5023, type: 3}
   spawnInterval: 2
 --- !u!114 &100754437
 MonoBehaviour:
@@ -726,8 +730,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugText: {fileID: 807997091}
   planeMarker: {fileID: 2878154885871524007, guid: ebdca683e95c2fb4d97ea79d2f10113e, type: 3}
-  towerMarker: {fileID: 6326299771774420509, guid: 22e69887cb11e62438c3a5244409fb3d, type: 3}
-  wallMarker: {fileID: 7800950396249785354, guid: 50a2c23351a556c4fa297b86d5adaee4, type: 3}
+  cactusTower: {fileID: 3697177479182085692, guid: 13d0709e8899ea74792d2dd5684556bc, type: 3}
+  mushroomTower: {fileID: 3276322271879168960, guid: 45e088e0f7615ba40ad11d12ea06c233, type: 3}
+  flowerTower: {fileID: 2695792601862832204, guid: 0d8fd16c13f42a54aac54a149dd2b082, type: 3}
+  venusTower: {fileID: 6399890715327637790, guid: 93485793f0f047144b75a35e2b0e79b5, type: 3}
+  poisonTower: {fileID: 1037330858851883609, guid: 0c4cc78a21ad8a24aa4511b90a3ca591, type: 3}
+  wallMarker: {fileID: 2876811519643686893, guid: af682109e65343448b62c322f45f5db0, type: 3}
   lockPlane: 0
 --- !u!114 &100754438
 MonoBehaviour:
@@ -745,8 +753,13 @@ MonoBehaviour:
   BeginBattleButton: {fileID: 1064493251}
   debugObject: {fileID: 1931168448}
   maxRoundNumber: 4
-  _planningMusic: {fileID: 100754443}
-  _roundEndSound: {fileID: 100754445}
+  _musicPlayer: {fileID: 100754443}
+  _planningMusic: {fileID: 8300000, guid: db574b7e138246945b31abb1043c6662, type: 3}
+  _battleMusicLoop: {fileID: 8300000, guid: eb6dc21e3cbaea24386cae5ee3efacad, type: 3}
+  _battleMusic1: {fileID: 8300000, guid: 4e4cff885d85c874b87b1c34155e4862, type: 3}
+  _battleMusic2: {fileID: 8300000, guid: 096dd3882ef867b4c8b0f27f4e25127c, type: 3}
+  _battleMusic3: {fileID: 8300000, guid: df9478adb718acf42b8b4c674d6934a7, type: 3}
+  _battleMusic4: {fileID: 8300000, guid: c7d5d022dc8ab8a4684f13e01df562f2, type: 3}
 --- !u!114 &100754439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -760,7 +773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointer: {fileID: 1390908068}
-  SafeMode: 0
+  SafeMode: 1
   recordingAudioSource: {fileID: 100754449}
 --- !u!114 &100754440
 MonoBehaviour:
@@ -1329,6 +1342,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8192918949e0be4f92d3b8d4253cb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &100754451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100754430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02189a585ced9a84592479b6b30748d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &240323341

@@ -86,7 +86,7 @@ PrefabInstance:
     - target: {fileID: 8342697313513517122, guid: b2bfe71e1f055ea4888f724ce1596a62, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 959cb52e02c420340bfc4a64e9565651, type: 2}
+      objectReference: {fileID: 2100000, guid: 9abfbee9921023947a1b3c2dda753952, type: 2}
     - target: {fileID: 8342697313513517124, guid: b2bfe71e1f055ea4888f724ce1596a62, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -113,15 +113,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8342697314275971596, guid: b2bfe71e1f055ea4888f724ce1596a62, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.016998697
+      value: 0.016998695
       objectReference: {fileID: 0}
     - target: {fileID: 8342697314275971596, guid: b2bfe71e1f055ea4888f724ce1596a62, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.9106385
+      value: 1.9106383
       objectReference: {fileID: 0}
     - target: {fileID: 8342697314275971596, guid: b2bfe71e1f055ea4888f724ce1596a62, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.04053711
+      value: -0.040537115
       objectReference: {fileID: 0}
     - target: {fileID: 8342697314275971596, guid: b2bfe71e1f055ea4888f724ce1596a62, type: 3}
       propertyPath: m_LocalRotation.w
@@ -154,7 +154,7 @@ PrefabInstance:
     - target: {fileID: 8342697314275971598, guid: b2bfe71e1f055ea4888f724ce1596a62, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d7f7717adb7f8114a8406aaf1d0cf051, type: 2}
+      objectReference: {fileID: 2100000, guid: e59eb2fdede7a824b85f1d7da2d98ee2, type: 2}
     - target: {fileID: 8342697314275971696, guid: b2bfe71e1f055ea4888f724ce1596a62, type: 3}
       propertyPath: m_Name
       value: Turret 1
@@ -167,7 +167,8 @@ PrefabInstance:
       propertyPath: m_TagString
       value: TargetReceiver
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8342697313513517124, guid: b2bfe71e1f055ea4888f724ce1596a62, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b2bfe71e1f055ea4888f724ce1596a62, type: 3}
 --- !u!4 &2597661224198316348 stripped
 Transform:
@@ -192,28 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 5026712391956820197, guid: 72b40dbe244db414b98711cc18fe9757, type: 3}
-  rateOfFire: 0.5
   gunPoint: {fileID: 6326299771650388555}
---- !u!1 &2597661224912536329 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8342697314275971696, guid: b2bfe71e1f055ea4888f724ce1596a62, type: 3}
-  m_PrefabInstance: {fileID: 6326299770506809721}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6326299771584133722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2597661224912536329}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fe7b32d6abe38f499ba15f3190e175e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turretRange: 13
-  turretRotationSpeed: 14
-  targetTransform: {fileID: 0}
 --- !u!1001 &6326299770519101353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -276,7 +256,7 @@ PrefabInstance:
     - target: {fileID: 6467020424965679946, guid: bd38a8becfc278a41ace3462248a6f7f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6fab19ab6f153de4985ce9692fa8881d, type: 2}
+      objectReference: {fileID: 2100000, guid: fa48077816791f144a9fd6a057b0b419, type: 2}
     - target: {fileID: 6467020424965679988, guid: bd38a8becfc278a41ace3462248a6f7f, type: 3}
       propertyPath: m_Name
       value: TurretBase
@@ -309,12 +289,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1041722188180976861}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fe7b32d6abe38f499ba15f3190e175e, type: 3}
+  m_Script: {fileID: 11500000, guid: 50d6a6d384aa7824f8b7dd7e1ba7fe61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turretRange: 13
-  turretRotationSpeed: 30
-  targetTransform: {fileID: 0}
+  rangeRadius: 0.4
+  fireRate: 0.5
+  damage: 1
+  enemyManager: {fileID: 0}
+  rangeVisual: {fileID: 0}
+  rangeVisualMaterial: {fileID: 2100000, guid: 714cb720816de7b45b83dbdc97e4e1a6, type: 2}
+  _rotationSpeed: 5
 --- !u!4 &1041722188180976865 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6467020424965679944, guid: bd38a8becfc278a41ace3462248a6f7f, type: 3}

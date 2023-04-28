@@ -18,6 +18,7 @@ public class StartMenuLogic : MonoBehaviour
     /// </summary>
     public GameObject StartMenu;
 
+    private GameStateManager _gameStateManager;
     private TouchScreenKeyboard _keyboard;
     private string _keyboardText = "";
 
@@ -27,26 +28,24 @@ public class StartMenuLogic : MonoBehaviour
     private int _tableDepthMM = 160;
 
 
+    private void Start()
+    {
+        _gameStateManager = GameObject.FindGameObjectWithTag("Logic").GetComponent<GameStateManager>();
+    }
+
     private void Update()
     {
+
         if(_keyboard != null && _keyboard.status != TouchScreenKeyboard.Status.Visible)
         {
             _keyboardText = _keyboard.text;
             if (widthOrDepth == 0)
             {
-                try
-                {
-                    _tableWidthMM = int.Parse(_keyboardText);
-                }
-                catch { }
+                int.TryParse(_keyboardText, out _tableWidthMM);
             }
             else if (widthOrDepth == 1)
             {
-                try
-                {
-                    _tableDepthMM = int.Parse(_keyboardText);
-                }
-                catch { }
+                int.TryParse(_keyboardText, out _tableDepthMM);
             }
             widthOrDepth = -1;
         }
@@ -92,6 +91,7 @@ public class StartMenuLogic : MonoBehaviour
     public void OpenSettings()
     {
         SettingsDialog.SetActive(true);
+
     }
 
 

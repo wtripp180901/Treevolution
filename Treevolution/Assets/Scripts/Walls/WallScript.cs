@@ -16,7 +16,12 @@ public class WallScript : MonoBehaviour, IRuntimeMovableBehaviourScript
     Collider myCollider;
 
     float baseScale;
-    
+
+    [SerializeField]
+    Material enabled;
+    [SerializeField]
+    Material disabled;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +34,7 @@ public class WallScript : MonoBehaviour, IRuntimeMovableBehaviourScript
     public void Damage(int power)
     {
         health -= power;
-        if(health <= 0)
+        if (health <= 0)
         {
             health = 0;
             SetDestroyed(true);
@@ -39,7 +44,7 @@ public class WallScript : MonoBehaviour, IRuntimeMovableBehaviourScript
     public void Repair(int repaired)
     {
         health += repaired;
-        if(health >= baseHealth)
+        if (health >= baseHealth)
         {
             health = baseHealth;
             SetDestroyed(false);
@@ -60,18 +65,19 @@ public class WallScript : MonoBehaviour, IRuntimeMovableBehaviourScript
     public void ApplyMovementPenalty()
     {
         myCollider.enabled = false;
-        GetComponent<Renderer>().material.color = Color.red;
+        gameObject.transform.GetChild(gameObject.transform.childCount - 1).GetComponent<Renderer>().material = disabled;
     }
 
     public void EndMovementPenalty()
     {
-        if (!_isDestroyed) myCollider.enabled = true;
-        GetComponent<Renderer>().material.color = Color.white;
+        if (!isDestroyed) myCollider.enabled = true;
+        gameObject.transform.GetChild(gameObject.transform.childCount - 1).GetComponent<Renderer>().material = enabled;
     }
 
-    public void SetupForTest(Collider collider,Pathfinding.PathfindingObstacle nodeGenerator)
+    public void SetupForTest(Collider collider, Pathfinding.PathfindingObstacle nodeGenerator)
     {
         myCollider = collider;
         this.nodeGenerator = nodeGenerator;
     }
 }
+

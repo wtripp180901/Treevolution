@@ -28,20 +28,46 @@ public class GameStateManager : MonoBehaviour
     /// Specifies the maximum number of rounds to play.
     /// </summary>
     public int maxRoundNumber = 4;
+    [SerializeField]
+    private AudioSource _musicPlayer;
     /// <summary>
     /// Planning Phase Music
     /// </summary>
     [SerializeField]
-    private AudioSource _planningMusic;
+    private AudioClip _planningMusic;
     /// <summary>
     /// Indicates if the planning phase music is playing or not.
     /// </summary>
     private bool _planningMusicPlaying = true;
     /// <summary>
-    /// Sound effect for round end.
+    /// Battle Phase Music Loop
     /// </summary>
     [SerializeField]
-    private AudioSource _roundEndSound;
+    private AudioClip _battleMusicLoop;
+    /// <summary>
+    /// Indicates if the Battle Phase Music Loop is playing or not.
+    /// </summary>
+    private bool _battleMusicPlaying = false;
+    /// <summary>
+    /// Battle Phase Music 1
+    /// </summary>
+    [SerializeField]
+    private AudioClip _battleMusic1;
+    /// <summary>
+    /// Battle Phase Music 2
+    /// </summary>
+    [SerializeField]
+    private AudioClip _battleMusic2;
+    /// <summary>
+    /// Battle Phase Music 3
+    /// </summary>
+    [SerializeField]
+    private AudioClip _battleMusic3;
+    /// <summary>
+    /// Battle Phase Music 4
+    /// </summary>
+    [SerializeField]
+    private AudioClip _battleMusic4;
     /// <summary>
     /// Running QRDetection instance.
     /// </summary>
@@ -58,6 +84,7 @@ public class GameStateManager : MonoBehaviour
     /// Running RoundTimer instance.
     /// </summary>
     private RoundTimer _roundTimer;
+    private TowerManager _towerManager;
     /// <summary>
     /// The current GameState value.
     /// </summary>
@@ -65,7 +92,7 @@ public class GameStateManager : MonoBehaviour
     /// <summary>
     /// The current round number (0 = None/Tutorial, 1 = Round 1, etc.).
     /// </summary>
-    private int _currentRoundNumber;
+    private int _currentRoundNumber = 0;
 
     /// <summary>
     /// Values the GameState can take.
@@ -144,13 +171,44 @@ public class GameStateManager : MonoBehaviour
     {
         if (_planningMusicPlaying)
         {
-            _planningMusic.Stop();
+            _musicPlayer.Stop();
             _planningMusicPlaying = false;
+            AudioClip battleClip = _battleMusicLoop;
+            _musicPlayer.loop = false;
+            _musicPlayer.time = 0f;
+            switch (_currentRoundNumber)
+            {
+                case 0:
+                    _musicPlayer.time = 1.8f;
+                    _musicPlayer.loop = true;
+                    break;
+                case 1:
+                    battleClip = _battleMusic1;
+                    break;
+                case 2:
+                    battleClip = _battleMusic2;
+                    break;
+                case 3:
+                    battleClip = _battleMusic3;
+                    break;
+                case 4:
+                    battleClip = _battleMusic4;
+                    break;
+            }
+
+            _musicPlayer.clip = battleClip;
+            _musicPlayer.Play();
+            _battleMusicPlaying = true;
         }
         else
         {
-            _planningMusic.Play();
+            _musicPlayer.Stop();
+            _battleMusicPlaying = false;
+            _musicPlayer.clip = _planningMusic;
+            _musicPlayer.loop = true;
+            _musicPlayer.Play();
             _planningMusicPlaying = true;
+
         }
     }
 
@@ -171,6 +229,7 @@ public class GameStateManager : MonoBehaviour
         _qRDetection = GetComponent<QRDetection>();
         _enemyManager = GetComponent<EnemyManager>();
         _roundTimer = GetComponent<RoundTimer>();
+        _towerManager = GetComponent<TowerManager>();
         _uIController.CalibrationPopUp();
     }
 
@@ -203,6 +262,7 @@ public class GameStateManager : MonoBehaviour
              InfoText.transform.position = GameProperties.Centre + new Vector3(0, 0.65f, 0);
              InfoText.text = "Tutorial\n[Planning]";
         }
+
         BeginBattleButton.transform.position = GameProperties.Centre + new Vector3(0, 0.6f, 0);
         BeginBattleButton.SetActive(true);
     }
@@ -252,6 +312,7 @@ public class GameStateManager : MonoBehaviour
          if(InfoText != null) 
             InfoText.text = "Tutorial Over\n[" + enemiesKilled.ToString() + " Enemies Killed]";
         yield return new WaitForSeconds(3);
+        ToggleMusic();
         _uIController.EndTutorial();
     }
 
@@ -270,6 +331,7 @@ public class GameStateManager : MonoBehaviour
         }
         BeginBattleButton.transform.position = GameProperties.Centre + new Vector3(0, 0.6f, 0);
         BeginBattleButton.SetActive(true);
+        _towerManager.ToggleAllRangeVisuals(true);
     }
 
     /// <summary>
@@ -277,12 +339,12 @@ public class GameStateManager : MonoBehaviour
     /// </summary>
     public void BeginBattle()
     {
-        _planningMusic.Stop();
         BeginBattleButton.SetActive(false);
         if(InfoText != null)
              InfoText.transform.position = GameProperties.Centre + new Vector3(0, 0.5f, 0);
-        ToggleMusic();
         GameProperties.BattlePhase = true;
+        ToggleMusic();
+        _towerManager.ToggleAllRangeVisuals(false);
         if (_currentState == GameState.Tutorial_Plan)
         {
             _currentState = GameState.Tutorial_Battle;
@@ -307,8 +369,6 @@ public class GameStateManager : MonoBehaviour
         clearEnemies();
         repairAllWalls();
         _enemyManager.StopSpawning();
-        _roundEndSound.Play();
-        ToggleMusic();
         int enemiesKilled = GetComponent<EnemyManager>().getEnemiesKilled();
         if (currentGameState == GameState.Tutorial_Battle)
         {
@@ -318,6 +378,7 @@ public class GameStateManager : MonoBehaviour
         if(InfoText != null)
             InfoText.text = "Round " + _currentRoundNumber.ToString() + " Over\n[" + enemiesKilled.ToString() + " Enemies Killed]";
         yield return new WaitForSeconds(3);
+        ToggleMusic();
         if (_currentRoundNumber < maxRoundNumber)
         {
             BeginRound();
@@ -335,6 +396,7 @@ public class GameStateManager : MonoBehaviour
     {
         _uIController.EndPopUp();
         _currentState = GameState.Start_Menu;
+        //ToggleMusic();
         if (Application.platform == RuntimePlatform.WindowsEditor)
         {
             debugObject.SetActive(false); // Unity Editor Mode

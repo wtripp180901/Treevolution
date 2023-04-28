@@ -19,7 +19,7 @@ public class HealthBar : MonoBehaviour
     public void SetHealth(int health)
     {
         slider.value = health;
-        if (slider.value <= 5)
+        if (slider.value < 5)
         {
             slider.fillRect.gameObject.GetComponent<Image>().color = Color.red;
         }
