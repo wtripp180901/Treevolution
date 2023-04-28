@@ -1268,10 +1268,10 @@ MonoBehaviour:
   speed: 0.0008
   inWallDamageInterval: 0.5
   frozen: 0
-  spawnAudio: {fileID: 0}
-  damageAudio: {fileID: 0}
-  deathAudio: {fileID: 0}
-  AvoidsWall: 1
+  spawnAudio: {fileID: 8300000, guid: f4cc6c052dc0292479022df068992d34, type: 3}
+  damageAudio: {fileID: 8300000, guid: 8168ba78f1d13174c959a39a392d5023, type: 3}
+  deathAudio: {fileID: 8300000, guid: 4a27fe9d6e26f54409a0f402cf2c014f, type: 3}
+  AvoidsWall: 0
   DamagesWall: 1
 --- !u!114 &-665603846225819085
 MonoBehaviour:

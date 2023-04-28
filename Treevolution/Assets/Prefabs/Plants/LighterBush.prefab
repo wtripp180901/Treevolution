@@ -1737,7 +1737,7 @@ BoxCollider:
   m_GameObject: {fileID: 1222143200600489131}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -4813,7 +4813,7 @@ GameObject:
   - component: {fileID: 1702270248507759224}
   - component: {fileID: 8749579306297977736}
   - component: {fileID: 185026829737226868}
-  - component: {fileID: -4370203593384365515}
+  - component: {fileID: -6630620781346148305}
   m_Layer: 3
   m_Name: LighterBush
   m_TagString: Wall
@@ -4901,7 +4901,7 @@ MonoBehaviour:
   RotationThreshold: 15
   behaviourScript: {fileID: 1702270248507759224}
   PenaltyDuration: 5
---- !u!114 &-4370203593384365515
+--- !u!114 &-6630620781346148305
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4910,7 +4910,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2876811519643686893}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef4e31b69e3c4704792a4fbe3c6d0357, type: 3}
+  m_Script: {fileID: 11500000, guid: 978e90011409a4d4daaec1411a0df81d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   BuddySystemProperties: 0c000000
