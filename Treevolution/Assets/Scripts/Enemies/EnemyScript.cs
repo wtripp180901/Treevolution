@@ -23,28 +23,35 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] // This allows the private field to be edited from the Unity inspecter
     private float speed = 0.01f;
 
-    Vector3[] path;
-    bool followingPath = true;
-    Vector3 directionVector;
-    Vector3 currentTarget;
-    int pathCounter = 0;
-
     [SerializeField]
     float inWallDamageInterval = 0.5f;
     float currentInWallInterval = 0f;
     bool inWall = false;
 
-    
+    public bool frozen = false;
+
+    /// <summary>
+    /// Audio player to play spatial sounds from the current enemy.
+    /// </summary>
+    private AudioSource _enemyAudioPlayer;
+
+    /// <summary>
+    /// Sound effect to be played when the enemy spawns.
+    /// </summary>
+    [HideInInspector]
+    public AudioClip spawnAudio;
+
     /// <summary>
     /// Sound effect to be played when the enemy gets damaged.
     /// </summary>
-    [SerializeField]
-    private AudioSource damageAudio;
+    [HideInInspector]
+    public AudioClip damageAudio;
+
     /// <summary>
     /// Sound effect to be played when the enemy dies.
     /// </summary>
-    [SerializeField]
-    private AudioSource deathAudio;
+    [HideInInspector]
+    public AudioClip deathAudio;
 
     /// <summary>
     /// Current Enemy's Rigidbody component.
@@ -111,9 +118,13 @@ public class EnemyScript : MonoBehaviour
     /// </summary>
     void Start()
     {
+        _enemyAudioPlayer = GetComponent<AudioSource>();
+        _enemyAudioPlayer.clip = spawnAudio;
+        _enemyAudioPlayer.Play();
         _defaultOrientation = transform.rotation.eulerAngles;
         _roundTimer = GameObject.Find("Logic").GetComponent<RoundTimer>();
         _rigidbody = GetComponent<Rigidbody>();
+        _rigidbody.mass = 0.01f;
         _healthBar = GetComponent<HealthBar>();
         _leftIndicator = GameObject.FindWithTag("LeftIndicator").GetComponent<SpawnDirectionIndicator>();
         _rightIndicator = GameObject.FindWithTag("RightIndicator").GetComponent<SpawnDirectionIndicator>();
@@ -122,7 +133,7 @@ public class EnemyScript : MonoBehaviour
             _rigidbody.useGravity = false;
         else
             _rigidbody.useGravity = true;
-        Pathfinding.PathfindingUpdatePublisher.RefindPathNeededEvent.AddListener(restartPathfinding);
+        PathfindingUpdatePublisher.RefindPathNeededEvent.AddListener(restartPathfinding);
         Initialise();
     }
 
@@ -144,7 +155,7 @@ public class EnemyScript : MonoBehaviour
     /// </summary>
     void FixedUpdate()
     {
-        if (_roundTimer != null && _roundTimer.isPaused)
+        if (frozen || (_roundTimer != null && _roundTimer.isPaused))
             return;
         Vector3 pos = transform.position;
         if (_followingPath && _rigidbody.velocity.y >= -5f)
@@ -199,9 +210,9 @@ public class EnemyScript : MonoBehaviour
             Debug.Log("Reached tree");
             _followingPath = false;
         }
-        else if (otherCollider.gameObject.tag == "Bullet")
+        else if (collision.gameObject.tag == "Bullet")
         {
-            Damage(1);
+            Damage(collision.gameObject.GetComponent<BulletScript>().damage);
         }
     }
 
@@ -272,7 +283,8 @@ public class EnemyScript : MonoBehaviour
             defaultColours.Add(childRenderers[i].material.color);
             childRenderers[i].material.color = Color.red;
         }
-        damageAudio.Play();
+        _enemyAudioPlayer.clip = damageAudio;
+        _enemyAudioPlayer.Play();
         yield return new WaitForSeconds(0.3f);
         for (int i = 0; i < defaultColours.Count; i++)
         {
@@ -286,9 +298,16 @@ public class EnemyScript : MonoBehaviour
     /// <returns>This method runs a coroutine and so a <c>yield return</c> is used.</returns>
     private IEnumerator KillEnemy()
     {
+        if (flying)
+            GetComponent<Rigidbody>().useGravity = true;
         _followingPath = false;
-        gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, 0, gameObject.transform.localScale.z);
-        deathAudio.Play();
+        if(flying)
+            gameObject.transform.localScale = new Vector3(0, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
+        else
+            gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, 0, gameObject.transform.localScale.z);
+
+        _enemyAudioPlayer.clip = deathAudio;
+        _enemyAudioPlayer.Play();
         yield return new WaitForSeconds(1f);
         DestroyEnemy(true);
     }
@@ -299,13 +318,17 @@ public class EnemyScript : MonoBehaviour
     /// <param name="power">Power to damage the enemy by.</param>
     public void Damage(int power)
     {
-        health -= power;
-        _healthBar.SetHealth(health);
-        if (health <= 0)
+        try
         {
-            StartCoroutine(KillEnemy());
+            health -= power;
+            _healthBar.SetHealth(health);
+            if (health <= 0)
+            {
+                StartCoroutine(KillEnemy());
+            }
+            else StartCoroutine(DamageIndicator());
         }
-        else StartCoroutine(DamageIndicator());
+        catch { }
     }
 
     /// <summary>

@@ -20,9 +20,25 @@ public class QRDetection : MonoBehaviour
     /// </summary>
     public GameObject planeMarker;
     /// <summary>
-    /// GameObject which is placed on a tower marker.
+    /// Cactus plant to be placed on a Tower 1 Marker.
     /// </summary>
-    public GameObject towerMarker;
+    public GameObject cactusTower;
+    /// <summary>
+    /// Mushroom plant to be placed on a Tower 2 Marker.
+    /// </summary>
+    public GameObject mushroomTower;
+    /// <summary>
+    /// Flower plant to be placed on a Tower 3 Marker.
+    /// </summary>
+    public GameObject flowerTower;
+    /// <summary>
+    /// Venus plant to be placed on a Tower 4 Marker.
+    /// </summary>
+    public GameObject venusTower;
+    /// <summary>
+    /// Poison plant to be placed on a Tower 5 Marker.
+    /// </summary>
+    public GameObject poisonTower;
     /// <summary>
     /// GameObject which is placed on a wall marker.
     /// </summary>
@@ -125,6 +141,14 @@ public class QRDetection : MonoBehaviour
         }
     }
 
+    private bool PosesTooSimilar(Pose oldPose, Pose newPose)
+    {
+        if (Vector3.Distance(oldPose.position, newPose.position) > 0.03 ||
+                Math.Abs(Quaternion.Angle(oldPose.rotation, newPose.rotation)) > 5)
+            return false;
+        return true;
+
+    }
 
     /// <summary>
     /// Checks and draws the game board plane.
@@ -198,18 +222,18 @@ public class QRDetection : MonoBehaviour
                 switch (data[0])
                 {
                     case "Tower":
-                        if (tempMarker == null) markerType = towerMarker;
+                        if (tempMarker == null && data[1] == "1") markerType = cactusTower;
+                        else if (tempMarker == null && data[1] == "2") markerType = mushroomTower;
+                        else if (tempMarker == null && data[1] == "3") markerType = flowerTower;
+                        else if (tempMarker == null && data[1] == "4") markerType = venusTower;
+                        else if (tempMarker == null && data[1] == "5") markerType = poisonTower;
+                        rotation = Quaternion.Euler(0, rotation.eulerAngles.y, 0);
                         break;
 
                     case "Wall":
                         if (tempMarker == null)
                         {
                             markerType = wallMarker;
-                            markerOffset += currentPose.forward * markerType.GetComponent<Collider>().transform.lossyScale.y / 2;
-                        }
-                        else
-                        {
-                            markerOffset += currentPose.forward * _trackedCodes[qrCode.Id].obj.GetComponent<Collider>().transform.lossyScale.y / 2;
                         }
                         rotation = Quaternion.Euler(0, rotation.eulerAngles.y, 0);
                         break;
@@ -218,26 +242,12 @@ public class QRDetection : MonoBehaviour
                         scaleToMarker = true;
                         break;
                 }
-                /*AdDED
-                if(markerType == towerMarker)
-                {
-                    if (tempMarker == null)
-                    {
-                        tempMarker = spawnObjectOnQR(qrCode, markerType);
-                        Instantiate(tempMarker);
-                    }
-                    else
-                    {
-                        tempMarker.transform.SetPositionAndRotation(currentPose.position + markerOffset, rotation);
-                    }
-                }*/
                 if (tempMarker == null)
                 {
                     tempMarker = Instantiate(markerType, currentPose.position + markerOffset, rotation);
                     tempMarker.SetActive(true);
                 }
-                else
-                {
+                else if (Vector3.Distance(_trackedCodes[qrCode.Id].obj.transform.position, currentPose.position + markerOffset) > 0.05 || Math.Abs(Quaternion.Angle(_trackedCodes[qrCode.Id].obj.transform.rotation, currentPose.rotation)) > 10){
                     tempMarker.transform.SetPositionAndRotation(currentPose.position + markerOffset, rotation);
                 }
 
@@ -272,12 +282,15 @@ public class QRDetection : MonoBehaviour
     /// <param name="args">QRCodeUpdatedEventArgs event arguments.</param>
     private void UpdatedCodeEvent(object sender, QRCodeUpdatedEventArgs args)
     {
-        Pose currentPose;
+        Pose currentPose, oldPose = Pose.identity;
         SpatialGraphNode.FromStaticNodeId(args.Code.SpatialGraphNodeId).TryLocate(FrameTime.OnUpdate, out currentPose);
-        if (currentPose == Pose.identity)
-        {
-            return; // Disregards
-        }
+/*        lock (_trackedCodes) {
+            if (_trackedCodes.ContainsKey(args.Code.Id))
+                oldPose = new Pose(_trackedCodes[args.Code.Id].obj.transform.position, _trackedCodes[args.Code.Id].obj.transform.rotation);
+        }*/
+        if (currentPose == Pose.identity)// || PosesTooSimilar(oldPose, currentPose))
+            return; // Disregards if pose is identity or if code is too similar to before.
+
         lock (_updatedCodeQueue)
         {
             _updatedCodeQueue.Enqueue(args.Code);
