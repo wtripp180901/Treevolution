@@ -93,6 +93,16 @@ namespace LanguageParsing
                     return new SubjectBuddyToken(BUDDY_SUBJECT_TYPES.GroupCloseToPointer);
                 case "Wall":
                     return new RestrictionBuddyToken(RESTRICTION_TYPES.Wall);
+                case "Plant":
+                    return new RestrictionBuddyToken(RESTRICTION_TYPES.Plant);
+                case "Cactus":
+                    return new RestrictionBuddyToken(RESTRICTION_TYPES.Cactus);
+                case "Mushroom":
+                    return new RestrictionBuddyToken(RESTRICTION_TYPES.Mushroom);
+                case "Poison":
+                    return new RestrictionBuddyToken(RESTRICTION_TYPES.Poisonous);
+                case "Flower":
+                    return new RestrictionBuddyToken(RESTRICTION_TYPES.Flower);
                 case "Ant":
                     return new RestrictionBuddyToken(RESTRICTION_TYPES.Ant);
                 case "Hornet":
@@ -101,6 +111,8 @@ namespace LanguageParsing
                     return new RestrictionBuddyToken(RESTRICTION_TYPES.Stagbeetle);
                 case "Cockroach":
                     return new RestrictionBuddyToken(RESTRICTION_TYPES.Cockroach);
+                case "Tree":
+                    return new RestrictionBuddyToken(RESTRICTION_TYPES.Tree);
                 case "Dragonfly":
                     return new RestrictionBuddyToken(RESTRICTION_TYPES.Dragonfly);
                 case "Flying":
