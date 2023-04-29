@@ -136,7 +136,10 @@ public class VoiceCommandReceiver : MonoBehaviour
 
     public void LightningBolt()
     {
-        GameObject[] enemies = enemyManager.enemies;
+        pointerTracker.StartSampling();
+        pointerTracker.FinishSampling();
+        ProcessDictation("Attack ants.");
+        /*GameObject[] enemies = enemyManager.enemies;
         Vector2 pointerPoint = new Vector2(pointer.transform.position.x, pointer.transform.position.z);
         for (int i = 0;i < enemies.Length; i++)
         {
@@ -148,7 +151,7 @@ public class VoiceCommandReceiver : MonoBehaviour
             }
         }
         GetComponent<AudioSource>().Play();
-        StartCoroutine(Indicator());
+        StartCoroutine(Indicator());*/
     }
 
     public void ProcessDictation(string dictation)

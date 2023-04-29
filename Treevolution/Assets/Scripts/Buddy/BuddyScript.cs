@@ -39,8 +39,9 @@ public class BuddyScript : MonoBehaviour
     Queue<GameObject> targets;
     GameObject currentTarget = null;
 
-    Vector3[] pos = null;
-    int Currentpos = -1;
+    /*Vector3[] pos = null;
+    int Currentpos = -1;*/
+    Vector3 moveTarget;
 
     // Update is called once per frame
     void Update()
@@ -63,9 +64,8 @@ public class BuddyScript : MonoBehaviour
             {
                 case BUDDY_ACTION_TYPES.Move:
                     //getpath
-                    pos = Pathfinding.Pathfinder.GetPath(transform.position, ((MoveBuddyAction)temp).location, false);
-                    Currentpos = 0;
-                    if (pos != null && pos.Length > 0) directionVector = getNewDirectionVector(pos[0]);
+                    moveTarget = ((MoveBuddyAction)temp).location;
+                    directionVector = getNewDirectionVector(moveTarget);
                     break;
                 case BUDDY_ACTION_TYPES.Attack:
                 case BUDDY_ACTION_TYPES.Repair:
@@ -89,7 +89,7 @@ public class BuddyScript : MonoBehaviour
 
     Vector3 getNewDirectionVector(Vector3 nextPosition)
     {
-        Vector3 dirVec = (new Vector3(nextPosition.x, transform.position.y, nextPosition.z) - transform.position).normalized * speed;
+        Vector3 dirVec = (new Vector3(nextPosition.x, 0, nextPosition.z) - new Vector3(transform.position.x,0,transform.position.z)).normalized * speed;
         return dirVec;
     }
 
@@ -188,36 +188,26 @@ public class BuddyScript : MonoBehaviour
 
     void movementFixedUpdate()
     {
-        if (pos != null)
+        if (directionVector != null)
         {
             rig.MovePosition(transform.position + directionVector * Time.fixedDeltaTime);
-            if (Vector3.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(pos[Currentpos].x, pos[Currentpos].z)) < 0.05f)
+            if (Vector3.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(moveTarget.x, moveTarget.z)) < 0.05f)
             {
-                Currentpos++;
-                if (Currentpos >= pos.Length)
-                {
-                    isok = true;
-                    Currentpos = -1;
-                    pos = null;
-                }
-                else
-                {
-                    directionVector = getNewDirectionVector(pos[Currentpos]);
-                }
+                isok = true;
             }
         }
     }
 
     bool moveToTargetGameObject(GameObject target)
     {
-        Vector3 vecToTarget = new Vector3(target.transform.position.x, 0, target.transform.position.z) - new Vector3(transform.position.x, 0, transform.position.z);
-        if (vecToTarget.magnitude < 0.05f)
+        Vector3 vecToTarget = getNewDirectionVector(target.transform.position);
+        if ((new Vector2(transform.position.x,transform.position.z) - new Vector2(target.transform.position.x,target.transform.position.z)).magnitude < 0.05f)
         {
             return true;
         }
         else
         {
-            rig.MovePosition(transform.position + vecToTarget.normalized * speed);
+            rig.MovePosition(transform.position + vecToTarget * Time.fixedDeltaTime);
             return false;
         }
     }
