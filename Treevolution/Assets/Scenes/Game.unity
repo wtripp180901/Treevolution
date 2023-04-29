@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -680,8 +680,8 @@ MonoBehaviour:
   floor: {fileID: 6052068750231831381, guid: 33c6a9a811257f4429d253d4c93aa655, type: 3}
   markerCount: 2
   treeModel: {fileID: 4047742926485375969, guid: 13815b32147eea64e9a773ef69b3240e, type: 3}
-  tableWidth: 240
-  tableDepth: 160
+  tableWidth: 344
+  tableDepth: 163
 --- !u!114 &100754435
 MonoBehaviour:
   m_ObjectHideFlags: 0

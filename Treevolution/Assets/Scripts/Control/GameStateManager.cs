@@ -406,6 +406,7 @@ public class GameStateManager : MonoBehaviour
             InfoText.text = "";
             InfoText.gameObject.SetActive(false);
         }
+        _qRDetection.ResetTrackedCodes();
         GetComponent<PlaneMapper>().ResetPlane();
         _qRDetection.lockPlane = false;
     }

@@ -236,6 +236,8 @@ public class QRDetection : MonoBehaviour
                         {
                             markerType = wallMarker;
                         }
+                        if (_planeCreated)
+                            currentPose.position.y = GameProperties.FloorHeight;
                         rotation = Quaternion.Euler(0, rotation.eulerAngles.y, 0);
                         break;
                     default:
@@ -356,9 +358,10 @@ public class QRDetection : MonoBehaviour
     /// <summary>
     /// Removes any tracked QRCodes from the list.
     /// </summary>
-    private void ResetTrackedCodes()
+    public void ResetTrackedCodes()
     {
-        if (_trackedCodes.IsNotNull())
+        ResetCodeQueue();
+        if (_trackedCodes.IsNotNull() && _trackedCodes.Count > 0)
         {
             lock (_trackedCodes)
             {

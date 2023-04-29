@@ -19,7 +19,7 @@ public class SingleTargetTower : TowerScript
 
 
     // Start is called before the first frame update
-    new void Start()
+    public void Start()
     {
         base.Start();
         damage = 2;
@@ -29,9 +29,9 @@ public class SingleTargetTower : TowerScript
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        UpdateTargets();
+        base.Update();
         if (!shootingDisabled && _targetTransform != null)
         {
             Vector3 enemyGroundPosition = _targetTransform.position;
@@ -50,10 +50,6 @@ public class SingleTargetTower : TowerScript
         else
         {
             _distanceToCurrentTarget = float.MaxValue;
-        }
-        if (rangeVisual.activeInHierarchy)
-        {
-            UpdateRangeVisual();
         }
     }
 
@@ -81,7 +77,7 @@ public class SingleTargetTower : TowerScript
         }
     }
 
-    private void UpdateRangeVisual()
+    public override void UpdateRangeVisual()
     {
         rangeVisual.transform.localScale = new Vector3(rangeRadius * 2, rangeRadius * 2, rangeRadius * 2);
         rangeVisual.transform.position = transform.position;

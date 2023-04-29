@@ -6,8 +6,8 @@ public class PlaneMapper : MonoBehaviour
     public GameObject floor;
     public int markerCount = 2;
     public GameObject treeModel;
-    public float tableWidth = 240;
-    public float tableDepth = 160;
+    public float tableWidth = 344;
+    public float tableDepth = 163;
 
 
     private GameStateManager gameStateManager;
