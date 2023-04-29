@@ -106,6 +106,8 @@ namespace LanguageParsing
             {
                 case BUDDY_SUBJECT_TYPES.PointerLocation:
                     return new List<BuddyAction>() { new MoveBuddyAction(getMoveSubject(subject)), new OngoingBuddyAction(BUDDY_ACTION_TYPES.Defend) };
+                case BUDDY_SUBJECT_TYPES.SingleClosestToPointer:
+                case BUDDY_SUBJECT_TYPES.GroupCloseToPointer:
                 case BUDDY_SUBJECT_TYPES.Unresolved:
                     if (restrictions.Length > 0)
                     {
