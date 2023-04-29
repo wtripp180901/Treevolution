@@ -21,12 +21,15 @@ public class BuddyScript : MonoBehaviour
     [SerializeField] private float RepairRate = 1;
     float repairCooldown;
 
+    public GameObject rangeIndicator;
+
     // Start is called before the first frame update
     void Start()
     {
         rig = GetComponent<Rigidbody>();
         attackCooldown = AttackRate;
         repairCooldown = RepairRate;
+        rangeIndicator.SetActive(false);
     }
 
     public void SetupForTest()
@@ -74,6 +77,7 @@ public class BuddyScript : MonoBehaviour
                     else isok = true;
                     break;
                 case BUDDY_ACTION_TYPES.Defend:
+                    rangeIndicator.SetActive(true);
                     currentTarget = findNearest(GameObject.FindGameObjectWithTag("Logic").GetComponent<EnemyManager>().enemies);
                     break;
             }
@@ -216,6 +220,7 @@ public class BuddyScript : MonoBehaviour
     {
         actionQueue.Clear();
         targets?.Clear();
+        rangeIndicator.SetActive(false);
         isok = true;
         //Add actions to actionQueue
         foreach (BuddyAction item in actions)
@@ -229,7 +234,7 @@ public class BuddyScript : MonoBehaviour
         GameObject target = null;
         foreach(GameObject obj in enemiesList){
             float dis2 = Vector3.Distance(obj.transform.position, transform.position);
-            if(dis2<dis1){
+            if(dis2<dis1 && (new Vector2(transform.position.x,transform.position.z) - new Vector2(obj.transform.position.x,obj.transform.position.z)).magnitude < 0.25f){
                 target = obj;
                 dis1 = dis2;
             }
