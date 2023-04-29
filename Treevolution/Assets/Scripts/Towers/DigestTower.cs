@@ -15,7 +15,7 @@ public class DigestTower : TowerScript
     private Animator _animator;
 
     // Start is called before the first frame update
-    new void Start()
+    public void Start()
     {
         base.Start();
         _distanceToCurrentTarget = float.MaxValue;
@@ -24,9 +24,9 @@ public class DigestTower : TowerScript
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        UpdateTargets();
+        base.Update();
         if (!shootingDisabled && !_currentlyDigesting && _targetTransform != null)
         {
             _digestDelta = _digestDelta - Time.deltaTime;
@@ -49,15 +49,11 @@ public class DigestTower : TowerScript
         {
             _distanceToCurrentTarget = float.MaxValue;
         }
-        if (rangeVisual.activeInHierarchy)
-        {
-            UpdateRangeVisual();
-        }
     }
 
 
 
-    public void TransitionAnimation()
+    private void TransitionAnimation()
     {
         _animator.SetTrigger("Trigger");
     }
@@ -90,7 +86,7 @@ public class DigestTower : TowerScript
         }
     }
 
-    private void UpdateRangeVisual()
+    public override void UpdateRangeVisual()
     {
         rangeVisual.transform.localScale = new Vector3(rangeRadius * 2, 0.3f, rangeRadius * 2);
         rangeVisual.transform.position = new Vector3(transform.position.x, GameProperties.FloorHeight + 0.3f, transform.position.z);

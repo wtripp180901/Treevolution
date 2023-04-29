@@ -29,7 +29,16 @@ public abstract class TowerScript : MonoBehaviour, IRuntimeMovableBehaviourScrip
         DisplayRange(true);
         _towerManager.AddTower(this.gameObject);
     }
+    public void Update()
+    {
+        UpdateTargets();
+        if (rangeVisual.activeInHierarchy)
+        {
+            UpdateRangeVisual();
+        }
+    }
 
+    public abstract void UpdateRangeVisual();
     public abstract GameObject GetRangeObject();
 
     public void DisplayRange(bool toggle)
