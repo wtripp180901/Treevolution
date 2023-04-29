@@ -35,6 +35,30 @@ Objective Plural Pronoun
 them
 
 noun
+Tree
+tree
+
+noun
+Plant
+plant tower
+
+noun
+Cactus
+cactus
+
+noun
+Mushroom
+mushroom
+
+noun
+Poison
+poison poisonous
+
+noun
+Flower
+flower
+
+noun
 Ant
 ant
 

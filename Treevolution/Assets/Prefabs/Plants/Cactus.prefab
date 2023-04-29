@@ -2543,6 +2543,7 @@ GameObject:
   - component: {fileID: -9150971621495571998}
   - component: {fileID: -8608489653277655936}
   - component: {fileID: 1588000981995689071}
+  - component: {fileID: 9057773686895410107}
   m_Layer: 7
   m_Name: Cactus
   m_TagString: Tower
@@ -2623,6 +2624,19 @@ MonoBehaviour:
   gunPoints:
   - {fileID: 4794763947376255464}
   - {fileID: 8229893904804823132}
+--- !u!114 &9057773686895410107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3697177479182085692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4e31b69e3c4704792a4fbe3c6d0357, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BuddySystemProperties: 0f00000012000000
 --- !u!1 &3785339511712209815
 GameObject:
   m_ObjectHideFlags: 0
