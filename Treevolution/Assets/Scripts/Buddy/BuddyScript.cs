@@ -56,7 +56,8 @@ public class BuddyScript : MonoBehaviour
                     }
                 }
             }
-            else if (temp.actionType == BUDA 0.5 reduction in fire cd equals an increase in tower attack speedDY_ACTION_TYPES.Buff)
+            //new add
+            else if (temp.actionType == BUDDY_ACTION_TYPES.Buff)
             {
                 isok = false;
                 GameObject[] towerList = GameObject.FindGameObjectsWithTag("tower");
