@@ -280,6 +280,31 @@ public class DictationTests
         Assert.LessOrEqual((((MoveBuddyAction)results[0]).location - wall.transform.position).magnitude,0.01f);
     }
 
+    [UnityTest]
+    public IEnumerator DefendDefendsIndicatedObject()
+    {
+        GameObject closerEnemy, furtherEnemy;
+        GameObject otherWall = new GameObject();
+        GameObject wallToDefend = new GameObject();
+        WallBuddyInteractable dummy;
+        WallScript wDummy;
+        initialiseWall(otherWall, out dummy, out wDummy);
+        initialiseWall(wallToDefend, out dummy, out wDummy);
+        GameObject pointer;
+        DictationTests.setupAttackScene(out pointer,out closerEnemy, out furtherEnemy);
+        pointer.transform.position = new Vector3(2, 0, 0);
+        wallToDefend.transform.position = new Vector3(2, 0, 0);
+        List<BuddyAction> results = null;
+        PointerLocationTracker tracker = GameObject.FindWithTag("Logic").GetComponent<PointerLocationTracker>();
+        tracker.StartSampling();
+        tracker.FinishSampling();
+        yield return new LanguageParsing.LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(new string[] { "defend", "that", "wall." }, (x => results = x));
+        Assert.AreEqual(results.Count, 2);
+        Assert.AreEqual(results[0].actionType, BUDDY_ACTION_TYPES.Move);
+        Assert.AreEqual(results[1].actionType, BUDDY_ACTION_TYPES.Defend);
+        Assert.LessOrEqual((((MoveBuddyAction)results[0]).location - wallToDefend.transform.position).magnitude, 0.01f);
+    }
+
     void initialiseWall(GameObject wall, out WallBuddyInteractable buddyInteractable, out WallScript wallScript)
     {
         buddyInteractable = wall.AddComponent<WallBuddyInteractable>();

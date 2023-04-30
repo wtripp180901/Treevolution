@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: -8082774157794099349}
   - component: {fileID: -6819182139936797710}
   - component: {fileID: 8188577241723287194}
+  - component: {fileID: -2281521259654712856}
   m_Layer: 7
   m_Name: PoisonPlant
   m_TagString: Tower
@@ -174,6 +175,19 @@ MonoBehaviour:
   projectile: {fileID: 5026712391956820197, guid: 4e70a217d98ab3e4ebddf5d02589e8f2, type: 3}
   gunPoints:
   - {fileID: 3188528009785290699}
+--- !u!114 &-2281521259654712856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037330858851883609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4e31b69e3c4704792a4fbe3c6d0357, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BuddySystemProperties: 0f00000013000000
 --- !u!1 &1605698042037140872
 GameObject:
   m_ObjectHideFlags: 0
