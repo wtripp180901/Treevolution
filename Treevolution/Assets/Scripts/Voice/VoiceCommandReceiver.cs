@@ -15,6 +15,9 @@ public class VoiceCommandReceiver : MonoBehaviour
     GameObject recordingIndicator;
     GameStateManager gameStateManager;
 
+    [SerializeField] AudioSource recordingIndicationSource;
+    float basePitch;
+
     public bool SafeMode = false;
 
     private void Start()
@@ -25,6 +28,7 @@ public class VoiceCommandReceiver : MonoBehaviour
         gameStateManager = GetComponent<GameStateManager>();
         recordingIndicator = GameObject.FindWithTag("RecordingIndicator");
         recordingIndicator.SetActive(false);
+        basePitch = recordingIndicationSource.pitch;
     }
 
     private void Update()
@@ -32,11 +36,23 @@ public class VoiceCommandReceiver : MonoBehaviour
         if (currentlyRecording)
         {
             timeRecording += Time.deltaTime;
-            if(timeRecording > recordingTimeout)
+            if (timeRecording > recordingTimeout)
             {
                 finishDictation();
             }
         }
+    }
+
+    void playStartOfRecordingSound()
+    {
+        recordingIndicationSource.pitch = basePitch + 0.5f;
+        recordingIndicationSource.Play();
+    }
+
+    void playEndOfRecordingSound()
+    {
+        recordingIndicationSource.pitch = basePitch;
+        recordingIndicationSource.Play();
     }
 
     public void PauseGame()
@@ -59,6 +75,7 @@ public class VoiceCommandReceiver : MonoBehaviour
             if (canManuallyRecord)
             {
                 recordingIndicator.SetActive(true);
+                playStartOfRecordingSound();
                 SafeModeRecordAudio();
                 canManuallyRecord = false;
             }
@@ -66,6 +83,7 @@ public class VoiceCommandReceiver : MonoBehaviour
         else
         {
             recordingIndicator.SetActive(true);
+            playStartOfRecordingSound();
             try
             {
                 uiController.StartShowingHypothesis();
@@ -116,10 +134,12 @@ public class VoiceCommandReceiver : MonoBehaviour
             string otp;
             SavWav.Save("recording", recordingAudioSource.clip, out otp);
             recordingIndicator.SetActive(false);
+            playEndOfRecordingSound();
             StartCoroutine(GetComponent<AssemblyAPICaller>().UploadFile());
-        }catch(Exception e)
+        }
+        catch (Exception e)
         {
-            uiController.ShowDictation("File writing error: "+e.Message);
+            uiController.ShowDictation("File writing error: " + e.Message);
             canManuallyRecord = true;
         }
     }
@@ -138,7 +158,7 @@ public class VoiceCommandReceiver : MonoBehaviour
     {
         GameObject[] enemies = enemyManager.enemies;
         Vector2 pointerPoint = new Vector2(pointer.transform.position.x, pointer.transform.position.z);
-        for (int i = 0;i < enemies.Length; i++)
+        for (int i = 0; i < enemies.Length; i++)
         {
             Vector2 enemyPoint = new Vector2(enemies[i].transform.position.x, enemies[i].transform.position.z);
 
@@ -159,8 +179,9 @@ public class VoiceCommandReceiver : MonoBehaviour
             finishDictation();
             uiController.ShowDictation(dictation);
             string[] words = dictation.Split(' ');
-            if (words.Length > 0) StartCoroutine(new LanguageParsing.LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(words,HandleDictationProcessingResults));
-        }catch(Exception e)
+            if (words.Length > 0) StartCoroutine(new LanguageParsing.LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(words, HandleDictationProcessingResults));
+        }
+        catch (Exception e)
         {
             uiController.ShowDictation(e.Message);
         }
@@ -181,6 +202,7 @@ public class VoiceCommandReceiver : MonoBehaviour
         }
         pointerTracker.FinishSampling();
         recordingIndicator.SetActive(false);
+        playEndOfRecordingSound();
         currentlyRecording = false;
         timeRecording = 0;
     }
@@ -188,7 +210,7 @@ public class VoiceCommandReceiver : MonoBehaviour
     public void HandleDictationProcessingResults(List<BuddyAction> instructions)
     {
         string actionStream = "";
-        foreach(BuddyAction i in instructions)
+        foreach (BuddyAction i in instructions)
         {
             actionStream = actionStream + i.actionType.ToString() + " ";
         }
