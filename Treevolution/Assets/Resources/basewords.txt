@@ -92,7 +92,7 @@ armored armoured
 
 noun
 Has Armour
-armor armour
+armor armour helmet
 
 adjective
 Unarmoured

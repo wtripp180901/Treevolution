@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CoverageReport scope="Summary">
   <Summary>
-    <Generatedon>29/04/2023 - 18:27:37</Generatedon>
+    <Generatedon>30/04/2023 - 13:30:30</Generatedon>
     <Parser>OpenCoverParser</Parser>
     <Assemblies>2</Assemblies>
     <Classes>74</Classes>
     <Files>65</Files>
-    <Coveredlines>1293</Coveredlines>
+    <Coveredlines>1296</Coveredlines>
     <Uncoveredlines>2135</Uncoveredlines>
-    <Coverablelines>3428</Coverablelines>
-    <Totallines>6336</Totallines>
+    <Coverablelines>3431</Coverablelines>
+    <Totallines>6341</Totallines>
     <Linecoverage>37.7</Linecoverage>
     <Coveredbranches>0</Coveredbranches>
     <Totalbranches>0</Totalbranches>
   </Summary>
   <Coverage>
-    <Assembly name="MainGameAssembly" classes="69" coverage="30.5" coveredlines="931" coverablelines="3049" totallines="6293" branchcoverage="" coveredbranches="0" totalbranches="0">
+    <Assembly name="MainGameAssembly" classes="69" coverage="30.6" coveredlines="934" coverablelines="3052" totallines="6298" branchcoverage="" coveredbranches="0" totalbranches="0">
       <Class name="ActionBuddyToken" coverage="100" coveredlines="4" coverablelines="4" totallines="52" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Area" coverage="0" coveredlines="0" coverablelines="41" totallines="65" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="AssemblyAPICaller" coverage="0" coveredlines="0" coverablelines="90" totallines="134" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="BuddyAction" coverage="100" coveredlines="4" coverablelines="4" totallines="64" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="BuddyInteractable" coverage="92.8" coveredlines="13" coverablelines="14" totallines="29" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="BuddyScript" coverage="51.2" coveredlines="80" coverablelines="156" totallines="246" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="BuddyScript" coverage="52.2" coveredlines="83" coverablelines="159" totallines="251" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="BuddyToken" coverage="100" coveredlines="4" coverablelines="4" totallines="52" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="BulletScript" coverage="0" coveredlines="0" coverablelines="33" totallines="49" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="ConnectiveBuddyToken" coverage="100" coveredlines="1" coverablelines="1" totallines="52" branchcoverage="" coveredbranches="0" totalbranches="0" />
