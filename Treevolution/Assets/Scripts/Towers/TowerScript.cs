@@ -61,3 +61,14 @@ public class TowerScript : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, turretRange);
     }
 }
+
+    //If buddyMode is true, set "fireRate" to a higher "fireRate". If false, return it to the original fireRate
+    public float SetBuddyMode(bool buddyMode){
+        if(buddyMode== true){
+            fireRate = initRate - 0.5f;//A 0.5 reduction in fire cd equals an increase in tower attack speed 
+        }else{
+            fireRate = initRate;
+        }
+        return fireRate;
+    }
+}
