@@ -130,6 +130,16 @@ namespace LanguageParsing
                 case "Grounded":
                 case "On Ground":
                     return new RestrictionBuddyToken(RESTRICTION_TYPES.Grounded);
+                case "Black":
+                    return new RestrictionBuddyToken(RESTRICTION_TYPES.Black);
+                case "Blue":
+                    return new RestrictionBuddyToken(RESTRICTION_TYPES.Blue);
+                case "Silver":
+                    return new RestrictionBuddyToken(RESTRICTION_TYPES.Silver);
+                case "Brown":
+                    return new RestrictionBuddyToken(RESTRICTION_TYPES.Brown);
+                case "Yellow":
+                    return new RestrictionBuddyToken(RESTRICTION_TYPES.Yellow);
                 case "Ignore":
                     return new DummyToken();
                 default:

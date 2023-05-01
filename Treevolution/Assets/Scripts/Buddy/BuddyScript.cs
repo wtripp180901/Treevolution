@@ -29,7 +29,7 @@ public class BuddyScript : MonoBehaviour
         rig = GetComponent<Rigidbody>();
         attackCooldown = AttackRate;
         repairCooldown = RepairRate;
-        rangeIndicator.SetActive(false);
+        rangeIndicator?.SetActive(false);
     }
 
     public void SetupForTest()
@@ -77,7 +77,7 @@ public class BuddyScript : MonoBehaviour
                     else isok = true;
                     break;
                 case BUDDY_ACTION_TYPES.Defend:
-                    rangeIndicator.SetActive(true);
+                    rangeIndicator?.SetActive(true);
                     currentTarget = findNearest(GameObject.FindGameObjectWithTag("Logic").GetComponent<EnemyManager>().enemies);
                     break;
             }
@@ -220,7 +220,7 @@ public class BuddyScript : MonoBehaviour
     {
         actionQueue.Clear();
         targets?.Clear();
-        rangeIndicator.SetActive(false);
+        rangeIndicator?.SetActive(false);
         isok = true;
         //Add actions to actionQueue
         foreach (BuddyAction item in actions)
