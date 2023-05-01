@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BUDDY_ACTION_TYPES { Move, Error, Attack, Repair,Defend }
+public enum BUDDY_ACTION_TYPES { Move, Error, Attack, Repair,Defend, Buff }
 public enum BUDDY_SUBJECT_TYPES { PointerLocation, SingleClosestToPointer, GroupCloseToPointer, Unresolved, Error}
 
 public abstract class BuddyAction

@@ -81,6 +81,8 @@ namespace LanguageParsing
                     return new ActionBuddyToken(BUDDY_ACTION_TYPES.Repair);
                 case "Defend":
                     return new ActionBuddyToken(BUDDY_ACTION_TYPES.Defend);
+                case "Buff":
+                    return new ActionBuddyToken(BUDDY_ACTION_TYPES.Buff);
                 case "PointerLocation":
                     return new SubjectBuddyToken(BUDDY_SUBJECT_TYPES.PointerLocation);
                 case "Connective":
@@ -130,6 +132,8 @@ namespace LanguageParsing
                 case "Grounded":
                 case "On Ground":
                     return new RestrictionBuddyToken(RESTRICTION_TYPES.Grounded);
+                case "Trap":
+                    return new RestrictionBuddyToken(RESTRICTION_TYPES.Trap);
                 case "Black":
                     return new RestrictionBuddyToken(RESTRICTION_TYPES.Black);
                 case "Blue":
@@ -140,6 +144,12 @@ namespace LanguageParsing
                     return new RestrictionBuddyToken(RESTRICTION_TYPES.Brown);
                 case "Yellow":
                     return new RestrictionBuddyToken(RESTRICTION_TYPES.Yellow);
+                case "Green":
+                    return new RestrictionBuddyToken(RESTRICTION_TYPES.Green);
+                case "Red":
+                    return new RestrictionBuddyToken(RESTRICTION_TYPES.Red);
+                case "Tall":
+                    return new RestrictionBuddyToken(RESTRICTION_TYPES.Tall);
                 case "Ignore":
                     return new DummyToken();
                 default:

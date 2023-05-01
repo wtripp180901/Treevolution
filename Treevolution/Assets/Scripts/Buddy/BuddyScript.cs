@@ -72,6 +72,7 @@ public class BuddyScript : MonoBehaviour
                     break;
                 case BUDDY_ACTION_TYPES.Attack:
                 case BUDDY_ACTION_TYPES.Repair:
+                case BUDDY_ACTION_TYPES.Buff:
                     targets = new Queue<GameObject>(((TargetedBuddyAction)temp).targets);
                     if (targets.Count > 0) currentTarget = targets.Dequeue();
                     else isok = true;
@@ -81,7 +82,6 @@ public class BuddyScript : MonoBehaviour
                     currentTarget = findNearest(GameObject.FindGameObjectWithTag("Logic").GetComponent<EnemyManager>().enemies);
                     break;
             }
-
         }
     }
 
@@ -116,6 +116,9 @@ public class BuddyScript : MonoBehaviour
                 case BUDDY_ACTION_TYPES.Defend:
                     defendFixedUpdate();
                     break;
+                case BUDDY_ACTION_TYPES.Buff:
+                    buffFixedUpdate();
+                    break;
                 default:
                     break;
             }
@@ -144,6 +147,17 @@ public class BuddyScript : MonoBehaviour
                 attackCooldown = AttackRate;
             }
             else attackCooldown -= Time.fixedDeltaTime;
+        }
+    }
+
+    void buffFixedUpdate()
+    {
+        if (moveToTargetGameObject(currentTarget))
+        {
+            TowerScript tower = currentTarget.GetComponent<TowerScript>();
+            tower?.EnterBuddyMode();
+            if (targets.Count > 0) currentTarget = targets.Dequeue();
+            else isok = true;
         }
     }
 
