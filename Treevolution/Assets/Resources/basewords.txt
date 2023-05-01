@@ -92,7 +92,7 @@ armored armoured
 
 noun
 Has Armour
-armor armour
+armor armour helmet
 
 adjective
 Unarmoured
@@ -117,6 +117,26 @@ ground floor
 noun
 Wall
 wall barricade defense bush thorns spike spikes
+
+adjective
+Black
+black
+
+adjective
+Blue
+blue
+
+adjective
+Silver
+silver grey gray
+
+adjective
+Brown
+brown
+
+adjective
+Yellow
+yellow
 
 verb
 Repair
