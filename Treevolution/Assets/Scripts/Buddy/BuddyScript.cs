@@ -62,6 +62,26 @@ public class BuddyScript : MonoBehaviour
                     }
                 }
             }
+            //new add
+            else if (temp.actionType == BUDDY_ACTION_TYPES.Buff)
+            {
+                isok = false;
+                GameObject[] towerList = GameObject.FindGameObjectsWithTag("tower");
+                if(towerList.Length>0){
+                    GameObject target1 = findCanPlay(towerList);
+                    if(target1!=null){
+                        target1.GetComponent(TowerScript).SetBuddyMode(true);
+                    }else{//If it is not within the range that can be helped, the move is performed first, and the move is within the target range
+                        GameObject target2 = findNearest(towerList);
+                        //Find out after calling the tower to speed up the attack
+                        if(target2!=null){
+                            //xecute the move function,but don't know how moved it, so just call it by the method before
+                            pos=Pathfinding.Pathfinder.GetPath(target2.transform.position,temp.location);
+                        }
+                    }
+                }
+
+            }
             
         }
     }
