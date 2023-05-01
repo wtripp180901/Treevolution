@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public abstract class TowerScript : MonoBehaviour, IRuntimeMovableBehaviourScript
 {
@@ -17,6 +18,8 @@ public abstract class TowerScript : MonoBehaviour, IRuntimeMovableBehaviourScrip
     private TowerManager _towerManager;
     protected bool shootingDisabled = false;
 
+    float baseFireRate;
+
     public void Start()
     {
         GameObject logic = GameObject.FindGameObjectWithTag("Logic");
@@ -28,6 +31,7 @@ public abstract class TowerScript : MonoBehaviour, IRuntimeMovableBehaviourScrip
         GameObject.Destroy(rangeVisual.GetComponent<Collider>());
         DisplayRange(true);
         _towerManager.AddTower(this.gameObject);
+        baseFireRate = fireRate;
     }
     public void Update()
     {
@@ -83,7 +87,16 @@ public abstract class TowerScript : MonoBehaviour, IRuntimeMovableBehaviourScrip
         disabledVisualObject.GetComponent<Renderer>().material = enabledMaterial;
 
     }
+
+    //If buddyMode is true, set "fireRate" to a higher "fireRate". If false, return it to the original fireRate
+    public void EnterBuddyMode(){
+        fireRate = baseFireRate * 0.5f;
+        StartCoroutine(EndBuddyMode());
+    }
+
+    IEnumerator EndBuddyMode()
+    {
+        yield return new WaitForSeconds(5f);
+        fireRate = baseFireRate;
+    }
 }
-
-
-
