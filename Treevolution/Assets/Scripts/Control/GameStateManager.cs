@@ -28,6 +28,13 @@ public class GameStateManager : MonoBehaviour
     /// Specifies the maximum number of rounds to play.
     /// </summary>
     public int maxRoundNumber = 4;
+    /// <summary>
+    /// The default round length, obtained from the round timer.
+    /// </summary>
+    private int _defaultRoundLength;
+    /// <summary>
+    /// Audio Source to play the background music from.
+    /// </summary>
     [SerializeField]
     private AudioSource _musicPlayer;
     /// <summary>
@@ -212,7 +219,7 @@ public class GameStateManager : MonoBehaviour
         }
     }
 
-    public void InitRounds()
+    public void InitGameState()
     {
         if (Application.platform == RuntimePlatform.WindowsEditor)
         {
@@ -229,7 +236,9 @@ public class GameStateManager : MonoBehaviour
         _qRDetection = GetComponent<QRDetection>();
         _enemyManager = GetComponent<EnemyManager>();
         _roundTimer = GetComponent<RoundTimer>();
+        _defaultRoundLength = _roundTimer.GetRoundLength();
         _towerManager = GetComponent<TowerManager>();
+        _qRDetection.StartQR();
         _uIController.CalibrationPopUp();
     }
 
@@ -322,7 +331,7 @@ public class GameStateManager : MonoBehaviour
     public void BeginRound()
     {
         _currentState = GameState.Round_Plan;
-        _roundTimer.SetRoundLength(60);
+        _roundTimer.SetRoundLength(_defaultRoundLength);
         _currentRoundNumber++;
         if (InfoText != null)
         {
@@ -396,7 +405,6 @@ public class GameStateManager : MonoBehaviour
     {
         _uIController.EndPopUp();
         _currentState = GameState.Start_Menu;
-        //ToggleMusic();
         if (Application.platform == RuntimePlatform.WindowsEditor)
         {
             debugObject.SetActive(false); // Unity Editor Mode
@@ -406,9 +414,11 @@ public class GameStateManager : MonoBehaviour
             InfoText.text = "";
             InfoText.gameObject.SetActive(false);
         }
+        _qRDetection.StopQR();
+        _qRDetection.lockPlane = false;
         _qRDetection.ResetTrackedCodes();
         GetComponent<PlaneMapper>().ResetPlane();
-        _qRDetection.lockPlane = false;
+
     }
 
     /// <summary>

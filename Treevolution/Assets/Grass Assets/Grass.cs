@@ -7,7 +7,7 @@ public class CreatorInfo
     public GameObject prefab;
     public int count;
 }
-public class Area : MonoBehaviour
+public class Grass : MonoBehaviour
 {
     public bool isDebugDrawBoxLine = true;
     public bool generateOnStart = true;
@@ -16,12 +16,10 @@ public class Area : MonoBehaviour
     private List<GameObject> allObjects;
     private float height =0;
     [ContextMenu("GenerateObjectsByInfo")]
-    public void GenerateObjectsByInfo()
+    public void GenerateGrass()
     {
         ClearObjects();
-        List<GameObject> notSetObjs = new List<GameObject>();
-        Vector3 depthVec = GameProperties.TopLeftCorner - GameProperties.BottomLeftCorner;
-        Vector3 widthVec = GameProperties.BottomRightCorner - GameProperties.BottomLeftCorner;
+        height = GameProperties.FloorHeight;
         for (int info = 0; info < allInfo.Count; info++)
         {
             for (int i = 0; i < allInfo[info].count; i++)
@@ -29,7 +27,7 @@ public class Area : MonoBehaviour
                 GameObject obj = Instantiate(allInfo[info].prefab);
                 obj.transform.SetParent(floor.transform);
                 obj.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
-                obj.transform.localPosition = Vector3.forward * Random.Range(-5.0f, 5.0f) + Vector3.right * Random.Range(-5.0f, 5.0f) + Vector3.up * height;
+                obj.transform.localPosition = Vector3.forward * Random.Range(-5.0f, 5.0f) + Vector3.right * Random.Range(-5.0f, 5.0f);
                 allObjects.Add(obj);
             }
         }
@@ -46,8 +44,6 @@ public class Area : MonoBehaviour
 
     private void Awake()
     {
-        height = GameProperties.FloorHeight;
-
         if (floor == null)
         {
             floor = gameObject;
@@ -58,7 +54,7 @@ public class Area : MonoBehaviour
     {
         if (generateOnStart)
         {
-            GenerateObjectsByInfo();
+            GenerateGrass();
         }
     }
     
