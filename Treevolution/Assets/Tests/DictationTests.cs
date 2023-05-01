@@ -305,6 +305,28 @@ public class DictationTests
         Assert.LessOrEqual((((MoveBuddyAction)results[0]).location - wallToDefend.transform.position).magnitude, 0.01f);
     }
 
+    [UnityTest]
+    public IEnumerator TargetsVenusFlyTrap()
+    {
+        GameObject dummy;
+        setupBasicMovementScene(out dummy);
+        GameObject.FindWithTag("Logic").AddComponent<TowerManager>();
+        GameObject.FindWithTag("Logic").AddComponent<EnemyManager>();
+        GameObject buddy = new GameObject();
+        buddy.tag = "Buddy";
+        GameObject flytrap = new GameObject();
+        flytrap.tag = "Tower";
+        flytrap.AddComponent<DigestTower>();
+        flytrap.AddComponent<BuddyInteractable>();
+        flytrap.GetComponent<BuddyInteractable>().SetupForTest(new RESTRICTION_TYPES[] { RESTRICTION_TYPES.Trap, RESTRICTION_TYPES.Dragonfly });
+        List<BuddyAction> results = null;
+        yield return new LanguageParsing.LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(new string[] { "help", "the", "Venus", "fly", "trap." }, (x => results = x));
+        Assert.AreEqual(results.Count, 1);
+        Assert.AreEqual(results[0].actionType, BUDDY_ACTION_TYPES.Buff);
+        Assert.AreEqual(((TargetedBuddyAction)results[0]).targets.Length, 1);
+        Assert.Contains(flytrap, ((TargetedBuddyAction)results[0]).targets);
+    }
+
     void initialiseWall(GameObject wall, out WallBuddyInteractable buddyInteractable, out WallScript wallScript)
     {
         buddyInteractable = wall.AddComponent<WallBuddyInteractable>();
