@@ -83,7 +83,7 @@ public class StartMenuLogic : MonoBehaviour
     {
         GetComponent<PlaneMapper>().tableWidth = _tableWidthMM;
         GetComponent<PlaneMapper>().tableDepth = _tableDepthMM;
-        GetComponent<GameStateManager>().InitRounds();
+        GetComponent<GameStateManager>().InitGameState();
     }
 
     /// <summary>

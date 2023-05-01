@@ -10,7 +10,7 @@ public class RoundTimer : MonoBehaviour
     /// Length of the round in seconds.
     /// </summary>
     /// 
-    public float roundLengthSecs = 60;
+    private float _roundLengthSecs = 60;
     /// <summary>
     /// Pause state of the timer.
     /// </summary>
@@ -71,7 +71,7 @@ public class RoundTimer : MonoBehaviour
     {
         SecondTickEvent.AddListener(() => GetComponent<UIController>().DecreaseTime());
         RoundOverEvent.AddListener(() => StartCoroutine(GetComponent<GameStateManager>().EndBattle()));
-        StartTimerEvent.AddListener(() => GetComponent<UIController>().ResetTimer((int)roundLengthSecs));
+        StartTimerEvent.AddListener(() => GetComponent<UIController>().ResetTimer((int)_roundLengthSecs));
         StopTimerEvent.AddListener(() => Debug.Log("Timer Stopped"));
         PauseTimerEvent.AddListener(() => Debug.Log("Pause/Play"));
         PauseTimer();
@@ -110,7 +110,7 @@ public class RoundTimer : MonoBehaviour
             SecondTick();
         }
 
-        if (_roundTimer >= roundLengthSecs)
+        if (_roundTimer >= _roundLengthSecs)
         {
             StopTimer();
             RoundOver();
@@ -145,7 +145,16 @@ public class RoundTimer : MonoBehaviour
     /// <param name="secs">Number of seconds to set the round length to.</param>
     public void SetRoundLength(int secs)
     {
-        roundLengthSecs = secs;
+        _roundLengthSecs = secs;
+    }
+
+    /// <summary>
+    /// Gets the round length in seconds.
+    /// </summary>
+    /// <param name="secs">Number of seconds to set the round length to.</param>
+    public int GetRoundLength()
+    {
+        return (int)System.Math.Round(_roundLengthSecs);
     }
 
     /// <summary>

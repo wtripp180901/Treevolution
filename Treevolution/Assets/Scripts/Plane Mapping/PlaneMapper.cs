@@ -10,9 +10,9 @@ public class PlaneMapper : MonoBehaviour
     public float tableDepth = 163;
 
 
-    private GameStateManager gameStateManager;
-    private QRDetection qrDetection;
-   
+    private GameStateManager _gameStateManager;
+    private QRDetection _qrDetection;
+
     private bool planeIsMapped = false;
     private Vector3 tl;
     public Vector3 topLeft { get { return tl; } }
@@ -34,20 +34,15 @@ public class PlaneMapper : MonoBehaviour
 
     private void Start()
     {
-        gameStateManager = GetComponent<GameStateManager>();
-        qrDetection = GetComponent<QRDetection>();
+        _gameStateManager = GetComponent<GameStateManager>();
+        _qrDetection = GetComponent<QRDetection>();
     }
 
     public void CreateNewPlane(Pose marker)
     {
-        if (qrDetection != null && qrDetection.lockPlane)
+        if (_qrDetection != null && _qrDetection.lockPlane)
         {
             return;
-        }
-        if (planeIsMapped == false)
-        {
-            gameStateManager.CalibrationSuccess();
-            planeIsMapped = true;
         }
 
         marker.rotation = Quaternion.LookRotation(marker.up, marker.forward);
@@ -92,11 +87,11 @@ public class PlaneMapper : MonoBehaviour
         Vector3 floorScale = new Vector3(0.1f * Vector3.Distance(bl, tl), newFloor.transform.localScale.y, 0.1f * Vector3.Distance(bl, br));
         newFloor.transform.localScale = floorScale;
 
-        Debug.DrawLine(GameProperties.BottomLeftCorner, GameProperties.TopLeftCorner, Color.blue, 1000);
+        /*Debug.DrawLine(GameProperties.BottomLeftCorner, GameProperties.TopLeftCorner, Color.blue, 1000);
         Debug.DrawLine(GameProperties.BottomLeftCorner, GameProperties.BottomRightCorner, Color.blue, 1000);
         Debug.DrawLine(GameProperties.TopRightCorner, GameProperties.TopLeftCorner, Color.blue, 1000);
         Debug.DrawLine(GameProperties.TopRightCorner, GameProperties.BottomRightCorner, Color.blue, 1000);
-
+*/
         GameObject treeObject = GameObject.FindWithTag("Tree");
         if (treeObject == null)
         {
@@ -106,7 +101,16 @@ public class PlaneMapper : MonoBehaviour
         {
             treeObject.transform.position = boardCentre;
         }
-
+        if (!_qrDetection.lockPlane)
+        {
+            GetComponent<RealWorldPropertyMapper>().MapProperties(); // Assign the plane properties in GameProperties
+            GameObject.FindGameObjectWithTag("Floor").GetComponent<Grass>().GenerateGrass(); // Draw the grass on the mapped plane
+        }
+        if (planeIsMapped == false)
+        {
+            _gameStateManager.CalibrationSuccess();
+            planeIsMapped = true;
+        }
         GameObject.FindWithTag("Buddy").transform.position = boardCentre + new Vector3(0, 0.435f, 0);
     }
 

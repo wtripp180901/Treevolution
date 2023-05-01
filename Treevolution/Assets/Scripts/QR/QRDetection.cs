@@ -331,13 +331,12 @@ public class QRDetection : MonoBehaviour
     }
 
     /// <summary>
-    /// Initialises the QRCodeWatcher instance and starts tracking.
+    /// Initialises the QRCodeWatcher instance, but doesn't start tracking objects yet.
     /// </summary>
     private void InitialiseQR()
     {
         if (QRCodeWatcher.IsSupported())
         {
-            _running = true;
             _qRCodeWatcher = new QRCodeWatcher();
             _qRCodeWatcher.Added += new System.EventHandler<QRCodeAddedEventArgs>(this.AddedCodeEvent);
             _qRCodeWatcher.Updated += new System.EventHandler<QRCodeUpdatedEventArgs>(this.UpdatedCodeEvent);

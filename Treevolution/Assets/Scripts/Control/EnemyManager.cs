@@ -148,7 +148,7 @@ public class EnemyManager : MonoBehaviour
     public void StartSpawning(Dictionary<GameStateManager.EnemyType, int> enemies)
     {
         spawnPool = unpackEnemies(enemies);
-        spawnInterval = (roundTimer.roundLengthSecs * 0.8f) / enemies.Values.Sum();
+        spawnInterval = (roundTimer.GetRoundLength() * 0.8f) / enemies.Values.Sum();
         Vector3 verticalLeft = GameProperties.BottomLeftCorner - GameProperties.TopLeftCorner;
         Vector3 horizontalLeft = (GameProperties.TopRightCorner - GameProperties.TopLeftCorner) * 0.1f;
         Vector3 verticalRight = GameProperties.BottomRightCorner - GameProperties.TopRightCorner;
