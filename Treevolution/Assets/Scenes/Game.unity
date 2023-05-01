@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -839,7 +839,7 @@ MonoBehaviour:
   maxRoundNumber: 4
   _musicPlayer: {fileID: 100754443}
   _planningMusic: {fileID: 8300000, guid: db574b7e138246945b31abb1043c6662, type: 3}
-  _battleMusicLoop: {fileID: 8300000, guid: eb6dc21e3cbaea24386cae5ee3efacad, type: 3}
+  _battleMusicLoop: {fileID: 8300000, guid: 2903aab415f481b4bb8f52e3857a339c, type: 3}
   _battleMusic1: {fileID: 8300000, guid: 4e4cff885d85c874b87b1c34155e4862, type: 3}
   _battleMusic2: {fileID: 8300000, guid: 096dd3882ef867b4c8b0f27f4e25127c, type: 3}
   _battleMusic3: {fileID: 8300000, guid: df9478adb718acf42b8b4c674d6934a7, type: 3}
