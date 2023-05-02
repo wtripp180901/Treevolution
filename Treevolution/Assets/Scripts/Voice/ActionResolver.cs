@@ -141,6 +141,8 @@ namespace LanguageParsing
                     defenceTargets.AddRange(walls);
                     if (tree != null) defenceTargets.Add(tree);
                     return defenceTargets.ToArray();
+                case BUDDY_ACTION_TYPES.Buff:
+                    return GameObject.FindGameObjectsWithTag("Tower");
             }
             Debug.Log("Not implemented in defaultTargetsOfAction: " + action.ToString());
             return null;

@@ -65,3 +65,10 @@ MonoBehaviour:
       id: 2
       description: Menu
       axisConstraint: 2
+  - localizationKey: 
+    keyword: Buddy
+    keyCode: 0
+    action:
+      id: 0
+      description: Menu
+      axisConstraint: 2

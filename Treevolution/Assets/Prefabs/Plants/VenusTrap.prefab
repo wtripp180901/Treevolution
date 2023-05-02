@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef4e31b69e3c4704792a4fbe3c6d0357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BuddySystemProperties: 0f000000
+  BuddySystemProperties: 0f000000030000001a000000190000001c000000
 --- !u!114 &-3229857070677972331
 MonoBehaviour:
   m_ObjectHideFlags: 0

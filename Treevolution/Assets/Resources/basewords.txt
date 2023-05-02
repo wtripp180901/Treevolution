@@ -10,6 +10,10 @@ verb
 Defend
 defend guard protect
 
+verb
+Buff
+help assist buff
+
 noun
 PointerLocation
 here there
@@ -118,9 +122,17 @@ noun
 Wall
 wall barricade defense bush thorns spike spikes
 
+noun
+Trap
+trap
+
 adjective
 Black
 black
+
+adjective
+Red
+red
 
 adjective
 Blue
@@ -137,6 +149,14 @@ brown
 adjective
 Yellow
 yellow
+
+adjective
+Green
+green
+
+adjective
+Tall
+tall
 
 verb
 Repair
