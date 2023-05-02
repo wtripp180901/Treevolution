@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 780.8
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Hierarchy
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 30
+  controlID: 17
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 20
+  controlID: 18
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 21
+  controlID: 19
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -215,8 +215,8 @@ MonoBehaviour:
     y: 0
     width: 852
     height: 443.2
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -271,8 +271,8 @@ MonoBehaviour:
     y: 0
     width: 426.40002
     height: 730.8
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -307,7 +307,7 @@ MonoBehaviour:
     m_LastAppliedPresetName: Default
     m_SaveData: []
   m_Spl:
-    ID: 2643
+    ID: 1569
     splitterInitialOffset: 0
     currentActiveSplitter: -1
     realSizes:
@@ -338,9 +338,9 @@ MonoBehaviour:
       uniqueId: '[WillTest][suite]'
       name: WillTest
       fullName: WillTest
-      resultStatus: 2
-      duration: 2.1733787
-      messages: One or more child tests had errors
+      resultStatus: 1
+      duration: 1.0524936
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -354,9 +354,9 @@ MonoBehaviour:
       uniqueId: '[Tests][C:/Users/willt/OneDrive/Documents/Treevolution/Treevolution/Library/ScriptAssemblies/Tests.dll][suite]'
       name: Tests.dll
       fullName: C:/Users/willt/OneDrive/Documents/Treevolution/Treevolution/Library/ScriptAssemblies/Tests.dll
-      resultStatus: 2
-      duration: 2.122214
-      messages: One or more child tests had errors
+      resultStatus: 1
+      duration: 0.9523944
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -371,7 +371,7 @@ MonoBehaviour:
       name: BuddyTests
       fullName: BuddyTests
       resultStatus: 1
-      duration: 0.1443311
+      duration: 0.4225619
       messages: 
       output: 
       stacktrace: 
@@ -387,7 +387,7 @@ MonoBehaviour:
       name: TestDefendFindsNearest
       fullName: BuddyTests.TestDefendFindsNearest
       resultStatus: 1
-      duration: 0.0652472
+      duration: 0.243167
       messages: 
       output: 
       stacktrace: 
@@ -404,7 +404,7 @@ MonoBehaviour:
       name: TestNewInstructionsCleanCommands
       fullName: BuddyTests.TestNewInstructionsCleanCommands
       resultStatus: 1
-      duration: 0.0517073
+      duration: 0.0854299
       messages: 
       output: 
       stacktrace: 
@@ -421,7 +421,7 @@ MonoBehaviour:
       name: DictationTests
       fullName: DictationTests
       resultStatus: 1
-      duration: 1.8124259
+      duration: 0.9215986
       messages: 
       output: 
       stacktrace: 
@@ -437,7 +437,7 @@ MonoBehaviour:
       name: AppliesRestrictionsBasedOnAdditionalNouns
       fullName: DictationTests.AppliesRestrictionsBasedOnAdditionalNouns
       resultStatus: 1
-      duration: 1.0838425
+      duration: 1.5833725
       messages: 
       output: 
       stacktrace: 
@@ -454,7 +454,7 @@ MonoBehaviour:
       name: AttackWithPluralNounAndNoSubject
       fullName: DictationTests.AttackWithPluralNounAndNoSubject
       resultStatus: 1
-      duration: 0.0209499
+      duration: 0.0254558
       messages: 
       output: 
       stacktrace: 
@@ -471,7 +471,7 @@ MonoBehaviour:
       name: BasicMovementWorksWithWordNotInBasewords
       fullName: DictationTests.BasicMovementWorksWithWordNotInBasewords
       resultStatus: 1
-      duration: 0.1256154
+      duration: 0.1438103
       messages: 
       output: 
       stacktrace: 
@@ -488,7 +488,7 @@ MonoBehaviour:
       name: BuddyTargetsClosestOfMultipleFirst
       fullName: DictationTests.BuddyTargetsClosestOfMultipleFirst
       resultStatus: 1
-      duration: 0.018822
+      duration: 0.0226235
       messages: 
       output: 
       stacktrace: 
@@ -505,7 +505,7 @@ MonoBehaviour:
       name: DefendDefendsIndicatedObject
       fullName: DictationTests.DefendDefendsIndicatedObject
       resultStatus: 1
-      duration: 0.0354277
+      duration: 0.0928087
       messages: 
       output: 
       stacktrace: 
@@ -522,7 +522,7 @@ MonoBehaviour:
       name: DefendDefendsWalls
       fullName: DictationTests.DefendDefendsWalls
       resultStatus: 1
-      duration: 0.0230469
+      duration: 0.0411427
       messages: 
       output: 
       stacktrace: 
@@ -539,7 +539,7 @@ MonoBehaviour:
       name: DifferentRestrictionsAreAppliedToDifferentSubjects
       fullName: DictationTests.DifferentRestrictionsAreAppliedToDifferentSubjects
       resultStatus: 1
-      duration: 0.047383
+      duration: 0.0726113
       messages: 
       output: 
       stacktrace: 
@@ -556,7 +556,7 @@ MonoBehaviour:
       name: MultiAttackWorksWithObjectivePronoun
       fullName: DictationTests.MultiAttackWorksWithObjectivePronoun
       resultStatus: 1
-      duration: 0.0336823
+      duration: 0.0529082
       messages: 
       output: 'System.Collections.Generic.List`1[BuddyAction]
 
@@ -575,7 +575,7 @@ MonoBehaviour:
       name: MultiAttackWorksWithSubjectivePronoun
       fullName: DictationTests.MultiAttackWorksWithSubjectivePronoun
       resultStatus: 1
-      duration: 0.0234033
+      duration: 0.0327924
       messages: 
       output: 
       stacktrace: 
@@ -592,7 +592,7 @@ MonoBehaviour:
       name: NoSubjectAttackDefaults
       fullName: DictationTests.NoSubjectAttackDefaults
       resultStatus: 1
-      duration: 0.0152079
+      duration: 0.0265618
       messages: 
       output: 
       stacktrace: 
@@ -609,7 +609,7 @@ MonoBehaviour:
       name: RepairsDamagedOrBrokenWallsByDictation
       fullName: DictationTests.RepairsDamagedOrBrokenWallsByDictation
       resultStatus: 1
-      duration: 0.0299861
+      duration: 0.0368065
       messages: 
       output: 
       stacktrace: 
@@ -626,7 +626,7 @@ MonoBehaviour:
       name: SelectsBasedOnAdjectives
       fullName: DictationTests.SelectsBasedOnAdjectives
       resultStatus: 1
-      duration: 0.0424465
+      duration: 0.0388332
       messages: 
       output: 
       stacktrace: 
@@ -643,7 +643,7 @@ MonoBehaviour:
       name: SelectsCorrectSingularTargetForRestrictions
       fullName: DictationTests.SelectsCorrectSingularTargetForRestrictions
       resultStatus: 1
-      duration: 0.0249451
+      duration: 0.0394833
       messages: 
       output: 
       stacktrace: 
@@ -660,7 +660,7 @@ MonoBehaviour:
       name: SingularAttackAtPronounSubjectGetsClosest
       fullName: DictationTests.SingularAttackAtPronounSubjectGetsClosest
       resultStatus: 1
-      duration: 0.0337729
+      duration: 0.0423107
       messages: 
       output: 
       stacktrace: 
@@ -677,7 +677,7 @@ MonoBehaviour:
       name: SingularAttackWorksWithObjectivePronoun
       fullName: DictationTests.SingularAttackWorksWithObjectivePronoun
       resultStatus: 1
-      duration: 0.0290952
+      duration: 0.0324216
       messages: 
       output: 
       stacktrace: 
@@ -694,7 +694,7 @@ MonoBehaviour:
       name: SingularAttackWorksWithSubjectivePronoun
       fullName: DictationTests.SingularAttackWorksWithSubjectivePronoun
       resultStatus: 1
-      duration: 0.0209129
+      duration: 0.0257589
       messages: 
       output: 
       stacktrace: 
@@ -706,12 +706,31 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1006
       parentUniqueId: Tests.dll/[Tests][DictationTests][suite]
+    - id: 1023
+      uniqueId: Tests.dll/DictationTests/[Tests][DictationTests.TargetsVenusFlyTrap]
+      name: TargetsVenusFlyTrap
+      fullName: DictationTests.TargetsVenusFlyTrap
+      resultStatus: 1
+      duration: 0.8674175
+      messages: 
+      output: 'API parsing error for word: venus - Cannot access child value on Newtonsoft.Json.Linq.JValue.
+
+'
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1004
+      parentUniqueId: Tests.dll/[Tests][DictationTests][suite]
     - id: 1007
       uniqueId: Tests.dll/DictationTests/[Tests][DictationTests.testBasicMovementCommand]
       name: testBasicMovementCommand
       fullName: DictationTests.testBasicMovementCommand
       resultStatus: 1
-      duration: 0.023126
+      duration: 0.0233951
       messages: 
       output: 
       stacktrace: 
@@ -728,7 +747,7 @@ MonoBehaviour:
       name: TestPreviouslyFailedCommands
       fullName: DictationTests.TestPreviouslyFailedCommands
       resultStatus: 1
-      duration: 0.158062
+      duration: 0.1583746
       messages: 
       output: 'Not implemented in getSubject: PointerLocation
 
@@ -747,7 +766,7 @@ MonoBehaviour:
       name: GameStateManagerTests
       fullName: GameStateManagerTests
       resultStatus: 2
-      duration: 0.0276681
+      duration: 0.1843908
       messages: One or more child tests had errors
       output: 
       stacktrace: 
@@ -763,7 +782,7 @@ MonoBehaviour:
       name: GameStateManagerStateTransitions
       fullName: GameStateManagerTests.GameStateManagerStateTransitions
       resultStatus: 2
-      duration: 0.0214378
+      duration: 0.1627166
       messages: "  Expected: Tutorial_Battle\r\n  But was:  Tutorial_Plan\r\n"
       output: 
       stacktrace: 'at GameStateManagerTests.GameStateManagerStateTransitions () [0x000b9]
@@ -783,7 +802,7 @@ MonoBehaviour:
       name: PathfindingTests
       fullName: PathfindingTests
       resultStatus: 1
-      duration: 0.0928931
+      duration: 0.3556522
       messages: 
       output: 'Pause/Play
 
@@ -801,7 +820,7 @@ MonoBehaviour:
       name: PathfinderWorksWithoutGraph
       fullName: PathfindingTests.PathfinderWorksWithoutGraph
       resultStatus: 1
-      duration: 0.0317112
+      duration: 0.1871752
       messages: 
       output: 
       stacktrace: 
@@ -818,7 +837,7 @@ MonoBehaviour:
       name: PathfindingGraphGeneratorWorksWithObstacles
       fullName: PathfindingTests.PathfindingGraphGeneratorWorksWithObstacles
       resultStatus: 1
-      duration: 0.0101935
+      duration: 0.0250735
       messages: 
       output: 
       stacktrace: 
@@ -835,7 +854,7 @@ MonoBehaviour:
       name: PathfindingGraphGeneratorWorksWithoutObstacles
       fullName: PathfindingTests.PathfindingGraphGeneratorWorksWithoutObstacles
       resultStatus: 1
-      duration: 0.0009463
+      duration: 0.001006
       messages: 
       output: 
       stacktrace: 
@@ -852,7 +871,7 @@ MonoBehaviour:
       name: TowerGenerationTests
       fullName: TowerGenerationTests
       resultStatus: 1
-      duration: 0.0211911
+      duration: 0.073113
       messages: 
       output: 
       stacktrace: 
@@ -868,7 +887,7 @@ MonoBehaviour:
       name: TowerGenerationPointAllocation
       fullName: TowerGenerationTests.TowerGenerationPointAllocation
       resultStatus: 1
-      duration: 0.0140923
+      duration: 0.0432765
       messages: 
       output: 
       stacktrace: 
@@ -880,12 +899,17 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1020
       parentUniqueId: Tests.dll/[Tests][TowerGenerationTests][suite]
-    m_ResultText: DefendDefendsIndicatedObject (0.035s)
+    m_ResultText: 'TargetsVenusFlyTrap (0.867s)
+
+      ---
+
+      API parsing error
+      for word: venus - Cannot access child value on Newtonsoft.Json.Linq.JValue.'
     m_ResultStacktrace: 
     m_TestListState:
       scrollPos: {x: 0, y: 252}
-      m_SelectedIDs: db22f44c
-      m_LastClickedID: 1291068123
+      m_SelectedIDs: 21040178
+      m_LastClickedID: 2013332513
       m_ExpandedIDs: 18b84385d606d0ad26285abdf54793f46bc8e5f7346a190eaa54e867ffffff7f
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -1168,9 +1192,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: f4700000
-      m_LastClickedID: 0
-      m_ExpandedIDs: 18e0ffff3af0fffffef0ffff10fbffff
+      m_SelectedIDs: 24f6ffff
+      m_LastClickedID: -2524
+      m_ExpandedIDs: 10fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1540,22 +1564,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/Plants
+    - Assets
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs/Plants
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\willt\OneDrive\Documents\Treevolution\Treevolution
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 9aa80000
-    m_LastClickedID: 43162
-    m_ExpandedIDs: 00000000aea70000b0a70000b2a70000b4a70000b6a70000b8a70000baa70000bca70000bea70000c0a70000c2a70000c4a70000c6a7000000ca9a3bffffff7f
+    m_SelectedIDs: 9ca70000
+    m_LastClickedID: 42908
+    m_ExpandedIDs: 000000009ca700009ea70000a0a70000a2a70000a4a70000a6a70000a8a70000aaa70000aca70000aea70000b0a70000b2a7000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1583,7 +1607,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000aea70000b0a70000b2a70000b4a70000b6a70000b8a70000baa70000bca70000bea70000c0a70000c2a70000c4a70000c6a70000
+    m_ExpandedIDs: 000000009ca700009ea70000a0a70000a2a70000a4a70000a6a70000a8a70000aaa70000aca70000aea70000b0a70000b2a70000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
