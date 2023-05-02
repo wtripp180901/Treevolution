@@ -104,7 +104,6 @@ public class PlaneMapper : MonoBehaviour
         if (!_qrDetection.lockPlane)
         {
             GetComponent<RealWorldPropertyMapper>().MapProperties(); // Assign the plane properties in GameProperties
-            GameObject.FindGameObjectWithTag("Floor").GetComponent<Grass>().GenerateGrass(); // Draw the grass on the mapped plane
         }
         if (planeIsMapped == false)
         {

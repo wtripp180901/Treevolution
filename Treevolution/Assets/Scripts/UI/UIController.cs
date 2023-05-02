@@ -145,6 +145,7 @@ public class UIController : MonoBehaviour
             d.OnClosed = delegate (DialogResult dr)
             {
                 GetComponent<QRDetection>().lockPlane = true;
+                GameObject.FindGameObjectWithTag("Floor").GetComponent<Grass>().GenerateGrass(); // Draw the grass on the mapped plane
                 TutorialSelectionPopUp();
             };
             _openDialogs.Add(d);
@@ -156,7 +157,6 @@ public class UIController : MonoBehaviour
     /// </summary>
     private void TutorialSelectionPopUp()
     {
-        CloseOpenDialogs(false);
         Dialog d = Dialog.Open(buttonDialogPrefab, DialogButtonType.Yes | DialogButtonType.No, "Begin Tutorial", "Would you like to proceed with the tutorial level?", true);
         d.OnClosed += HandleTutorialSelectionEvent;
         lock (_openDialogs)
@@ -186,7 +186,6 @@ public class UIController : MonoBehaviour
     /// </summary>
     public void TutorialPlanPopUps()
     {
-        CloseOpenDialogs(false);
         Dialog d1 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Treevolution Tutorial", "Protect your Home Tree from the enemy bugs! You can either use your hands to damage the bugs, or utilise the help of your plants and bird buddy.", true);
         (Vector3 position, Quaternion rotation) t = (d1.transform.position, d1.transform.rotation);
         d1.OnClosed = delegate (DialogResult dr)
@@ -217,7 +216,6 @@ public class UIController : MonoBehaviour
     /// </summary>
     public void TutorialBattlePopUps()
     {
-        CloseOpenDialogs(false);
         Dialog d1 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Battle Phase", "The time remaining is displayed above your Home Tree. Kill as many bugs as you can before the time runs out!", true);
         (Vector3 position, Quaternion rotation) t = (d1.transform.position, d1.transform.rotation);
         d1.OnClosed = delegate (DialogResult dr)
@@ -251,7 +249,6 @@ public class UIController : MonoBehaviour
     /// </summary>
     public void TutorialBugPopUps()
     {
-        CloseOpenDialogs(false);
         Dialog d1 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Bugs", "More types of bugs will be introduced as you progress through the rounds. Be mindful of which ones you *whack*, though, as some have strong armour and it may make more sense to target these with your plants.", true);
         (Vector3 position, Quaternion rotation) t = (d1.transform.position, d1.transform.rotation);
         d1.OnClosed = delegate (DialogResult dr)
@@ -304,7 +301,6 @@ public class UIController : MonoBehaviour
     /// </summary>
     public void EndTutorial()
     {
-        CloseOpenDialogs(false);
         Dialog d1 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Tutorial Complete", "Now it's time to start for real. Place your items, and click the red button when you are ready to begin the first battle!", true);
         d1.OnClosed = delegate (DialogResult dr)
         {
@@ -317,7 +313,6 @@ public class UIController : MonoBehaviour
     /// </summary>
     public void EndPopUp()
     {
-        CloseOpenDialogs(false);
         Dialog d = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Congratulations!", "Score: " + _enemyManager.getEnemiesKilled(), true);
         d.OnClosed += delegate (DialogResult dr)
         {
