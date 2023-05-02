@@ -137,6 +137,12 @@ public class EnemyScript : MonoBehaviour
         Initialise();
     }
 
+    public void GetTestData(out bool inWall,out int currentHealth)
+    {
+        inWall = this.inWall;
+        currentHealth = this.health;
+    }
+
     private void Update()
     {
         if(inWall)

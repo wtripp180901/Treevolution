@@ -29,6 +29,10 @@ public class PlaneMapper : MonoBehaviour
 
     public void SetupForTest(bool planeMapped)
     {
+        gameObject.AddComponent<QRDetection>();
+        gameObject.AddComponent<RealWorldPropertyMapper>();
+        GetComponent<RealWorldPropertyMapper>().SetupForTest(this);
+        _qrDetection = GetComponent<QRDetection>();
         planeIsMapped = planeMapped;
     }
 
