@@ -81,7 +81,11 @@ namespace Pathfinding
             }
         }
 
-
+        /// <summary>
+        /// Traverse the pathfinding graph from the target to the source in order to find the shortest path.
+        /// </summary>
+        /// <param name="target">The target to find the shortest path to.</param>
+        /// <returns>The list of points to travel to in order to reach the target.</returns>
         private static List<Vector3> traverseFromTarget(PathfindingNode target)
         {
             List<Vector3> positions = new List<Vector3>();
@@ -94,6 +98,11 @@ namespace Pathfinding
             return positions;
         }
 
+        /// <summary>
+        /// Gets the best node to travel to from a list of nodes.
+        /// </summary>
+        /// <param name="nodes">List of nodes from which to find the next best choice.</param>
+        /// <returns>The best node, and its index in the graph.</returns>
         private static (int index, PathfindingNode node) getBestNode(List<(int index, PathfindingNode node)> nodes)
         {
             if (nodes.Count == 0)
@@ -110,6 +119,11 @@ namespace Pathfinding
             return (bestIndex, graph[bestIndex]);
         }
 
+        /// <summary>
+        /// Gets the node from the graph closest to a position in 3D space.
+        /// </summary>
+        /// <param name="pos">Position from which to find the closest node.</param>
+        /// <returns>The PathfindingNode closest to the given position.</returns>
         private static (int, PathfindingNode) closestNodeToPosition(Vector3 pos)
         {
             (int index, float distToTarget) closestNode = (0, Vector3.Distance(pos, graph[0].position));
@@ -124,6 +138,12 @@ namespace Pathfinding
             return (closestNode.index, graph[closestNode.index]);
         }
 
+        /// <summary>
+        /// Gets the node from the graph closest to a position in 3D space, with preference for a particular direction from that position.
+        /// </summary>
+        /// <param name="pos">Position from which to find a graph node closest to.</param>
+        /// <param name="fromPos">Direction towards which the graph node should be found.</param>
+        /// <returns>The PathfindindNode closest to the given position, in the rough direction provided.</returns>
         private static (int, PathfindingNode) closestNodeToPositionFromDirection(Vector3 pos, Vector3 fromPos)
         {
             (int index, float distToTarget, float distFromDir) closestNodeFromDirection = (0, Vector3.Distance(pos, graph[0].position), Vector3.Distance(fromPos, graph[0].position));
@@ -144,6 +164,11 @@ namespace Pathfinding
             return (closestNodeFromDirection.index, graph[closestNodeFromDirection.index]);
         }
 
+        /// <summary>
+        /// Initialises the 3 scores for each graph nodes.
+        /// </summary>
+        /// <param name="size">Number of scores to initialise.</param>
+        /// <param name="initialValues">Initial values for each score (F score, G score, and Heuristic score).</param>
         private static void initializeScores(int size, (float, float, float) initialValues)
         {
             scores = new (float F, float G, float H)[size];
