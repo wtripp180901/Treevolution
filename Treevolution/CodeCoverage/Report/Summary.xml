@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <CoverageReport scope="Summary">
   <Summary>
-    <Generatedon>02/05/2023 - 15:20:01</Generatedon>
-    <Parser>OpenCoverParser</Parser>
+    <Generatedon>03/05/2023 - 19:43:38</Generatedon>
+    <Parser>MultiReportParser (3x OpenCoverParser)</Parser>
     <Assemblies>2</Assemblies>
-    <Classes>75</Classes>
-    <Files>66</Files>
-    <Coveredlines>1586</Coveredlines>
-    <Uncoveredlines>1967</Uncoveredlines>
-    <Coverablelines>3553</Coverablelines>
-    <Totallines>6539</Totallines>
-    <Linecoverage>44.6</Linecoverage>
+    <Classes>76</Classes>
+    <Files>67</Files>
+    <Coveredlines>1807</Coveredlines>
+    <Uncoveredlines>1883</Uncoveredlines>
+    <Coverablelines>3690</Coverablelines>
+    <Totallines>6703</Totallines>
+    <Linecoverage>48.9</Linecoverage>
     <Coveredbranches>0</Coveredbranches>
     <Totalbranches>0</Totalbranches>
   </Summary>
   <Coverage>
-    <Assembly name="MainGameAssembly" classes="69" coverage="37.2" coveredlines="1160" coverablelines="3110" totallines="6405" branchcoverage="" coveredbranches="0" totalbranches="0">
+    <Assembly name="MainGameAssembly" classes="69" coverage="40.9" coveredlines="1291" coverablelines="3153" totallines="6430" branchcoverage="" coveredbranches="0" totalbranches="0">
       <Class name="ActionBuddyToken" coverage="100" coveredlines="4" coverablelines="4" totallines="53" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="AssemblyAPICaller" coverage="0" coveredlines="0" coverablelines="90" totallines="134" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="BuddyAction" coverage="100" coveredlines="4" coverablelines="4" totallines="64" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="BuddyInteractable" coverage="92.8" coveredlines="13" coverablelines="14" totallines="29" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="BuddyScript" coverage="48.8" coveredlines="83" coverablelines="170" totallines="265" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="BuddyToken" coverage="100" coveredlines="4" coverablelines="4" totallines="53" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="BulletScript" coverage="0" coveredlines="0" coverablelines="33" totallines="49" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="BulletScript" coverage="57.5" coveredlines="19" coverablelines="33" totallines="49" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="ConnectiveBuddyToken" coverage="100" coveredlines="1" coverablelines="1" totallines="53" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Debugger" coverage="0" coveredlines="0" coverablelines="10" totallines="18" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="DigestTower" coverage="43.7" coveredlines="28" coverablelines="64" totallines="100" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="DigestTower" coverage="44.1" coveredlines="38" coverablelines="86" totallines="110" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="DummyToken" coverage="100" coveredlines="1" coverablelines="1" totallines="53" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="EmergencyKeyboard" coverage="0" coveredlines="0" coverablelines="26" totallines="42" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="EnemyManager" coverage="17.5" coveredlines="20" coverablelines="114" totallines="175" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="EnemyScript" coverage="62.7" coveredlines="108" coverablelines="172" totallines="350" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="EnemyScript" coverage="69.8" coveredlines="123" coverablelines="176" totallines="352" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="EnemyTestScript" coverage="0" coveredlines="0" coverablelines="16" totallines="47" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="EnemyTouchHandler" coverage="0" coveredlines="0" coverablelines="10" totallines="64" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="GameProperties" coverage="100" coveredlines="10" coverablelines="10" totallines="26" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="GameStateManager" coverage="17.6" coveredlines="35" coverablelines="198" totallines="444" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Grass" coverage="0" coveredlines="0" coverablelines="38" totallines="61" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="Gun" coverage="0" coveredlines="0" coverablelines="10" totallines="21" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="Gun" coverage="100" coveredlines="14" coverablelines="14" totallines="27" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="GunPoint" coverage="0" coveredlines="0" coverablelines="4" totallines="16" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="GunScript" coverage="0" coveredlines="0" coverablelines="8" totallines="18" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="HealthBar" coverage="76.9" coveredlines="10" coverablelines="13" totallines="27" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="HealthBar" coverage="92.3" coveredlines="12" coverablelines="13" totallines="27" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="LanguageParsing.ActionResolver" coverage="91.5" coveredlines="97" coverablelines="106" totallines="184" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="LanguageParsing.LanguageParser" coverage="97.1" coveredlines="104" coverablelines="107" totallines="189" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="LanguageParsing.SynonymData" coverage="100" coveredlines="4" coverablelines="4" totallines="98" branchcoverage="" coveredbranches="0" totalbranches="0" />
@@ -68,7 +68,7 @@
       <Class name="Shooting" coverage="0" coveredlines="0" coverablelines="8" totallines="18" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="ShootingScript" coverage="0" coveredlines="0" coverablelines="13" totallines="28" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Shot" coverage="0" coveredlines="0" coverablelines="17" totallines="36" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="SingleTargetTower" coverage="0" coveredlines="0" coverablelines="58" totallines="91" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="SingleTargetTower" coverage="87.3" coveredlines="62" coverablelines="71" totallines="98" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="SpawnDirectionIndicator" coverage="60" coveredlines="12" coverablelines="20" totallines="37" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="StartMenuLogic" coverage="0" coveredlines="0" coverablelines="58" totallines="115" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="SubjectBuddyToken" coverage="100" coveredlines="4" coverablelines="4" totallines="53" branchcoverage="" coveredbranches="0" totalbranches="0" />
@@ -78,7 +78,7 @@
       <Class name="TowerGenerator" coverage="88.2" coveredlines="15" coverablelines="17" totallines="41" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="TowerHolder" coverage="0" coveredlines="0" coverablelines="5" totallines="13" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="TowerManager" coverage="61.9" coveredlines="13" coverablelines="21" totallines="39" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="TowerScript" coverage="52.4" coveredlines="32" coverablelines="61" totallines="102" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="TowerScript" coverage="67.2" coveredlines="41" coverablelines="61" totallines="102" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="TreeScript" coverage="0" coveredlines="0" coverablelines="11" totallines="24" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="TurretScript" coverage="0" coveredlines="0" coverablelines="4" totallines="16" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="UIController" coverage="12.7" coveredlines="28" coverablelines="219" totallines="401" branchcoverage="" coveredbranches="0" totalbranches="0" />
@@ -86,13 +86,14 @@
       <Class name="WallBuddyInteractable" coverage="77.2" coveredlines="17" coverablelines="22" totallines="35" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="WallScript" coverage="65.2" coveredlines="30" coverablelines="46" totallines="83" branchcoverage="" coveredbranches="0" totalbranches="0" />
     </Assembly>
-    <Assembly name="Tests" classes="6" coverage="96.1" coveredlines="426" coverablelines="443" totallines="689" branchcoverage="" coveredbranches="0" totalbranches="0">
+    <Assembly name="Tests" classes="7" coverage="96" coveredlines="516" coverablelines="537" totallines="828" branchcoverage="" coveredbranches="0" totalbranches="0">
       <Class name="BuddyTests" coverage="100" coveredlines="35" coverablelines="35" totallines="63" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="DictationTests" coverage="100" coveredlines="271" coverablelines="271" totallines="400" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="EnemyTests" coverage="100" coveredlines="46" coverablelines="46" totallines="74" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="EnemyTests" coverage="98.3" coveredlines="61" coverablelines="62" totallines="98" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="GameStateManagerTests" coverage="54" coveredlines="20" coverablelines="37" totallines="65" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="PathfindingTests" coverage="100" coveredlines="38" coverablelines="38" totallines="60" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="TowerGenerationTests" coverage="100" coveredlines="16" coverablelines="16" totallines="27" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="TowerTests" coverage="96.1" coveredlines="75" coverablelines="78" totallines="115" branchcoverage="" coveredbranches="0" totalbranches="0" />
     </Assembly>
   </Coverage>
 </CoverageReport>

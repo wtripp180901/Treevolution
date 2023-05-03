@@ -334,7 +334,9 @@ public class EnemyScript : MonoBehaviour
             }
             else StartCoroutine(DamageIndicator());
         }
-        catch { }
+        catch (System.Exception e) {
+            Debug.Log("Error killing enemy: " + e.Message);
+        }
     }
 
     /// <summary>
