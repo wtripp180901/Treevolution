@@ -23,6 +23,16 @@ public class DigestTower : TowerScript
         _animator = GetComponent<Animator>();
     }
 
+    public void SetupForTest(float radius)
+    {
+        rangeRadius = radius;
+    }
+
+    public void GetTestData(out bool digesting)
+    {
+        digesting = _currentlyDigesting;
+    }
+
     // Update is called once per frame
     private void Update()
     {

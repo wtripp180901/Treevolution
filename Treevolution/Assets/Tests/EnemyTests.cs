@@ -12,7 +12,40 @@ public class EnemyTests
     [UnityTest]
     public IEnumerator NormalEnemiesDamagedByWalls()
     {
-        GameObject logic = new GameObject();
+        Rigidbody rig;
+        EnemyScript enemyScript;
+        GameObject logic;
+        GameObject enemy;
+        CreateSceneWithEnemies(out rig,out enemy,out enemyScript,out logic);
+        rig.MovePosition(new Vector3(5, 0, 0));
+        
+        GameObject wall = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        //wall.AddComponent<BoxCollider>();
+        wall.GetComponent<BoxCollider>().isTrigger = true;
+
+        bool inWall;
+        int health;
+        enemyScript.GetTestData(out inWall,out health);
+
+        Assert.IsFalse(inWall);
+        yield return null;
+
+        rig.MovePosition(wall.transform.position);
+
+        yield return new WaitForFixedUpdate();
+        enemyScript.GetTestData(out inWall,out health);
+
+        int prevHealth = health;
+        Assert.IsTrue(inWall);
+        yield return new WaitForSeconds(1);
+        enemyScript.GetTestData(out inWall, out health);
+        Assert.AreEqual(prevHealth > health, true);
+        
+    }
+
+    public static void CreateSceneWithEnemies(out Rigidbody enemyRb,out GameObject enemy,out EnemyScript enemyScript,out GameObject logic)
+    {
+        logic = new GameObject();
         logic.AddComponent<EnemyManager>();
         logic.AddComponent<RoundTimer>();
         logic.GetComponent<EnemyManager>().SetupForTest();
@@ -34,41 +67,32 @@ public class EnemyTests
         GameObject cam = new GameObject("MainCamera");
         cam.tag = "MainCamera";
         cam.AddComponent<Camera>();
-        
-        GameObject wall = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        //wall.AddComponent<BoxCollider>();
-        wall.GetComponent<BoxCollider>().isTrigger = true;
 
-        GameObject enemy = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        enemy = GameObject.CreatePrimitive(PrimitiveType.Cube);
         enemy.AddComponent<AudioSource>();
         enemy.AddComponent<HealthBar>();
         enemy.AddComponent<UnityEngine.UI.Slider>();
         enemy.GetComponent<HealthBar>().slider = enemy.GetComponent<UnityEngine.UI.Slider>();
         enemy.AddComponent<EnemyScript>();
         enemy.AddComponent<BoxCollider>();
-        enemy.transform.position = new Vector3(5, 0, 0);
         enemy.AddComponent<Rigidbody>();
-        Rigidbody rig = enemy.GetComponent<Rigidbody>();
-        rig.collisionDetectionMode = CollisionDetectionMode.Continuous;
-        EnemyScript enemyScript = enemy.GetComponent<EnemyScript>();
+        enemy.tag = "Enemy";
+        enemyRb = enemy.GetComponent<Rigidbody>();
+        enemyRb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        enemyRb.useGravity = false;
+        enemyScript = enemy.GetComponent<EnemyScript>();
+    }
 
-        bool inWall;
-        int health;
-        enemyScript.GetTestData(out inWall,out health);
-
-        Assert.IsFalse(inWall);
-        yield return null;
-
-        rig.MovePosition(wall.transform.position);
-
-        yield return new WaitForFixedUpdate();
-        enemyScript.GetTestData(out inWall,out health);
-
-        int prevHealth = health;
-        Assert.IsTrue(inWall);
-        yield return new WaitForSeconds(1);
-        enemyScript.GetTestData(out inWall, out health);
-        Assert.AreEqual(prevHealth > health, true);
-        
+    [TearDown]
+    public void ResetScene()
+    {
+        Object[] all = GameObject.FindObjectsOfType(typeof(GameObject));
+        for (int i = 0; i < all.Length; i++)
+        {
+            GameObject dirty = (GameObject)(all[i]);
+            Pathfinding.PathfindingObstacle dirtyObstacleScript = dirty.GetComponent<Pathfinding.PathfindingObstacle>();
+            if (dirtyObstacleScript != null) dirtyObstacleScript.CleanForTest();
+            Object.Destroy(all[i]);
+        }
     }
 }
