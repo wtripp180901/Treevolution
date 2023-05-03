@@ -68,6 +68,11 @@ public class EnemyTests
         cam.tag = "MainCamera";
         cam.AddComponent<Camera>();
 
+        createBasicEnemy(out enemy, out enemyRb, out enemyScript);
+    }
+
+    public static void createBasicEnemy(out GameObject enemy,out Rigidbody enemyRb,out EnemyScript enemyScript)
+    {
         enemy = GameObject.CreatePrimitive(PrimitiveType.Cube);
         enemy.AddComponent<AudioSource>();
         enemy.AddComponent<HealthBar>();
