@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 18
+  controlID: 77
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 58
+  controlID: 78
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 59
+  controlID: 79
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -189,8 +189,8 @@ MonoBehaviour:
     y: 0
     width: 252.8
     height: 443.2
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: SceneView
+  m_Name: GameView
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -215,16 +215,16 @@ MonoBehaviour:
     y: 0
     width: 840.8
     height: 443.2
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 16}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
+  m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 16}
   - {fileID: 14}
   - {fileID: 13}
   - {fileID: 12}
-  m_Selected: 0
-  m_LastSelected: 3
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -307,7 +307,7 @@ MonoBehaviour:
     m_LastAppliedPresetName: Default
     m_SaveData: []
   m_Spl:
-    ID: 157
+    ID: 968
     splitterInitialOffset: 0
     currentActiveSplitter: -1
     realSizes:
@@ -339,7 +339,7 @@ MonoBehaviour:
       name: WillTest
       fullName: WillTest
       resultStatus: 2
-      duration: 2.9624271
+      duration: 5.517027
       messages: One or more child tests had errors
       output: 
       stacktrace: 
@@ -355,7 +355,7 @@ MonoBehaviour:
       name: Tests.dll
       fullName: C:/Users/willt/OneDrive/Documents/Treevolution/Treevolution/Library/ScriptAssemblies/Tests.dll
       resultStatus: 2
-      duration: 2.914005
+      duration: 5.374836
       messages: One or more child tests had errors
       output: 
       stacktrace: 
@@ -371,7 +371,7 @@ MonoBehaviour:
       name: BuddyTests
       fullName: BuddyTests
       resultStatus: 1
-      duration: 0.1473111
+      duration: 0.3094231
       messages: 
       output: 
       stacktrace: 
@@ -387,7 +387,7 @@ MonoBehaviour:
       name: TestDefendFindsNearest
       fullName: BuddyTests.TestDefendFindsNearest
       resultStatus: 1
-      duration: 0.065337
+      duration: 0.1436278
       messages: 
       output: 
       stacktrace: 
@@ -404,7 +404,7 @@ MonoBehaviour:
       name: TestNewInstructionsCleanCommands
       fullName: BuddyTests.TestNewInstructionsCleanCommands
       resultStatus: 1
-      duration: 0.0545073
+      duration: 0.1035923
       messages: 
       output: 
       stacktrace: 
@@ -421,7 +421,7 @@ MonoBehaviour:
       name: DictationTests
       fullName: DictationTests
       resultStatus: 1
-      duration: 1.5316757
+      duration: 2.4745142
       messages: 
       output: 
       stacktrace: 
@@ -437,7 +437,7 @@ MonoBehaviour:
       name: AppliesRestrictionsBasedOnAdditionalNouns
       fullName: DictationTests.AppliesRestrictionsBasedOnAdditionalNouns
       resultStatus: 1
-      duration: 0.6771119
+      duration: 1.0095392
       messages: 
       output: 
       stacktrace: 
@@ -454,7 +454,7 @@ MonoBehaviour:
       name: AttackWithPluralNounAndNoSubject
       fullName: DictationTests.AttackWithPluralNounAndNoSubject
       resultStatus: 1
-      duration: 0.017893
+      duration: 0.0239381
       messages: 
       output: 
       stacktrace: 
@@ -471,7 +471,7 @@ MonoBehaviour:
       name: BasicMovementWorksWithWordNotInBasewords
       fullName: DictationTests.BasicMovementWorksWithWordNotInBasewords
       resultStatus: 1
-      duration: 0.133274
+      duration: 0.2835752
       messages: 
       output: 
       stacktrace: 
@@ -488,7 +488,7 @@ MonoBehaviour:
       name: BuddyTargetsClosestOfMultipleFirst
       fullName: DictationTests.BuddyTargetsClosestOfMultipleFirst
       resultStatus: 1
-      duration: 0.0187638
+      duration: 0.0360159
       messages: 
       output: 
       stacktrace: 
@@ -505,7 +505,7 @@ MonoBehaviour:
       name: DefendDefendsIndicatedObject
       fullName: DictationTests.DefendDefendsIndicatedObject
       resultStatus: 1
-      duration: 0.050193
+      duration: 0.0671941
       messages: 
       output: 
       stacktrace: 
@@ -522,7 +522,7 @@ MonoBehaviour:
       name: DefendDefendsWalls
       fullName: DictationTests.DefendDefendsWalls
       resultStatus: 1
-      duration: 0.0278619
+      duration: 0.0433563
       messages: 
       output: 
       stacktrace: 
@@ -539,7 +539,7 @@ MonoBehaviour:
       name: DifferentRestrictionsAreAppliedToDifferentSubjects
       fullName: DictationTests.DifferentRestrictionsAreAppliedToDifferentSubjects
       resultStatus: 1
-      duration: 0.0443287
+      duration: 0.0880868
       messages: 
       output: 
       stacktrace: 
@@ -556,7 +556,7 @@ MonoBehaviour:
       name: MultiAttackWorksWithObjectivePronoun
       fullName: DictationTests.MultiAttackWorksWithObjectivePronoun
       resultStatus: 1
-      duration: 0.0323897
+      duration: 0.0629004
       messages: 
       output: 'System.Collections.Generic.List`1[BuddyAction]
 
@@ -575,7 +575,7 @@ MonoBehaviour:
       name: MultiAttackWorksWithSubjectivePronoun
       fullName: DictationTests.MultiAttackWorksWithSubjectivePronoun
       resultStatus: 1
-      duration: 0.018444
+      duration: 0.0466555
       messages: 
       output: 
       stacktrace: 
@@ -592,7 +592,7 @@ MonoBehaviour:
       name: NoSubjectAttackDefaults
       fullName: DictationTests.NoSubjectAttackDefaults
       resultStatus: 1
-      duration: 0.0146771
+      duration: 0.0281514
       messages: 
       output: 
       stacktrace: 
@@ -609,7 +609,7 @@ MonoBehaviour:
       name: RepairsDamagedOrBrokenWallsByDictation
       fullName: DictationTests.RepairsDamagedOrBrokenWallsByDictation
       resultStatus: 1
-      duration: 0.0241822
+      duration: 0.0505755
       messages: 
       output: 
       stacktrace: 
@@ -626,7 +626,7 @@ MonoBehaviour:
       name: SelectsBasedOnAdjectives
       fullName: DictationTests.SelectsBasedOnAdjectives
       resultStatus: 1
-      duration: 0.026735
+      duration: 0.0337158
       messages: 
       output: 
       stacktrace: 
@@ -643,7 +643,7 @@ MonoBehaviour:
       name: SelectsCorrectSingularTargetForRestrictions
       fullName: DictationTests.SelectsCorrectSingularTargetForRestrictions
       resultStatus: 1
-      duration: 0.0238012
+      duration: 0.0276866
       messages: 
       output: 
       stacktrace: 
@@ -660,7 +660,7 @@ MonoBehaviour:
       name: SingularAttackAtPronounSubjectGetsClosest
       fullName: DictationTests.SingularAttackAtPronounSubjectGetsClosest
       resultStatus: 1
-      duration: 0.0329952
+      duration: 0.0388481
       messages: 
       output: 
       stacktrace: 
@@ -677,7 +677,7 @@ MonoBehaviour:
       name: SingularAttackWorksWithObjectivePronoun
       fullName: DictationTests.SingularAttackWorksWithObjectivePronoun
       resultStatus: 1
-      duration: 0.0282517
+      duration: 0.0363561
       messages: 
       output: 
       stacktrace: 
@@ -694,7 +694,7 @@ MonoBehaviour:
       name: SingularAttackWorksWithSubjectivePronoun
       fullName: DictationTests.SingularAttackWorksWithSubjectivePronoun
       resultStatus: 1
-      duration: 0.0205873
+      duration: 0.0250389
       messages: 
       output: 
       stacktrace: 
@@ -711,7 +711,7 @@ MonoBehaviour:
       name: TargetsVenusFlyTrap
       fullName: DictationTests.TargetsVenusFlyTrap
       resultStatus: 1
-      duration: 0.1365297
+      duration: 0.2202934
       messages: 
       output: 'API parsing error for word: venus - Cannot access child value on Newtonsoft.Json.Linq.JValue.
 
@@ -730,7 +730,7 @@ MonoBehaviour:
       name: testBasicMovementCommand
       fullName: DictationTests.testBasicMovementCommand
       resultStatus: 1
-      duration: 0.0207023
+      duration: 0.0227156
       messages: 
       output: 
       stacktrace: 
@@ -747,7 +747,7 @@ MonoBehaviour:
       name: TestPreviouslyFailedCommands
       fullName: DictationTests.TestPreviouslyFailedCommands
       resultStatus: 1
-      duration: 0.1597756
+      duration: 0.2937376
       messages: 
       output: 'Not implemented in getSubject: PointerLocation
 
@@ -762,11 +762,60 @@ MonoBehaviour:
       parentId: 1001
       parentUniqueId: Tests.dll/[Tests][DictationTests][suite]
     - id: 1024
+      uniqueId: Tests.dll/[Tests][EnemyManagerTests][suite]
+      name: EnemyManagerTests
+      fullName: EnemyManagerTests
+      resultStatus: 1
+      duration: 0.1129565
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1039
+      parentUniqueId: '[Tests][C:/Users/willt/OneDrive/Documents/Treevolution/Treevolution/Library/ScriptAssemblies/Tests.dll][suite]'
+    - id: 1025
+      uniqueId: Tests.dll/EnemyManagerTests/[Tests][EnemyManagerTests.SuccessfullySpawnsFirstEnemy]
+      name: SuccessfullySpawnsFirstEnemy
+      fullName: EnemyManagerTests.SuccessfullySpawnsFirstEnemy
+      resultStatus: 1
+      duration: 0.10518
+      messages: 
+      output: 'Pause/Play
+
+        Look rotation viewing vector is zero
+
+        Pause/Play
+
+        There
+        are no audio listeners in the scene. Please ensure there is always one audio
+        listener in the scene
+
+        Look rotation viewing vector is zero
+
+        There
+        are no audio listeners in the scene. Please ensure there is always one audio
+        listener in the scene
+
+'
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1024
+      parentUniqueId: Tests.dll/[Tests][EnemyManagerTests][suite]
+    - id: 1024
       uniqueId: Tests.dll/[Tests][EnemyTests][suite]
       name: EnemyTests
       fullName: EnemyTests
       resultStatus: 1
-      duration: 1.0846426
+      duration: 1.0459523
       messages: 
       output: 
       stacktrace: 
@@ -782,12 +831,15 @@ MonoBehaviour:
       name: NormalEnemiesDamagedByWalls
       fullName: EnemyTests.NormalEnemiesDamagedByWalls
       resultStatus: 1
-      duration: 1.0793452
+      duration: 1.0396292
       messages: 
       output: 'Pause/Play
 
-        There are no audio listeners in the scene. Please
-        ensure there is always one audio listener in the scene
+        Look rotation viewing vector is zero
+
+        There
+        are no audio listeners in the scene. Please ensure there is always one audio
+        listener in the scene
 
 '
       stacktrace: 
@@ -804,7 +856,7 @@ MonoBehaviour:
       name: GameStateManagerTests
       fullName: GameStateManagerTests
       resultStatus: 2
-      duration: 0.0277862
+      duration: 0.0299179
       messages: One or more child tests had errors
       output: 
       stacktrace: 
@@ -820,7 +872,7 @@ MonoBehaviour:
       name: GameStateManagerStateTransitions
       fullName: GameStateManagerTests.GameStateManagerStateTransitions
       resultStatus: 2
-      duration: 0.0195944
+      duration: 0.0224616
       messages: "  Expected: Tutorial_Battle\r\n  But was:  Tutorial_Plan\r\n"
       output: 
       stacktrace: 'at GameStateManagerTests.GameStateManagerStateTransitions () [0x000b9]
@@ -840,7 +892,7 @@ MonoBehaviour:
       name: PathfindingTests
       fullName: PathfindingTests
       resultStatus: 1
-      duration: 0.0816327
+      duration: 0.1567192
       messages: 
       output: 'Pause/Play
 
@@ -858,7 +910,7 @@ MonoBehaviour:
       name: PathfinderWorksWithoutGraph
       fullName: PathfindingTests.PathfinderWorksWithoutGraph
       resultStatus: 1
-      duration: 0.0263936
+      duration: 0.0460524
       messages: 
       output: 
       stacktrace: 
@@ -875,7 +927,7 @@ MonoBehaviour:
       name: PathfindingGraphGeneratorWorksWithObstacles
       fullName: PathfindingTests.PathfindingGraphGeneratorWorksWithObstacles
       resultStatus: 1
-      duration: 0.0086782
+      duration: 0.0173192
       messages: 
       output: 
       stacktrace: 
@@ -892,7 +944,7 @@ MonoBehaviour:
       name: PathfindingGraphGeneratorWorksWithoutObstacles
       fullName: PathfindingTests.PathfindingGraphGeneratorWorksWithoutObstacles
       resultStatus: 1
-      duration: 0.0006966
+      duration: 0.0014425
       messages: 
       output: 
       stacktrace: 
@@ -909,7 +961,7 @@ MonoBehaviour:
       name: TowerGenerationTests
       fullName: TowerGenerationTests
       resultStatus: 1
-      duration: 0.0225957
+      duration: 0.0452614
       messages: 
       output: 
       stacktrace: 
@@ -925,7 +977,7 @@ MonoBehaviour:
       name: TowerGenerationPointAllocation
       fullName: TowerGenerationTests.TowerGenerationPointAllocation
       resultStatus: 1
-      duration: 0.0139452
+      duration: 0.0328357
       messages: 
       output: 
       stacktrace: 
@@ -937,21 +989,109 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1020
       parentUniqueId: Tests.dll/[Tests][TowerGenerationTests][suite]
-    m_ResultText: 'NormalEnemiesDamagedByWalls (1.079s)
+    - id: 1034
+      uniqueId: Tests.dll/[Tests][TowerTests][suite]
+      name: TowerTests
+      fullName: TowerTests
+      resultStatus: 2
+      duration: 1.1672143
+      messages: One or more child tests had errors
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1036
+      parentUniqueId: '[Tests][C:/Users/willt/OneDrive/Documents/Treevolution/Treevolution/Library/ScriptAssemblies/Tests.dll][suite]'
+    - id: 1036
+      uniqueId: Tests.dll/TowerTests/[Tests][TowerTests.TestDigestTower]
+      name: TestDigestTower
+      fullName: TowerTests.TestDigestTower
+      resultStatus: 2
+      duration: 0.1039976
+      messages: "  Expected: True\r\n  But was:  False\r\n"
+      output: 'Pause/Play
+
+        There are no audio listeners in the scene. Please
+        ensure there is always one audio listener in the scene
+
+        Reached
+        tree
+
+        Reached tree
+
+        Reached tree
+
+        Reached tree
+
+        Reached
+        tree
+
+        Reached tree
+
+'
+      stacktrace: 'at TowerTests+<TestDigestTower>d__1.MoveNext () [0x001b7] in C:\Users\willt\OneDrive\Documents\Treevolution\Treevolution\Assets\Tests\TowerTests.cs:96
+
+        at
+        UnityEngine.TestTools.TestEnumerator+<Execute>d__7.MoveNext () [0x0004e]
+        in C:\Users\willt\OneDrive\Documents\Treevolution\Treevolution\Library\PackageCache\com.unity.test-framework@1.1.31\UnityEngine.TestRunner\NUnitExtensions\Attributes\TestEnumerator.cs:46
+
+'
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1034
+      parentUniqueId: Tests.dll/[Tests][TowerTests][suite]
+    - id: 1035
+      uniqueId: Tests.dll/TowerTests/[Tests][TowerTests.TestSingleTargetTower]
+      name: TestSingleTargetTower
+      fullName: TowerTests.TestSingleTargetTower
+      resultStatus: 1
+      duration: 1.0488182
+      messages: 
+      output: 'Pause/Play
+
+        There are no audio listeners in the scene. Please
+        ensure there is always one audio listener in the scene
+
+        Error killing
+        enemy: Object reference not set to an instance of an object
+
+        Error
+        killing enemy: Object reference not set to an instance of an object
+
+'
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1034
+      parentUniqueId: Tests.dll/[Tests][TowerTests][suite]
+    m_ResultText: 'NormalEnemiesDamagedByWalls (1.040s)
 
       ---
 
       Pause/Play
 
-      There
-      are no audio listeners in the scene. Please ensure there is always one audio
-      listener in the scene'
+      Look
+      rotation viewing vector is zero
+
+      There are no audio listeners in the
+      scene. Please ensure there is always one audio listener in the scene'
     m_ResultStacktrace: 
     m_TestListState:
-      scrollPos: {x: 0, y: 300}
+      scrollPos: {x: 0, y: 379.50012}
       m_SelectedIDs: f2d680e8
       m_LastClickedID: -394209550
-      m_ExpandedIDs: 18b84385d606d0ad26285abdf54793f46bc8e5f7346a190ea231ff41aa54e867ffffff7f
+      m_ExpandedIDs: 18b84385d606d0ad26285abdf54793f46bc8e5f7346a190e31f8d526a231ff41b7411e4eaa54e867ffffff7f
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1049,10 +1189,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 257.6
+    x: 252.8
     y: 73.6
-    width: 850
-    height: 396.6
+    width: 838.8
+    height: 422.2
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -1061,6 +1201,8 @@ MonoBehaviour:
     m_KeySerializationHelper:
     - {fileID: -3688202396430210772, guid: a3a226a068326d342837c93da09d6cb7, type: 2}
     - {fileID: -5704776716810297057, guid: 403fb93f83bcf1941948289826b5c72d, type: 2}
+    - {fileID: -5704776716810297057, guid: d37d5380a01597e46b897d99e122a141, type: 2}
+    - {fileID: 5468691062623788033, guid: 25c068bd135851943b69226ed00db084, type: 2}
     m_ValueSerializationHelper:
     - e00: 1
       e01: 0
@@ -1094,10 +1236,42 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    - e00: 0.56631577
+      e01: 0
+      e02: 0
+      e03: -13.315765
+      e10: 0
+      e11: 0.56631577
+      e12: 0
+      e13: 106.65264
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 403fb93f83bcf1941948289826b5c72d, type: 2}
+  m_AnimatorController: {fileID: 9100000, guid: 25c068bd135851943b69226ed00db084, type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: -5704776716810297057, guid: 403fb93f83bcf1941948289826b5c72d, type: 2}
+  - m_Target: {fileID: 5468691062623788033, guid: 25c068bd135851943b69226ed00db084, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}
@@ -1182,7 +1356,7 @@ MonoBehaviour:
       y: 21
       width: 838.8
       height: 401.2
-    m_Scale: {x: 1, y: 1}
+    m_Scale: {x: 1.0595, y: 1.0595}
     m_Translation: {x: 419.4, y: 200.6}
     m_MarginLeft: 0
     m_MarginRight: 0
@@ -1190,10 +1364,10 @@ MonoBehaviour:
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -419.4
-      y: -200.6
-      width: 838.8
-      height: 401.2
+      x: -395.8471
+      y: -189.3346
+      width: 791.6942
+      height: 378.6692
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 1048.5, y: 527.75}
@@ -1233,25 +1407,25 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: de700000
+      m_SelectedIDs: f2700000
       m_LastClickedID: 0
-      m_ExpandedIDs: f400ffff3001ffff7e07ffff6c0dffffa80dffff0c14ffff141affff501affffbe1bffffa021ffffdc21ffff4823ffff3229ffff6e29ffffdc2affff2630ffff6230ffffd031ffff6638ffffa238ffff103afffff83fffff3440ffffa241ffff7e47ffffba47ffff2849ffff104fffff4c4fffffbc50ffff9856ffffd456ffff5a58ffff365effff725effffe25fffffc065fffffc65ffff4067ffffb26dffffee6dffff6c6fffff4a75ffff8675ffff0077ffffa288ffffde88ffff3e8affff2290ffff5e90ffffb292ffff9898ffffd498ffff249bffff68a1ffffa4a1ffffdea3ffffc8a9ffff04aaffff54acffff38b2ffff74b2ffff9ab4ffff8ebaffffcabaffff00c1ffffb0c9ffffecc9ffff02d0ffffe0d5ffff1cd6ffff1adcfffffce1ffff38e2ffff36e8ffff44eeffff80eeffff82f4ffff10fbffff54b40000
+      m_ExpandedIDs: bc7efdfff87efdffa086fdff7a8cfdffb68cfdff6294fdffa699fdffe299fdff669bfdff4ea1fdff8aa1fdfffea2fdfff2a8fdff2ea9fdffaaaafdff34b1fdff70b1fdffc8b2fdffa4b8fdffe0b8fdff2cbafdff08c0fdff44c0fdff8ac1fdff9ac8fdffd6c8fdff1ccafdff06d0fdff42d0fdff88d1fdffd2d6fdff0ed7fdff3ed8fdff20defdff5cdefdff8cdffdff6ce5fdffa8e5fdfff0e6fdffe2ecfdff1eedfdff4eeefdff2cf4fdff68f4fdffa4fbfdff6602feffa202feffe609feff360ffeff720ffefffc10feff6217feff9e17feff3019feffc41ffeff0020feff9221feff9627feffd227feff6029feffba2ffefff62ffeff6e31feff5637feff9237feff2039feff023ffeff3e3ffeffb640feff9646feffd246feff6048feff3e4efeff7a4efeff0250feff9256feffce56feff5e58feffb85dfefff45dfeff845ffeffe664feff2265feffb066feff266dfeff626dfefff26efeffce74feff0a75feff8476feff167dfeff527dfeffcc7efeff2e84feff6a84feffae8bfefff090feff2c91feffbc92feffd098feff0c99feff9c9afeff82a0feffbea0feff00a8feff74aefeffb0aefeff26b0feff2eb6feff6ab6feffe0b7feff36bdfeff72bdfefffebefeff46c4feff82c4feffc4cbfeffa2d1feffded1feff6ad3feff4cd9feff88d9feffb2e0feff2ae9feff66e9feff3ef0feff8ef5feffcaf5feff88f7feff96fdfeffd2fdfeff74fffeffce04ffff0a05ffff9406ffff1c0dffff580dfffffa0effff2a15ffff6615fffff016fffff01cffff2c1dffffcc1effffb424fffff024ffff7a26ffff6e2cffffaa2cffff4a2effff4234ffff7e34ffff0836ffff663bffffa23bffff443dffff9c42ffffd842ffff6244ffff424bffff8e4bffffda4dffff1c53ffff5853ffffe254ffffea5affff265bffffc85cffffb062ffffec62ffff8c64ffff746affffb06affff506cffff3a72ffff7672ffff0074fffff879ffff347affffd47bffff1e81ffff5a81fffffc82ffff2089ffff6c89ffff2a8cffff5c93ffffa893ffff6495ffffc29affff0e9bffff0c9dffff4ea2ffff8aa2ffff12a4ffffeea9ffff2aaaffffb2abffffa2b1ffffdeb1ffff7ab3ffffbeb8fffffab8ffffc6bfffffc6c5ffff02c6ffffccccffff10fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: 
-        m_OriginalName: 
+        m_Name: Sphere
+        m_OriginalName: Sphere
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 0
+        m_UserData: -45942
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 11
+        m_OriginalEventType: 0
         m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 9}
+        m_ClientGUIView: {fileID: 8}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -1484,9 +1658,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.7422146, y: 0.27456456, z: -0.271643}
+    m_Target: {x: 0.91982543, y: 0.4790335, z: -0.8265197}
     speed: 2
-    m_Value: {x: -0.7422146, y: 0.27456456, z: -0.271643}
+    m_Value: {x: 0.91982543, y: 0.4790335, z: -0.8265197}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1533,13 +1707,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.0076411664, y: 0.9172796, z: -0.017613081, w: -0.39781234}
+    m_Target: {x: -0.18011996, y: 0.32005185, z: -0.06211883, w: -0.92805785}
     speed: 2
-    m_Value: {x: -0.007641071, y: 0.9172681, z: -0.017612861, w: -0.39780736}
+    m_Value: {x: -0.18011758, y: 0.32004762, z: -0.062118005, w: -0.9280456}
   m_Size:
-    m_Target: 0.15090886
+    m_Target: 0.34641016
     speed: 2
-    m_Value: 0.15090886
+    m_Value: 0.34641016
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1605,22 +1779,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Prefabs/Enemies
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Prefabs/Enemies
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\willt\OneDrive\Documents\Treevolution\Treevolution
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 6aa80000
-    m_LastClickedID: 43114
-    m_ExpandedIDs: 00000000a0a70000a2a70000a4a70000a6a70000a8a70000aaa70000aca70000aea70000b0a70000b2a70000b4a70000b6a700006aa8000000ca9a3bffffff7f
+    m_SelectedIDs: a6a80000
+    m_LastClickedID: 43174
+    m_ExpandedIDs: 00000000b0a70000b2a70000b4a70000b6a70000b8a70000baa70000bca70000bea70000c0a70000c2a70000c4a70000c6a70000e2a7000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1648,7 +1822,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a0a70000a2a70000a4a70000a6a70000a8a70000aaa70000aca70000aea70000b0a70000b2a70000b4a70000b6a70000
+    m_ExpandedIDs: 00000000b0a70000b2a70000b4a70000b6a70000b8a70000baa70000bca70000bea70000c0a70000c2a70000c4a70000c6a70000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1675,7 +1849,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c62300008ea10000e6010000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1726,7 +1900,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 516.8
-    width: 1001.4
+    width: 1092.6
     height: 266.59998
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:

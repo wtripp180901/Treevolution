@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+/// <summary>
+/// Modified BuddyInteractable to be attached to walls to allow them to adjust their constraints when they are broken
+/// </summary>
 public class WallBuddyInteractable : BuddyInteractable
 {
     private WallScript wallScript;

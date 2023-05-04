@@ -22,10 +22,21 @@ namespace Pathfinding
             }
         }
 
+        /// <summary>
+        /// Should be subscribed to by any obstacles, when received should send their pathfinding points to this class via AddObstacleData
+        /// </summary>
         public static event EventHandler<EventArgs> GetObstacleDataEvent;
 
+        /// <summary>
+        /// List of raw obstacle data
+        /// </summary>
         private static List<ObstacleData> obstacleData = new List<ObstacleData>();
 
+        /// <summary>
+        /// Callback method for when GetObstacleDataEvent is invoked, used to add an obstacles pathfinding points for consideration
+        /// </summary>
+        /// <param name="bounds">The bounds of an obstacle's collider</param>
+        /// <param name="possiblePoints">An obstacles pathfinding points for consideration</param>
         public static void AddObstacleData(Bounds bounds, Vector3[] possiblePoints)
         {
             obstacleData.Add(new ObstacleData(bounds, possiblePoints));
@@ -67,6 +78,10 @@ namespace Pathfinding
             return graph.ToArray();
         }
 
+        /// <summary>
+        /// Helper method for GetPathfindingGraph, iterates through obstacleData (set in GetPathfindingGraph) and creates nodes from the data if they are within the bounds of the board and aren't inside other objects geometry
+        /// </summary>
+        /// <returns>Points which meet the criteria to be nodes used in the pathfinding graph</returns>
         private static List<PathfindingNode> nodesFromObstacleData()
         {
 

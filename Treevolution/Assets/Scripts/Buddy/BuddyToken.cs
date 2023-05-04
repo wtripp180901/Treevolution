@@ -20,6 +20,9 @@ public class DummyToken : BuddyToken
     public DummyToken(): base(TOKEN_TYPES.Error) { }
 }
 
+/// <summary>
+/// Token for a word representing an action
+/// </summary>
 public class ActionBuddyToken : BuddyToken
 {
     public readonly BUDDY_ACTION_TYPES actionType;
@@ -28,6 +31,10 @@ public class ActionBuddyToken : BuddyToken
         this.actionType = actionType;
     }
 }
+
+/// <summary>
+/// Token for a word representing a subject
+/// </summary>
 public class SubjectBuddyToken : BuddyToken
 {
 
@@ -38,6 +45,9 @@ public class SubjectBuddyToken : BuddyToken
     }
 }
 
+/// <summary>
+/// Token for a word representing a restriction
+/// </summary>
 public class RestrictionBuddyToken : BuddyToken
 {
     public readonly RESTRICTION_TYPES restrictionType;

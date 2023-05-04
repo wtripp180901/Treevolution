@@ -4,11 +4,21 @@ using System.Collections.Generic;
 //using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
+
+/// <summary>
+/// Controls buddy behaviour
+/// </summary>
 public class BuddyScript : MonoBehaviour
 {
+    /// <summary>
+    /// The list of instructions to be sequentially performed
+    /// </summary>
     Queue<BuddyAction> actionQueue = new Queue<BuddyAction>();
     Rigidbody rig; //This is what physics are applied to in order to move the object
 
+    /// <summary>
+    /// If true means the buddy is ready to move to the next instruction
+    /// </summary>
     bool isok = true;
 
     Vector3 directionVector;
@@ -91,6 +101,11 @@ public class BuddyScript : MonoBehaviour
         value?.Invoke();
     }
 
+    /// <summary>
+    /// Returns direction vector to next position
+    /// </summary>
+    /// <param name="nextPosition">Target position to move to</param>
+    /// <returns>Direction vector</returns>
     Vector3 getNewDirectionVector(Vector3 nextPosition)
     {
         Vector3 dirVec = (new Vector3(nextPosition.x, 0, nextPosition.z) - new Vector3(transform.position.x,0,transform.position.z)).normalized * speed;
@@ -126,6 +141,9 @@ public class BuddyScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Attacks enemies within the buddy's range at a location
+    /// </summary>
     void defendFixedUpdate()
     {
         if (currentTarget == null)
@@ -150,6 +168,9 @@ public class BuddyScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Moves to target plants and activates EnterBuddyMode
+    /// </summary>
     void buffFixedUpdate()
     {
         if (moveToTargetGameObject(currentTarget))
@@ -161,6 +182,10 @@ public class BuddyScript : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// Moves to walls and repairs them
+    /// </summary>
     void repairFixedUpdate()
     {
         if (moveToTargetGameObject(currentTarget))
@@ -183,6 +208,10 @@ public class BuddyScript : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// Moves to enemies and attacks them
+    /// </summary>
     void attackFixedUpdate()
     {
         if (currentTarget == null)
@@ -204,6 +233,9 @@ public class BuddyScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Moves in the direction of directionVector until the targetted position is reached
+    /// </summary>
     void movementFixedUpdate()
     {
         if (directionVector != null)
@@ -216,6 +248,11 @@ public class BuddyScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Moves towards a targetted GameObject
+    /// </summary>
+    /// <param name="target">The GameObject to move towards</param>
+    /// <returns>Returns true if the target has been reached and false otherwise</returns>
     bool moveToTargetGameObject(GameObject target)
     {
         Vector3 vecToTarget = getNewDirectionVector(target.transform.position);
@@ -230,6 +267,10 @@ public class BuddyScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Clears actionQueue and fills it with new instructions
+    /// </summary>
+    /// <param name="actions">New instructions</param>
     public void GiveInstructions(List<BuddyAction> actions)
     {
         actionQueue.Clear();
@@ -243,6 +284,11 @@ public class BuddyScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Finds the closest enemy within range
+    /// </summary>
+    /// <param name="enemiesList">List of active enemies in the scene</param>
+    /// <returns>Returns closest enemy is one exists and is in range, returns null otherwise</returns>
     GameObject findNearest(GameObject[] enemiesList){
         float dis1 = 9999;//Its own attack range, this can be modified, if the enemy is larger than this range then there is no target to attack
         GameObject target = null;
