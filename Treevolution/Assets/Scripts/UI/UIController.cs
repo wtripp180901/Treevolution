@@ -115,6 +115,7 @@ public class UIController : MonoBehaviour
         infoDialogPrefab = new GameObject();
     }
 
+
     /// <summary>
     /// Displays an orange info pop-up requesting calibration of the game board.
     /// </summary>
@@ -131,6 +132,7 @@ public class UIController : MonoBehaviour
             }
         }
     }
+
 
     /// <summary>
     /// Displays a green button pop-up displaying calibration success, and continuing to Tutorial selection when it is closed.
@@ -153,16 +155,27 @@ public class UIController : MonoBehaviour
     }
 
     /// <summary>
+    /// Displays an orange info pop-up if the user didn't kill any bugs.
+    /// </summary>
+    public void NoKillPopUp()
+    {
+        lock (_openDialogs)
+        {
+            Dialog d = Dialog.Open(buttonDialogPrefab, DialogButtonType.None, ":(", "HEY! You didn't play by the rules... I guess you'll just have to continue without any practice.", true);
+            d.gameObject.transform.GetChild(3).gameObject.GetComponent<MeshRenderer>().material = backPlateOrange;
+            d.OnClosed = delegate (DialogResult dr)
+            {
+                TutorialBugPopUps();
+            };
+        }
+    }
+    /// <summary>
     /// Displays a button pop-up asking the user to select whether they would like to start the Tutorial.
     /// </summary>
     private void TutorialSelectionPopUp()
     {
         Dialog d = Dialog.Open(buttonDialogPrefab, DialogButtonType.Yes | DialogButtonType.No, "Begin Tutorial", "Would you like to proceed with the tutorial level?", true);
         d.OnClosed += HandleTutorialSelectionEvent;
-        lock (_openDialogs)
-        {
-            _openDialogs.Add(d);
-        }
     }
 
     /// <summary>
@@ -190,19 +203,19 @@ public class UIController : MonoBehaviour
         (Vector3 position, Quaternion rotation) t = (d1.transform.position, d1.transform.rotation);
         d1.OnClosed = delegate (DialogResult dr)
         {
-            Dialog d2 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Planning Phase", "There will be four rounds, each of which begins with a Planning Phase. During this time you can place your obstacles and plants to optimise your strategy; learn from past mistakes.", true);
+            Dialog d2 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Planning Phase", "There will be four rounds, each beginning with a Planning Phase. During this time, place your obstacles and plants to optimise your strategy; learn from past mistakes.", true);
             d2.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
             d2.OnClosed = delegate (DialogResult dr)
             {
-                Dialog d3 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Plants", "You have a range of plant towers to help defend the Tree, each with different abilities. Use their attack ranges, displayed as translucent blue regions during the planning phase, to help with your defence.", true);
+                Dialog d3 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Plants", "You have a range of plants to help defend the Tree, each with different abilities. They show their attack ranges during the Planning Phase to help with your defence.", true);
                 d3.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
                 d3.OnClosed = delegate (DialogResult dr)
                 {
-                    Dialog d4 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Obstacles", "You also have some thorny obstacles, which can be used to direct bugs towards your plants and away from the Tree.", true);
+                    Dialog d4 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Obstacles", "You also have some long, thorny bushes, which can be used to direct bugs towards your plants and away from the Tree.", true);
                     d4.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
                     d4.OnClosed = delegate (DialogResult dr)
                     {
-                        Dialog d5 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Enemies Approaching", "When the battles eventually start, enemy bugs will come from random locations at either far end of the battleground. Place your items wisely to best prepare for their approach.", true);
+                        Dialog d5 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Enemies Approaching", "When the battles start, enemy bugs will come from random locations at either far end of the table.", true);
                         d5.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
                         d5.OnClosed = delegate (DialogResult dr)
                         {
@@ -233,11 +246,11 @@ public class UIController : MonoBehaviour
         (Vector3 position, Quaternion rotation) t = (d1.transform.position, d1.transform.rotation);
         d1.OnClosed = delegate (DialogResult dr)
         {
-            Dialog d2 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Moving Items", "If you are not happy with your items' placements during battle, you can still move them. However, those items will become disabled for a short period of time as a penalty.", true);
+            Dialog d2 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Moving Items", "If you are not happy with your items' placements during battle, you can still move them. However, they will become disabled for a short time as a penalty.", true);
             d2.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
             d2.OnClosed = delegate (DialogResult dr)
             {
-                Dialog d3 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Bugs", "Keep an eye out for new bugs approaching, the most basic of which is the Ant.", true);
+                Dialog d3 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Bugs", "Keep an eye out for new bugs approaching, the first being the Ant.", true);
                 d3.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
                 d3.OnClosed = delegate (DialogResult dr)
                 {
@@ -246,7 +259,7 @@ public class UIController : MonoBehaviour
                     d4.gameObject.GetComponentInChildren<Image>().sprite = antImage;
                     d4.OnClosed = delegate (DialogResult dr)
                     {
-                        Dialog d5 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.OK, "Damage", "Most bugs can be damaged by *whacking* them. This works best by hitting the table just in front of the bug with your hand flat, or in a fist.\nTry for yourself!", true);
+                        Dialog d5 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.OK, "Damage", "Most bugs can be damaged by *whacking* them. This works best by hitting the table just in front of the bug with your hand flat, or in a fist.\nPress OK and try for yourself!", true);
                         d5.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
                         d5.gameObject.GetComponentInChildren<Image>().sprite = damageGif;
                         d5.OnClosed = delegate (DialogResult dr)
@@ -269,7 +282,7 @@ public class UIController : MonoBehaviour
     /// </summary>
     public void TutorialBugPopUps()
     {
-        Dialog d1 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Bugs", "More types of bugs will be introduced as you progress through the rounds. Be mindful of which ones you *whack*, though, as some have strong armour and it may make more sense to target these with your plants or buddy.", true);
+        Dialog d1 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Bugs", "More types of bugs will be introduced as you progress through the rounds. Some have strong armour, so it may make more sense to target these with your plants or buddy.", true);
         (Vector3 position, Quaternion rotation) t = (d1.transform.position, d1.transform.rotation);
         d1.OnClosed = delegate (DialogResult dr)
         {
@@ -278,17 +291,17 @@ public class UIController : MonoBehaviour
             d2.gameObject.GetComponentInChildren<Image>().sprite = armouredBeetleImage;
             d2.OnClosed = delegate (DialogResult dr)
             {
-                Dialog d3 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.OK, "Cockroaches", "The Cockroach is strong and fast, and their armour will take longer to break with pure force..", true);
+                Dialog d3 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.OK, "Cockroaches", "The Cockroach is both strong and fast. Its armour may be difficult to break though with brute force alone.", true);
                 d3.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
                 d3.gameObject.GetComponentInChildren<Image>().sprite = armouredCockroachImage;
                 d3.OnClosed = delegate (DialogResult dr)
                 {
-                    Dialog d4 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.OK, "Stagbeetles", "The Stagbeetle may seem slow, but it has the health to make up for it - they can even break through obstacles, which can be repaired using your ladybird buddy!", true);
+                    Dialog d4 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.OK, "Stagbeetles", "The Stagbeetle is slow, but it has the health and strength to make up for it, being able to break down obstacles!", true);
                     d4.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
                     d4.gameObject.GetComponentInChildren<Image>().sprite = armouredStegbeetleImage;
                     d4.OnClosed = delegate (DialogResult dr)
                     {
-                        Dialog d5 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.OK, "Dragonflies", "These beautiful creatures can fly straight over your obstacles, so be sure to swat them when you see them, or place your Venus Fly Trap wisely!", true);
+                        Dialog d5 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.OK, "Dragonflies", "These beautiful creatures can fly straight over your obstacles, so be sure to swat them when you see them, or place your fly-trap wisely!", true);
                         d5.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
                         d5.gameObject.GetComponentInChildren<Image>().sprite = dragonflyImage;
                         d5.OnClosed = delegate (DialogResult dr)
@@ -298,7 +311,7 @@ public class UIController : MonoBehaviour
                             d6.gameObject.GetComponentInChildren<Image>().sprite = hornetImage;
                             d6.OnClosed = delegate (DialogResult dr)
                             {
-                                Dialog d7 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Buddy", "In addition to whacking bugs and using your plant towers, you can also get help from your ladybird buddy!\nSay the words 'Attack', 'Defend', or 'Repair' to help with your strategy, or 'Thunder' to unleash an elemental strike at the position you are pointing to.\nAfter clicking OK, try saying some of the words.", true);
+                                Dialog d7 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Buddy", "As well as whacking bugs and using your plants, you can also use your ladybird buddy by saying 'Attack', 'Defend', and 'Repair'; or, say 'Thunder' to strike the position you are pointing to.\nPress OK and try for youself!", true);
                                 d7.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
                                 d7.OnClosed = delegate (DialogResult dr)
                                 {
@@ -327,7 +340,7 @@ public class UIController : MonoBehaviour
     /// </summary>
     public void EndTutorial()
     {
-        Dialog d1 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Tutorial Complete", "Now it's time to start for real. Place your items, and click the red button when you are ready to begin the first battle!", true);
+        Dialog d1 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Tutorial Complete", "Now it's time to start for real. Place your items carefully, and click the red button when you are ready to begin the first battle!", true);
         d1.OnClosed = delegate (DialogResult dr)
         {
             _gameStateManager.BeginRound();
@@ -353,10 +366,6 @@ public class UIController : MonoBehaviour
         {
             GetComponent<StartMenuLogic>().OpenStartMenu();
         };
-        lock (_openDialogs)
-        {
-            _openDialogs.Add(d);
-        }
     }
 
     /// <summary>
@@ -368,7 +377,11 @@ public class UIController : MonoBehaviour
         {
             for (int i = 0; i < _openDialogs.Count; i++)
             {
-                _openDialogs[i].DismissDialog();
+                if (_openDialogs != null)
+                {
+                    _openDialogs[i].State = DialogState.Closing;
+                    _openDialogs[i].DismissDialog();
+                }
             }
             _openDialogs.Clear();
         }
@@ -407,10 +420,12 @@ public class UIController : MonoBehaviour
     public void StartShowingHypothesis() { hypothesisMode = true; }
     public void ShowDictation(string dictation)
     {
+        float origSize = dictationText.fontSize;
+        dictationText.fontSize = origSize / 2;
         hypothesisMode = false;
         dictationText.text = dictation;
         dictationText.color = Color.white;
-        StartCoroutine(clearTextAfterDelay(3, dictationText));
+        StartCoroutine(clearTextAfterDelay(30, dictationText, origSize));
     }
 
     public void ShowMessageAsDictation(string txt)
@@ -427,10 +442,11 @@ public class UIController : MonoBehaviour
         }
     }
 
-    IEnumerator clearTextAfterDelay(int delay,TMP_Text text)
+    IEnumerator clearTextAfterDelay(int delay,TMP_Text text, float origSize)
     {
         yield return new WaitForSeconds(delay);
         text.text = "";
+        text.fontSize = origSize;
     }
 }
 

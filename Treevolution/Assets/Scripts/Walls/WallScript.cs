@@ -79,5 +79,6 @@ public class WallScript : MonoBehaviour, IRuntimeMovableBehaviourScript
         myCollider = collider;
         this.nodeGenerator = nodeGenerator;
     }
+
 }
 

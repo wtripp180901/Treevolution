@@ -6,6 +6,8 @@ public class TowerManager : MonoBehaviour
 {
     private List<GameObject> _activeTowers;
     private bool _rangeVisualToggle = true;
+    private bool _disabledToggle = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,13 +20,23 @@ public class TowerManager : MonoBehaviour
         
     }
 
-    public void ToggleAllRangeVisuals(bool toggle)
+    public void ToggleAllRangeVisuals(bool showRange)
     {
-        _rangeVisualToggle = toggle;
+        _rangeVisualToggle = showRange;
         foreach (GameObject tower in _activeTowers)
         {
             TowerScript towerScript = tower.GetComponent<TowerScript>();
             towerScript.DisplayRange(_rangeVisualToggle);
+        }
+    }
+
+    public void DisableAllTowers(bool disableTowers)
+    {
+        _disabledToggle = disableTowers;
+        foreach (GameObject tower in _activeTowers)
+        {
+            TowerScript towerScript = tower.GetComponent<TowerScript>();
+            towerScript.ShootingDisabled(disableTowers);
         }
     }
 
@@ -34,6 +46,13 @@ public class TowerManager : MonoBehaviour
         {
             tower.GetComponent<TowerScript>().DisplayRange(_rangeVisualToggle);
             _activeTowers.Add(tower);
+        }
+    }
+    public void RemoveTower(GameObject tower)
+    {
+        if (_activeTowers.Contains(tower))
+        {
+            _activeTowers.Remove(tower);
         }
     }
 }
