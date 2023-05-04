@@ -48,7 +48,6 @@ public class QRDetection : MonoBehaviour
     /// </summary>
     [HideInInspector]
     public bool lockPlane;
-
     /// <summary>
     /// Running PlaneMapper instance.
     /// </summary>

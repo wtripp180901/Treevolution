@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using static Pathfinding.PathfindingGraphGenerator;
 
 namespace Pathfinding
 {   
@@ -15,6 +16,8 @@ namespace Pathfinding
         float floorOffset = 0.1f;
         Bounds bounds;
         BoxCollider myCollider;
+        private Vector3[] _possiblePFPoints;
+        private ObstacleData _obstacleData;
 
         /// <summary>
         /// Determines if the PathfindingObstacle will send nodes to PathfindingGraphGenerator
@@ -37,7 +40,7 @@ namespace Pathfinding
         {
             myCollider = gameObject.GetComponent<BoxCollider>();
             bounds = myCollider.bounds;
-            PathfindingGraphGenerator.GetObstacleDataEvent += GetObstacleBoundsEventHandler;
+            GetObstacleDataEvent += GetObstacleBoundsEventHandler;
         }
         void GetObstacleBoundsEventHandler(object sender, EventArgs args)
         {
@@ -54,25 +57,31 @@ namespace Pathfinding
 
                 //Debug.DrawLine(floorPosition, floorPosition + halfWidthWithMargin * myCollider.transform.right, Color.blue, 100);
                 //Debug.DrawLine(floorPosition, floorPosition + halfDepthWithMargin * myCollider.transform.forward, Color.blue, 100);
-                Vector3[] possiblePFPoints = CalculateCorners(floorPosition, halfWidthWithMargin, myCollider.transform.right, halfDepthWithMargin, myCollider.transform.forward);
-                Debug.DrawLine(possiblePFPoints[0], possiblePFPoints[0] + Vector3.up * 0.03f, Color.green, 2);
-                Debug.DrawLine(possiblePFPoints[1], possiblePFPoints[1] + Vector3.up * 0.03f, Color.green, 2);
-                Debug.DrawLine(possiblePFPoints[2], possiblePFPoints[2] + Vector3.up * 0.03f, Color.green, 2);
-                Debug.DrawLine(possiblePFPoints[3], possiblePFPoints[3] + Vector3.up * 0.03f, Color.green, 2);
+                _possiblePFPoints = CalculateCorners(floorPosition, halfWidthWithMargin, myCollider.transform.right, halfDepthWithMargin, myCollider.transform.forward);
+                Debug.DrawLine(_possiblePFPoints[0], _possiblePFPoints[0] + Vector3.up * 0.03f, Color.green, 2);
+                Debug.DrawLine(_possiblePFPoints[1], _possiblePFPoints[1] + Vector3.up * 0.03f, Color.green, 2);
+                Debug.DrawLine(_possiblePFPoints[2], _possiblePFPoints[2] + Vector3.up * 0.03f, Color.green, 2);
+                Debug.DrawLine(_possiblePFPoints[3], _possiblePFPoints[3] + Vector3.up * 0.03f, Color.green, 2);
 
-                PathfindingGraphGenerator.AddObstacleData(bounds, possiblePFPoints);
+                _obstacleData = AddObstacleData(bounds, _possiblePFPoints);
             }
         }
 
         public void SetSendsNodes(bool sends)
         {
             sendNodes = sends;
-            Pathfinding.PathfindingUpdatePublisher.NotifyObstacleChanged();
+            PathfindingUpdatePublisher.NotifyObstacleChanged();
         }
 
         public void CleanForTest()
         {
-            PathfindingGraphGenerator.GetObstacleDataEvent -= GetObstacleBoundsEventHandler;
+            GetObstacleDataEvent -= GetObstacleBoundsEventHandler;
+        }
+
+        void OnDestroy()
+        {
+            RemoveFromObstacleData(_obstacleData);
+            CleanForTest();
         }
     }
 
