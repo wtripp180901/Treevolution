@@ -125,7 +125,7 @@ public class UIController : MonoBehaviour
             CloseOpenDialogs(true);
             if (_gameStateManager.currentGameState != GameStateManager.GameState.Calibration_Success)
             {
-                Dialog d = Dialog.Open(infoDialogPrefab, DialogButtonType.None, "Calibrate Game Board", "Find, and look at the QR Code in the corner of the table to calibrate the Game Board.", true);
+                Dialog d = Dialog.Open(infoDialogPrefab, DialogButtonType.None, "Calibrate Game Board", "Find and look at the QR Code in the corner of the table to calibrate the Game Board.", true);
                 d.gameObject.transform.GetChild(3).gameObject.GetComponent<MeshRenderer>().material = backPlateOrange;
                 _openDialogs.Add(d);
             }
@@ -140,7 +140,7 @@ public class UIController : MonoBehaviour
         lock (_openDialogs)
         {
             CloseOpenDialogs(true);
-            Dialog d = Dialog.Open(buttonDialogPrefab, DialogButtonType.Confirm, "Calibration Success", "You have successfully calibrated the Game Board! Ensure that it lines up with the table, then click Confirm to lock the board in place.", true);
+            Dialog d = Dialog.Open(buttonDialogPrefab, DialogButtonType.Confirm, "Calibration Success", "You have successfully calibrated the Game Board! Click Confirm to lock the board in place.", true);
             d.gameObject.transform.GetChild(3).gameObject.GetComponent<MeshRenderer>().material = backPlateGreen;
             d.OnClosed = delegate (DialogResult dr)
             {
@@ -186,7 +186,7 @@ public class UIController : MonoBehaviour
     /// </summary>
     public void TutorialPlanPopUps()
     {
-        Dialog d1 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Treevolution Tutorial", "Protect your Home Tree from the enemy bugs! You can either use your hands to damage the bugs, or utilise the help of your plants and bird buddy.", true);
+        Dialog d1 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Treevolution Tutorial", "Protect the Tree from enemy bugs! You can either use your hands to damage the bugs, or get help from your plants and ladybird buddy.", true);
         (Vector3 position, Quaternion rotation) t = (d1.transform.position, d1.transform.rotation);
         d1.OnClosed = delegate (DialogResult dr)
         {
