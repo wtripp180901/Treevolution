@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -905,13 +905,13 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - keyword: Pause
+  - keyword: Buddy
     response:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 100754439}
           m_TargetAssemblyTypeName: VoiceCommandReceiver, MainGameAssembly
-          m_MethodName: PauseGame
+          m_MethodName: Record
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -920,14 +920,46 @@ MonoBehaviour:
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
-          m_CallState: 2
-  - keyword: Buddy
+          m_CallState: 1
+  - keyword: Attack
     response:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 100754439}
           m_TargetAssemblyTypeName: VoiceCommandReceiver, MainGameAssembly
-          m_MethodName: Record
+          m_MethodName: BuddyAttack
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+  - keyword: Repair
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 100754439}
+          m_TargetAssemblyTypeName: VoiceCommandReceiver, MainGameAssembly
+          m_MethodName: BuddyRepair
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+  - keyword: Defend here
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 100754439}
+          m_TargetAssemblyTypeName: VoiceCommandReceiver, MainGameAssembly
+          m_MethodName: BuddyDefend
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

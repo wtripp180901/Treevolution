@@ -171,6 +171,33 @@ public class VoiceCommandReceiver : MonoBehaviour
         StartCoroutine(Indicator());
     }
 
+    public void BuddyAttack()
+    {
+        performBasicBuddyAction(
+            new List<BuddyAction>() { new TargetedBuddyAction(BUDDY_ACTION_TYPES.Attack, GetComponent<EnemyManager>().enemies)
+            });
+    }
+
+    public void BuddyRepair()
+    {
+        performBasicBuddyAction(
+            new List<BuddyAction>() { new TargetedBuddyAction(BUDDY_ACTION_TYPES.Repair, GameObject.FindGameObjectsWithTag("Wall"))
+            }) ;
+    }
+
+    public void BuddyDefend()
+    {
+        performBasicBuddyAction(
+            new List<BuddyAction>() { new MoveBuddyAction(pointer.transform.position),new OngoingBuddyAction(BUDDY_ACTION_TYPES.Defend)
+            });
+    }
+
+    void performBasicBuddyAction(List<BuddyAction> actions)
+    {
+        playEndOfRecordingSound();
+        GameObject.FindWithTag("Buddy").GetComponent<BuddyScript>().GiveInstructions(actions);
+    }
+
     public void ProcessDictation(string dictation)
     {
         //uiController.ShowDictation("Dictation recieved: " + dictation);

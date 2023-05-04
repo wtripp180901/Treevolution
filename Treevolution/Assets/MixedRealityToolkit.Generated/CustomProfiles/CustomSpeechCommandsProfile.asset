@@ -72,3 +72,24 @@ MonoBehaviour:
       id: 0
       description: Menu
       axisConstraint: 2
+  - localizationKey: 
+    keyword: Attack
+    keyCode: 0
+    action:
+      id: 0
+      description: Menu
+      axisConstraint: 2
+  - localizationKey: 
+    keyword: Defend here
+    keyCode: 0
+    action:
+      id: 0
+      description: Menu
+      axisConstraint: 2
+  - localizationKey: 
+    keyword: Repair
+    keyCode: 0
+    action:
+      id: 0
+      description: Menu
+      axisConstraint: 2
