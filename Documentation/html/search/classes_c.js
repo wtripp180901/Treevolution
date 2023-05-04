@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['realworldpropertymapper_0',['RealWorldPropertyMapper',['../class_real_world_property_mapper.html',1,'']]],
-  ['restrictionbuddytoken_1',['RestrictionBuddyToken',['../class_restriction_buddy_token.html',1,'']]],
-  ['roundtimer_2',['RoundTimer',['../class_round_timer.html',1,'']]],
-  ['runtimemovable_3',['RuntimeMovable',['../class_runtime_movable.html',1,'']]]
+  ['qrdetection_0',['QRDetection',['../class_q_r_detection.html',1,'']]],
+  ['qrsimulation_1',['QRSimulation',['../class_q_r_simulation.html',1,'']]]
 ];

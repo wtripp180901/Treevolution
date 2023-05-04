@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['infodialogprefab_0',['infoDialogPrefab',['../class_u_i_controller.html#ac96624bd82376e9a6d0ffe73e9da4bd1',1,'UIController']]],
-  ['infotext_1',['InfoText',['../class_game_state_manager.html#ac1e14555acc3b417269b7ffd274a1e6d',1,'GameStateManager']]],
-  ['infotext_2',['infoText',['../class_u_i_controller.html#a02a52473dae002b907f64dfc977463f8',1,'UIController']]]
+  ['enabled_0',['enabled',['../class_wall_script.html#ae3c74f26d9f11c391bc1dd42d3b46238',1,'WallScript']]],
+  ['enemieskilled_1',['enemiesKilled',['../class_enemy_manager.html#a7cd6fc1fe48db6815c528f869f587d64',1,'EnemyManager']]]
 ];
