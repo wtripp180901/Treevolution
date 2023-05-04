@@ -601,9 +601,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 15
+  points: 3
   flying: 0
   speed: 0.0013
   inWallDamageInterval: 0.5
+  takeDamage: 1
   frozen: 0
   spawnAudio: {fileID: 0}
   damageAudio: {fileID: 0}
