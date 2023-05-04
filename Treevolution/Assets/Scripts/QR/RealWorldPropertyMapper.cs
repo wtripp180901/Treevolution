@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Responsible for mapping real world properties from an instantiated playspace to GameProperties
+/// </summary>
 public class RealWorldPropertyMapper : MonoBehaviour
 {
     private PlaneMapper planeMapper;
@@ -21,6 +24,9 @@ public class RealWorldPropertyMapper : MonoBehaviour
         if (Input.GetKeyDown("z")) GetComponent<GameStateManager>().GetComponent<GameStateManager>().BeginBattle();
     }
 
+    /// <summary>
+    /// Maps properties form the plane to GameProperties
+    /// </summary>
     public void MapProperties()
     {
         GameProperties.BottomLeftCorner = planeMapper.bottomLeft;

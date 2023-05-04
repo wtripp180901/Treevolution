@@ -28,6 +28,13 @@ public class SingleTargetTower : TowerScript
         _fireRateDelta = fireRate;
     }
 
+    public void SetupForTest(float range,GameObject rotating)
+    {
+        rangeRadius = range;
+        rotatingObject = rotating;
+        
+    }
+
     // Update is called once per frame
     private void Update()
     {

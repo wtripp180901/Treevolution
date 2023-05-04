@@ -6,8 +6,14 @@ using TMPro;
 using System;
 using Newtonsoft.Json.Linq;
 
+/// <summary>
+/// A controller to receive events from recognised keywords and dictation
+/// </summary>
 public class VoiceCommandReceiver : MonoBehaviour
 {
+    /// <summary>
+    /// The object representing PointerLocationTracker's pointer
+    /// </summary>
     public GameObject pointer;
     private EnemyManager enemyManager;
     PointerLocationTracker pointerTracker;
@@ -15,6 +21,9 @@ public class VoiceCommandReceiver : MonoBehaviour
     GameObject recordingIndicator;
     GameStateManager gameStateManager;
 
+    /// <summary>
+    /// The audio that should play to indicate the buddy has begun or finished recording
+    /// </summary>
     [SerializeField] AudioSource recordingIndicationSource;
     float basePitch;
 
@@ -55,6 +64,9 @@ public class VoiceCommandReceiver : MonoBehaviour
         recordingIndicationSource.Play();
     }
 
+    /// <summary>
+    /// Toggles pausing the game
+    /// </summary>
     public void PauseGame()
     {
         if (gameStateManager.currentGameState == GameStateManager.GameState.Round_Battle || gameStateManager.currentGameState == GameStateManager.GameState.Tutorial_Battle)
@@ -66,8 +78,14 @@ public class VoiceCommandReceiver : MonoBehaviour
     float recordingTimeout = 10;
 
     bool canManuallyRecord = true;
+    /// <summary>
+    /// Indicates that writing to the recording.wav file on the persistentDataPath has finished and it is safe to record and write a new file
+    /// </summary>
     public void SetSafeToRecord() { canManuallyRecord = true; }
 
+    /// <summary>
+    /// If in safe mode, will begin the recording session to write to a file to be uploaded to AssemblyAI. If not in safe mode, will begin the dictation session for DictationHandler. Both play a recording sound and cause the buddy's indication effect to play
+    /// </summary>
     public void Record()
     {
         if (SafeMode)
@@ -104,7 +122,13 @@ public class VoiceCommandReceiver : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// The AudioSource recorded voice data should be saved to
+    /// </summary>
     public AudioSource recordingAudioSource;
+    /// <summary>
+    /// Begins the recording session if in safe mode. Will automatically finish session after 4 seconds
+    /// </summary>
     void SafeModeRecordAudio()
     {
         try
@@ -123,6 +147,10 @@ public class VoiceCommandReceiver : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Writes data from a safeMode recording session to a file on the persistent data path and then begins AssemblyAPICaller's uploaded and processing process
+    /// </summary>
+    /// <returns></returns>
     IEnumerator writeAfterFinished()
     {
         yield return new WaitForSeconds(4.5f);
@@ -154,6 +182,9 @@ public class VoiceCommandReceiver : MonoBehaviour
         }
     }*/
 
+    /// <summary>
+    /// Should be called when the 'thunder' voice command is received. Damages enemies indicated by the pointer
+    /// </summary>
     public void LightningBolt()
     {
         GameObject[] enemies = enemyManager.enemies;
@@ -171,6 +202,9 @@ public class VoiceCommandReceiver : MonoBehaviour
         StartCoroutine(Indicator());
     }
 
+    /// <summary>
+    /// Should be triggered by voice command, causes buddy to attack all enemies
+    /// </summary>
     public void BuddyAttack()
     {
         performBasicBuddyAction(
@@ -178,6 +212,9 @@ public class VoiceCommandReceiver : MonoBehaviour
             });
     }
 
+    /// <summary>
+    /// Should be triggered by voice command, causes buddy to repair broken walls
+    /// </summary>
     public void BuddyRepair()
     {
         performBasicBuddyAction(
@@ -185,6 +222,9 @@ public class VoiceCommandReceiver : MonoBehaviour
             }) ;
     }
 
+    /// <summary>
+    /// Should be triggered by voice command, causes buddy to defend at a location indicated by the pointer
+    /// </summary>
     public void BuddyDefend()
     {
         performBasicBuddyAction(
@@ -192,12 +232,20 @@ public class VoiceCommandReceiver : MonoBehaviour
             });
     }
 
+    /// <summary>
+    /// Helper for playing confirmation sound and sending actions the buddy
+    /// </summary>
+    /// <param name="actions">Ordered instructions for the buddy to perform</param>
     void performBasicBuddyAction(List<BuddyAction> actions)
     {
         playEndOfRecordingSound();
         GameObject.FindWithTag("Buddy").GetComponent<BuddyScript>().GiveInstructions(actions);
     }
 
+    /// <summary>
+    /// Displays the dictation received from a recording session and sends it to the language parsing model to be translated to buddy instructions
+    /// </summary>
+    /// <param name="dictation"></param>
     public void ProcessDictation(string dictation)
     {
         //uiController.ShowDictation("Dictation recieved: " + dictation);
@@ -214,12 +262,19 @@ public class VoiceCommandReceiver : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Should be called by the DictationHandler's onDictationErrorEvent
+    /// </summary>
+    /// <param name="error">Dynamic string for the error message</param>
     public void DictationError(string error)
     {
         uiController.ShowDictation("Dictation error: " + error);
         finishDictation();
     }
 
+    /// <summary>
+    /// Ends a dictation recording session and disables all dictation indicators
+    /// </summary>
     void finishDictation()
     {
         DictationHandler handler = GetComponent<DictationHandler>();
@@ -234,6 +289,10 @@ public class VoiceCommandReceiver : MonoBehaviour
         timeRecording = 0;
     }
 
+    /// <summary>
+    /// A callback function for the language parsing model to return resolved buddy instructions. Sends these instructions to the buddy
+    /// </summary>
+    /// <param name="instructions"></param>
     public void HandleDictationProcessingResults(List<BuddyAction> instructions)
     {
         string actionStream = "";
@@ -246,6 +305,10 @@ public class VoiceCommandReceiver : MonoBehaviour
         GameObject.FindWithTag("Buddy").GetComponent<BuddyScript>().GiveInstructions(instructions);
     }
 
+    /// <summary>
+    /// Makes the pointer briefly flash red
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Indicator()
     {
         Color defaultColour = pointer.GetComponent<Renderer>().material.color;

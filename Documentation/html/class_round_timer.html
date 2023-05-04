@@ -73,6 +73,8 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#properties">Properties</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_round_timer-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">RoundTimer Class Reference</div></div>
 </div><!--header-->
@@ -104,6 +106,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>PauseTimer</b> ()</td
 <tr class="memitem:a5fb4b18f47684c55dac93ab7f32bc22e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_round_timer.html#a5fb4b18f47684c55dac93ab7f32bc22e">SetRoundLength</a> (int secs)</td></tr>
 <tr class="memdesc:a5fb4b18f47684c55dac93ab7f32bc22e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the round length to the given number of seconds.  <br /></td></tr>
 <tr class="separator:a5fb4b18f47684c55dac93ab7f32bc22e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae121a7de06ab831a2bd055757035d3d3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_round_timer.html#ae121a7de06ab831a2bd055757035d3d3">GetRoundLength</a> ()</td></tr>
+<tr class="memdesc:ae121a7de06ab831a2bd055757035d3d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the round length in seconds.  <br /></td></tr>
+<tr class="separator:ae121a7de06ab831a2bd055757035d3d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f8601b4e2846fd5cd55311448cb2c4e"><td class="memItemLeft" align="right" valign="top"><a id="a5f8601b4e2846fd5cd55311448cb2c4e" name="a5f8601b4e2846fd5cd55311448cb2c4e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SecondTick</b> ()</td></tr>
 <tr class="memdesc:a5f8601b4e2846fd5cd55311448cb2c4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invokes the second tick event. <br /></td></tr>
@@ -115,10 +120,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>RoundOver</b> ()</td>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a68bc698ad515966ff3c360f5fdc68570"><td class="memItemLeft" align="right" valign="top"><a id="a68bc698ad515966ff3c360f5fdc68570" name="a68bc698ad515966ff3c360f5fdc68570"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>roundLengthSecs</b> = 60</td></tr>
-<tr class="memdesc:a68bc698ad515966ff3c360f5fdc68570"><td class="mdescLeft">&#160;</td><td class="mdescRight">Length of the round in seconds. <br /></td></tr>
-<tr class="separator:a68bc698ad515966ff3c360f5fdc68570"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a555228224a28e46d02990f45a3543569"><td class="memItemLeft" align="right" valign="top"><a id="a555228224a28e46d02990f45a3543569" name="a555228224a28e46d02990f45a3543569"></a>
 UnityEvent&#160;</td><td class="memItemRight" valign="bottom"><b>SecondTickEvent</b> = new UnityEvent()</td></tr>
 <tr class="memdesc:a555228224a28e46d02990f45a3543569"><td class="mdescLeft">&#160;</td><td class="mdescRight">Event called on each second tick whilst the timer is running. <br /></td></tr>
@@ -150,10 +151,73 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isPaused</b><code> [g
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isRunning</b><code> [get]</code></td></tr>
 <tr class="memdesc:afa4f85374f2e532fb7e0a7d71e9cb121"><td class="mdescLeft">&#160;</td><td class="mdescRight">Running state of the timer. <br /></td></tr>
 <tr class="separator:afa4f85374f2e532fb7e0a7d71e9cb121"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a4411a43abb20f6f797bbf2e6c9c19d02"><td class="memItemLeft" align="right" valign="top"><a id="a4411a43abb20f6f797bbf2e6c9c19d02" name="a4411a43abb20f6f797bbf2e6c9c19d02"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Start</b> ()</td></tr>
+<tr class="memdesc:a4411a43abb20f6f797bbf2e6c9c19d02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start runs when loading the GameObject that this script is attached to. <br /></td></tr>
+<tr class="separator:a4411a43abb20f6f797bbf2e6c9c19d02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afae72c9702237536eb3165a69dabf775"><td class="memItemLeft" align="right" valign="top"><a id="afae72c9702237536eb3165a69dabf775" name="afae72c9702237536eb3165a69dabf775"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> ()</td></tr>
+<tr class="memdesc:afae72c9702237536eb3165a69dabf775"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update runs on each frame update, in this case it increases both local timer variables and checks their values, calling any necessary events. <br /></td></tr>
+<tr class="separator:afae72c9702237536eb3165a69dabf775"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ab92fcfa9712601a1b4da66ac6b561d80"><td class="memItemLeft" align="right" valign="top"><a id="ab92fcfa9712601a1b4da66ac6b561d80" name="ab92fcfa9712601a1b4da66ac6b561d80"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>_roundLengthSecs</b> = 60</td></tr>
+<tr class="memdesc:ab92fcfa9712601a1b4da66ac6b561d80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Length of the round in seconds. <br /></td></tr>
+<tr class="separator:ab92fcfa9712601a1b4da66ac6b561d80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80c122836beef56fbdf3d00cbed11964"><td class="memItemLeft" align="right" valign="top"><a id="a80c122836beef56fbdf3d00cbed11964" name="a80c122836beef56fbdf3d00cbed11964"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_isPaused</b> = false</td></tr>
+<tr class="memdesc:a80c122836beef56fbdf3d00cbed11964"><td class="mdescLeft">&#160;</td><td class="mdescRight">Private timer pause toggle. <br /></td></tr>
+<tr class="separator:a80c122836beef56fbdf3d00cbed11964"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e11d8ac0398af80cfe5004d2d782ee5"><td class="memItemLeft" align="right" valign="top"><a id="a8e11d8ac0398af80cfe5004d2d782ee5" name="a8e11d8ac0398af80cfe5004d2d782ee5"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_isStopped</b> = false</td></tr>
+<tr class="memdesc:a8e11d8ac0398af80cfe5004d2d782ee5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Private timer stopped toggle. <br /></td></tr>
+<tr class="separator:a8e11d8ac0398af80cfe5004d2d782ee5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98564d1a33db4990d6aa00713753ef77"><td class="memItemLeft" align="right" valign="top"><a id="a98564d1a33db4990d6aa00713753ef77" name="a98564d1a33db4990d6aa00713753ef77"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_isRunning</b> = false</td></tr>
+<tr class="memdesc:a98564d1a33db4990d6aa00713753ef77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Private timer running toggle. <br /></td></tr>
+<tr class="separator:a98564d1a33db4990d6aa00713753ef77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e94550baf840568dcd562e25b895151"><td class="memItemLeft" align="right" valign="top"><a id="a1e94550baf840568dcd562e25b895151" name="a1e94550baf840568dcd562e25b895151"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>_roundTimer</b> = 0.0f</td></tr>
+<tr class="memdesc:a1e94550baf840568dcd562e25b895151"><td class="mdescLeft">&#160;</td><td class="mdescRight">Local timer which counts up. <br /></td></tr>
+<tr class="separator:a1e94550baf840568dcd562e25b895151"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dc5b0de1207be6e892a838a6dab0e5f"><td class="memItemLeft" align="right" valign="top"><a id="a7dc5b0de1207be6e892a838a6dab0e5f" name="a7dc5b0de1207be6e892a838a6dab0e5f"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>_secondTimer</b> = 0.0f</td></tr>
+<tr class="memdesc:a7dc5b0de1207be6e892a838a6dab0e5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Local second timer which counts up to 1 and then resets continuously. <br /></td></tr>
+<tr class="separator:a7dc5b0de1207be6e892a838a6dab0e5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Manages the timer for each round and invokes events for each second tick and round over. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ae121a7de06ab831a2bd055757035d3d3" name="ae121a7de06ab831a2bd055757035d3d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae121a7de06ab831a2bd055757035d3d3">&#9670;&#160;</a></span>GetRoundLength()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int RoundTimer.GetRoundLength </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the round length in seconds. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">secs</td><td>Number of seconds to set the round length to.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a5fb4b18f47684c55dac93ab7f32bc22e" name="a5fb4b18f47684c55dac93ab7f32bc22e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5fb4b18f47684c55dac93ab7f32bc22e">&#9670;&#160;</a></span>SetRoundLength()</h2>
 

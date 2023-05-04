@@ -72,8 +72,11 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_tower_script-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">TowerScript Class Reference</div></div>
+  <div class="headertitle"><div class="title">TowerScript Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
 <div class="contents">
 <div class="dynheader">
@@ -82,21 +85,51 @@ Inheritance diagram for TowerScript:</div>
  <div class="center">
   <img src="class_tower_script.png" usemap="#TowerScript_map" alt=""/>
   <map id="TowerScript_map" name="TowerScript_map">
-<area href="interface_i_runtime_movable_behaviour_script.html" title="QR objects which can be moved by the player during the battle phase should implement this interface." alt="IRuntimeMovableBehaviourScript" shape="rect" coords="209,0,408,24"/>
+<area href="interface_i_runtime_movable_behaviour_script.html" title="QR objects which can be moved by the player during the battle phase should implement this interface." alt="IRuntimeMovableBehaviourScript" shape="rect" coords="313,0,512,24"/>
+<area href="class_digest_tower.html" alt="DigestTower" shape="rect" coords="0,112,199,136"/>
+<area href="class_multi_target_tower.html" alt="MultiTargetTower" shape="rect" coords="209,112,408,136"/>
+<area href="class_single_target_tower.html" alt="SingleTargetTower" shape="rect" coords="418,112,617,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ade4ad201b9a15cb0cc3c2d1c3f22e13e"><td class="memItemLeft" align="right" valign="top"><a id="ade4ad201b9a15cb0cc3c2d1c3f22e13e" name="ade4ad201b9a15cb0cc3c2d1c3f22e13e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetTarget</b> (Transform newTargetTrans)</td></tr>
-<tr class="separator:ade4ad201b9a15cb0cc3c2d1c3f22e13e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae53f45339375e288582c4ee00ba3eaa4"><td class="memItemLeft" align="right" valign="top"><a id="ae53f45339375e288582c4ee00ba3eaa4" name="ae53f45339375e288582c4ee00ba3eaa4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Start</b> ()</td></tr>
+<tr class="separator:ae53f45339375e288582c4ee00ba3eaa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9672898d83f37112f520e10893f5e6fa"><td class="memItemLeft" align="right" valign="top"><a id="a9672898d83f37112f520e10893f5e6fa" name="a9672898d83f37112f520e10893f5e6fa"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> ()</td></tr>
+<tr class="separator:a9672898d83f37112f520e10893f5e6fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5dec6afda6937981ed27d2a167bfe6a"><td class="memItemLeft" align="right" valign="top"><a id="ac5dec6afda6937981ed27d2a167bfe6a" name="ac5dec6afda6937981ed27d2a167bfe6a"></a>
+abstract void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateRangeVisual</b> ()</td></tr>
+<tr class="separator:ac5dec6afda6937981ed27d2a167bfe6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ae107e72a409762f48815f524d12155"><td class="memItemLeft" align="right" valign="top"><a id="a6ae107e72a409762f48815f524d12155" name="a6ae107e72a409762f48815f524d12155"></a>
+abstract GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>GetRangeObject</b> ()</td></tr>
+<tr class="separator:a6ae107e72a409762f48815f524d12155"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace77bfcabf6fc51fa8eea92b8b7b77a3"><td class="memItemLeft" align="right" valign="top"><a id="ace77bfcabf6fc51fa8eea92b8b7b77a3" name="ace77bfcabf6fc51fa8eea92b8b7b77a3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>DisplayRange</b> (bool toggle)</td></tr>
+<tr class="separator:ace77bfcabf6fc51fa8eea92b8b7b77a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44deadc934514b264e2c0efc7fcce17b"><td class="memItemLeft" align="right" valign="top"><a id="a44deadc934514b264e2c0efc7fcce17b" name="a44deadc934514b264e2c0efc7fcce17b"></a>
+abstract void&#160;</td><td class="memItemRight" valign="bottom"><b>Attack</b> ()</td></tr>
+<tr class="separator:a44deadc934514b264e2c0efc7fcce17b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a146d9559099d995d9f44ec74e00e8082"><td class="memItemLeft" align="right" valign="top"><a id="a146d9559099d995d9f44ec74e00e8082" name="a146d9559099d995d9f44ec74e00e8082"></a>
+abstract void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateTargets</b> ()</td></tr>
+<tr class="separator:a146d9559099d995d9f44ec74e00e8082"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7b4d125c01b096eee256f5ccfafea87"><td class="memItemLeft" align="right" valign="top"><a id="ab7b4d125c01b096eee256f5ccfafea87" name="ab7b4d125c01b096eee256f5ccfafea87"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>DistToTarget</b> (Vector3 target)</td></tr>
+<tr class="separator:ab7b4d125c01b096eee256f5ccfafea87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c18f8c64c7afa24d4cd70fbe1a85247"><td class="memItemLeft" align="right" valign="top"><a id="a4c18f8c64c7afa24d4cd70fbe1a85247" name="a4c18f8c64c7afa24d4cd70fbe1a85247"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>DistToTargetTopDown</b> (Vector3 target)</td></tr>
+<tr class="separator:a4c18f8c64c7afa24d4cd70fbe1a85247"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51eb11307c84add8601ec1cc73309a1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tower_script.html#a51eb11307c84add8601ec1cc73309a1a">ApplyMovementPenalty</a> ()</td></tr>
 <tr class="memdesc:a51eb11307c84add8601ec1cc73309a1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should in some way nerf or disable the object until EndMovementPenalty is called.  <br /></td></tr>
 <tr class="separator:a51eb11307c84add8601ec1cc73309a1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad973c976b4d08e28ecc3a31efa0ac76d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tower_script.html#ad973c976b4d08e28ecc3a31efa0ac76d">EndMovementPenalty</a> ()</td></tr>
 <tr class="memdesc:ad973c976b4d08e28ecc3a31efa0ac76d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reverses the affects of ApplyMovementPenalty.  <br /></td></tr>
 <tr class="separator:ad973c976b4d08e28ecc3a31efa0ac76d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27371e7bfd793bdb2aed3da321379bba"><td class="memItemLeft" align="right" valign="top"><a id="a27371e7bfd793bdb2aed3da321379bba" name="a27371e7bfd793bdb2aed3da321379bba"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>EnterBuddyMode</b> ()</td></tr>
+<tr class="separator:a27371e7bfd793bdb2aed3da321379bba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a129c3fa48b6fb3f3d87edfbd6439a8cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_runtime_movable_behaviour_script.html#a129c3fa48b6fb3f3d87edfbd6439a8cc">ApplyMovementPenalty</a> ()</td></tr>
 <tr class="memdesc:a129c3fa48b6fb3f3d87edfbd6439a8cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should in some way nerf or disable the object until EndMovementPenalty is called.  <br /></td></tr>
 <tr class="separator:a129c3fa48b6fb3f3d87edfbd6439a8cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -106,9 +139,57 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SetTarget</b> (Transf
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a01644995f541aab88a6575f39110531b"><td class="memItemLeft" align="right" valign="top"><a id="a01644995f541aab88a6575f39110531b" name="a01644995f541aab88a6575f39110531b"></a>
-Transform&#160;</td><td class="memItemRight" valign="bottom"><b>targetTransform</b></td></tr>
-<tr class="separator:a01644995f541aab88a6575f39110531b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afeae2eac3cde2639a16830d32091b754"><td class="memItemLeft" align="right" valign="top"><a id="afeae2eac3cde2639a16830d32091b754" name="afeae2eac3cde2639a16830d32091b754"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>rangeRadius</b> = 0.2f</td></tr>
+<tr class="separator:afeae2eac3cde2639a16830d32091b754"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade674843d71b9167826dd934cd994b97"><td class="memItemLeft" align="right" valign="top"><a id="ade674843d71b9167826dd934cd994b97" name="ade674843d71b9167826dd934cd994b97"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>fireRate</b> = 0.5f</td></tr>
+<tr class="separator:ade674843d71b9167826dd934cd994b97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b9bee60a4184e82f3852e5c824e9dce"><td class="memItemLeft" align="right" valign="top"><a id="a3b9bee60a4184e82f3852e5c824e9dce" name="a3b9bee60a4184e82f3852e5c824e9dce"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>damage</b> = 1</td></tr>
+<tr class="separator:a3b9bee60a4184e82f3852e5c824e9dce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac161c8ffbf9ccf71bf6e0dcc5e0832f5"><td class="memItemLeft" align="right" valign="top"><a id="ac161c8ffbf9ccf71bf6e0dcc5e0832f5" name="ac161c8ffbf9ccf71bf6e0dcc5e0832f5"></a>
+Material&#160;</td><td class="memItemRight" valign="bottom"><b>rangeVisualMaterial</b></td></tr>
+<tr class="separator:ac161c8ffbf9ccf71bf6e0dcc5e0832f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade299aea5b0a5b5dd41d56a506c41441"><td class="memItemLeft" align="right" valign="top"><a id="ade299aea5b0a5b5dd41d56a506c41441" name="ade299aea5b0a5b5dd41d56a506c41441"></a>
+GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>disabledVisualObject</b></td></tr>
+<tr class="separator:ade299aea5b0a5b5dd41d56a506c41441"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d010e332b3acfb17e09af1e464147c7"><td class="memItemLeft" align="right" valign="top"><a id="a2d010e332b3acfb17e09af1e464147c7" name="a2d010e332b3acfb17e09af1e464147c7"></a>
+Material&#160;</td><td class="memItemRight" valign="bottom"><b>enabledMaterial</b></td></tr>
+<tr class="separator:a2d010e332b3acfb17e09af1e464147c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe79921cac49680c60c2542b1e858838"><td class="memItemLeft" align="right" valign="top"><a id="abe79921cac49680c60c2542b1e858838" name="abe79921cac49680c60c2542b1e858838"></a>
+Material&#160;</td><td class="memItemRight" valign="bottom"><b>disabledMaterial</b></td></tr>
+<tr class="separator:abe79921cac49680c60c2542b1e858838"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7f3a4bea9e86c718f12ab58ac2cca0d"><td class="memItemLeft" align="right" valign="top"><a id="ae7f3a4bea9e86c718f12ab58ac2cca0d" name="ae7f3a4bea9e86c718f12ab58ac2cca0d"></a>
+<a class="el" href="class_enemy_manager.html">EnemyManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>enemyManager</b></td></tr>
+<tr class="separator:ae7f3a4bea9e86c718f12ab58ac2cca0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6a0a4a5e1fdc6a0d5661b1d2b94db01"><td class="memItemLeft" align="right" valign="top"><a id="af6a0a4a5e1fdc6a0d5661b1d2b94db01" name="af6a0a4a5e1fdc6a0d5661b1d2b94db01"></a>
+GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>rangeVisual</b></td></tr>
+<tr class="separator:af6a0a4a5e1fdc6a0d5661b1d2b94db01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a7dc54a2239c1999e6caec24694cf748f"><td class="memItemLeft" align="right" valign="top"><a id="a7dc54a2239c1999e6caec24694cf748f" name="a7dc54a2239c1999e6caec24694cf748f"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>shootingDisabled</b> = false</td></tr>
+<tr class="separator:a7dc54a2239c1999e6caec24694cf748f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a61bfd73ca5a8375aa11ae6728cca8783"><td class="memItemLeft" align="right" valign="top"><a id="a61bfd73ca5a8375aa11ae6728cca8783" name="a61bfd73ca5a8375aa11ae6728cca8783"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>OnDestroy</b> ()</td></tr>
+<tr class="separator:a61bfd73ca5a8375aa11ae6728cca8783"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a562c44573f1882ca622a899946389d75"><td class="memItemLeft" align="right" valign="top"><a id="a562c44573f1882ca622a899946389d75" name="a562c44573f1882ca622a899946389d75"></a>
+IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><b>EndBuddyMode</b> ()</td></tr>
+<tr class="separator:a562c44573f1882ca622a899946389d75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ac5c1230dcb39e147e31668e6649caa6d"><td class="memItemLeft" align="right" valign="top"><a id="ac5c1230dcb39e147e31668e6649caa6d" name="ac5c1230dcb39e147e31668e6649caa6d"></a>
+<a class="el" href="class_tower_manager.html">TowerManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_towerManager</b></td></tr>
+<tr class="separator:ac5c1230dcb39e147e31668e6649caa6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a180585b8641c5e38c087ac6e3d5b2b15"><td class="memItemLeft" align="right" valign="top"><a id="a180585b8641c5e38c087ac6e3d5b2b15" name="a180585b8641c5e38c087ac6e3d5b2b15"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>baseFireRate</b></td></tr>
+<tr class="separator:a180585b8641c5e38c087ac6e3d5b2b15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a51eb11307c84add8601ec1cc73309a1a" name="a51eb11307c84add8601ec1cc73309a1a"></a>

@@ -18,4 +18,10 @@ public class Gun : MonoBehaviour
             }
         }
     }
+
+    public void SetupForTest(GameObject projectile,GameObject[] gunPoints)
+    {
+        this.projectile = projectile;
+        this.gunPoints = gunPoints;
+    }
 }

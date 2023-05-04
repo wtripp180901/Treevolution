@@ -6,10 +6,16 @@ using UnityEngine;
 
 public class PointerLocationTracker : MonoBehaviour, IMixedRealityGestureHandler
 {
+    /// <summary>
+    /// The GameObject representing the pointer in-game
+    /// </summary>
     public GameObject pointer;
     private int mask = 1 << 8;
 
     [SerializeField] private float _ClosenessThreshold = 0.2f;
+    /// <summary>
+    /// The distance from the pointer required for objects to be considered 'close' to the pointer for the purposes of the buddy system
+    /// </summary>
     public float ClosenessThreshold { get { return _ClosenessThreshold; } }
 
     void Start()

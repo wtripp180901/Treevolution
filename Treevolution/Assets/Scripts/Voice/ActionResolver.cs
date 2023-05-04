@@ -40,6 +40,13 @@ namespace LanguageParsing
             }
         }
 
+        /// <summary>
+        /// Changes the restrictions provided based on context of the action or the scene e.g the Repair action should only repair damaged walls
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="subject"></param>
+        /// <param name="restrictions">The original set of restrictions</param>
+        /// <returns>The modified set of restrictions</returns>
         RESTRICTION_TYPES[] adjustRestrictionsForEdgeCases(BUDDY_ACTION_TYPES action, BUDDY_SUBJECT_TYPES subject, RESTRICTION_TYPES[] restrictions)
         {
             List<RESTRICTION_TYPES> newRestrictions = new List<RESTRICTION_TYPES>(restrictions);
@@ -67,6 +74,11 @@ namespace LanguageParsing
             }
         }
 
+        /// <summary>
+        /// Resolves the subject of Move buddy actions
+        /// </summary>
+        /// <param name="subjectType"></param>
+        /// <returns>The position of the resolved subject</returns>
         Vector3 getMoveSubject(BUDDY_SUBJECT_TYPES subjectType)
         {
             switch (subjectType)
@@ -79,6 +91,13 @@ namespace LanguageParsing
             return new Vector3(0, 0, 0);
         }
 
+        /// <summary>
+        /// Resolves the subjects of actions which target objects in the scene
+        /// </summary>
+        /// <param name="subject"></param>
+        /// <param name="action"></param>
+        /// <param name="restrictions"></param>
+        /// <returns>An array of GameObjects the actions should target</returns>
         GameObject[] getSubject(BUDDY_SUBJECT_TYPES subject,BUDDY_ACTION_TYPES action,RESTRICTION_TYPES[] restrictions)
         {
             GameObject[] possibleSubjects = filterByRestrictions(defaultTargetsOfActionType(action), restrictions);
@@ -100,6 +119,13 @@ namespace LanguageParsing
             return possibleSubjects;
         }
 
+        /// <summary>
+        /// Determines whether a Defend buddy action should defend in place or move to a location first
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="subject"></param>
+        /// <param name="restrictions"></param>
+        /// <returns>The list of actions to perform to perform the correct Defend behaviour</returns>
         List<BuddyAction> getDefendBuddyActions(BUDDY_ACTION_TYPES action,BUDDY_SUBJECT_TYPES subject,RESTRICTION_TYPES[] restrictions)
         {
             switch (subject)
@@ -124,6 +150,11 @@ namespace LanguageParsing
             }
         }
 
+        /// <summary>
+        /// Returns the category of GameObject an action should target if not further restricted
+        /// </summary>
+        /// <param name="action"></param>
+        /// <returns></returns>
         GameObject[] defaultTargetsOfActionType(BUDDY_ACTION_TYPES action)
         {
             switch (action)
@@ -148,11 +179,21 @@ namespace LanguageParsing
             return null;
         }
 
+        /// <summary>
+        /// Filters an array of GameObjects to only those that meet the restrictions of the instruction
+        /// </summary>
+        /// <param name="baseList"></param>
+        /// <param name="restrictions"></param>
+        /// <returns>A list of GameObjects from baselist which meet the restrictions</returns>
         GameObject[] filterByRestrictions(GameObject[] baseList, RESTRICTION_TYPES[] restrictions)
         {
             return baseList.Where(x => x.GetComponent<BuddyInteractable>().SatisfiesConstraints(restrictions,new RESTRICTION_TYPES[] { })).ToArray();
         }
 
+        /// <summary>
+        /// Gets the next sampled location for a voice command from PointerLocationTracker
+        /// </summary>
+        /// <returns>The current position sampled by the pointer tracker</returns>
         Vector3 getNextPointerSample()
         {
             Vector3 pointer = GameObject.FindWithTag("Logic").GetComponent<PointerLocationTracker>().GetSampleAtWordIndex(moveActionIndex);
@@ -160,6 +201,12 @@ namespace LanguageParsing
             return pointer;
         }
 
+        /// <summary>
+        /// Finds the closest of the provided GameObjects to the pointer
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="possibleTargets">The GameObjects to be considered</param>
+        /// <returns>The closest GameObject to the pointer, null if no targets are provided</returns>
         GameObject closestGameObjectToPointer(BUDDY_ACTION_TYPES action,GameObject[] possibleTargets)
         {
             if (possibleTargets.Length > 0)

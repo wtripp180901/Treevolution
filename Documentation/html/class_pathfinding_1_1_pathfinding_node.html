@@ -77,41 +77,96 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#properties">Properties</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_pathfinding_1_1_pathfinding_node-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Pathfinding.PathfindingNode Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>A node used as part of the A* pathfinding algorithm.  
+ <a href="class_pathfinding_1_1_pathfinding_node.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a14bb6bcd4b3d13b3cfcf83af785b88fa"><td class="memItemLeft" align="right" valign="top"><a id="a14bb6bcd4b3d13b3cfcf83af785b88fa" name="a14bb6bcd4b3d13b3cfcf83af785b88fa"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>PathfindingNode</b> (int id, Vector3 position)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>PathfindingNode</b> (int <a class="el" href="class_pathfinding_1_1_pathfinding_node.html#ab7b82ca59bcc44bdee19233ff29a1068">id</a>, Vector3 <a class="el" href="class_pathfinding_1_1_pathfinding_node.html#a8d2381fcc52312ec4c40e4f0f46022fb">position</a>)</td></tr>
 <tr class="separator:a14bb6bcd4b3d13b3cfcf83af785b88fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af31f4b428422657dc112222360f0139b"><td class="memItemLeft" align="right" valign="top"><a id="af31f4b428422657dc112222360f0139b" name="af31f4b428422657dc112222360f0139b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>AddNeighbour</b> (<a class="el" href="class_pathfinding_1_1_pathfinding_node.html">PathfindingNode</a> neighbour, float cost)</td></tr>
+<tr class="memitem:af31f4b428422657dc112222360f0139b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinding_1_1_pathfinding_node.html#af31f4b428422657dc112222360f0139b">AddNeighbour</a> (<a class="el" href="class_pathfinding_1_1_pathfinding_node.html">PathfindingNode</a> neighbour, float cost)</td></tr>
+<tr class="memdesc:af31f4b428422657dc112222360f0139b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a neighbour to the node.  <br /></td></tr>
 <tr class="separator:af31f4b428422657dc112222360f0139b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ab7b82ca59bcc44bdee19233ff29a1068"><td class="memItemLeft" align="right" valign="top"><a id="ab7b82ca59bcc44bdee19233ff29a1068" name="ab7b82ca59bcc44bdee19233ff29a1068"></a>
 readonly int&#160;</td><td class="memItemRight" valign="bottom"><b>id</b></td></tr>
+<tr class="memdesc:ab7b82ca59bcc44bdee19233ff29a1068"><td class="mdescLeft">&#160;</td><td class="mdescRight">A unique identifier for the node. <br /></td></tr>
 <tr class="separator:ab7b82ca59bcc44bdee19233ff29a1068"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d2381fcc52312ec4c40e4f0f46022fb"><td class="memItemLeft" align="right" valign="top"><a id="a8d2381fcc52312ec4c40e4f0f46022fb" name="a8d2381fcc52312ec4c40e4f0f46022fb"></a>
 readonly Vector3&#160;</td><td class="memItemRight" valign="bottom"><b>position</b></td></tr>
+<tr class="memdesc:a8d2381fcc52312ec4c40e4f0f46022fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">The nodes real world position. <br /></td></tr>
 <tr class="separator:a8d2381fcc52312ec4c40e4f0f46022fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21ddf45783f3e3fa23793f207985c0c8"><td class="memItemLeft" align="right" valign="top"><a id="a21ddf45783f3e3fa23793f207985c0c8" name="a21ddf45783f3e3fa23793f207985c0c8"></a>
 readonly Dictionary&lt; <a class="el" href="class_pathfinding_1_1_pathfinding_node.html">PathfindingNode</a>, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>costToNeighbours</b> = new Dictionary&lt;<a class="el" href="class_pathfinding_1_1_pathfinding_node.html">PathfindingNode</a>, float&gt;()</td></tr>
+<tr class="memdesc:a21ddf45783f3e3fa23793f207985c0c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">The cost of moving to a neighbouring node. <br /></td></tr>
 <tr class="separator:a21ddf45783f3e3fa23793f207985c0c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a1036be80d9a8f0fd9f65805ebb049969"><td class="memItemLeft" align="right" valign="top"><a id="a1036be80d9a8f0fd9f65805ebb049969" name="a1036be80d9a8f0fd9f65805ebb049969"></a>
 <a class="el" href="class_pathfinding_1_1_pathfinding_node.html">PathfindingNode</a>&#160;</td><td class="memItemRight" valign="bottom"><b>parentNode</b><code> [get, set]</code></td></tr>
+<tr class="memdesc:a1036be80d9a8f0fd9f65805ebb049969"><td class="mdescLeft">&#160;</td><td class="mdescRight">The previous node in the searched path. <br /></td></tr>
 <tr class="separator:a1036be80d9a8f0fd9f65805ebb049969"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af81572562acc135e2a9ff91b00887296"><td class="memItemLeft" align="right" valign="top"><a id="af81572562acc135e2a9ff91b00887296" name="af81572562acc135e2a9ff91b00887296"></a>
 <a class="el" href="class_pathfinding_1_1_pathfinding_node.html">PathfindingNode</a>[]&#160;</td><td class="memItemRight" valign="bottom"><b>neighbours</b><code> [get]</code></td></tr>
+<tr class="memdesc:af81572562acc135e2a9ff91b00887296"><td class="mdescLeft">&#160;</td><td class="mdescRight">An array of nodes with a line of sight to this node. <br /></td></tr>
 <tr class="separator:af81572562acc135e2a9ff91b00887296"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a0627f259c1257781899557b99cb5a1b9"><td class="memItemLeft" align="right" valign="top"><a id="a0627f259c1257781899557b99cb5a1b9" name="a0627f259c1257781899557b99cb5a1b9"></a>
+List&lt; <a class="el" href="class_pathfinding_1_1_pathfinding_node.html">PathfindingNode</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_neighbours</b> = new List&lt;<a class="el" href="class_pathfinding_1_1_pathfinding_node.html">PathfindingNode</a>&gt;()</td></tr>
+<tr class="separator:a0627f259c1257781899557b99cb5a1b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A node used as part of the A* pathfinding algorithm. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="af31f4b428422657dc112222360f0139b" name="af31f4b428422657dc112222360f0139b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af31f4b428422657dc112222360f0139b">&#9670;&#160;</a></span>AddNeighbour()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Pathfinding.PathfindingNode.AddNeighbour </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_pathfinding_1_1_pathfinding_node.html">PathfindingNode</a>&#160;</td>
+          <td class="paramname"><em>neighbour</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>cost</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a neighbour to the node. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">neighbour</td><td>A node with a line of sight to this node</td></tr>
+    <tr><td class="paramname">cost</td><td>The cost of moving from this node to the neighbouring node</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Treevolution/Assets/Scripts/Pathfinding/PathfindingNode.cs</li>
 </ul>

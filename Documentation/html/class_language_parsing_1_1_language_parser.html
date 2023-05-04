@@ -75,6 +75,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_language_parsing_1_1_language_parser-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">LanguageParsing.LanguageParser Class Reference</div></div>
 </div><!--header-->
@@ -94,6 +96,36 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a294603613da6140fa707d9c6f0b6d0a9"><td class="memItemLeft" align="right" valign="top">IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_language_parsing_1_1_language_parser.html#a294603613da6140fa707d9c6f0b6d0a9">synonymAPICallResults</a> (List&lt; <a class="el" href="struct_language_parsing_1_1_synonym_data.html">SynonymData</a> &gt; results)</td></tr>
 <tr class="memdesc:a294603613da6140fa707d9c6f0b6d0a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">A callback function handling the results of an API call to a Thesaurus. Adds tokens to the current list if the synonyms contain any items from basewords.txt.  <br /></td></tr>
 <tr class="separator:a294603613da6140fa707d9c6f0b6d0a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a3c9e8c7cd64562da77619b58fcdea832"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_buddy_action.html">BuddyAction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_language_parsing_1_1_language_parser.html#a3c9e8c7cd64562da77619b58fcdea832">getInstructionsFromTokens</a> ()</td></tr>
+<tr class="memdesc:a3c9e8c7cd64562da77619b58fcdea832"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses ordered list of BuddyTokens into BuddyActions.  <br /></td></tr>
+<tr class="separator:a3c9e8c7cd64562da77619b58fcdea832"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a535f95d13a4f8e4d87cc1d5c5e74dff1"><td class="memItemLeft" align="right" valign="top"><a id="a535f95d13a4f8e4d87cc1d5c5e74dff1" name="a535f95d13a4f8e4d87cc1d5c5e74dff1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>resolveAction</b> (BUDDY_ACTION_TYPES actionToResolve, BUDDY_SUBJECT_TYPES subject, List&lt; RESTRICTION_TYPES &gt; restrictions, List&lt; <a class="el" href="class_buddy_action.html">BuddyAction</a> &gt; instructions)</td></tr>
+<tr class="separator:a535f95d13a4f8e4d87cc1d5c5e74dff1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab39dcaaae9941ef7fcfba50e3e7f9743"><td class="memItemLeft" align="right" valign="top"><a id="ab39dcaaae9941ef7fcfba50e3e7f9743" name="ab39dcaaae9941ef7fcfba50e3e7f9743"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>sanitiseInput</b> (string word)</td></tr>
+<tr class="separator:ab39dcaaae9941ef7fcfba50e3e7f9743"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a002d87347a8d6a6e3dcf1114450bd0ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_language_parsing_1_1_language_parser.html#a002d87347a8d6a6e3dcf1114450bd0ad">getSynonymsForEachFunctionalLabel</a> (List&lt; <a class="el" href="struct_language_parsing_1_1_synonym_data.html">SynonymData</a> &gt; homographSynonyms, Dictionary&lt; string, List&lt; string &gt; &gt; synonymsOfFunctionalLabel)</td></tr>
+<tr class="memdesc:a002d87347a8d6a6e3dcf1114450bd0ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function for synonymAPICallResults which initialises a dictionary of synonyms of a word organised by their functional labels.  <br /></td></tr>
+<tr class="separator:a002d87347a8d6a6e3dcf1114450bd0ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a69c3e9cc166ff938f0a5f828087dd1a8"><td class="memItemLeft" align="right" valign="top"><a id="a69c3e9cc166ff938f0a5f828087dd1a8" name="a69c3e9cc166ff938f0a5f828087dd1a8"></a>
+<a class="el" href="class_language_parsing_1_1_word_token_mapper.html">WordTokenMapper</a>&#160;</td><td class="memItemRight" valign="bottom"><b>WordTokenMapper</b></td></tr>
+<tr class="separator:a69c3e9cc166ff938f0a5f828087dd1a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a631014fe8644267c30e0d4c53a03e374"><td class="memItemLeft" align="right" valign="top"><a id="a631014fe8644267c30e0d4c53a03e374" name="a631014fe8644267c30e0d4c53a03e374"></a>
+<a class="el" href="class_language_parsing_1_1_thesaurus_a_p_i_caller.html">ThesaurusAPICaller</a>&#160;</td><td class="memItemRight" valign="bottom"><b>APICaller</b> = new <a class="el" href="class_language_parsing_1_1_thesaurus_a_p_i_caller.html">ThesaurusAPICaller</a>(&quot;APIKey&quot;)</td></tr>
+<tr class="separator:a631014fe8644267c30e0d4c53a03e374"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0e79fac782f81fd49b71b167ec26a95"><td class="memItemLeft" align="right" valign="top"><a id="aa0e79fac782f81fd49b71b167ec26a95" name="aa0e79fac782f81fd49b71b167ec26a95"></a>
+<a class="el" href="class_language_parsing_1_1_action_resolver.html">ActionResolver</a>&#160;</td><td class="memItemRight" valign="bottom"><b>actionResolver</b> = new <a class="el" href="class_language_parsing_1_1_action_resolver.html">ActionResolver</a>()</td></tr>
+<tr class="separator:aa0e79fac782f81fd49b71b167ec26a95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbdeef84a330b426e853a523ee35d66a"><td class="memItemLeft" align="right" valign="top"><a id="acbdeef84a330b426e853a523ee35d66a" name="acbdeef84a330b426e853a523ee35d66a"></a>
+List&lt; <a class="el" href="class_buddy_token.html">BuddyToken</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>tokenStream</b> = new List&lt;<a class="el" href="class_buddy_token.html">BuddyToken</a>&gt;()</td></tr>
+<tr class="separator:acbdeef84a330b426e853a523ee35d66a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Entrypoint class for converting recorded dictation into a stream of BuddyActions. </p>
@@ -125,6 +157,34 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a3c9e8c7cd64562da77619b58fcdea832" name="a3c9e8c7cd64562da77619b58fcdea832"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c9e8c7cd64562da77619b58fcdea832">&#9670;&#160;</a></span>getInstructionsFromTokens()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt; <a class="el" href="class_buddy_action.html">BuddyAction</a> &gt; LanguageParsing.LanguageParser.getInstructionsFromTokens </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Parses ordered list of BuddyTokens into BuddyActions. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
 <a id="ac4659c4d587b1316cab226cea5794ed0" name="ac4659c4d587b1316cab226cea5794ed0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac4659c4d587b1316cab226cea5794ed0">&#9670;&#160;</a></span>GetInstructionStream()</h2>
 
@@ -160,6 +220,51 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a002d87347a8d6a6e3dcf1114450bd0ad" name="a002d87347a8d6a6e3dcf1114450bd0ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a002d87347a8d6a6e3dcf1114450bd0ad">&#9670;&#160;</a></span>getSynonymsForEachFunctionalLabel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LanguageParsing.LanguageParser.getSynonymsForEachFunctionalLabel </td>
+          <td>(</td>
+          <td class="paramtype">List&lt; <a class="el" href="struct_language_parsing_1_1_synonym_data.html">SynonymData</a> &gt;&#160;</td>
+          <td class="paramname"><em>homographSynonyms</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Dictionary&lt; string, List&lt; string &gt; &gt;&#160;</td>
+          <td class="paramname"><em>synonymsOfFunctionalLabel</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Helper function for synonymAPICallResults which initialises a dictionary of synonyms of a word organised by their functional labels. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">homographSynonyms</td><td>The synonyms of one homograph of the word</td></tr>
+    <tr><td class="paramname">synonymsOfFunctionalLabel</td><td>Dictionary to initialise</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

@@ -71,10 +71,16 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_buddy_script-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">BuddyScript Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Controls buddy behaviour.  
+ <a href="class_buddy_script.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for BuddyScript:</div>
 <div class="dyncontent">
@@ -84,10 +90,247 @@ Inheritance diagram for BuddyScript:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a736c48163d6bffc86a1be692f147f95f"><td class="memItemLeft" align="right" valign="top"><a id="a736c48163d6bffc86a1be692f147f95f" name="a736c48163d6bffc86a1be692f147f95f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>GiveInstructions</b> (List&lt; <a class="el" href="class_buddy_action.html">BuddyAction</a> &gt; actions)</td></tr>
+<tr class="memitem:adb602a2a0066e3194511a642a89e60fd"><td class="memItemLeft" align="right" valign="top"><a id="adb602a2a0066e3194511a642a89e60fd" name="adb602a2a0066e3194511a642a89e60fd"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetupForTest</b> ()</td></tr>
+<tr class="separator:adb602a2a0066e3194511a642a89e60fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a736c48163d6bffc86a1be692f147f95f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buddy_script.html#a736c48163d6bffc86a1be692f147f95f">GiveInstructions</a> (List&lt; <a class="el" href="class_buddy_action.html">BuddyAction</a> &gt; actions)</td></tr>
+<tr class="memdesc:a736c48163d6bffc86a1be692f147f95f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears actionQueue and fills it with new instructions.  <br /></td></tr>
 <tr class="separator:a736c48163d6bffc86a1be692f147f95f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53b3a37dfcfceaa138c4af12d13a36df"><td class="memItemLeft" align="right" valign="top"><a id="a53b3a37dfcfceaa138c4af12d13a36df" name="a53b3a37dfcfceaa138c4af12d13a36df"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>GetTestData</b> (out Queue&lt; GameObject &gt; targets, out GameObject currentTarget, out bool isOk)</td></tr>
+<tr class="separator:a53b3a37dfcfceaa138c4af12d13a36df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:adb6bbe0e34552e33d3a79fd51162272b"><td class="memItemLeft" align="right" valign="top"><a id="adb6bbe0e34552e33d3a79fd51162272b" name="adb6bbe0e34552e33d3a79fd51162272b"></a>
+GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>rangeIndicator</b></td></tr>
+<tr class="separator:adb6bbe0e34552e33d3a79fd51162272b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:aae16f3676642c66896eb1914920c2083"><td class="memItemLeft" align="right" valign="top"><a id="aae16f3676642c66896eb1914920c2083" name="aae16f3676642c66896eb1914920c2083"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Start</b> ()</td></tr>
+<tr class="separator:aae16f3676642c66896eb1914920c2083"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa29f3290a5151cbc6930777877b56913"><td class="memItemLeft" align="right" valign="top"><a id="aa29f3290a5151cbc6930777877b56913" name="aa29f3290a5151cbc6930777877b56913"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> ()</td></tr>
+<tr class="separator:aa29f3290a5151cbc6930777877b56913"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad290d1675b44e54cce1a32a7a942d832"><td class="memItemLeft" align="right" valign="top"><a id="ad290d1675b44e54cce1a32a7a942d832" name="ad290d1675b44e54cce1a32a7a942d832"></a>
+IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><b>Delay</b> (float v, Action value)</td></tr>
+<tr class="separator:ad290d1675b44e54cce1a32a7a942d832"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3250633bf751d963d4d68fa687d7bd23"><td class="memItemLeft" align="right" valign="top">Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buddy_script.html#a3250633bf751d963d4d68fa687d7bd23">getNewDirectionVector</a> (Vector3 nextPosition)</td></tr>
+<tr class="memdesc:a3250633bf751d963d4d68fa687d7bd23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns direction vector to next position.  <br /></td></tr>
+<tr class="separator:a3250633bf751d963d4d68fa687d7bd23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51e803eb341930ac10c6079768c8ee7c"><td class="memItemLeft" align="right" valign="top"><a id="a51e803eb341930ac10c6079768c8ee7c" name="a51e803eb341930ac10c6079768c8ee7c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>FixedUpdate</b> ()</td></tr>
+<tr class="separator:a51e803eb341930ac10c6079768c8ee7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a973f98b79ef8b4038bcc8dfb0fc44b76"><td class="memItemLeft" align="right" valign="top"><a id="a973f98b79ef8b4038bcc8dfb0fc44b76" name="a973f98b79ef8b4038bcc8dfb0fc44b76"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>defendFixedUpdate</b> ()</td></tr>
+<tr class="memdesc:a973f98b79ef8b4038bcc8dfb0fc44b76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attacks enemies within the buddy's range at a location. <br /></td></tr>
+<tr class="separator:a973f98b79ef8b4038bcc8dfb0fc44b76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e5e79c18b07733778d8c8d5887a35af"><td class="memItemLeft" align="right" valign="top"><a id="a4e5e79c18b07733778d8c8d5887a35af" name="a4e5e79c18b07733778d8c8d5887a35af"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>buffFixedUpdate</b> ()</td></tr>
+<tr class="memdesc:a4e5e79c18b07733778d8c8d5887a35af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves to target plants and activates EnterBuddyMode. <br /></td></tr>
+<tr class="separator:a4e5e79c18b07733778d8c8d5887a35af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33f33944eddedaf28420bc8649d7e532"><td class="memItemLeft" align="right" valign="top"><a id="a33f33944eddedaf28420bc8649d7e532" name="a33f33944eddedaf28420bc8649d7e532"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>repairFixedUpdate</b> ()</td></tr>
+<tr class="memdesc:a33f33944eddedaf28420bc8649d7e532"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves to walls and repairs them. <br /></td></tr>
+<tr class="separator:a33f33944eddedaf28420bc8649d7e532"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed1eb4456c928688fcb4150aad03f08d"><td class="memItemLeft" align="right" valign="top"><a id="aed1eb4456c928688fcb4150aad03f08d" name="aed1eb4456c928688fcb4150aad03f08d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>attackFixedUpdate</b> ()</td></tr>
+<tr class="memdesc:aed1eb4456c928688fcb4150aad03f08d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves to enemies and attacks them. <br /></td></tr>
+<tr class="separator:aed1eb4456c928688fcb4150aad03f08d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a149f1cf3d67c43f73e257604e4017cd1"><td class="memItemLeft" align="right" valign="top"><a id="a149f1cf3d67c43f73e257604e4017cd1" name="a149f1cf3d67c43f73e257604e4017cd1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>movementFixedUpdate</b> ()</td></tr>
+<tr class="memdesc:a149f1cf3d67c43f73e257604e4017cd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves in the direction of directionVector until the targetted position is reached. <br /></td></tr>
+<tr class="separator:a149f1cf3d67c43f73e257604e4017cd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc78715affbc2edaa06e8ae51faebcc3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buddy_script.html#afc78715affbc2edaa06e8ae51faebcc3">moveToTargetGameObject</a> (GameObject target)</td></tr>
+<tr class="memdesc:afc78715affbc2edaa06e8ae51faebcc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves towards a targetted GameObject.  <br /></td></tr>
+<tr class="separator:afc78715affbc2edaa06e8ae51faebcc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54734995ad244859511c8cfd05f17189"><td class="memItemLeft" align="right" valign="top">GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buddy_script.html#a54734995ad244859511c8cfd05f17189">findNearest</a> (GameObject[] enemiesList)</td></tr>
+<tr class="memdesc:a54734995ad244859511c8cfd05f17189"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the closest enemy within range.  <br /></td></tr>
+<tr class="separator:a54734995ad244859511c8cfd05f17189"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:abd7c9fbd1a93d9c93d864fe403cd7646"><td class="memItemLeft" align="right" valign="top"><a id="abd7c9fbd1a93d9c93d864fe403cd7646" name="abd7c9fbd1a93d9c93d864fe403cd7646"></a>
+Queue&lt; <a class="el" href="class_buddy_action.html">BuddyAction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>actionQueue</b> = new Queue&lt;<a class="el" href="class_buddy_action.html">BuddyAction</a>&gt;()</td></tr>
+<tr class="memdesc:abd7c9fbd1a93d9c93d864fe403cd7646"><td class="mdescLeft">&#160;</td><td class="mdescRight">The list of instructions to be sequentially performed. <br /></td></tr>
+<tr class="separator:abd7c9fbd1a93d9c93d864fe403cd7646"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68810a43e8aea0deb49328bb1641352d"><td class="memItemLeft" align="right" valign="top"><a id="a68810a43e8aea0deb49328bb1641352d" name="a68810a43e8aea0deb49328bb1641352d"></a>
+Rigidbody&#160;</td><td class="memItemRight" valign="bottom"><b>rig</b></td></tr>
+<tr class="separator:a68810a43e8aea0deb49328bb1641352d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40e5c469e9f763d39eed0f0fff5f1d12"><td class="memItemLeft" align="right" valign="top"><a id="a40e5c469e9f763d39eed0f0fff5f1d12" name="a40e5c469e9f763d39eed0f0fff5f1d12"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>isok</b> = true</td></tr>
+<tr class="memdesc:a40e5c469e9f763d39eed0f0fff5f1d12"><td class="mdescLeft">&#160;</td><td class="mdescRight">If true means the buddy is ready to move to the next instruction. <br /></td></tr>
+<tr class="separator:a40e5c469e9f763d39eed0f0fff5f1d12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a993514f81f75ab8f58622cf9b999d573"><td class="memItemLeft" align="right" valign="top"><a id="a993514f81f75ab8f58622cf9b999d573" name="a993514f81f75ab8f58622cf9b999d573"></a>
+Vector3&#160;</td><td class="memItemRight" valign="bottom"><b>directionVector</b></td></tr>
+<tr class="separator:a993514f81f75ab8f58622cf9b999d573"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d2b4774c0e542c4d6efa3b0be8dc6c3"><td class="memItemLeft" align="right" valign="top"><a id="a3d2b4774c0e542c4d6efa3b0be8dc6c3" name="a3d2b4774c0e542c4d6efa3b0be8dc6c3"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>speed</b> = 0.05f</td></tr>
+<tr class="separator:a3d2b4774c0e542c4d6efa3b0be8dc6c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7444c18cde914a4f89f44073a9416eb0"><td class="memItemLeft" align="right" valign="top"><a id="a7444c18cde914a4f89f44073a9416eb0" name="a7444c18cde914a4f89f44073a9416eb0"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>damage</b> = 2</td></tr>
+<tr class="separator:a7444c18cde914a4f89f44073a9416eb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4855cd6514eab8215ecd94dbbd29c4aa"><td class="memItemLeft" align="right" valign="top"><a id="a4855cd6514eab8215ecd94dbbd29c4aa" name="a4855cd6514eab8215ecd94dbbd29c4aa"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>AttackRate</b> = 1</td></tr>
+<tr class="separator:a4855cd6514eab8215ecd94dbbd29c4aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a682dd010c4f0f2d6679d683fce826821"><td class="memItemLeft" align="right" valign="top"><a id="a682dd010c4f0f2d6679d683fce826821" name="a682dd010c4f0f2d6679d683fce826821"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>attackCooldown</b></td></tr>
+<tr class="separator:a682dd010c4f0f2d6679d683fce826821"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27ed8c4fe9ae560bc56e06b4a082e5bf"><td class="memItemLeft" align="right" valign="top"><a id="a27ed8c4fe9ae560bc56e06b4a082e5bf" name="a27ed8c4fe9ae560bc56e06b4a082e5bf"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>RepairRate</b> = 1</td></tr>
+<tr class="separator:a27ed8c4fe9ae560bc56e06b4a082e5bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeeaab2a0c3e1ddf7e7dfd3d2685f5357"><td class="memItemLeft" align="right" valign="top"><a id="aeeaab2a0c3e1ddf7e7dfd3d2685f5357" name="aeeaab2a0c3e1ddf7e7dfd3d2685f5357"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>repairCooldown</b></td></tr>
+<tr class="separator:aeeaab2a0c3e1ddf7e7dfd3d2685f5357"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7d63f30c796e10c3ca1318e5d10375c"><td class="memItemLeft" align="right" valign="top"><a id="ab7d63f30c796e10c3ca1318e5d10375c" name="ab7d63f30c796e10c3ca1318e5d10375c"></a>
+BUDDY_ACTION_TYPES&#160;</td><td class="memItemRight" valign="bottom"><b>currentAction</b></td></tr>
+<tr class="separator:ab7d63f30c796e10c3ca1318e5d10375c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae43495dbbcf0e6a9c291a799af587035"><td class="memItemLeft" align="right" valign="top"><a id="ae43495dbbcf0e6a9c291a799af587035" name="ae43495dbbcf0e6a9c291a799af587035"></a>
+Queue&lt; GameObject &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>targets</b></td></tr>
+<tr class="separator:ae43495dbbcf0e6a9c291a799af587035"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80f9b8791c4594572ed365184d8589dc"><td class="memItemLeft" align="right" valign="top"><a id="a80f9b8791c4594572ed365184d8589dc" name="a80f9b8791c4594572ed365184d8589dc"></a>
+GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>currentTarget</b> = null</td></tr>
+<tr class="separator:a80f9b8791c4594572ed365184d8589dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55320dea53eb714a0dd854c1cbf76b10"><td class="memItemLeft" align="right" valign="top"><a id="a55320dea53eb714a0dd854c1cbf76b10" name="a55320dea53eb714a0dd854c1cbf76b10"></a>
+Vector3&#160;</td><td class="memItemRight" valign="bottom"><b>moveTarget</b></td></tr>
+<tr class="separator:a55320dea53eb714a0dd854c1cbf76b10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Controls buddy behaviour. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a54734995ad244859511c8cfd05f17189" name="a54734995ad244859511c8cfd05f17189"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54734995ad244859511c8cfd05f17189">&#9670;&#160;</a></span>findNearest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GameObject BuddyScript.findNearest </td>
+          <td>(</td>
+          <td class="paramtype">GameObject[]&#160;</td>
+          <td class="paramname"><em>enemiesList</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Finds the closest enemy within range. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enemiesList</td><td>List of active enemies in the scene</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns closest enemy is one exists and is in range, returns null otherwise</dd></dl>
+
+</div>
+</div>
+<a id="a3250633bf751d963d4d68fa687d7bd23" name="a3250633bf751d963d4d68fa687d7bd23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3250633bf751d963d4d68fa687d7bd23">&#9670;&#160;</a></span>getNewDirectionVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector3 BuddyScript.getNewDirectionVector </td>
+          <td>(</td>
+          <td class="paramtype">Vector3&#160;</td>
+          <td class="paramname"><em>nextPosition</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns direction vector to next position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nextPosition</td><td>Target position to move to</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Direction vector</dd></dl>
+
+</div>
+</div>
+<a id="a736c48163d6bffc86a1be692f147f95f" name="a736c48163d6bffc86a1be692f147f95f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a736c48163d6bffc86a1be692f147f95f">&#9670;&#160;</a></span>GiveInstructions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BuddyScript.GiveInstructions </td>
+          <td>(</td>
+          <td class="paramtype">List&lt; <a class="el" href="class_buddy_action.html">BuddyAction</a> &gt;&#160;</td>
+          <td class="paramname"><em>actions</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clears actionQueue and fills it with new instructions. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actions</td><td>New instructions</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afc78715affbc2edaa06e8ae51faebcc3" name="afc78715affbc2edaa06e8ae51faebcc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc78715affbc2edaa06e8ae51faebcc3">&#9670;&#160;</a></span>moveToTargetGameObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool BuddyScript.moveToTargetGameObject </td>
+          <td>(</td>
+          <td class="paramtype">GameObject&#160;</td>
+          <td class="paramname"><em>target</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Moves towards a targetted GameObject. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>The GameObject to move towards</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns true if the target has been reached and false otherwise</dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Treevolution/Assets/Scripts/Buddy/BuddyScript.cs</li>
 </ul>

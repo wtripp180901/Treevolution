@@ -91,6 +91,9 @@ public class GameStateManager : MonoBehaviour
     /// Running RoundTimer instance.
     /// </summary>
     private RoundTimer _roundTimer;
+    /// <summary>
+    /// Running TowerManager instance.
+    /// </summary>
     private TowerManager _towerManager;
     /// <summary>
     /// The current GameState value.
@@ -160,7 +163,9 @@ public class GameStateManager : MonoBehaviour
             }
         };
 
-
+    /// <summary>
+    /// Sets up required class variables for a testing environment.
+    /// </summary>
     public void SetupGameStateManagerTesting()
     {
         BeginBattleButton = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -173,7 +178,9 @@ public class GameStateManager : MonoBehaviour
         _enemyManager.SetupForTest();
     }
 
-
+    /// <summary>
+    /// Toggles the currently playing music track depending on the round number and phase (planning or battle).
+    /// </summary>
     public void ToggleMusic()
     {
         if (_planningMusicPlaying)
@@ -219,6 +226,9 @@ public class GameStateManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Initialises variables of the GameStateManager for starting the game.
+    /// </summary>
     public void InitGameState()
     {
         if (Application.platform == RuntimePlatform.WindowsEditor)
@@ -433,6 +443,9 @@ public class GameStateManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Repairs all the walls, currently active in the game.
+    /// </summary>
     private void repairAllWalls()
     {
         GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");

@@ -1,16 +1,17 @@
 var searchData=
 [
-  ['pathfinder_0',['Pathfinder',['../class_pathfinding_1_1_pathfinder.html',1,'Pathfinding']]],
-  ['pathfinding_1',['Pathfinding',['../namespace_pathfinding.html',1,'']]],
-  ['pathfindinggraphgenerator_2',['PathfindingGraphGenerator',['../class_pathfinding_1_1_pathfinding_graph_generator.html',1,'Pathfinding']]],
-  ['pathfindingnode_3',['PathfindingNode',['../class_pathfinding_1_1_pathfinding_node.html',1,'Pathfinding']]],
-  ['pathfindingobstacle_4',['PathfindingObstacle',['../class_pathfinding_1_1_pathfinding_obstacle.html',1,'Pathfinding']]],
-  ['pathfindingtests_5',['PathfindingTests',['../class_pathfinding_tests.html',1,'']]],
-  ['pathfindingupdatepublisher_6',['PathfindingUpdatePublisher',['../class_pathfinding_1_1_pathfinding_update_publisher.html',1,'Pathfinding']]],
-  ['pausetimer_7',['PauseTimer',['../class_round_timer.html#a34341cf1eacdca2e5bf680f2c7616f4d',1,'RoundTimer']]],
-  ['pausetimerevent_8',['PauseTimerEvent',['../class_round_timer.html#a87213305cd2a73b321c9405af00f7884',1,'RoundTimer']]],
-  ['planemapper_9',['PlaneMapper',['../class_plane_mapper.html',1,'']]],
-  ['planemarker_10',['planeMarker',['../class_q_r_detection.html#ac9c727a63c782a7e9f760a36e8c6986d',1,'QRDetection']]],
-  ['playercontroller_11',['PlayerController',['../class_player_controller.html',1,'']]],
-  ['pointerlocationtracker_12',['PointerLocationTracker',['../class_pointer_location_tracker.html',1,'']]]
+  ['managerscenelogic_0',['ManagerSceneLogic',['../class_manager_scene_logic.html',1,'']]],
+  ['mapproperties_1',['MapProperties',['../class_real_world_property_mapper.html#a1d8b3cf4aff0903877ec3e7ab10d3ae3',1,'RealWorldPropertyMapper']]],
+  ['markercount_2',['markerCount',['../class_plane_mapper.html#a1ba0dd8a11c846cd0f43af5632c875ac',1,'PlaneMapper']]],
+  ['maxroundnumber_3',['maxRoundNumber',['../class_game_state_manager.html#a3cf9cf170a1d08d49fe7bd15ceba114e',1,'GameStateManager']]],
+  ['microsoft_4',['Microsoft',['../namespace_microsoft.html',1,'']]],
+  ['mixedreality_5',['MixedReality',['../namespace_microsoft_1_1_mixed_reality.html',1,'Microsoft']]],
+  ['mountpoint_6',['MountPoint',['../class_mount_point.html',1,'']]],
+  ['movebuddyaction_7',['MoveBuddyAction',['../class_move_buddy_action.html',1,'']]],
+  ['movementfixedupdate_8',['movementFixedUpdate',['../class_buddy_script.html#a149f1cf3d67c43f73e257604e4017cd1',1,'BuddyScript']]],
+  ['movementthreshold_9',['MovementThreshold',['../class_runtime_movable.html#a3af4db1d813aa60d3db7e1b52ca1c022',1,'RuntimeMovable']]],
+  ['movetotargetgameobject_10',['moveToTargetGameObject',['../class_buddy_script.html#afc78715affbc2edaa06e8ae51faebcc3',1,'BuddyScript']]],
+  ['multitargettower_11',['MultiTargetTower',['../class_multi_target_tower.html',1,'']]],
+  ['mushroomtower_12',['mushroomTower',['../class_q_r_detection.html#a29f71751240b1d9e34169814e2152fde',1,'QRDetection']]],
+  ['qr_13',['QR',['../namespace_microsoft_1_1_mixed_reality_1_1_q_r.html',1,'Microsoft::MixedReality']]]
 ];
