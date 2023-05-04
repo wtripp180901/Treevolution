@@ -247,6 +247,7 @@ public class GameStateManager : MonoBehaviour
         _uIController = GetComponent<UIController>();
         _qRDetection = GetComponent<QRDetection>();
         _enemyManager = GetComponent<EnemyManager>();
+        _enemyManager.resetEnemiesKilled();
         _roundTimer = GetComponent<RoundTimer>();
         _defaultRoundLength = _roundTimer.GetRoundLength();
         _towerManager = GetComponent<TowerManager>();
@@ -339,11 +340,11 @@ public class GameStateManager : MonoBehaviour
     /// </summary>
     /// <param name="enemiesKilled">Number of enemies killed.</param>
     /// <returns>This method runs a coroutine and so a <c>yield return</c> is used.</returns>
-    private IEnumerator EndTutorialBattle(int enemiesKilled)
+    private IEnumerator EndTutorialBattle(int score)
     {
         _enemyManager.resetEnemiesKilled();
          if(InfoText != null) 
-            InfoText.text = "Tutorial Over\n[" + enemiesKilled.ToString() + " Enemies Killed]";
+            InfoText.text = "Tutorial Over\n[Score: " + score.ToString() + "]";
         yield return new WaitForSeconds(3);
         ToggleMusic();
         _uIController.EndTutorial();
@@ -404,14 +405,14 @@ public class GameStateManager : MonoBehaviour
         clearEnemies();
         repairAllWalls();
         _enemyManager.StopSpawning();
-        int enemiesKilled = GetComponent<EnemyManager>().getEnemiesKilled();
+        int score = GetComponent<EnemyManager>().getScore();
         if (currentGameState == GameState.Tutorial_Battle)
         {
-            StartCoroutine(EndTutorialBattle(enemiesKilled));
+            StartCoroutine(EndTutorialBattle(score));
             yield break;
         }
         if(InfoText != null)
-            InfoText.text = "Round " + _currentRoundNumber.ToString() + " Over\n[" + enemiesKilled.ToString() + " Enemies Killed]";
+            InfoText.text = "Round " + _currentRoundNumber.ToString() + " Over\n[Score: " + score.ToString() + "]";
         yield return new WaitForSeconds(3);
         ToggleMusic();
         if (_currentRoundNumber + 1 == 3)
