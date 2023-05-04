@@ -4,29 +4,88 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+    /// <summary>
+    /// List of enemies currently spawned in the game.
+    /// </summary>
     private List<GameObject> _enemies = new List<GameObject>();
+    /// <summary>
+    /// Publicly accessible list of enemy GameObjects currently alive in-game.
+    /// </summary>
     public GameObject[] enemies { get { return _enemies.ToArray(); } }
-    private GameObject targetEnemy;
+    /// <summary>
+    /// Prefab object of ant bug.
+    /// </summary>
     public GameObject antPrefab;
+    /// <summary>
+    /// Prefab object of armoured bug.
+    /// </summary>
     public GameObject armouredBugPrefab;
+    /// <summary>
+    /// Prefab object of cockroach bug.
+    /// </summary>
     public GameObject armouredCockroachPrefab;
+    /// <summary>
+    /// Prefab object of stag beetle bug.
+    /// </summary>
     public GameObject armouredStagbeetlePrefab;
+    /// <summary>
+    /// Prefab object of dragonfly bug.
+    /// </summary>
     public GameObject DragonflyPrefab;
+    /// <summary>
+    /// Prefab object of hornet bug.
+    /// </summary>
     public GameObject HornetPrefab;
+    /// <summary>
+    /// Audio clip to play from an enemy when it spawns.
+    /// </summary>
     [SerializeField]
     private AudioClip _spawnAudio;
+    /// <summary>
+    /// Audio clip to play from an enemy when it dies.
+    /// </summary>
     [SerializeField]
     private AudioClip _deathAudio;
+    /// <summary>
+    /// Audio clip to play from an enemy when it gets damaged.
+    /// </summary>
     [SerializeField]
     private AudioClip _damageAudio;
+    /// <summary>
+    /// Active rountimer reference.
+    /// </summary>
     private RoundTimer roundTimer;
+    /// <summary>
+    /// Number of enemies killed in total.
+    /// </summary>
     private int enemiesKilled = 0;
+    /// <summary>
+    /// Timer to display in the UI.
+    /// </summary>
     private float timer = 0;
+    /// <summary>
+    /// Default spawn interval in seconds (can be adjusted in Inspector).
+    /// </summary>
     public float spawnInterval = 3;
+    /// <summary>
+    /// Spawn height of enemies, obtained from the game properties.
+    /// </summary>
     private float spawnHeight;
+    /// <summary>
+    /// Vectors denoting the origin, and lateral axes of each spawning region.
+    /// </summary>
     private (Vector3 origin, Vector3 vert, Vector3 horz)[] spawnVectors = new (Vector3 origin, Vector3 vert, Vector3 horz)[2];
+    /// <summary>
+    /// Pool of all enemy types to be spawned in a round.
+    /// </summary>
     private List<GameStateManager.EnemyType> spawnPool;
+    /// <summary>
+    /// Indicates whether spawning has started.
+    /// </summary>
     private bool started = false;
+    /// <summary>
+    /// Indicates whether the first enemy spawn has happened (for tutorial pop-ups).
+    /// </summary>
     private bool firstSpawn = false;
 
     // Start is called before the first frame update
@@ -60,31 +119,28 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public void targetNewEnemy(GameObject enemy)
-    {
-        if (targetEnemy != null)
-        {
-            lock (targetEnemy)
-            {
-                Behaviour oldHalo = (Behaviour)targetEnemy.GetComponent("Halo");
-                oldHalo.enabled = false;
-            }
-        }
-        Behaviour newHalo = (Behaviour)enemy.GetComponent("Halo");
-        newHalo.enabled = true;
-        targetEnemy = enemy;
-    }
-
+    /// <summary>
+    /// Gets the total number of enemies killed.
+    /// </summary>
+    /// <returns>Integer number of enemies killed.</returns>
     public int getEnemiesKilled()
     {
         return enemiesKilled;
     }
 
+    /// <summary>
+    /// Resets the number of enemies killed.
+    /// </summary>
     public void resetEnemiesKilled()
     {
         enemiesKilled = 0;
     }
 
+    /// <summary>
+    /// Gets the enemy prefab of a particular enemy type.
+    /// </summary>
+    /// <param name="enemyType">The enemy type to get the prefab of.</param>
+    /// <returns>The prefab of the enemy type requested.</returns>
     GameObject getEnemyPrefab(GameStateManager.EnemyType enemyType)
     {
         switch (enemyType)
@@ -105,6 +161,9 @@ public class EnemyManager : MonoBehaviour
         return antPrefab;
     }
 
+    /// <summary>
+    /// Spawns a random enemy from the enemypool at a random position within either spawn region.
+    /// </summary>
     void spawnEnemy()
     {
         if (spawnPool.Count == 0)
@@ -115,7 +174,7 @@ public class EnemyManager : MonoBehaviour
         GameObject enemyPrefab = getEnemyPrefab(enemyType);
         EnemyScript enemyPrefabScript = enemyPrefab.GetComponent<EnemyScript>();
         enemyPrefabScript.damageAudio = _damageAudio;
-        enemyPrefabScript.spawnAudio= _spawnAudio;
+        enemyPrefabScript.spawnAudio = _spawnAudio;
         enemyPrefabScript.deathAudio = _deathAudio;
 
         int LR = Random.Range(0, 2); // Random
@@ -130,11 +189,20 @@ public class EnemyManager : MonoBehaviour
         Debug.DrawLine(spawnAxes.origin, spawnAxes.origin + spawnAxes.horz, Color.white, 1000);
     }
 
+    /// <summary>
+    /// Adds enemies to the scene for testing purposes.
+    /// </summary>
+    /// <param name="enemy">GameObject to spawn as an enemy.</param>
     public void AddToSceneAsEnemyForTest(GameObject enemy)
     {
         _enemies.Add(enemy);
     }
 
+    /// <summary>
+    /// Unpacks the dictionary of enemy types to spawn in a round, with their count, into a single pool of enemy types.
+    /// </summary>
+    /// <param name="enemies"></param>
+    /// <returns></returns>
     private List<GameStateManager.EnemyType> unpackEnemies(Dictionary<GameStateManager.EnemyType, int> enemies)
     {
         List<GameStateManager.EnemyType> enemyPool = new List<GameStateManager.EnemyType>();
@@ -145,6 +213,10 @@ public class EnemyManager : MonoBehaviour
         return enemyPool;
     }
 
+    /// <summary>
+    /// Begins spawning enemies.
+    /// </summary>
+    /// <param name="enemies">Dictionary of enemy types, along with a count of how many of each type to spawn.</param>
     public void StartSpawning(Dictionary<GameStateManager.EnemyType, int> enemies)
     {
         spawnPool = unpackEnemies(enemies);
@@ -159,6 +231,11 @@ public class EnemyManager : MonoBehaviour
         started = true;
     }
 
+    /// <summary>
+    /// Removes an enemy from the game.
+    /// </summary>
+    /// <param name="enemy">The enemy GameObject to remove.</param>
+    /// <param name="killedByPlayer">Indicator of whether that enemy was killed by a player, or if it just reached the tree.</param>
     public void RemoveEnemy(GameObject enemy, bool killedByPlayer)
     {
         if (killedByPlayer)
@@ -168,6 +245,9 @@ public class EnemyManager : MonoBehaviour
         _enemies.Remove(enemy);
     }
 
+    /// <summary>
+    /// Stops the enemies from spawning.
+    /// </summary>
     public void StopSpawning()
     {
         started = false;

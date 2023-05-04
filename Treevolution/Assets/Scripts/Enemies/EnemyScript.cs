@@ -22,37 +22,42 @@ public class EnemyScript : MonoBehaviour
     /// </summary>
     [SerializeField] // This allows the private field to be edited from the Unity inspecter
     private float speed = 0.01f;
-
+    /// <summary>
+    /// Interval between which the enemy should be damaged repeatedly if they are clipping through a wall.
+    /// </summary>
     [SerializeField]
     float inWallDamageInterval = 0.5f;
+    /// <summary>
+    /// Duration of time the enemy has been clipping a wall for.
+    /// </summary>
     float currentInWallInterval = 0f;
+    /// <summary>
+    /// Indicates if the enemy is currently clipping through a wall.
+    /// </summary>
     bool inWall = false;
-
+    /// <summary>
+    /// Indicates if the enemy is frozen in place.
+    /// </summary>
     public bool frozen = false;
-
     /// <summary>
     /// Audio player to play spatial sounds from the current enemy.
     /// </summary>
     private AudioSource _enemyAudioPlayer;
-
     /// <summary>
     /// Sound effect to be played when the enemy spawns.
     /// </summary>
     [HideInInspector]
     public AudioClip spawnAudio;
-
     /// <summary>
     /// Sound effect to be played when the enemy gets damaged.
     /// </summary>
     [HideInInspector]
     public AudioClip damageAudio;
-
     /// <summary>
     /// Sound effect to be played when the enemy dies.
     /// </summary>
     [HideInInspector]
     public AudioClip deathAudio;
-
     /// <summary>
     /// Current Enemy's Rigidbody component.
     /// </summary>
@@ -97,22 +102,18 @@ public class EnemyScript : MonoBehaviour
     /// Reference to the Right Spawn Indicator.
     /// </summary>
     private SpawnDirectionIndicator _rightIndicator;
-
     /// <summary>
     /// Initial orientation of the enemy prefab
     /// </summary>
     private Vector3 _defaultOrientation;
-
     /// <summary>
     /// Determines if enemy requests path around walls or not
     /// </summary>
     public bool AvoidsWall = true;
-
     /// <summary>
     /// Determines if enemies destroy walls on collision
     /// </summary>
     public bool DamagesWall = false;
-
     /// <summary>
     /// Start runs when loading the GameObject that this script is attached to.
     /// </summary>
@@ -135,6 +136,12 @@ public class EnemyScript : MonoBehaviour
             _rigidbody.useGravity = true;
         PathfindingUpdatePublisher.RefindPathNeededEvent.AddListener(restartPathfinding);
         Initialise();
+    }
+
+    public void GetTestData(out bool inWall,out int currentHealth)
+    {
+        inWall = this.inWall;
+        currentHealth = this.health;
     }
 
     private void Update()
@@ -171,6 +178,9 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Refreshes the pathfinding points for the enemy.
+    /// </summary>
     private void restartPathfinding()
     {
         _pathCounter = 0;
@@ -216,6 +226,10 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called when the enemy enters a trigger box, such as a wall.
+    /// </summary>
+    /// <param name="trigger">Trigger event data.</param>
     private void OnTriggerEnter(Collider trigger)
     {
         GameObject collision = trigger.gameObject;
@@ -229,6 +243,10 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called when the enemy exits a trigger box, such as a wall.
+    /// </summary>
+    /// <param name="trigger">Trigger event data.</param>
     private void OnTriggerExit(Collider trigger)
     {
         if (trigger.gameObject.tag == "Wall")
@@ -328,7 +346,9 @@ public class EnemyScript : MonoBehaviour
             }
             else StartCoroutine(DamageIndicator());
         }
-        catch { }
+        catch (System.Exception e) {
+            Debug.Log("Error killing enemy: " + e.Message);
+        }
     }
 
     /// <summary>

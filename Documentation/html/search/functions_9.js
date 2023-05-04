@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['pausetimer_0',['PauseTimer',['../class_round_timer.html#a34341cf1eacdca2e5bf680f2c7616f4d',1,'RoundTimer']]]
+  ['killenemy_0',['KillEnemy',['../class_enemy_script.html#a0ef551b1d248a61a474fe08f192936a0',1,'EnemyScript']]]
 ];

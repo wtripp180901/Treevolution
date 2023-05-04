@@ -6,6 +6,10 @@ using UnityEngine.Networking;
 using System.IO;
 using System;
 
+
+/// <summary>
+/// Backup API calling script which makes asynchronous API calls to AssemblyAI and notifies the user of progress
+/// </summary>
 public class AssemblyAPICaller : MonoBehaviour
 {
     string key;
@@ -32,6 +36,11 @@ public class AssemblyAPICaller : MonoBehaviour
         uiController = GetComponent<UIController>();
     }
 
+    /// <summary>
+    /// Adds a file at a given URL to AssemblyAI's processing queue. If successful, will start GetTranscriptionResult
+    /// </summary>
+    /// <param name="url">The web url of the audio file for processing</param>
+    /// <returns></returns>
     public IEnumerator StartTranscription(string url)
     {
         UnityWebRequest req = new UnityWebRequest("https://api.assemblyai.com/v2/transcript");
@@ -62,6 +71,10 @@ public class AssemblyAPICaller : MonoBehaviour
         req.Dispose();
     }
 
+    /// <summary>
+    /// Uploads the locally recorded speech command, uploads it and, if successful, begins StartTranscription using the uploaded file's new URL
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator UploadFile()
     {
         UnityWebRequest req = new UnityWebRequest("https://api.assemblyai.com/v2/upload");
@@ -92,6 +105,12 @@ public class AssemblyAPICaller : MonoBehaviour
         req.Dispose();
     }
 
+
+    /// <summary>
+    /// Repeatedly checks the AssemblyAI processing queue until the file has been processed. If succesfully processed, will send transcription results to VoiceCommandReceiver.ProcessDictation
+    /// </summary>
+    /// <param name="id">The AssemblyAI file id of the file being tracked</param>
+    /// <returns></returns>
     public IEnumerator GetTranscriptionResult(string id)
     {
         UnityWebRequest req = UnityWebRequest.Get("https://api.assemblyai.com/v2/transcript/" + id);

@@ -9,7 +9,7 @@ public class RoundTimer : MonoBehaviour
     /// <summary>
     /// Length of the round in seconds.
     /// </summary>
-    /// 
+    [SerializeField]
     private float _roundLengthSecs = 60;
     /// <summary>
     /// Pause state of the timer.

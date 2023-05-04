@@ -73,6 +73,8 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#properties">Properties</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_u_i_controller-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">UIController Class Reference</div></div>
 </div><!--header-->
@@ -89,6 +91,9 @@ Inheritance diagram for UIController:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a96c3a9856277f8c6d36e455b1eb19847"><td class="memItemLeft" align="right" valign="top"><a id="a96c3a9856277f8c6d36e455b1eb19847" name="a96c3a9856277f8c6d36e455b1eb19847"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetupForTest</b> ()</td></tr>
+<tr class="separator:a96c3a9856277f8c6d36e455b1eb19847"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8531008b50c148d2a037c30f4d5106c1"><td class="memItemLeft" align="right" valign="top"><a id="a8531008b50c148d2a037c30f4d5106c1" name="a8531008b50c148d2a037c30f4d5106c1"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>CalibrationPopUp</b> ()</td></tr>
 <tr class="memdesc:a8531008b50c148d2a037c30f4d5106c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays an orange info pop-up requesting calibration of the game board. <br /></td></tr>
@@ -124,9 +129,19 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>EndPopUp</b> ()</td><
 void&#160;</td><td class="memItemRight" valign="bottom"><b>DecreaseTime</b> ()</td></tr>
 <tr class="memdesc:ae659464ba09da48da4d39015d3c99ba4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decreases the timer by 1 second. <br /></td></tr>
 <tr class="separator:ae659464ba09da48da4d39015d3c99ba4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7168d9f3b9cb1d86e5cbc85658dc4d99"><td class="memItemLeft" align="right" valign="top"><a id="a7168d9f3b9cb1d86e5cbc85658dc4d99" name="a7168d9f3b9cb1d86e5cbc85658dc4d99"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ShowDictation</b> (string dictation)</td></tr>
+<tr class="memitem:ad0fdccf2dc352367ce0f2b35baac8fda"><td class="memItemLeft" align="right" valign="top"><a id="ad0fdccf2dc352367ce0f2b35baac8fda" name="ad0fdccf2dc352367ce0f2b35baac8fda"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>StartShowingHypothesis</b> ()</td></tr>
+<tr class="memdesc:ad0fdccf2dc352367ce0f2b35baac8fda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates that the dictationText should currently be displaying the DictationHypothesis from the DictationHandler. <br /></td></tr>
+<tr class="separator:ad0fdccf2dc352367ce0f2b35baac8fda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7168d9f3b9cb1d86e5cbc85658dc4d99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i_controller.html#a7168d9f3b9cb1d86e5cbc85658dc4d99">ShowDictation</a> (string dictation)</td></tr>
+<tr class="memdesc:a7168d9f3b9cb1d86e5cbc85658dc4d99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Briefly displays given text on the HUD. Intended for use to show DictationResult's from DictationHandler.  <br /></td></tr>
 <tr class="separator:a7168d9f3b9cb1d86e5cbc85658dc4d99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae859ed20c5784fd3467e26c39c35adb6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i_controller.html#ae859ed20c5784fd3467e26c39c35adb6">ShowMessageAsDictation</a> (string txt)</td></tr>
+<tr class="memdesc:ae859ed20c5784fd3467e26c39c35adb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shows text on the dictationText HUD but doesn't clear it.  <br /></td></tr>
+<tr class="separator:ae859ed20c5784fd3467e26c39c35adb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f32d413f3a7daa2c48f0eddb2c50ae5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i_controller.html#a3f32d413f3a7daa2c48f0eddb2c50ae5">ShowHypothesis</a> (string hypothesis)</td></tr>
+<tr class="memdesc:a3f32d413f3a7daa2c48f0eddb2c50ae5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays the text on the dictationText HUD in hypothesis mode.  <br /></td></tr>
+<tr class="separator:a3f32d413f3a7daa2c48f0eddb2c50ae5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -142,6 +157,10 @@ GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>buttonDialogPre
 GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>buttonImageDiaglogPrefab</b></td></tr>
 <tr class="memdesc:aaf148d88e5929c1c2f4894ae1cbd563a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adapted MRTK Dialog Prefab to display text, an image, and button(s). <br /></td></tr>
 <tr class="separator:aaf148d88e5929c1c2f4894ae1cbd563a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cd95dfa0f5901ade9d9961c5da9d20c"><td class="memItemLeft" align="right" valign="top"><a id="a1cd95dfa0f5901ade9d9961c5da9d20c" name="a1cd95dfa0f5901ade9d9961c5da9d20c"></a>
+Sprite&#160;</td><td class="memItemRight" valign="bottom"><b>damageGif</b></td></tr>
+<tr class="memdesc:a1cd95dfa0f5901ade9d9961c5da9d20c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gif of hitting bug. <br /></td></tr>
+<tr class="separator:a1cd95dfa0f5901ade9d9961c5da9d20c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8493d986f954ce508696a647c6dba003"><td class="memItemLeft" align="right" valign="top"><a id="a8493d986f954ce508696a647c6dba003" name="a8493d986f954ce508696a647c6dba003"></a>
 Sprite&#160;</td><td class="memItemRight" valign="bottom"><b>antImage</b></td></tr>
 <tr class="memdesc:a8493d986f954ce508696a647c6dba003"><td class="mdescLeft">&#160;</td><td class="mdescRight">Image of ant enemy. <br /></td></tr>
@@ -192,10 +211,139 @@ Properties</h2></td></tr>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>timeRemaining</b><code> [get]</code></td></tr>
 <tr class="memdesc:a9707e586998d7e962c7f3842a77154fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the time remaining in the current round. <br /></td></tr>
 <tr class="separator:a9707e586998d7e962c7f3842a77154fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a676b3b972c33885db4565ee43f23e459"><td class="memItemLeft" align="right" valign="top"><a id="a676b3b972c33885db4565ee43f23e459" name="a676b3b972c33885db4565ee43f23e459"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Start</b> ()</td></tr>
+<tr class="memdesc:a676b3b972c33885db4565ee43f23e459"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start runs when loading the GameObject that this script is attached to. <br /></td></tr>
+<tr class="separator:a676b3b972c33885db4565ee43f23e459"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf20235558f9a10b48f7d69ce0ce9af2"><td class="memItemLeft" align="right" valign="top"><a id="adf20235558f9a10b48f7d69ce0ce9af2" name="adf20235558f9a10b48f7d69ce0ce9af2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>TutorialSelectionPopUp</b> ()</td></tr>
+<tr class="memdesc:adf20235558f9a10b48f7d69ce0ce9af2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays a button pop-up asking the user to select whether they would like to start the Tutorial. <br /></td></tr>
+<tr class="separator:adf20235558f9a10b48f7d69ce0ce9af2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a156f890496f1288bf89a64882f2988a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i_controller.html#a156f890496f1288bf89a64882f2988a9">HandleTutorialSelectionEvent</a> (DialogResult result)</td></tr>
+<tr class="memdesc:a156f890496f1288bf89a64882f2988a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles the users choice of Tutorial selection.  <br /></td></tr>
+<tr class="separator:a156f890496f1288bf89a64882f2988a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8092ada6be6e28d5d877ddaef44d8914"><td class="memItemLeft" align="right" valign="top"><a id="a8092ada6be6e28d5d877ddaef44d8914" name="a8092ada6be6e28d5d877ddaef44d8914"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>CloseOpenDialogs</b> (bool alreadyLocked)</td></tr>
+<tr class="memdesc:a8092ada6be6e28d5d877ddaef44d8914"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes any open dialogs in the <code>_openDialogs</code> list. <br /></td></tr>
+<tr class="separator:a8092ada6be6e28d5d877ddaef44d8914"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76afabaccd931ae1fd9a554348c789d7"><td class="memItemLeft" align="right" valign="top">IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_u_i_controller.html#a76afabaccd931ae1fd9a554348c789d7">clearTextAfterDelay</a> (int delay, TMP_Text text)</td></tr>
+<tr class="memdesc:a76afabaccd931ae1fd9a554348c789d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears a TextMeshPro after a delay.  <br /></td></tr>
+<tr class="separator:a76afabaccd931ae1fd9a554348c789d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a62b739d9523fdab76b8408c5fb222c64"><td class="memItemLeft" align="right" valign="top"><a id="a62b739d9523fdab76b8408c5fb222c64" name="a62b739d9523fdab76b8408c5fb222c64"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>time</b> = 60</td></tr>
+<tr class="separator:a62b739d9523fdab76b8408c5fb222c64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6618ce4b0cd318b98a9c5c1e2b026b4e"><td class="memItemLeft" align="right" valign="top"><a id="a6618ce4b0cd318b98a9c5c1e2b026b4e" name="a6618ce4b0cd318b98a9c5c1e2b026b4e"></a>
+<a class="el" href="class_enemy_manager.html">EnemyManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>enemyManager</b></td></tr>
+<tr class="separator:a6618ce4b0cd318b98a9c5c1e2b026b4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8e9b78703a5bf327baad4e85ff3bc66"><td class="memItemLeft" align="right" valign="top"><a id="ae8e9b78703a5bf327baad4e85ff3bc66" name="ae8e9b78703a5bf327baad4e85ff3bc66"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>_roundTime</b> = -1</td></tr>
+<tr class="memdesc:ae8e9b78703a5bf327baad4e85ff3bc66"><td class="mdescLeft">&#160;</td><td class="mdescRight">The time remaining in the current round. <br /></td></tr>
+<tr class="separator:ae8e9b78703a5bf327baad4e85ff3bc66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab66e499c455d822f8d7959e45634b8aa"><td class="memItemLeft" align="right" valign="top"><a id="ab66e499c455d822f8d7959e45634b8aa" name="ab66e499c455d822f8d7959e45634b8aa"></a>
+<a class="el" href="class_enemy_manager.html">EnemyManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_enemyManager</b></td></tr>
+<tr class="memdesc:ab66e499c455d822f8d7959e45634b8aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Running <a class="el" href="class_enemy_manager.html">EnemyManager</a> instance. <br /></td></tr>
+<tr class="separator:ab66e499c455d822f8d7959e45634b8aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa3304a280c5eea59240ec24af762668"><td class="memItemLeft" align="right" valign="top"><a id="aaa3304a280c5eea59240ec24af762668" name="aaa3304a280c5eea59240ec24af762668"></a>
+<a class="el" href="class_game_state_manager.html">GameStateManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_gameStateManager</b></td></tr>
+<tr class="memdesc:aaa3304a280c5eea59240ec24af762668"><td class="mdescLeft">&#160;</td><td class="mdescRight">Running <a class="el" href="class_game_state_manager.html" title="Manages and keeps track of the game state as the user progresses through each round or tutorial.">GameStateManager</a> instance. <br /></td></tr>
+<tr class="separator:aaa3304a280c5eea59240ec24af762668"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9d1f0067a66e7a421a708059fff5c66"><td class="memItemLeft" align="right" valign="top"><a id="ab9d1f0067a66e7a421a708059fff5c66" name="ab9d1f0067a66e7a421a708059fff5c66"></a>
+List&lt; Dialog &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_openDialogs</b> = new List&lt;Dialog&gt;()</td></tr>
+<tr class="memdesc:ab9d1f0067a66e7a421a708059fff5c66"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of currently open dialogs. <br /></td></tr>
+<tr class="separator:ab9d1f0067a66e7a421a708059fff5c66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a621369de4105caaa5da93dcc8b7c43a5"><td class="memItemLeft" align="right" valign="top"><a id="a621369de4105caaa5da93dcc8b7c43a5" name="a621369de4105caaa5da93dcc8b7c43a5"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>hypothesisMode</b> = false</td></tr>
+<tr class="separator:a621369de4105caaa5da93dcc8b7c43a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Controls the instantiation and removal of UI elements. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a76afabaccd931ae1fd9a554348c789d7" name="a76afabaccd931ae1fd9a554348c789d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76afabaccd931ae1fd9a554348c789d7">&#9670;&#160;</a></span>clearTextAfterDelay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IEnumerator UIController.clearTextAfterDelay </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>delay</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TMP_Text&#160;</td>
+          <td class="paramname"><em>text</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Clears a TextMeshPro after a delay. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">delay</td><td>The time the text should stay visible</td></tr>
+    <tr><td class="paramname">text</td><td>The TextMeshPro the text is displayed on</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a156f890496f1288bf89a64882f2988a9" name="a156f890496f1288bf89a64882f2988a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a156f890496f1288bf89a64882f2988a9">&#9670;&#160;</a></span>HandleTutorialSelectionEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UIController.HandleTutorialSelectionEvent </td>
+          <td>(</td>
+          <td class="paramtype">DialogResult&#160;</td>
+          <td class="paramname"><em>result</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handles the users choice of Tutorial selection. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">result</td><td>DialogResult object returned from the closed dialog selection pop-up.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a97f67b542ee6a05570e1218695d48ae9" name="a97f67b542ee6a05570e1218695d48ae9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a97f67b542ee6a05570e1218695d48ae9">&#9670;&#160;</a></span>ResetTimer()</h2>
 
@@ -216,6 +364,84 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>timeRemaining</b><code
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">time</td><td>Timer limit in seconds.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7168d9f3b9cb1d86e5cbc85658dc4d99" name="a7168d9f3b9cb1d86e5cbc85658dc4d99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7168d9f3b9cb1d86e5cbc85658dc4d99">&#9670;&#160;</a></span>ShowDictation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UIController.ShowDictation </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>dictation</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Briefly displays given text on the HUD. Intended for use to show DictationResult's from DictationHandler. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dictation</td><td>Text to display</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3f32d413f3a7daa2c48f0eddb2c50ae5" name="a3f32d413f3a7daa2c48f0eddb2c50ae5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f32d413f3a7daa2c48f0eddb2c50ae5">&#9670;&#160;</a></span>ShowHypothesis()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UIController.ShowHypothesis </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>hypothesis</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Displays the text on the dictationText HUD in hypothesis mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hypothesis</td><td>Text to display</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae859ed20c5784fd3467e26c39c35adb6" name="ae859ed20c5784fd3467e26c39c35adb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae859ed20c5784fd3467e26c39c35adb6">&#9670;&#160;</a></span>ShowMessageAsDictation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UIController.ShowMessageAsDictation </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>txt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Shows text on the dictationText HUD but doesn't clear it. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">txt</td><td>Text to be shown</td></tr>
   </table>
   </dd>
 </dl>

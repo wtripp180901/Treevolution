@@ -72,6 +72,8 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_q_r_detection-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">QRDetection Class Reference</div></div>
 </div><!--header-->
@@ -91,6 +93,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0f963f7bcc0d7b46b1ff1c034f1d74f2"><td class="memItemLeft" align="right" valign="top">GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_r_detection.html#a0f963f7bcc0d7b46b1ff1c034f1d74f2">SpawnObjectOnQR</a> (QRCode qr, GameObject obj)</td></tr>
 <tr class="memdesc:a0f963f7bcc0d7b46b1ff1c034f1d74f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spawns a GameObject on a QRCode, and covers the QR with a plane.  <br /></td></tr>
 <tr class="separator:a0f963f7bcc0d7b46b1ff1c034f1d74f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a178536f30c9b3af4f6b3966b5a8060fd"><td class="memItemLeft" align="right" valign="top"><a id="a178536f30c9b3af4f6b3966b5a8060fd" name="a178536f30c9b3af4f6b3966b5a8060fd"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>ResetTrackedCodes</b> ()</td></tr>
+<tr class="memdesc:a178536f30c9b3af4f6b3966b5a8060fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes any tracked QRCodes from the list. <br /></td></tr>
+<tr class="separator:a178536f30c9b3af4f6b3966b5a8060fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeaf9d3e90f853d04fdf98ea2ba6658b2"><td class="memItemLeft" align="right" valign="top"><a id="aeaf9d3e90f853d04fdf98ea2ba6658b2" name="aeaf9d3e90f853d04fdf98ea2ba6658b2"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>StopQR</b> ()</td></tr>
 <tr class="memdesc:aeaf9d3e90f853d04fdf98ea2ba6658b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Halts QR Detection. <br /></td></tr>
@@ -110,10 +116,26 @@ TMP_Text&#160;</td><td class="memItemRight" valign="bottom"><b>debugText</b></td
 GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>planeMarker</b></td></tr>
 <tr class="memdesc:ac9c727a63c782a7e9f760a36e8c6986d"><td class="mdescLeft">&#160;</td><td class="mdescRight">GameObject which is placed on the QR Code marking the corner of the game board. <br /></td></tr>
 <tr class="separator:ac9c727a63c782a7e9f760a36e8c6986d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2df15972749275793d9fb2d0d62e262b"><td class="memItemLeft" align="right" valign="top"><a id="a2df15972749275793d9fb2d0d62e262b" name="a2df15972749275793d9fb2d0d62e262b"></a>
-GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>towerMarker</b></td></tr>
-<tr class="memdesc:a2df15972749275793d9fb2d0d62e262b"><td class="mdescLeft">&#160;</td><td class="mdescRight">GameObject which is placed on a tower marker. <br /></td></tr>
-<tr class="separator:a2df15972749275793d9fb2d0d62e262b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d0465f5d3edaec900d6ed1e57e2a10a"><td class="memItemLeft" align="right" valign="top"><a id="a3d0465f5d3edaec900d6ed1e57e2a10a" name="a3d0465f5d3edaec900d6ed1e57e2a10a"></a>
+GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>cactusTower</b></td></tr>
+<tr class="memdesc:a3d0465f5d3edaec900d6ed1e57e2a10a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cactus plant to be placed on a Tower 1 Marker. <br /></td></tr>
+<tr class="separator:a3d0465f5d3edaec900d6ed1e57e2a10a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29f71751240b1d9e34169814e2152fde"><td class="memItemLeft" align="right" valign="top"><a id="a29f71751240b1d9e34169814e2152fde" name="a29f71751240b1d9e34169814e2152fde"></a>
+GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>mushroomTower</b></td></tr>
+<tr class="memdesc:a29f71751240b1d9e34169814e2152fde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mushroom plant to be placed on a Tower 2 Marker. <br /></td></tr>
+<tr class="separator:a29f71751240b1d9e34169814e2152fde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad850f1ec6610d91aa86f0aeefbe5bde2"><td class="memItemLeft" align="right" valign="top"><a id="ad850f1ec6610d91aa86f0aeefbe5bde2" name="ad850f1ec6610d91aa86f0aeefbe5bde2"></a>
+GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>flowerTower</b></td></tr>
+<tr class="memdesc:ad850f1ec6610d91aa86f0aeefbe5bde2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flower plant to be placed on a Tower 3 Marker. <br /></td></tr>
+<tr class="separator:ad850f1ec6610d91aa86f0aeefbe5bde2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ff8cf8e575589775327173b94b200bb"><td class="memItemLeft" align="right" valign="top"><a id="a3ff8cf8e575589775327173b94b200bb" name="a3ff8cf8e575589775327173b94b200bb"></a>
+GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>venusTower</b></td></tr>
+<tr class="memdesc:a3ff8cf8e575589775327173b94b200bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Venus plant to be placed on a Tower 4 Marker. <br /></td></tr>
+<tr class="separator:a3ff8cf8e575589775327173b94b200bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbe2ddabdb50bdf9ed85b7a63a1873ff"><td class="memItemLeft" align="right" valign="top"><a id="abbe2ddabdb50bdf9ed85b7a63a1873ff" name="abbe2ddabdb50bdf9ed85b7a63a1873ff"></a>
+GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>poisonTower</b></td></tr>
+<tr class="memdesc:abbe2ddabdb50bdf9ed85b7a63a1873ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Poison plant to be placed on a Tower 5 Marker. <br /></td></tr>
+<tr class="separator:abbe2ddabdb50bdf9ed85b7a63a1873ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67c3945a8ea0644f48cc008b25714340"><td class="memItemLeft" align="right" valign="top"><a id="a67c3945a8ea0644f48cc008b25714340" name="a67c3945a8ea0644f48cc008b25714340"></a>
 GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>wallMarker</b></td></tr>
 <tr class="memdesc:a67c3945a8ea0644f48cc008b25714340"><td class="mdescLeft">&#160;</td><td class="mdescRight">GameObject which is placed on a wall marker. <br /></td></tr>
@@ -122,10 +144,182 @@ GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>wallMarker</b><
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>lockPlane</b></td></tr>
 <tr class="memdesc:a9fe0c68679c6867826ca182cccc79ab1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates whether the plane should lock and stop searching for plane marker updates. <br /></td></tr>
 <tr class="separator:a9fe0c68679c6867826ca182cccc79ab1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ae06af1aebef800650ef48e40a32c6587"><td class="memItemLeft" align="right" valign="top"><a id="ae06af1aebef800650ef48e40a32c6587" name="ae06af1aebef800650ef48e40a32c6587"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>InitProperties</b> ()</td></tr>
+<tr class="memdesc:ae06af1aebef800650ef48e40a32c6587"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises certain QR Detection fields. <br /></td></tr>
+<tr class="separator:ae06af1aebef800650ef48e40a32c6587"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a505669a8bb98d0716a0287a25ed343cc"><td class="memItemLeft" align="right" valign="top"><a id="a505669a8bb98d0716a0287a25ed343cc" name="a505669a8bb98d0716a0287a25ed343cc"></a>
+async void&#160;</td><td class="memItemRight" valign="bottom"><b>Start</b> ()</td></tr>
+<tr class="separator:a505669a8bb98d0716a0287a25ed343cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a380e57dbdea59b356d18f24dff666e8d"><td class="memItemLeft" align="right" valign="top"><a id="a380e57dbdea59b356d18f24dff666e8d" name="a380e57dbdea59b356d18f24dff666e8d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> ()</td></tr>
+<tr class="separator:a380e57dbdea59b356d18f24dff666e8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bdcf1a3d6130362f53425fc47614776"><td class="memItemLeft" align="right" valign="top"><a id="a8bdcf1a3d6130362f53425fc47614776" name="a8bdcf1a3d6130362f53425fc47614776"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>PosesTooSimilar</b> (Pose oldPose, Pose newPose)</td></tr>
+<tr class="separator:a8bdcf1a3d6130362f53425fc47614776"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acba7a21c9cf17a272a3277939abb4b9f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_r_detection.html#acba7a21c9cf17a272a3277939abb4b9f">DrawPlane</a> (string c1Data, QRCode code)</td></tr>
+<tr class="memdesc:acba7a21c9cf17a272a3277939abb4b9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks and draws the game board plane.  <br /></td></tr>
+<tr class="separator:acba7a21c9cf17a272a3277939abb4b9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f542d2cbaf1c315c491f3e0de7fb5a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_r_detection.html#a9f542d2cbaf1c315c491f3e0de7fb5a7">UpdateCodeHologram</a> (QRCode qrCode)</td></tr>
+<tr class="memdesc:a9f542d2cbaf1c315c491f3e0de7fb5a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the hologram GameObject on a particular QRCode (called for a QRCode Update or Added event).  <br /></td></tr>
+<tr class="separator:a9f542d2cbaf1c315c491f3e0de7fb5a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0bb8e44adef5524a028f649dba7e972"><td class="memItemLeft" align="right" valign="top">Pose&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_r_detection.html#ab0bb8e44adef5524a028f649dba7e972">TryGetNewCornerMarkerPose</a> (Pose newPose, bool cornerSet, Pose oldPose)</td></tr>
+<tr class="memdesc:ab0bb8e44adef5524a028f649dba7e972"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to get the new pose of the game board corner marker. This will only return a new post if the updated QR pose isn't too similar to what it was previously.  <br /></td></tr>
+<tr class="separator:ab0bb8e44adef5524a028f649dba7e972"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a91b5d8dd48793dfa1b5f7475964edd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_r_detection.html#a6a91b5d8dd48793dfa1b5f7475964edd">UpdatedCodeEvent</a> (object sender, QRCodeUpdatedEventArgs args)</td></tr>
+<tr class="memdesc:a6a91b5d8dd48793dfa1b5f7475964edd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by the QRCodeWatcher when a QRCode is updated.  <br /></td></tr>
+<tr class="separator:a6a91b5d8dd48793dfa1b5f7475964edd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2388ace4589d28d1bb3654aa9696dc7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_r_detection.html#a2388ace4589d28d1bb3654aa9696dc7b">AddedCodeEvent</a> (object sender, QRCodeAddedEventArgs args)</td></tr>
+<tr class="memdesc:a2388ace4589d28d1bb3654aa9696dc7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by the QRCodeWatcher when a QRCode is added.  <br /></td></tr>
+<tr class="separator:a2388ace4589d28d1bb3654aa9696dc7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef188d08e405b98b1047ef9854f533db"><td class="memItemLeft" align="right" valign="top"><a id="aef188d08e405b98b1047ef9854f533db" name="aef188d08e405b98b1047ef9854f533db"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>InitialiseQR</b> ()</td></tr>
+<tr class="memdesc:aef188d08e405b98b1047ef9854f533db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises the QRCodeWatcher instance, but doesn't start tracking objects yet. <br /></td></tr>
+<tr class="separator:aef188d08e405b98b1047ef9854f533db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1317b5595f07fad8c2d5173162e5c928"><td class="memItemLeft" align="right" valign="top"><a id="a1317b5595f07fad8c2d5173162e5c928" name="a1317b5595f07fad8c2d5173162e5c928"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>ResetCodeQueue</b> ()</td></tr>
+<tr class="memdesc:a1317b5595f07fad8c2d5173162e5c928"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes any QRCodes from the queue of updates waiting to be processed. <br /></td></tr>
+<tr class="separator:a1317b5595f07fad8c2d5173162e5c928"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a1be4556067bfdd6c3a3ded7286581e0f"><td class="memItemLeft" align="right" valign="top"><a id="a1be4556067bfdd6c3a3ded7286581e0f" name="a1be4556067bfdd6c3a3ded7286581e0f"></a>
+<a class="el" href="class_plane_mapper.html">PlaneMapper</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_planeMapper</b></td></tr>
+<tr class="memdesc:a1be4556067bfdd6c3a3ded7286581e0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Running <a class="el" href="class_plane_mapper.html">PlaneMapper</a> instance. <br /></td></tr>
+<tr class="separator:a1be4556067bfdd6c3a3ded7286581e0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6420857e62b470671816a21eb751502f"><td class="memItemLeft" align="right" valign="top"><a id="a6420857e62b470671816a21eb751502f" name="a6420857e62b470671816a21eb751502f"></a>
+QRCodeWatcher&#160;</td><td class="memItemRight" valign="bottom"><b>_qRCodeWatcher</b></td></tr>
+<tr class="memdesc:a6420857e62b470671816a21eb751502f"><td class="mdescLeft">&#160;</td><td class="mdescRight">An instance of QRCodeWatcher. <br /></td></tr>
+<tr class="separator:a6420857e62b470671816a21eb751502f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfa413484d575417fab5652dd3184783"><td class="memItemLeft" align="right" valign="top"><a id="acfa413484d575417fab5652dd3184783" name="acfa413484d575417fab5652dd3184783"></a>
+SortedDictionary&lt; System.Guid,(QRCode code, GameObject obj)&gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_trackedCodes</b></td></tr>
+<tr class="memdesc:acfa413484d575417fab5652dd3184783"><td class="mdescLeft">&#160;</td><td class="mdescRight">All currently tracked QR codes, and the GameObjects placed on them (indexed by their QRCode.Id). <br /></td></tr>
+<tr class="separator:acfa413484d575417fab5652dd3184783"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fd18d05aefb53f0a226be28711e917a"><td class="memItemLeft" align="right" valign="top"><a id="a6fd18d05aefb53f0a226be28711e917a" name="a6fd18d05aefb53f0a226be28711e917a"></a>
+Queue&lt; QRCode &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_updatedCodeQueue</b></td></tr>
+<tr class="memdesc:a6fd18d05aefb53f0a226be28711e917a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Queue for QR code updates. <br /></td></tr>
+<tr class="separator:a6fd18d05aefb53f0a226be28711e917a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06124b333f0fd7ce7ae8474c6e8da1a1"><td class="memItemLeft" align="right" valign="top"><a id="a06124b333f0fd7ce7ae8474c6e8da1a1" name="a06124b333f0fd7ce7ae8474c6e8da1a1"></a>
+System.Threading.Tasks.Task&lt; QRCodeWatcherAccessStatus &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_accessRequester</b></td></tr>
+<tr class="memdesc:a06124b333f0fd7ce7ae8474c6e8da1a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to request relevant QRCodeWatcher permissions. <br /></td></tr>
+<tr class="separator:a06124b333f0fd7ce7ae8474c6e8da1a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac922f4901f8c1e00feca24c583bd9bb9"><td class="memItemLeft" align="right" valign="top"><a id="ac922f4901f8c1e00feca24c583bd9bb9" name="ac922f4901f8c1e00feca24c583bd9bb9"></a>
+Pose&#160;</td><td class="memItemRight" valign="bottom"><b>_oldPlanePose</b></td></tr>
+<tr class="memdesc:ac922f4901f8c1e00feca24c583bd9bb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The previous plane pose for checking if a new plane pose is "different enough" for it to update. <br /></td></tr>
+<tr class="separator:ac922f4901f8c1e00feca24c583bd9bb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abaab77963f5fa58ce672fe3c1369af18"><td class="memItemLeft" align="right" valign="top"><a id="abaab77963f5fa58ce672fe3c1369af18" name="abaab77963f5fa58ce672fe3c1369af18"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_running</b></td></tr>
+<tr class="memdesc:abaab77963f5fa58ce672fe3c1369af18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates whether the QR Detector is running. <br /></td></tr>
+<tr class="separator:abaab77963f5fa58ce672fe3c1369af18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ea2c42a538845d594531a7d872e273b"><td class="memItemLeft" align="right" valign="top"><a id="a4ea2c42a538845d594531a7d872e273b" name="a4ea2c42a538845d594531a7d872e273b"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_planeCreated</b></td></tr>
+<tr class="memdesc:a4ea2c42a538845d594531a7d872e273b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if the plane has been created. <br /></td></tr>
+<tr class="separator:a4ea2c42a538845d594531a7d872e273b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a3e4fa0aedb2023759ca0c7460eb5c9"><td class="memItemLeft" align="right" valign="top"><a id="a6a3e4fa0aedb2023759ca0c7460eb5c9" name="a6a3e4fa0aedb2023759ca0c7460eb5c9"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_planeMarkerSet</b></td></tr>
+<tr class="memdesc:a6a3e4fa0aedb2023759ca0c7460eb5c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if the plane marker has been set. <br /></td></tr>
+<tr class="separator:a6a3e4fa0aedb2023759ca0c7460eb5c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a945e1a509f47375423d3cc16b04e491a"><td class="memItemLeft" align="right" valign="top"><a id="a945e1a509f47375423d3cc16b04e491a" name="a945e1a509f47375423d3cc16b04e491a"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_initialRun</b> = true</td></tr>
+<tr class="memdesc:a945e1a509f47375423d3cc16b04e491a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if the Update code is running for the first time or not. <br /></td></tr>
+<tr class="separator:a945e1a509f47375423d3cc16b04e491a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Runs QR Detection via MRTK's QRCodeWatcher. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a2388ace4589d28d1bb3654aa9696dc7b" name="a2388ace4589d28d1bb3654aa9696dc7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2388ace4589d28d1bb3654aa9696dc7b">&#9670;&#160;</a></span>AddedCodeEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QRDetection.AddedCodeEvent </td>
+          <td>(</td>
+          <td class="paramtype">object&#160;</td>
+          <td class="paramname"><em>sender</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QRCodeAddedEventArgs&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Called by the QRCodeWatcher when a QRCode is added. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sender</td><td>QRCodeWatcher instance invoking the QRCodeUpdated event.</td></tr>
+    <tr><td class="paramname">args</td><td>QRCodeAddedEventArgs event arguments.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acba7a21c9cf17a272a3277939abb4b9f" name="acba7a21c9cf17a272a3277939abb4b9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acba7a21c9cf17a272a3277939abb4b9f">&#9670;&#160;</a></span>DrawPlane()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QRDetection.DrawPlane </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>c1Data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QRCode&#160;</td>
+          <td class="paramname"><em>code</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks and draws the game board plane. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c1Data</td><td>Data that should be displayed on the QRCode of the plane marker.</td></tr>
+    <tr><td class="paramname">code</td><td>Object representing a potential plane marker.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a0f963f7bcc0d7b46b1ff1c034f1d74f2" name="a0f963f7bcc0d7b46b1ff1c034f1d74f2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0f963f7bcc0d7b46b1ff1c034f1d74f2">&#9670;&#160;</a></span>SpawnObjectOnQR()</h2>
 
@@ -157,6 +351,138 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>lockPlane</b></td></t
   <table class="params">
     <tr><td class="paramname">qr</td><td>QrCode to spawn the object on.</td></tr>
     <tr><td class="paramname">obj</td><td>GameObject to spawn.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab0bb8e44adef5524a028f649dba7e972" name="ab0bb8e44adef5524a028f649dba7e972"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0bb8e44adef5524a028f649dba7e972">&#9670;&#160;</a></span>TryGetNewCornerMarkerPose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Pose QRDetection.TryGetNewCornerMarkerPose </td>
+          <td>(</td>
+          <td class="paramtype">Pose&#160;</td>
+          <td class="paramname"><em>newPose</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>cornerSet</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Pose&#160;</td>
+          <td class="paramname"><em>oldPose</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Attempts to get the new pose of the game board corner marker. This will only return a new post if the updated QR pose isn't too similar to what it was previously. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newPose</td><td>The new pose recognised of the game board corner marker.</td></tr>
+    <tr><td class="paramname">cornerSet</td><td>Whether the corner has previously been set.</td></tr>
+    <tr><td class="paramname">oldPose</td><td>The old pose of thr game board corner marker.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a9f542d2cbaf1c315c491f3e0de7fb5a7" name="a9f542d2cbaf1c315c491f3e0de7fb5a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f542d2cbaf1c315c491f3e0de7fb5a7">&#9670;&#160;</a></span>UpdateCodeHologram()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QRDetection.UpdateCodeHologram </td>
+          <td>(</td>
+          <td class="paramtype">QRCode&#160;</td>
+          <td class="paramname"><em>qrCode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Updates the hologram GameObject on a particular QRCode (called for a QRCode Update or Added event). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">qrCode</td><td>The QRCode object which is being modified.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6a91b5d8dd48793dfa1b5f7475964edd" name="a6a91b5d8dd48793dfa1b5f7475964edd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a91b5d8dd48793dfa1b5f7475964edd">&#9670;&#160;</a></span>UpdatedCodeEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QRDetection.UpdatedCodeEvent </td>
+          <td>(</td>
+          <td class="paramtype">object&#160;</td>
+          <td class="paramname"><em>sender</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QRCodeUpdatedEventArgs&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Called by the QRCodeWatcher when a QRCode is updated. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sender</td><td>QRCodeWatcher instance invoking the QRCodeUpdated event.</td></tr>
+    <tr><td class="paramname">args</td><td>QRCodeUpdatedEventArgs event arguments.</td></tr>
   </table>
   </dd>
 </dl>

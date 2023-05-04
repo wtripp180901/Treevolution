@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['secondtickevent_0',['SecondTickEvent',['../class_round_timer.html#a555228224a28e46d02990f45a3543569',1,'RoundTimer']]],
-  ['settingsdialogprefab_1',['SettingsDialogPrefab',['../class_start_menu_logic.html#a9c44854e13a4c29e189139e42989cf62',1,'StartMenuLogic']]],
-  ['startmenu_2',['StartMenu',['../class_start_menu_logic.html#abaa6dd5f7baea9b756067b0d3e8b6a1e',1,'StartMenuLogic']]],
-  ['starttimerevent_3',['StartTimerEvent',['../class_round_timer.html#afb213ab2abf1acc49778850658d9f118',1,'RoundTimer']]],
-  ['stoptimerevent_4',['StopTimerEvent',['../class_round_timer.html#ae9d6dbabec1d06c930a3e27c69daad49',1,'RoundTimer']]]
+  ['markercount_0',['markerCount',['../class_plane_mapper.html#a1ba0dd8a11c846cd0f43af5632c875ac',1,'PlaneMapper']]],
+  ['maxroundnumber_1',['maxRoundNumber',['../class_game_state_manager.html#a3cf9cf170a1d08d49fe7bd15ceba114e',1,'GameStateManager']]],
+  ['movementthreshold_2',['MovementThreshold',['../class_runtime_movable.html#a3af4db1d813aa60d3db7e1b52ca1c022',1,'RuntimeMovable']]],
+  ['mushroomtower_3',['mushroomTower',['../class_q_r_detection.html#a29f71751240b1d9e34169814e2152fde',1,'QRDetection']]]
 ];
