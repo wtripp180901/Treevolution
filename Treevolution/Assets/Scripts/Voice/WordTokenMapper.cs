@@ -69,6 +69,11 @@ namespace LanguageParsing
             }
         }
 
+        /// <summary>
+        /// Maps words from basewords.txt to tokens to be used by the language parser
+        /// </summary>
+        /// <param name="toConvert">The string to be mapped to a token. Must be contained within basewords.txt</param>
+        /// <returns>The resolved token, returns a DummyToken if unresolved</returns>
         BuddyToken stringToToken(string toConvert)
         {
             switch (toConvert)
@@ -202,6 +207,13 @@ namespace LanguageParsing
         {
             return tokenDictionaryContainsWordOrSynonyms(dictionary, new List<string>() { word }, out token);
         }
+        /// <summary>
+        /// If any of the list of synonyms are known to the model (true), will give a corresponding BuddyToken
+        /// </summary>
+        /// <param name="dictionary">The dictionary of known words</param>
+        /// <param name="synonyms">The list of synonyms to be checked against the dictionary</param>
+        /// <param name="token">If the functions evaluates to true, the corresponding token will be written here. Null if false</param>
+        /// <returns>Returns true if the dictionary contains any of the listed synonyms and the BuddyToken has been written</returns>
         bool tokenDictionaryContainsWordOrSynonyms(Dictionary<BuddyToken,List<string>> dictionary,List<string> synonyms,out BuddyToken token)
         {
             foreach (BuddyToken tokenType in dictionary.Keys)
@@ -225,6 +237,11 @@ namespace LanguageParsing
             List<string> pluralList = list.Select
         }*/
 
+        /// <summary>
+        /// Converts nouns into their plural form
+        /// </summary>
+        /// <param name="original">The singular noun</param>
+        /// <returns>The pluralised version of the noun</returns>
         string pluralize(string original)
         {
             int lastCharIndex = original.Length - 1;

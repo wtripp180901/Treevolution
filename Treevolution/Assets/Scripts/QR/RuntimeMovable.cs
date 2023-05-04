@@ -56,6 +56,10 @@ public class RuntimeMovable : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Begins the behaviour scripts penalty for PenaltyDuration seconds and then removes it again
+    /// </summary>
+    /// <returns></returns>
     IEnumerator penaliseMovementThenStartAgain()
     {
         _behaviourScript?.ApplyMovementPenalty();

@@ -2,7 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// A concrete action type to be specified to a BuddyAction
+/// </summary>
 public enum BUDDY_ACTION_TYPES { Move, Error, Attack, Repair,Defend, Buff }
+
+/// <summary>
+/// The subject the buddy should resolve
+/// </summary>
 public enum BUDDY_SUBJECT_TYPES { PointerLocation, SingleClosestToPointer, GroupCloseToPointer, Unresolved, Error}
 
 public abstract class BuddyAction
@@ -15,6 +22,10 @@ public abstract class BuddyAction
     }
 }
 
+
+/// <summary>
+/// An action instructing the buddy to move to a Vector3 location
+/// </summary>
 public class MoveBuddyAction : BuddyAction
 {
     public readonly Vector3 location;
@@ -24,6 +35,9 @@ public class MoveBuddyAction : BuddyAction
     }
 }
 
+/// <summary>
+/// An action which will continue being performed until the user gives new instructions
+/// </summary>
 public class OngoingBuddyAction : BuddyAction
 {
     public OngoingBuddyAction(BUDDY_ACTION_TYPES actionType) : base(actionType) {
@@ -38,6 +52,9 @@ public class OngoingBuddyAction : BuddyAction
     }
 }*/
 
+/// <summary>
+/// An action type which targets a GameObject or GameObjects
+/// </summary>
 public class TargetedBuddyAction : BuddyAction
 {
     public readonly GameObject[] targets;

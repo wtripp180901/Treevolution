@@ -2,11 +2,29 @@ using UnityEngine;
 
 public class PlaneMapper : MonoBehaviour
 {
+    /// <summary>
+    /// The prefab which indicates the edges of the plane
+    /// </summary>
     public GameObject planeMarker;
+    /// <summary>
+    /// The floor of the playspace
+    /// </summary>
     public GameObject floor;
+    /// <summary>
+    /// The number of planeMarkers to be spawned on each side of the playspace's perimeter
+    /// </summary>
     public int markerCount = 2;
+    /// <summary>
+    /// The central tree GameObject
+    /// </summary>
     public GameObject treeModel;
+    /// <summary>
+    /// The width of the playspace
+    /// </summary>
     public float tableWidth = 344;
+    /// <summary>
+    /// The depth of the playspace
+    /// </summary>
     public float tableDepth = 163;
 
 
@@ -42,6 +60,10 @@ public class PlaneMapper : MonoBehaviour
         _qrDetection = GetComponent<QRDetection>();
     }
 
+    /// <summary>
+    /// Instantiates objects marking out the playspace based on a QR marker and maps the properties of the playspace in GameProperties
+    /// </summary>
+    /// <param name="marker">Pose of the the QR calibration marker from QRDetection</param>
     public void CreateNewPlane(Pose marker)
     {
         if (_qrDetection != null && _qrDetection.lockPlane)
@@ -117,12 +139,18 @@ public class PlaneMapper : MonoBehaviour
         GameObject.FindWithTag("Buddy").transform.position = boardCentre + new Vector3(0, 0.435f, 0);
     }
 
+    /// <summary>
+    /// Destroys plane and tells script to expect a new plane to be mapped
+    /// </summary>
     public void ResetPlane()
     {
         ClearPlane();
         planeIsMapped = false;
     }
 
+    /// <summary>
+    /// Destroys all objects instantiated by CreateNewPlane
+    /// </summary>
     public void ClearPlane()
     {
         Destroy(GameObject.FindWithTag("Floor"));

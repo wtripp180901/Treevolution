@@ -369,7 +369,14 @@ public class UIController : MonoBehaviour
     }
 
     bool hypothesisMode = false;
+    /// <summary>
+    /// Indicates that the dictationText should currently be displaying the DictationHypothesis from the DictationHandler
+    /// </summary>
     public void StartShowingHypothesis() { hypothesisMode = true; }
+    /// <summary>
+    /// Briefly displays given text on the HUD. Intended for use to show DictationResult's from DictationHandler
+    /// </summary>
+    /// <param name="dictation">Text to display</param>
     public void ShowDictation(string dictation)
     {
         hypothesisMode = false;
@@ -378,11 +385,19 @@ public class UIController : MonoBehaviour
         StartCoroutine(clearTextAfterDelay(3, dictationText));
     }
 
+    /// <summary>
+    /// Shows text on the dictationText HUD but doesn't clear it
+    /// </summary>
+    /// <param name="txt">Text to be shown</param>
     public void ShowMessageAsDictation(string txt)
     {
         dictationText.text = txt;
     }
 
+    /// <summary>
+    /// Displays the text on the dictationText HUD in hypothesis mode
+    /// </summary>
+    /// <param name="hypothesis">Text to display</param>
     public void ShowHypothesis(string hypothesis)
     {
         if (hypothesisMode)
@@ -392,6 +407,12 @@ public class UIController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Clears a TextMeshPro after a delay
+    /// </summary>
+    /// <param name="delay">The time the text should stay visible</param>
+    /// <param name="text">The TextMeshPro the text is displayed on</param>
+    /// <returns></returns>
     IEnumerator clearTextAfterDelay(int delay,TMP_Text text)
     {
         yield return new WaitForSeconds(delay);

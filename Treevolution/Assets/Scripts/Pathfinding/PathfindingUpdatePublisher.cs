@@ -11,8 +11,14 @@ namespace Pathfinding {
     /// </summary>
     public static class PathfindingUpdatePublisher
     {
+        /// <summary>
+        /// Triggered when a change is made to the pathfinding environment
+        /// </summary>
         public static UnityEvent RefindPathNeededEvent = new UnityEvent();
 
+        /// <summary>
+        /// Triggers the RefindPathNeededEvent
+        /// </summary>
         public static void NotifyObstacleChanged()
         {
             RefindPathNeededEvent.Invoke();
