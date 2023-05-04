@@ -35,6 +35,8 @@ public class EnemyScript : MonoBehaviour
     /// Indicates if the enemy is currently clipping through a wall.
     /// </summary>
     bool inWall = false;
+    [HideInInspector]
+    public bool takeDamage = true;
     /// <summary>
     /// Indicates if the enemy is frozen in place.
     /// </summary>
@@ -330,17 +332,20 @@ public class EnemyScript : MonoBehaviour
     /// <param name="power">Power to damage the enemy by.</param>
     public void Damage(int power)
     {
-        try
+        if (takeDamage)
         {
-            health -= power;
-            _healthBar.SetHealth(health);
-            if (health <= 0)
+            try
             {
-                StartCoroutine(KillEnemy());
+                health -= power;
+                _healthBar.SetHealth(health);
+                if (health <= 0)
+                {
+                    StartCoroutine(KillEnemy());
+                }
+                else StartCoroutine(DamageIndicator());
             }
-            else StartCoroutine(DamageIndicator());
+            catch { }
         }
-        catch { }
     }
 
     /// <summary>

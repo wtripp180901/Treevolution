@@ -296,6 +296,7 @@ public class GameStateManager : MonoBehaviour
         _enemyManager.StartSpawning(_enemyWaves[0]);
         _roundTimer.StartTimer(); // play
         yield return new WaitForSeconds(1);
+        _enemyManager.toggleDamage(false);
         _roundTimer.PauseTimer();
         _uIController.TutorialBattlePopUps();
     }
@@ -306,6 +307,7 @@ public class GameStateManager : MonoBehaviour
     /// <returns>This method runs a coroutine and so a <c>yield return</c> is used.</returns>
     public IEnumerator BeginTutorialBattle()
     {
+        _enemyManager.toggleDamage(true);
         _roundTimer.PauseTimer(); // play
         yield return new WaitUntil(() => _enemyManager.getEnemiesKilled() != 0);
         _roundTimer.PauseTimer(); // pause
@@ -398,7 +400,11 @@ public class GameStateManager : MonoBehaviour
             InfoText.text = "Round " + _currentRoundNumber.ToString() + " Over\n[" + enemiesKilled.ToString() + " Enemies Killed]";
         yield return new WaitForSeconds(3);
         ToggleMusic();
-        if (_currentRoundNumber < maxRoundNumber)
+        if (_currentRoundNumber + 1 == 3)
+        {
+            _uIController.BuddyPopUp();
+        }
+        else if (_currentRoundNumber < maxRoundNumber)
         {
             BeginRound();
         }

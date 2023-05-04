@@ -59,6 +59,7 @@ public class EnemyManager : MonoBehaviour
     /// Number of enemies killed in total.
     /// </summary>
     private int enemiesKilled = 0;
+    private bool _enemiesTakeDamage = true;
     /// <summary>
     /// Timer to display in the UI.
     /// </summary>
@@ -184,7 +185,12 @@ public class EnemyManager : MonoBehaviour
 
         Vector3 randomSpawnPosition = spawnAxes.origin + spawnAxes.vert * vFraction + spawnAxes.horz * hFraction;
         randomSpawnPosition.y = spawnHeight;
-        _enemies.Add(Instantiate(enemyPrefab, randomSpawnPosition, enemyPrefab.transform.rotation));
+        GameObject newEnemy = Instantiate(enemyPrefab, randomSpawnPosition, enemyPrefab.transform.rotation);
+        lock (enemies)
+        {
+            _enemies.Add(newEnemy);
+            newEnemy.GetComponent<EnemyScript>().takeDamage = _enemiesTakeDamage;
+        }
         Debug.DrawLine(spawnAxes.origin, spawnAxes.origin + spawnAxes.vert, Color.white, 1000);
         Debug.DrawLine(spawnAxes.origin, spawnAxes.origin + spawnAxes.horz, Color.white, 1000);
     }
@@ -243,6 +249,18 @@ public class EnemyManager : MonoBehaviour
             enemiesKilled += 1;
         }
         _enemies.Remove(enemy);
+    }
+
+    public void toggleDamage(bool damageOn)
+    {
+        _enemiesTakeDamage = damageOn;
+        lock (enemies)
+        {
+            foreach (GameObject enemy in enemies)
+            {
+                enemy.GetComponent<EnemyScript>().takeDamage = _enemiesTakeDamage;
+            }
+        }
     }
 
     /// <summary>
