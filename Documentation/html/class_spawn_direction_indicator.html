@@ -71,10 +71,15 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_spawn_direction_indicator-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">SpawnDirectionIndicator Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Controls behaviour of spawn arrows which indicate enemy positions.  
+ <a href="class_spawn_direction_indicator.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for SpawnDirectionIndicator:</div>
 <div class="dyncontent">
@@ -86,8 +91,67 @@ Inheritance diagram for SpawnDirectionIndicator:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a6c7019427b1cb4edfd4d93a3d5a5808a"><td class="memItemLeft" align="right" valign="top"><a id="a6c7019427b1cb4edfd4d93a3d5a5808a" name="a6c7019427b1cb4edfd4d93a3d5a5808a"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>IndicateDirection</b> ()</td></tr>
+<tr class="memdesc:a6c7019427b1cb4edfd4d93a3d5a5808a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Causes the arrow to appear briefly. <br /></td></tr>
 <tr class="separator:a6c7019427b1cb4edfd4d93a3d5a5808a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a0b34a2680bb570b934bda24683e9b660"><td class="memItemLeft" align="right" valign="top"><a id="a0b34a2680bb570b934bda24683e9b660" name="a0b34a2680bb570b934bda24683e9b660"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Start</b> ()</td></tr>
+<tr class="separator:a0b34a2680bb570b934bda24683e9b660"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e58ccac763d96fc43c408be34b5c3ca"><td class="memItemLeft" align="right" valign="top"><a id="a1e58ccac763d96fc43c408be34b5c3ca" name="a1e58ccac763d96fc43c408be34b5c3ca"></a>
+IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><b>waitThenDisappear</b> ()</td></tr>
+<tr class="separator:a1e58ccac763d96fc43c408be34b5c3ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b36aa6bd6283257608be5f67bb573dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_spawn_direction_indicator.html#a0b36aa6bd6283257608be5f67bb573dd">toggleVisible</a> (bool visible)</td></tr>
+<tr class="memdesc:a0b36aa6bd6283257608be5f67bb573dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets visibility of GameObject and its children.  <br /></td></tr>
+<tr class="separator:a0b36aa6bd6283257608be5f67bb573dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:afb5ed3ee61dfd40edadf860230dd7d89"><td class="memItemLeft" align="right" valign="top"><a id="afb5ed3ee61dfd40edadf860230dd7d89" name="afb5ed3ee61dfd40edadf860230dd7d89"></a>
+Renderer&#160;</td><td class="memItemRight" valign="bottom"><b>myRenderer</b></td></tr>
+<tr class="separator:afb5ed3ee61dfd40edadf860230dd7d89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c3da982f832916a8ff37ef7b60e2a16"><td class="memItemLeft" align="right" valign="top"><a id="a2c3da982f832916a8ff37ef7b60e2a16" name="a2c3da982f832916a8ff37ef7b60e2a16"></a>
+Renderer[]&#160;</td><td class="memItemRight" valign="bottom"><b>childRenderers</b></td></tr>
+<tr class="separator:a2c3da982f832916a8ff37ef7b60e2a16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Controls behaviour of spawn arrows which indicate enemy positions. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a0b36aa6bd6283257608be5f67bb573dd" name="a0b36aa6bd6283257608be5f67bb573dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b36aa6bd6283257608be5f67bb573dd">&#9670;&#160;</a></span>toggleVisible()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SpawnDirectionIndicator.toggleVisible </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>visible</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets visibility of GameObject and its children. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">visible</td><td>True if visible</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Treevolution/Assets/Scripts/Enemies/SpawnDirectionIndicator.cs</li>
 </ul>

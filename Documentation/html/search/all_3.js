@@ -1,11 +1,22 @@
 var searchData=
 [
-  ['damage_0',['Damage',['../class_enemy_script.html#aec67fe782ffea207a114872969101ffe',1,'EnemyScript']]],
-  ['damageswall_1',['DamagesWall',['../class_enemy_script.html#acf2f0cc2bcd919407c476252f4c359da',1,'EnemyScript']]],
-  ['debugobject_2',['debugObject',['../class_game_state_manager.html#aa5fb263e2a01f58b07d6d3669fa4bd3d',1,'GameStateManager']]],
-  ['debugtext_3',['debugText',['../class_q_r_detection.html#ab0aefcabc1c4907b17cc32687b3d24b9',1,'QRDetection']]],
-  ['decreasetime_4',['DecreaseTime',['../class_u_i_controller.html#ae659464ba09da48da4d39015d3c99ba4',1,'UIController']]],
-  ['destroyenemy_5',['DestroyEnemy',['../class_enemy_script.html#aed2130573dc1ec6e62bc21baf08cf9f9',1,'EnemyScript']]],
-  ['dictationtests_6',['DictationTests',['../class_dictation_tests.html',1,'']]],
-  ['dragonflyimage_7',['dragonflyImage',['../class_u_i_controller.html#a7939f18338584b9915a22f84ea4abb54',1,'UIController']]]
+  ['cactustower_0',['cactusTower',['../class_q_r_detection.html#a3d0465f5d3edaec900d6ed1e57e2a10a',1,'QRDetection']]],
+  ['calculatecorners_1',['CalculateCorners',['../class_pathfinding_1_1_pathfinding_obstacle.html#ad73e1ce21fa6bf5ad7cad225cec91f97',1,'Pathfinding::PathfindingObstacle']]],
+  ['calibrationpopup_2',['CalibrationPopUp',['../class_u_i_controller.html#a8531008b50c148d2a037c30f4d5106c1',1,'UIController']]],
+  ['calibrationsuccess_3',['CalibrationSuccess',['../class_game_state_manager.html#ad63150334041b7ad11f224aa21942875',1,'GameStateManager']]],
+  ['calibrationsuccesspopup_4',['CalibrationSuccessPopUp',['../class_u_i_controller.html#a8e1d28ddcf235500e39220969c2a1830',1,'UIController']]],
+  ['clearenemies_5',['clearEnemies',['../class_game_state_manager.html#a74e5680032fc070b42c78d4244b20701',1,'GameStateManager']]],
+  ['clearplane_6',['ClearPlane',['../class_plane_mapper.html#ae939351e8ae40af6e5645eb53c55a744',1,'PlaneMapper']]],
+  ['cleartextafterdelay_7',['clearTextAfterDelay',['../class_u_i_controller.html#a76afabaccd931ae1fd9a554348c789d7',1,'UIController']]],
+  ['closenessthreshold_8',['ClosenessThreshold',['../class_pointer_location_tracker.html#ad3b0c17a8352579ea63d7c1d67e1c329',1,'PointerLocationTracker']]],
+  ['closeopendialogs_9',['CloseOpenDialogs',['../class_u_i_controller.html#a8092ada6be6e28d5d877ddaef44d8914',1,'UIController']]],
+  ['closestgameobjecttopointer_10',['closestGameObjectToPointer',['../class_language_parsing_1_1_action_resolver.html#a6929d84098d7e399e61a235f9dfcb107',1,'LanguageParsing::ActionResolver']]],
+  ['closesttobuddycomparer_11',['ClosestToBuddyComparer',['../class_language_parsing_1_1_action_resolver_1_1_closest_to_buddy_comparer.html',1,'LanguageParsing::ActionResolver']]],
+  ['connectivebuddytoken_12',['ConnectiveBuddyToken',['../class_connective_buddy_token.html',1,'']]],
+  ['continuetutorialbattle_13',['ContinueTutorialBattle',['../class_game_state_manager.html#ab424c6a483bddbcbe9a655e92eea04c5',1,'GameStateManager']]],
+  ['costtoneighbours_14',['costToNeighbours',['../class_pathfinding_1_1_pathfinding_node.html#a21ddf45783f3e3fa23793f207985c0c8',1,'Pathfinding::PathfindingNode']]],
+  ['createnewplane_15',['CreateNewPlane',['../class_plane_mapper.html#ab921ef33eb981b9507b9ebe64ee50262',1,'PlaneMapper']]],
+  ['creatorinfo_16',['CreatorInfo',['../class_creator_info.html',1,'']]],
+  ['currentgamestate_17',['currentGameState',['../class_game_state_manager.html#a00fbeccbb126164ad4861dbaf8f23671',1,'GameStateManager']]],
+  ['currentinwallinterval_18',['currentInWallInterval',['../class_enemy_script.html#aea340abbc915a8f01845a221b2fac09f',1,'EnemyScript']]]
 ];

@@ -75,6 +75,9 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="class_language_parsing_1_1_thesaurus_a_p_i_caller-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">LanguageParsing.ThesaurusAPICaller Class Reference</div></div>
 </div><!--header-->
@@ -91,6 +94,33 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a88825d691343a13e9bf6d4db9cd5aca5"><td class="memItemLeft" align="right" valign="top">IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_language_parsing_1_1_thesaurus_a_p_i_caller.html#a88825d691343a13e9bf6d4db9cd5aca5">GetSynonyms</a> (string word, Func&lt; List&lt; <a class="el" href="struct_language_parsing_1_1_synonym_data.html">SynonymData</a> &gt;, IEnumerator &gt; callback)</td></tr>
 <tr class="memdesc:a88825d691343a13e9bf6d4db9cd5aca5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets synonyms of a word and returns them using a callback function once completed as a Coroutine.  <br /></td></tr>
 <tr class="separator:a88825d691343a13e9bf6d4db9cd5aca5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a9bb9b3e85e01de42d37f2743ce7427a2"><td class="memItemLeft" align="right" valign="top"><a id="a9bb9b3e85e01de42d37f2743ce7427a2" name="a9bb9b3e85e01de42d37f2743ce7427a2"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>getUrl</b> (string word)</td></tr>
+<tr class="separator:a9bb9b3e85e01de42d37f2743ce7427a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aca59281a3744b20f68962bc1c9741c56"><td class="memItemLeft" align="right" valign="top"><a id="aca59281a3744b20f68962bc1c9741c56" name="aca59281a3744b20f68962bc1c9741c56"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>baseUrl</b> = &quot;https://www.dictionaryapi.com/api/v3/references/thesaurus/json/&quot;</td></tr>
+<tr class="separator:aca59281a3744b20f68962bc1c9741c56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89fa570a4f6c869ac3edff4fdd196b34"><td class="memItemLeft" align="right" valign="top"><a id="a89fa570a4f6c869ac3edff4fdd196b34" name="a89fa570a4f6c869ac3edff4fdd196b34"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>apiKey</b></td></tr>
+<tr class="separator:a89fa570a4f6c869ac3edff4fdd196b34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a91fc2415cf757cd175477b5d834650f7"><td class="memItemLeft" align="right" valign="top"><a id="a91fc2415cf757cd175477b5d834650f7" name="a91fc2415cf757cd175477b5d834650f7"></a>
+const string&#160;</td><td class="memItemRight" valign="bottom"><b>meta</b> = &quot;meta&quot;</td></tr>
+<tr class="separator:a91fc2415cf757cd175477b5d834650f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accf2de96f2e52754e0d0586065711215"><td class="memItemLeft" align="right" valign="top"><a id="accf2de96f2e52754e0d0586065711215" name="accf2de96f2e52754e0d0586065711215"></a>
+const string&#160;</td><td class="memItemRight" valign="bottom"><b>fl</b> = &quot;fl&quot;</td></tr>
+<tr class="separator:accf2de96f2e52754e0d0586065711215"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa067243c44722778afbd7f0b39bfd9dd"><td class="memItemLeft" align="right" valign="top"><a id="aa067243c44722778afbd7f0b39bfd9dd" name="aa067243c44722778afbd7f0b39bfd9dd"></a>
+const string&#160;</td><td class="memItemRight" valign="bottom"><b>syns</b> = &quot;syns&quot;</td></tr>
+<tr class="separator:aa067243c44722778afbd7f0b39bfd9dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Used for returning data from API calls to synonym APIs. </p>

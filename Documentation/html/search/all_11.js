@@ -1,5 +1,26 @@
 var searchData=
 [
-  ['uicontroller_0',['UIController',['../class_u_i_controller.html',1,'']]],
-  ['updatepathfindinggraph_1',['UpdatePathfindingGraph',['../class_pathfinding_1_1_pathfinder.html#a835ab0c51fce5821012ee3b8aa4f5f22',1,'Pathfinding::Pathfinder']]]
+  ['realworldpropertymapper_0',['RealWorldPropertyMapper',['../class_real_world_property_mapper.html',1,'']]],
+  ['record_1',['Record',['../class_voice_command_receiver.html#a27c21666bc232b6d2386ddf56bd7ed0f',1,'VoiceCommandReceiver']]],
+  ['recordingaudiosource_2',['recordingAudioSource',['../class_voice_command_receiver.html#a49d4f4ef5020cb0764ccf13f6196c686',1,'VoiceCommandReceiver']]],
+  ['recordingindicationsource_3',['recordingIndicationSource',['../class_voice_command_receiver.html#a82713876b59d5c40702fa2341a1eeb23',1,'VoiceCommandReceiver']]],
+  ['refindpathneededevent_4',['RefindPathNeededEvent',['../class_pathfinding_1_1_pathfinding_update_publisher.html#a2487c8ad156f380fef039f97cf712785',1,'Pathfinding::PathfindingUpdatePublisher']]],
+  ['removeenemy_5',['RemoveEnemy',['../class_enemy_manager.html#a8531f5cce331f2a809ed8133229dd99f',1,'EnemyManager']]],
+  ['repair_6',['Repair',['../class_wall_script.html#a3e94be91933be243a2a4f5b234f0caaa',1,'WallScript']]],
+  ['repairallwalls_7',['repairAllWalls',['../class_game_state_manager.html#af263abae1848da41f23da7002955d4ba',1,'GameStateManager']]],
+  ['repairfixedupdate_8',['repairFixedUpdate',['../class_buddy_script.html#a33f33944eddedaf28420bc8649d7e532',1,'BuddyScript']]],
+  ['resetcodequeue_9',['ResetCodeQueue',['../class_q_r_detection.html#a1317b5595f07fad8c2d5173162e5c928',1,'QRDetection']]],
+  ['resetenemieskilled_10',['resetEnemiesKilled',['../class_enemy_manager.html#a98e42b77cce6125812dbbc51e6ea1b81',1,'EnemyManager']]],
+  ['resetplane_11',['ResetPlane',['../class_plane_mapper.html#a94cd2445766238514f5ea730d0150a07',1,'PlaneMapper']]],
+  ['resettimer_12',['ResetTimer',['../class_u_i_controller.html#a97f67b542ee6a05570e1218695d48ae9',1,'UIController']]],
+  ['resettrackedcodes_13',['ResetTrackedCodes',['../class_q_r_detection.html#a178536f30c9b3af4f6b3966b5a8060fd',1,'QRDetection']]],
+  ['resolveaction_14',['ResolveAction',['../class_language_parsing_1_1_action_resolver.html#a4823540e0b8888e57cd580993cbf4d03',1,'LanguageParsing::ActionResolver']]],
+  ['restartpathfinding_15',['restartPathfinding',['../class_enemy_script.html#ab23fd9029330b5433d7e85c77fa044ce',1,'EnemyScript']]],
+  ['restrictionbuddytoken_16',['RestrictionBuddyToken',['../class_restriction_buddy_token.html',1,'']]],
+  ['rotationthreshold_17',['RotationThreshold',['../class_runtime_movable.html#a5c7604b2d865c7ddb6bdd8cd48d6965c',1,'RuntimeMovable']]],
+  ['roundover_18',['RoundOver',['../class_round_timer.html#a63c15cf1fe12319eb0de5cb550bbe7da',1,'RoundTimer']]],
+  ['roundoverevent_19',['RoundOverEvent',['../class_round_timer.html#ac5dba4d4621eaf59bbf380b9a8393b69',1,'RoundTimer']]],
+  ['roundtimer_20',['RoundTimer',['../class_round_timer.html',1,'']]],
+  ['roundtimer_21',['roundTimer',['../class_enemy_manager.html#a92d1d3e29079bbcde717354e8202e446',1,'EnemyManager']]],
+  ['runtimemovable_22',['RuntimeMovable',['../class_runtime_movable.html',1,'']]]
 ];

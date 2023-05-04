@@ -72,6 +72,8 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_start_menu_logic-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">StartMenuLogic Class Reference</div></div>
 </div><!--header-->
@@ -88,10 +90,10 @@ Inheritance diagram for StartMenuLogic:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a1e64262af3d4fb92529ad82fb7abbe09"><td class="memItemLeft" align="right" valign="top"><a id="a1e64262af3d4fb92529ad82fb7abbe09" name="a1e64262af3d4fb92529ad82fb7abbe09"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>openStartMenu</b> ()</td></tr>
-<tr class="memdesc:a1e64262af3d4fb92529ad82fb7abbe09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens the start menu. <br /></td></tr>
-<tr class="separator:a1e64262af3d4fb92529ad82fb7abbe09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add3772cfd9f7b9c4e5edc3f28217f6a3"><td class="memItemLeft" align="right" valign="top"><a id="add3772cfd9f7b9c4e5edc3f28217f6a3" name="add3772cfd9f7b9c4e5edc3f28217f6a3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>OpenStartMenu</b> ()</td></tr>
+<tr class="memdesc:add3772cfd9f7b9c4e5edc3f28217f6a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens the start menu. <br /></td></tr>
+<tr class="separator:add3772cfd9f7b9c4e5edc3f28217f6a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21cd95add1159250d964577d47ca630b"><td class="memItemLeft" align="right" valign="top"><a id="a21cd95add1159250d964577d47ca630b" name="a21cd95add1159250d964577d47ca630b"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>StartGame</b> ()</td></tr>
 <tr class="memdesc:a21cd95add1159250d964577d47ca630b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the game. <br /></td></tr>
@@ -99,17 +101,53 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>StartGame</b> ()</td>
 <tr class="memitem:a60ff94cf6fafeba5c1c1bad53ec41935"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_start_menu_logic.html#a60ff94cf6fafeba5c1c1bad53ec41935">OpenSettings</a> ()</td></tr>
 <tr class="memdesc:a60ff94cf6fafeba5c1c1bad53ec41935"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens the settings menu dialog, and re-opens the start menu when it is closed.  <br /></td></tr>
 <tr class="separator:a60ff94cf6fafeba5c1c1bad53ec41935"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3501ffa066f6b420a6e56a40bd25f4c4"><td class="memItemLeft" align="right" valign="top"><a id="a3501ffa066f6b420a6e56a40bd25f4c4" name="a3501ffa066f6b420a6e56a40bd25f4c4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>EditTableWidth</b> ()</td></tr>
+<tr class="separator:a3501ffa066f6b420a6e56a40bd25f4c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a2e6f63e7692aa056368ce87d1a1a2b"><td class="memItemLeft" align="right" valign="top"><a id="a0a2e6f63e7692aa056368ce87d1a1a2b" name="a0a2e6f63e7692aa056368ce87d1a1a2b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>EditTableDepth</b> ()</td></tr>
+<tr class="separator:a0a2e6f63e7692aa056368ce87d1a1a2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a9c44854e13a4c29e189139e42989cf62"><td class="memItemLeft" align="right" valign="top"><a id="a9c44854e13a4c29e189139e42989cf62" name="a9c44854e13a4c29e189139e42989cf62"></a>
-GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>SettingsDialogPrefab</b></td></tr>
-<tr class="memdesc:a9c44854e13a4c29e189139e42989cf62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Settings Menu Dialog Prefab. <br /></td></tr>
-<tr class="separator:a9c44854e13a4c29e189139e42989cf62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4151e7d582789687a0408daea56f5c68"><td class="memItemLeft" align="right" valign="top"><a id="a4151e7d582789687a0408daea56f5c68" name="a4151e7d582789687a0408daea56f5c68"></a>
+GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>SettingsDialog</b></td></tr>
+<tr class="memdesc:a4151e7d582789687a0408daea56f5c68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Settings Menu Dialog Prefab. <br /></td></tr>
+<tr class="separator:a4151e7d582789687a0408daea56f5c68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abaa6dd5f7baea9b756067b0d3e8b6a1e"><td class="memItemLeft" align="right" valign="top"><a id="abaa6dd5f7baea9b756067b0d3e8b6a1e" name="abaa6dd5f7baea9b756067b0d3e8b6a1e"></a>
 GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>StartMenu</b></td></tr>
 <tr class="memdesc:abaa6dd5f7baea9b756067b0d3e8b6a1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start Menu Dialog Prefab. <br /></td></tr>
 <tr class="separator:abaa6dd5f7baea9b756067b0d3e8b6a1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a7ea0562f7b4a00731d73b6bf54512ac8"><td class="memItemLeft" align="right" valign="top"><a id="a7ea0562f7b4a00731d73b6bf54512ac8" name="a7ea0562f7b4a00731d73b6bf54512ac8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Start</b> ()</td></tr>
+<tr class="separator:a7ea0562f7b4a00731d73b6bf54512ac8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41f455bd1a14ab54114161d01257ac5a"><td class="memItemLeft" align="right" valign="top"><a id="a41f455bd1a14ab54114161d01257ac5a" name="a41f455bd1a14ab54114161d01257ac5a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> ()</td></tr>
+<tr class="separator:a41f455bd1a14ab54114161d01257ac5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:afba92dc1856eb6db665cbeef84b9e4e7"><td class="memItemLeft" align="right" valign="top"><a id="afba92dc1856eb6db665cbeef84b9e4e7" name="afba92dc1856eb6db665cbeef84b9e4e7"></a>
+<a class="el" href="class_game_state_manager.html">GameStateManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_gameStateManager</b></td></tr>
+<tr class="separator:afba92dc1856eb6db665cbeef84b9e4e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08d194de2a24c79bf970e728707c06f6"><td class="memItemLeft" align="right" valign="top"><a id="a08d194de2a24c79bf970e728707c06f6" name="a08d194de2a24c79bf970e728707c06f6"></a>
+TouchScreenKeyboard&#160;</td><td class="memItemRight" valign="bottom"><b>_keyboard</b></td></tr>
+<tr class="separator:a08d194de2a24c79bf970e728707c06f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab55c1864d4cb99f484c92cb0fa32a7e3"><td class="memItemLeft" align="right" valign="top"><a id="ab55c1864d4cb99f484c92cb0fa32a7e3" name="ab55c1864d4cb99f484c92cb0fa32a7e3"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>_keyboardText</b> = &quot;&quot;</td></tr>
+<tr class="separator:ab55c1864d4cb99f484c92cb0fa32a7e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e85c18844685892ddb86b62bc697a60"><td class="memItemLeft" align="right" valign="top"><a id="a5e85c18844685892ddb86b62bc697a60" name="a5e85c18844685892ddb86b62bc697a60"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>widthOrDepth</b> = -1</td></tr>
+<tr class="separator:a5e85c18844685892ddb86b62bc697a60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37822c367fc814b3c8f6b5241b4dadd5"><td class="memItemLeft" align="right" valign="top"><a id="a37822c367fc814b3c8f6b5241b4dadd5" name="a37822c367fc814b3c8f6b5241b4dadd5"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>_tableWidthMM</b> = 240</td></tr>
+<tr class="separator:a37822c367fc814b3c8f6b5241b4dadd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74cfae03974e3196cc58e1364f6f4d4e"><td class="memItemLeft" align="right" valign="top"><a id="a74cfae03974e3196cc58e1364f6f4d4e" name="a74cfae03974e3196cc58e1364f6f4d4e"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>_tableDepthMM</b> = 160</td></tr>
+<tr class="separator:a74cfae03974e3196cc58e1364f6f4d4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Logic of the StartMenu Scene. </p>

@@ -73,6 +73,8 @@ $(function() {
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#properties">Properties</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_plane_mapper-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">PlaneMapper Class Reference</div></div>
 </div><!--header-->
@@ -89,32 +91,43 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a678aa30e6567bda13736f0b77e511781"><td class="memItemLeft" align="right" valign="top"><a id="a678aa30e6567bda13736f0b77e511781" name="a678aa30e6567bda13736f0b77e511781"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SetupForTest</b> (bool planeMapped)</td></tr>
 <tr class="separator:a678aa30e6567bda13736f0b77e511781"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab921ef33eb981b9507b9ebe64ee50262"><td class="memItemLeft" align="right" valign="top"><a id="ab921ef33eb981b9507b9ebe64ee50262" name="ab921ef33eb981b9507b9ebe64ee50262"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>CreateNewPlane</b> (Pose marker)</td></tr>
+<tr class="memitem:ab921ef33eb981b9507b9ebe64ee50262"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plane_mapper.html#ab921ef33eb981b9507b9ebe64ee50262">CreateNewPlane</a> (Pose marker)</td></tr>
+<tr class="memdesc:ab921ef33eb981b9507b9ebe64ee50262"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates objects marking out the playspace based on a QR marker and maps the properties of the playspace in <a class="el" href="class_game_properties.html">GameProperties</a>.  <br /></td></tr>
 <tr class="separator:ab921ef33eb981b9507b9ebe64ee50262"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94cd2445766238514f5ea730d0150a07"><td class="memItemLeft" align="right" valign="top"><a id="a94cd2445766238514f5ea730d0150a07" name="a94cd2445766238514f5ea730d0150a07"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>ResetPlane</b> ()</td></tr>
+<tr class="memdesc:a94cd2445766238514f5ea730d0150a07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys plane and tells script to expect a new plane to be mapped. <br /></td></tr>
+<tr class="separator:a94cd2445766238514f5ea730d0150a07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae939351e8ae40af6e5645eb53c55a744"><td class="memItemLeft" align="right" valign="top"><a id="ae939351e8ae40af6e5645eb53c55a744" name="ae939351e8ae40af6e5645eb53c55a744"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>ClearPlane</b> ()</td></tr>
+<tr class="memdesc:ae939351e8ae40af6e5645eb53c55a744"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys all objects instantiated by CreateNewPlane. <br /></td></tr>
 <tr class="separator:ae939351e8ae40af6e5645eb53c55a744"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a328301edeaab291cffefca995130f56b"><td class="memItemLeft" align="right" valign="top"><a id="a328301edeaab291cffefca995130f56b" name="a328301edeaab291cffefca995130f56b"></a>
 GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>planeMarker</b></td></tr>
+<tr class="memdesc:a328301edeaab291cffefca995130f56b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The prefab which indicates the edges of the plane. <br /></td></tr>
 <tr class="separator:a328301edeaab291cffefca995130f56b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb939931e316bb20e8db8aa722007fb4"><td class="memItemLeft" align="right" valign="top"><a id="afb939931e316bb20e8db8aa722007fb4" name="afb939931e316bb20e8db8aa722007fb4"></a>
 GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>floor</b></td></tr>
+<tr class="memdesc:afb939931e316bb20e8db8aa722007fb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The floor of the playspace. <br /></td></tr>
 <tr class="separator:afb939931e316bb20e8db8aa722007fb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ba0dd8a11c846cd0f43af5632c875ac"><td class="memItemLeft" align="right" valign="top"><a id="a1ba0dd8a11c846cd0f43af5632c875ac" name="a1ba0dd8a11c846cd0f43af5632c875ac"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>markerCount</b> = 2</td></tr>
+<tr class="memdesc:a1ba0dd8a11c846cd0f43af5632c875ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of planeMarkers to be spawned on each side of the playspace's perimeter. <br /></td></tr>
 <tr class="separator:a1ba0dd8a11c846cd0f43af5632c875ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72e0cf2b0860c56a9a966e0a47df08c3"><td class="memItemLeft" align="right" valign="top"><a id="a72e0cf2b0860c56a9a966e0a47df08c3" name="a72e0cf2b0860c56a9a966e0a47df08c3"></a>
 GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>treeModel</b></td></tr>
+<tr class="memdesc:a72e0cf2b0860c56a9a966e0a47df08c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The central tree GameObject. <br /></td></tr>
 <tr class="separator:a72e0cf2b0860c56a9a966e0a47df08c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61674e9630f56028e610553b5f90eb07"><td class="memItemLeft" align="right" valign="top"><a id="a61674e9630f56028e610553b5f90eb07" name="a61674e9630f56028e610553b5f90eb07"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>tableWidth</b> = 240</td></tr>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>tableWidth</b> = 344</td></tr>
+<tr class="memdesc:a61674e9630f56028e610553b5f90eb07"><td class="mdescLeft">&#160;</td><td class="mdescRight">The width of the playspace. <br /></td></tr>
 <tr class="separator:a61674e9630f56028e610553b5f90eb07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb734be5943bc5d67187fc93a8e1b540"><td class="memItemLeft" align="right" valign="top"><a id="adb734be5943bc5d67187fc93a8e1b540" name="adb734be5943bc5d67187fc93a8e1b540"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>tableDepth</b> = 160</td></tr>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>tableDepth</b> = 163</td></tr>
+<tr class="memdesc:adb734be5943bc5d67187fc93a8e1b540"><td class="mdescLeft">&#160;</td><td class="mdescRight">The depth of the playspace. <br /></td></tr>
 <tr class="separator:adb734be5943bc5d67187fc93a8e1b540"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
@@ -137,7 +150,70 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>floorHeight</b><code
 <tr class="memitem:a23acad0498636c9348eed07394520d41"><td class="memItemLeft" align="right" valign="top"><a id="a23acad0498636c9348eed07394520d41" name="a23acad0498636c9348eed07394520d41"></a>
 Pose&#160;</td><td class="memItemRight" valign="bottom"><b>pose</b><code> [get]</code></td></tr>
 <tr class="separator:a23acad0498636c9348eed07394520d41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a38bafb0f47c2b414d9b47282818a5055"><td class="memItemLeft" align="right" valign="top"><a id="a38bafb0f47c2b414d9b47282818a5055" name="a38bafb0f47c2b414d9b47282818a5055"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Start</b> ()</td></tr>
+<tr class="separator:a38bafb0f47c2b414d9b47282818a5055"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ad2b5ea49b620d1b906686795d56057d9"><td class="memItemLeft" align="right" valign="top"><a id="ad2b5ea49b620d1b906686795d56057d9" name="ad2b5ea49b620d1b906686795d56057d9"></a>
+<a class="el" href="class_game_state_manager.html">GameStateManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_gameStateManager</b></td></tr>
+<tr class="separator:ad2b5ea49b620d1b906686795d56057d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9dbd6fb627d03109a9e060e774a9952"><td class="memItemLeft" align="right" valign="top"><a id="ac9dbd6fb627d03109a9e060e774a9952" name="ac9dbd6fb627d03109a9e060e774a9952"></a>
+<a class="el" href="class_q_r_detection.html">QRDetection</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_qrDetection</b></td></tr>
+<tr class="separator:ac9dbd6fb627d03109a9e060e774a9952"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed2391c0abc94bca786798c8e386e59c"><td class="memItemLeft" align="right" valign="top"><a id="aed2391c0abc94bca786798c8e386e59c" name="aed2391c0abc94bca786798c8e386e59c"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>planeIsMapped</b> = false</td></tr>
+<tr class="separator:aed2391c0abc94bca786798c8e386e59c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f1263064038045e6416ef3a2891aac0"><td class="memItemLeft" align="right" valign="top"><a id="a7f1263064038045e6416ef3a2891aac0" name="a7f1263064038045e6416ef3a2891aac0"></a>
+Vector3&#160;</td><td class="memItemRight" valign="bottom"><b>tl</b></td></tr>
+<tr class="separator:a7f1263064038045e6416ef3a2891aac0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a299ec7887ba75906497c8758aa0b759b"><td class="memItemLeft" align="right" valign="top"><a id="a299ec7887ba75906497c8758aa0b759b" name="a299ec7887ba75906497c8758aa0b759b"></a>
+Vector3&#160;</td><td class="memItemRight" valign="bottom"><b>tr</b></td></tr>
+<tr class="separator:a299ec7887ba75906497c8758aa0b759b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a8eec7e7f113344ee7e4197957448ca"><td class="memItemLeft" align="right" valign="top"><a id="a4a8eec7e7f113344ee7e4197957448ca" name="a4a8eec7e7f113344ee7e4197957448ca"></a>
+Vector3&#160;</td><td class="memItemRight" valign="bottom"><b>bl</b></td></tr>
+<tr class="separator:a4a8eec7e7f113344ee7e4197957448ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66d942e77e08039ea6c8da710b3a6009"><td class="memItemLeft" align="right" valign="top"><a id="a66d942e77e08039ea6c8da710b3a6009" name="a66d942e77e08039ea6c8da710b3a6009"></a>
+Vector3&#160;</td><td class="memItemRight" valign="bottom"><b>br</b></td></tr>
+<tr class="separator:a66d942e77e08039ea6c8da710b3a6009"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83246f68d1f3a4e79a981a9794ce1712"><td class="memItemLeft" align="right" valign="top"><a id="a83246f68d1f3a4e79a981a9794ce1712" name="a83246f68d1f3a4e79a981a9794ce1712"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>_minY</b></td></tr>
+<tr class="separator:a83246f68d1f3a4e79a981a9794ce1712"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcbd43cdd09a0204abb54fb17ec04f77"><td class="memItemLeft" align="right" valign="top"><a id="adcbd43cdd09a0204abb54fb17ec04f77" name="adcbd43cdd09a0204abb54fb17ec04f77"></a>
+Pose&#160;</td><td class="memItemRight" valign="bottom"><b>_pose</b></td></tr>
+<tr class="separator:adcbd43cdd09a0204abb54fb17ec04f77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ab921ef33eb981b9507b9ebe64ee50262" name="ab921ef33eb981b9507b9ebe64ee50262"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab921ef33eb981b9507b9ebe64ee50262">&#9670;&#160;</a></span>CreateNewPlane()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PlaneMapper.CreateNewPlane </td>
+          <td>(</td>
+          <td class="paramtype">Pose&#160;</td>
+          <td class="paramname"><em>marker</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Instantiates objects marking out the playspace based on a QR marker and maps the properties of the playspace in <a class="el" href="class_game_properties.html">GameProperties</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">marker</td><td>Pose of the the QR calibration marker from <a class="el" href="class_q_r_detection.html" title="Runs QR Detection via MRTK&#39;s QRCodeWatcher.">QRDetection</a></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>Treevolution/Assets/Scripts/Plane Mapping/PlaneMapper.cs</li>
 </ul>
