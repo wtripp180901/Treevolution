@@ -403,7 +403,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8667154919375532781, guid: 69a2c734d0cc1c44dbc6b304439d25c3, type: 3}
       propertyPath: maxViewVerticalDegrees
-      value: 60
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8667154919375532781, guid: 69a2c734d0cc1c44dbc6b304439d25c3, type: 3}
+      propertyPath: maxViewHorizontalDegrees
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 8667154919375532781, guid: 69a2c734d0cc1c44dbc6b304439d25c3, type: 3}
       propertyPath: ignoreReferencePitchAndRoll
@@ -641,7 +645,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8600862979890989330, guid: 369ab8e622943e243ae1b735082fbb46, type: 3}
       propertyPath: maxViewVerticalDegrees
-      value: 60
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8600862979890989330, guid: 369ab8e622943e243ae1b735082fbb46, type: 3}
+      propertyPath: maxViewHorizontalDegrees
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 8600862979890989330, guid: 369ab8e622943e243ae1b735082fbb46, type: 3}
       propertyPath: faceTrackedObjectWhileClamped

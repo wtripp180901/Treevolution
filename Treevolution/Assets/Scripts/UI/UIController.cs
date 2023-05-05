@@ -291,7 +291,7 @@ public class UIController : MonoBehaviour
                 d3.gameObject.GetComponentInChildren<Image>().sprite = armouredCockroachImage;
                 d3.OnClosed = delegate (DialogResult dr)
                 {
-                    Dialog d4 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.OK, "Stagbeetles", "The Stagbeetle is slow, but it has the health and strength to make up for it, being able to break down obstacles!", true);
+                    Dialog d4 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.OK, "Stagbeetles", "The Stagbeetle is slow, but it has health and strength to make up for it. It can break down obstacles, and is protected against whacking", true);
                     d4.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
                     d4.gameObject.GetComponentInChildren<Image>().sprite = armouredStegbeetleImage;
                     d4.OnClosed = delegate (DialogResult dr)
@@ -344,7 +344,7 @@ public class UIController : MonoBehaviour
 
     public void BuddyPopUp()
     {
-        Dialog d1 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Ladybird Buddy Commands", "Remember to give commands to your buddy, such as \"Attack\", or \"Defend Here\" whilst pointing at a location.\nIf Stagbeetles destroy your obstacles, say \"Repair\" to fix them.", true);
+        Dialog d1 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Buddy Commands", "Remember to give commands to your buddy, such as \"Attack\", or \"Defend Here\" whilst pointing at a location. If Stagbeetles destroy your obstacles, say \"Repair\" to fix them.", true);
         d1.OnClosed = delegate (DialogResult dr)
         {
             _gameStateManager.BeginRound();

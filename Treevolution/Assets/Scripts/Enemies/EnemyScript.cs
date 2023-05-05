@@ -45,6 +45,7 @@ public class EnemyScript : MonoBehaviour
     /// Indicates if the enemy is frozen in place.
     /// </summary>
     public bool frozen = false;
+    public GameObject geometry;
     /// <summary>
     /// Audio player to play spatial sounds from the current enemy.
     /// </summary>
@@ -292,7 +293,7 @@ public class EnemyScript : MonoBehaviour
 
     private void GetDefaultMaterials()
     {
-        Renderer[] childRenderers = transform.GetComponentsInChildren<Renderer>();
+        Renderer[] childRenderers = geometry.transform.GetComponentsInChildren<Renderer>();
         for (int i = 0; i < childRenderers.Length; i++)
         {
             defaultColours.Add(childRenderers[i].material.color);
@@ -305,7 +306,7 @@ public class EnemyScript : MonoBehaviour
         /// <returns>This method runs a coroutine and so a <c>yield return</c> is used.</returns>
         private IEnumerator DamageIndicator()
     {
-        Renderer[] childRenderers = transform.GetComponentsInChildren<Renderer>();
+        Renderer[] childRenderers = geometry.transform.GetComponentsInChildren<Renderer>();
         for (int i = 0; i < childRenderers.Length; i++)
         {
             childRenderers[i].material.color = Color.red;
@@ -329,13 +330,13 @@ public class EnemyScript : MonoBehaviour
             GetComponent<Rigidbody>().useGravity = true;
         _followingPath = false;
         if(flying)
-            gameObject.transform.localScale = new Vector3(0, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
+            geometry.transform.localScale = new Vector3(0, geometry.transform.localScale.y, geometry.transform.localScale.z);
         else
-            gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, 0, gameObject.transform.localScale.z);
+            geometry.transform.localScale = new Vector3(geometry.transform.localScale.x, 0, geometry.transform.localScale.z);
 
         _enemyAudioPlayer.clip = deathAudio;
         _enemyAudioPlayer.Play();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         DestroyEnemy(true);
     }
 
