@@ -882,7 +882,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointer: {fileID: 1390908068}
   recordingIndicationSource: {fileID: 100754452}
-  SafeMode: 0
+  SafeMode: 1
   recordingAudioSource: {fileID: 100754449}
 --- !u!114 &100754440
 MonoBehaviour:
