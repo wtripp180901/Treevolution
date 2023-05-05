@@ -72,6 +72,8 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_enemy_script-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">EnemyScript Class Reference</div></div>
 </div><!--header-->
@@ -88,6 +90,9 @@ Inheritance diagram for EnemyScript:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a59fa7d598fc22267fbc5b044a323c129"><td class="memItemLeft" align="right" valign="top"><a id="a59fa7d598fc22267fbc5b044a323c129" name="a59fa7d598fc22267fbc5b044a323c129"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>GetTestData</b> (out bool <a class="el" href="class_enemy_script.html#ac5b9d3dec6cc8830b81a2204331251ec">inWall</a>, out int currentHealth)</td></tr>
+<tr class="separator:a59fa7d598fc22267fbc5b044a323c129"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec67fe782ffea207a114872969101ffe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy_script.html#aec67fe782ffea207a114872969101ffe">Damage</a> (int power)</td></tr>
 <tr class="memdesc:aec67fe782ffea207a114872969101ffe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Damages the current enemy, and checks if it has run out of health.  <br /></td></tr>
 <tr class="separator:aec67fe782ffea207a114872969101ffe"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -105,6 +110,146 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>health</b> = 10</td></
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>flying</b> = false</td></tr>
 <tr class="memdesc:a54d1f0ce57b57f7f561a37a75bf8eb69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if the current enemy is flying or not (off by default). <br /></td></tr>
 <tr class="separator:a54d1f0ce57b57f7f561a37a75bf8eb69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d54bcff7be138752a3c2bf3c48e3e7c"><td class="memItemLeft" align="right" valign="top"><a id="a8d54bcff7be138752a3c2bf3c48e3e7c" name="a8d54bcff7be138752a3c2bf3c48e3e7c"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>frozen</b> = false</td></tr>
+<tr class="memdesc:a8d54bcff7be138752a3c2bf3c48e3e7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if the enemy is frozen in place. <br /></td></tr>
+<tr class="separator:a8d54bcff7be138752a3c2bf3c48e3e7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48629d3528921626ae84e7d8e12bfb83"><td class="memItemLeft" align="right" valign="top"><a id="a48629d3528921626ae84e7d8e12bfb83" name="a48629d3528921626ae84e7d8e12bfb83"></a>
+AudioClip&#160;</td><td class="memItemRight" valign="bottom"><b>spawnAudio</b></td></tr>
+<tr class="memdesc:a48629d3528921626ae84e7d8e12bfb83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sound effect to be played when the enemy spawns. <br /></td></tr>
+<tr class="separator:a48629d3528921626ae84e7d8e12bfb83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ebee518015f730283953c1813f54d29"><td class="memItemLeft" align="right" valign="top"><a id="a1ebee518015f730283953c1813f54d29" name="a1ebee518015f730283953c1813f54d29"></a>
+AudioClip&#160;</td><td class="memItemRight" valign="bottom"><b>damageAudio</b></td></tr>
+<tr class="memdesc:a1ebee518015f730283953c1813f54d29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sound effect to be played when the enemy gets damaged. <br /></td></tr>
+<tr class="separator:a1ebee518015f730283953c1813f54d29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a789ef10b4df76054f4b4b5994ae12ef9"><td class="memItemLeft" align="right" valign="top"><a id="a789ef10b4df76054f4b4b5994ae12ef9" name="a789ef10b4df76054f4b4b5994ae12ef9"></a>
+AudioClip&#160;</td><td class="memItemRight" valign="bottom"><b>deathAudio</b></td></tr>
+<tr class="memdesc:a789ef10b4df76054f4b4b5994ae12ef9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sound effect to be played when the enemy dies. <br /></td></tr>
+<tr class="separator:a789ef10b4df76054f4b4b5994ae12ef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13c755e0e2be674629ce58152273e6f8"><td class="memItemLeft" align="right" valign="top"><a id="a13c755e0e2be674629ce58152273e6f8" name="a13c755e0e2be674629ce58152273e6f8"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>AvoidsWall</b> = true</td></tr>
+<tr class="memdesc:a13c755e0e2be674629ce58152273e6f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if enemy requests path around walls or not. <br /></td></tr>
+<tr class="separator:a13c755e0e2be674629ce58152273e6f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf2f0cc2bcd919407c476252f4c359da"><td class="memItemLeft" align="right" valign="top"><a id="acf2f0cc2bcd919407c476252f4c359da" name="acf2f0cc2bcd919407c476252f4c359da"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>DamagesWall</b> = false</td></tr>
+<tr class="memdesc:acf2f0cc2bcd919407c476252f4c359da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if enemies destroy walls on collision. <br /></td></tr>
+<tr class="separator:acf2f0cc2bcd919407c476252f4c359da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a61a56df6ca1e4301e3b17525a2885f0a"><td class="memItemLeft" align="right" valign="top"><a id="a61a56df6ca1e4301e3b17525a2885f0a" name="a61a56df6ca1e4301e3b17525a2885f0a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Start</b> ()</td></tr>
+<tr class="memdesc:a61a56df6ca1e4301e3b17525a2885f0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start runs when loading the GameObject that this script is attached to. <br /></td></tr>
+<tr class="separator:a61a56df6ca1e4301e3b17525a2885f0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a202e94e7c19cfcb50bb0cf979d21b6"><td class="memItemLeft" align="right" valign="top"><a id="a4a202e94e7c19cfcb50bb0cf979d21b6" name="a4a202e94e7c19cfcb50bb0cf979d21b6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> ()</td></tr>
+<tr class="separator:a4a202e94e7c19cfcb50bb0cf979d21b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1033134339a3ffbee7e98c9b6dbd756d"><td class="memItemLeft" align="right" valign="top"><a id="a1033134339a3ffbee7e98c9b6dbd756d" name="a1033134339a3ffbee7e98c9b6dbd756d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>FixedUpdate</b> ()</td></tr>
+<tr class="memdesc:a1033134339a3ffbee7e98c9b6dbd756d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called once per fixed framerate frame. This moves the enemy towards its current pathfinding target. <br /></td></tr>
+<tr class="separator:a1033134339a3ffbee7e98c9b6dbd756d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab23fd9029330b5433d7e85c77fa044ce"><td class="memItemLeft" align="right" valign="top"><a id="ab23fd9029330b5433d7e85c77fa044ce" name="ab23fd9029330b5433d7e85c77fa044ce"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>restartPathfinding</b> ()</td></tr>
+<tr class="memdesc:ab23fd9029330b5433d7e85c77fa044ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Refreshes the pathfinding points for the enemy. <br /></td></tr>
+<tr class="separator:ab23fd9029330b5433d7e85c77fa044ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafd8c3e4f99375d32ca7e64af1aa216c"><td class="memItemLeft" align="right" valign="top"><a id="aafd8c3e4f99375d32ca7e64af1aa216c" name="aafd8c3e4f99375d32ca7e64af1aa216c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>StartMoveToNextTarget</b> ()</td></tr>
+<tr class="memdesc:aafd8c3e4f99375d32ca7e64af1aa216c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts moving the enemy to the next pathfinding target. <br /></td></tr>
+<tr class="separator:aafd8c3e4f99375d32ca7e64af1aa216c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39f48c94d286c46797211738e496ce7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy_script.html#a39f48c94d286c46797211738e496ce7a">OnCollisionEnter</a> (Collision collision)</td></tr>
+<tr class="memdesc:a39f48c94d286c46797211738e496ce7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs when the enemy collides with another objects collider, such as reaching the Home Tree or being hit by a projectile.  <br /></td></tr>
+<tr class="separator:a39f48c94d286c46797211738e496ce7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1e7d5dcbbc39d84ff6701e53fd5f2df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy_script.html#af1e7d5dcbbc39d84ff6701e53fd5f2df">OnTriggerEnter</a> (Collider trigger)</td></tr>
+<tr class="memdesc:af1e7d5dcbbc39d84ff6701e53fd5f2df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when the enemy enters a trigger box, such as a wall.  <br /></td></tr>
+<tr class="separator:af1e7d5dcbbc39d84ff6701e53fd5f2df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e5a99d2276f2fdbd7caf269f23a63e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy_script.html#a0e5a99d2276f2fdbd7caf269f23a63e6">OnTriggerExit</a> (Collider trigger)</td></tr>
+<tr class="memdesc:a0e5a99d2276f2fdbd7caf269f23a63e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when the enemy exits a trigger box, such as a wall.  <br /></td></tr>
+<tr class="separator:a0e5a99d2276f2fdbd7caf269f23a63e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cdc3987614ffa1ec61cd4124c080a86"><td class="memItemLeft" align="right" valign="top"><a id="a7cdc3987614ffa1ec61cd4124c080a86" name="a7cdc3987614ffa1ec61cd4124c080a86"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Initialise</b> ()</td></tr>
+<tr class="memdesc:a7cdc3987614ffa1ec61cd4124c080a86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises some of the enemies initial properties, such as healthbar, rotation, and spawn indicator. <br /></td></tr>
+<tr class="separator:a7cdc3987614ffa1ec61cd4124c080a86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59c3b3688dec7659ee36e8697ea1e9c4"><td class="memItemLeft" align="right" valign="top"><a id="a59c3b3688dec7659ee36e8697ea1e9c4" name="a59c3b3688dec7659ee36e8697ea1e9c4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SpawnIndicator</b> ()</td></tr>
+<tr class="memdesc:a59c3b3688dec7659ee36e8697ea1e9c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates the spawn direction of the enemy if it is out of the player's fielf of view. <br /></td></tr>
+<tr class="separator:a59c3b3688dec7659ee36e8697ea1e9c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac49ec588a28d886c16a42f10f956f849"><td class="memItemLeft" align="right" valign="top">IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy_script.html#ac49ec588a28d886c16a42f10f956f849">DamageIndicator</a> ()</td></tr>
+<tr class="memdesc:ac49ec588a28d886c16a42f10f956f849"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates the enemy has been damaged by turning its body red for a brief time and playing the damaged sound effect.  <br /></td></tr>
+<tr class="separator:ac49ec588a28d886c16a42f10f956f849"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ef551b1d248a61a474fe08f192936a0"><td class="memItemLeft" align="right" valign="top">IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy_script.html#a0ef551b1d248a61a474fe08f192936a0">KillEnemy</a> ()</td></tr>
+<tr class="memdesc:a0ef551b1d248a61a474fe08f192936a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kills the current enemy, playing a death sound and squashing the enemies geometry.  <br /></td></tr>
+<tr class="separator:a0ef551b1d248a61a474fe08f192936a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a2c618fda4a3b98cd7fc1089c682c3e90"><td class="memItemLeft" align="right" valign="top"><a id="a2c618fda4a3b98cd7fc1089c682c3e90" name="a2c618fda4a3b98cd7fc1089c682c3e90"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>speed</b> = 0.01f</td></tr>
+<tr class="memdesc:a2c618fda4a3b98cd7fc1089c682c3e90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the speed of the current enemy. <br /></td></tr>
+<tr class="separator:a2c618fda4a3b98cd7fc1089c682c3e90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80d453d1d891e4bb2262489b28909f03"><td class="memItemLeft" align="right" valign="top"><a id="a80d453d1d891e4bb2262489b28909f03" name="a80d453d1d891e4bb2262489b28909f03"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>inWallDamageInterval</b> = 0.5f</td></tr>
+<tr class="memdesc:a80d453d1d891e4bb2262489b28909f03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interval between which the enemy should be damaged repeatedly if they are clipping through a wall. <br /></td></tr>
+<tr class="separator:a80d453d1d891e4bb2262489b28909f03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea340abbc915a8f01845a221b2fac09f"><td class="memItemLeft" align="right" valign="top"><a id="aea340abbc915a8f01845a221b2fac09f" name="aea340abbc915a8f01845a221b2fac09f"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>currentInWallInterval</b> = 0f</td></tr>
+<tr class="memdesc:aea340abbc915a8f01845a221b2fac09f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Duration of time the enemy has been clipping a wall for. <br /></td></tr>
+<tr class="separator:aea340abbc915a8f01845a221b2fac09f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5b9d3dec6cc8830b81a2204331251ec"><td class="memItemLeft" align="right" valign="top"><a id="ac5b9d3dec6cc8830b81a2204331251ec" name="ac5b9d3dec6cc8830b81a2204331251ec"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>inWall</b> = false</td></tr>
+<tr class="memdesc:ac5b9d3dec6cc8830b81a2204331251ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if the enemy is currently clipping through a wall. <br /></td></tr>
+<tr class="separator:ac5b9d3dec6cc8830b81a2204331251ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff876f1816790df7df3d6b132ee53662"><td class="memItemLeft" align="right" valign="top"><a id="aff876f1816790df7df3d6b132ee53662" name="aff876f1816790df7df3d6b132ee53662"></a>
+AudioSource&#160;</td><td class="memItemRight" valign="bottom"><b>_enemyAudioPlayer</b></td></tr>
+<tr class="memdesc:aff876f1816790df7df3d6b132ee53662"><td class="mdescLeft">&#160;</td><td class="mdescRight">Audio player to play spatial sounds from the current enemy. <br /></td></tr>
+<tr class="separator:aff876f1816790df7df3d6b132ee53662"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d6df02e6aad36594df47f857c6f7275"><td class="memItemLeft" align="right" valign="top"><a id="a0d6df02e6aad36594df47f857c6f7275" name="a0d6df02e6aad36594df47f857c6f7275"></a>
+Rigidbody&#160;</td><td class="memItemRight" valign="bottom"><b>_rigidbody</b></td></tr>
+<tr class="memdesc:a0d6df02e6aad36594df47f857c6f7275"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current Enemy's Rigidbody component. <br /></td></tr>
+<tr class="separator:a0d6df02e6aad36594df47f857c6f7275"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a844b79ae61de250b7ae7770ebffa2942"><td class="memItemLeft" align="right" valign="top"><a id="a844b79ae61de250b7ae7770ebffa2942" name="a844b79ae61de250b7ae7770ebffa2942"></a>
+<a class="el" href="class_health_bar.html">HealthBar</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_healthBar</b></td></tr>
+<tr class="memdesc:a844b79ae61de250b7ae7770ebffa2942"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current Enemy's Healthbar component. <br /></td></tr>
+<tr class="separator:a844b79ae61de250b7ae7770ebffa2942"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54481625373c91ff900ce6b6285316a6"><td class="memItemLeft" align="right" valign="top"><a id="a54481625373c91ff900ce6b6285316a6" name="a54481625373c91ff900ce6b6285316a6"></a>
+Vector3[]&#160;</td><td class="memItemRight" valign="bottom"><b>_path</b></td></tr>
+<tr class="memdesc:a54481625373c91ff900ce6b6285316a6"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="namespace_pathfinding.html">Pathfinding</a> path to follow. <br /></td></tr>
+<tr class="separator:a54481625373c91ff900ce6b6285316a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac047012f02f1696affe0af372add8711"><td class="memItemLeft" align="right" valign="top"><a id="ac047012f02f1696affe0af372add8711" name="ac047012f02f1696affe0af372add8711"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_followingPath</b> = true</td></tr>
+<tr class="memdesc:ac047012f02f1696affe0af372add8711"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the current enemy is following a path. <br /></td></tr>
+<tr class="separator:ac047012f02f1696affe0af372add8711"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97436d9499713c632e155d6243b61dba"><td class="memItemLeft" align="right" valign="top"><a id="a97436d9499713c632e155d6243b61dba" name="a97436d9499713c632e155d6243b61dba"></a>
+Vector3&#160;</td><td class="memItemRight" valign="bottom"><b>_directionVector</b></td></tr>
+<tr class="memdesc:a97436d9499713c632e155d6243b61dba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current direction of movement. <br /></td></tr>
+<tr class="separator:a97436d9499713c632e155d6243b61dba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a176be7778bf6e6d8c42be874f13dfce1"><td class="memItemLeft" align="right" valign="top"><a id="a176be7778bf6e6d8c42be874f13dfce1" name="a176be7778bf6e6d8c42be874f13dfce1"></a>
+Vector3&#160;</td><td class="memItemRight" valign="bottom"><b>_currentTarget</b></td></tr>
+<tr class="memdesc:a176be7778bf6e6d8c42be874f13dfce1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current target node that the enemy is moving towards. <br /></td></tr>
+<tr class="separator:a176be7778bf6e6d8c42be874f13dfce1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0afe28c90e850069afd363cddbccec60"><td class="memItemLeft" align="right" valign="top"><a id="a0afe28c90e850069afd363cddbccec60" name="a0afe28c90e850069afd363cddbccec60"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>_pathCounter</b> = 0</td></tr>
+<tr class="memdesc:a0afe28c90e850069afd363cddbccec60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Counter for the pathfinding path node, specifying which node the current enemy is moving towards. <br /></td></tr>
+<tr class="separator:a0afe28c90e850069afd363cddbccec60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1248b7079acd9b9a3d0b818a3a01d62a"><td class="memItemLeft" align="right" valign="top"><a id="a1248b7079acd9b9a3d0b818a3a01d62a" name="a1248b7079acd9b9a3d0b818a3a01d62a"></a>
+<a class="el" href="class_round_timer.html">RoundTimer</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_roundTimer</b></td></tr>
+<tr class="memdesc:a1248b7079acd9b9a3d0b818a3a01d62a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Running <a class="el" href="class_round_timer.html" title="Manages the timer for each round and invokes events for each second tick and round over.">RoundTimer</a> instance. <br /></td></tr>
+<tr class="separator:a1248b7079acd9b9a3d0b818a3a01d62a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d0f148824cb02cc091652dc60a2ff49"><td class="memItemLeft" align="right" valign="top"><a id="a9d0f148824cb02cc091652dc60a2ff49" name="a9d0f148824cb02cc091652dc60a2ff49"></a>
+<a class="el" href="class_enemy_manager.html">EnemyManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_enemyManager</b></td></tr>
+<tr class="memdesc:a9d0f148824cb02cc091652dc60a2ff49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Running <a class="el" href="class_enemy_manager.html">EnemyManager</a> instance. <br /></td></tr>
+<tr class="separator:a9d0f148824cb02cc091652dc60a2ff49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab16c046d2d6eb1baac494c1eed804a2e"><td class="memItemLeft" align="right" valign="top"><a id="ab16c046d2d6eb1baac494c1eed804a2e" name="ab16c046d2d6eb1baac494c1eed804a2e"></a>
+<a class="el" href="class_spawn_direction_indicator.html">SpawnDirectionIndicator</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_leftIndicator</b></td></tr>
+<tr class="memdesc:ab16c046d2d6eb1baac494c1eed804a2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the Left Spawn Indicator. <br /></td></tr>
+<tr class="separator:ab16c046d2d6eb1baac494c1eed804a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2734a6367c3ca155d14984739b297d5"><td class="memItemLeft" align="right" valign="top"><a id="ab2734a6367c3ca155d14984739b297d5" name="ab2734a6367c3ca155d14984739b297d5"></a>
+<a class="el" href="class_spawn_direction_indicator.html">SpawnDirectionIndicator</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_rightIndicator</b></td></tr>
+<tr class="memdesc:ab2734a6367c3ca155d14984739b297d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reference to the Right Spawn Indicator. <br /></td></tr>
+<tr class="separator:ab2734a6367c3ca155d14984739b297d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a247e1f8c5bd984e13bfe868e4bf266a4"><td class="memItemLeft" align="right" valign="top"><a id="a247e1f8c5bd984e13bfe868e4bf266a4" name="a247e1f8c5bd984e13bfe868e4bf266a4"></a>
+Vector3&#160;</td><td class="memItemRight" valign="bottom"><b>_defaultOrientation</b></td></tr>
+<tr class="memdesc:a247e1f8c5bd984e13bfe868e4bf266a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial orientation of the enemy prefab. <br /></td></tr>
+<tr class="separator:a247e1f8c5bd984e13bfe868e4bf266a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Controls enemy behaviour. </p>
@@ -135,6 +280,34 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>flying</b> = false</t
 
 </div>
 </div>
+<a id="ac49ec588a28d886c16a42f10f956f849" name="ac49ec588a28d886c16a42f10f956f849"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac49ec588a28d886c16a42f10f956f849">&#9670;&#160;</a></span>DamageIndicator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IEnumerator EnemyScript.DamageIndicator </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Indicates the enemy has been damaged by turning its body red for a brief time and playing the damaged sound effect. </p>
+<dl class="section return"><dt>Returns</dt><dd>This method runs a coroutine and so a <code>yield return</code> is used.</dd></dl>
+
+</div>
+</div>
 <a id="aed2130573dc1ec6e62bc21baf08cf9f9" name="aed2130573dc1ec6e62bc21baf08cf9f9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aed2130573dc1ec6e62bc21baf08cf9f9">&#9670;&#160;</a></span>DestroyEnemy()</h2>
 
@@ -155,6 +328,136 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>flying</b> = false</t
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">killedByPlayer</td><td>Whether the enemy was killed by the player, or is bein destroyed as part of the ClearEnemies method and so shouldn't count towards the user's score.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0ef551b1d248a61a474fe08f192936a0" name="a0ef551b1d248a61a474fe08f192936a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ef551b1d248a61a474fe08f192936a0">&#9670;&#160;</a></span>KillEnemy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IEnumerator EnemyScript.KillEnemy </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Kills the current enemy, playing a death sound and squashing the enemies geometry. </p>
+<dl class="section return"><dt>Returns</dt><dd>This method runs a coroutine and so a <code>yield return</code> is used.</dd></dl>
+
+</div>
+</div>
+<a id="a39f48c94d286c46797211738e496ce7a" name="a39f48c94d286c46797211738e496ce7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39f48c94d286c46797211738e496ce7a">&#9670;&#160;</a></span>OnCollisionEnter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EnemyScript.OnCollisionEnter </td>
+          <td>(</td>
+          <td class="paramtype">Collision&#160;</td>
+          <td class="paramname"><em>collision</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Runs when the enemy collides with another objects collider, such as reaching the Home Tree or being hit by a projectile. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">collision</td><td>Collision data.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af1e7d5dcbbc39d84ff6701e53fd5f2df" name="af1e7d5dcbbc39d84ff6701e53fd5f2df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1e7d5dcbbc39d84ff6701e53fd5f2df">&#9670;&#160;</a></span>OnTriggerEnter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EnemyScript.OnTriggerEnter </td>
+          <td>(</td>
+          <td class="paramtype">Collider&#160;</td>
+          <td class="paramname"><em>trigger</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Called when the enemy enters a trigger box, such as a wall. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">trigger</td><td>Trigger event data.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0e5a99d2276f2fdbd7caf269f23a63e6" name="a0e5a99d2276f2fdbd7caf269f23a63e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e5a99d2276f2fdbd7caf269f23a63e6">&#9670;&#160;</a></span>OnTriggerExit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EnemyScript.OnTriggerExit </td>
+          <td>(</td>
+          <td class="paramtype">Collider&#160;</td>
+          <td class="paramname"><em>trigger</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Called when the enemy exits a trigger box, such as a wall. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">trigger</td><td>Trigger event data.</td></tr>
   </table>
   </dd>
 </dl>

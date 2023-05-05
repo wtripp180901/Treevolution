@@ -77,6 +77,8 @@ $(function() {
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#events">Events</a> &#124;
+<a href="#pri-static-methods">Static Private Member Functions</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="class_pathfinding_1_1_pathfinding_graph_generator-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Pathfinding.PathfindingGraphGenerator Class Reference</div></div>
 </div><!--header-->
@@ -85,10 +87,15 @@ $(function() {
 <p>Used to dynamically generate a pathfinding mesh based on obstacles in the environment.  
  <a href="class_pathfinding_1_1_pathfinding_graph_generator.html#details">More...</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_pathfinding_1_1_pathfinding_graph_generator_1_1_obstacle_data.html">ObstacleData</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ac7e886e6c9d6051c391d8cb543f2ca2c"><td class="memItemLeft" align="right" valign="top"><a id="ac7e886e6c9d6051c391d8cb543f2ca2c" name="ac7e886e6c9d6051c391d8cb543f2ca2c"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>AddObstacleData</b> (Bounds bounds, Vector3[] possiblePoints)</td></tr>
+<tr class="memitem:ac7e886e6c9d6051c391d8cb543f2ca2c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinding_1_1_pathfinding_graph_generator.html#ac7e886e6c9d6051c391d8cb543f2ca2c">AddObstacleData</a> (Bounds bounds, Vector3[] possiblePoints)</td></tr>
+<tr class="memdesc:ac7e886e6c9d6051c391d8cb543f2ca2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback method for when GetObstacleDataEvent is invoked, used to add an obstacles pathfinding points for consideration.  <br /></td></tr>
 <tr class="separator:ac7e886e6c9d6051c391d8cb543f2ca2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf56b7ade5e876cf22ad75e02ffe3859"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_pathfinding_1_1_pathfinding_node.html">PathfindingNode</a>[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinding_1_1_pathfinding_graph_generator.html#aaf56b7ade5e876cf22ad75e02ffe3859">GetPathfindingGraph</a> ()</td></tr>
 <tr class="memdesc:aaf56b7ade5e876cf22ad75e02ffe3859"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates pathfinding graph based on current obstacles in the environment.  <br /></td></tr>
@@ -98,11 +105,70 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>AddObstacleDat
 Events</h2></td></tr>
 <tr class="memitem:a4967000bb56221cb177ffcfc56c3c338"><td class="memItemLeft" align="right" valign="top"><a id="a4967000bb56221cb177ffcfc56c3c338" name="a4967000bb56221cb177ffcfc56c3c338"></a>
 static EventHandler&lt; EventArgs &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetObstacleDataEvent</b></td></tr>
+<tr class="memdesc:a4967000bb56221cb177ffcfc56c3c338"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should be subscribed to by any obstacles, when received should send their pathfinding points to this class via AddObstacleData. <br /></td></tr>
 <tr class="separator:a4967000bb56221cb177ffcfc56c3c338"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
+Static Private Member Functions</h2></td></tr>
+<tr class="memitem:aabda51ec7d684c0607a4fd9ae9bb2946"><td class="memItemLeft" align="right" valign="top">static List&lt; <a class="el" href="class_pathfinding_1_1_pathfinding_node.html">PathfindingNode</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinding_1_1_pathfinding_graph_generator.html#aabda51ec7d684c0607a4fd9ae9bb2946">nodesFromObstacleData</a> ()</td></tr>
+<tr class="memdesc:aabda51ec7d684c0607a4fd9ae9bb2946"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper method for GetPathfindingGraph, iterates through obstacleData (set in GetPathfindingGraph) and creates nodes from the data if they are within the bounds of the board and aren't inside other objects geometry.  <br /></td></tr>
+<tr class="separator:aabda51ec7d684c0607a4fd9ae9bb2946"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a68549dbbb0e4c3572be3df2032c088be"><td class="memItemLeft" align="right" valign="top"><a id="a68549dbbb0e4c3572be3df2032c088be" name="a68549dbbb0e4c3572be3df2032c088be"></a>
+static List&lt; <a class="el" href="struct_pathfinding_1_1_pathfinding_graph_generator_1_1_obstacle_data.html">ObstacleData</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>obstacleData</b> = new List&lt;<a class="el" href="struct_pathfinding_1_1_pathfinding_graph_generator_1_1_obstacle_data.html">ObstacleData</a>&gt;()</td></tr>
+<tr class="memdesc:a68549dbbb0e4c3572be3df2032c088be"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of raw obstacle data. <br /></td></tr>
+<tr class="separator:a68549dbbb0e4c3572be3df2032c088be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Used to dynamically generate a pathfinding mesh based on obstacles in the environment. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac7e886e6c9d6051c391d8cb543f2ca2c" name="ac7e886e6c9d6051c391d8cb543f2ca2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7e886e6c9d6051c391d8cb543f2ca2c">&#9670;&#160;</a></span>AddObstacleData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Pathfinding.PathfindingGraphGenerator.AddObstacleData </td>
+          <td>(</td>
+          <td class="paramtype">Bounds&#160;</td>
+          <td class="paramname"><em>bounds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector3[]&#160;</td>
+          <td class="paramname"><em>possiblePoints</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Callback method for when GetObstacleDataEvent is invoked, used to add an obstacles pathfinding points for consideration. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bounds</td><td>The bounds of an obstacle's collider</td></tr>
+    <tr><td class="paramname">possiblePoints</td><td>An obstacles pathfinding points for consideration</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="aaf56b7ade5e876cf22ad75e02ffe3859" name="aaf56b7ade5e876cf22ad75e02ffe3859"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaf56b7ade5e876cf22ad75e02ffe3859">&#9670;&#160;</a></span>GetPathfindingGraph()</h2>
 
@@ -128,6 +194,34 @@ static EventHandler&lt; EventArgs &gt;&#160;</td><td class="memItemRight" valign
 
 <p>Generates pathfinding graph based on current obstacles in the environment. </p>
 <dl class="section return"><dt>Returns</dt><dd>List of pathfining nodes based on current state of environment</dd></dl>
+
+</div>
+</div>
+<a id="aabda51ec7d684c0607a4fd9ae9bb2946" name="aabda51ec7d684c0607a4fd9ae9bb2946"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabda51ec7d684c0607a4fd9ae9bb2946">&#9670;&#160;</a></span>nodesFromObstacleData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static List&lt; <a class="el" href="class_pathfinding_1_1_pathfinding_node.html">PathfindingNode</a> &gt; Pathfinding.PathfindingGraphGenerator.nodesFromObstacleData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Helper method for GetPathfindingGraph, iterates through obstacleData (set in GetPathfindingGraph) and creates nodes from the data if they are within the bounds of the board and aren't inside other objects geometry. </p>
+<dl class="section return"><dt>Returns</dt><dd>Points which meet the criteria to be nodes used in the pathfinding graph</dd></dl>
 
 </div>
 </div>

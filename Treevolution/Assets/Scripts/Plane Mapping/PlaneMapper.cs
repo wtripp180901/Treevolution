@@ -2,17 +2,35 @@ using UnityEngine;
 
 public class PlaneMapper : MonoBehaviour
 {
+    /// <summary>
+    /// The prefab which indicates the edges of the plane
+    /// </summary>
     public GameObject planeMarker;
+    /// <summary>
+    /// The floor of the playspace
+    /// </summary>
     public GameObject floor;
+    /// <summary>
+    /// The number of planeMarkers to be spawned on each side of the playspace's perimeter
+    /// </summary>
     public int markerCount = 2;
+    /// <summary>
+    /// The central tree GameObject
+    /// </summary>
     public GameObject treeModel;
-    public float tableWidth = 240;
-    public float tableDepth = 160;
+    /// <summary>
+    /// The width of the playspace
+    /// </summary>
+    public float tableWidth = 344;
+    /// <summary>
+    /// The depth of the playspace
+    /// </summary>
+    public float tableDepth = 163;
 
 
-    private GameStateManager gameStateManager;
-    private QRDetection qrDetection;
-   
+    private GameStateManager _gameStateManager;
+    private QRDetection _qrDetection;
+
     private bool planeIsMapped = false;
     private Vector3 tl;
     public Vector3 topLeft { get { return tl; } }
@@ -27,27 +45,30 @@ public class PlaneMapper : MonoBehaviour
     private Pose _pose;
     public Pose pose { get { return _pose; } }
 
-    public void InitForTesting()
+    public void SetupForTest(bool planeMapped)
     {
-        planeIsMapped = true;
+        gameObject.AddComponent<QRDetection>();
+        gameObject.AddComponent<RealWorldPropertyMapper>();
+        GetComponent<RealWorldPropertyMapper>().SetupForTest(this);
+        _qrDetection = GetComponent<QRDetection>();
+        planeIsMapped = planeMapped;
     }
 
     private void Start()
     {
-        gameStateManager = GetComponent<GameStateManager>();
-        qrDetection = GetComponent<QRDetection>();
+        _gameStateManager = GetComponent<GameStateManager>();
+        _qrDetection = GetComponent<QRDetection>();
     }
 
+    /// <summary>
+    /// Instantiates objects marking out the playspace based on a QR marker and maps the properties of the playspace in GameProperties
+    /// </summary>
+    /// <param name="marker">Pose of the the QR calibration marker from QRDetection</param>
     public void CreateNewPlane(Pose marker)
     {
-        if (qrDetection != null && qrDetection.lockPlane)
+        if (_qrDetection != null && _qrDetection.lockPlane)
         {
             return;
-        }
-        if (planeIsMapped == false)
-        {
-            gameStateManager.CalibrationSuccess();
-            planeIsMapped = true;
         }
 
         marker.rotation = Quaternion.LookRotation(marker.up, marker.forward);
@@ -92,11 +113,11 @@ public class PlaneMapper : MonoBehaviour
         Vector3 floorScale = new Vector3(0.1f * Vector3.Distance(bl, tl), newFloor.transform.localScale.y, 0.1f * Vector3.Distance(bl, br));
         newFloor.transform.localScale = floorScale;
 
-        Debug.DrawLine(GameProperties.BottomLeftCorner, GameProperties.TopLeftCorner, Color.blue, 1000);
+        /*Debug.DrawLine(GameProperties.BottomLeftCorner, GameProperties.TopLeftCorner, Color.blue, 1000);
         Debug.DrawLine(GameProperties.BottomLeftCorner, GameProperties.BottomRightCorner, Color.blue, 1000);
         Debug.DrawLine(GameProperties.TopRightCorner, GameProperties.TopLeftCorner, Color.blue, 1000);
         Debug.DrawLine(GameProperties.TopRightCorner, GameProperties.BottomRightCorner, Color.blue, 1000);
-
+*/
         GameObject treeObject = GameObject.FindWithTag("Tree");
         if (treeObject == null)
         {
@@ -106,14 +127,30 @@ public class PlaneMapper : MonoBehaviour
         {
             treeObject.transform.position = boardCentre;
         }
+        if (!_qrDetection.lockPlane)
+        {
+            GetComponent<RealWorldPropertyMapper>().MapProperties(); // Assign the plane properties in GameProperties
+        }
+        if (planeIsMapped == false)
+        {
+            _gameStateManager.CalibrationSuccess();
+            planeIsMapped = true;
+        }
+        GameObject.FindWithTag("Buddy").transform.position = boardCentre + new Vector3(0, 0.435f, 0);
     }
 
+    /// <summary>
+    /// Destroys plane and tells script to expect a new plane to be mapped
+    /// </summary>
     public void ResetPlane()
     {
         ClearPlane();
         planeIsMapped = false;
     }
 
+    /// <summary>
+    /// Destroys all objects instantiated by CreateNewPlane
+    /// </summary>
     public void ClearPlane()
     {
         Destroy(GameObject.FindWithTag("Floor"));

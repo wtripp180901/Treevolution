@@ -10,7 +10,7 @@ namespace Pathfinding
     public static class PathfindingGraphGenerator
     {
 
-        struct ObstacleData
+        public struct ObstacleData
         {
             public readonly Bounds bounds;
             public readonly Vector3[] possiblePFPoints;
@@ -22,14 +22,39 @@ namespace Pathfinding
             }
         }
 
+        /// <summary>
+        /// Should be subscribed to by any obstacles, when received should send their pathfinding points to this class via AddObstacleData
+        /// </summary>
         public static event EventHandler<EventArgs> GetObstacleDataEvent;
 
+        /// <summary>
+        /// List of raw obstacle data
+        /// </summary>
         private static List<ObstacleData> obstacleData = new List<ObstacleData>();
 
-        public static void AddObstacleData(Bounds bounds, Vector3[] possiblePoints)
+        /// <summary>
+        /// Callback method for when GetObstacleDataEvent is invoked, used to add an obstacles pathfinding points for consideration
+        /// </summary>
+        /// <param name="bounds">The bounds of an obstacle's collider</param>
+        /// <param name="possiblePoints">An obstacles pathfinding points for consideration</param>
+		/// <returns></returns>
+        public static ObstacleData AddObstacleData(Bounds bounds, Vector3[] possiblePoints)
         {
-            obstacleData.Add(new ObstacleData(bounds, possiblePoints));
+            ObstacleData newObstacle = new ObstacleData(bounds, possiblePoints);
+            obstacleData.Add(newObstacle);
+            return newObstacle;
         }
+
+        public static void ClearObstacleData()
+        {
+            obstacleData.Clear();
+        }
+
+        public static void RemoveFromObstacleData(ObstacleData dataToRemove)
+        {
+            obstacleData.Remove(dataToRemove);
+        }
+
 
         /// <summary>
         /// Generates pathfinding graph based on current obstacles in the environment
@@ -59,7 +84,7 @@ namespace Pathfinding
                             distance = 0;
                         graph[i].AddNeighbour(graph[j], distance);
                         graph[j].AddNeighbour(graph[i], distance);
-                        Debug.DrawLine(graph[i].position, graph[i].position + directionRay, Color.red, 60);
+                        Debug.DrawLine(graph[i].position, graph[i].position + directionRay, Color.red, 3);
 
                     }
                 }
@@ -67,6 +92,10 @@ namespace Pathfinding
             return graph.ToArray();
         }
 
+        /// <summary>
+        /// Helper method for GetPathfindingGraph, iterates through obstacleData (set in GetPathfindingGraph) and creates nodes from the data if they are within the bounds of the board and aren't inside other objects geometry
+        /// </summary>
+        /// <returns>Points which meet the criteria to be nodes used in the pathfinding graph</returns>
         private static List<PathfindingNode> nodesFromObstacleData()
         {
 

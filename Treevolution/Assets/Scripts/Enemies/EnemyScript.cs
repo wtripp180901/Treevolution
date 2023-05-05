@@ -14,6 +14,10 @@ public class EnemyScript : MonoBehaviour
     /// </summary>
     public int health = 10;
     /// <summary>
+    /// Points to assign to the player for killing this type of enemy.
+    /// </summary>
+    public int points = 1;
+    /// <summary>
     /// Determines if the current enemy is flying or not (off by default).
     /// </summary>
     public bool flying = false;
@@ -22,30 +26,45 @@ public class EnemyScript : MonoBehaviour
     /// </summary>
     [SerializeField] // This allows the private field to be edited from the Unity inspecter
     private float speed = 0.01f;
-
-    Vector3[] path;
-    bool followingPath = true;
-    Vector3 directionVector;
-    Vector3 currentTarget;
-    int pathCounter = 0;
-
+    /// <summary>
+    /// Interval between which the enemy should be damaged repeatedly if they are clipping through a wall.
+    /// </summary>
     [SerializeField]
     float inWallDamageInterval = 0.5f;
+    /// <summary>
+    /// Duration of time the enemy has been clipping a wall for.
+    /// </summary>
     float currentInWallInterval = 0f;
+    /// <summary>
+    /// Indicates if the enemy is currently clipping through a wall.
+    /// </summary>
     bool inWall = false;
-
-    
+    [HideInInspector]
+    public bool takeDamage = true;
+    /// <summary>
+    /// Indicates if the enemy is frozen in place.
+    /// </summary>
+    public bool frozen = false;
+    public GameObject geometry;
+    /// <summary>
+    /// Audio player to play spatial sounds from the current enemy.
+    /// </summary>
+    private AudioSource _enemyAudioPlayer;
+    /// <summary>
+    /// Sound effect to be played when the enemy spawns.
+    /// </summary>
+    [HideInInspector]
+    public AudioClip spawnAudio;
     /// <summary>
     /// Sound effect to be played when the enemy gets damaged.
     /// </summary>
-    [SerializeField]
-    private AudioSource damageAudio;
+    [HideInInspector]
+    public AudioClip damageAudio;
     /// <summary>
     /// Sound effect to be played when the enemy dies.
     /// </summary>
-    [SerializeField]
-    private AudioSource deathAudio;
-
+    [HideInInspector]
+    public AudioClip deathAudio;
     /// <summary>
     /// Current Enemy's Rigidbody component.
     /// </summary>
@@ -90,30 +109,32 @@ public class EnemyScript : MonoBehaviour
     /// Reference to the Right Spawn Indicator.
     /// </summary>
     private SpawnDirectionIndicator _rightIndicator;
-
     /// <summary>
     /// Initial orientation of the enemy prefab
     /// </summary>
     private Vector3 _defaultOrientation;
-
     /// <summary>
     /// Determines if enemy requests path around walls or not
     /// </summary>
     public bool AvoidsWall = true;
-
     /// <summary>
     /// Determines if enemies destroy walls on collision
     /// </summary>
     public bool DamagesWall = false;
-
     /// <summary>
     /// Start runs when loading the GameObject that this script is attached to.
     /// </summary>
+    List<Color> defaultColours = new List<Color>();
     void Start()
     {
+        GetDefaultMaterials();
+        _enemyAudioPlayer = GetComponent<AudioSource>();
+        _enemyAudioPlayer.clip = spawnAudio;
+        _enemyAudioPlayer.Play();
         _defaultOrientation = transform.rotation.eulerAngles;
         _roundTimer = GameObject.Find("Logic").GetComponent<RoundTimer>();
         _rigidbody = GetComponent<Rigidbody>();
+        _rigidbody.mass = 0.01f;
         _healthBar = GetComponent<HealthBar>();
         _leftIndicator = GameObject.FindWithTag("LeftIndicator").GetComponent<SpawnDirectionIndicator>();
         _rightIndicator = GameObject.FindWithTag("RightIndicator").GetComponent<SpawnDirectionIndicator>();
@@ -122,8 +143,14 @@ public class EnemyScript : MonoBehaviour
             _rigidbody.useGravity = false;
         else
             _rigidbody.useGravity = true;
-        Pathfinding.PathfindingUpdatePublisher.RefindPathNeededEvent.AddListener(restartPathfinding);
+        PathfindingUpdatePublisher.RefindPathNeededEvent.AddListener(restartPathfinding);
         Initialise();
+    }
+
+    public void GetTestData(out bool inWall,out int currentHealth)
+    {
+        inWall = this.inWall;
+        currentHealth = this.health;
     }
 
     private void Update()
@@ -144,7 +171,7 @@ public class EnemyScript : MonoBehaviour
     /// </summary>
     void FixedUpdate()
     {
-        if (_roundTimer != null && _roundTimer.isPaused)
+        if (frozen || (_roundTimer != null && _roundTimer.isPaused))
             return;
         Vector3 pos = transform.position;
         if (_followingPath && _rigidbody.velocity.y >= -5f)
@@ -160,6 +187,9 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Refreshes the pathfinding points for the enemy.
+    /// </summary>
     private void restartPathfinding()
     {
         _pathCounter = 0;
@@ -199,12 +229,16 @@ public class EnemyScript : MonoBehaviour
             Debug.Log("Reached tree");
             _followingPath = false;
         }
-        else if (otherCollider.gameObject.tag == "Bullet")
+        else if (collision.gameObject.tag == "Bullet")
         {
-            Damage(1);
+            Damage(collision.gameObject.GetComponent<BulletScript>().damage);
         }
     }
 
+    /// <summary>
+    /// Called when the enemy enters a trigger box, such as a wall.
+    /// </summary>
+    /// <param name="trigger">Trigger event data.</param>
     private void OnTriggerEnter(Collider trigger)
     {
         GameObject collision = trigger.gameObject;
@@ -218,6 +252,10 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called when the enemy exits a trigger box, such as a wall.
+    /// </summary>
+    /// <param name="trigger">Trigger event data.</param>
     private void OnTriggerExit(Collider trigger)
     {
         if (trigger.gameObject.tag == "Wall")
@@ -259,20 +297,28 @@ public class EnemyScript : MonoBehaviour
         if (spawnDirectionIndicator != null) spawnDirectionIndicator.IndicateDirection();
     }
 
-    /// <summary>
-    /// Indicates the enemy has been damaged by turning its body red for a brief time and playing the damaged sound effect.
-    /// </summary>
-    /// <returns>This method runs a coroutine and so a <c>yield return</c> is used.</returns>
-    private IEnumerator DamageIndicator()
+    private void GetDefaultMaterials()
     {
-        List<Color> defaultColours = new List<Color>();
-        Renderer[] childRenderers = transform.GetComponentsInChildren<Renderer>();
+        Renderer[] childRenderers = geometry.transform.GetComponentsInChildren<Renderer>();
         for (int i = 0; i < childRenderers.Length; i++)
         {
             defaultColours.Add(childRenderers[i].material.color);
+        }
+    }
+
+        /// <summary>
+        /// Indicates the enemy has been damaged by turning its body red for a brief time and playing the damaged sound effect.
+        /// </summary>
+        /// <returns>This method runs a coroutine and so a <c>yield return</c> is used.</returns>
+        private IEnumerator DamageIndicator()
+    {
+        Renderer[] childRenderers = geometry.transform.GetComponentsInChildren<Renderer>();
+        for (int i = 0; i < childRenderers.Length; i++)
+        {
             childRenderers[i].material.color = Color.red;
         }
-        damageAudio.Play();
+        _enemyAudioPlayer.clip = damageAudio;
+        _enemyAudioPlayer.Play();
         yield return new WaitForSeconds(0.3f);
         for (int i = 0; i < defaultColours.Count; i++)
         {
@@ -286,9 +332,16 @@ public class EnemyScript : MonoBehaviour
     /// <returns>This method runs a coroutine and so a <c>yield return</c> is used.</returns>
     private IEnumerator KillEnemy()
     {
+        if (flying)
+            GetComponent<Rigidbody>().useGravity = true;
         _followingPath = false;
-        gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, 0, gameObject.transform.localScale.z);
-        deathAudio.Play();
+        if(flying)
+            geometry.transform.localScale = new Vector3(0, geometry.transform.localScale.y, geometry.transform.localScale.z);
+        else
+            geometry.transform.localScale = new Vector3(geometry.transform.localScale.x, 0, geometry.transform.localScale.z);
+
+        _enemyAudioPlayer.clip = deathAudio;
+        _enemyAudioPlayer.Play();
         yield return new WaitForSeconds(1f);
         DestroyEnemy(true);
     }
@@ -299,23 +352,32 @@ public class EnemyScript : MonoBehaviour
     /// <param name="power">Power to damage the enemy by.</param>
     public void Damage(int power)
     {
-        health -= power;
-        _healthBar.SetHealth(health);
-        if (health <= 0)
+        if (takeDamage)
         {
-            StartCoroutine(KillEnemy());
+            try
+            {
+                health -= power;
+                _healthBar.SetHealth(health);
+                if (health <= 0)
+                {
+                    StartCoroutine(KillEnemy());
+                }
+                else StartCoroutine(DamageIndicator());
+            }
+            catch (System.Exception e) {
+				Debug.Log("Error killing enemy: " + e.Message);
+			}
         }
-        else StartCoroutine(DamageIndicator());
     }
 
     /// <summary>
     /// Destroys the enemy object and removes it from the EnemyManager's enemy list.
     /// </summary>
     /// <param name="killedByPlayer">Whether the enemy was killed by the player, or is bein destroyed as part of the ClearEnemies method and so shouldn't count towards the user's score.</param>
-    public void DestroyEnemy(bool killedByPlayer)
+    public void DestroyEnemy(bool countPoints)
     {
         Pathfinding.PathfindingUpdatePublisher.RefindPathNeededEvent.RemoveListener(restartPathfinding);
-        _enemyManager.RemoveEnemy(gameObject, killedByPlayer);
+        _enemyManager.RemoveEnemy(gameObject, countPoints);
         Destroy(gameObject.GetComponent<Collider>().gameObject);
     }
 }

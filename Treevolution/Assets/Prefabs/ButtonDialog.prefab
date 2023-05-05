@@ -2018,7 +2018,6 @@ GameObject:
   - component: {fileID: 3313217638574813968}
   - component: {fileID: 4164848715080037657}
   - component: {fileID: 4546509240282242542}
-  - component: {fileID: 5345817508591063372}
   - component: {fileID: 8600862979890989330}
   m_Layer: 0
   m_Name: ButtonDialog
@@ -2076,35 +2075,9 @@ MonoBehaviour:
   trackedHandedness: 3
   trackedHandJoint: 2
   transformOverride: {fileID: 0}
-  additionalOffset: {x: 0, y: 0, z: 0}
-  additionalRotation: {x: 0, y: 0, z: 0}
+  additionalOffset: {x: 0, y: -0.03, z: 0}
+  additionalRotation: {x: 3, y: 0, z: 0}
   updateSolvers: 1
---- !u!114 &5345817508591063372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2330315304125546656}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8d1152962ef444c8aa086fe80143d71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  updateLinkedTransform: 0
-  moveLerpTime: 0.2
-  rotateLerpTime: 0.2
-  scaleLerpTime: 0.2
-  maintainScaleOnInitialization: 1
-  smoothing: 1
-  lifetime: 0
-  targetViewPercentV: 0.24
-  minDistance: 0.4
-  maxDistance: 2
-  minScale: 0.01
-  maxScale: 100
-  scaleBuffer: 0.01
-  manualObjectSize: 0
 --- !u!114 &8600862979890989330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2118,10 +2091,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateLinkedTransform: 0
-  moveLerpTime: 0.1
-  rotateLerpTime: 0.1
+  moveLerpTime: 0.5
+  rotateLerpTime: 0.5
   scaleLerpTime: 1
-  maintainScaleOnInitialization: 1
+  maintainScaleOnInitialization: 0
   smoothing: 1
   lifetime: 0
   orientationType: 0
@@ -2132,8 +2105,8 @@ MonoBehaviour:
   minDistance: 0.3
   maxDistance: 0.8
   defaultDistance: 0.6
-  maxViewHorizontalDegrees: 60
-  maxViewVerticalDegrees: 60
+  maxViewHorizontalDegrees: 40
+  maxViewVerticalDegrees: 30
   reorientWhenOutsideParameters: 1
   orientToControllerDeadzoneDegrees: 10
   ignoreAngleClamp: 0

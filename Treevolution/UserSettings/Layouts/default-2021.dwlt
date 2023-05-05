@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 780.8
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Test Runner
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 209
+  controlID: 93
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -139,12 +139,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1175.2
+    width: 1093.6
     height: 730.8
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 195
+  controlID: 17
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -164,12 +164,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1175.2
-    height: 432.8
+    width: 1093.6
+    height: 443.2
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 196
+  controlID: 18
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -187,13 +187,13 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 273.6
-    height: 432.8
+    width: 252.8
+    height: 443.2
   m_MinSize: {x: 201, y: 221}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 13}
+  m_ActualView: {fileID: 15}
   m_Panes:
-  - {fileID: 13}
+  - {fileID: 15}
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &9
@@ -206,22 +206,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: SceneView
+  m_Name: TestRunnerWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 273.6
+    x: 252.8
     y: 0
-    width: 901.6
-    height: 432.8
-  m_MinSize: {x: 202, y: 221}
+    width: 840.8
+    height: 443.2
+  m_MinSize: {x: 102, y: 121}
   m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 14}
+  m_ActualView: {fileID: 12}
   m_Panes:
+  - {fileID: 16}
   - {fileID: 14}
+  - {fileID: 13}
   - {fileID: 12}
-  m_Selected: 0
+  m_Selected: 3
   m_LastSelected: 1
 --- !u!114 &10
 MonoBehaviour:
@@ -239,15 +241,15 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 432.8
-    width: 1175.2
-    height: 298
+    y: 443.2
+    width: 1093.6
+    height: 287.59998
   m_MinSize: {x: 231, y: 271}
   m_MaxSize: {x: 10001, y: 10021}
-  m_ActualView: {fileID: 15}
+  m_ActualView: {fileID: 17}
   m_Panes:
-  - {fileID: 15}
-  - {fileID: 16}
+  - {fileID: 17}
+  - {fileID: 18}
   m_Selected: 0
   m_LastSelected: 1
 --- !u!114 &11
@@ -265,18 +267,1033 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1175.2
+    x: 1093.6
     y: 0
-    width: 360.80005
+    width: 442.40002
     height: 730.8
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 17}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 19}
   m_Panes:
-  - {fileID: 17}
+  - {fileID: 19}
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &12
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 13401, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Test Runner
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 252.8
+    y: 73.6
+    width: 838.8
+    height: 422.2
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+  m_Spl:
+    ID: 1088
+    splitterInitialOffset: 0
+    currentActiveSplitter: -1
+    realSizes:
+    - 264
+    - 88
+    relativeSizes:
+    - 0.75
+    - 0.25
+    minSizes:
+    - 32
+    - 32
+    maxSizes:
+    - 0
+    - 0
+    lastTotalSize: 352
+    splitSize: 6
+    xOffset: 0
+    m_Version: 1
+    oldRealSizes: 
+    oldMinSizes: 
+    oldMaxSizes: 
+    oldSplitSize: 0
+  m_TestTypeToolbarIndex: 0
+  m_PlayModeTestListGUI:
+    m_Window: {fileID: 12}
+    m_NewResultList:
+    - id: 1005
+      uniqueId: '[WillTest][suite]'
+      name: WillTest
+      fullName: WillTest
+      resultStatus: 2
+      duration: 5.327926
+      messages: One or more child tests had errors
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 
+      parentUniqueId: 
+    - id: 1022
+      uniqueId: '[Tests][C:/Users/willt/OneDrive/Documents/Treevolution/Treevolution/Library/ScriptAssemblies/Tests.dll][suite]'
+      name: Tests.dll
+      fullName: C:/Users/willt/OneDrive/Documents/Treevolution/Treevolution/Library/ScriptAssemblies/Tests.dll
+      resultStatus: 2
+      duration: 5.256183
+      messages: One or more child tests had errors
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1005
+      parentUniqueId: '[WillTest][suite]'
+    - id: 1001
+      uniqueId: Tests.dll/[Tests][BuddyTests][suite]
+      name: BuddyTests
+      fullName: BuddyTests
+      resultStatus: 1
+      duration: 0.2178499
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1028
+      parentUniqueId: '[Tests][C:/Users/willt/OneDrive/Documents/Treevolution/Treevolution/Library/ScriptAssemblies/Tests.dll][suite]'
+    - id: 1003
+      uniqueId: Tests.dll/BuddyTests/[Tests][BuddyTests.TestDefendFindsNearest]
+      name: TestDefendFindsNearest
+      fullName: BuddyTests.TestDefendFindsNearest
+      resultStatus: 1
+      duration: 0.1106724
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/[Tests][BuddyTests][suite]
+    - id: 1002
+      uniqueId: Tests.dll/BuddyTests/[Tests][BuddyTests.TestNewInstructionsCleanCommands]
+      name: TestNewInstructionsCleanCommands
+      fullName: BuddyTests.TestNewInstructionsCleanCommands
+      resultStatus: 1
+      duration: 0.0669395
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/[Tests][BuddyTests][suite]
+    - id: 1006
+      uniqueId: Tests.dll/[Tests][DictationTests][suite]
+      name: DictationTests
+      fullName: DictationTests
+      resultStatus: 1
+      duration: 2.0675461
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1022
+      parentUniqueId: '[Tests][C:/Users/willt/OneDrive/Documents/Treevolution/Treevolution/Library/ScriptAssemblies/Tests.dll][suite]'
+    - id: 1014
+      uniqueId: Tests.dll/DictationTests/[Tests][DictationTests.AppliesRestrictionsBasedOnAdditionalNouns]
+      name: AppliesRestrictionsBasedOnAdditionalNouns
+      fullName: DictationTests.AppliesRestrictionsBasedOnAdditionalNouns
+      resultStatus: 1
+      duration: 1.1246364
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/[Tests][DictationTests][suite]
+    - id: 1010
+      uniqueId: Tests.dll/DictationTests/[Tests][DictationTests.AttackWithPluralNounAndNoSubject]
+      name: AttackWithPluralNounAndNoSubject
+      fullName: DictationTests.AttackWithPluralNounAndNoSubject
+      resultStatus: 1
+      duration: 0.020438
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/[Tests][DictationTests][suite]
+    - id: 1008
+      uniqueId: Tests.dll/DictationTests/[Tests][DictationTests.BasicMovementWorksWithWordNotInBasewords]
+      name: BasicMovementWorksWithWordNotInBasewords
+      fullName: DictationTests.BasicMovementWorksWithWordNotInBasewords
+      resultStatus: 1
+      duration: 0.1625491
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1006
+      parentUniqueId: Tests.dll/[Tests][DictationTests][suite]
+    - id: 1010
+      uniqueId: Tests.dll/DictationTests/[Tests][DictationTests.BuddyTargetsClosestOfMultipleFirst]
+      name: BuddyTargetsClosestOfMultipleFirst
+      fullName: DictationTests.BuddyTargetsClosestOfMultipleFirst
+      resultStatus: 1
+      duration: 0.0156155
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/[Tests][DictationTests][suite]
+    - id: 1022
+      uniqueId: Tests.dll/DictationTests/[Tests][DictationTests.DefendDefendsIndicatedObject]
+      name: DefendDefendsIndicatedObject
+      fullName: DictationTests.DefendDefendsIndicatedObject
+      resultStatus: 1
+      duration: 0.0464332
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1004
+      parentUniqueId: Tests.dll/[Tests][DictationTests][suite]
+    - id: 1021
+      uniqueId: Tests.dll/DictationTests/[Tests][DictationTests.DefendDefendsWalls]
+      name: DefendDefendsWalls
+      fullName: DictationTests.DefendDefendsWalls
+      resultStatus: 1
+      duration: 0.0289478
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1004
+      parentUniqueId: Tests.dll/[Tests][DictationTests][suite]
+    - id: 1011
+      uniqueId: Tests.dll/DictationTests/[Tests][DictationTests.DifferentRestrictionsAreAppliedToDifferentSubjects]
+      name: DifferentRestrictionsAreAppliedToDifferentSubjects
+      fullName: DictationTests.DifferentRestrictionsAreAppliedToDifferentSubjects
+      resultStatus: 1
+      duration: 0.0489948
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/[Tests][DictationTests][suite]
+    - id: 1012
+      uniqueId: Tests.dll/DictationTests/[Tests][DictationTests.MultiAttackWorksWithObjectivePronoun]
+      name: MultiAttackWorksWithObjectivePronoun
+      fullName: DictationTests.MultiAttackWorksWithObjectivePronoun
+      resultStatus: 1
+      duration: 0.0299874
+      messages: 
+      output: 'System.Collections.Generic.List`1[BuddyAction]
+
+'
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1006
+      parentUniqueId: Tests.dll/[Tests][DictationTests][suite]
+    - id: 1013
+      uniqueId: Tests.dll/DictationTests/[Tests][DictationTests.MultiAttackWorksWithSubjectivePronoun]
+      name: MultiAttackWorksWithSubjectivePronoun
+      fullName: DictationTests.MultiAttackWorksWithSubjectivePronoun
+      resultStatus: 1
+      duration: 0.0191644
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1006
+      parentUniqueId: Tests.dll/[Tests][DictationTests][suite]
+    - id: 1009
+      uniqueId: Tests.dll/DictationTests/[Tests][DictationTests.NoSubjectAttackDefaults]
+      name: NoSubjectAttackDefaults
+      fullName: DictationTests.NoSubjectAttackDefaults
+      resultStatus: 1
+      duration: 0.0145532
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/[Tests][DictationTests][suite]
+    - id: 1016
+      uniqueId: Tests.dll/DictationTests/[Tests][DictationTests.RepairsDamagedOrBrokenWallsByDictation]
+      name: RepairsDamagedOrBrokenWallsByDictation
+      fullName: DictationTests.RepairsDamagedOrBrokenWallsByDictation
+      resultStatus: 1
+      duration: 0.0395508
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/[Tests][DictationTests][suite]
+    - id: 1013
+      uniqueId: Tests.dll/DictationTests/[Tests][DictationTests.SelectsBasedOnAdjectives]
+      name: SelectsBasedOnAdjectives
+      fullName: DictationTests.SelectsBasedOnAdjectives
+      resultStatus: 1
+      duration: 0.031873
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/[Tests][DictationTests][suite]
+    - id: 1010
+      uniqueId: Tests.dll/DictationTests/[Tests][DictationTests.SelectsCorrectSingularTargetForRestrictions]
+      name: SelectsCorrectSingularTargetForRestrictions
+      fullName: DictationTests.SelectsCorrectSingularTargetForRestrictions
+      resultStatus: 1
+      duration: 0.0248907
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/[Tests][DictationTests][suite]
+    - id: 1011
+      uniqueId: Tests.dll/DictationTests/[Tests][DictationTests.SingularAttackAtPronounSubjectGetsClosest]
+      name: SingularAttackAtPronounSubjectGetsClosest
+      fullName: DictationTests.SingularAttackAtPronounSubjectGetsClosest
+      resultStatus: 1
+      duration: 0.0298391
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1006
+      parentUniqueId: Tests.dll/[Tests][DictationTests][suite]
+    - id: 1009
+      uniqueId: Tests.dll/DictationTests/[Tests][DictationTests.SingularAttackWorksWithObjectivePronoun]
+      name: SingularAttackWorksWithObjectivePronoun
+      fullName: DictationTests.SingularAttackWorksWithObjectivePronoun
+      resultStatus: 1
+      duration: 0.0261534
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1006
+      parentUniqueId: Tests.dll/[Tests][DictationTests][suite]
+    - id: 1010
+      uniqueId: Tests.dll/DictationTests/[Tests][DictationTests.SingularAttackWorksWithSubjectivePronoun]
+      name: SingularAttackWorksWithSubjectivePronoun
+      fullName: DictationTests.SingularAttackWorksWithSubjectivePronoun
+      resultStatus: 1
+      duration: 0.0249062
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1006
+      parentUniqueId: Tests.dll/[Tests][DictationTests][suite]
+    - id: 1023
+      uniqueId: Tests.dll/DictationTests/[Tests][DictationTests.TargetsVenusFlyTrap]
+      name: TargetsVenusFlyTrap
+      fullName: DictationTests.TargetsVenusFlyTrap
+      resultStatus: 1
+      duration: 0.1586214
+      messages: 
+      output: 'API parsing error for word: venus - Cannot access child value on Newtonsoft.Json.Linq.JValue.
+
+'
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1004
+      parentUniqueId: Tests.dll/[Tests][DictationTests][suite]
+    - id: 1007
+      uniqueId: Tests.dll/DictationTests/[Tests][DictationTests.testBasicMovementCommand]
+      name: testBasicMovementCommand
+      fullName: DictationTests.testBasicMovementCommand
+      resultStatus: 1
+      duration: 0.018959
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1006
+      parentUniqueId: Tests.dll/[Tests][DictationTests][suite]
+    - id: 1016
+      uniqueId: Tests.dll/DictationTests/[Tests][DictationTests.TestPreviouslyFailedCommands]
+      name: TestPreviouslyFailedCommands
+      fullName: DictationTests.TestPreviouslyFailedCommands
+      resultStatus: 1
+      duration: 0.176829
+      messages: 
+      output: 'Not implemented in getSubject: PointerLocation
+
+'
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Tests.dll/[Tests][DictationTests][suite]
+    - id: 1024
+      uniqueId: Tests.dll/[Tests][EnemyManagerTests][suite]
+      name: EnemyManagerTests
+      fullName: EnemyManagerTests
+      resultStatus: 1
+      duration: 0.1219135
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1039
+      parentUniqueId: '[Tests][C:/Users/willt/OneDrive/Documents/Treevolution/Treevolution/Library/ScriptAssemblies/Tests.dll][suite]'
+    - id: 1025
+      uniqueId: Tests.dll/EnemyManagerTests/[Tests][EnemyManagerTests.SuccessfullySpawnsFirstEnemy]
+      name: SuccessfullySpawnsFirstEnemy
+      fullName: EnemyManagerTests.SuccessfullySpawnsFirstEnemy
+      resultStatus: 1
+      duration: 0.1167924
+      messages: 
+      output: 'Pause/Play
+
+        Look rotation viewing vector is zero
+
+        Pause/Play
+
+        There
+        are no audio listeners in the scene. Please ensure there is always one audio
+        listener in the scene
+
+        Look rotation viewing vector is zero
+
+        There
+        are no audio listeners in the scene. Please ensure there is always one audio
+        listener in the scene
+
+'
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1024
+      parentUniqueId: Tests.dll/[Tests][EnemyManagerTests][suite]
+    - id: 1026
+      uniqueId: Tests.dll/[Tests][EnemyTests][suite]
+      name: EnemyTests
+      fullName: EnemyTests
+      resultStatus: 1
+      duration: 1.0609405
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1039
+      parentUniqueId: '[Tests][C:/Users/willt/OneDrive/Documents/Treevolution/Treevolution/Library/ScriptAssemblies/Tests.dll][suite]'
+    - id: 1027
+      uniqueId: Tests.dll/EnemyTests/[Tests][EnemyTests.NormalEnemiesDamagedByWalls]
+      name: NormalEnemiesDamagedByWalls
+      fullName: EnemyTests.NormalEnemiesDamagedByWalls
+      resultStatus: 1
+      duration: 1.049815
+      messages: 
+      output: 'Pause/Play
+
+        Look rotation viewing vector is zero
+
+        There
+        are no audio listeners in the scene. Please ensure there is always one audio
+        listener in the scene
+
+'
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1026
+      parentUniqueId: Tests.dll/[Tests][EnemyTests][suite]
+    - id: 1014
+      uniqueId: Tests.dll/[Tests][GameStateManagerTests][suite]
+      name: GameStateManagerTests
+      fullName: GameStateManagerTests
+      resultStatus: 2
+      duration: 0.026872
+      messages: One or more child tests had errors
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1022
+      parentUniqueId: '[Tests][C:/Users/willt/OneDrive/Documents/Treevolution/Treevolution/Library/ScriptAssemblies/Tests.dll][suite]'
+    - id: 1015
+      uniqueId: Tests.dll/GameStateManagerTests/[Tests][GameStateManagerTests.GameStateManagerStateTransitions]
+      name: GameStateManagerStateTransitions
+      fullName: GameStateManagerTests.GameStateManagerStateTransitions
+      resultStatus: 2
+      duration: 0.020314
+      messages: "  Expected: Tutorial_Battle\r\n  But was:  Tutorial_Plan\r\n"
+      output: 
+      stacktrace: 'at GameStateManagerTests.GameStateManagerStateTransitions () [0x000b9]
+        in C:\Users\willt\OneDrive\Documents\Treevolution\Treevolution\Assets\Tests\GameStateManagerTests.cs:45
+
+'
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1014
+      parentUniqueId: Tests.dll/[Tests][GameStateManagerTests][suite]
+    - id: 1016
+      uniqueId: Tests.dll/[Tests][PathfindingTests][suite]
+      name: PathfindingTests
+      fullName: PathfindingTests
+      resultStatus: 1
+      duration: 0.0822626
+      messages: 
+      output: 'Pause/Play
+
+'
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1022
+      parentUniqueId: '[Tests][C:/Users/willt/OneDrive/Documents/Treevolution/Treevolution/Library/ScriptAssemblies/Tests.dll][suite]'
+    - id: 1017
+      uniqueId: Tests.dll/PathfindingTests/[Tests][PathfindingTests.PathfinderWorksWithoutGraph]
+      name: PathfinderWorksWithoutGraph
+      fullName: PathfindingTests.PathfinderWorksWithoutGraph
+      resultStatus: 1
+      duration: 0.0225483
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1016
+      parentUniqueId: Tests.dll/[Tests][PathfindingTests][suite]
+    - id: 1019
+      uniqueId: Tests.dll/PathfindingTests/[Tests][PathfindingTests.PathfindingGraphGeneratorWorksWithObstacles]
+      name: PathfindingGraphGeneratorWorksWithObstacles
+      fullName: PathfindingTests.PathfindingGraphGeneratorWorksWithObstacles
+      resultStatus: 1
+      duration: 0.0101674
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1016
+      parentUniqueId: Tests.dll/[Tests][PathfindingTests][suite]
+    - id: 1018
+      uniqueId: Tests.dll/PathfindingTests/[Tests][PathfindingTests.PathfindingGraphGeneratorWorksWithoutObstacles]
+      name: PathfindingGraphGeneratorWorksWithoutObstacles
+      fullName: PathfindingTests.PathfindingGraphGeneratorWorksWithoutObstacles
+      resultStatus: 1
+      duration: 0.0008112
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1016
+      parentUniqueId: Tests.dll/[Tests][PathfindingTests][suite]
+    - id: 1020
+      uniqueId: Tests.dll/[Tests][TowerGenerationTests][suite]
+      name: TowerGenerationTests
+      fullName: TowerGenerationTests
+      resultStatus: 1
+      duration: 0.0224899
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1022
+      parentUniqueId: '[Tests][C:/Users/willt/OneDrive/Documents/Treevolution/Treevolution/Library/ScriptAssemblies/Tests.dll][suite]'
+    - id: 1021
+      uniqueId: Tests.dll/TowerGenerationTests/[Tests][TowerGenerationTests.TowerGenerationPointAllocation]
+      name: TowerGenerationPointAllocation
+      fullName: TowerGenerationTests.TowerGenerationPointAllocation
+      resultStatus: 1
+      duration: 0.0138221
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1020
+      parentUniqueId: Tests.dll/[Tests][TowerGenerationTests][suite]
+    - id: 1036
+      uniqueId: Tests.dll/[Tests][TowerTests][suite]
+      name: TowerTests
+      fullName: TowerTests
+      resultStatus: 1
+      duration: 1.6336766
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1039
+      parentUniqueId: '[Tests][C:/Users/willt/OneDrive/Documents/Treevolution/Treevolution/Library/ScriptAssemblies/Tests.dll][suite]'
+    - id: 1038
+      uniqueId: Tests.dll/TowerTests/[Tests][TowerTests.TestDigestTower]
+      name: TestDigestTower
+      fullName: TowerTests.TestDigestTower
+      resultStatus: 1
+      duration: 0.5953429
+      messages: 
+      output: 'Pause/Play
+
+        There are no audio listeners in the scene. Please
+        ensure there is always one audio listener in the scene
+
+        Animator
+        is not playing an AnimatorController
+
+        Reached tree
+
+        Reached
+        tree
+
+        Reached tree
+
+        Reached tree
+
+        Reached tree
+
+        Reached
+        tree
+
+        Animator is not playing an AnimatorController
+
+'
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1036
+      parentUniqueId: Tests.dll/[Tests][TowerTests][suite]
+    - id: 1037
+      uniqueId: Tests.dll/TowerTests/[Tests][TowerTests.TestSingleTargetTower]
+      name: TestSingleTargetTower
+      fullName: TowerTests.TestSingleTargetTower
+      resultStatus: 1
+      duration: 1.0315249
+      messages: 
+      output: 'Pause/Play
+
+        There are no audio listeners in the scene. Please
+        ensure there is always one audio listener in the scene
+
+'
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1036
+      parentUniqueId: Tests.dll/[Tests][TowerTests][suite]
+    m_ResultText: 'TestDigestTower (0.595s)
+
+      ---
+
+      Pause/Play
+
+      There
+      are no audio listeners in the scene. Please ensure there is always one audio
+      listener in the scene
+
+      Animator is not playing an AnimatorController
+
+      Reached
+      tree
+
+      Reached tree
+
+      Reached tree
+
+      Reached tree
+
+      Reached
+      tree
+
+      Reached tree
+
+      Animator is not playing an AnimatorController'
+    m_ResultStacktrace: 
+    m_TestListState:
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: a137483e
+      m_LastClickedID: 1044920225
+      m_ExpandedIDs: 18b84385d606d0ad26285abdf54793f46bc8e5f7346a190e31f8d526a231ff41b7411e4eaa54e867ffffff7f
+      m_RenameOverlay:
+        m_UserAcceptedRename: 0
+        m_Name: 
+        m_OriginalName: 
+        m_EditFieldRect:
+          serializedVersion: 2
+          x: 0
+          y: 0
+          width: 0
+          height: 0
+        m_UserData: 0
+        m_IsWaitingForDelay: 0
+        m_IsRenaming: 0
+        m_OriginalEventType: 11
+        m_IsRenamingFilename: 0
+        m_ClientGUIView: {fileID: 0}
+      m_SearchString: 
+    m_TestRunnerUIFilter:
+      PassedHidden: 0
+      FailedHidden: 0
+      NotRunHidden: 0
+      m_SearchString: 
+      selectedCategoryMask: 0
+      availableCategories:
+      - Uncategorized
+    m_SelectedOption: 0
+  m_EditModeTestListGUI:
+    m_Window: {fileID: 12}
+    m_NewResultList:
+    - id: 1000
+      uniqueId: '[WillTest][suite]'
+      name: WillTest
+      fullName: WillTest
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 
+      parentUniqueId: 
+    m_ResultText: 
+    m_ResultStacktrace: 
+    m_TestListState:
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 346a190effffff7f
+      m_RenameOverlay:
+        m_UserAcceptedRename: 0
+        m_Name: 
+        m_OriginalName: 
+        m_EditFieldRect:
+          serializedVersion: 2
+          x: 0
+          y: 0
+          width: 0
+          height: 0
+        m_UserData: 0
+        m_IsWaitingForDelay: 0
+        m_IsRenaming: 0
+        m_OriginalEventType: 11
+        m_IsRenamingFilename: 0
+        m_ClientGUIView: {fileID: 0}
+      m_SearchString: 
+    m_TestRunnerUIFilter:
+      PassedHidden: 0
+      FailedHidden: 0
+      NotRunHidden: 0
+      m_SearchString: 
+      selectedCategoryMask: 0
+      availableCategories:
+      - Uncategorized
+--- !u!114 &13
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12914, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Animator
+    m_Image: {fileID: 1711060831702674872, guid: 0000000000000000d000000000000000, type: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 252.8
+    y: 73.6
+    width: 838.8
+    height: 422.2
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+  m_ViewTransforms:
+    m_KeySerializationHelper:
+    - {fileID: -3688202396430210772, guid: a3a226a068326d342837c93da09d6cb7, type: 2}
+    - {fileID: -5704776716810297057, guid: 403fb93f83bcf1941948289826b5c72d, type: 2}
+    - {fileID: -5704776716810297057, guid: d37d5380a01597e46b897d99e122a141, type: 2}
+    - {fileID: 5468691062623788033, guid: 25c068bd135851943b69226ed00db084, type: 2}
+    m_ValueSerializationHelper:
+    - e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 0.56631577
+      e01: 0
+      e02: 0
+      e03: -13.315765
+      e10: 0
+      e11: 0.56631577
+      e12: 0
+      e13: 106.65264
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+  m_PreviewAnimator: {fileID: 0}
+  m_AnimatorController: {fileID: 9100000, guid: 25c068bd135851943b69226ed00db084, type: 2}
+  m_BreadCrumbs:
+  - m_Target: {fileID: 5468691062623788033, guid: 25c068bd135851943b69226ed00db084, type: 2}
+    m_ScrollPosition: {x: 0, y: 0}
+  stateMachineGraph: {fileID: 0}
+  stateMachineGraphGUI: {fileID: 0}
+  blendTreeGraph: {fileID: 0}
+  blendTreeGraphGUI: {fileID: 0}
+  m_AutoLiveLink: 1
+  m_MiniTool: 0
+  m_LockTracker:
+    m_IsLocked: 0
+  m_CurrentEditor: 0
+  m_LayerEditor:
+    m_SelectedLayerIndex: 0
+--- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -296,10 +1313,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 273.6
+    x: 252.8
     y: 73.6
-    width: 899.6
-    height: 411.8
+    width: 838.8
+    height: 422.2
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -310,7 +1327,7 @@ MonoBehaviour:
   m_ShowGizmos: 1
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 899.6, y: 390.8}
+  m_TargetSize: {x: 838.8, y: 401.2}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -318,17 +1335,17 @@ MonoBehaviour:
   m_UseMipMap: 0
   m_VSyncEnabled: 0
   m_Gizmos: 1
-  m_Stats: 0
+  m_Stats: 1
   m_SelectedSizes: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
   m_ZoomArea:
     m_HRangeLocked: 0
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -359.84
-    m_HBaseRangeMax: 359.84
-    m_VBaseRangeMin: -156.31999
-    m_VBaseRangeMax: 156.31999
+    m_HBaseRangeMin: -335.52
+    m_HBaseRangeMax: 335.52
+    m_VBaseRangeMin: -160.48001
+    m_VBaseRangeMax: 160.48001
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -337,7 +1354,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -346,29 +1363,29 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 899.6
-      height: 390.8
-    m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 449.8, y: 195.4}
+      width: 838.8
+      height: 401.2
+    m_Scale: {x: 1.0595, y: 1.0595}
+    m_Translation: {x: 419.4, y: 200.6}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -449.8
-      y: -195.4
-      width: 899.6
-      height: 390.8
+      x: -395.8471
+      y: -189.3346
+      width: 791.6942
+      height: 378.6692
     m_MinimalGUI: 1
   m_defaultScale: 1
-  m_LastWindowPixelSize: {x: 1124.5, y: 514.75}
+  m_LastWindowPixelSize: {x: 1048.5, y: 527.75}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
   m_XRRenderMode: 0
   m_RenderTexture: {fileID: 0}
---- !u!114 &13
+--- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -390,8 +1407,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 73.6
-    width: 272.6
-    height: 411.8
+    width: 251.8
+    height: 422.2
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -399,9 +1416,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 86780000
-      m_LastClickedID: 30854
-      m_ExpandedIDs: 3ef8ffff28fbffff28780000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 6cd9feffa8d9feff3ae1feff5ae2feffa8e2feffb8ebfeff44eefeff98eefeffa8f7feffaae0fffffce0ffff10eaffff10fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -425,7 +1442,7 @@ MonoBehaviour:
       m_IsLocked: 0
     m_CurrentSortingName: TransformSorting
   m_WindowGUID: 4c969a2b90040154d917609493e03593
---- !u!114 &14
+--- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -445,10 +1462,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 273.6
+    x: 252.8
     y: 73.6
-    width: 899.6
-    height: 411.8
+    width: 838.8
+    height: 422.2
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -650,9 +1667,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.056666482, y: 0.012842562, z: 0.65561706}
+    m_Target: {x: 2.4060743, y: 1.4372061, z: -0.51038074}
     speed: 2
-    m_Value: {x: -0.056666482, y: 0.012842562, z: 0.65561706}
+    m_Value: {x: 2.4060743, y: 1.4372061, z: -0.51038074}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -694,18 +1711,18 @@ MonoBehaviour:
         m_Value: 0
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
-      m_Size: {x: 0, y: 0}
+      m_Size: {x: 1, y: 1}
     m_ShowGrid: 1
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.040746894, y: 0.04554268, z: -0.0018550444, w: -0.99814093}
+    m_Target: {x: -0.23003826, y: 0.61105675, z: -0.19184132, w: -0.732745}
     speed: 2
-    m_Value: {x: -0.040746424, y: 0.045542154, z: -0.001855023, w: -0.99812937}
+    m_Value: {x: -0.23003525, y: 0.61104876, z: -0.1918388, w: -0.7327354}
   m_Size:
-    m_Target: 0.17926294
+    m_Target: 0.033874366
     speed: 2
-    m_Value: 0.17926294
+    m_Value: 0.033874366
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -730,7 +1747,7 @@ MonoBehaviour:
   m_SceneVisActive: 1
   m_LastLockedObject: {fileID: 0}
   m_ViewIsLockedToObject: 0
---- !u!114 &15
+--- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -751,9 +1768,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 506.4
-    width: 1174.2
-    height: 277
+    y: 516.8
+    width: 1092.6
+    height: 266.59998
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -771,22 +1788,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Prefabs/Plants
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/Prefabs/Plants
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\willt\OneDrive\Documents\Treevolution\Treevolution
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 88770000
-    m_LastClickedID: 30600
-    m_ExpandedIDs: 00000000887700008a7700008c7700008e77000090770000927700009477000096770000987700009a7700009c7700009e770000a077000000ca9a3b
+    scrollPos: {x: 0, y: 79}
+    m_SelectedIDs: 70a80000
+    m_LastClickedID: 43120
+    m_ExpandedIDs: 00000000d0a70000d2a70000d4a70000d6a70000d8a70000daa70000dca70000dea70000e0a70000e2a70000e4a70000e6a7000004a8000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -814,7 +1831,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000887700008a7700008c7700008e77000090770000927700009477000096770000987700009a7700009c7700009e770000a0770000
+    m_ExpandedIDs: 00000000d0a70000d2a70000d4a70000d6a70000d8a70000daa70000dca70000dea70000e0a70000e2a70000e4a70000e6a70000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -841,8 +1858,8 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c6230000
+    m_HadKeyboardFocusLastEvent: 0
+    m_ExpandedInstanceIDs: c62300008ea10000e6010000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -870,7 +1887,7 @@ MonoBehaviour:
     m_GridSize: 64
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 207
---- !u!114 &16
+--- !u!114 &18
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -891,14 +1908,14 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 506.4
-    width: 1174.2
-    height: 277
+    y: 516.8
+    width: 1092.6
+    height: 266.59998
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
     m_SaveData: []
---- !u!114 &17
+--- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -918,9 +1935,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1175.2001
+    x: 1093.6
     y: 73.6
-    width: 359.80005
+    width: 441.40002
     height: 709.8
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -933,7 +1950,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 974.3
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:

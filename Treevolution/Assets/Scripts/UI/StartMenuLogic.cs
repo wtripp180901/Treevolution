@@ -18,6 +18,7 @@ public class StartMenuLogic : MonoBehaviour
     /// </summary>
     public GameObject StartMenu;
 
+    private GameStateManager _gameStateManager;
     private TouchScreenKeyboard _keyboard;
     private string _keyboardText = "";
 
@@ -27,26 +28,26 @@ public class StartMenuLogic : MonoBehaviour
     private int _tableDepthMM = 160;
 
 
+    private void Start()
+    {
+        _gameStateManager = GameObject.FindGameObjectWithTag("Logic").GetComponent<GameStateManager>();
+        _tableDepthMM = (int)System.Math.Round(GameObject.FindGameObjectWithTag("Logic").GetComponent<PlaneMapper>().tableDepth);
+        _tableWidthMM = (int)System.Math.Round(GameObject.FindGameObjectWithTag("Logic").GetComponent<PlaneMapper>().tableWidth);
+    }
+
     private void Update()
     {
+
         if(_keyboard != null && _keyboard.status != TouchScreenKeyboard.Status.Visible)
         {
             _keyboardText = _keyboard.text;
             if (widthOrDepth == 0)
             {
-                try
-                {
-                    _tableWidthMM = int.Parse(_keyboardText);
-                }
-                catch { }
+                int.TryParse(_keyboardText, out _tableWidthMM);
             }
             else if (widthOrDepth == 1)
             {
-                try
-                {
-                    _tableDepthMM = int.Parse(_keyboardText);
-                }
-                catch { }
+                int.TryParse(_keyboardText, out _tableDepthMM);
             }
             widthOrDepth = -1;
         }
@@ -82,7 +83,7 @@ public class StartMenuLogic : MonoBehaviour
     {
         GetComponent<PlaneMapper>().tableWidth = _tableWidthMM;
         GetComponent<PlaneMapper>().tableDepth = _tableDepthMM;
-        GetComponent<GameStateManager>().InitRounds();
+        GetComponent<GameStateManager>().InitGameState();
     }
 
     /// <summary>
@@ -92,6 +93,7 @@ public class StartMenuLogic : MonoBehaviour
     public void OpenSettings()
     {
         SettingsDialog.SetActive(true);
+
     }
 
 

@@ -1,11 +1,24 @@
 var searchData=
 [
-  ['endbattle_0',['EndBattle',['../class_game_state_manager.html#a2f7f877ae49841a498669fc4e7e37a5e',1,'GameStateManager']]],
-  ['endpopup_1',['EndPopUp',['../class_u_i_controller.html#a000988faa05a436594dcb4cdfd132557',1,'UIController']]],
-  ['endtutorial_2',['EndTutorial',['../class_u_i_controller.html#a1df17092c002e355497c907066e808da',1,'UIController']]],
-  ['enemymanager_3',['EnemyManager',['../class_enemy_manager.html',1,'']]],
-  ['enemyscript_4',['EnemyScript',['../class_enemy_script.html',1,'']]],
-  ['enemytestscript_5',['EnemyTestScript',['../class_enemy_test_script.html',1,'']]],
-  ['enemytouchhandler_6',['EnemyTouchHandler',['../class_enemy_touch_handler.html',1,'']]],
-  ['enemytype_7',['EnemyType',['../class_game_state_manager.html#adebf6d9d1d66a14769f2355320656dc3',1,'GameStateManager']]]
+  ['damage_0',['Damage',['../class_enemy_script.html#aec67fe782ffea207a114872969101ffe',1,'EnemyScript.Damage()'],['../class_wall_script.html#a7673f6027d891bab29f88b1e751e328b',1,'WallScript.Damage()']]],
+  ['damageaudio_1',['damageAudio',['../class_enemy_script.html#a1ebee518015f730283953c1813f54d29',1,'EnemyScript']]],
+  ['damagegif_2',['damageGif',['../class_u_i_controller.html#a1cd95dfa0f5901ade9d9961c5da9d20c',1,'UIController']]],
+  ['damageindicator_3',['DamageIndicator',['../class_enemy_script.html#ac49ec588a28d886c16a42f10f956f849',1,'EnemyScript']]],
+  ['damageswall_4',['DamagesWall',['../class_enemy_script.html#acf2f0cc2bcd919407c476252f4c359da',1,'EnemyScript']]],
+  ['deathaudio_5',['deathAudio',['../class_enemy_script.html#a789ef10b4df76054f4b4b5994ae12ef9',1,'EnemyScript']]],
+  ['debugger_6',['Debugger',['../class_debugger.html',1,'']]],
+  ['debugobject_7',['debugObject',['../class_game_state_manager.html#aa5fb263e2a01f58b07d6d3669fa4bd3d',1,'GameStateManager']]],
+  ['debugtext_8',['debugText',['../class_q_r_detection.html#ab0aefcabc1c4907b17cc32687b3d24b9',1,'QRDetection']]],
+  ['decreasetime_9',['DecreaseTime',['../class_u_i_controller.html#ae659464ba09da48da4d39015d3c99ba4',1,'UIController']]],
+  ['defaulttargetsofactiontype_10',['defaultTargetsOfActionType',['../class_language_parsing_1_1_action_resolver.html#a9587ab553e412b8d230a75f7d6746831',1,'LanguageParsing::ActionResolver']]],
+  ['defendfixedupdate_11',['defendFixedUpdate',['../class_buddy_script.html#a973f98b79ef8b4038bcc8dfb0fc44b76',1,'BuddyScript']]],
+  ['destroyenemy_12',['DestroyEnemy',['../class_enemy_script.html#aed2130573dc1ec6e62bc21baf08cf9f9',1,'EnemyScript']]],
+  ['dictationerror_13',['DictationError',['../class_voice_command_receiver.html#a9aedc37dc8dfaa4200abe4805ce6c54a',1,'VoiceCommandReceiver']]],
+  ['dictationtests_14',['DictationTests',['../class_dictation_tests.html',1,'']]],
+  ['digesttower_15',['DigestTower',['../class_digest_tower.html',1,'']]],
+  ['disabled_16',['disabled',['../class_wall_script.html#a35815c2e8d7560aacf7ab5709ea3f27e',1,'WallScript']]],
+  ['dragonflyimage_17',['dragonflyImage',['../class_u_i_controller.html#a7939f18338584b9915a22f84ea4abb54',1,'UIController']]],
+  ['dragonflyprefab_18',['DragonflyPrefab',['../class_enemy_manager.html#a3f7b9fd65e0c00c49a9e13e6f00dfc60',1,'EnemyManager']]],
+  ['drawplane_19',['DrawPlane',['../class_q_r_detection.html#acba7a21c9cf17a272a3277939abb4b9f',1,'QRDetection']]],
+  ['dummytoken_20',['DummyToken',['../class_dummy_token.html',1,'']]]
 ];

@@ -1,7 +1,9 @@
+using Microsoft.MixedReality.Toolkit.UI;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Manages and keeps track of the game state as the user progresses through each round or tutorial.
@@ -29,19 +31,52 @@ public class GameStateManager : MonoBehaviour
     /// </summary>
     public int maxRoundNumber = 4;
     /// <summary>
+    /// The default round length, obtained from the round timer.
+    /// </summary>
+    private int _defaultRoundLength;
+    /// <summary>
+    /// Audio Source to play the background music from.
+    /// </summary>
+    [SerializeField]
+    private AudioSource _musicPlayer;
+    /// <summary>
     /// Planning Phase Music
     /// </summary>
     [SerializeField]
-    private AudioSource _planningMusic;
+    private AudioClip _planningMusic;
     /// <summary>
     /// Indicates if the planning phase music is playing or not.
     /// </summary>
     private bool _planningMusicPlaying = true;
     /// <summary>
-    /// Sound effect for round end.
+    /// Battle Phase Music Loop
     /// </summary>
     [SerializeField]
-    private AudioSource _roundEndSound;
+    private AudioClip _battleMusicLoop;
+    /// <summary>
+    /// Indicates if the Battle Phase Music Loop is playing or not.
+    /// </summary>
+    private bool _battleMusicPlaying = false;
+    /// <summary>
+    /// Battle Phase Music 1
+    /// </summary>
+    [SerializeField]
+    private AudioClip _battleMusic1;
+    /// <summary>
+    /// Battle Phase Music 2
+    /// </summary>
+    [SerializeField]
+    private AudioClip _battleMusic2;
+    /// <summary>
+    /// Battle Phase Music 3
+    /// </summary>
+    [SerializeField]
+    private AudioClip _battleMusic3;
+    /// <summary>
+    /// Battle Phase Music 4
+    /// </summary>
+    [SerializeField]
+    private AudioClip _battleMusic4;
     /// <summary>
     /// Running QRDetection instance.
     /// </summary>
@@ -59,13 +94,17 @@ public class GameStateManager : MonoBehaviour
     /// </summary>
     private RoundTimer _roundTimer;
     /// <summary>
+    /// Running TowerManager instance.
+    /// </summary>
+    private TowerManager _towerManager;
+    /// <summary>
     /// The current GameState value.
     /// </summary>
     private GameState _currentState = GameState.Calibration;
     /// <summary>
     /// The current round number (0 = None/Tutorial, 1 = Round 1, etc.).
     /// </summary>
-    private int _currentRoundNumber;
+    private int _currentRoundNumber = 0;
 
     /// <summary>
     /// Values the GameState can take.
@@ -106,13 +145,14 @@ public class GameStateManager : MonoBehaviour
             new Dictionary<EnemyType, int>(){
                 { EnemyType.Ant, 10 },
                 { EnemyType.Armoured_Bug, 8 },
-                { EnemyType.Armoured_Cockroach, 8}
+                { EnemyType.Armoured_Cockroach, 8},
+                { EnemyType.Armoured_Stagbeetle, 5 }
             },
             new Dictionary<EnemyType, int>(){
                 { EnemyType.Ant, 8 },
                 { EnemyType.Armoured_Bug, 8 },
                 { EnemyType.Armoured_Cockroach, 8},
-                { EnemyType.Armoured_Stagbeetle, 5 },
+                { EnemyType.Armoured_Stagbeetle, 5},
                 { EnemyType.Dragonfly, 5},
 
             },
@@ -120,40 +160,83 @@ public class GameStateManager : MonoBehaviour
                 { EnemyType.Ant, 8 },
                 { EnemyType.Armoured_Bug, 5 },
                 { EnemyType.Armoured_Cockroach, 8},
-                { EnemyType.Armoured_Stagbeetle, 5 },
+                { EnemyType.Armoured_Stagbeetle, 5},
                 { EnemyType.Dragonfly, 5},
                 { EnemyType.Hornet, 5}
             }
         };
 
-
+    /// <summary>
+    /// Sets up required class variables for a testing environment.
+    /// </summary>
     public void SetupGameStateManagerTesting()
     {
         BeginBattleButton = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        _uIController = new UIController();
-        _qRDetection = new QRDetection();
+        _uIController = gameObject.AddComponent<UIController>();
+        _qRDetection = gameObject.AddComponent<QRDetection>();
+        _roundTimer = gameObject.AddComponent<RoundTimer>();
+        _enemyManager = gameObject.AddComponent<EnemyManager>();
+        gameObject.AddComponent<PlaneMapper>();
+        _uIController.SetupForTest();
+        _enemyManager.SetupForTest();
     }
 
-
+    /// <summary>
+    /// Toggles the currently playing music track depending on the round number and phase (planning or battle).
+    /// </summary>
     public void ToggleMusic()
     {
         if (_planningMusicPlaying)
         {
-            _planningMusic.Stop();
+            _musicPlayer.Stop();
             _planningMusicPlaying = false;
+            AudioClip battleClip = _battleMusicLoop;
+            _musicPlayer.loop = false;
+            _musicPlayer.time = 0f;
+            switch (_currentRoundNumber)
+            {
+                case 0:
+                    _musicPlayer.time = 1.8f;
+                    _musicPlayer.loop = true;
+                    break;
+                case 1:
+                    battleClip = _battleMusic1;
+                    break;
+                case 2:
+                    battleClip = _battleMusic2;
+                    break;
+                case 3:
+                    battleClip = _battleMusic3;
+                    break;
+                case 4:
+                    battleClip = _battleMusic4;
+                    break;
+            }
+
+            _musicPlayer.clip = battleClip;
+            _musicPlayer.Play();
+            _battleMusicPlaying = true;
         }
         else
         {
-            _planningMusic.Play();
+            _musicPlayer.Stop();
+            _battleMusicPlaying = false;
+            _musicPlayer.clip = _planningMusic;
+            _musicPlayer.loop = true;
+            _musicPlayer.Play();
             _planningMusicPlaying = true;
+
         }
     }
 
-    public void InitRounds()
+    /// <summary>
+    /// Initialises variables of the GameStateManager for starting the game.
+    /// </summary>
+    public void InitGameState()
     {
         if (Application.platform == RuntimePlatform.WindowsEditor)
         {
-            debugObject.SetActive(true); // Unity Editor Mode
+            debugObject?.SetActive(true); // Unity Editor Mode
         }
         if (InfoText != null)
         {
@@ -165,7 +248,11 @@ public class GameStateManager : MonoBehaviour
         _uIController = GetComponent<UIController>();
         _qRDetection = GetComponent<QRDetection>();
         _enemyManager = GetComponent<EnemyManager>();
+        _enemyManager.resetEnemiesKilled();
         _roundTimer = GetComponent<RoundTimer>();
+        _defaultRoundLength = _roundTimer.GetRoundLength();
+        _towerManager = GetComponent<TowerManager>();
+        _qRDetection.StartQR();
         _uIController.CalibrationPopUp();
     }
 
@@ -195,10 +282,12 @@ public class GameStateManager : MonoBehaviour
         _currentState = GameState.Tutorial_Plan;
         if (InfoText != null)
         {
-             InfoText.transform.position = GameProperties.Centre + new Vector3(0, 0.65f, 0);
-             InfoText.text = "Tutorial\n[Planning]";
+            InfoText.transform.position = GameProperties.Centre + new Vector3(0, 0.65f, 0);
+            InfoText.text = "Tutorial\n[Planning]";
         }
+        BeginBattleButton.GetComponent<PressableButton>().enabled = false;
         BeginBattleButton.transform.position = GameProperties.Centre + new Vector3(0, 0.6f, 0);
+        BeginBattleButton.GetComponent<PressableButton>().enabled = true;
         BeginBattleButton.SetActive(true);
     }
 
@@ -212,7 +301,9 @@ public class GameStateManager : MonoBehaviour
         _enemyManager.StartSpawning(_enemyWaves[0]);
         _roundTimer.StartTimer(); // play
         yield return new WaitForSeconds(1);
-        _roundTimer.PauseTimer();
+        _enemyManager.toggleDamage(false);
+        _towerManager.DisableAllTowers(true);
+        _roundTimer.PauseTimer(true);
         _uIController.TutorialBattlePopUps();
     }
 
@@ -222,9 +313,16 @@ public class GameStateManager : MonoBehaviour
     /// <returns>This method runs a coroutine and so a <c>yield return</c> is used.</returns>
     public IEnumerator BeginTutorialBattle()
     {
-        _roundTimer.PauseTimer(); // play
-        yield return new WaitUntil(() => _enemyManager.getEnemiesKilled() != 0);
-        _roundTimer.PauseTimer(); // pause
+        _enemyManager.toggleDamage(true);
+        _roundTimer.PauseTimer(false); // play
+        yield return new WaitUntil(() => _enemyManager.getEnemiesKilled() != 0 || _uIController.timeRemaining == 1);
+        _enemyManager.toggleDamage(false);
+        _roundTimer.PauseTimer(true); // pause
+        if (_uIController.timeRemaining <= 1)
+        {
+            _uIController.NoKillPopUp();
+            yield break;
+        }
         _uIController.TutorialBugPopUps();
     }
 
@@ -233,7 +331,9 @@ public class GameStateManager : MonoBehaviour
     /// </summary>
     public void ContinueTutorialBattle()
     {
-        _roundTimer.PauseTimer();
+        _enemyManager.toggleDamage(true);
+        _towerManager.DisableAllTowers(false);
+        _roundTimer.PauseTimer(false);
     }
 
     /// <summary>
@@ -241,12 +341,13 @@ public class GameStateManager : MonoBehaviour
     /// </summary>
     /// <param name="enemiesKilled">Number of enemies killed.</param>
     /// <returns>This method runs a coroutine and so a <c>yield return</c> is used.</returns>
-    private IEnumerator EndTutorialBattle(int enemiesKilled)
+    private IEnumerator EndTutorialBattle(int score)
     {
         _enemyManager.resetEnemiesKilled();
          if(InfoText != null) 
-            InfoText.text = "Tutorial Over\n[" + enemiesKilled.ToString() + " Enemies Killed]";
+            InfoText.text = "Tutorial Over\n[Score: " + score.ToString() + "]";
         yield return new WaitForSeconds(3);
+        ToggleMusic();
         _uIController.EndTutorial();
     }
 
@@ -256,15 +357,18 @@ public class GameStateManager : MonoBehaviour
     public void BeginRound()
     {
         _currentState = GameState.Round_Plan;
-        _roundTimer.SetRoundLength(60);
+        _roundTimer.SetRoundLength(_defaultRoundLength);
         _currentRoundNumber++;
         if (InfoText != null)
         {
             InfoText.transform.position = GameProperties.Centre + new Vector3(0, 0.65f, 0);
             InfoText.text = "Round " + _currentRoundNumber.ToString() + "\n[Planning]";
         }
-        BeginBattleButton.transform.position = GameProperties.Centre + new Vector3(0, 0.6f, 0);
         BeginBattleButton.SetActive(true);
+        BeginBattleButton.GetComponent<PressableButton>().enabled = false;
+        BeginBattleButton.transform.position = GameProperties.Centre + new Vector3(0, 0.6f, 0);
+        BeginBattleButton.GetComponent<PressableButton>().enabled = true;
+        _towerManager.ToggleAllRangeVisuals(true);
     }
 
     /// <summary>
@@ -272,12 +376,12 @@ public class GameStateManager : MonoBehaviour
     /// </summary>
     public void BeginBattle()
     {
-        _planningMusic.Stop();
         BeginBattleButton.SetActive(false);
-        if(InfoText != null)
+        if (InfoText != null)
              InfoText.transform.position = GameProperties.Centre + new Vector3(0, 0.5f, 0);
-        ToggleMusic();
         GameProperties.BattlePhase = true;
+        ToggleMusic();
+        _towerManager.ToggleAllRangeVisuals(false);
         if (_currentState == GameState.Tutorial_Plan)
         {
             _currentState = GameState.Tutorial_Battle;
@@ -302,18 +406,21 @@ public class GameStateManager : MonoBehaviour
         clearEnemies();
         repairAllWalls();
         _enemyManager.StopSpawning();
-        _roundEndSound.Play();
-        ToggleMusic();
-        int enemiesKilled = GetComponent<EnemyManager>().getEnemiesKilled();
+        int score = GetComponent<EnemyManager>().getScore();
         if (currentGameState == GameState.Tutorial_Battle)
         {
-            StartCoroutine(EndTutorialBattle(enemiesKilled));
+            StartCoroutine(EndTutorialBattle(score));
             yield break;
         }
         if(InfoText != null)
-            InfoText.text = "Round " + _currentRoundNumber.ToString() + " Over\n[" + enemiesKilled.ToString() + " Enemies Killed]";
+            InfoText.text = "Round " + _currentRoundNumber.ToString() + " Over\n[Score: " + score.ToString() + "]";
         yield return new WaitForSeconds(3);
-        if (_currentRoundNumber < maxRoundNumber)
+        ToggleMusic();
+        if (_currentRoundNumber + 1 == 2)
+        {
+            _uIController.BuddyPopUp(); // Introduces Stag beetle mechanics
+        }
+        else if (_currentRoundNumber < maxRoundNumber)
         {
             BeginRound();
         }
@@ -339,8 +446,11 @@ public class GameStateManager : MonoBehaviour
             InfoText.text = "";
             InfoText.gameObject.SetActive(false);
         }
-        GetComponent<PlaneMapper>().ResetPlane();
+        _qRDetection.StopQR();
         _qRDetection.lockPlane = false;
+        _qRDetection.ResetTrackedCodes();
+        GetComponent<PlaneMapper>().ResetPlane();
+        Destroy(GameObject.FindGameObjectWithTag("Tree"));
     }
 
     /// <summary>
@@ -355,6 +465,9 @@ public class GameStateManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Repairs all the walls, currently active in the game.
+    /// </summary>
     private void repairAllWalls()
     {
         GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
