@@ -1,73 +1,108 @@
 using UnityEngine;
+using System.Collections;
 
-public class TowerScript : MonoBehaviour, IRuntimeMovableBehaviourScript
+public abstract class TowerScript : MonoBehaviour, IRuntimeMovableBehaviourScript
 {
-    [SerializeField] float turretRange = 13f;
-    [SerializeField] float turretRotationSpeed = 5f;
+    public float rangeRadius = 0.2f;
+    public float fireRate = 0.5f;
+    public int damage = 1;
+    public Material rangeVisualMaterial;
+    public GameObject disabledVisualObject;
+    public Material enabledMaterial;
+    public Material disabledMaterial;
+    [HideInInspector]
+    public EnemyManager enemyManager;
+    [HideInInspector]
+    public GameObject rangeVisual;
 
-    public Transform targetTransform;
-    private Gun currentGun;
-    private float fireRate;
-    private float fireRateDelta;
+    private TowerManager _towerManager;
+    protected bool shootingDisabled = false;
 
-    bool shootingDisabled = false;
+    float baseFireRate;
 
-
-    // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        //targetTransform = FindObjectOfType<PlayerController>().transform;
-        currentGun = GetComponentInChildren<Gun>();
-        fireRate = currentGun.GetRateOfFire();
+        GameObject logic = GameObject.FindGameObjectWithTag("Logic");
+        _towerManager = logic.GetComponent<TowerManager>();
+        enemyManager = logic.GetComponent<EnemyManager>();
+        rangeVisual = GetRangeObject();
+        rangeVisual.GetComponent<MeshRenderer>().material = rangeVisualMaterial;
+        rangeVisual.GetComponent<Collider>();
+        GameObject.Destroy(rangeVisual.GetComponent<Collider>());
+        DisplayRange(true);
+        _towerManager.AddTower(this.gameObject);
+        baseFireRate = fireRate;
     }
-
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        if (targetTransform != null && !shootingDisabled)
+        UpdateTargets();
+        if (rangeVisual.activeInHierarchy)
         {
-            Vector3 enemyGroundPosition = new Vector3(targetTransform.position.x, transform.position.y, targetTransform.position.z);
-
-            if (Vector3.Distance(transform.position, enemyGroundPosition) > turretRange)
-                return;
-            Vector3 enemyDirection = enemyGroundPosition - transform.position;
-            float turretRotationStep = turretRotationSpeed * Time.deltaTime;
-            Vector3 newLookDirection = Vector3.RotateTowards(transform.forward, enemyDirection, turretRotationStep, 0f);
-            transform.rotation = Quaternion.LookRotation(newLookDirection);
-            fireRateDelta = fireRateDelta - Time.deltaTime;
-            if (fireRateDelta <= 0)
-            {
-                currentGun.Fire();
-                fireRateDelta = fireRate;
-            }
+            UpdateRangeVisual();
         }
-        /*else
+    }
+
+    public abstract void UpdateRangeVisual();
+    public abstract GameObject GetRangeObject();
+
+    public void DisplayRange(bool toggle)
+    {
+        if (toggle && !shootingDisabled)
         {
-            /*GameObject placeHolderEnemy = GameObject.FindGameObjectWithTag("Enemy");
-            if(placeHolderEnemy != null)
-            {
-                targetTransform = placeHolderEnemy.transform;
-            }
-        }*/
+            rangeVisual.SetActive(true);
+        }
+        else if (rangeVisual != null)
+        {
+            rangeVisual.SetActive(false);
+        }
+    }
+    public abstract void Attack();
+    public abstract void UpdateTargets();
+    public float DistToTarget(Vector3 target)
+    {
+        float distance = Vector3.Distance(target, transform.position);
+        return distance;
+    }
+    public float DistToTargetTopDown(Vector3 target)
+    {
+        Vector2 topDownTarget = new Vector2(target.x, target.z);
+        float distance = Vector2.Distance(topDownTarget, new Vector2(transform.position.x, transform.position.z));
+        return distance;
+    }
+    private void OnDestroy()
+    {
+        _towerManager.RemoveTower(gameObject);
+        Destroy(rangeVisual);
     }
 
-    public void SetTarget(Transform newTargetTrans)
-    {
-        targetTransform = newTargetTrans;
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawWireSphere(transform.position, turretRange);
-    }
 
     public void ApplyMovementPenalty()
     {
         shootingDisabled = true;
+        disabledVisualObject.GetComponent<Renderer>().material = disabledMaterial;
     }
 
     public void EndMovementPenalty()
     {
         shootingDisabled = false;
+        disabledVisualObject.GetComponent<Renderer>().material = enabledMaterial;
+
+    }
+
+    public void ShootingDisabled(bool toggle)
+    {
+        shootingDisabled = toggle;
+    }
+
+    //If buddyMode is true, set "fireRate" to a higher "fireRate". If false, return it to the original fireRate
+    public void EnterBuddyMode(){
+        fireRate = baseFireRate * 0.5f;
+        StartCoroutine(EndBuddyMode());
+    }
+
+    IEnumerator EndBuddyMode()
+    {
+        yield return new WaitForSeconds(5f);
+        fireRate = baseFireRate;
     }
 }

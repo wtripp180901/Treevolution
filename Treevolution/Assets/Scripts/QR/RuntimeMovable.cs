@@ -9,11 +9,15 @@ using UnityEngine;
 public class RuntimeMovable : MonoBehaviour
 {
     Vector3 lastPosition;
-
+    Quaternion lastRotation;
     /// <summary>
-    /// The distance from the object's previous position which will cause it to register as moved
+    /// The minimum distance from the object's previous position which will cause it to register as moved
     /// </summary>
-    [SerializeField] float MovementThreshold = 0.005f;
+    [SerializeField] float MovementThreshold = 0.05f;
+    /// <summary>
+    /// The minimum angle from the object's previous position which will cause it to register as moved
+    /// </summary>
+    [SerializeField] float RotationThreshold = 15;
     /// <summary>
     /// A script which implements IRuntimeMovableBehaviourScript that controls the normal behaviour of the object e.g TowerScript, WallScript
     /// </summary>
@@ -30,20 +34,32 @@ public class RuntimeMovable : MonoBehaviour
     void Start()
     {
         lastPosition = transform.position;
-        if(behaviourScript != null)_behaviourScript = (IRuntimeMovableBehaviourScript)behaviourScript;
+        lastRotation = transform.rotation;
+        if (behaviourScript != null)_behaviourScript = (IRuntimeMovableBehaviourScript)behaviourScript;
         obstacle = GetComponent<Pathfinding.PathfindingObstacle>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if((transform.position - lastPosition).magnitude > MovementThreshold && GameProperties.BattlePhase)
+        if(((transform.position - lastPosition).magnitude > MovementThreshold || System.Math.Abs(Quaternion.Angle(transform.rotation, lastRotation)) > RotationThreshold) && GameProperties.BattlePhase)
         {
             StartCoroutine(penaliseMovementThenStartAgain());
+            lastPosition = transform.position;
+            lastRotation = transform.rotation;
+
         }
-        lastPosition = transform.position;
+        else if (!GameProperties.BattlePhase)
+        {
+            lastPosition = transform.position;
+            lastRotation = transform.rotation;
+        }
     }
 
+    /// <summary>
+    /// Begins the behaviour scripts penalty for PenaltyDuration seconds and then removes it again
+    /// </summary>
+    /// <returns></returns>
     IEnumerator penaliseMovementThenStartAgain()
     {
         _behaviourScript?.ApplyMovementPenalty();

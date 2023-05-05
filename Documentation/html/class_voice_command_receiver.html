@@ -72,10 +72,15 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_voice_command_receiver-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">VoiceCommandReceiver Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>A controller to receive events from recognised keywords and dictation.  
+ <a href="class_voice_command_receiver.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for VoiceCommandReceiver:</div>
 <div class="dyncontent">
@@ -87,19 +92,298 @@ Inheritance diagram for VoiceCommandReceiver:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:acb4d72e4018725c1c004104f775492a9"><td class="memItemLeft" align="right" valign="top"><a id="acb4d72e4018725c1c004104f775492a9" name="acb4d72e4018725c1c004104f775492a9"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>PauseGame</b> ()</td></tr>
+<tr class="memdesc:acb4d72e4018725c1c004104f775492a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggles pausing the game. <br /></td></tr>
 <tr class="separator:acb4d72e4018725c1c004104f775492a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc422decc872ed5f6b72fdd4c389db79"><td class="memItemLeft" align="right" valign="top"><a id="afc422decc872ed5f6b72fdd4c389db79" name="afc422decc872ed5f6b72fdd4c389db79"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetSafeToRecord</b> ()</td></tr>
+<tr class="memdesc:afc422decc872ed5f6b72fdd4c389db79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates that writing to the recording.wav file on the persistentDataPath has finished and it is safe to record and write a new file. <br /></td></tr>
+<tr class="separator:afc422decc872ed5f6b72fdd4c389db79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27c21666bc232b6d2386ddf56bd7ed0f"><td class="memItemLeft" align="right" valign="top"><a id="a27c21666bc232b6d2386ddf56bd7ed0f" name="a27c21666bc232b6d2386ddf56bd7ed0f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Record</b> ()</td></tr>
+<tr class="memdesc:a27c21666bc232b6d2386ddf56bd7ed0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">If in safe mode, will begin the recording session to write to a file to be uploaded to AssemblyAI. If not in safe mode, will begin the dictation session for DictationHandler. Both play a recording sound and cause the buddy's indication effect to play. <br /></td></tr>
+<tr class="separator:a27c21666bc232b6d2386ddf56bd7ed0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a71f6057d787a734086e65f6f99e12013"><td class="memItemLeft" align="right" valign="top"><a id="a71f6057d787a734086e65f6f99e12013" name="a71f6057d787a734086e65f6f99e12013"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>LightningBolt</b> ()</td></tr>
+<tr class="memdesc:a71f6057d787a734086e65f6f99e12013"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should be called when the 'thunder' voice command is received. Damages enemies indicated by the pointer. <br /></td></tr>
 <tr class="separator:a71f6057d787a734086e65f6f99e12013"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e62baaadd2c9c599c1bf7f545d6e761"><td class="memItemLeft" align="right" valign="top"><a id="a1e62baaadd2c9c599c1bf7f545d6e761" name="a1e62baaadd2c9c599c1bf7f545d6e761"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>BuddyAttack</b> ()</td></tr>
+<tr class="memdesc:a1e62baaadd2c9c599c1bf7f545d6e761"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should be triggered by voice command, causes buddy to attack all enemies. <br /></td></tr>
+<tr class="separator:a1e62baaadd2c9c599c1bf7f545d6e761"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5173bc5861c7f1ac4bdc4ffd179eda75"><td class="memItemLeft" align="right" valign="top"><a id="a5173bc5861c7f1ac4bdc4ffd179eda75" name="a5173bc5861c7f1ac4bdc4ffd179eda75"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>BuddyRepair</b> ()</td></tr>
+<tr class="memdesc:a5173bc5861c7f1ac4bdc4ffd179eda75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should be triggered by voice command, causes buddy to repair broken walls. <br /></td></tr>
+<tr class="separator:a5173bc5861c7f1ac4bdc4ffd179eda75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d7afae58de7426ae767131b3fc31491"><td class="memItemLeft" align="right" valign="top"><a id="a0d7afae58de7426ae767131b3fc31491" name="a0d7afae58de7426ae767131b3fc31491"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>BuddyDefend</b> ()</td></tr>
+<tr class="memdesc:a0d7afae58de7426ae767131b3fc31491"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should be triggered by voice command, causes buddy to defend at a location indicated by the pointer. <br /></td></tr>
+<tr class="separator:a0d7afae58de7426ae767131b3fc31491"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a745da87ff1fead9e370c25a71f158aab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_voice_command_receiver.html#a745da87ff1fead9e370c25a71f158aab">ProcessDictation</a> (string dictation)</td></tr>
+<tr class="memdesc:a745da87ff1fead9e370c25a71f158aab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays the dictation received from a recording session and sends it to the language parsing model to be translated to buddy instructions.  <br /></td></tr>
+<tr class="separator:a745da87ff1fead9e370c25a71f158aab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9aedc37dc8dfaa4200abe4805ce6c54a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_voice_command_receiver.html#a9aedc37dc8dfaa4200abe4805ce6c54a">DictationError</a> (string error)</td></tr>
+<tr class="memdesc:a9aedc37dc8dfaa4200abe4805ce6c54a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should be called by the DictationHandler's onDictationErrorEvent.  <br /></td></tr>
+<tr class="separator:a9aedc37dc8dfaa4200abe4805ce6c54a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0302490497aaa491309cace4f4ad93ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_voice_command_receiver.html#a0302490497aaa491309cace4f4ad93ce">HandleDictationProcessingResults</a> (List&lt; <a class="el" href="class_buddy_action.html">BuddyAction</a> &gt; instructions)</td></tr>
+<tr class="memdesc:a0302490497aaa491309cace4f4ad93ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">A callback function for the language parsing model to return resolved buddy instructions. Sends these instructions to the buddy.  <br /></td></tr>
+<tr class="separator:a0302490497aaa491309cace4f4ad93ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ab476152117525c3072402558b829da9c"><td class="memItemLeft" align="right" valign="top"><a id="ab476152117525c3072402558b829da9c" name="ab476152117525c3072402558b829da9c"></a>
 GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>pointer</b></td></tr>
+<tr class="memdesc:ab476152117525c3072402558b829da9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The object representing <a class="el" href="class_pointer_location_tracker.html">PointerLocationTracker</a>'s pointer. <br /></td></tr>
 <tr class="separator:ab476152117525c3072402558b829da9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8658c6fd0a9c2e94dd69a1363ec7725"><td class="memItemLeft" align="right" valign="top"><a id="aa8658c6fd0a9c2e94dd69a1363ec7725" name="aa8658c6fd0a9c2e94dd69a1363ec7725"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>SafeMode</b> = false</td></tr>
+<tr class="separator:aa8658c6fd0a9c2e94dd69a1363ec7725"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49d4f4ef5020cb0764ccf13f6196c686"><td class="memItemLeft" align="right" valign="top"><a id="a49d4f4ef5020cb0764ccf13f6196c686" name="a49d4f4ef5020cb0764ccf13f6196c686"></a>
+AudioSource&#160;</td><td class="memItemRight" valign="bottom"><b>recordingAudioSource</b></td></tr>
+<tr class="memdesc:a49d4f4ef5020cb0764ccf13f6196c686"><td class="mdescLeft">&#160;</td><td class="mdescRight">The AudioSource recorded voice data should be saved to. <br /></td></tr>
+<tr class="separator:a49d4f4ef5020cb0764ccf13f6196c686"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:aae7a409f77670b5c98e07febafbb8c74"><td class="memItemLeft" align="right" valign="top"><a id="aae7a409f77670b5c98e07febafbb8c74" name="aae7a409f77670b5c98e07febafbb8c74"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Start</b> ()</td></tr>
+<tr class="separator:aae7a409f77670b5c98e07febafbb8c74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefb8d096c68dbbaa0021158728220e7d"><td class="memItemLeft" align="right" valign="top"><a id="aefb8d096c68dbbaa0021158728220e7d" name="aefb8d096c68dbbaa0021158728220e7d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> ()</td></tr>
+<tr class="separator:aefb8d096c68dbbaa0021158728220e7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8210c283d0d00954bb9004f531e1b56"><td class="memItemLeft" align="right" valign="top"><a id="ac8210c283d0d00954bb9004f531e1b56" name="ac8210c283d0d00954bb9004f531e1b56"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>playStartOfRecordingSound</b> ()</td></tr>
+<tr class="separator:ac8210c283d0d00954bb9004f531e1b56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af771bc114cea380742b1fa84adc34ae1"><td class="memItemLeft" align="right" valign="top"><a id="af771bc114cea380742b1fa84adc34ae1" name="af771bc114cea380742b1fa84adc34ae1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>playEndOfRecordingSound</b> ()</td></tr>
+<tr class="separator:af771bc114cea380742b1fa84adc34ae1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8dc5f0d58c07c759df9b7554de8f657"><td class="memItemLeft" align="right" valign="top"><a id="ab8dc5f0d58c07c759df9b7554de8f657" name="ab8dc5f0d58c07c759df9b7554de8f657"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SafeModeRecordAudio</b> ()</td></tr>
+<tr class="memdesc:ab8dc5f0d58c07c759df9b7554de8f657"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begins the recording session if in safe mode. Will automatically finish session after 4 seconds. <br /></td></tr>
+<tr class="separator:ab8dc5f0d58c07c759df9b7554de8f657"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5e2947238528b684a98dee573e5943a"><td class="memItemLeft" align="right" valign="top">IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_voice_command_receiver.html#aa5e2947238528b684a98dee573e5943a">writeAfterFinished</a> ()</td></tr>
+<tr class="memdesc:aa5e2947238528b684a98dee573e5943a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes data from a safeMode recording session to a file on the persistent data path and then begins <a class="el" href="class_assembly_a_p_i_caller.html" title="Backup API calling script which makes asynchronous API calls to AssemblyAI and notifies the user of p...">AssemblyAPICaller</a>'s uploaded and processing process.  <br /></td></tr>
+<tr class="separator:aa5e2947238528b684a98dee573e5943a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a875347c55e4c409ac8761c2b34f7be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_voice_command_receiver.html#a1a875347c55e4c409ac8761c2b34f7be">performBasicBuddyAction</a> (List&lt; <a class="el" href="class_buddy_action.html">BuddyAction</a> &gt; actions)</td></tr>
+<tr class="memdesc:a1a875347c55e4c409ac8761c2b34f7be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper for playing confirmation sound and sending actions the buddy.  <br /></td></tr>
+<tr class="separator:a1a875347c55e4c409ac8761c2b34f7be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac65bf16775ef6dd6802f8dc568a0e55c"><td class="memItemLeft" align="right" valign="top"><a id="ac65bf16775ef6dd6802f8dc568a0e55c" name="ac65bf16775ef6dd6802f8dc568a0e55c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>finishDictation</b> ()</td></tr>
+<tr class="memdesc:ac65bf16775ef6dd6802f8dc568a0e55c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ends a dictation recording session and disables all dictation indicators. <br /></td></tr>
+<tr class="separator:ac65bf16775ef6dd6802f8dc568a0e55c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92afbbb81dd607d632213606ca8c6ebf"><td class="memItemLeft" align="right" valign="top">IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_voice_command_receiver.html#a92afbbb81dd607d632213606ca8c6ebf">Indicator</a> ()</td></tr>
+<tr class="memdesc:a92afbbb81dd607d632213606ca8c6ebf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes the pointer briefly flash red.  <br /></td></tr>
+<tr class="separator:a92afbbb81dd607d632213606ca8c6ebf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:abd80c46ad72545b62dfe56adbb898490"><td class="memItemLeft" align="right" valign="top"><a id="abd80c46ad72545b62dfe56adbb898490" name="abd80c46ad72545b62dfe56adbb898490"></a>
+<a class="el" href="class_enemy_manager.html">EnemyManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>enemyManager</b></td></tr>
+<tr class="separator:abd80c46ad72545b62dfe56adbb898490"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e2ba5de06d38afdb592a2b3f8929819"><td class="memItemLeft" align="right" valign="top"><a id="a6e2ba5de06d38afdb592a2b3f8929819" name="a6e2ba5de06d38afdb592a2b3f8929819"></a>
+<a class="el" href="class_pointer_location_tracker.html">PointerLocationTracker</a>&#160;</td><td class="memItemRight" valign="bottom"><b>pointerTracker</b></td></tr>
+<tr class="separator:a6e2ba5de06d38afdb592a2b3f8929819"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd1bd6e917888811b78ccfdab1fe8b7f"><td class="memItemLeft" align="right" valign="top"><a id="afd1bd6e917888811b78ccfdab1fe8b7f" name="afd1bd6e917888811b78ccfdab1fe8b7f"></a>
+<a class="el" href="class_u_i_controller.html">UIController</a>&#160;</td><td class="memItemRight" valign="bottom"><b>uiController</b></td></tr>
+<tr class="separator:afd1bd6e917888811b78ccfdab1fe8b7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a147e07d7b3fabeeda5cb475a6fba2827"><td class="memItemLeft" align="right" valign="top"><a id="a147e07d7b3fabeeda5cb475a6fba2827" name="a147e07d7b3fabeeda5cb475a6fba2827"></a>
+GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>recordingIndicator</b></td></tr>
+<tr class="separator:a147e07d7b3fabeeda5cb475a6fba2827"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec3b9d8fe2b91edb10d65f3eba9ba6e9"><td class="memItemLeft" align="right" valign="top"><a id="aec3b9d8fe2b91edb10d65f3eba9ba6e9" name="aec3b9d8fe2b91edb10d65f3eba9ba6e9"></a>
+<a class="el" href="class_game_state_manager.html">GameStateManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>gameStateManager</b></td></tr>
+<tr class="separator:aec3b9d8fe2b91edb10d65f3eba9ba6e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82713876b59d5c40702fa2341a1eeb23"><td class="memItemLeft" align="right" valign="top"><a id="a82713876b59d5c40702fa2341a1eeb23" name="a82713876b59d5c40702fa2341a1eeb23"></a>
+AudioSource&#160;</td><td class="memItemRight" valign="bottom"><b>recordingIndicationSource</b></td></tr>
+<tr class="memdesc:a82713876b59d5c40702fa2341a1eeb23"><td class="mdescLeft">&#160;</td><td class="mdescRight">The audio that should play to indicate the buddy has begun or finished recording. <br /></td></tr>
+<tr class="separator:a82713876b59d5c40702fa2341a1eeb23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e40f714e59b0753679e85548d9a704f"><td class="memItemLeft" align="right" valign="top"><a id="a7e40f714e59b0753679e85548d9a704f" name="a7e40f714e59b0753679e85548d9a704f"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>basePitch</b></td></tr>
+<tr class="separator:a7e40f714e59b0753679e85548d9a704f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9b594cce95180c258d82e080f809a55"><td class="memItemLeft" align="right" valign="top"><a id="ad9b594cce95180c258d82e080f809a55" name="ad9b594cce95180c258d82e080f809a55"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>currentlyRecording</b> = false</td></tr>
+<tr class="separator:ad9b594cce95180c258d82e080f809a55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6ca395f2c57d9081bda4b024187ef6e"><td class="memItemLeft" align="right" valign="top"><a id="ac6ca395f2c57d9081bda4b024187ef6e" name="ac6ca395f2c57d9081bda4b024187ef6e"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>timeRecording</b> = 0</td></tr>
+<tr class="separator:ac6ca395f2c57d9081bda4b024187ef6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6b2773a42ce0f44ea405ffaaa136397"><td class="memItemLeft" align="right" valign="top"><a id="ae6b2773a42ce0f44ea405ffaaa136397" name="ae6b2773a42ce0f44ea405ffaaa136397"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>recordingTimeout</b> = 10</td></tr>
+<tr class="separator:ae6b2773a42ce0f44ea405ffaaa136397"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92826e05c57e4738def4ce360da471c4"><td class="memItemLeft" align="right" valign="top"><a id="a92826e05c57e4738def4ce360da471c4" name="a92826e05c57e4738def4ce360da471c4"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>canManuallyRecord</b> = true</td></tr>
+<tr class="separator:a92826e05c57e4738def4ce360da471c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A controller to receive events from recognised keywords and dictation. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a9aedc37dc8dfaa4200abe4805ce6c54a" name="a9aedc37dc8dfaa4200abe4805ce6c54a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9aedc37dc8dfaa4200abe4805ce6c54a">&#9670;&#160;</a></span>DictationError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VoiceCommandReceiver.DictationError </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>error</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Should be called by the DictationHandler's onDictationErrorEvent. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">error</td><td>Dynamic string for the error message</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0302490497aaa491309cace4f4ad93ce" name="a0302490497aaa491309cace4f4ad93ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0302490497aaa491309cace4f4ad93ce">&#9670;&#160;</a></span>HandleDictationProcessingResults()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VoiceCommandReceiver.HandleDictationProcessingResults </td>
+          <td>(</td>
+          <td class="paramtype">List&lt; <a class="el" href="class_buddy_action.html">BuddyAction</a> &gt;&#160;</td>
+          <td class="paramname"><em>instructions</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A callback function for the language parsing model to return resolved buddy instructions. Sends these instructions to the buddy. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">instructions</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a92afbbb81dd607d632213606ca8c6ebf" name="a92afbbb81dd607d632213606ca8c6ebf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92afbbb81dd607d632213606ca8c6ebf">&#9670;&#160;</a></span>Indicator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IEnumerator VoiceCommandReceiver.Indicator </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Makes the pointer briefly flash red. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a1a875347c55e4c409ac8761c2b34f7be" name="a1a875347c55e4c409ac8761c2b34f7be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a875347c55e4c409ac8761c2b34f7be">&#9670;&#160;</a></span>performBasicBuddyAction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VoiceCommandReceiver.performBasicBuddyAction </td>
+          <td>(</td>
+          <td class="paramtype">List&lt; <a class="el" href="class_buddy_action.html">BuddyAction</a> &gt;&#160;</td>
+          <td class="paramname"><em>actions</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Helper for playing confirmation sound and sending actions the buddy. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">actions</td><td>Ordered instructions for the buddy to perform</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a745da87ff1fead9e370c25a71f158aab" name="a745da87ff1fead9e370c25a71f158aab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a745da87ff1fead9e370c25a71f158aab">&#9670;&#160;</a></span>ProcessDictation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VoiceCommandReceiver.ProcessDictation </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>dictation</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Displays the dictation received from a recording session and sends it to the language parsing model to be translated to buddy instructions. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dictation</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa5e2947238528b684a98dee573e5943a" name="aa5e2947238528b684a98dee573e5943a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5e2947238528b684a98dee573e5943a">&#9670;&#160;</a></span>writeAfterFinished()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">IEnumerator VoiceCommandReceiver.writeAfterFinished </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Writes data from a safeMode recording session to a file on the persistent data path and then begins <a class="el" href="class_assembly_a_p_i_caller.html" title="Backup API calling script which makes asynchronous API calls to AssemblyAI and notifies the user of p...">AssemblyAPICaller</a>'s uploaded and processing process. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Treevolution/Assets/VoiceCommandReceiver.cs</li>
+<li>Treevolution/Assets/Scripts/Voice/VoiceCommandReceiver.cs</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

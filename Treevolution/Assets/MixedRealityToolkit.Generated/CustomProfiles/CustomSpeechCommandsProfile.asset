@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCustomProfile: 1
   startBehavior: 0
-  recognitionConfidenceLevel: 1
+  recognitionConfidenceLevel: 2
   speechCommands:
   - localizationKey: 
     keyword: Select
@@ -52,9 +52,44 @@ MonoBehaviour:
       description: None
       axisConstraint: 0
   - localizationKey: 
+    keyword: Record
+    keyCode: 0
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
     keyword: Pause
     keyCode: 112
     action:
       id: 2
+      description: Menu
+      axisConstraint: 2
+  - localizationKey: 
+    keyword: Buddy
+    keyCode: 0
+    action:
+      id: 0
+      description: Menu
+      axisConstraint: 2
+  - localizationKey: 
+    keyword: Attack
+    keyCode: 0
+    action:
+      id: 0
+      description: Menu
+      axisConstraint: 2
+  - localizationKey: 
+    keyword: Defend here
+    keyCode: 0
+    action:
+      id: 0
+      description: Menu
+      axisConstraint: 2
+  - localizationKey: 
+    keyword: Repair
+    keyCode: 0
+    action:
+      id: 0
       description: Menu
       axisConstraint: 2

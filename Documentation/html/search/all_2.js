@@ -1,8 +1,28 @@
 var searchData=
 [
-  ['calibrationpopup_0',['CalibrationPopUp',['../class_u_i_controller.html#a8531008b50c148d2a037c30f4d5106c1',1,'UIController']]],
-  ['calibrationsuccess_1',['CalibrationSuccess',['../class_game_state_manager.html#ad63150334041b7ad11f224aa21942875',1,'GameStateManager']]],
-  ['calibrationsuccesspopup_2',['CalibrationSuccessPopUp',['../class_u_i_controller.html#a8e1d28ddcf235500e39220969c2a1830',1,'UIController']]],
-  ['continuetutorialbattle_3',['ContinueTutorialBattle',['../class_game_state_manager.html#ab424c6a483bddbcbe9a655e92eea04c5',1,'GameStateManager']]],
-  ['currentgamestate_4',['currentGameState',['../class_game_state_manager.html#a00fbeccbb126164ad4861dbaf8f23671',1,'GameStateManager']]]
+  ['backplategreen_0',['backPlateGreen',['../class_u_i_controller.html#a2d3f09d7514340cb6424960ee9be36cd',1,'UIController']]],
+  ['backplategrey_1',['backPlateGrey',['../class_u_i_controller.html#af1292291a640e6dedc22c5e1755b85ed',1,'UIController']]],
+  ['backplateorange_2',['backPlateOrange',['../class_u_i_controller.html#a16bc65d366d4450246aadd1297ab64b9',1,'UIController']]],
+  ['basehealth_3',['baseHealth',['../class_wall_script.html#a4c2d0ea87a53b2265e002df0edf7e86d',1,'WallScript']]],
+  ['beginbattle_4',['BeginBattle',['../class_game_state_manager.html#a2d785142b62053298c77e0185cc44960',1,'GameStateManager']]],
+  ['beginbattlebutton_5',['BeginBattleButton',['../class_game_state_manager.html#a7f8315851378d7269841a1e8a390ee2e',1,'GameStateManager']]],
+  ['beginround_6',['BeginRound',['../class_game_state_manager.html#a5c77b16a6569b6c55dd0be4242af2b77',1,'GameStateManager']]],
+  ['begintutorial_7',['BeginTutorial',['../class_game_state_manager.html#a8b391d772cdff200ea5d7bad29d563ae',1,'GameStateManager']]],
+  ['begintutorialbattle_8',['BeginTutorialBattle',['../class_game_state_manager.html#a26a3cd48dc86a446bbb8e11f3c39738f',1,'GameStateManager']]],
+  ['begintutorialbattleinfo_9',['BeginTutorialBattleInfo',['../class_game_state_manager.html#a612d59bfb6f6ddf83bc6957f8fe83c00',1,'GameStateManager']]],
+  ['begintutorialplan_10',['BeginTutorialPlan',['../class_game_state_manager.html#a6e7a398b1b24e9e7a0dd979c5bdd2086',1,'GameStateManager']]],
+  ['behaviourscript_11',['behaviourScript',['../class_runtime_movable.html#af9a5863694ef708c0438b16194e846cd',1,'RuntimeMovable']]],
+  ['buddyaction_12',['BuddyAction',['../class_buddy_action.html',1,'']]],
+  ['buddyattack_13',['BuddyAttack',['../class_voice_command_receiver.html#a1e62baaadd2c9c599c1bf7f545d6e761',1,'VoiceCommandReceiver']]],
+  ['buddydefend_14',['BuddyDefend',['../class_voice_command_receiver.html#a0d7afae58de7426ae767131b3fc31491',1,'VoiceCommandReceiver']]],
+  ['buddyinteractable_15',['BuddyInteractable',['../class_buddy_interactable.html',1,'']]],
+  ['buddyrepair_16',['BuddyRepair',['../class_voice_command_receiver.html#a5173bc5861c7f1ac4bdc4ffd179eda75',1,'VoiceCommandReceiver']]],
+  ['buddyscript_17',['BuddyScript',['../class_buddy_script.html',1,'']]],
+  ['buddysystemproperties_18',['BuddySystemProperties',['../class_buddy_interactable.html#ad7b28083cfe34d62b7252c6a2ca99b4d',1,'BuddyInteractable']]],
+  ['buddytests_19',['BuddyTests',['../class_buddy_tests.html',1,'']]],
+  ['buddytoken_20',['BuddyToken',['../class_buddy_token.html',1,'']]],
+  ['bufffixedupdate_21',['buffFixedUpdate',['../class_buddy_script.html#a4e5e79c18b07733778d8c8d5887a35af',1,'BuddyScript']]],
+  ['bulletscript_22',['BulletScript',['../class_bullet_script.html',1,'']]],
+  ['buttondialogprefab_23',['buttonDialogPrefab',['../class_u_i_controller.html#a0cb3530ce98e4585599078a81bd02ed9',1,'UIController']]],
+  ['buttonimagediaglogprefab_24',['buttonImageDiaglogPrefab',['../class_u_i_controller.html#aaf148d88e5929c1c2f4894ae1cbd563a',1,'UIController']]]
 ];

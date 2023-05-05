@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['infodialogprefab_0',['infoDialogPrefab',['../class_u_i_controller.html#ac96624bd82376e9a6d0ffe73e9da4bd1',1,'UIController']]],
-  ['infotext_1',['infoText',['../class_u_i_controller.html#a02a52473dae002b907f64dfc977463f8',1,'UIController']]],
-  ['infotext_2',['InfoText',['../class_game_state_manager.html#ac1e14555acc3b417269b7ffd274a1e6d',1,'GameStateManager']]],
-  ['initvcrtforwarders_3',['InitVCRTForwarders',['../class_init_v_c_r_t_forwarders.html',1,'']]],
-  ['ispaused_4',['isPaused',['../class_round_timer.html#ab03bf081facfabca7c8ab0df759d50ea',1,'RoundTimer']]],
-  ['isrunning_5',['isRunning',['../class_round_timer.html#afa4f85374f2e532fb7e0a7d71e9cb121',1,'RoundTimer']]]
+  ['handledictationprocessingresults_0',['HandleDictationProcessingResults',['../class_voice_command_receiver.html#a0302490497aaa491309cace4f4ad93ce',1,'VoiceCommandReceiver']]],
+  ['handletutorialselectionevent_1',['HandleTutorialSelectionEvent',['../class_u_i_controller.html#a156f890496f1288bf89a64882f2988a9',1,'UIController']]],
+  ['health_2',['health',['../class_enemy_script.html#ac784ddaec229d61c5dfff47a5f3df4bb',1,'EnemyScript']]],
+  ['healthbar_3',['HealthBar',['../class_health_bar.html',1,'']]],
+  ['hornetimage_4',['hornetImage',['../class_u_i_controller.html#a1703d3e06823ac8f828d211be1302cf3',1,'UIController']]],
+  ['hornetprefab_5',['HornetPrefab',['../class_enemy_manager.html#a536f703ecc5eefb236397e4ab6277fa6',1,'EnemyManager']]]
 ];

@@ -75,6 +75,8 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-static-methods">Static Private Member Functions</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="class_pathfinding_1_1_pathfinder-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Pathfinding.Pathfinder Class Reference</div></div>
 </div><!--header-->
@@ -85,19 +87,58 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a4c5e7dabd1cd9cfb2ff40d4da94d1521"><td class="memItemLeft" align="right" valign="top">static Vector3[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinding_1_1_pathfinder.html#a4c5e7dabd1cd9cfb2ff40d4da94d1521">GetPath</a> (Vector3 source, Vector3 target)</td></tr>
-<tr class="memdesc:a4c5e7dabd1cd9cfb2ff40d4da94d1521"><td class="mdescLeft">&#160;</td><td class="mdescRight">A* Implementation to calculate the shortest path through the generated graph. Since the graph generated includes line-of-sight calculations, this algorithm closely resembles Theta*.  <br /></td></tr>
-<tr class="separator:a4c5e7dabd1cd9cfb2ff40d4da94d1521"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a106e93e4d6b5db73aed24432f11b1d72"><td class="memItemLeft" align="right" valign="top">static Vector3[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinding_1_1_pathfinder.html#a106e93e4d6b5db73aed24432f11b1d72">GetPath</a> (Vector3 source, Vector3 target, bool avoidWalls)</td></tr>
+<tr class="memdesc:a106e93e4d6b5db73aed24432f11b1d72"><td class="mdescLeft">&#160;</td><td class="mdescRight">A* Implementation to calculate the shortest path through the generated graph. Since the graph generated includes line-of-sight calculations, this algorithm closely resembles Theta*.  <br /></td></tr>
+<tr class="separator:a106e93e4d6b5db73aed24432f11b1d72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a835ab0c51fce5821012ee3b8aa4f5f22"><td class="memItemLeft" align="right" valign="top"><a id="a835ab0c51fce5821012ee3b8aa4f5f22" name="a835ab0c51fce5821012ee3b8aa4f5f22"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdatePathfindingGraph</b> ()</td></tr>
 <tr class="memdesc:a835ab0c51fce5821012ee3b8aa4f5f22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the Pathfinder's graph of nodes to reflect the current obstacles in the environment. <br /></td></tr>
 <tr class="separator:a835ab0c51fce5821012ee3b8aa4f5f22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
+Static Private Member Functions</h2></td></tr>
+<tr class="memitem:a4648b7d4c2c5011ef29510419a489034"><td class="memItemLeft" align="right" valign="top">static List&lt; Vector3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinding_1_1_pathfinder.html#a4648b7d4c2c5011ef29510419a489034">traverseFromTarget</a> (<a class="el" href="class_pathfinding_1_1_pathfinding_node.html">PathfindingNode</a> target)</td></tr>
+<tr class="memdesc:a4648b7d4c2c5011ef29510419a489034"><td class="mdescLeft">&#160;</td><td class="mdescRight">Traverse the pathfinding graph from the target to the source in order to find the shortest path.  <br /></td></tr>
+<tr class="separator:a4648b7d4c2c5011ef29510419a489034"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1fa1281f4cf30b6d91d0f7d43462846"><td class="memItemLeft" align="right" valign="top"><a id="ae1fa1281f4cf30b6d91d0f7d43462846" name="ae1fa1281f4cf30b6d91d0f7d43462846"></a>
+static <a class="el" href="class_pathfinding_1_1_pathfinder.html#a6472bbb8c672dcabcfdea83d2a4b24fe">int</a> <a class="el" href="class_pathfinding_1_1_pathfinding_node.html">PathfindingNode</a> node&#160;</td><td class="memItemRight" valign="bottom"><b>getBestNode</b> (List&lt;(<a class="el" href="class_pathfinding_1_1_pathfinder.html#a6472bbb8c672dcabcfdea83d2a4b24fe">int</a> <a class="el" href="class_pathfinding_1_1_pathfinder.html#a753f97315c4c04de253c3d76517f6ace">index</a>, <a class="el" href="class_pathfinding_1_1_pathfinding_node.html">PathfindingNode</a> node)&gt; nodes)</td></tr>
+<tr class="separator:ae1fa1281f4cf30b6d91d0f7d43462846"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5bfd0dd25ac866062109e294d27a50d"><td class="memItemLeft" align="right" valign="top"><a id="af5bfd0dd25ac866062109e294d27a50d" name="af5bfd0dd25ac866062109e294d27a50d"></a>
+static <a class="el" href="class_pathfinding_1_1_pathfinding_node.html">PathfindingNode</a>&#160;</td><td class="memItemRight" valign="bottom"><b>closestNodeToPosition</b> (Vector3 pos)</td></tr>
+<tr class="separator:af5bfd0dd25ac866062109e294d27a50d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73dd231461cbe9ee80f29256874dc518"><td class="memItemLeft" align="right" valign="top"><a id="a73dd231461cbe9ee80f29256874dc518" name="a73dd231461cbe9ee80f29256874dc518"></a>
+static <a class="el" href="class_pathfinding_1_1_pathfinding_node.html">PathfindingNode</a>&#160;</td><td class="memItemRight" valign="bottom"><b>closestNodeToPositionFromDirection</b> (Vector3 pos, Vector3 fromPos)</td></tr>
+<tr class="separator:a73dd231461cbe9ee80f29256874dc518"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ca1a5632beea02fefa42715747a6d4f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinding_1_1_pathfinder.html#a1ca1a5632beea02fefa42715747a6d4f">initializeScores</a> (<a class="el" href="class_pathfinding_1_1_pathfinder.html#a6472bbb8c672dcabcfdea83d2a4b24fe">int</a> size,(float, float, float) initialValues)</td></tr>
+<tr class="memdesc:a1ca1a5632beea02fefa42715747a6d4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises the 3 scores for each graph nodes.  <br /></td></tr>
+<tr class="separator:a1ca1a5632beea02fefa42715747a6d4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a3596a055c981c905ac86c1cdcb507647"><td class="memItemLeft" align="right" valign="top"><a id="a3596a055c981c905ac86c1cdcb507647" name="a3596a055c981c905ac86c1cdcb507647"></a>
+static float&#160;</td><td class="memItemRight" valign="bottom"><b>F</b></td></tr>
+<tr class="separator:a3596a055c981c905ac86c1cdcb507647"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23d59270fc6ddbb533b4a97db5723a94"><td class="memItemLeft" align="right" valign="top"><a id="a23d59270fc6ddbb533b4a97db5723a94" name="a23d59270fc6ddbb533b4a97db5723a94"></a>
+static float float&#160;</td><td class="memItemRight" valign="bottom"><b>G</b></td></tr>
+<tr class="separator:a23d59270fc6ddbb533b4a97db5723a94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad70fce2bfa6292364525b26f2e9cf347"><td class="memItemLeft" align="right" valign="top"><a id="ad70fce2bfa6292364525b26f2e9cf347" name="ad70fce2bfa6292364525b26f2e9cf347"></a>
+static float float float H[]&#160;</td><td class="memItemRight" valign="bottom"><b>scores</b> = new (float F, float G, float H)[] { }</td></tr>
+<tr class="separator:ad70fce2bfa6292364525b26f2e9cf347"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1d73e84e3f8a6b6c06968bdee7346bf"><td class="memItemLeft" align="right" valign="top"><a id="aa1d73e84e3f8a6b6c06968bdee7346bf" name="aa1d73e84e3f8a6b6c06968bdee7346bf"></a>
+static List&lt; <a class="el" href="class_pathfinding_1_1_pathfinding_node.html">PathfindingNode</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>graph</b> = new List&lt;<a class="el" href="class_pathfinding_1_1_pathfinding_node.html">PathfindingNode</a>&gt;()</td></tr>
+<tr class="separator:aa1d73e84e3f8a6b6c06968bdee7346bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a753f97315c4c04de253c3d76517f6ace"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_pathfinding_1_1_pathfinder.html#a6472bbb8c672dcabcfdea83d2a4b24fe">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinding_1_1_pathfinder.html#a753f97315c4c04de253c3d76517f6ace">index</a></td></tr>
+<tr class="memdesc:a753f97315c4c04de253c3d76517f6ace"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the best node to travel to from a list of nodes.  <br /></td></tr>
+<tr class="separator:a753f97315c4c04de253c3d76517f6ace"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6472bbb8c672dcabcfdea83d2a4b24fe"><td class="memItemLeft" align="right" valign="top">static&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinding_1_1_pathfinder.html#a6472bbb8c672dcabcfdea83d2a4b24fe">int</a></td></tr>
+<tr class="memdesc:a6472bbb8c672dcabcfdea83d2a4b24fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the node from the graph closest to a position in 3D space.  <br /></td></tr>
+<tr class="separator:a6472bbb8c672dcabcfdea83d2a4b24fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Can be utilised by agents who wish to pathfind to get a list of Vector3 coordinates that they can use to navigate through the environment. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a4c5e7dabd1cd9cfb2ff40d4da94d1521" name="a4c5e7dabd1cd9cfb2ff40d4da94d1521"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c5e7dabd1cd9cfb2ff40d4da94d1521">&#9670;&#160;</a></span>GetPath()</h2>
+<a id="a106e93e4d6b5db73aed24432f11b1d72" name="a106e93e4d6b5db73aed24432f11b1d72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a106e93e4d6b5db73aed24432f11b1d72">&#9670;&#160;</a></span>GetPath()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -115,7 +156,13 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdatePathfind
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Vector3&#160;</td>
-          <td class="paramname"><em>target</em>&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>avoidWalls</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -139,6 +186,158 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdatePathfind
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Array of positions to which the agent can follow to reach the target destination.</dd></dl>
+
+</div>
+</div>
+<a id="a1ca1a5632beea02fefa42715747a6d4f" name="a1ca1a5632beea02fefa42715747a6d4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ca1a5632beea02fefa42715747a6d4f">&#9670;&#160;</a></span>initializeScores()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Pathfinding.Pathfinder.initializeScores </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_pathfinding_1_1_pathfinder.html#a6472bbb8c672dcabcfdea83d2a4b24fe">int</a>&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">(float, float, float)&#160;</td>
+          <td class="paramname"><em>initialValues</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initialises the 3 scores for each graph nodes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>Number of scores to initialise.</td></tr>
+    <tr><td class="paramname">initialValues</td><td>Initial values for each score (F score, G score, and Heuristic score).</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4648b7d4c2c5011ef29510419a489034" name="a4648b7d4c2c5011ef29510419a489034"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4648b7d4c2c5011ef29510419a489034">&#9670;&#160;</a></span>traverseFromTarget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static List&lt; Vector3 &gt; Pathfinding.Pathfinder.traverseFromTarget </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_pathfinding_1_1_pathfinding_node.html">PathfindingNode</a>&#160;</td>
+          <td class="paramname"><em>target</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Traverse the pathfinding graph from the target to the source in order to find the shortest path. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>The target to find the shortest path to.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The list of points to travel to in order to reach the target.</dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a753f97315c4c04de253c3d76517f6ace" name="a753f97315c4c04de253c3d76517f6ace"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a753f97315c4c04de253c3d76517f6ace">&#9670;&#160;</a></span>index</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_pathfinding_1_1_pathfinder.html#a6472bbb8c672dcabcfdea83d2a4b24fe">int</a> Pathfinding.Pathfinder.index</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the best node to travel to from a list of nodes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nodes</td><td>List of nodes from which to find the next best choice.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The best node, and its index in the graph.</dd></dl>
+
+</div>
+</div>
+<a id="a6472bbb8c672dcabcfdea83d2a4b24fe" name="a6472bbb8c672dcabcfdea83d2a4b24fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6472bbb8c672dcabcfdea83d2a4b24fe">&#9670;&#160;</a></span>int</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Pathfinding.Pathfinder.int</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the node from the graph closest to a position in 3D space. </p>
+<p>Gets the node from the graph closest to a position in 3D space, with preference for a particular direction from that position.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>Position from which to find the closest node.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The PathfindingNode closest to the given position.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>Position from which to find a graph node closest to.</td></tr>
+    <tr><td class="paramname">fromPos</td><td>Direction towards which the graph node should be found.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The PathfindindNode closest to the given position, in the rough direction provided.</dd></dl>
 
 </div>
 </div>
