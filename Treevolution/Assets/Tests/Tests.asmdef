@@ -6,7 +6,8 @@
         "UnityEditor.TestRunner",
         "MainGameAssembly",
          "Microsoft.MixedReality.Toolkit",
-         "Microsoft.MixedReality.Toolkit.Tests"
+         "Microsoft.MixedReality.Toolkit.Tests",
+         "Unity.TextMeshPro"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

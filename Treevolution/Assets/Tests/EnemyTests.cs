@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
+using TMPro;
 
 public class EnemyTests
 {
@@ -77,7 +78,7 @@ public class EnemyTests
         enemy.AddComponent<AudioSource>();
         enemy.AddComponent<HealthBar>();
         enemy.AddComponent<UnityEngine.UI.Slider>();
-        enemy.GetComponent<HealthBar>().slider = enemy.GetComponent<UnityEngine.UI.Slider>();
+        enemy.GetComponent<HealthBar>().SetupForTest(enemy.GetComponent<UnityEngine.UI.Slider>(), new TextMeshProUGUI());
         enemy.AddComponent<EnemyScript>();
         enemy.AddComponent<BoxCollider>();
         enemy.AddComponent<Rigidbody>();
@@ -86,6 +87,7 @@ public class EnemyTests
         enemyRb.collisionDetectionMode = CollisionDetectionMode.Continuous;
         enemyRb.useGravity = false;
         enemyScript = enemy.GetComponent<EnemyScript>();
+        enemyScript.geometry = enemy;
     }
 
     [TearDown]
