@@ -11,7 +11,13 @@ public class HealthBar : MonoBehaviour
 
     private void Start()
     {
-        pointsText.isTextObjectScaleStatic = true;
+        if(pointsText != null) pointsText.isTextObjectScaleStatic = true;
+    }
+
+    public void SetupForTest(Slider slider,TMP_Text points)
+    {
+        this.slider = slider;
+        pointsText = points;
     }
 
     public void SetMaxHealth(int health)
