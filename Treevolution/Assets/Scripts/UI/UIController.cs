@@ -211,11 +211,11 @@ public class UIController : MonoBehaviour
                 d3.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
                 d3.OnClosed = delegate (DialogResult dr)
                 {
-                    Dialog d4 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Obstacles", "You also have some long, thorny bushes, which can be used to direct bugs towards your plants and away from the Tree.", true);
+                    Dialog d4 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Obstacles", "You also have some thorny vines, which can be used to direct bugs towards your plants and away from the Tree.", true);
                     d4.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
                     d4.OnClosed = delegate (DialogResult dr)
                     {
-                        Dialog d5 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Give it a Try", "Have a go, place your items where you would like, and when you are happy, press the big red button above the Tree in the centre.\nBring On The Bugs!", true);
+                        Dialog d5 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Give it a Try", "Place the items where you would like, and when you are happy, press the big red button above the Tree in the centre.\nBring On The Bugs!", true);
                         d5.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
                         d5.OnClosed = delegate (DialogResult dr)
                         {
@@ -254,14 +254,19 @@ public class UIController : MonoBehaviour
                     d4.gameObject.GetComponentInChildren<Image>().sprite = antImage;
                     d4.OnClosed = delegate (DialogResult dr)
                     {
-                        Dialog d5 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.OK, "Damage", "Most bugs can be damaged by *whacking* them. This works best by hitting the table just in front of the bug with your hand flat, or in a fist.\nPress OK and try for yourself!", true);
+                        Dialog d5 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.OK, "Damage", "You can damage most bugs by *whacking* them. This works best by hitting the table just in front of the bug with your hand flat, or in a fist.", true);
                         d5.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
                         d5.gameObject.GetComponentInChildren<Image>().sprite = damageGif;
                         d5.OnClosed = delegate (DialogResult dr)
                         {
-                            StartCoroutine(_gameStateManager.BeginTutorialBattle());
+                            Dialog d6 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Buddy", "You can also get help from your ladybird buddy, by either saying \"Attack\", or \"Defend Here\" whilst pointing to an area.\nPress OK and try to whack some ants!", true);
+                            d6.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
+                            d6.OnClosed = delegate (DialogResult dr)
+                            {
+                                StartCoroutine(_gameStateManager.BeginTutorialBattle());
+                            };
                         };
-
+                        t = (d5.transform.position, d5.transform.rotation);
                     };
                     t = (d4.transform.position, d4.transform.rotation);
                 };
@@ -301,19 +306,13 @@ public class UIController : MonoBehaviour
                         d5.gameObject.GetComponentInChildren<Image>().sprite = dragonflyImage;
                         d5.OnClosed = delegate (DialogResult dr)
                         {
-                            Dialog d6 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.OK, "Hornets", "Only the most advanced of players can kill these - swatting will just result in a painful sting (to you, not the Hornet).", true);
+                            Dialog d6 = Dialog.Open(buttonImageDiaglogPrefab, DialogButtonType.OK, "Hornets", "Only the most advanced of players can kill these - swatting will just result in a painful sting (to you, not the Hornet).\nTry whacking some more bugs, or use your buddy.", true);
                             d6.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
                             d6.gameObject.GetComponentInChildren<Image>().sprite = hornetImage;
                             d6.OnClosed = delegate (DialogResult dr)
                             {
-                                Dialog d7 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Buddy", "As well as whacking bugs and using your plants, you can use your ladybird buddy by either saying \"Attack\", or \"Defend Here\" whilst pointing to an area.\nPress OK and try for youself!", true);
-                                d7.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
-                                d7.OnClosed = delegate (DialogResult dr)
-                                {
-                                    _gameStateManager.ContinueTutorialBattle();
-                                };
+                                _gameStateManager.ContinueTutorialBattle();
                             };
-                            t = (d6.transform.position, d6.transform.rotation);
                         };
                         t = (d5.transform.position, d5.transform.rotation);
 
@@ -344,7 +343,7 @@ public class UIController : MonoBehaviour
 
     public void BuddyPopUp()
     {
-        Dialog d1 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Buddy Commands", "Remember to give commands to your buddy, such as \"Attack\", or \"Defend Here\" whilst pointing to a location. If Stagbeetles destroy your obstacles, say \"Repair\" to fix them.\nAdditionally, Say \"Thunder\" to bring about an elemental strike at the area you are pointing to.", true);
+        Dialog d1 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Buddy Commands", "Remember, use your buddy by saying \"Attack\", or \"Defend Here\" whilst pointing to a location. If Stagbeetles destroy your obstacles, say \"Repair\" to fix them. Additionally, Say \"Thunder\" to bring an elemental strike to where you are pointing.", true);
         d1.OnClosed = delegate (DialogResult dr)
         {
             _gameStateManager.BeginRound();
@@ -356,7 +355,7 @@ public class UIController : MonoBehaviour
     /// </summary>
     public void EndPopUp()
     {
-        Dialog d = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Congratulations", "Score: " + _enemyManager.getScore() + "\nWe hope you enjoyed Treevolution!", true);
+        Dialog d = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Congratulations", "Score: " + _enemyManager.getScore() + "\n\nWe hope you enjoyed Treevolution!", true);
         d.OnClosed += delegate (DialogResult dr)
         {
             GetComponent<StartMenuLogic>().OpenStartMenu();
