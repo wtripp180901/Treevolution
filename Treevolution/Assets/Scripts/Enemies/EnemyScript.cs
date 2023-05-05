@@ -14,6 +14,10 @@ public class EnemyScript : MonoBehaviour
     /// </summary>
     public int health = 10;
     /// <summary>
+    /// Points to assign to the player for killing this type of enemy.
+    /// </summary>
+    public int points = 1;
+    /// <summary>
     /// Determines if the current enemy is flying or not (off by default).
     /// </summary>
     public bool flying = false;
@@ -35,10 +39,13 @@ public class EnemyScript : MonoBehaviour
     /// Indicates if the enemy is currently clipping through a wall.
     /// </summary>
     bool inWall = false;
+    [HideInInspector]
+    public bool takeDamage = true;
     /// <summary>
     /// Indicates if the enemy is frozen in place.
     /// </summary>
     public bool frozen = false;
+    public GameObject geometry;
     /// <summary>
     /// Audio player to play spatial sounds from the current enemy.
     /// </summary>
@@ -117,8 +124,10 @@ public class EnemyScript : MonoBehaviour
     /// <summary>
     /// Start runs when loading the GameObject that this script is attached to.
     /// </summary>
+    List<Color> defaultColours = new List<Color>();
     void Start()
     {
+        GetDefaultMaterials();
         _enemyAudioPlayer = GetComponent<AudioSource>();
         _enemyAudioPlayer.clip = spawnAudio;
         _enemyAudioPlayer.Play();
@@ -288,17 +297,24 @@ public class EnemyScript : MonoBehaviour
         if (spawnDirectionIndicator != null) spawnDirectionIndicator.IndicateDirection();
     }
 
-    /// <summary>
-    /// Indicates the enemy has been damaged by turning its body red for a brief time and playing the damaged sound effect.
-    /// </summary>
-    /// <returns>This method runs a coroutine and so a <c>yield return</c> is used.</returns>
-    private IEnumerator DamageIndicator()
+    private void GetDefaultMaterials()
     {
-        List<Color> defaultColours = new List<Color>();
-        Renderer[] childRenderers = transform.GetComponentsInChildren<Renderer>();
+        Renderer[] childRenderers = geometry.transform.GetComponentsInChildren<Renderer>();
         for (int i = 0; i < childRenderers.Length; i++)
         {
             defaultColours.Add(childRenderers[i].material.color);
+        }
+    }
+
+        /// <summary>
+        /// Indicates the enemy has been damaged by turning its body red for a brief time and playing the damaged sound effect.
+        /// </summary>
+        /// <returns>This method runs a coroutine and so a <c>yield return</c> is used.</returns>
+        private IEnumerator DamageIndicator()
+    {
+        Renderer[] childRenderers = geometry.transform.GetComponentsInChildren<Renderer>();
+        for (int i = 0; i < childRenderers.Length; i++)
+        {
             childRenderers[i].material.color = Color.red;
         }
         _enemyAudioPlayer.clip = damageAudio;
@@ -320,9 +336,9 @@ public class EnemyScript : MonoBehaviour
             GetComponent<Rigidbody>().useGravity = true;
         _followingPath = false;
         if(flying)
-            gameObject.transform.localScale = new Vector3(0, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
+            geometry.transform.localScale = new Vector3(0, geometry.transform.localScale.y, geometry.transform.localScale.z);
         else
-            gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, 0, gameObject.transform.localScale.z);
+            geometry.transform.localScale = new Vector3(geometry.transform.localScale.x, 0, geometry.transform.localScale.z);
 
         _enemyAudioPlayer.clip = deathAudio;
         _enemyAudioPlayer.Play();
@@ -336,18 +352,21 @@ public class EnemyScript : MonoBehaviour
     /// <param name="power">Power to damage the enemy by.</param>
     public void Damage(int power)
     {
-        try
+        if (takeDamage)
         {
-            health -= power;
-            _healthBar.SetHealth(health);
-            if (health <= 0)
+            try
             {
-                StartCoroutine(KillEnemy());
+                health -= power;
+                _healthBar.SetHealth(health);
+                if (health <= 0)
+                {
+                    StartCoroutine(KillEnemy());
+                }
+                else StartCoroutine(DamageIndicator());
             }
-            else StartCoroutine(DamageIndicator());
-        }
-        catch (System.Exception e) {
-            Debug.Log("Error killing enemy: " + e.Message);
+            catch (System.Exception e) {
+				Debug.Log("Error killing enemy: " + e.Message);
+			}
         }
     }
 
@@ -355,10 +374,10 @@ public class EnemyScript : MonoBehaviour
     /// Destroys the enemy object and removes it from the EnemyManager's enemy list.
     /// </summary>
     /// <param name="killedByPlayer">Whether the enemy was killed by the player, or is bein destroyed as part of the ClearEnemies method and so shouldn't count towards the user's score.</param>
-    public void DestroyEnemy(bool killedByPlayer)
+    public void DestroyEnemy(bool countPoints)
     {
         Pathfinding.PathfindingUpdatePublisher.RefindPathNeededEvent.RemoveListener(restartPathfinding);
-        _enemyManager.RemoveEnemy(gameObject, killedByPlayer);
+        _enemyManager.RemoveEnemy(gameObject, countPoints);
         Destroy(gameObject.GetComponent<Collider>().gameObject);
     }
 }

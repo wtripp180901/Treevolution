@@ -71,6 +71,7 @@ public abstract class TowerScript : MonoBehaviour, IRuntimeMovableBehaviourScrip
     }
     private void OnDestroy()
     {
+        _towerManager.RemoveTower(gameObject);
         Destroy(rangeVisual);
     }
 
@@ -86,6 +87,11 @@ public abstract class TowerScript : MonoBehaviour, IRuntimeMovableBehaviourScrip
         shootingDisabled = false;
         disabledVisualObject.GetComponent<Renderer>().material = enabledMaterial;
 
+    }
+
+    public void ShootingDisabled(bool toggle)
+    {
+        shootingDisabled = toggle;
     }
 
     //If buddyMode is true, set "fireRate" to a higher "fireRate". If false, return it to the original fireRate

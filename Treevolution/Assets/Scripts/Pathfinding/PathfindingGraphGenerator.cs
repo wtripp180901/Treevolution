@@ -10,7 +10,7 @@ namespace Pathfinding
     public static class PathfindingGraphGenerator
     {
 
-        struct ObstacleData
+        public struct ObstacleData
         {
             public readonly Bounds bounds;
             public readonly Vector3[] possiblePFPoints;
@@ -37,10 +37,24 @@ namespace Pathfinding
         /// </summary>
         /// <param name="bounds">The bounds of an obstacle's collider</param>
         /// <param name="possiblePoints">An obstacles pathfinding points for consideration</param>
-        public static void AddObstacleData(Bounds bounds, Vector3[] possiblePoints)
+		/// <returns></returns>
+        public static ObstacleData AddObstacleData(Bounds bounds, Vector3[] possiblePoints)
         {
-            obstacleData.Add(new ObstacleData(bounds, possiblePoints));
+            ObstacleData newObstacle = new ObstacleData(bounds, possiblePoints);
+            obstacleData.Add(newObstacle);
+            return newObstacle;
         }
+
+        public static void ClearObstacleData()
+        {
+            obstacleData.Clear();
+        }
+
+        public static void RemoveFromObstacleData(ObstacleData dataToRemove)
+        {
+            obstacleData.Remove(dataToRemove);
+        }
+
 
         /// <summary>
         /// Generates pathfinding graph based on current obstacles in the environment
