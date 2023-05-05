@@ -245,7 +245,7 @@ public class UIController : MonoBehaviour
             d2.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
             d2.OnClosed = delegate (DialogResult dr)
             {
-                Dialog d3 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Bugs", "Keep an eye out for new bugs approaching - they will come from random locations at either far end of the table. The first ones you encounter will be being the Ants.", true);
+                Dialog d3 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Bugs", "Keep an eye out for new bugs approaching - they will come from random locations at either far end of the table. The first ones you encounter will be the Ants.", true);
                 d3.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
                 d3.OnClosed = delegate (DialogResult dr)
                 {
@@ -306,7 +306,7 @@ public class UIController : MonoBehaviour
                             d6.gameObject.GetComponentInChildren<Image>().sprite = hornetImage;
                             d6.OnClosed = delegate (DialogResult dr)
                             {
-                                Dialog d7 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Buddy", "As well as whacking bugs and using your plants, you can also use your ladybird buddy by either saying \"Attack\", or \"Defend Here\" whilst pointing to an area.\nPress OK and try for youself!", true);
+                                Dialog d7 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Buddy", "As well as whacking bugs and using your plants, you can use your ladybird buddy by either saying \"Attack\", or \"Defend Here\" whilst pointing to an area.\nPress OK and try for youself!", true);
                                 d7.gameObject.transform.SetPositionAndRotation(t.position, t.rotation);
                                 d7.OnClosed = delegate (DialogResult dr)
                                 {
@@ -344,7 +344,7 @@ public class UIController : MonoBehaviour
 
     public void BuddyPopUp()
     {
-        Dialog d1 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Buddy Commands", "Remember to give commands to your buddy, such as \"Attack\", or \"Defend Here\" whilst pointing at a location. If Stagbeetles destroy your obstacles, say \"Repair\" to fix them.", true);
+        Dialog d1 = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Buddy Commands", "Remember to give commands to your buddy, such as \"Attack\", or \"Defend Here\" whilst pointing to a location. If Stagbeetles destroy your obstacles, say \"Repair\" to fix them.\nAdditionally, Say \"Thunder\" to bring about an elemental strike at the area you are pointing to.", true);
         d1.OnClosed = delegate (DialogResult dr)
         {
             _gameStateManager.BeginRound();
@@ -356,7 +356,7 @@ public class UIController : MonoBehaviour
     /// </summary>
     public void EndPopUp()
     {
-        Dialog d = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Congratulations!", "Score: " + _enemyManager.getScore(), true);
+        Dialog d = Dialog.Open(buttonDialogPrefab, DialogButtonType.OK, "Congratulations", "Score: " + _enemyManager.getScore() + "\nWe hope you enjoyed Treevolution!", true);
         d.OnClosed += delegate (DialogResult dr)
         {
             GetComponent<StartMenuLogic>().OpenStartMenu();
