@@ -114,4 +114,4 @@ MonoBehaviour:
   generateOnStart: 0
   allInfo:
   - prefab: {fileID: 1602361680614947376, guid: deec73cd5095c214898b015cd1962848, type: 3}
-    count: 100
+    count: 200

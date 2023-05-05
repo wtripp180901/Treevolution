@@ -5055,9 +5055,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 489b2b1d3a2299b459d9cb608bc59353, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangeRadius: 0.5
-  fireRate: 3
-  damage: 2
+  rangeRadius: 0.4
+  fireRate: 1
+  damage: 1
   rangeVisualMaterial: {fileID: 2100000, guid: 714cb720816de7b45b83dbdc97e4e1a6, type: 2}
   disabledVisualObject: {fileID: 4177379072038195040}
   enabledMaterial: {fileID: 2100000, guid: cbf4a6a95e5187140985627f2dddcc7c, type: 2}

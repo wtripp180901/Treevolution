@@ -145,13 +145,14 @@ public class GameStateManager : MonoBehaviour
             new Dictionary<EnemyType, int>(){
                 { EnemyType.Ant, 10 },
                 { EnemyType.Armoured_Bug, 8 },
-                { EnemyType.Armoured_Cockroach, 8}
+                { EnemyType.Armoured_Cockroach, 8},
+                { EnemyType.Armoured_Stagbeetle, 5 }
             },
             new Dictionary<EnemyType, int>(){
                 { EnemyType.Ant, 8 },
                 { EnemyType.Armoured_Bug, 8 },
                 { EnemyType.Armoured_Cockroach, 8},
-                { EnemyType.Armoured_Stagbeetle, 5 },
+                { EnemyType.Armoured_Stagbeetle, 5},
                 { EnemyType.Dragonfly, 5},
 
             },
@@ -159,7 +160,7 @@ public class GameStateManager : MonoBehaviour
                 { EnemyType.Ant, 8 },
                 { EnemyType.Armoured_Bug, 5 },
                 { EnemyType.Armoured_Cockroach, 8},
-                { EnemyType.Armoured_Stagbeetle, 5 },
+                { EnemyType.Armoured_Stagbeetle, 5},
                 { EnemyType.Dragonfly, 5},
                 { EnemyType.Hornet, 5}
             }
@@ -415,9 +416,9 @@ public class GameStateManager : MonoBehaviour
             InfoText.text = "Round " + _currentRoundNumber.ToString() + " Over\n[Score: " + score.ToString() + "]";
         yield return new WaitForSeconds(3);
         ToggleMusic();
-        if (_currentRoundNumber + 1 == 3)
+        if (_currentRoundNumber + 1 == 2)
         {
-            _uIController.BuddyPopUp();
+            _uIController.BuddyPopUp(); // Introduces Stag beetle mechanics
         }
         else if (_currentRoundNumber < maxRoundNumber)
         {
