@@ -70,7 +70,7 @@ public class VoiceCommandReceiver : MonoBehaviour
     public void PauseGame()
     {
         if (gameStateManager.currentGameState == GameStateManager.GameState.Round_Battle || gameStateManager.currentGameState == GameStateManager.GameState.Tutorial_Battle)
-            GetComponent<RoundTimer>().PauseTimer();
+            GetComponent<RoundTimer>().PauseTimer(true);
     }
 
     bool currentlyRecording = false;

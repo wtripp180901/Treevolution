@@ -48,7 +48,6 @@ public class QRDetection : MonoBehaviour
     /// </summary>
     [HideInInspector]
     public bool lockPlane;
-
     /// <summary>
     /// Running PlaneMapper instance.
     /// </summary>
@@ -225,9 +224,9 @@ public class QRDetection : MonoBehaviour
                         if(tempMarker == null && data.Length == 1) markerType = cactusTower;
                         else if (tempMarker == null && data[1] == "1") markerType = cactusTower;
                         else if (tempMarker == null && data[1] == "2") markerType = mushroomTower;
-                        else if (tempMarker == null && data[1] == "3") markerType = flowerTower;
+                        else if (tempMarker == null && data[1] == "3") markerType = poisonTower;
                         else if (tempMarker == null && data[1] == "4") markerType = venusTower;
-                        else if (tempMarker == null && data[1] == "5") markerType = poisonTower;
+                        else if (tempMarker == null && data[1] == "5") markerType = flowerTower;
                         rotation = Quaternion.Euler(0, rotation.eulerAngles.y, 0);
                         break;
 

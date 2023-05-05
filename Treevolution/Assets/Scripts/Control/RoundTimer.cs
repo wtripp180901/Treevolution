@@ -74,7 +74,7 @@ public class RoundTimer : MonoBehaviour
         StartTimerEvent.AddListener(() => GetComponent<UIController>().ResetTimer((int)_roundLengthSecs));
         StopTimerEvent.AddListener(() => Debug.Log("Timer Stopped"));
         PauseTimerEvent.AddListener(() => Debug.Log("Pause/Play"));
-        PauseTimer();
+        PauseTimer(true);
     }
     
     /// <summary>
@@ -132,10 +132,10 @@ public class RoundTimer : MonoBehaviour
     /// <summary>
     /// Toggles the pause state of the timer, invoking the pause timer event.
     /// </summary>
-    public void PauseTimer()
+    public void PauseTimer(bool pause)
     {
-        _isPaused = !_isPaused;
-        _isRunning = !_isRunning;
+        _isPaused = pause;
+        _isRunning = !pause;
         PauseTimerEvent?.Invoke();
     }
 

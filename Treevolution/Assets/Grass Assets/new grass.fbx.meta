@@ -1,24 +1,14 @@
 fileFormatVersion: 2
-guid: dd5ae9e21d761204585b449b794352ff
+guid: c7888537ab227614c832e5452db7780f
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: standardSurface2
-    second: {fileID: 2100000, guid: 59b5417f0fe424549975db2b621f2d05, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: standardSurface3
-    second: {fileID: -351022541804052484, guid: efde9f3f78c1e784d88f6fbed5506102, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
     materialSearch: 1
-    materialLocation: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0

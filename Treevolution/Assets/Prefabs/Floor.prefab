@@ -113,5 +113,5 @@ MonoBehaviour:
   isDebugDrawBoxLine: 0
   generateOnStart: 0
   allInfo:
-  - prefab: {fileID: 2710481773059856643, guid: f88f0232438d52746b02e4fe210054fe, type: 3}
+  - prefab: {fileID: 1602361680614947376, guid: deec73cd5095c214898b015cd1962848, type: 3}
     count: 200

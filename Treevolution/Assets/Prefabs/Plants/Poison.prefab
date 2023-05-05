@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   splashDamage: 1
-  projectileSpeed: 0.5
+  projectileSpeed: 1
   damage: 2
 --- !u!198 &6557802668618399973
 ParticleSystem:
