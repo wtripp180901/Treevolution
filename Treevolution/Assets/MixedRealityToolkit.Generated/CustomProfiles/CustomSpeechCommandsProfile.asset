@@ -17,54 +17,12 @@ MonoBehaviour:
   recognitionConfidenceLevel: 2
   speechCommands:
   - localizationKey: 
-    keyword: Select
-    keyCode: 49
-    action:
-      id: 1
-      description: Select
-      axisConstraint: 2
-  - localizationKey: 
-    keyword: Toggle Diagnostics
-    keyCode: 48
-    action:
-      id: 14
-      description: Toggle Diagnostics
-      axisConstraint: 0
-  - localizationKey: 
-    keyword: Toggle Profiler
-    keyCode: 57
-    action:
-      id: 15
-      description: Toggle Profiler
-      axisConstraint: 0
-  - localizationKey: 
-    keyword: Make Planes
-    keyCode: 52
-    action:
-      id: 0
-      description: None
-      axisConstraint: 0
-  - localizationKey: 
     keyword: Thunder
     keyCode: 98
     action:
       id: 0
       description: None
       axisConstraint: 0
-  - localizationKey: 
-    keyword: Record
-    keyCode: 0
-    action:
-      id: 0
-      description: None
-      axisConstraint: 0
-  - localizationKey: 
-    keyword: Pause
-    keyCode: 112
-    action:
-      id: 2
-      description: Menu
-      axisConstraint: 2
   - localizationKey: 
     keyword: Buddy
     keyCode: 0
@@ -88,6 +46,13 @@ MonoBehaviour:
       axisConstraint: 2
   - localizationKey: 
     keyword: Repair
+    keyCode: 0
+    action:
+      id: 0
+      description: Menu
+      axisConstraint: 2
+  - localizationKey: 
+    keyword: Defend there
     keyCode: 0
     action:
       id: 0

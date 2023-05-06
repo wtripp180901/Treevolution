@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Manages and keeps track of the game state as the user progresses through each round or tutorial.
