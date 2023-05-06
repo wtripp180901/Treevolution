@@ -179,6 +179,7 @@ public class GameStateManager : MonoBehaviour
         gameObject.AddComponent<PlaneMapper>();
         _uIController.SetupForTest();
         _enemyManager.SetupForTest();
+        BeginBattleButton.AddComponent<PressableButton>();
     }
 
     /// <summary>

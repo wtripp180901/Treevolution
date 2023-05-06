@@ -93,13 +93,6 @@ public class EnemyTests
     [TearDown]
     public void ResetScene()
     {
-        Object[] all = GameObject.FindObjectsOfType(typeof(GameObject));
-        for (int i = 0; i < all.Length; i++)
-        {
-            GameObject dirty = (GameObject)(all[i]);
-            Pathfinding.PathfindingObstacle dirtyObstacleScript = dirty.GetComponent<Pathfinding.PathfindingObstacle>();
-            if (dirtyObstacleScript != null) dirtyObstacleScript.CleanForTest();
-            Object.Destroy(all[i]);
-        }
+        TestReseter.TearDownScene();
     }
 }
