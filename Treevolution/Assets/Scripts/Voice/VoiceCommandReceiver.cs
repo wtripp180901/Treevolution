@@ -36,7 +36,7 @@ public class VoiceCommandReceiver : MonoBehaviour
         pointerTracker = GetComponent<PointerLocationTracker>();
         gameStateManager = GetComponent<GameStateManager>();
         recordingIndicator = GameObject.FindWithTag("RecordingIndicator");
-        recordingIndicator.SetActive(false);
+        recordingIndicator?.SetActive(false);
         basePitch = recordingIndicationSource.pitch;
     }
 
@@ -50,6 +50,14 @@ public class VoiceCommandReceiver : MonoBehaviour
                 finishDictation();
             }
         }
+    }
+
+    public void SetupForTest()
+    {
+        gameObject.AddComponent<AudioSource>();
+        recordingIndicationSource = GetComponent<AudioSource>();
+        basePitch = recordingIndicationSource.pitch;
+        enemyManager = GetComponent<EnemyManager>();
     }
 
     void playStartOfRecordingSound()

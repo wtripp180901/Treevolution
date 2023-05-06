@@ -57,4 +57,10 @@ public class PathfindingTests
         Pathfinding.PathfindingGraphGenerator.AddObstacleData(bounds2, corners2);
         Assert.AreEqual(corners1.Length + corners2.Length + 1, Pathfinding.PathfindingGraphGenerator.GetPathfindingGraph().Length);
     }
+
+    [TearDown]
+    public void ResetScene()
+    {
+        TestReseter.TearDownScene();
+    }
 }

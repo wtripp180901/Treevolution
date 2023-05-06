@@ -308,4 +308,9 @@ public class BuddyScript : MonoBehaviour
         currentTarget = this.currentTarget;
         isOk = isok;
     }
+
+    public void GetTestData(out Queue<BuddyAction> actionQueue)
+    {
+        actionQueue = this.actionQueue;
+    }
 }
