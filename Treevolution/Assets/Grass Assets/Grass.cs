@@ -29,7 +29,7 @@ public class Grass : MonoBehaviour
                 GameObject obj = Instantiate(allInfo[info].prefab);
                 //obj.transform.SetParent(floor.transform);
                 obj.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360), 0);
-                obj.transform.position = GameProperties.Centre + depthVec.normalized * Random.Range(-depthVec.magnitude/2, depthVec.magnitude/2) + widthVec.normalized * Random.Range(-widthVec.magnitude / 2, widthVec.magnitude / 2);
+                obj.transform.position = GameProperties.Centre + depthVec.normalized * Random.Range(-depthVec.magnitude/2 + 0.1f, depthVec.magnitude/2 - 0.1f) + widthVec.normalized * Random.Range(-widthVec.magnitude / 2 + 0.1f, widthVec.magnitude / 2 - 0.1f);
                 //  obj.transform.localScale = new Vector3(5, obj.transform.localScale.y, 5);
                 allObjects.Add(obj);
             }

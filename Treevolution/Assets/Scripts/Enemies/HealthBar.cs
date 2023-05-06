@@ -36,9 +36,8 @@ public class HealthBar : MonoBehaviour
 
     private void ShowPoints()
     {
-        slider.gameObject.SetActive(false);
         pointsText.text = "+" + GetComponent<EnemyScript>().points.ToString();
         pointsText.transform.SetParent(pointsText.transform.parent.parent);
-        pointsText.isTextObjectScaleStatic = true;
+        slider.gameObject.SetActive(false);
     }
 }
