@@ -2,109 +2,112 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DigestTower : TowerScript
+namespace Towers
 {
-    [SerializeField]
-    private bool _targetFlying = false;
-    [SerializeField]
-    private bool _targetGround = true;
-    private Transform _targetTransform;
-    private float _distanceToCurrentTarget;
-    private float _digestDelta;
-    private bool _currentlyDigesting = false;
-    private Animator _animator;
-
-    // Start is called before the first frame update
-    public void Start()
+    public class DigestTower : TowerScript
     {
-        base.Start();
-        _distanceToCurrentTarget = float.MaxValue;
-        _digestDelta = 0;
-        _animator = GetComponent<Animator>();
-    }
+        [SerializeField]
+        private bool _targetFlying = false;
+        [SerializeField]
+        private bool _targetGround = true;
+        private Transform _targetTransform;
+        private float _distanceToCurrentTarget;
+        private float _digestDelta;
+        private bool _currentlyDigesting = false;
+        private Animator _animator;
 
-    public void SetupForTest(float radius)
-    {
-        rangeRadius = radius;
-    }
-
-    public void GetTestData(out bool digesting)
-    {
-        digesting = _currentlyDigesting;
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-        base.Update();
-        if (!shootingDisabled && !_currentlyDigesting && _targetTransform != null)
+        // Start is called before the first frame update
+        public void Start()
         {
-            _digestDelta = _digestDelta - Time.deltaTime;
-            if (_digestDelta <= 0)
-            {
-                _currentlyDigesting = true;
-                Attack();
-            }
+            base.Start();
+            _distanceToCurrentTarget = float.MaxValue;
+            _digestDelta = 0;
+            _animator = GetComponent<Animator>();
         }
-        else if (_currentlyDigesting)
+
+        public void SetupForTest(float radius)
         {
-            if (_digestDelta <= 0)
+            rangeRadius = radius;
+        }
+
+        public void GetTestData(out bool digesting)
+        {
+            digesting = _currentlyDigesting;
+        }
+
+        // Update is called once per frame
+        private void Update()
+        {
+            base.Update();
+            if (!shootingDisabled && !_currentlyDigesting && _targetTransform != null)
             {
-                _currentlyDigesting = false;
+                _digestDelta = _digestDelta - Time.deltaTime;
+                if (_digestDelta <= 0)
+                {
+                    _currentlyDigesting = true;
+                    Attack();
+                }
+            }
+            else if (_currentlyDigesting)
+            {
+                if (_digestDelta <= 0)
+                {
+                    _currentlyDigesting = false;
+                    _distanceToCurrentTarget = float.MaxValue;
+                }
+                _digestDelta = _digestDelta - Time.deltaTime;
+            }
+            else
+            {
                 _distanceToCurrentTarget = float.MaxValue;
             }
-            _digestDelta = _digestDelta - Time.deltaTime;
         }
-        else
+
+
+
+        private void TransitionAnimation()
         {
-            _distanceToCurrentTarget = float.MaxValue;
+            _animator.SetTrigger("Trigger");
         }
-    }
 
 
-
-    private void TransitionAnimation()
-    {
-        _animator.SetTrigger("Trigger");
-    }
-
-
-    public override void Attack()
-    {
-        TransitionAnimation();
-        _digestDelta = fireRate;
-        _targetTransform.gameObject.GetComponent<EnemyScript>().Damage(damage);
-        //_targetTransform.position = gameObject.transform.position;
-        //_targetTransform.gameObject.GetComponent<EnemyScript>().frozen = true;
-    }
-
-    public override void UpdateTargets()
-    {
-        GameObject[] enemies = enemyManager.enemies;
-        for (int i = 0; i < enemies.Length; i++)
+        public override void Attack()
         {
-            float topDownDistToEnemy = DistToTargetTopDown(enemies[i].transform.position);
-            if (topDownDistToEnemy < _distanceToCurrentTarget && topDownDistToEnemy <= rangeRadius)
+            TransitionAnimation();
+            _digestDelta = fireRate;
+            _targetTransform.gameObject.GetComponent<EnemyScript>().Damage(damage);
+            //_targetTransform.position = gameObject.transform.position;
+            //_targetTransform.gameObject.GetComponent<EnemyScript>().frozen = true;
+        }
+
+        public override void UpdateTargets()
+        {
+            GameObject[] enemies = enemyManager.enemies;
+            for (int i = 0; i < enemies.Length; i++)
             {
-                if (!_targetFlying && enemies[i].GetComponent<EnemyScript>().flying)
-                    continue; // Ignore flying enemies if specified
-                if (!_targetGround && !enemies[i].GetComponent<EnemyScript>().flying)
-                    continue; // Ignore ground enemies if specified
-                _targetTransform = enemies[i].transform;
-                _distanceToCurrentTarget = topDownDistToEnemy;
+                float topDownDistToEnemy = DistToTargetTopDown(enemies[i].transform.position);
+                if (topDownDistToEnemy < _distanceToCurrentTarget && topDownDistToEnemy <= rangeRadius)
+                {
+                    if (!_targetFlying && enemies[i].GetComponent<EnemyScript>().flying)
+                        continue; // Ignore flying enemies if specified
+                    if (!_targetGround && !enemies[i].GetComponent<EnemyScript>().flying)
+                        continue; // Ignore ground enemies if specified
+                    _targetTransform = enemies[i].transform;
+                    _distanceToCurrentTarget = topDownDistToEnemy;
+                }
             }
         }
-    }
 
-    public override void UpdateRangeVisual()
-    {
-        rangeVisual.transform.localScale = new Vector3(rangeRadius * 2, 0.3f, rangeRadius * 2);
-        rangeVisual.transform.position = new Vector3(transform.position.x, GameProperties.FloorHeight + 0.3f, transform.position.z);
-    }
+        public override void UpdateRangeVisual()
+        {
+            rangeVisual.transform.localScale = new Vector3(rangeRadius * 2, 0.3f, rangeRadius * 2);
+            rangeVisual.transform.position = new Vector3(transform.position.x, GameProperties.FloorHeight + 0.3f, transform.position.z);
+        }
 
-    public override GameObject GetRangeObject()
-    {
-        return GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        public override GameObject GetRangeObject()
+        {
+            return GameObject.CreatePrimitive(PrimitiveType.Cylinder);
 
+        }
     }
 }

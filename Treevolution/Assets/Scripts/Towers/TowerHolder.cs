@@ -1,13 +1,16 @@
 using System.Collections.Generic;
 
-//Holds a list of towers for a round
-public class TowerHolder
+namespace Towers
 {
-    private List<TowerData> _towers;
-    public TowerData[] towers { get { return _towers.ToArray(); } }
-
-    public TowerHolder(List<TowerData> towers)
+    //Holds a list of towers for a round
+    public class TowerHolder
     {
-        this._towers = towers;
+        private List<TowerData> _towers;
+        public TowerData[] towers { get { return _towers.ToArray(); } }
+
+        public TowerHolder(List<TowerData> towers)
+        {
+            this._towers = towers;
+        }
     }
 }

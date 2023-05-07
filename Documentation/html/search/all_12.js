@@ -19,7 +19,7 @@ var searchData=
   ['showdictation_16',['ShowDictation',['../class_u_i_controller.html#a7168d9f3b9cb1d86e5cbc85658dc4d99',1,'UIController']]],
   ['showhypothesis_17',['ShowHypothesis',['../class_u_i_controller.html#a3f32d413f3a7daa2c48f0eddb2c50ae5',1,'UIController']]],
   ['showmessageasdictation_18',['ShowMessageAsDictation',['../class_u_i_controller.html#ae859ed20c5784fd3467e26c39c35adb6',1,'UIController']]],
-  ['singletargettower_19',['SingleTargetTower',['../class_single_target_tower.html',1,'']]],
+  ['singletargettower_19',['SingleTargetTower',['../class_towers_1_1_single_target_tower.html',1,'Towers']]],
   ['spawnaudio_20',['spawnAudio',['../class_enemy_script.html#a48629d3528921626ae84e7d8e12bfb83',1,'EnemyScript']]],
   ['spawndirectionindicator_21',['SpawnDirectionIndicator',['../class_spawn_direction_indicator.html',1,'']]],
   ['spawnenemy_22',['spawnEnemy',['../class_enemy_manager.html#a4917955cbb9bb525a038f60210b457d5',1,'EnemyManager']]],
@@ -29,7 +29,7 @@ var searchData=
   ['spawnobjectonqr_26',['SpawnObjectOnQR',['../class_q_r_detection.html#a0f963f7bcc0d7b46b1ff1c034f1d74f2',1,'QRDetection']]],
   ['spawnpool_27',['spawnPool',['../class_enemy_manager.html#acc822367c65a83a69849c8db8b44875f',1,'EnemyManager']]],
   ['speed_28',['speed',['../class_enemy_script.html#a2c618fda4a3b98cd7fc1089c682c3e90',1,'EnemyScript']]],
-  ['start_29',['Start',['../class_round_timer.html#a4411a43abb20f6f797bbf2e6c9c19d02',1,'RoundTimer.Start()'],['../class_enemy_script.html#a61a56df6ca1e4301e3b17525a2885f0a',1,'EnemyScript.Start()'],['../class_enemy_touch_handler.html#adecdf0130036739e9a8a7063f693872e',1,'EnemyTouchHandler.Start()'],['../class_u_i_controller.html#a676b3b972c33885db4565ee43f23e459',1,'UIController.Start()']]],
+  ['start_29',['Start',['../class_round_timer.html#a4411a43abb20f6f797bbf2e6c9c19d02',1,'RoundTimer.Start()'],['../class_enemy_touch_handler.html#adecdf0130036739e9a8a7063f693872e',1,'EnemyTouchHandler.Start()'],['../class_u_i_controller.html#a676b3b972c33885db4565ee43f23e459',1,'UIController.Start()']]],
   ['started_30',['started',['../class_enemy_manager.html#ada3016ab5c085f6fcf3d284cb472a2f7',1,'EnemyManager']]],
   ['startgame_31',['StartGame',['../class_start_menu_logic.html#a21cd95add1159250d964577d47ca630b',1,'StartMenuLogic']]],
   ['startmenu_32',['StartMenu',['../class_start_menu_logic.html#abaa6dd5f7baea9b756067b0d3e8b6a1e',1,'StartMenuLogic']]],
@@ -47,7 +47,7 @@ var searchData=
   ['stoptimer_44',['StopTimer',['../class_round_timer.html#a1212411b69fff7fec357818e3e2fbde4',1,'RoundTimer']]],
   ['stoptimerevent_45',['StopTimerEvent',['../class_round_timer.html#ae9d6dbabec1d06c930a3e27c69daad49',1,'RoundTimer']]],
   ['stringtotoken_46',['stringToToken',['../class_language_parsing_1_1_word_token_mapper.html#aa1c236408d963c78e60c4b6fe34cb2ed',1,'LanguageParsing::WordTokenMapper']]],
-  ['subjectbuddytoken_47',['SubjectBuddyToken',['../class_subject_buddy_token.html',1,'']]],
+  ['subjectbuddytoken_47',['SubjectBuddyToken',['../class_tokens_1_1_subject_buddy_token.html',1,'Tokens']]],
   ['synonymapicallresults_48',['synonymAPICallResults',['../class_language_parsing_1_1_language_parser.html#a294603613da6140fa707d9c6f0b6d0a9',1,'LanguageParsing::LanguageParser']]],
   ['synonymdata_49',['SynonymData',['../struct_language_parsing_1_1_synonym_data.html',1,'LanguageParsing']]]
 ];

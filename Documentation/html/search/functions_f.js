@@ -1,7 +1,7 @@
 var searchData=
 [
   ['record_0',['Record',['../class_voice_command_receiver.html#a27c21666bc232b6d2386ddf56bd7ed0f',1,'VoiceCommandReceiver']]],
-  ['removeenemy_1',['RemoveEnemy',['../class_enemy_manager.html#a8531f5cce331f2a809ed8133229dd99f',1,'EnemyManager']]],
+  ['removeenemy_1',['RemoveEnemy',['../class_enemy_manager.html#a4d91f6f1bad835f9c2f277f96ffe0141',1,'EnemyManager']]],
   ['repair_2',['Repair',['../class_wall_script.html#a3e94be91933be243a2a4f5b234f0caaa',1,'WallScript']]],
   ['repairallwalls_3',['repairAllWalls',['../class_game_state_manager.html#af263abae1848da41f23da7002955d4ba',1,'GameStateManager']]],
   ['repairfixedupdate_4',['repairFixedUpdate',['../class_buddy_script.html#a33f33944eddedaf28420bc8649d7e532',1,'BuddyScript']]],

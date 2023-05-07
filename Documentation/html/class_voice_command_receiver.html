@@ -90,6 +90,9 @@ Inheritance diagram for VoiceCommandReceiver:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a65e11be6b0d8cdf82169fe8e82f42c6b"><td class="memItemLeft" align="right" valign="top"><a id="a65e11be6b0d8cdf82169fe8e82f42c6b" name="a65e11be6b0d8cdf82169fe8e82f42c6b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetupForTest</b> ()</td></tr>
+<tr class="separator:a65e11be6b0d8cdf82169fe8e82f42c6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb4d72e4018725c1c004104f775492a9"><td class="memItemLeft" align="right" valign="top"><a id="acb4d72e4018725c1c004104f775492a9" name="acb4d72e4018725c1c004104f775492a9"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>PauseGame</b> ()</td></tr>
 <tr class="memdesc:acb4d72e4018725c1c004104f775492a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggles pausing the game. <br /></td></tr>
@@ -124,7 +127,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>BuddyDefend</b> ()</t
 <tr class="memitem:a9aedc37dc8dfaa4200abe4805ce6c54a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_voice_command_receiver.html#a9aedc37dc8dfaa4200abe4805ce6c54a">DictationError</a> (string error)</td></tr>
 <tr class="memdesc:a9aedc37dc8dfaa4200abe4805ce6c54a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should be called by the DictationHandler's onDictationErrorEvent.  <br /></td></tr>
 <tr class="separator:a9aedc37dc8dfaa4200abe4805ce6c54a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0302490497aaa491309cace4f4ad93ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_voice_command_receiver.html#a0302490497aaa491309cace4f4ad93ce">HandleDictationProcessingResults</a> (List&lt; <a class="el" href="class_buddy_action.html">BuddyAction</a> &gt; instructions)</td></tr>
+<tr class="memitem:a0302490497aaa491309cace4f4ad93ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_voice_command_receiver.html#a0302490497aaa491309cace4f4ad93ce">HandleDictationProcessingResults</a> (List&lt; <a class="el" href="class_buddy_actions_1_1_buddy_action.html">BuddyAction</a> &gt; instructions)</td></tr>
 <tr class="memdesc:a0302490497aaa491309cace4f4ad93ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">A callback function for the language parsing model to return resolved buddy instructions. Sends these instructions to the buddy.  <br /></td></tr>
 <tr class="separator:a0302490497aaa491309cace4f4ad93ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -163,7 +166,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SafeModeRecordAudio</
 <tr class="memitem:aa5e2947238528b684a98dee573e5943a"><td class="memItemLeft" align="right" valign="top">IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_voice_command_receiver.html#aa5e2947238528b684a98dee573e5943a">writeAfterFinished</a> ()</td></tr>
 <tr class="memdesc:aa5e2947238528b684a98dee573e5943a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes data from a safeMode recording session to a file on the persistent data path and then begins <a class="el" href="class_assembly_a_p_i_caller.html" title="Backup API calling script which makes asynchronous API calls to AssemblyAI and notifies the user of p...">AssemblyAPICaller</a>'s uploaded and processing process.  <br /></td></tr>
 <tr class="separator:aa5e2947238528b684a98dee573e5943a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a875347c55e4c409ac8761c2b34f7be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_voice_command_receiver.html#a1a875347c55e4c409ac8761c2b34f7be">performBasicBuddyAction</a> (List&lt; <a class="el" href="class_buddy_action.html">BuddyAction</a> &gt; actions)</td></tr>
+<tr class="memitem:a1a875347c55e4c409ac8761c2b34f7be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_voice_command_receiver.html#a1a875347c55e4c409ac8761c2b34f7be">performBasicBuddyAction</a> (List&lt; <a class="el" href="class_buddy_actions_1_1_buddy_action.html">BuddyAction</a> &gt; actions)</td></tr>
 <tr class="memdesc:a1a875347c55e4c409ac8761c2b34f7be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper for playing confirmation sound and sending actions the buddy.  <br /></td></tr>
 <tr class="separator:a1a875347c55e4c409ac8761c2b34f7be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac65bf16775ef6dd6802f8dc568a0e55c"><td class="memItemLeft" align="right" valign="top"><a id="ac65bf16775ef6dd6802f8dc568a0e55c" name="ac65bf16775ef6dd6802f8dc568a0e55c"></a>
@@ -249,7 +252,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>canManuallyRecord</b>
         <tr>
           <td class="memname">void VoiceCommandReceiver.HandleDictationProcessingResults </td>
           <td>(</td>
-          <td class="paramtype">List&lt; <a class="el" href="class_buddy_action.html">BuddyAction</a> &gt;&#160;</td>
+          <td class="paramtype">List&lt; <a class="el" href="class_buddy_actions_1_1_buddy_action.html">BuddyAction</a> &gt;&#160;</td>
           <td class="paramname"><em>instructions</em></td><td>)</td>
           <td></td>
         </tr>
@@ -306,7 +309,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>canManuallyRecord</b>
         <tr>
           <td class="memname">void VoiceCommandReceiver.performBasicBuddyAction </td>
           <td>(</td>
-          <td class="paramtype">List&lt; <a class="el" href="class_buddy_action.html">BuddyAction</a> &gt;&#160;</td>
+          <td class="paramtype">List&lt; <a class="el" href="class_buddy_actions_1_1_buddy_action.html">BuddyAction</a> &gt;&#160;</td>
           <td class="paramname"><em>actions</em></td><td>)</td>
           <td></td>
         </tr>

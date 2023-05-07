@@ -5,52 +5,56 @@ using UnityEngine.TestTools;
 using NUnit.Framework;
 using Microsoft.MixedReality.Toolkit.Utilities;
 using Microsoft.MixedReality.Toolkit.Input;
+using BuddyActions;
 
-public class BuddyTests
+namespace Tests
 {
-    [UnityTest]
-    public IEnumerator TestNewInstructionsCleanCommands()
+    public class BuddyTests
     {
-        GameObject closerEnemy, furtherEnemy;
-        DictationTests.setupAttackScene(out closerEnemy, out furtherEnemy);
-        List<BuddyAction> results = null;
-        yield return new LanguageParsing.LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(new string[] { "attack", "the", "ant." }, (x => results = x));
-        BuddyScript buddyScript = GameObject.FindWithTag("Buddy").GetComponent<BuddyScript>();
-        buddyScript.GiveInstructions(results);
-        yield return null;
-        GameObject target;
-        Queue<GameObject> targets;
-        bool isok;
-        buddyScript.GetTestData(out targets, out target, out isok);
-        Assert.AreSame(furtherEnemy, target);
-        yield return new LanguageParsing.LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(new string[] { "attack", "the", "hornet." }, (x => results = x));
-        buddyScript.GiveInstructions(results);
-        yield return null;
-        buddyScript.GetTestData(out targets, out target, out isok);
-        Assert.AreSame(target, closerEnemy);
+        [UnityTest]
+        public IEnumerator TestNewInstructionsCleanCommands()
+        {
+            GameObject closerEnemy, furtherEnemy;
+            DictationTests.setupAttackScene(out closerEnemy, out furtherEnemy);
+            List<BuddyAction> results = null;
+            yield return new LanguageParsing.LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(new string[] { "attack", "the", "ant." }, (x => results = x));
+            BuddyScript buddyScript = GameObject.FindWithTag("Buddy").GetComponent<BuddyScript>();
+            buddyScript.GiveInstructions(results);
+            yield return null;
+            GameObject target;
+            Queue<GameObject> targets;
+            bool isok;
+            buddyScript.GetTestData(out targets, out target, out isok);
+            Assert.AreSame(furtherEnemy, target);
+            yield return new LanguageParsing.LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(new string[] { "attack", "the", "hornet." }, (x => results = x));
+            buddyScript.GiveInstructions(results);
+            yield return null;
+            buddyScript.GetTestData(out targets, out target, out isok);
+            Assert.AreSame(target, closerEnemy);
 
-    }
+        }
 
-    [UnityTest]
-    public IEnumerator TestDefendFindsNearest()
-    {
-        GameObject closerEnemy, furtherEnemy;
-        DictationTests.setupAttackScene(out closerEnemy, out furtherEnemy);
-        List<BuddyAction> results = null;
-        yield return new LanguageParsing.LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(new string[] { "defend." }, (x => results = x));
-        BuddyScript buddyScript = GameObject.FindWithTag("Buddy").GetComponent<BuddyScript>();
-        buddyScript.GiveInstructions(results);
-        yield return null;
-        Queue<GameObject> targets;
-        GameObject currentTarget;
-        bool dummy;
-        buddyScript.GetTestData(out targets,out currentTarget,out dummy);
-        Assert.AreEqual(closerEnemy, currentTarget);
-    }
+        [UnityTest]
+        public IEnumerator TestDefendFindsNearest()
+        {
+            GameObject closerEnemy, furtherEnemy;
+            DictationTests.setupAttackScene(out closerEnemy, out furtherEnemy);
+            List<BuddyAction> results = null;
+            yield return new LanguageParsing.LanguageParser(Resources.Load<TextAsset>("basewords").text).GetInstructionStream(new string[] { "defend." }, (x => results = x));
+            BuddyScript buddyScript = GameObject.FindWithTag("Buddy").GetComponent<BuddyScript>();
+            buddyScript.GiveInstructions(results);
+            yield return null;
+            Queue<GameObject> targets;
+            GameObject currentTarget;
+            bool dummy;
+            buddyScript.GetTestData(out targets, out currentTarget, out dummy);
+            Assert.AreEqual(closerEnemy, currentTarget);
+        }
 
-    [TearDown]
-    public void ResetScene()
-    {
-        TestReseter.TearDownScene();
+        [TearDown]
+        public void ResetScene()
+        {
+            TestReseter.TearDownScene();
+        }
     }
 }

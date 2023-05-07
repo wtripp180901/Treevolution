@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using Newtonsoft.Json.Linq;
+using BuddyActions;
 
 /// <summary>
 /// A controller to receive events from recognised keywords and dictation

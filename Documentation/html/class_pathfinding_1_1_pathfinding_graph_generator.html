@@ -94,9 +94,15 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ac7e886e6c9d6051c391d8cb543f2ca2c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinding_1_1_pathfinding_graph_generator.html#ac7e886e6c9d6051c391d8cb543f2ca2c">AddObstacleData</a> (Bounds bounds, Vector3[] possiblePoints)</td></tr>
-<tr class="memdesc:ac7e886e6c9d6051c391d8cb543f2ca2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback method for when GetObstacleDataEvent is invoked, used to add an obstacles pathfinding points for consideration.  <br /></td></tr>
-<tr class="separator:ac7e886e6c9d6051c391d8cb543f2ca2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a399c178d9c4278a93374c605eaf96fb6"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="struct_pathfinding_1_1_pathfinding_graph_generator_1_1_obstacle_data.html">ObstacleData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinding_1_1_pathfinding_graph_generator.html#a399c178d9c4278a93374c605eaf96fb6">AddObstacleData</a> (Bounds bounds, Vector3[] possiblePoints)</td></tr>
+<tr class="memdesc:a399c178d9c4278a93374c605eaf96fb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback method for when GetObstacleDataEvent is invoked, used to add an obstacles pathfinding points for consideration.  <br /></td></tr>
+<tr class="separator:a399c178d9c4278a93374c605eaf96fb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60d2ccaaeb7789b4ffafae390c7194f5"><td class="memItemLeft" align="right" valign="top"><a id="a60d2ccaaeb7789b4ffafae390c7194f5" name="a60d2ccaaeb7789b4ffafae390c7194f5"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>ClearObstacleData</b> ()</td></tr>
+<tr class="separator:a60d2ccaaeb7789b4ffafae390c7194f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7ea7c8bf8b24a58aa0330faceb4498e"><td class="memItemLeft" align="right" valign="top"><a id="af7ea7c8bf8b24a58aa0330faceb4498e" name="af7ea7c8bf8b24a58aa0330faceb4498e"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>RemoveFromObstacleData</b> (<a class="el" href="struct_pathfinding_1_1_pathfinding_graph_generator_1_1_obstacle_data.html">ObstacleData</a> dataToRemove)</td></tr>
+<tr class="separator:af7ea7c8bf8b24a58aa0330faceb4498e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf56b7ade5e876cf22ad75e02ffe3859"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_pathfinding_1_1_pathfinding_node.html">PathfindingNode</a>[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_pathfinding_1_1_pathfinding_graph_generator.html#aaf56b7ade5e876cf22ad75e02ffe3859">GetPathfindingGraph</a> ()</td></tr>
 <tr class="memdesc:aaf56b7ade5e876cf22ad75e02ffe3859"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates pathfinding graph based on current obstacles in the environment.  <br /></td></tr>
 <tr class="separator:aaf56b7ade5e876cf22ad75e02ffe3859"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -124,8 +130,8 @@ static List&lt; <a class="el" href="struct_pathfinding_1_1_pathfinding_graph_gen
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Used to dynamically generate a pathfinding mesh based on obstacles in the environment. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="ac7e886e6c9d6051c391d8cb543f2ca2c" name="ac7e886e6c9d6051c391d8cb543f2ca2c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac7e886e6c9d6051c391d8cb543f2ca2c">&#9670;&#160;</a></span>AddObstacleData()</h2>
+<a id="a399c178d9c4278a93374c605eaf96fb6" name="a399c178d9c4278a93374c605eaf96fb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a399c178d9c4278a93374c605eaf96fb6">&#9670;&#160;</a></span>AddObstacleData()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -134,7 +140,7 @@ static List&lt; <a class="el" href="struct_pathfinding_1_1_pathfinding_graph_gen
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void Pathfinding.PathfindingGraphGenerator.AddObstacleData </td>
+          <td class="memname">static <a class="el" href="struct_pathfinding_1_1_pathfinding_graph_generator_1_1_obstacle_data.html">ObstacleData</a> Pathfinding.PathfindingGraphGenerator.AddObstacleData </td>
           <td>(</td>
           <td class="paramtype">Bounds&#160;</td>
           <td class="paramname"><em>bounds</em>, </td>
@@ -166,6 +172,7 @@ static List&lt; <a class="el" href="struct_pathfinding_1_1_pathfinding_graph_gen
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>
 </div>

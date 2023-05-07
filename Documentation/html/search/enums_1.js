@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gamestate_0',['GameState',['../class_game_state_manager.html#a6597239164490f188c6d64e67aac4f97',1,'GameStateManager']]]
+  ['enemytype_0',['EnemyType',['../class_game_state_manager.html#adebf6d9d1d66a14769f2355320656dc3',1,'GameStateManager']]]
 ];

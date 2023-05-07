@@ -94,6 +94,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SetupForTest</b> ()</
 <tr class="memitem:a049facad41a094da94dc8b28c6af725c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy_manager.html#a049facad41a094da94dc8b28c6af725c">getEnemiesKilled</a> ()</td></tr>
 <tr class="memdesc:a049facad41a094da94dc8b28c6af725c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the total number of enemies killed.  <br /></td></tr>
 <tr class="separator:a049facad41a094da94dc8b28c6af725c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ef43d62fe27704d93fd92639a7e5aa3"><td class="memItemLeft" align="right" valign="top"><a id="a9ef43d62fe27704d93fd92639a7e5aa3" name="a9ef43d62fe27704d93fd92639a7e5aa3"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getScore</b> ()</td></tr>
+<tr class="separator:a9ef43d62fe27704d93fd92639a7e5aa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98e42b77cce6125812dbbc51e6ea1b81"><td class="memItemLeft" align="right" valign="top"><a id="a98e42b77cce6125812dbbc51e6ea1b81" name="a98e42b77cce6125812dbbc51e6ea1b81"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>resetEnemiesKilled</b> ()</td></tr>
 <tr class="memdesc:a98e42b77cce6125812dbbc51e6ea1b81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the number of enemies killed. <br /></td></tr>
@@ -104,9 +107,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>resetEnemiesKilled</b
 <tr class="memitem:aed33c14ff19ee4b32c8d169a5ce48455"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy_manager.html#aed33c14ff19ee4b32c8d169a5ce48455">StartSpawning</a> (Dictionary&lt; <a class="el" href="class_game_state_manager.html#adebf6d9d1d66a14769f2355320656dc3">GameStateManager.EnemyType</a>, int &gt; <a class="el" href="class_enemy_manager.html#aac6b60ca7e383be70ffd0552f292f7df">enemies</a>)</td></tr>
 <tr class="memdesc:aed33c14ff19ee4b32c8d169a5ce48455"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begins spawning enemies.  <br /></td></tr>
 <tr class="separator:aed33c14ff19ee4b32c8d169a5ce48455"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8531f5cce331f2a809ed8133229dd99f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy_manager.html#a8531f5cce331f2a809ed8133229dd99f">RemoveEnemy</a> (GameObject enemy, bool killedByPlayer)</td></tr>
-<tr class="memdesc:a8531f5cce331f2a809ed8133229dd99f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an enemy from the game.  <br /></td></tr>
-<tr class="separator:a8531f5cce331f2a809ed8133229dd99f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d91f6f1bad835f9c2f277f96ffe0141"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy_manager.html#a4d91f6f1bad835f9c2f277f96ffe0141">RemoveEnemy</a> (GameObject enemy, bool countPoints)</td></tr>
+<tr class="memdesc:a4d91f6f1bad835f9c2f277f96ffe0141"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an enemy from the game.  <br /></td></tr>
+<tr class="separator:a4d91f6f1bad835f9c2f277f96ffe0141"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a978053a6190a6f71990c8a79da683844"><td class="memItemLeft" align="right" valign="top"><a id="a978053a6190a6f71990c8a79da683844" name="a978053a6190a6f71990c8a79da683844"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>toggleDamage</b> (bool damageOn)</td></tr>
+<tr class="separator:a978053a6190a6f71990c8a79da683844"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2cb64590c77ef7faf3c71341cf88e725"><td class="memItemLeft" align="right" valign="top"><a id="a2cb64590c77ef7faf3c71341cf88e725" name="a2cb64590c77ef7faf3c71341cf88e725"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>StopSpawning</b> ()</td></tr>
 <tr class="memdesc:a2cb64590c77ef7faf3c71341cf88e725"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops the enemies from spawning. <br /></td></tr>
@@ -195,6 +201,12 @@ AudioClip&#160;</td><td class="memItemRight" valign="bottom"><b>_damageAudio</b>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>enemiesKilled</b> = 0</td></tr>
 <tr class="memdesc:a7cd6fc1fe48db6815c528f869f587d64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of enemies killed in total. <br /></td></tr>
 <tr class="separator:a7cd6fc1fe48db6815c528f869f587d64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a049a4d27adfcd88dcb9da92828754a1b"><td class="memItemLeft" align="right" valign="top"><a id="a049a4d27adfcd88dcb9da92828754a1b" name="a049a4d27adfcd88dcb9da92828754a1b"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>score</b> = 0</td></tr>
+<tr class="separator:a049a4d27adfcd88dcb9da92828754a1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afaf4d8f0c19b3e7e5fe2d1d79452fe2b"><td class="memItemLeft" align="right" valign="top"><a id="afaf4d8f0c19b3e7e5fe2d1d79452fe2b" name="afaf4d8f0c19b3e7e5fe2d1d79452fe2b"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_enemiesTakeDamage</b> = true</td></tr>
+<tr class="separator:afaf4d8f0c19b3e7e5fe2d1d79452fe2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02579302dcaec954608a568262ec27df"><td class="memItemLeft" align="right" valign="top"><a id="a02579302dcaec954608a568262ec27df" name="a02579302dcaec954608a568262ec27df"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>timer</b> = 0</td></tr>
 <tr class="memdesc:a02579302dcaec954608a568262ec27df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timer to display in the UI. <br /></td></tr>
@@ -308,8 +320,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>firstSpawn</b> = fals
 
 </div>
 </div>
-<a id="a8531f5cce331f2a809ed8133229dd99f" name="a8531f5cce331f2a809ed8133229dd99f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8531f5cce331f2a809ed8133229dd99f">&#9670;&#160;</a></span>RemoveEnemy()</h2>
+<a id="a4d91f6f1bad835f9c2f277f96ffe0141" name="a4d91f6f1bad835f9c2f277f96ffe0141"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d91f6f1bad835f9c2f277f96ffe0141">&#9670;&#160;</a></span>RemoveEnemy()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -324,7 +336,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>firstSpawn</b> = fals
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>killedByPlayer</em>&#160;</td>
+          <td class="paramname"><em>countPoints</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
