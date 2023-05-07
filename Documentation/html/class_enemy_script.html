@@ -96,9 +96,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>GetTestData</b> (out 
 <tr class="memitem:aec67fe782ffea207a114872969101ffe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy_script.html#aec67fe782ffea207a114872969101ffe">Damage</a> (int power)</td></tr>
 <tr class="memdesc:aec67fe782ffea207a114872969101ffe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Damages the current enemy, and checks if it has run out of health.  <br /></td></tr>
 <tr class="separator:aec67fe782ffea207a114872969101ffe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed2130573dc1ec6e62bc21baf08cf9f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy_script.html#aed2130573dc1ec6e62bc21baf08cf9f9">DestroyEnemy</a> (bool killedByPlayer)</td></tr>
-<tr class="memdesc:aed2130573dc1ec6e62bc21baf08cf9f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the enemy object and removes it from the <a class="el" href="class_enemy_manager.html">EnemyManager</a>'s enemy list.  <br /></td></tr>
-<tr class="separator:aed2130573dc1ec6e62bc21baf08cf9f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f17a1375e68134b061db1f241ce4970"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy_script.html#a9f17a1375e68134b061db1f241ce4970">DestroyEnemy</a> (bool countPoints)</td></tr>
+<tr class="memdesc:a9f17a1375e68134b061db1f241ce4970"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the enemy object and removes it from the <a class="el" href="class_enemy_manager.html">EnemyManager</a>'s enemy list.  <br /></td></tr>
+<tr class="separator:a9f17a1375e68134b061db1f241ce4970"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -106,14 +106,24 @@ Public Attributes</h2></td></tr>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>health</b> = 10</td></tr>
 <tr class="memdesc:ac784ddaec229d61c5dfff47a5f3df4bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Health given to the current enemy (default = 10). <br /></td></tr>
 <tr class="separator:ac784ddaec229d61c5dfff47a5f3df4bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82bac25438328706b7d85378f802bc97"><td class="memItemLeft" align="right" valign="top"><a id="a82bac25438328706b7d85378f802bc97" name="a82bac25438328706b7d85378f802bc97"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>points</b> = 1</td></tr>
+<tr class="memdesc:a82bac25438328706b7d85378f802bc97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Points to assign to the player for killing this type of enemy. <br /></td></tr>
+<tr class="separator:a82bac25438328706b7d85378f802bc97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a54d1f0ce57b57f7f561a37a75bf8eb69"><td class="memItemLeft" align="right" valign="top"><a id="a54d1f0ce57b57f7f561a37a75bf8eb69" name="a54d1f0ce57b57f7f561a37a75bf8eb69"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>flying</b> = false</td></tr>
 <tr class="memdesc:a54d1f0ce57b57f7f561a37a75bf8eb69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if the current enemy is flying or not (off by default). <br /></td></tr>
 <tr class="separator:a54d1f0ce57b57f7f561a37a75bf8eb69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9198e5a7c75e7502193609caa8d700d"><td class="memItemLeft" align="right" valign="top"><a id="ac9198e5a7c75e7502193609caa8d700d" name="ac9198e5a7c75e7502193609caa8d700d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>takeDamage</b> = true</td></tr>
+<tr class="separator:ac9198e5a7c75e7502193609caa8d700d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d54bcff7be138752a3c2bf3c48e3e7c"><td class="memItemLeft" align="right" valign="top"><a id="a8d54bcff7be138752a3c2bf3c48e3e7c" name="a8d54bcff7be138752a3c2bf3c48e3e7c"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>frozen</b> = false</td></tr>
 <tr class="memdesc:a8d54bcff7be138752a3c2bf3c48e3e7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if the enemy is frozen in place. <br /></td></tr>
 <tr class="separator:a8d54bcff7be138752a3c2bf3c48e3e7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa35b1cff3b86f5a730c9927a5e84d2d0"><td class="memItemLeft" align="right" valign="top"><a id="aa35b1cff3b86f5a730c9927a5e84d2d0" name="aa35b1cff3b86f5a730c9927a5e84d2d0"></a>
+GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>geometry</b></td></tr>
+<tr class="separator:aa35b1cff3b86f5a730c9927a5e84d2d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48629d3528921626ae84e7d8e12bfb83"><td class="memItemLeft" align="right" valign="top"><a id="a48629d3528921626ae84e7d8e12bfb83" name="a48629d3528921626ae84e7d8e12bfb83"></a>
 AudioClip&#160;</td><td class="memItemRight" valign="bottom"><b>spawnAudio</b></td></tr>
 <tr class="memdesc:a48629d3528921626ae84e7d8e12bfb83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sound effect to be played when the enemy spawns. <br /></td></tr>
@@ -139,7 +149,6 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>DamagesWall</b> = fal
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a61a56df6ca1e4301e3b17525a2885f0a"><td class="memItemLeft" align="right" valign="top"><a id="a61a56df6ca1e4301e3b17525a2885f0a" name="a61a56df6ca1e4301e3b17525a2885f0a"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Start</b> ()</td></tr>
-<tr class="memdesc:a61a56df6ca1e4301e3b17525a2885f0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start runs when loading the GameObject that this script is attached to. <br /></td></tr>
 <tr class="separator:a61a56df6ca1e4301e3b17525a2885f0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a202e94e7c19cfcb50bb0cf979d21b6"><td class="memItemLeft" align="right" valign="top"><a id="a4a202e94e7c19cfcb50bb0cf979d21b6" name="a4a202e94e7c19cfcb50bb0cf979d21b6"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> ()</td></tr>
@@ -173,6 +182,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Initialise</b> ()</td
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SpawnIndicator</b> ()</td></tr>
 <tr class="memdesc:a59c3b3688dec7659ee36e8697ea1e9c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates the spawn direction of the enemy if it is out of the player's fielf of view. <br /></td></tr>
 <tr class="separator:a59c3b3688dec7659ee36e8697ea1e9c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab511772b840f61e28aa451a63ac65a9b"><td class="memItemLeft" align="right" valign="top"><a id="ab511772b840f61e28aa451a63ac65a9b" name="ab511772b840f61e28aa451a63ac65a9b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>GetDefaultMaterials</b> ()</td></tr>
+<tr class="separator:ab511772b840f61e28aa451a63ac65a9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac49ec588a28d886c16a42f10f956f849"><td class="memItemLeft" align="right" valign="top">IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_enemy_script.html#ac49ec588a28d886c16a42f10f956f849">DamageIndicator</a> ()</td></tr>
 <tr class="memdesc:ac49ec588a28d886c16a42f10f956f849"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates the enemy has been damaged by turning its body red for a brief time and playing the damaged sound effect.  <br /></td></tr>
 <tr class="separator:ac49ec588a28d886c16a42f10f956f849"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -250,6 +262,10 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>_pathCounter</b> = 0</
 Vector3&#160;</td><td class="memItemRight" valign="bottom"><b>_defaultOrientation</b></td></tr>
 <tr class="memdesc:a247e1f8c5bd984e13bfe868e4bf266a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial orientation of the enemy prefab. <br /></td></tr>
 <tr class="separator:a247e1f8c5bd984e13bfe868e4bf266a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a95d67607a86c6e2087d547eabd63e8"><td class="memItemLeft" align="right" valign="top"><a id="a3a95d67607a86c6e2087d547eabd63e8" name="a3a95d67607a86c6e2087d547eabd63e8"></a>
+List&lt; Color &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>defaultColours</b> = new List&lt;Color&gt;()</td></tr>
+<tr class="memdesc:a3a95d67607a86c6e2087d547eabd63e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start runs when loading the GameObject that this script is attached to. <br /></td></tr>
+<tr class="separator:a3a95d67607a86c6e2087d547eabd63e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Controls enemy behaviour. </p>
@@ -308,8 +324,8 @@ Vector3&#160;</td><td class="memItemRight" valign="bottom"><b>_defaultOrientatio
 
 </div>
 </div>
-<a id="aed2130573dc1ec6e62bc21baf08cf9f9" name="aed2130573dc1ec6e62bc21baf08cf9f9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aed2130573dc1ec6e62bc21baf08cf9f9">&#9670;&#160;</a></span>DestroyEnemy()</h2>
+<a id="a9f17a1375e68134b061db1f241ce4970" name="a9f17a1375e68134b061db1f241ce4970"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f17a1375e68134b061db1f241ce4970">&#9670;&#160;</a></span>DestroyEnemy()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -318,7 +334,7 @@ Vector3&#160;</td><td class="memItemRight" valign="bottom"><b>_defaultOrientatio
           <td class="memname">void EnemyScript.DestroyEnemy </td>
           <td>(</td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>killedByPlayer</em></td><td>)</td>
+          <td class="paramname"><em>countPoints</em></td><td>)</td>
           <td></td>
         </tr>
       </table>

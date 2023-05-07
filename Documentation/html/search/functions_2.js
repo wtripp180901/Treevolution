@@ -6,7 +6,7 @@ var searchData=
   ['calibrationsuccesspopup_3',['CalibrationSuccessPopUp',['../class_u_i_controller.html#a8e1d28ddcf235500e39220969c2a1830',1,'UIController']]],
   ['clearenemies_4',['clearEnemies',['../class_game_state_manager.html#a74e5680032fc070b42c78d4244b20701',1,'GameStateManager']]],
   ['clearplane_5',['ClearPlane',['../class_plane_mapper.html#ae939351e8ae40af6e5645eb53c55a744',1,'PlaneMapper']]],
-  ['cleartextafterdelay_6',['clearTextAfterDelay',['../class_u_i_controller.html#a76afabaccd931ae1fd9a554348c789d7',1,'UIController']]],
+  ['cleartextafterdelay_6',['clearTextAfterDelay',['../class_u_i_controller.html#a20b71b63521751650cff8a3be303623d',1,'UIController']]],
   ['closeopendialogs_7',['CloseOpenDialogs',['../class_u_i_controller.html#a8092ada6be6e28d5d877ddaef44d8914',1,'UIController']]],
   ['closestgameobjecttopointer_8',['closestGameObjectToPointer',['../class_language_parsing_1_1_action_resolver.html#a6929d84098d7e399e61a235f9dfcb107',1,'LanguageParsing::ActionResolver']]],
   ['continuetutorialbattle_9',['ContinueTutorialBattle',['../class_game_state_manager.html#ab424c6a483bddbcbe9a655e92eea04c5',1,'GameStateManager']]],

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['languageparsing_0',['LanguageParsing',['../namespace_language_parsing.html',1,'']]]
+  ['buddyactions_0',['BuddyActions',['../namespace_buddy_actions.html',1,'']]]
 ];

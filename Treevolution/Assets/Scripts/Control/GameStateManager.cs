@@ -96,7 +96,7 @@ public class GameStateManager : MonoBehaviour
     /// <summary>
     /// Running TowerManager instance.
     /// </summary>
-    private TowerManager _towerManager;
+    private Towers.TowerManager _towerManager;
     /// <summary>
     /// The current GameState value.
     /// </summary>
@@ -252,7 +252,7 @@ public class GameStateManager : MonoBehaviour
         _enemyManager.resetEnemiesKilled();
         _roundTimer = GetComponent<RoundTimer>();
         _defaultRoundLength = _roundTimer.GetRoundLength();
-        _towerManager = GetComponent<TowerManager>();
+        _towerManager = GetComponent<Towers.TowerManager>();
         _qRDetection.StartQR();
         _uIController.CalibrationPopUp();
     }

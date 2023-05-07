@@ -5,94 +5,97 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using TMPro;
 
-public class EnemyTests
+namespace Tests
 {
-
-    // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-    // `yield return null;` to skip a frame.
-    [UnityTest]
-    public IEnumerator NormalEnemiesDamagedByWalls()
+    public class EnemyTests
     {
-        Rigidbody rig;
-        EnemyScript enemyScript;
-        GameObject logic;
-        GameObject enemy;
-        CreateSceneWithEnemies(out rig,out enemy,out enemyScript,out logic);
-        rig.MovePosition(new Vector3(5, 0, 0));
-        
-        GameObject wall = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        //wall.AddComponent<BoxCollider>();
-        wall.GetComponent<BoxCollider>().isTrigger = true;
 
-        bool inWall;
-        int health;
-        enemyScript.GetTestData(out inWall,out health);
+        // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
+        // `yield return null;` to skip a frame.
+        [UnityTest]
+        public IEnumerator NormalEnemiesDamagedByWalls()
+        {
+            Rigidbody rig;
+            EnemyScript enemyScript;
+            GameObject logic;
+            GameObject enemy;
+            CreateSceneWithEnemies(out rig, out enemy, out enemyScript, out logic);
+            rig.MovePosition(new Vector3(5, 0, 0));
 
-        Assert.IsFalse(inWall);
-        yield return null;
+            GameObject wall = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            //wall.AddComponent<BoxCollider>();
+            wall.GetComponent<BoxCollider>().isTrigger = true;
 
-        rig.MovePosition(wall.transform.position);
+            bool inWall;
+            int health;
+            enemyScript.GetTestData(out inWall, out health);
 
-        yield return new WaitForFixedUpdate();
-        enemyScript.GetTestData(out inWall,out health);
+            Assert.IsFalse(inWall);
+            yield return null;
 
-        int prevHealth = health;
-        Assert.IsTrue(inWall);
-        yield return new WaitForSeconds(1);
-        enemyScript.GetTestData(out inWall, out health);
-        Assert.AreEqual(prevHealth > health, true);
-        
-    }
+            rig.MovePosition(wall.transform.position);
 
-    public static void CreateSceneWithEnemies(out Rigidbody enemyRb,out GameObject enemy,out EnemyScript enemyScript,out GameObject logic)
-    {
-        logic = new GameObject();
-        logic.AddComponent<EnemyManager>();
-        logic.AddComponent<RoundTimer>();
-        logic.GetComponent<EnemyManager>().SetupForTest();
-        logic.tag = "Logic";
-        logic.name = "Logic";
+            yield return new WaitForFixedUpdate();
+            enemyScript.GetTestData(out inWall, out health);
 
-        GameObject rInd = new GameObject();
-        GameObject lInd = new GameObject();
-        rInd.AddComponent<MeshRenderer>();
-        lInd.AddComponent<MeshRenderer>();
-        rInd.tag = "RightIndicator";
-        lInd.tag = "LeftIndicator";
-        lInd.AddComponent<SpawnDirectionIndicator>();
-        rInd.AddComponent<SpawnDirectionIndicator>();
+            int prevHealth = health;
+            Assert.IsTrue(inWall);
+            yield return new WaitForSeconds(1);
+            enemyScript.GetTestData(out inWall, out health);
+            Assert.AreEqual(prevHealth > health, true);
 
-        GameObject tree = new GameObject();
-        tree.tag = "Tree";
+        }
 
-        GameObject cam = new GameObject("MainCamera");
-        cam.tag = "MainCamera";
-        cam.AddComponent<Camera>();
+        public static void CreateSceneWithEnemies(out Rigidbody enemyRb, out GameObject enemy, out EnemyScript enemyScript, out GameObject logic)
+        {
+            logic = new GameObject();
+            logic.AddComponent<EnemyManager>();
+            logic.AddComponent<RoundTimer>();
+            logic.GetComponent<EnemyManager>().SetupForTest();
+            logic.tag = "Logic";
+            logic.name = "Logic";
 
-        createBasicEnemy(out enemy, out enemyRb, out enemyScript);
-    }
+            GameObject rInd = new GameObject();
+            GameObject lInd = new GameObject();
+            rInd.AddComponent<MeshRenderer>();
+            lInd.AddComponent<MeshRenderer>();
+            rInd.tag = "RightIndicator";
+            lInd.tag = "LeftIndicator";
+            lInd.AddComponent<SpawnDirectionIndicator>();
+            rInd.AddComponent<SpawnDirectionIndicator>();
 
-    public static void createBasicEnemy(out GameObject enemy,out Rigidbody enemyRb,out EnemyScript enemyScript)
-    {
-        enemy = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        enemy.AddComponent<AudioSource>();
-        enemy.AddComponent<HealthBar>();
-        enemy.AddComponent<UnityEngine.UI.Slider>();
-        enemy.GetComponent<HealthBar>().SetupForTest(enemy.GetComponent<UnityEngine.UI.Slider>(), new TextMeshProUGUI());
-        enemy.AddComponent<EnemyScript>();
-        enemy.AddComponent<BoxCollider>();
-        enemy.AddComponent<Rigidbody>();
-        enemy.tag = "Enemy";
-        enemyRb = enemy.GetComponent<Rigidbody>();
-        enemyRb.collisionDetectionMode = CollisionDetectionMode.Continuous;
-        enemyRb.useGravity = false;
-        enemyScript = enemy.GetComponent<EnemyScript>();
-        enemyScript.geometry = enemy;
-    }
+            GameObject tree = new GameObject();
+            tree.tag = "Tree";
 
-    [TearDown]
-    public void ResetScene()
-    {
-        TestReseter.TearDownScene();
+            GameObject cam = new GameObject("MainCamera");
+            cam.tag = "MainCamera";
+            cam.AddComponent<Camera>();
+
+            createBasicEnemy(out enemy, out enemyRb, out enemyScript);
+        }
+
+        public static void createBasicEnemy(out GameObject enemy, out Rigidbody enemyRb, out EnemyScript enemyScript)
+        {
+            enemy = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            enemy.AddComponent<AudioSource>();
+            enemy.AddComponent<HealthBar>();
+            enemy.AddComponent<UnityEngine.UI.Slider>();
+            enemy.GetComponent<HealthBar>().SetupForTest(enemy.GetComponent<UnityEngine.UI.Slider>(), new TextMeshProUGUI());
+            enemy.AddComponent<EnemyScript>();
+            enemy.AddComponent<BoxCollider>();
+            enemy.AddComponent<Rigidbody>();
+            enemy.tag = "Enemy";
+            enemyRb = enemy.GetComponent<Rigidbody>();
+            enemyRb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+            enemyRb.useGravity = false;
+            enemyScript = enemy.GetComponent<EnemyScript>();
+            enemyScript.geometry = enemy;
+        }
+
+        [TearDown]
+        public void ResetScene()
+        {
+            TestReseter.TearDownScene();
+        }
     }
 }

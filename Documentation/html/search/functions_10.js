@@ -15,7 +15,7 @@ var searchData=
   ['spawnenemy_12',['spawnEnemy',['../class_enemy_manager.html#a4917955cbb9bb525a038f60210b457d5',1,'EnemyManager']]],
   ['spawnindicator_13',['SpawnIndicator',['../class_enemy_script.html#a59c3b3688dec7659ee36e8697ea1e9c4',1,'EnemyScript']]],
   ['spawnobjectonqr_14',['SpawnObjectOnQR',['../class_q_r_detection.html#a0f963f7bcc0d7b46b1ff1c034f1d74f2',1,'QRDetection']]],
-  ['start_15',['Start',['../class_round_timer.html#a4411a43abb20f6f797bbf2e6c9c19d02',1,'RoundTimer.Start()'],['../class_enemy_script.html#a61a56df6ca1e4301e3b17525a2885f0a',1,'EnemyScript.Start()'],['../class_enemy_touch_handler.html#adecdf0130036739e9a8a7063f693872e',1,'EnemyTouchHandler.Start()'],['../class_u_i_controller.html#a676b3b972c33885db4565ee43f23e459',1,'UIController.Start()']]],
+  ['start_15',['Start',['../class_round_timer.html#a4411a43abb20f6f797bbf2e6c9c19d02',1,'RoundTimer.Start()'],['../class_enemy_touch_handler.html#adecdf0130036739e9a8a7063f693872e',1,'EnemyTouchHandler.Start()'],['../class_u_i_controller.html#a676b3b972c33885db4565ee43f23e459',1,'UIController.Start()']]],
   ['startgame_16',['StartGame',['../class_start_menu_logic.html#a21cd95add1159250d964577d47ca630b',1,'StartMenuLogic']]],
   ['startmovetonexttarget_17',['StartMoveToNextTarget',['../class_enemy_script.html#aafd8c3e4f99375d32ca7e64af1aa216c',1,'EnemyScript']]],
   ['startqr_18',['StartQR',['../class_q_r_detection.html#adcc7802da95f364fbb13fcf81e00b029',1,'QRDetection']]],
