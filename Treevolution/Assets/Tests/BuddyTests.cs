@@ -51,6 +51,48 @@ namespace Tests
             Assert.AreEqual(closerEnemy, currentTarget);
         }
 
+        [UnityTest]
+        public IEnumerator TestTargettedActionWorksWithSingleTargetInit()
+        {
+            GameObject closerEnemy, furtherEnemy;
+            DictationTests.setupAttackScene(out closerEnemy, out furtherEnemy);
+            BuddyScript buddyScript = GameObject.FindWithTag("Buddy").GetComponent<BuddyScript>();
+            buddyScript.GiveInstructions(new List<BuddyAction>() { new TargetedBuddyAction(BUDDY_ACTION_TYPES.Attack, closerEnemy) });
+            yield return null;
+            Queue<GameObject> targets;
+            GameObject currentTarget;
+            bool isok;
+            buddyScript.GetTestData(out targets, out currentTarget,out isok);
+            Assert.IsEmpty(targets);
+            Assert.AreEqual(currentTarget, closerEnemy);
+            Assert.IsFalse(isok);
+        }
+
+        [UnityTest]
+        public IEnumerator TestBuddyMoveAction()
+        {
+            GameObject buddy = new GameObject();
+            buddy.transform.position = new Vector3(0, 0, 0);
+            buddy.AddComponent<Rigidbody>();
+            buddy.AddComponent<BuddyScript>();
+
+            BuddyScript script = buddy.GetComponent<BuddyScript>();
+            buddy.GetComponent<Rigidbody>().useGravity = false;
+            script.SetupForTest(1f);
+
+            yield return null;
+
+            script.GiveInstructions(new List<BuddyAction>() { new MoveBuddyAction(new Vector3(1, 0, 0)) });
+
+            yield return null;
+
+            yield return new WaitForFixedUpdate();
+            Assert.Greater(buddy.GetComponent<Rigidbody>().transform.position.magnitude, 0);
+            yield return new WaitForSeconds(1f);
+            Assert.Less((buddy.GetComponent<Rigidbody>().position - new Vector3(1, 0, 0)).magnitude, 0.05f);
+
+        }
+
         [TearDown]
         public void ResetScene()
         {

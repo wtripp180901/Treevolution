@@ -46,6 +46,44 @@ namespace Tests
 
         }
 
+        [UnityTest]
+        public IEnumerator TestEnemiesDamageThroughTouchInteraction()
+        {
+            Rigidbody dummy;
+            GameObject dummy1;
+            GameObject enemy;
+            EnemyScript enemyScript;
+            CreateSceneWithEnemies(out dummy, out enemy, out enemyScript, out dummy1);
+            enemy.AddComponent<EnemyTouchHandler>();
+            yield return null;
+            int prevHealth = enemyScript.health;
+            enemy.GetComponent<EnemyTouchHandler>().OnTouchStarted(null);
+            Assert.Less(enemyScript.health, prevHealth);
+
+        }
+
+        [UnityTest]
+        public IEnumerator TestEnemiesSafelyDestroyedByTree()
+        {
+            Rigidbody enemyRb;
+            GameObject enemy;
+            EnemyScript dummy;
+            GameObject logic;
+            CreateSceneWithEnemies(out enemyRb, out enemy, out dummy, out logic);
+            GameObject tree = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+            logic.GetComponent<EnemyManager>().AddToSceneAsEnemyForTest(enemy);
+            tree.tag = "Tree";
+            tree.AddComponent<TreeScript>();
+            tree.transform.position = new Vector3(2, 0, 0);
+            yield return null;
+            Assert.Contains(enemy,logic.GetComponent<EnemyManager>().enemies);
+            enemyRb.MovePosition(tree.transform.position);
+            yield return new WaitForFixedUpdate();
+            yield return null;
+            //Assert.IsNull(enemy);
+            Assert.AreEqual(0, logic.GetComponent<EnemyManager>().enemies.Length);
+        }
+
         public static void CreateSceneWithEnemies(out Rigidbody enemyRb, out GameObject enemy, out EnemyScript enemyScript, out GameObject logic)
         {
             logic = new GameObject();
@@ -80,7 +118,8 @@ namespace Tests
             enemy.AddComponent<AudioSource>();
             enemy.AddComponent<HealthBar>();
             enemy.AddComponent<UnityEngine.UI.Slider>();
-            enemy.GetComponent<HealthBar>().SetupForTest(enemy.GetComponent<UnityEngine.UI.Slider>(), new TextMeshProUGUI());
+            enemy.AddComponent<TextMeshProUGUI>();
+            enemy.GetComponent<HealthBar>().SetupForTest(enemy.GetComponent<UnityEngine.UI.Slider>(), enemy.GetComponent<TextMeshProUGUI>());
             enemy.AddComponent<EnemyScript>();
             enemy.AddComponent<BoxCollider>();
             enemy.AddComponent<Rigidbody>();

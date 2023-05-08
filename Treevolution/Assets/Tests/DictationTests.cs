@@ -382,8 +382,28 @@ namespace Tests {
             buddy.tag = "Buddy";
             buddy.AddComponent<Rigidbody>();
             buddy.AddComponent<BuddyScript>();
-            buddy.GetComponent<BuddyScript>().SetupForTest();
+            buddy.GetComponent<BuddyScript>().SetupForTest(1);
             buddy.transform.position = new Vector3(0, 0, 0);
+        }
+
+        [Test]
+        public void ResolvesSoftConstraintsCorrectly()
+        {
+            GameObject dummy = new GameObject();
+            dummy.AddComponent<BuddyInteractable>();
+            BuddyInteractable interactable = dummy.GetComponent<BuddyInteractable>();
+            interactable.SetupForTest(new RESTRICTION_TYPES[] { RESTRICTION_TYPES.Flying });
+            Assert.IsTrue(interactable.SatisfiesConstraints(new RESTRICTION_TYPES[] { }, new RESTRICTION_TYPES[] { RESTRICTION_TYPES.Flying, RESTRICTION_TYPES.Dragonfly }));
+        }
+
+        [Test]
+        public void ResolutionFailsIfSoftButNotHardConstraints()
+        {
+            GameObject dummy = new GameObject();
+            dummy.AddComponent<BuddyInteractable>();
+            BuddyInteractable interactable = dummy.GetComponent<BuddyInteractable>();
+            interactable.SetupForTest(new RESTRICTION_TYPES[] { RESTRICTION_TYPES.Flying });
+            Assert.IsFalse(interactable.SatisfiesConstraints(new RESTRICTION_TYPES[] { RESTRICTION_TYPES.Dragonfly }, new RESTRICTION_TYPES[] { RESTRICTION_TYPES.Flying }));
         }
 
         [TearDown]

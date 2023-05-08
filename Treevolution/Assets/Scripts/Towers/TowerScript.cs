@@ -74,6 +74,12 @@ namespace Towers
             _towerManager.AddTower(this.gameObject);
             baseFireRate = fireRate;
         }
+
+        public void SetupForTest(float range)
+        {
+            rangeRadius = range;
+        }
+
         public void Update()
         {
             UpdateTargets();
