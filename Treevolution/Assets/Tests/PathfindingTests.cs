@@ -60,6 +60,57 @@ namespace Tests
             Assert.AreEqual(corners1.Length + corners2.Length + 1, Pathfinding.PathfindingGraphGenerator.GetPathfindingGraph().Length);
         }
 
+        [UnityTest]
+        public IEnumerator TestBattleMovementPenaltyAppliedForWalls()
+        {
+            GameProperties.BattlePhase = true;
+            GameObject wall = new GameObject();
+            WallScript wallScript = wall.AddComponent<WallScript>();
+            wallScript.SetupForTest(wall.AddComponent<BoxCollider>(), wall.AddComponent<Pathfinding.PathfindingObstacle>());
+            RuntimeMovable runtimeMovable = wall.AddComponent<RuntimeMovable>();
+            runtimeMovable.SetupForTest(wallScript, 0.1f);
+            yield return null;
+            wall.transform.position = new Vector3(5, 0, 0);
+            yield return new WaitForSeconds(0.05f);
+            Assert.IsFalse(wallScript.GetComponent<Collider>().enabled);
+            yield return new WaitForSeconds(0.06f);
+            Assert.IsTrue(wallScript.GetComponent<Collider>().enabled);
+
+        }
+
+        [UnityTest]
+        public IEnumerator TestBattleMovementPenaltyAppliedForTowers()
+        {
+            GameObject logic = new GameObject();
+            logic.name = "Logic";
+            logic.tag = "Logic";
+
+            logic.AddComponent<Towers.TowerManager>();
+            logic.AddComponent<EnemyManager>();
+
+            GameObject rangeVisual = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+            
+            GameProperties.BattlePhase = true;
+            GameObject disabledVisualObject = new GameObject();
+            disabledVisualObject.AddComponent<MeshRenderer>();
+            GameObject tower = new GameObject();
+            RuntimeMovable runtimeMovable = tower.AddComponent<RuntimeMovable>();
+            Towers.SingleTargetTower towerScript = tower.AddComponent<Towers.SingleTargetTower>();
+            towerScript.rangeVisual = rangeVisual;
+            towerScript.disabledVisualObject = disabledVisualObject;
+            runtimeMovable.SetupForTest(towerScript, 0.1f);
+            yield return null;
+            tower.transform.position = new Vector3(5, 0, 0);
+            yield return new WaitForSeconds(0.05f);
+            bool shootingEnabled = false;
+            towerScript.GetTestData(out shootingEnabled);
+            Assert.IsFalse(shootingEnabled);
+            yield return new WaitForSeconds(0.06f);
+            towerScript.GetTestData(out shootingEnabled);
+            Assert.IsTrue(shootingEnabled);
+
+        }
+
         [TearDown]
         public void ResetScene()
         {

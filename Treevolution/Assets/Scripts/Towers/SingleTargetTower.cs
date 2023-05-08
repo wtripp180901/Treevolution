@@ -63,6 +63,11 @@ namespace Towers
 
         }
 
+        public void GetTestData(out bool shootingIsEnabled)
+        {
+            shootingIsEnabled = !shootingDisabled;
+        }
+
         /// <summary>
         /// Calls the base class' Update, and then rotates towards the current target, and attacks if the fire interval time has passed.
         /// </summary>
