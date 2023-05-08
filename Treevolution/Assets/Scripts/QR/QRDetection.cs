@@ -141,15 +141,6 @@ public class QRDetection : MonoBehaviour
         }
     }
 
-    private bool PosesTooSimilar(Pose oldPose, Pose newPose)
-    {
-        if (Vector3.Distance(oldPose.position, newPose.position) > 0.03 ||
-                Math.Abs(Quaternion.Angle(oldPose.rotation, newPose.rotation)) > 5)
-            return false;
-        return true;
-
-    }
-
     /// <summary>
     /// Checks and draws the game board plane.
     /// </summary>
@@ -173,29 +164,6 @@ public class QRDetection : MonoBehaviour
                 _oldPlanePose = newPose;
             }
         }
-    }
-
-    /// <summary>
-    /// Spawns a GameObject on a QRCode, and covers the QR with a plane.
-    /// </summary>
-    /// <param name="qr">QrCode to spawn the object on.</param>
-    /// <param name="obj">GameObject to spawn.</param>
-    public GameObject SpawnObjectOnQR(QRCode qr, GameObject obj)
-    {
-        Pose qrPose;
-        SpatialGraphNode.FromStaticNodeId(qr.SpatialGraphNodeId).TryLocate(FrameTime.OnUpdate, out qrPose); // Get pose of QR Code
-        float qrSideLength = qr.PhysicalSideLength;
-        Vector3 markerSize = new Vector3(qrSideLength, qrSideLength, qrSideLength);
-        Vector3 qrCentreWorld = qrPose.position + qrSideLength / 2 * (qrPose.right + qrPose.up);// QR Centre in World Coordinates
-        obj.transform.rotation = Quaternion.LookRotation(-qrPose.up, qrPose.forward);
-        obj.transform.position = qrCentreWorld;
-        GameObject qrPlane = GameObject.CreatePrimitive(PrimitiveType.Plane);
-        qrPlane.transform.rotation = Quaternion.LookRotation(-qrPose.up, qrPose.forward); ;
-        qrPlane.transform.position = qrCentreWorld;
-        qrPlane.transform.localScale = markerSize * 0.1f;
-        qrPlane.tag = "Floor";
-        qrPlane.transform.SetParent(obj.transform);
-        return obj;
     }
 
     /// <summary>
@@ -287,12 +255,8 @@ public class QRDetection : MonoBehaviour
     {
         Pose currentPose, oldPose = Pose.identity;
         SpatialGraphNode.FromStaticNodeId(args.Code.SpatialGraphNodeId).TryLocate(FrameTime.OnUpdate, out currentPose);
-/*        lock (_trackedCodes) {
-            if (_trackedCodes.ContainsKey(args.Code.Id))
-                oldPose = new Pose(_trackedCodes[args.Code.Id].obj.transform.position, _trackedCodes[args.Code.Id].obj.transform.rotation);
-        }*/
-        if (currentPose == Pose.identity)// || PosesTooSimilar(oldPose, currentPose))
-            return; // Disregards if pose is identity or if code is too similar to before.
+        if (currentPose == Pose.identity)
+            return; // Disregards if pose is identity
 
         lock (_updatedCodeQueue)
         {
@@ -397,7 +361,6 @@ public class QRDetection : MonoBehaviour
     /// </summary>
     public void StopQR()
     {
-        //if (QRCodeWatcher.IsSupported()) watcher.Stop();
         _running = false;
     }
     /// <summary>
@@ -406,7 +369,6 @@ public class QRDetection : MonoBehaviour
     public void StartQR()
     {
         ResetCodeQueue();
-        //if (QRCodeWatcher.IsSupported()) watcher.Start();
         _running = true;
     }
 }

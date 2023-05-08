@@ -4,16 +4,33 @@ using UnityEngine;
 
 public class MultiTargetTower : TowerScript
 {
+    /// <summary>
+    /// Determines if the tower can target flying enemies.
+    /// </summary>
     [SerializeField]
     private bool _targetFlying = false;
+    /// <summary>
+    /// Determines if the tower can target ground enemies.
+    /// </summary>
     [SerializeField]
     private bool _targetGround = true;
+    /// <summary>
+    /// List of enemy EnemyScripts of the currently targetted enemies.
+    /// </summary>
     private List<EnemyScript> _targetEnemies;
+    /// <summary>
+    /// Current EnemyScript of the target being damaged.
+    /// </summary>
     private EnemyScript _currentTarget;
+    /// <summary>
+    /// Timer to count down between damage events, ensuring that the tower's damage interval is being met.
+    /// </summary>
     private float _fireRateDelta;
 
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Calls the base class' Start, and then initialises its own components.
+    /// </summary>
     public void Start()
     {
         base.Start();
@@ -21,7 +38,9 @@ public class MultiTargetTower : TowerScript
         _fireRateDelta = 0;
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Calls the base class' Start, and then attacks current targets if the fire interval time has passed.
+    /// </summary>
     private void Update()
     {
         base.Update();
@@ -36,19 +55,25 @@ public class MultiTargetTower : TowerScript
                     Attack();
                 }
             }
-            _fireRateDelta = fireRate;
+            _fireRateDelta = fireInterval;
         }
         else if (_fireRateDelta <= 0)
         {
-             _fireRateDelta = fireRate;
+             _fireRateDelta = fireInterval;
         }
     }
 
+    /// <summary>
+    /// Damages the current target.
+    /// </summary>
     public override void Attack()
     {
         _currentTarget.Damage(damage);
     }
 
+    /// <summary>
+    /// Updates the currently targetted enemies to any enemies within range.
+    /// </summary>
     public override void UpdateTargets()
     {
         GameObject[] enemies = enemyManager.enemies;
@@ -66,12 +91,19 @@ public class MultiTargetTower : TowerScript
         }
     }
 
+    /// <summary>
+    /// Updates the position and size of the range visual to match the tower's position and attributes.
+    /// </summary>
     public override void UpdateRangeVisual()
     {
         rangeVisual.transform.localScale = new Vector3(rangeRadius * 2, rangeRadius * 2, rangeRadius * 2);
         rangeVisual.transform.position = transform.position;
     }
 
+    /// <summary>
+    /// Gets the range object of the current tower.
+    /// </summary>
+    /// <returns>A sphere object.</returns>
     public override GameObject GetRangeObject()
     {
         return GameObject.CreatePrimitive(PrimitiveType.Sphere);
