@@ -103,6 +103,41 @@ namespace Tests
 
         }
 
+        [UnityTest]
+        public IEnumerator TestMultiTargetTower()
+        {
+            Rigidbody enemyRb;
+            GameObject enemy;
+            EnemyScript enemyScript;
+            GameObject logic;
+            EnemyTests.CreateSceneWithEnemies(out enemyRb, out enemy, out enemyScript, out logic);
+            enemyRb.useGravity = false;
+            enemy.transform.position = new Vector3(0.5f, 0, 0);
+            logic.GetComponent<EnemyManager>().AddToSceneAsEnemyForTest(enemy);
+
+            GameObject enemy1;
+            EnemyScript enemyScript1;
+            EnemyTests.createBasicEnemy(out enemy1, out enemyRb, out enemyScript1);
+            enemyRb.useGravity = false;
+            enemy1.transform.position = new Vector3(-0.5f, 0, 0);
+            logic.GetComponent<EnemyManager>().AddToSceneAsEnemyForTest(enemy1);
+
+            logic.AddComponent<TowerManager>();
+            GameObject multiTargetTower = new GameObject();
+            multiTargetTower.transform.position = new Vector3(0, 0, 0);
+            multiTargetTower.tag = "Tower";
+            multiTargetTower.AddComponent<MultiTargetTower>();
+            MultiTargetTower towerScript = multiTargetTower.GetComponent<MultiTargetTower>();
+            towerScript.SetupForTest(1);
+
+            int prevHealth = enemyScript.health;
+            int prevHealth1 = enemyScript1.health;
+
+            yield return new WaitForSeconds(1f);
+
+            Assert.IsTrue(prevHealth > enemyScript.health && prevHealth1 > enemyScript1.health);
+        }
+
         [TearDown]
         public void ResetScene()
         {

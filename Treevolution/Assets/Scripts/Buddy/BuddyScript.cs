@@ -44,9 +44,10 @@ public class BuddyScript : MonoBehaviour
         rangeIndicator?.SetActive(false);
     }
 
-    public void SetupForTest()
+    public void SetupForTest(float speed)
     {
         rig = GetComponent<Rigidbody>();
+        this.speed = speed;
     }
 
     BUDDY_ACTION_TYPES currentAction;
@@ -95,12 +96,6 @@ public class BuddyScript : MonoBehaviour
                     break;
             }
         }
-    }
-
-    IEnumerator Delay(float v, Action value)
-    {
-        yield return new WaitForSeconds(v);
-        value?.Invoke();
     }
 
     /// <summary>
