@@ -4,38 +4,63 @@ using UnityEngine;
 
 public class SingleTargetTower : TowerScript
 {
+    /// <summary>
+    /// Determines if the tower can target flying enemies.
+    /// </summary>
     [SerializeField]
     private bool _targetFlying = false;
+    /// <summary>
+    /// Determines if the tower can target ground enemies.
+    /// </summary>
     [SerializeField]
     private bool _targetGround = true;
+    /// <summary>
+    /// Rotation speed of the tower when targetting enemies.
+    /// </summary>
     [SerializeField]
     private float _rotationSpeed = 3f;
+    /// <summary>
+    /// Distance from the tower to the currently targetted enemy.
+    /// </summary>
     private float _distanceToCurrentTarget;
+    /// <summary>
+    /// Transform of the currently targetted enemy.
+    /// </summary>
     private Transform _targetTransform;
+    /// <summary>
+    /// Attached Gun instance of the current tower.
+    /// </summary>
     private Gun _currentGun;
+    /// <summary>
+    /// Timer to count down between damage events, ensuring that the tower's damage interval is being met.
+    /// </summary>
     private float _fireRateDelta;
-    [SerializeField] private GameObject rotatingObject;
+    /// <summary>
+    /// The part(s) of the tower which will rotate towards the current target.
+    /// </summary>
+    [SerializeField]
+    private GameObject rotatingObject;
 
-
-
-    // Start is called before the first frame update
+    /// <summary>
+    /// Calls the base class' Start, and then initialises its own components.
+    /// </summary>
     public void Start()
     {
         base.Start();
-        damage = 2;
         _currentGun = GetComponent<Gun>();
         _distanceToCurrentTarget = float.MaxValue;
-        _fireRateDelta = fireRate;
+        _fireRateDelta = fireInterval;
     }
 
     public void SetupForTest(float range,GameObject rotating)
     {
         rangeRadius = range;
         rotatingObject = rotating;
-        
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Calls the base class' Start, and then rotates towards the current target, and attacks if the fire interval time has passed.
+    /// </summary>
     private void Update()
     {
         base.Update();
@@ -60,12 +85,18 @@ public class SingleTargetTower : TowerScript
         }
     }
 
+    /// <summary>
+    /// Fires projectiles at the current target, and sets the fire interval to start counting down.
+    /// </summary>
     public override void Attack()
     {
         _currentGun.Fire(_targetTransform, damage);
-        _fireRateDelta = fireRate;
+        _fireRateDelta = fireInterval;
     }
 
+    /// <summary>
+    /// Updates the currently targetted enemy to the closest one in range.
+    /// </summary>
     public override void UpdateTargets()
     {
         GameObject[] enemies = enemyManager.enemies;
@@ -84,12 +115,19 @@ public class SingleTargetTower : TowerScript
         }
     }
 
+    /// <summary>
+    /// Updates the position and size of the range visual to match the tower's position and attributes.
+    /// </summary>
     public override void UpdateRangeVisual()
     {
         rangeVisual.transform.localScale = new Vector3(rangeRadius * 2, rangeRadius * 2, rangeRadius * 2);
         rangeVisual.transform.position = transform.position;
     }
 
+    /// <summary>
+    /// Gets the range object of the current tower.
+    /// </summary>
+    /// <returns>A sphere object.</returns>
     public override GameObject GetRangeObject()
     {
         return GameObject.CreatePrimitive(PrimitiveType.Sphere);
