@@ -7,5 +7,9 @@ var searchData=
   ['defendfixedupdate_4',['defendFixedUpdate',['../class_buddy_script.html#a973f98b79ef8b4038bcc8dfb0fc44b76',1,'BuddyScript']]],
   ['destroyenemy_5',['DestroyEnemy',['../class_enemy_script.html#a9f17a1375e68134b061db1f241ce4970',1,'EnemyScript']]],
   ['dictationerror_6',['DictationError',['../class_voice_command_receiver.html#a9aedc37dc8dfaa4200abe4805ce6c54a',1,'VoiceCommandReceiver']]],
-  ['drawplane_7',['DrawPlane',['../class_q_r_detection.html#acba7a21c9cf17a272a3277939abb4b9f',1,'QRDetection']]]
+  ['disablealltowers_7',['DisableAllTowers',['../class_towers_1_1_tower_manager.html#ac2c9858f4956ce032c7f78b3e4928fbe',1,'Towers::TowerManager']]],
+  ['displayrange_8',['DisplayRange',['../class_towers_1_1_tower_script.html#ab562cc8913ee4135e6f600ab8efd5973',1,'Towers::TowerScript']]],
+  ['disttotarget_9',['DistToTarget',['../class_towers_1_1_tower_script.html#a23442594c9ed9e8c1b00e59678c5cc0b',1,'Towers::TowerScript']]],
+  ['disttotargettopdown_10',['DistToTargetTopDown',['../class_towers_1_1_tower_script.html#ad80e4559e66db108aa3337d9b6278e2e',1,'Towers::TowerScript']]],
+  ['drawplane_11',['DrawPlane',['../class_q_r_detection.html#acba7a21c9cf17a272a3277939abb4b9f',1,'QRDetection']]]
 ];

@@ -7,7 +7,6 @@ var searchData=
   ['pathfindingtests_4',['PathfindingTests',['../class_tests_1_1_pathfinding_tests.html',1,'Tests']]],
   ['pathfindingupdatepublisher_5',['PathfindingUpdatePublisher',['../class_pathfinding_1_1_pathfinding_update_publisher.html',1,'Pathfinding']]],
   ['planemapper_6',['PlaneMapper',['../class_plane_mapper.html',1,'']]],
-  ['playercontroller_7',['PlayerController',['../class_player_controller.html',1,'']]],
-  ['pointerlocationtracker_8',['PointerLocationTracker',['../class_pointer_location_tracker.html',1,'']]],
-  ['poisonscript_9',['PoisonScript',['../class_poison_script.html',1,'']]]
+  ['planetests_7',['PlaneTests',['../class_tests_1_1_plane_tests.html',1,'Tests']]],
+  ['pointerlocationtracker_8',['PointerLocationTracker',['../class_pointer_location_tracker.html',1,'']]]
 ];

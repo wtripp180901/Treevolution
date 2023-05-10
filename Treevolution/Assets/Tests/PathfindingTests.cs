@@ -20,17 +20,18 @@ namespace Tests
             yield return null;
         }
 
-        [Test]
-        public void PathfindingGraphGeneratorWorksWithoutObstacles()
+        [UnityTest]
+        public IEnumerator PathfindingGraphGeneratorWorksWithoutObstacles()
         {
             GameObject tree = GameObject.CreatePrimitive(PrimitiveType.Capsule);
             tree.tag = "Tree";
             GameObject.Instantiate(tree);
             Assert.AreEqual(1, Pathfinding.PathfindingGraphGenerator.GetPathfindingGraph().Length);
+            yield return null;
         }
 
-        [Test]
-        public void PathfindingGraphGeneratorWorksWithObstacles()
+        [UnityTest]
+        public IEnumerator PathfindingGraphGeneratorWorksWithObstacles()
         {
             GameObject logic = new GameObject();
             PlaneMapper pm = logic.AddComponent<PlaneMapper>();
@@ -58,6 +59,7 @@ namespace Tests
             Pathfinding.PathfindingGraphGenerator.AddObstacleData(bounds1, corners1);
             Pathfinding.PathfindingGraphGenerator.AddObstacleData(bounds2, corners2);
             Assert.AreEqual(corners1.Length + corners2.Length + 1, Pathfinding.PathfindingGraphGenerator.GetPathfindingGraph().Length);
+            yield return null;
         }
 
         [UnityTest]
@@ -76,6 +78,24 @@ namespace Tests
             yield return new WaitForSeconds(0.06f);
             Assert.IsTrue(wallScript.GetComponent<Collider>().enabled);
 
+        }
+
+        [UnityTest]
+        public IEnumerator PathfinderNavigatesAroundNonTrivialPaths()
+        {
+            GameObject tree = new GameObject();
+            tree.tag = "Tree";
+            GameObject obstacle = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            GameProperties.SetTestProperties(new Vector3(-10, 0, 0), new Vector3(10, 0, 0), new Vector3(-10, 0, -10), new Vector3(10, 0, -10), new Vector3(10, 0, 10), new Vector3(0, 0, 0), Pose.identity, 0);
+            obstacle.AddComponent<Pathfinding.PathfindingObstacle>();
+            obstacle.transform.position = new Vector3(3, 0, 0);
+            obstacle.layer = 3;
+            yield return null;
+
+            Vector3[] path = Pathfinding.Pathfinder.GetPath(new Vector3(0, 0, 0), new Vector3(5, 0, 0), true);
+            yield return new WaitForFixedUpdate();
+            Assert.Greater(path.Length, 2);
+            Assert.Less((path[path.Length - 1] - new Vector3(5, 0, 0)).magnitude, 0.01);
         }
 
         [UnityTest]

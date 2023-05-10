@@ -5,6 +5,5 @@ var searchData=
   ['gamestatemanagertests_2',['GameStateManagerTests',['../class_tests_1_1_game_state_manager_tests.html',1,'Tests']]],
   ['grass_3',['Grass',['../class_grass.html',1,'']]],
   ['gun_4',['Gun',['../class_gun.html',1,'']]],
-  ['gunpoint_5',['GunPoint',['../class_gun_point.html',1,'']]],
-  ['gunscript_6',['GunScript',['../class_gun_script.html',1,'']]]
+  ['gunscript_5',['GunScript',['../class_gun_script.html',1,'']]]
 ];
