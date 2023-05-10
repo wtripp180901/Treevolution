@@ -24,6 +24,7 @@ Any code or game assets _outside_ of the following folders within the [Treevolut
 [Assets/Tree 1_Textures](Treevolution/Assets/Tree%201_Textures) <br>
 [Assets/Tree 2_Textures](Treevolution/Assets/Tree%202_Textures) <br>
 [Assets/Tree_Textures](Treevolution/Assets/Tree_Textures) <br>
+In addition to all individual files in the [Assets](Treevolution/Assets) folder. <br>
 
 ## Documentation
 Files in the [Documentation](Documentation) and [Treevolution/CodeCoverage](Treevolution/CodeCoverage) folders have been produced for our own Documentation and testing purposes.
