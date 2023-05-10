@@ -48,6 +48,7 @@ namespace Tests
             EnemyScript enemyScript;
             GameObject logic;
             EnemyTests.CreateSceneWithEnemies(out dummy, out enemy, out enemyScript, out logic);
+            enemyScript.health = 10;
             logic.GetComponent<EnemyManager>().AddToSceneAsEnemyForTest(enemy);
             GameObject pointer = new GameObject();
             logic.AddComponent<AudioSource>();
@@ -59,6 +60,8 @@ namespace Tests
 
             int prevHealth = enemyScript.health;
 
+            enemyScript.SetupForTest(enemy.GetComponent<HealthBar>());
+            yield return null;
             vcr.LightningBolt();
 
             Assert.Less(enemyScript.health, prevHealth);
