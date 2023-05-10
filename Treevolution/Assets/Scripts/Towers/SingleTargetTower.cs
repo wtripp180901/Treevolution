@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Towers
 {
+    /// <summary>
+    /// Controls tower which fire projectiles at singular enemies
+    /// </summary>
     public class SingleTargetTower : TowerScript
     {
         /// <summary>

@@ -3,6 +3,9 @@ using Microsoft.MixedReality.Toolkit.SceneSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Responisble for creating the start menu
+/// </summary>
 public class ManagerSceneLogic : MonoBehaviour
 {
     // Start is called before the first frame update

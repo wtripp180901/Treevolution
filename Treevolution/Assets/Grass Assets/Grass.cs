@@ -7,6 +7,9 @@ public class CreatorInfo
     public GameObject prefab;
     public int count;
 }
+/// <summary>
+/// Generates foliage around a GameObject
+/// </summary>
 public class Grass : MonoBehaviour
 {
     public bool isDebugDrawBoxLine = true;

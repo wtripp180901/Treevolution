@@ -1,5 +1,9 @@
 using UnityEngine;
 
+
+/// <summary>
+/// Manages enemy interactions with the tree
+/// </summary>
 public class TreeScript : MonoBehaviour
 {
     // Start is called before the first frame update

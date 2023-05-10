@@ -83,6 +83,9 @@ $(function() {
   <div class="headertitle"><div class="title">Towers.TowerScript Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Base class from which towers are derived.  
+ <a href="class_towers_1_1_tower_script.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Towers.TowerScript:</div>
 <div class="dyncontent">
@@ -90,9 +93,9 @@ Inheritance diagram for Towers.TowerScript:</div>
   <img src="class_towers_1_1_tower_script.png" usemap="#Towers.TowerScript_map" alt=""/>
   <map id="Towers.TowerScript_map" name="Towers.TowerScript_map">
 <area href="interface_i_runtime_movable_behaviour_script.html" title="QR objects which can be moved by the player during the battle phase should implement this interface." alt="IRuntimeMovableBehaviourScript" shape="rect" coords="313,0,512,24"/>
-<area href="class_towers_1_1_digest_tower.html" alt="Towers.DigestTower" shape="rect" coords="0,112,199,136"/>
-<area href="class_towers_1_1_multi_target_tower.html" alt="Towers.MultiTargetTower" shape="rect" coords="209,112,408,136"/>
-<area href="class_towers_1_1_single_target_tower.html" alt="Towers.SingleTargetTower" shape="rect" coords="418,112,617,136"/>
+<area href="class_towers_1_1_digest_tower.html" title="Controls towers which will attack enemies which move over it." alt="Towers.DigestTower" shape="rect" coords="0,112,199,136"/>
+<area href="class_towers_1_1_multi_target_tower.html" title="Controls towers which damage enemies within an area of effect." alt="Towers.MultiTargetTower" shape="rect" coords="209,112,408,136"/>
+<area href="class_towers_1_1_single_target_tower.html" title="Controls tower which fire projectiles at singular enemies." alt="Towers.SingleTargetTower" shape="rect" coords="418,112,617,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -181,7 +184,7 @@ Material&#160;</td><td class="memItemRight" valign="bottom"><b>disabledMaterial<
 <tr class="separator:af3ac1f640d1aacb8b4772750c6a65253"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1494e2923b96a8fca9c5853466adb781"><td class="memItemLeft" align="right" valign="top"><a id="a1494e2923b96a8fca9c5853466adb781" name="a1494e2923b96a8fca9c5853466adb781"></a>
 <a class="el" href="class_enemy_manager.html">EnemyManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>enemyManager</b></td></tr>
-<tr class="memdesc:a1494e2923b96a8fca9c5853466adb781"><td class="mdescLeft">&#160;</td><td class="mdescRight">Currently active <a class="el" href="class_enemy_manager.html">EnemyManager</a> instance. <br /></td></tr>
+<tr class="memdesc:a1494e2923b96a8fca9c5853466adb781"><td class="mdescLeft">&#160;</td><td class="mdescRight">Currently active <a class="el" href="class_enemy_manager.html" title="Responsible for spawning and managing enemies in the scene.">EnemyManager</a> instance. <br /></td></tr>
 <tr class="separator:a1494e2923b96a8fca9c5853466adb781"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5243280a34186057aa1c31dfb5a43c3c"><td class="memItemLeft" align="right" valign="top"><a id="a5243280a34186057aa1c31dfb5a43c3c" name="a5243280a34186057aa1c31dfb5a43c3c"></a>
 GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>rangeVisual</b></td></tr>
@@ -215,7 +218,9 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>baseFireRate</b></td
 <tr class="memdesc:a84831b482f440f8f3e17e83919a5c50a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the original fire interval when the buddy is assisting the current tower. <br /></td></tr>
 <tr class="separator:a84831b482f440f8f3e17e83919a5c50a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Base class from which towers are derived. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a1e0c2c9f3db212fd9340c3405e447e1a" name="a1e0c2c9f3db212fd9340c3405e447e1a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1e0c2c9f3db212fd9340c3405e447e1a">&#9670;&#160;</a></span>ApplyMovementPenalty()</h2>
 

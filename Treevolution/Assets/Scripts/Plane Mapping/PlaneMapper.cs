@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Instantiates the playspace based on real world data
+/// </summary>
 public class PlaneMapper : MonoBehaviour
 {
     /// <summary>

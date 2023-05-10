@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Towers
 {
+    /// <summary>
+    /// Manages towers and sends global actions to them
+    /// </summary>
     public class TowerManager : MonoBehaviour
     {
         /// <summary>
