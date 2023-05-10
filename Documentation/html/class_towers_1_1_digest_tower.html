@@ -96,6 +96,7 @@ Inheritance diagram for Towers.DigestTower:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ada78f8ebbc1f2506cb43264a27feae89"><td class="memItemLeft" align="right" valign="top"><a id="ada78f8ebbc1f2506cb43264a27feae89" name="ada78f8ebbc1f2506cb43264a27feae89"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Start</b> ()</td></tr>
+<tr class="memdesc:ada78f8ebbc1f2506cb43264a27feae89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls the base class' Start, and then initialises its own components. <br /></td></tr>
 <tr class="separator:ada78f8ebbc1f2506cb43264a27feae89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d454f6727b85e187aed0d33cfe71677"><td class="memItemLeft" align="right" valign="top"><a id="a1d454f6727b85e187aed0d33cfe71677" name="a1d454f6727b85e187aed0d33cfe71677"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SetupForTest</b> (float radius)</td></tr>
@@ -104,52 +105,61 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SetupForTest</b> (flo
 void&#160;</td><td class="memItemRight" valign="bottom"><b>GetTestData</b> (out bool digesting)</td></tr>
 <tr class="separator:aa51a4da081311a8f516b1ffadb6edde0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a467b75a8cd373e73f5ddff4c1f092047"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_towers_1_1_digest_tower.html#a467b75a8cd373e73f5ddff4c1f092047">Attack</a> ()</td></tr>
+<tr class="memdesc:a467b75a8cd373e73f5ddff4c1f092047"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attacks the currently targetted enemy.  <br /></td></tr>
 <tr class="separator:a467b75a8cd373e73f5ddff4c1f092047"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff35c289fbd62dabf484a10c23ee35d4"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_towers_1_1_digest_tower.html#aff35c289fbd62dabf484a10c23ee35d4">UpdateTargets</a> ()</td></tr>
+<tr class="memdesc:aff35c289fbd62dabf484a10c23ee35d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the currently targetted enemy to the closest one in range.  <br /></td></tr>
 <tr class="separator:aff35c289fbd62dabf484a10c23ee35d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acadc156d03a14184212215762d691441"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_towers_1_1_digest_tower.html#acadc156d03a14184212215762d691441">UpdateRangeVisual</a> ()</td></tr>
+<tr class="memdesc:acadc156d03a14184212215762d691441"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the position and size of the range visual to match the tower's position and attributes.  <br /></td></tr>
 <tr class="separator:acadc156d03a14184212215762d691441"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acae18e2c238f233623e0ffa83dfcebc7"><td class="memItemLeft" align="right" valign="top">override GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_towers_1_1_digest_tower.html#acae18e2c238f233623e0ffa83dfcebc7">GetRangeObject</a> ()</td></tr>
+<tr class="memdesc:acae18e2c238f233623e0ffa83dfcebc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the range object of the current tower.  <br /></td></tr>
 <tr class="separator:acae18e2c238f233623e0ffa83dfcebc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_towers_1_1_tower_script"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_towers_1_1_tower_script')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_towers_1_1_tower_script.html">Towers.TowerScript</a></td></tr>
 <tr class="memitem:a00b816bacbba22c64c0aaec09272c561 inherit pub_methods_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top"><a id="a00b816bacbba22c64c0aaec09272c561" name="a00b816bacbba22c64c0aaec09272c561"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Start</b> ()</td></tr>
+<tr class="memdesc:a00b816bacbba22c64c0aaec09272c561 inherit pub_methods_class_towers_1_1_tower_script"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start initialises the Tower's internal parameters, and registers it with the tower manager. <br /></td></tr>
 <tr class="separator:a00b816bacbba22c64c0aaec09272c561 inherit pub_methods_class_towers_1_1_tower_script"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a407b1695989dc14ebb84bf877a2f5e82 inherit pub_methods_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top"><a id="a407b1695989dc14ebb84bf877a2f5e82" name="a407b1695989dc14ebb84bf877a2f5e82"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetupForTest</b> (float range)</td></tr>
+<tr class="separator:a407b1695989dc14ebb84bf877a2f5e82 inherit pub_methods_class_towers_1_1_tower_script"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc0170c81031b818d380ea5a819a6eb9 inherit pub_methods_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top"><a id="afc0170c81031b818d380ea5a819a6eb9" name="afc0170c81031b818d380ea5a819a6eb9"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> ()</td></tr>
 <tr class="separator:afc0170c81031b818d380ea5a819a6eb9 inherit pub_methods_class_towers_1_1_tower_script"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6382d522068689e77ad4f0a024abb74c inherit pub_methods_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top"><a id="a6382d522068689e77ad4f0a024abb74c" name="a6382d522068689e77ad4f0a024abb74c"></a>
-abstract void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateRangeVisual</b> ()</td></tr>
+<tr class="memitem:a6382d522068689e77ad4f0a024abb74c inherit pub_methods_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_towers_1_1_tower_script.html#a6382d522068689e77ad4f0a024abb74c">UpdateRangeVisual</a> ()</td></tr>
+<tr class="memdesc:a6382d522068689e77ad4f0a024abb74c inherit pub_methods_class_towers_1_1_tower_script"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract method for updating the tower's range visual position and size.  <br /></td></tr>
 <tr class="separator:a6382d522068689e77ad4f0a024abb74c inherit pub_methods_class_towers_1_1_tower_script"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a5b937f63a4ad123493f89209a71488 inherit pub_methods_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top"><a id="a5a5b937f63a4ad123493f89209a71488" name="a5a5b937f63a4ad123493f89209a71488"></a>
-abstract GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>GetRangeObject</b> ()</td></tr>
+<tr class="memitem:a5a5b937f63a4ad123493f89209a71488 inherit pub_methods_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top">abstract GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_towers_1_1_tower_script.html#a5a5b937f63a4ad123493f89209a71488">GetRangeObject</a> ()</td></tr>
+<tr class="memdesc:a5a5b937f63a4ad123493f89209a71488 inherit pub_methods_class_towers_1_1_tower_script"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract method for getting the range visual object for the current tower.  <br /></td></tr>
 <tr class="separator:a5a5b937f63a4ad123493f89209a71488 inherit pub_methods_class_towers_1_1_tower_script"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab562cc8913ee4135e6f600ab8efd5973 inherit pub_methods_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top"><a id="ab562cc8913ee4135e6f600ab8efd5973" name="ab562cc8913ee4135e6f600ab8efd5973"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>DisplayRange</b> (bool toggle)</td></tr>
+<tr class="memitem:ab562cc8913ee4135e6f600ab8efd5973 inherit pub_methods_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_towers_1_1_tower_script.html#ab562cc8913ee4135e6f600ab8efd5973">DisplayRange</a> (bool toggle)</td></tr>
+<tr class="memdesc:ab562cc8913ee4135e6f600ab8efd5973 inherit pub_methods_class_towers_1_1_tower_script"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays the range visual of the tower in accordance with the provided toggle.  <br /></td></tr>
 <tr class="separator:ab562cc8913ee4135e6f600ab8efd5973 inherit pub_methods_class_towers_1_1_tower_script"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91706a500d7fdfcbbc4d26dc3c31b46c inherit pub_methods_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top"><a id="a91706a500d7fdfcbbc4d26dc3c31b46c" name="a91706a500d7fdfcbbc4d26dc3c31b46c"></a>
-abstract void&#160;</td><td class="memItemRight" valign="bottom"><b>Attack</b> ()</td></tr>
+<tr class="memitem:a91706a500d7fdfcbbc4d26dc3c31b46c inherit pub_methods_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_towers_1_1_tower_script.html#a91706a500d7fdfcbbc4d26dc3c31b46c">Attack</a> ()</td></tr>
+<tr class="memdesc:a91706a500d7fdfcbbc4d26dc3c31b46c inherit pub_methods_class_towers_1_1_tower_script"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract method to define the tower attacking the current target(s).  <br /></td></tr>
 <tr class="separator:a91706a500d7fdfcbbc4d26dc3c31b46c inherit pub_methods_class_towers_1_1_tower_script"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ff4ce63e1d76b183a752f16d956993c inherit pub_methods_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top"><a id="a6ff4ce63e1d76b183a752f16d956993c" name="a6ff4ce63e1d76b183a752f16d956993c"></a>
-abstract void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateTargets</b> ()</td></tr>
+<tr class="memitem:a6ff4ce63e1d76b183a752f16d956993c inherit pub_methods_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_towers_1_1_tower_script.html#a6ff4ce63e1d76b183a752f16d956993c">UpdateTargets</a> ()</td></tr>
+<tr class="memdesc:a6ff4ce63e1d76b183a752f16d956993c inherit pub_methods_class_towers_1_1_tower_script"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract method to update the currently targetted enemy/enemies.  <br /></td></tr>
 <tr class="separator:a6ff4ce63e1d76b183a752f16d956993c inherit pub_methods_class_towers_1_1_tower_script"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23442594c9ed9e8c1b00e59678c5cc0b inherit pub_methods_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top"><a id="a23442594c9ed9e8c1b00e59678c5cc0b" name="a23442594c9ed9e8c1b00e59678c5cc0b"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>DistToTarget</b> (Vector3 target)</td></tr>
+<tr class="memitem:a23442594c9ed9e8c1b00e59678c5cc0b inherit pub_methods_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_towers_1_1_tower_script.html#a23442594c9ed9e8c1b00e59678c5cc0b">DistToTarget</a> (Vector3 target)</td></tr>
+<tr class="memdesc:a23442594c9ed9e8c1b00e59678c5cc0b inherit pub_methods_class_towers_1_1_tower_script"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the distance from the tower to a target.  <br /></td></tr>
 <tr class="separator:a23442594c9ed9e8c1b00e59678c5cc0b inherit pub_methods_class_towers_1_1_tower_script"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad80e4559e66db108aa3337d9b6278e2e inherit pub_methods_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top"><a id="ad80e4559e66db108aa3337d9b6278e2e" name="ad80e4559e66db108aa3337d9b6278e2e"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>DistToTargetTopDown</b> (Vector3 target)</td></tr>
+<tr class="memitem:ad80e4559e66db108aa3337d9b6278e2e inherit pub_methods_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_towers_1_1_tower_script.html#ad80e4559e66db108aa3337d9b6278e2e">DistToTargetTopDown</a> (Vector3 target)</td></tr>
+<tr class="memdesc:ad80e4559e66db108aa3337d9b6278e2e inherit pub_methods_class_towers_1_1_tower_script"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the distance from the tower to a target from a 2D, top-down perspective.  <br /></td></tr>
 <tr class="separator:ad80e4559e66db108aa3337d9b6278e2e inherit pub_methods_class_towers_1_1_tower_script"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e0c2c9f3db212fd9340c3405e447e1a inherit pub_methods_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_towers_1_1_tower_script.html#a1e0c2c9f3db212fd9340c3405e447e1a">ApplyMovementPenalty</a> ()</td></tr>
-<tr class="memdesc:a1e0c2c9f3db212fd9340c3405e447e1a inherit pub_methods_class_towers_1_1_tower_script"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should in some way nerf or disable the object until EndMovementPenalty is called.  <br /></td></tr>
+<tr class="memdesc:a1e0c2c9f3db212fd9340c3405e447e1a inherit pub_methods_class_towers_1_1_tower_script"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="interface_i_runtime_movable_behaviour_script.html" title="QR objects which can be moved by the player during the battle phase should implement this interface.">IRuntimeMovableBehaviourScript</a> method to apply a penalty to the tower if it is moved during battle.  <br /></td></tr>
 <tr class="separator:a1e0c2c9f3db212fd9340c3405e447e1a inherit pub_methods_class_towers_1_1_tower_script"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5cf93e97dcd87b44a90eb3d89d73635 inherit pub_methods_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_towers_1_1_tower_script.html#af5cf93e97dcd87b44a90eb3d89d73635">EndMovementPenalty</a> ()</td></tr>
-<tr class="memdesc:af5cf93e97dcd87b44a90eb3d89d73635 inherit pub_methods_class_towers_1_1_tower_script"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reverses the affects of ApplyMovementPenalty.  <br /></td></tr>
+<tr class="memdesc:af5cf93e97dcd87b44a90eb3d89d73635 inherit pub_methods_class_towers_1_1_tower_script"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="interface_i_runtime_movable_behaviour_script.html" title="QR objects which can be moved by the player during the battle phase should implement this interface.">IRuntimeMovableBehaviourScript</a> method to stop applying a penalty to the tower after being moved during battle.  <br /></td></tr>
 <tr class="separator:af5cf93e97dcd87b44a90eb3d89d73635 inherit pub_methods_class_towers_1_1_tower_script"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac720ba224cc73e3e9d56628ab9e87427 inherit pub_methods_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top"><a id="ac720ba224cc73e3e9d56628ab9e87427" name="ac720ba224cc73e3e9d56628ab9e87427"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ShootingDisabled</b> (bool toggle)</td></tr>
+<tr class="memitem:ac720ba224cc73e3e9d56628ab9e87427 inherit pub_methods_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_towers_1_1_tower_script.html#ac720ba224cc73e3e9d56628ab9e87427">ShootingDisabled</a> (bool toggle)</td></tr>
+<tr class="memdesc:ac720ba224cc73e3e9d56628ab9e87427 inherit pub_methods_class_towers_1_1_tower_script"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether shooting is disabled.  <br /></td></tr>
 <tr class="separator:ac720ba224cc73e3e9d56628ab9e87427 inherit pub_methods_class_towers_1_1_tower_script"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8956990e6f15a4e4d91d82ec49ce1cf inherit pub_methods_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top"><a id="ac8956990e6f15a4e4d91d82ec49ce1cf" name="ac8956990e6f15a4e4d91d82ec49ce1cf"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>EnterBuddyMode</b> ()</td></tr>
+<tr class="memdesc:ac8956990e6f15a4e4d91d82ec49ce1cf inherit pub_methods_class_towers_1_1_tower_script"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boosts the tower's fire rate when the buddy is helping it. If buddyMode is true, it sets "fireInterval" to a higher "fireInterval". If false, return it to the original fireInterval. <br /></td></tr>
 <tr class="separator:ac8956990e6f15a4e4d91d82ec49ce1cf inherit pub_methods_class_towers_1_1_tower_script"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a129c3fa48b6fb3f3d87edfbd6439a8cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_i_runtime_movable_behaviour_script.html#a129c3fa48b6fb3f3d87edfbd6439a8cc">ApplyMovementPenalty</a> ()</td></tr>
 <tr class="memdesc:a129c3fa48b6fb3f3d87edfbd6439a8cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Should in some way nerf or disable the object until EndMovementPenalty is called.  <br /></td></tr>
@@ -162,33 +172,42 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>EnterBuddyMode</b> ()
 Private Member Functions</h2></td></tr>
 <tr class="memitem:aba4e5ac3745ae39bca2490b8896d4086"><td class="memItemLeft" align="right" valign="top"><a id="aba4e5ac3745ae39bca2490b8896d4086" name="aba4e5ac3745ae39bca2490b8896d4086"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> ()</td></tr>
+<tr class="memdesc:aba4e5ac3745ae39bca2490b8896d4086"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls the base class' Start, and then attacks if the damage interval time has passed. <br /></td></tr>
 <tr class="separator:aba4e5ac3745ae39bca2490b8896d4086"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d3d4dc7ccca06453eb97cd133981017"><td class="memItemLeft" align="right" valign="top"><a id="a0d3d4dc7ccca06453eb97cd133981017" name="a0d3d4dc7ccca06453eb97cd133981017"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>TransitionAnimation</b> ()</td></tr>
+<tr class="memdesc:a0d3d4dc7ccca06453eb97cd133981017"><td class="mdescLeft">&#160;</td><td class="mdescRight">Triggers the enemy catch animation. <br /></td></tr>
 <tr class="separator:a0d3d4dc7ccca06453eb97cd133981017"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a27dd38dd74c720ac509e066c8f8cf25c"><td class="memItemLeft" align="right" valign="top"><a id="a27dd38dd74c720ac509e066c8f8cf25c" name="a27dd38dd74c720ac509e066c8f8cf25c"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>_targetFlying</b> = false</td></tr>
+<tr class="memdesc:a27dd38dd74c720ac509e066c8f8cf25c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if the tower can target flying enemies. <br /></td></tr>
 <tr class="separator:a27dd38dd74c720ac509e066c8f8cf25c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5263015cfb2336c16cfa479ba393448"><td class="memItemLeft" align="right" valign="top"><a id="aa5263015cfb2336c16cfa479ba393448" name="aa5263015cfb2336c16cfa479ba393448"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>_targetGround</b> = true</td></tr>
+<tr class="memdesc:aa5263015cfb2336c16cfa479ba393448"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if the tower can target ground enemies. <br /></td></tr>
 <tr class="separator:aa5263015cfb2336c16cfa479ba393448"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adfa53e82eb8e53809d196ec1ba0a37aa"><td class="memItemLeft" align="right" valign="top"><a id="adfa53e82eb8e53809d196ec1ba0a37aa" name="adfa53e82eb8e53809d196ec1ba0a37aa"></a>
 Transform&#160;</td><td class="memItemRight" valign="bottom"><b>_targetTransform</b></td></tr>
+<tr class="memdesc:adfa53e82eb8e53809d196ec1ba0a37aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transform of the currently targetted enemy. <br /></td></tr>
 <tr class="separator:adfa53e82eb8e53809d196ec1ba0a37aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace47b9b94b5d9ccd0f447be26ff17235"><td class="memItemLeft" align="right" valign="top"><a id="ace47b9b94b5d9ccd0f447be26ff17235" name="ace47b9b94b5d9ccd0f447be26ff17235"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>_distanceToCurrentTarget</b></td></tr>
+<tr class="memdesc:ace47b9b94b5d9ccd0f447be26ff17235"><td class="mdescLeft">&#160;</td><td class="mdescRight">Distance from the tower to the currently targetted enemy. <br /></td></tr>
 <tr class="separator:ace47b9b94b5d9ccd0f447be26ff17235"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd93eb0a5783a261911d938a639b7495"><td class="memItemLeft" align="right" valign="top"><a id="acd93eb0a5783a261911d938a639b7495" name="acd93eb0a5783a261911d938a639b7495"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>_digestDelta</b></td></tr>
+<tr class="memdesc:acd93eb0a5783a261911d938a639b7495"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timer to count down between digest events, ensuring that the tower's damage interval is being met. <br /></td></tr>
 <tr class="separator:acd93eb0a5783a261911d938a639b7495"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4b415102f549acda9fe3fb62793fcc2"><td class="memItemLeft" align="right" valign="top"><a id="aa4b415102f549acda9fe3fb62793fcc2" name="aa4b415102f549acda9fe3fb62793fcc2"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>_currentlyDigesting</b> = false</td></tr>
+<tr class="memdesc:aa4b415102f549acda9fe3fb62793fcc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates if the tower is currently digesting. <br /></td></tr>
 <tr class="separator:aa4b415102f549acda9fe3fb62793fcc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a362d0e9c4f62cc99e327f93eb2da433d"><td class="memItemLeft" align="right" valign="top"><a id="a362d0e9c4f62cc99e327f93eb2da433d" name="a362d0e9c4f62cc99e327f93eb2da433d"></a>
 Animator&#160;</td><td class="memItemRight" valign="bottom"><b>_animator</b></td></tr>
+<tr class="memdesc:a362d0e9c4f62cc99e327f93eb2da433d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Animator component of the tower, to trigger an animation when the plant catches an enemy. <br /></td></tr>
 <tr class="separator:a362d0e9c4f62cc99e327f93eb2da433d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
@@ -196,34 +215,44 @@ Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_attribs_class_towers_1_1_tower_script"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_class_towers_1_1_tower_script')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="class_towers_1_1_tower_script.html">Towers.TowerScript</a></td></tr>
 <tr class="memitem:a19bfab8d64bf518641bc70fe729a27d4 inherit pub_attribs_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top"><a id="a19bfab8d64bf518641bc70fe729a27d4" name="a19bfab8d64bf518641bc70fe729a27d4"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>rangeRadius</b> = 0.2f</td></tr>
+<tr class="memdesc:a19bfab8d64bf518641bc70fe729a27d4 inherit pub_attribs_class_towers_1_1_tower_script"><td class="mdescLeft">&#160;</td><td class="mdescRight">Radius of the range that the tower can target enemies from (either Cylinder or Sphere). <br /></td></tr>
 <tr class="separator:a19bfab8d64bf518641bc70fe729a27d4 inherit pub_attribs_class_towers_1_1_tower_script"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29737781d78d3d6227b98baf0104729c inherit pub_attribs_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top"><a id="a29737781d78d3d6227b98baf0104729c" name="a29737781d78d3d6227b98baf0104729c"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>fireRate</b> = 0.5f</td></tr>
+<tr class="memdesc:a29737781d78d3d6227b98baf0104729c inherit pub_attribs_class_towers_1_1_tower_script"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seconds between when the tower can damage enemies. <br /></td></tr>
 <tr class="separator:a29737781d78d3d6227b98baf0104729c inherit pub_attribs_class_towers_1_1_tower_script"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60b829156ce8e0dc0398ec1403d731c3 inherit pub_attribs_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top"><a id="a60b829156ce8e0dc0398ec1403d731c3" name="a60b829156ce8e0dc0398ec1403d731c3"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>damage</b> = 1</td></tr>
+<tr class="memdesc:a60b829156ce8e0dc0398ec1403d731c3 inherit pub_attribs_class_towers_1_1_tower_script"><td class="mdescLeft">&#160;</td><td class="mdescRight">Damage that the tower causes to enemies. <br /></td></tr>
 <tr class="separator:a60b829156ce8e0dc0398ec1403d731c3 inherit pub_attribs_class_towers_1_1_tower_script"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50694e9ee2d9524178840762175ced41 inherit pub_attribs_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top"><a id="a50694e9ee2d9524178840762175ced41" name="a50694e9ee2d9524178840762175ced41"></a>
 Material&#160;</td><td class="memItemRight" valign="bottom"><b>rangeVisualMaterial</b></td></tr>
+<tr class="memdesc:a50694e9ee2d9524178840762175ced41 inherit pub_attribs_class_towers_1_1_tower_script"><td class="mdescLeft">&#160;</td><td class="mdescRight">Material to assign to the object defining the tower's range. <br /></td></tr>
 <tr class="separator:a50694e9ee2d9524178840762175ced41 inherit pub_attribs_class_towers_1_1_tower_script"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75fa32d8f2864b558640418dfd944247 inherit pub_attribs_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top"><a id="a75fa32d8f2864b558640418dfd944247" name="a75fa32d8f2864b558640418dfd944247"></a>
 GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>disabledVisualObject</b></td></tr>
+<tr class="memdesc:a75fa32d8f2864b558640418dfd944247 inherit pub_attribs_class_towers_1_1_tower_script"><td class="mdescLeft">&#160;</td><td class="mdescRight">Object to assign a material to when the tower is disabled for being moved during battle. <br /></td></tr>
 <tr class="separator:a75fa32d8f2864b558640418dfd944247 inherit pub_attribs_class_towers_1_1_tower_script"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff23c4d6dc3e48f197cabbe27d5394ea inherit pub_attribs_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top"><a id="aff23c4d6dc3e48f197cabbe27d5394ea" name="aff23c4d6dc3e48f197cabbe27d5394ea"></a>
 Material&#160;</td><td class="memItemRight" valign="bottom"><b>enabledMaterial</b></td></tr>
+<tr class="memdesc:aff23c4d6dc3e48f197cabbe27d5394ea inherit pub_attribs_class_towers_1_1_tower_script"><td class="mdescLeft">&#160;</td><td class="mdescRight">Material to assign to the disabled object when it is not disabled (i.e. not during penalty, usually transparent material) <br /></td></tr>
 <tr class="separator:aff23c4d6dc3e48f197cabbe27d5394ea inherit pub_attribs_class_towers_1_1_tower_script"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3ac1f640d1aacb8b4772750c6a65253 inherit pub_attribs_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top"><a id="af3ac1f640d1aacb8b4772750c6a65253" name="af3ac1f640d1aacb8b4772750c6a65253"></a>
 Material&#160;</td><td class="memItemRight" valign="bottom"><b>disabledMaterial</b></td></tr>
+<tr class="memdesc:af3ac1f640d1aacb8b4772750c6a65253 inherit pub_attribs_class_towers_1_1_tower_script"><td class="mdescLeft">&#160;</td><td class="mdescRight">Material to assign to the disabled object when it is disabled (i.e. during penalty, usually a red glow) <br /></td></tr>
 <tr class="separator:af3ac1f640d1aacb8b4772750c6a65253 inherit pub_attribs_class_towers_1_1_tower_script"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1494e2923b96a8fca9c5853466adb781 inherit pub_attribs_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top"><a id="a1494e2923b96a8fca9c5853466adb781" name="a1494e2923b96a8fca9c5853466adb781"></a>
 <a class="el" href="class_enemy_manager.html">EnemyManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>enemyManager</b></td></tr>
+<tr class="memdesc:a1494e2923b96a8fca9c5853466adb781 inherit pub_attribs_class_towers_1_1_tower_script"><td class="mdescLeft">&#160;</td><td class="mdescRight">Currently active <a class="el" href="class_enemy_manager.html">EnemyManager</a> instance. <br /></td></tr>
 <tr class="separator:a1494e2923b96a8fca9c5853466adb781 inherit pub_attribs_class_towers_1_1_tower_script"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5243280a34186057aa1c31dfb5a43c3c inherit pub_attribs_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top"><a id="a5243280a34186057aa1c31dfb5a43c3c" name="a5243280a34186057aa1c31dfb5a43c3c"></a>
 GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>rangeVisual</b></td></tr>
+<tr class="memdesc:a5243280a34186057aa1c31dfb5a43c3c inherit pub_attribs_class_towers_1_1_tower_script"><td class="mdescLeft">&#160;</td><td class="mdescRight">Object defining the tower's range. <br /></td></tr>
 <tr class="separator:a5243280a34186057aa1c31dfb5a43c3c inherit pub_attribs_class_towers_1_1_tower_script"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_towers_1_1_tower_script"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_towers_1_1_tower_script')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_towers_1_1_tower_script.html">Towers.TowerScript</a></td></tr>
 <tr class="memitem:a1fa603f08c2dfe25a5e88cf2a885fc04 inherit pro_attribs_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top"><a id="a1fa603f08c2dfe25a5e88cf2a885fc04" name="a1fa603f08c2dfe25a5e88cf2a885fc04"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>shootingDisabled</b> = false</td></tr>
+<tr class="memdesc:a1fa603f08c2dfe25a5e88cf2a885fc04 inherit pro_attribs_class_towers_1_1_tower_script"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggles whether shooting is enabled or not. <br /></td></tr>
 <tr class="separator:a1fa603f08c2dfe25a5e88cf2a885fc04 inherit pro_attribs_class_towers_1_1_tower_script"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -250,7 +279,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>shootingDisabled</b> 
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="class_towers_1_1_tower_script.html">Towers.TowerScript</a>.</p>
+<p>Attacks the currently targetted enemy. </p>
+
+<p>Implements <a class="el" href="class_towers_1_1_tower_script.html#a91706a500d7fdfcbbc4d26dc3c31b46c">Towers.TowerScript</a>.</p>
 
 </div>
 </div>
@@ -277,7 +308,10 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>shootingDisabled</b> 
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="class_towers_1_1_tower_script.html">Towers.TowerScript</a>.</p>
+<p>Gets the range object of the current tower. </p>
+<dl class="section return"><dt>Returns</dt><dd>A cylinder object.</dd></dl>
+
+<p>Implements <a class="el" href="class_towers_1_1_tower_script.html#a5a5b937f63a4ad123493f89209a71488">Towers.TowerScript</a>.</p>
 
 </div>
 </div>
@@ -304,7 +338,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>shootingDisabled</b> 
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="class_towers_1_1_tower_script.html">Towers.TowerScript</a>.</p>
+<p>Updates the position and size of the range visual to match the tower's position and attributes. </p>
+
+<p>Implements <a class="el" href="class_towers_1_1_tower_script.html#a6382d522068689e77ad4f0a024abb74c">Towers.TowerScript</a>.</p>
 
 </div>
 </div>
@@ -331,7 +367,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>shootingDisabled</b> 
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="class_towers_1_1_tower_script.html">Towers.TowerScript</a>.</p>
+<p>Updates the currently targetted enemy to the closest one in range. </p>
+
+<p>Implements <a class="el" href="class_towers_1_1_tower_script.html#a6ff4ce63e1d76b183a752f16d956993c">Towers.TowerScript</a>.</p>
 
 </div>
 </div>
