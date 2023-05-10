@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Instantiates the playspace based on real world data
+/// </summary>
 public class PlaneMapper : MonoBehaviour
 {
     /// <summary>
@@ -27,8 +30,13 @@ public class PlaneMapper : MonoBehaviour
     /// </summary>
     public float tableDepth = 163;
 
-
+    /// <summary>
+    /// Currently active GameStateManager instance.
+    /// </summary>
     private GameStateManager _gameStateManager;
+    /// <summary>
+    /// Currently active QRDetection Instance.
+    /// </summary>
     private QRDetection _qrDetection;
 
     private bool planeIsMapped = false;

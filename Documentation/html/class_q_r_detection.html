@@ -90,9 +90,6 @@ Inheritance diagram for QRDetection:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0f963f7bcc0d7b46b1ff1c034f1d74f2"><td class="memItemLeft" align="right" valign="top">GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_r_detection.html#a0f963f7bcc0d7b46b1ff1c034f1d74f2">SpawnObjectOnQR</a> (QRCode qr, GameObject obj)</td></tr>
-<tr class="memdesc:a0f963f7bcc0d7b46b1ff1c034f1d74f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spawns a GameObject on a QRCode, and covers the QR with a plane.  <br /></td></tr>
-<tr class="separator:a0f963f7bcc0d7b46b1ff1c034f1d74f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a178536f30c9b3af4f6b3966b5a8060fd"><td class="memItemLeft" align="right" valign="top"><a id="a178536f30c9b3af4f6b3966b5a8060fd" name="a178536f30c9b3af4f6b3966b5a8060fd"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>ResetTrackedCodes</b> ()</td></tr>
 <tr class="memdesc:a178536f30c9b3af4f6b3966b5a8060fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes any tracked QRCodes from the list. <br /></td></tr>
@@ -157,9 +154,6 @@ async void&#160;</td><td class="memItemRight" valign="bottom"><b>Start</b> ()</t
 <tr class="memitem:a380e57dbdea59b356d18f24dff666e8d"><td class="memItemLeft" align="right" valign="top"><a id="a380e57dbdea59b356d18f24dff666e8d" name="a380e57dbdea59b356d18f24dff666e8d"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> ()</td></tr>
 <tr class="separator:a380e57dbdea59b356d18f24dff666e8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8bdcf1a3d6130362f53425fc47614776"><td class="memItemLeft" align="right" valign="top"><a id="a8bdcf1a3d6130362f53425fc47614776" name="a8bdcf1a3d6130362f53425fc47614776"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>PosesTooSimilar</b> (Pose oldPose, Pose newPose)</td></tr>
-<tr class="separator:a8bdcf1a3d6130362f53425fc47614776"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acba7a21c9cf17a272a3277939abb4b9f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_r_detection.html#acba7a21c9cf17a272a3277939abb4b9f">DrawPlane</a> (string c1Data, QRCode code)</td></tr>
 <tr class="memdesc:acba7a21c9cf17a272a3277939abb4b9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks and draws the game board plane.  <br /></td></tr>
 <tr class="separator:acba7a21c9cf17a272a3277939abb4b9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -188,7 +182,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ResetCodeQueue</b> ()
 Private Attributes</h2></td></tr>
 <tr class="memitem:a1be4556067bfdd6c3a3ded7286581e0f"><td class="memItemLeft" align="right" valign="top"><a id="a1be4556067bfdd6c3a3ded7286581e0f" name="a1be4556067bfdd6c3a3ded7286581e0f"></a>
 <a class="el" href="class_plane_mapper.html">PlaneMapper</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_planeMapper</b></td></tr>
-<tr class="memdesc:a1be4556067bfdd6c3a3ded7286581e0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Running <a class="el" href="class_plane_mapper.html">PlaneMapper</a> instance. <br /></td></tr>
+<tr class="memdesc:a1be4556067bfdd6c3a3ded7286581e0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Running <a class="el" href="class_plane_mapper.html" title="Instantiates the playspace based on real world data.">PlaneMapper</a> instance. <br /></td></tr>
 <tr class="separator:a1be4556067bfdd6c3a3ded7286581e0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6420857e62b470671816a21eb751502f"><td class="memItemLeft" align="right" valign="top"><a id="a6420857e62b470671816a21eb751502f" name="a6420857e62b470671816a21eb751502f"></a>
 QRCodeWatcher&#160;</td><td class="memItemRight" valign="bottom"><b>_qRCodeWatcher</b></td></tr>
@@ -314,43 +308,6 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>_initialRun</b> = tru
   <table class="params">
     <tr><td class="paramname">c1Data</td><td>Data that should be displayed on the QRCode of the plane marker.</td></tr>
     <tr><td class="paramname">code</td><td>Object representing a potential plane marker.</td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a0f963f7bcc0d7b46b1ff1c034f1d74f2" name="a0f963f7bcc0d7b46b1ff1c034f1d74f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0f963f7bcc0d7b46b1ff1c034f1d74f2">&#9670;&#160;</a></span>SpawnObjectOnQR()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">GameObject QRDetection.SpawnObjectOnQR </td>
-          <td>(</td>
-          <td class="paramtype">QRCode&#160;</td>
-          <td class="paramname"><em>qr</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">GameObject&#160;</td>
-          <td class="paramname"><em>obj</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Spawns a GameObject on a QRCode, and covers the QR with a plane. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">qr</td><td>QrCode to spawn the object on.</td></tr>
-    <tr><td class="paramname">obj</td><td>GameObject to spawn.</td></tr>
   </table>
   </dd>
 </dl>

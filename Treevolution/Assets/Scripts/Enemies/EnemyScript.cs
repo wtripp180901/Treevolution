@@ -166,6 +166,11 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
+    public void SetupForTest(HealthBar hb)
+    {
+        _healthBar = hb;
+    }
+
     /// <summary>
     /// Called once per fixed framerate frame. This moves the enemy towards its current pathfinding target.
     /// </summary>
@@ -354,19 +359,13 @@ public class EnemyScript : MonoBehaviour
     {
         if (takeDamage)
         {
-            try
+            health -= power;
+            _healthBar.SetHealth(health);
+            if (health <= 0)
             {
-                health -= power;
-                _healthBar.SetHealth(health);
-                if (health <= 0)
-                {
-                    StartCoroutine(KillEnemy());
-                }
-                else StartCoroutine(DamageIndicator());
+                StartCoroutine(KillEnemy());
             }
-            catch (System.Exception e) {
-				Debug.Log("Error killing enemy: " + e.Message);
-			}
+            else StartCoroutine(DamageIndicator());
         }
     }
 

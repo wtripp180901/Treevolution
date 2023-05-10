@@ -91,10 +91,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7a16191abaadb5965383f7e6dae8a965"><td class="memItemLeft" align="right" valign="top"><a id="a7a16191abaadb5965383f7e6dae8a965" name="a7a16191abaadb5965383f7e6dae8a965"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>WordTokenMapper</b> (string rawBasewordData)</td></tr>
 <tr class="separator:a7a16191abaadb5965383f7e6dae8a965"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff7efd7e56b5f9919726b6259f110f34"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_language_parsing_1_1_word_token_mapper.html#aff7efd7e56b5f9919726b6259f110f34">GetTokenIfMatched</a> (string word, out <a class="el" href="class_buddy_token.html">BuddyToken</a> token)</td></tr>
+<tr class="memitem:aff7efd7e56b5f9919726b6259f110f34"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_language_parsing_1_1_word_token_mapper.html#aff7efd7e56b5f9919726b6259f110f34">GetTokenIfMatched</a> (string word, out <a class="el" href="class_tokens_1_1_buddy_token.html">BuddyToken</a> token)</td></tr>
 <tr class="memdesc:aff7efd7e56b5f9919726b6259f110f34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a word is stored locally in basewords.txt and returns the appropriate token if it is.  <br /></td></tr>
 <tr class="separator:aff7efd7e56b5f9919726b6259f110f34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7e3ba3c6ad6a0d143379b3f293dac3f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_language_parsing_1_1_word_token_mapper.html#aa7e3ba3c6ad6a0d143379b3f293dac3f">GetTokenIfSynonymsMatchCachedWords</a> (string functionalLabel, List&lt; string &gt; synonyms, out <a class="el" href="class_buddy_token.html">BuddyToken</a> token)</td></tr>
+<tr class="memitem:aa7e3ba3c6ad6a0d143379b3f293dac3f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_language_parsing_1_1_word_token_mapper.html#aa7e3ba3c6ad6a0d143379b3f293dac3f">GetTokenIfSynonymsMatchCachedWords</a> (string functionalLabel, List&lt; string &gt; synonyms, out <a class="el" href="class_tokens_1_1_buddy_token.html">BuddyToken</a> token)</td></tr>
 <tr class="memdesc:aa7e3ba3c6ad6a0d143379b3f293dac3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a list of synonyms match any words stored locally in basewords.txt. If they do, returns true and gives the corresponding token of that words.  <br /></td></tr>
 <tr class="separator:aa7e3ba3c6ad6a0d143379b3f293dac3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -103,14 +103,14 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a144a25999b269d7f31965c20ae8b4328"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_language_parsing_1_1_word_token_mapper.html#a144a25999b269d7f31965c20ae8b4328">LoadCachedWords</a> (string rawData)</td></tr>
 <tr class="memdesc:a144a25999b269d7f31965c20ae8b4328"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises flCategoriesOfActions by reading data from local file.  <br /></td></tr>
 <tr class="separator:a144a25999b269d7f31965c20ae8b4328"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1c236408d963c78e60c4b6fe34cb2ed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_buddy_token.html">BuddyToken</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_language_parsing_1_1_word_token_mapper.html#aa1c236408d963c78e60c4b6fe34cb2ed">stringToToken</a> (string toConvert)</td></tr>
+<tr class="memitem:aa1c236408d963c78e60c4b6fe34cb2ed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_tokens_1_1_buddy_token.html">BuddyToken</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_language_parsing_1_1_word_token_mapper.html#aa1c236408d963c78e60c4b6fe34cb2ed">stringToToken</a> (string toConvert)</td></tr>
 <tr class="memdesc:aa1c236408d963c78e60c4b6fe34cb2ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps words from basewords.txt to tokens to be used by the language parser.  <br /></td></tr>
 <tr class="separator:aa1c236408d963c78e60c4b6fe34cb2ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa777240ada33f84e0f94785857423257"><td class="memItemLeft" align="right" valign="top"><a id="aa777240ada33f84e0f94785857423257" name="aa777240ada33f84e0f94785857423257"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>tokenDictionaryContainsWordOrSynonyms</b> (Dictionary&lt; <a class="el" href="class_buddy_token.html">BuddyToken</a>, List&lt; string &gt; &gt; dictionary, string word, out <a class="el" href="class_buddy_token.html">BuddyToken</a> token)</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>tokenDictionaryContainsWordOrSynonyms</b> (Dictionary&lt; <a class="el" href="class_tokens_1_1_buddy_token.html">BuddyToken</a>, List&lt; string &gt; &gt; dictionary, string word, out <a class="el" href="class_tokens_1_1_buddy_token.html">BuddyToken</a> token)</td></tr>
 <tr class="separator:aa777240ada33f84e0f94785857423257"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44a401755ce32a6bfa717e9c3bbc3240"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_language_parsing_1_1_word_token_mapper.html#a44a401755ce32a6bfa717e9c3bbc3240">tokenDictionaryContainsWordOrSynonyms</a> (Dictionary&lt; <a class="el" href="class_buddy_token.html">BuddyToken</a>, List&lt; string &gt; &gt; dictionary, List&lt; string &gt; synonyms, out <a class="el" href="class_buddy_token.html">BuddyToken</a> token)</td></tr>
-<tr class="memdesc:a44a401755ce32a6bfa717e9c3bbc3240"><td class="mdescLeft">&#160;</td><td class="mdescRight">If any of the list of synonyms are known to the model (true), will give a corresponding <a class="el" href="class_buddy_token.html">BuddyToken</a>.  <br /></td></tr>
+<tr class="memitem:a44a401755ce32a6bfa717e9c3bbc3240"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_language_parsing_1_1_word_token_mapper.html#a44a401755ce32a6bfa717e9c3bbc3240">tokenDictionaryContainsWordOrSynonyms</a> (Dictionary&lt; <a class="el" href="class_tokens_1_1_buddy_token.html">BuddyToken</a>, List&lt; string &gt; &gt; dictionary, List&lt; string &gt; synonyms, out <a class="el" href="class_tokens_1_1_buddy_token.html">BuddyToken</a> token)</td></tr>
+<tr class="memdesc:a44a401755ce32a6bfa717e9c3bbc3240"><td class="mdescLeft">&#160;</td><td class="mdescRight">If any of the list of synonyms are known to the model (true), will give a corresponding BuddyToken.  <br /></td></tr>
 <tr class="separator:a44a401755ce32a6bfa717e9c3bbc3240"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2830d212683cb490c739d0da12cf24cd"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_language_parsing_1_1_word_token_mapper.html#a2830d212683cb490c739d0da12cf24cd">pluralize</a> (string original)</td></tr>
 <tr class="memdesc:a2830d212683cb490c739d0da12cf24cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts nouns into their plural form.  <br /></td></tr>
@@ -119,10 +119,10 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>tokenDictionaryContai
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ac7ebeaaf5f8ffba59ca14f73a10a391a"><td class="memItemLeft" align="right" valign="top"><a id="ac7ebeaaf5f8ffba59ca14f73a10a391a" name="ac7ebeaaf5f8ffba59ca14f73a10a391a"></a>
-Dictionary&lt; string, Dictionary&lt; <a class="el" href="class_buddy_token.html">BuddyToken</a>, List&lt; string &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>flCategoriesOfActions</b> = new Dictionary&lt;string, Dictionary&lt;<a class="el" href="class_buddy_token.html">BuddyToken</a>, List&lt;string&gt;&gt;&gt;()</td></tr>
+Dictionary&lt; string, Dictionary&lt; <a class="el" href="class_tokens_1_1_buddy_token.html">BuddyToken</a>, List&lt; string &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>flCategoriesOfActions</b> = new Dictionary&lt;string, Dictionary&lt;<a class="el" href="class_tokens_1_1_buddy_token.html">BuddyToken</a>, List&lt;string&gt;&gt;&gt;()</td></tr>
 <tr class="separator:ac7ebeaaf5f8ffba59ca14f73a10a391a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae673d9ac0243cc366ccf801e33fc1119"><td class="memItemLeft" align="right" valign="top"><a id="ae673d9ac0243cc366ccf801e33fc1119" name="ae673d9ac0243cc366ccf801e33fc1119"></a>
-Dictionary&lt; <a class="el" href="class_buddy_token.html">BuddyToken</a>, List&lt; string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>tokensForPluralNouns</b> = new Dictionary&lt;<a class="el" href="class_buddy_token.html">BuddyToken</a>, List&lt;string&gt;&gt;()</td></tr>
+Dictionary&lt; <a class="el" href="class_tokens_1_1_buddy_token.html">BuddyToken</a>, List&lt; string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>tokensForPluralNouns</b> = new Dictionary&lt;<a class="el" href="class_tokens_1_1_buddy_token.html">BuddyToken</a>, List&lt;string&gt;&gt;()</td></tr>
 <tr class="separator:ae673d9ac0243cc366ccf801e33fc1119"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
@@ -149,7 +149,7 @@ const string&#160;</td><td class="memItemRight" valign="bottom"><b>nounFunctiona
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">out <a class="el" href="class_buddy_token.html">BuddyToken</a>&#160;</td>
+          <td class="paramtype">out <a class="el" href="class_tokens_1_1_buddy_token.html">BuddyToken</a>&#160;</td>
           <td class="paramname"><em>token</em>&#160;</td>
         </tr>
         <tr>
@@ -193,7 +193,7 @@ const string&#160;</td><td class="memItemRight" valign="bottom"><b>nounFunctiona
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">out <a class="el" href="class_buddy_token.html">BuddyToken</a>&#160;</td>
+          <td class="paramtype">out <a class="el" href="class_tokens_1_1_buddy_token.html">BuddyToken</a>&#160;</td>
           <td class="paramname"><em>token</em>&#160;</td>
         </tr>
         <tr>
@@ -296,7 +296,7 @@ const string&#160;</td><td class="memItemRight" valign="bottom"><b>nounFunctiona
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_buddy_token.html">BuddyToken</a> LanguageParsing.WordTokenMapper.stringToToken </td>
+          <td class="memname"><a class="el" href="class_tokens_1_1_buddy_token.html">BuddyToken</a> LanguageParsing.WordTokenMapper.stringToToken </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>toConvert</em></td><td>)</td>
@@ -317,7 +317,7 @@ const string&#160;</td><td class="memItemRight" valign="bottom"><b>nounFunctiona
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The resolved token, returns a <a class="el" href="class_dummy_token.html">DummyToken</a> if unresolved</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The resolved token, returns a DummyToken if unresolved</dd></dl>
 
 </div>
 </div>
@@ -333,7 +333,7 @@ const string&#160;</td><td class="memItemRight" valign="bottom"><b>nounFunctiona
         <tr>
           <td class="memname">bool LanguageParsing.WordTokenMapper.tokenDictionaryContainsWordOrSynonyms </td>
           <td>(</td>
-          <td class="paramtype">Dictionary&lt; <a class="el" href="class_buddy_token.html">BuddyToken</a>, List&lt; string &gt; &gt;&#160;</td>
+          <td class="paramtype">Dictionary&lt; <a class="el" href="class_tokens_1_1_buddy_token.html">BuddyToken</a>, List&lt; string &gt; &gt;&#160;</td>
           <td class="paramname"><em>dictionary</em>, </td>
         </tr>
         <tr>
@@ -345,7 +345,7 @@ const string&#160;</td><td class="memItemRight" valign="bottom"><b>nounFunctiona
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">out <a class="el" href="class_buddy_token.html">BuddyToken</a>&#160;</td>
+          <td class="paramtype">out <a class="el" href="class_tokens_1_1_buddy_token.html">BuddyToken</a>&#160;</td>
           <td class="paramname"><em>token</em>&#160;</td>
         </tr>
         <tr>
@@ -361,7 +361,7 @@ const string&#160;</td><td class="memItemRight" valign="bottom"><b>nounFunctiona
 </table>
 </div><div class="memdoc">
 
-<p>If any of the list of synonyms are known to the model (true), will give a corresponding <a class="el" href="class_buddy_token.html">BuddyToken</a>. </p>
+<p>If any of the list of synonyms are known to the model (true), will give a corresponding BuddyToken. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dictionary</td><td>The dictionary of known words</td></tr>
@@ -370,7 +370,7 @@ const string&#160;</td><td class="memItemRight" valign="bottom"><b>nounFunctiona
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns true if the dictionary contains any of the listed synonyms and the <a class="el" href="class_buddy_token.html">BuddyToken</a> has been written</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns true if the dictionary contains any of the listed synonyms and the BuddyToken has been written</dd></dl>
 
 </div>
 </div>

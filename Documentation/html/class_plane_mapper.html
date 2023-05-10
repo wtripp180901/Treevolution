@@ -79,6 +79,9 @@ $(function() {
   <div class="headertitle"><div class="title">PlaneMapper Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Instantiates the playspace based on real world data.  
+ <a href="class_plane_mapper.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for PlaneMapper:</div>
 <div class="dyncontent">
@@ -92,7 +95,7 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SetupForTest</b> (bool planeMapped)</td></tr>
 <tr class="separator:a678aa30e6567bda13736f0b77e511781"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab921ef33eb981b9507b9ebe64ee50262"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_plane_mapper.html#ab921ef33eb981b9507b9ebe64ee50262">CreateNewPlane</a> (Pose marker)</td></tr>
-<tr class="memdesc:ab921ef33eb981b9507b9ebe64ee50262"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates objects marking out the playspace based on a QR marker and maps the properties of the playspace in <a class="el" href="class_game_properties.html">GameProperties</a>.  <br /></td></tr>
+<tr class="memdesc:ab921ef33eb981b9507b9ebe64ee50262"><td class="mdescLeft">&#160;</td><td class="mdescRight">Instantiates objects marking out the playspace based on a QR marker and maps the properties of the playspace in <a class="el" href="class_game_properties.html" title="A container for global variables.">GameProperties</a>.  <br /></td></tr>
 <tr class="separator:ab921ef33eb981b9507b9ebe64ee50262"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94cd2445766238514f5ea730d0150a07"><td class="memItemLeft" align="right" valign="top"><a id="a94cd2445766238514f5ea730d0150a07" name="a94cd2445766238514f5ea730d0150a07"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>ResetPlane</b> ()</td></tr>
@@ -161,9 +164,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Start</b> ()</td></tr
 Private Attributes</h2></td></tr>
 <tr class="memitem:ad2b5ea49b620d1b906686795d56057d9"><td class="memItemLeft" align="right" valign="top"><a id="ad2b5ea49b620d1b906686795d56057d9" name="ad2b5ea49b620d1b906686795d56057d9"></a>
 <a class="el" href="class_game_state_manager.html">GameStateManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_gameStateManager</b></td></tr>
+<tr class="memdesc:ad2b5ea49b620d1b906686795d56057d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Currently active <a class="el" href="class_game_state_manager.html" title="Manages and keeps track of the game state as the user progresses through each round or tutorial.">GameStateManager</a> instance. <br /></td></tr>
 <tr class="separator:ad2b5ea49b620d1b906686795d56057d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9dbd6fb627d03109a9e060e774a9952"><td class="memItemLeft" align="right" valign="top"><a id="ac9dbd6fb627d03109a9e060e774a9952" name="ac9dbd6fb627d03109a9e060e774a9952"></a>
 <a class="el" href="class_q_r_detection.html">QRDetection</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_qrDetection</b></td></tr>
+<tr class="memdesc:ac9dbd6fb627d03109a9e060e774a9952"><td class="mdescLeft">&#160;</td><td class="mdescRight">Currently active <a class="el" href="class_q_r_detection.html" title="Runs QR Detection via MRTK&#39;s QRCodeWatcher.">QRDetection</a> Instance. <br /></td></tr>
 <tr class="separator:ac9dbd6fb627d03109a9e060e774a9952"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed2391c0abc94bca786798c8e386e59c"><td class="memItemLeft" align="right" valign="top"><a id="aed2391c0abc94bca786798c8e386e59c" name="aed2391c0abc94bca786798c8e386e59c"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>planeIsMapped</b> = false</td></tr>
@@ -187,7 +192,9 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>_minY</b></td></tr>
 Pose&#160;</td><td class="memItemRight" valign="bottom"><b>_pose</b></td></tr>
 <tr class="separator:adcbd43cdd09a0204abb54fb17ec04f77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Instantiates the playspace based on real world data. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ab921ef33eb981b9507b9ebe64ee50262" name="ab921ef33eb981b9507b9ebe64ee50262"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab921ef33eb981b9507b9ebe64ee50262">&#9670;&#160;</a></span>CreateNewPlane()</h2>
 
@@ -204,7 +211,7 @@ Pose&#160;</td><td class="memItemRight" valign="bottom"><b>_pose</b></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Instantiates objects marking out the playspace based on a QR marker and maps the properties of the playspace in <a class="el" href="class_game_properties.html">GameProperties</a>. </p>
+<p>Instantiates objects marking out the playspace based on a QR marker and maps the properties of the playspace in <a class="el" href="class_game_properties.html" title="A container for global variables.">GameProperties</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">marker</td><td>Pose of the the QR calibration marker from <a class="el" href="class_q_r_detection.html" title="Runs QR Detection via MRTK&#39;s QRCodeWatcher.">QRDetection</a></td></tr>

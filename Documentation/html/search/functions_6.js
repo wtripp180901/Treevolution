@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['generatetowers_0',['GenerateTowers',['../class_tower_generator.html#a75c9fa3546f2a4935710af72b53c0081',1,'TowerGenerator']]],
+  ['generatetowers_0',['GenerateTowers',['../class_towers_1_1_tower_generator.html#aa9ffe453917c5b69a550ed8e8c98bb0a',1,'Towers::TowerGenerator']]],
   ['getdefendbuddyactions_1',['getDefendBuddyActions',['../class_language_parsing_1_1_action_resolver.html#af1debdce71d48be91a433a880c222214',1,'LanguageParsing::ActionResolver']]],
   ['getenemieskilled_2',['getEnemiesKilled',['../class_enemy_manager.html#a049facad41a094da94dc8b28c6af725c',1,'EnemyManager']]],
   ['getenemyprefab_3',['getEnemyPrefab',['../class_enemy_manager.html#a87da32afeddba414974bcb993ecdcca2',1,'EnemyManager']]],
@@ -12,13 +12,14 @@ var searchData=
   ['getobstacleboundseventhandler_9',['GetObstacleBoundsEventHandler',['../class_pathfinding_1_1_pathfinding_obstacle.html#a9fbc8ffef925dab67342475f0bfb0583',1,'Pathfinding::PathfindingObstacle']]],
   ['getpath_10',['GetPath',['../class_pathfinding_1_1_pathfinder.html#a106e93e4d6b5db73aed24432f11b1d72',1,'Pathfinding::Pathfinder']]],
   ['getpathfindinggraph_11',['GetPathfindingGraph',['../class_pathfinding_1_1_pathfinding_graph_generator.html#aaf56b7ade5e876cf22ad75e02ffe3859',1,'Pathfinding::PathfindingGraphGenerator']]],
-  ['getroundlength_12',['GetRoundLength',['../class_round_timer.html#ae121a7de06ab831a2bd055757035d3d3',1,'RoundTimer']]],
-  ['getsampleatwordindex_13',['GetSampleAtWordIndex',['../class_pointer_location_tracker.html#aad071c419ee4393f8ffec608215402c6',1,'PointerLocationTracker']]],
-  ['getsubject_14',['getSubject',['../class_language_parsing_1_1_action_resolver.html#aa1a84de1e8a8b82579e49ca2fefc523f',1,'LanguageParsing::ActionResolver']]],
-  ['getsynonyms_15',['GetSynonyms',['../class_language_parsing_1_1_thesaurus_a_p_i_caller.html#a88825d691343a13e9bf6d4db9cd5aca5',1,'LanguageParsing::ThesaurusAPICaller']]],
-  ['getsynonymsforeachfunctionallabel_16',['getSynonymsForEachFunctionalLabel',['../class_language_parsing_1_1_language_parser.html#a002d87347a8d6a6e3dcf1114450bd0ad',1,'LanguageParsing::LanguageParser']]],
-  ['gettokenifmatched_17',['GetTokenIfMatched',['../class_language_parsing_1_1_word_token_mapper.html#aff7efd7e56b5f9919726b6259f110f34',1,'LanguageParsing::WordTokenMapper']]],
-  ['gettokenifsynonymsmatchcachedwords_18',['GetTokenIfSynonymsMatchCachedWords',['../class_language_parsing_1_1_word_token_mapper.html#aa7e3ba3c6ad6a0d143379b3f293dac3f',1,'LanguageParsing::WordTokenMapper']]],
-  ['gettranscriptionresult_19',['GetTranscriptionResult',['../class_assembly_a_p_i_caller.html#a0c194ea374c89836e00e61ebc3d19ba0',1,'AssemblyAPICaller']]],
-  ['giveinstructions_20',['GiveInstructions',['../class_buddy_script.html#a736c48163d6bffc86a1be692f147f95f',1,'BuddyScript']]]
+  ['getrangeobject_12',['GetRangeObject',['../class_towers_1_1_digest_tower.html#acae18e2c238f233623e0ffa83dfcebc7',1,'Towers.DigestTower.GetRangeObject()'],['../class_towers_1_1_multi_target_tower.html#acbd4e1acd3b0f6c44f98346b8e0f985a',1,'Towers.MultiTargetTower.GetRangeObject()'],['../class_towers_1_1_single_target_tower.html#ae9af770f6d7f7f383fb176df89a7b5bc',1,'Towers.SingleTargetTower.GetRangeObject()'],['../class_towers_1_1_tower_script.html#a5a5b937f63a4ad123493f89209a71488',1,'Towers.TowerScript.GetRangeObject()']]],
+  ['getroundlength_13',['GetRoundLength',['../class_round_timer.html#ae121a7de06ab831a2bd055757035d3d3',1,'RoundTimer']]],
+  ['getsampleatwordindex_14',['GetSampleAtWordIndex',['../class_pointer_location_tracker.html#aad071c419ee4393f8ffec608215402c6',1,'PointerLocationTracker']]],
+  ['getsubject_15',['getSubject',['../class_language_parsing_1_1_action_resolver.html#aa1a84de1e8a8b82579e49ca2fefc523f',1,'LanguageParsing::ActionResolver']]],
+  ['getsynonyms_16',['GetSynonyms',['../class_language_parsing_1_1_thesaurus_a_p_i_caller.html#a88825d691343a13e9bf6d4db9cd5aca5',1,'LanguageParsing::ThesaurusAPICaller']]],
+  ['getsynonymsforeachfunctionallabel_17',['getSynonymsForEachFunctionalLabel',['../class_language_parsing_1_1_language_parser.html#a002d87347a8d6a6e3dcf1114450bd0ad',1,'LanguageParsing::LanguageParser']]],
+  ['gettokenifmatched_18',['GetTokenIfMatched',['../class_language_parsing_1_1_word_token_mapper.html#aff7efd7e56b5f9919726b6259f110f34',1,'LanguageParsing::WordTokenMapper']]],
+  ['gettokenifsynonymsmatchcachedwords_19',['GetTokenIfSynonymsMatchCachedWords',['../class_language_parsing_1_1_word_token_mapper.html#aa7e3ba3c6ad6a0d143379b3f293dac3f',1,'LanguageParsing::WordTokenMapper']]],
+  ['gettranscriptionresult_20',['GetTranscriptionResult',['../class_assembly_a_p_i_caller.html#a0c194ea374c89836e00e61ebc3d19ba0',1,'AssemblyAPICaller']]],
+  ['giveinstructions_21',['GiveInstructions',['../class_buddy_script.html#a736c48163d6bffc86a1be692f147f95f',1,'BuddyScript']]]
 ];
