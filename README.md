@@ -3,12 +3,12 @@ University of Bristol - Team Project - Team C
 
 
 ## References:
-Enemy Healthbar Tutorial - https://weeklyhow.com/how-to-make-a-health-bar-in-unity/
-Turret Tutorial - https://www.youtube.com/watch?v=XLCMrguxIs0
-Sound Effects (Leaf rustle, Pop, Splat, & Buddy sound) - https://freesound.org/
-SuvWav Audio Conversion - https://gist.github.com/darktable/2317063
+Enemy Healthbar Tutorial - https://weeklyhow.com/how-to-make-a-health-bar-in-unity/ <br>
+Turret Tutorial - https://www.youtube.com/watch?v=XLCMrguxIs0 <br>
+Sound Effects (Leaf rustle, Pop, Splat, & Buddy sound) - https://freesound.org/ <br>
+SuvWav Audio Conversion - https://gist.github.com/darktable/2317063 <br>
 
-Any code or game assets _outside_ of the following folders within the [Treevolution](/Treevolution) Unity project are either Unity-, MRTK-, or OpenXR-produced assets:
+Any code or game assets _outside_ of the following folders within the [Treevolution](/Treevolution) Unity project are either Unity-, MRTK-, or OpenXR-produced assets: <br>
 [3d models](Treevolution/3d%20models) <br>
 [Assets/AnimatedModels](Treevolution/Assets/AnimatedModels) <br>
 [Assets/GrassAssets](Treevolution/Assets/GrassAssets) <br>
