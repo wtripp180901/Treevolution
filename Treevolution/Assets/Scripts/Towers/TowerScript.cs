@@ -3,6 +3,9 @@ using System.Collections;
 
 namespace Towers
 {
+    /// <summary>
+    /// Base class from which towers are derived
+    /// </summary>
     public abstract class TowerScript : MonoBehaviour, IRuntimeMovableBehaviourScript
     {
         /// <summary>

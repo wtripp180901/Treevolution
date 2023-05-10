@@ -2,6 +2,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Controls UI for enemy healthbars
+/// </summary>
 public class HealthBar : MonoBehaviour
 {
 

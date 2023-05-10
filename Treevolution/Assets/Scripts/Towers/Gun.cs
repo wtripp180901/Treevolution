@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// A point on a tower from which projectiles are spawned
+/// </summary>
 public class Gun : MonoBehaviour
 {
     [SerializeField]

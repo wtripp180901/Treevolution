@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Towers
 {
+    /// <summary>
+    /// Controls towers which will attack enemies which move over it
+    /// </summary>
     public class DigestTower : TowerScript
     {
         /// <summary>

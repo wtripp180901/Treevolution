@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Towers
 {
+    /// <summary>
+    /// Controls towers which damage enemies within an area of effect
+    /// </summary>
     public class MultiTargetTower : TowerScript
     {
         /// <summary>

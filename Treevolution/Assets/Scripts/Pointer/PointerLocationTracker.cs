@@ -4,6 +4,9 @@ using Microsoft.MixedReality.Toolkit;
 using Microsoft.MixedReality.Toolkit.Input;
 using UnityEngine;
 
+/// <summary>
+/// Visualises and tracks the position of the pointer coming from the player's hand
+/// </summary>
 public class PointerLocationTracker : MonoBehaviour, IMixedRealityGestureHandler
 {
     /// <summary>

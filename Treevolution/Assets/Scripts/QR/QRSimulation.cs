@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Simulates QR calibration for the editor environment
+/// </summary>
 public class QRSimulation : MonoBehaviour
 {
     PlaneMapper planeMapper;

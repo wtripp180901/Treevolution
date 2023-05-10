@@ -81,13 +81,16 @@ $(function() {
   <div class="headertitle"><div class="title">Towers.SingleTargetTower Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Controls tower which fire projectiles at singular enemies.  
+ <a href="class_towers_1_1_single_target_tower.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Towers.SingleTargetTower:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="class_towers_1_1_single_target_tower.png" usemap="#Towers.SingleTargetTower_map" alt=""/>
   <map id="Towers.SingleTargetTower_map" name="Towers.SingleTargetTower_map">
-<area href="class_towers_1_1_tower_script.html" alt="Towers.TowerScript" shape="rect" coords="104,56,303,80"/>
+<area href="class_towers_1_1_tower_script.html" title="Base class from which towers are derived." alt="Towers.TowerScript" shape="rect" coords="104,56,303,80"/>
 <area href="interface_i_runtime_movable_behaviour_script.html" title="QR objects which can be moved by the player during the battle phase should implement this interface." alt="IRuntimeMovableBehaviourScript" shape="rect" coords="209,0,408,24"/>
   </map>
 </div></div>
@@ -199,7 +202,7 @@ Transform&#160;</td><td class="memItemRight" valign="bottom"><b>_targetTransform
 <tr class="separator:aee4fd52ab3f1af0813db9425cb85b28a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77914440a894522171b88b1777c46555"><td class="memItemLeft" align="right" valign="top"><a id="a77914440a894522171b88b1777c46555" name="a77914440a894522171b88b1777c46555"></a>
 <a class="el" href="class_gun.html">Gun</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_currentGun</b></td></tr>
-<tr class="memdesc:a77914440a894522171b88b1777c46555"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attached <a class="el" href="class_gun.html">Gun</a> instance of the current tower. <br /></td></tr>
+<tr class="memdesc:a77914440a894522171b88b1777c46555"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attached <a class="el" href="class_gun.html" title="A point on a tower from which projectiles are spawned.">Gun</a> instance of the current tower. <br /></td></tr>
 <tr class="separator:a77914440a894522171b88b1777c46555"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b62df614101b8ca6765d157cc47c176"><td class="memItemLeft" align="right" valign="top"><a id="a5b62df614101b8ca6765d157cc47c176" name="a5b62df614101b8ca6765d157cc47c176"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>_fireRateDelta</b></td></tr>
@@ -243,7 +246,7 @@ Material&#160;</td><td class="memItemRight" valign="bottom"><b>disabledMaterial<
 <tr class="separator:af3ac1f640d1aacb8b4772750c6a65253 inherit pub_attribs_class_towers_1_1_tower_script"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1494e2923b96a8fca9c5853466adb781 inherit pub_attribs_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top"><a id="a1494e2923b96a8fca9c5853466adb781" name="a1494e2923b96a8fca9c5853466adb781"></a>
 <a class="el" href="class_enemy_manager.html">EnemyManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>enemyManager</b></td></tr>
-<tr class="memdesc:a1494e2923b96a8fca9c5853466adb781 inherit pub_attribs_class_towers_1_1_tower_script"><td class="mdescLeft">&#160;</td><td class="mdescRight">Currently active <a class="el" href="class_enemy_manager.html">EnemyManager</a> instance. <br /></td></tr>
+<tr class="memdesc:a1494e2923b96a8fca9c5853466adb781 inherit pub_attribs_class_towers_1_1_tower_script"><td class="mdescLeft">&#160;</td><td class="mdescRight">Currently active <a class="el" href="class_enemy_manager.html" title="Responsible for spawning and managing enemies in the scene.">EnemyManager</a> instance. <br /></td></tr>
 <tr class="separator:a1494e2923b96a8fca9c5853466adb781 inherit pub_attribs_class_towers_1_1_tower_script"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5243280a34186057aa1c31dfb5a43c3c inherit pub_attribs_class_towers_1_1_tower_script"><td class="memItemLeft" align="right" valign="top"><a id="a5243280a34186057aa1c31dfb5a43c3c" name="a5243280a34186057aa1c31dfb5a43c3c"></a>
 GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>rangeVisual</b></td></tr>
@@ -255,7 +258,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>shootingDisabled</b> 
 <tr class="memdesc:a1fa603f08c2dfe25a5e88cf2a885fc04 inherit pro_attribs_class_towers_1_1_tower_script"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggles whether shooting is enabled or not. <br /></td></tr>
 <tr class="separator:a1fa603f08c2dfe25a5e88cf2a885fc04 inherit pro_attribs_class_towers_1_1_tower_script"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Controls tower which fire projectiles at singular enemies. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ac20934acddebff2b9998f69d457fd8b9" name="ac20934acddebff2b9998f69d457fd8b9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac20934acddebff2b9998f69d457fd8b9">&#9670;&#160;</a></span>Attack()</h2>
 

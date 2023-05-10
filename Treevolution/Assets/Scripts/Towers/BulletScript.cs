@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Controls projectiles spawned by towers
+/// </summary>
 public class BulletScript : MonoBehaviour
 {
     [SerializeField]

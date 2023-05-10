@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// A container for global variables
+/// </summary>
 public static class GameProperties
 {
     public static Vector3 TopLeftCorner;
