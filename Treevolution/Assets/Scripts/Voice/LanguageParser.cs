@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json.Linq;
 using System;
+using BuddyActions;
+using Tokens;
 
 namespace LanguageParsing
 {

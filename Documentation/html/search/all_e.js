@@ -3,7 +3,7 @@ var searchData=
   ['obstacledata_0',['obstacleData',['../class_pathfinding_1_1_pathfinding_graph_generator.html#a68549dbbb0e4c3572be3df2032c088be',1,'Pathfinding::PathfindingGraphGenerator']]],
   ['obstacledata_1',['ObstacleData',['../struct_pathfinding_1_1_pathfinding_graph_generator_1_1_obstacle_data.html',1,'Pathfinding::PathfindingGraphGenerator']]],
   ['oncollisionenter_2',['OnCollisionEnter',['../class_enemy_script.html#a39f48c94d286c46797211738e496ce7a',1,'EnemyScript']]],
-  ['ongoingbuddyaction_3',['OngoingBuddyAction',['../class_ongoing_buddy_action.html',1,'']]],
+  ['ongoingbuddyaction_3',['OngoingBuddyAction',['../class_buddy_actions_1_1_ongoing_buddy_action.html',1,'BuddyActions']]],
   ['ontouchcompleted_4',['OnTouchCompleted',['../class_enemy_touch_handler.html#a6d512997b672dec32268b9ef031354eb',1,'EnemyTouchHandler']]],
   ['ontouchstarted_5',['OnTouchStarted',['../class_enemy_touch_handler.html#ab6c3e2e7c57c7022715102ef928bca2e',1,'EnemyTouchHandler']]],
   ['ontouchupdated_6',['OnTouchUpdated',['../class_enemy_touch_handler.html#a20591aa878165e6747dcacc159bfaead',1,'EnemyTouchHandler']]],

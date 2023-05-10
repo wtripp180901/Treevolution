@@ -39,6 +39,12 @@ public class RuntimeMovable : MonoBehaviour
         obstacle = GetComponent<Pathfinding.PathfindingObstacle>();
     }
 
+    public void SetupForTest(MonoBehaviour behaviourScript,float penaltyDuration)
+    {
+        this.behaviourScript = behaviourScript;
+        this.PenaltyDuration = penaltyDuration;
+    }
+
     // Update is called once per frame
     void Update()
     {

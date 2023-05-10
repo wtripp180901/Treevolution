@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// Responsible for spawning and managing enemies in the scene
+/// </summary>
 public class EnemyManager : MonoBehaviour
 {
     /// <summary>

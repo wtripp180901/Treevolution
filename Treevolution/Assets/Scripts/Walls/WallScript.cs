@@ -95,13 +95,13 @@ public class WallScript : MonoBehaviour, IRuntimeMovableBehaviourScript
     public void ApplyMovementPenalty()
     {
         myCollider.enabled = false;
-        gameObject.transform.GetChild(gameObject.transform.childCount - 1).GetComponent<Renderer>().material = disabled;
+        if(gameObject.transform.childCount > 0) gameObject.transform.GetChild(gameObject.transform.childCount - 1).GetComponent<Renderer>().material = disabled;
     }
 
     public void EndMovementPenalty()
     {
         if (!isDestroyed) myCollider.enabled = true;
-        gameObject.transform.GetChild(gameObject.transform.childCount - 1).GetComponent<Renderer>().material = enabled;
+        if (gameObject.transform.childCount > 0) gameObject.transform.GetChild(gameObject.transform.childCount - 1).GetComponent<Renderer>().material = enabled;
     }
 
     public void SetupForTest(Collider collider, Pathfinding.PathfindingObstacle nodeGenerator)

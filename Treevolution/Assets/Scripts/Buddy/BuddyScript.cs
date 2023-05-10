@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 //using UnityEditor.Timeline.Actions;
 using UnityEngine;
+using BuddyActions;
+using Towers;
 
 
 /// <summary>
@@ -42,9 +44,10 @@ public class BuddyScript : MonoBehaviour
         rangeIndicator?.SetActive(false);
     }
 
-    public void SetupForTest()
+    public void SetupForTest(float speed)
     {
         rig = GetComponent<Rigidbody>();
+        this.speed = speed;
     }
 
     BUDDY_ACTION_TYPES currentAction;
@@ -93,12 +96,6 @@ public class BuddyScript : MonoBehaviour
                     break;
             }
         }
-    }
-
-    IEnumerator Delay(float v, Action value)
-    {
-        yield return new WaitForSeconds(v);
-        value?.Invoke();
     }
 
     /// <summary>
@@ -307,5 +304,10 @@ public class BuddyScript : MonoBehaviour
         targets = this.targets;
         currentTarget = this.currentTarget;
         isOk = isok;
+    }
+
+    public void GetTestData(out Queue<BuddyAction> actionQueue)
+    {
+        actionQueue = this.actionQueue;
     }
 }
